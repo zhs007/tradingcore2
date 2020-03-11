@@ -1,13 +1,11 @@
 {
-    "configurations": [
-        {
-            "name": "tradingcore2",
-            "configurationProvider": "vector-of-bool.cmake-tools",
-            "includePath": [
-                "${workspaceFolder}/include"
-            ],
-            "cppStandard": "c++17"
-        }
-    ],
-    "version": 4
+  "configurations": [
+    {
+      "name": "Mac",
+      "includePath": ["${workspaceFolder}/include"],
+      "cStandard": "c11",
+      "cppStandard": "c++17"
+    }
+  ],
+  "version": 4
 }

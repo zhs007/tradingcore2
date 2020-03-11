@@ -1,14 +1,14 @@
 #ifndef __TRADINGCORE2_CANDLE_H__
 #define __TRADINGCORE2_CANDLE_H__
 
-#include <vector>
 #include <tradingcore2/basedef.h>
+#include <vector>
 
 CR2BEGIN
 
 struct CandleData {
-  time_t curtime;
-  Price open, close, high, low;
+  TimeStamp ts;
+  Money open, close, high, low;
   Volume volume;
   Volume openInterest;
 };
@@ -22,8 +22,8 @@ class Candle {
   ~Candle() {}
 
  public:
-  void push(Price open, Price close, Price high, Price low, Volume volume,
-            Volume openInterest, time_t curtime);
+  void push(Money open, Money close, Money high, Money low, Volume volume,
+            Volume openInterest, time_t ts);
 
  protected:
   List m_lst;

@@ -2,8 +2,8 @@
 
 CR2BEGIN
 
-void Candle::push(Price open, Price close, Price high, Price low, Volume volume,
-                  Volume openInterest, time_t curtime) {
+void Candle::push(Money open, Money close, Money high, Money low, Volume volume,
+                  Volume openInterest, TimeStamp ts) {
   CandleData c;
 
   c.open = open;
@@ -12,7 +12,7 @@ void Candle::push(Price open, Price close, Price high, Price low, Volume volume,
   c.low = low;
   c.volume = volume;
   c.openInterest = openInterest;
-  c.curtime = curtime;
+  c.ts = ts;
 
   m_lst.push_back(c);
 }

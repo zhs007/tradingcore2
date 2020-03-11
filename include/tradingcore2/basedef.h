@@ -8,8 +8,17 @@
 
 CR2BEGIN
 
-typedef double Price;
-typedef long int Volume;
+typedef time_t TimeStamp;
+
+typedef double Money;
+typedef double Volume;
+
+const Money ZEROMONEY = 0.0;
+const Volume ZEROVOLUME = 0.0;
+// typedef long int Volume;
+
+class Wallet;
+class Exchange;
 
 CR2END
 

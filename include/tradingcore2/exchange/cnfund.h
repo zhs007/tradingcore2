@@ -1,0 +1,12 @@
+#ifndef __TRADINGCORE2_EXCHANGE_CNFUND_H__
+#define __TRADINGCORE2_EXCHANGE_CNFUND_H__
+
+#include <tradingcore2/basedef.h>
+
+CR2BEGIN
+
+
+
+CR2END
+
+#endif  // __TRADINGCORE2_EXCHANGE_CNFUND_H__
