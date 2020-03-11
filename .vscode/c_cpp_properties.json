@@ -2,7 +2,11 @@
     "configurations": [
         {
             "name": "tradingcore2",
-            "configurationProvider": "vector-of-bool.cmake-tools"
+            "configurationProvider": "vector-of-bool.cmake-tools",
+            "includePath": [
+                "${workspaceFolder}/include"
+            ],
+            "cppStandard": "c++17"
         }
     ],
     "version": 4
