@@ -72,7 +72,9 @@ void Wallet::buyAssets(const char* assetsName, Money money, TimeStamp ts) {
   Money price = ZEROMONEY;
   Money fee = ZEROMONEY;
 
-  m_exchange.calculateVolume(assetsName, ts, money, volume, price, fee);
+  bool isok =
+      m_exchange.calculateVolume(assetsName, ts, money, volume, price, fee);
+  assert(isok);
   assert(price > ZEROMONEY);
 
   auto assets = this->_getAssets(assetsName);
@@ -106,7 +108,9 @@ void Wallet::sellAssets(const char* assetsName, Volume volume, TimeStamp ts) {
   Money price = ZEROMONEY;
   Money fee = ZEROMONEY;
 
-  m_exchange.calculatePrice(assetsName, ts, volume, money, price, fee);
+  bool isok =
+      m_exchange.calculatePrice(assetsName, ts, volume, money, price, fee);
+  assert(isok);
 
   assets->volume -= volume;
   assets->feesPaid += fee;

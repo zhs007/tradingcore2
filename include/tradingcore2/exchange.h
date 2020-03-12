@@ -13,10 +13,10 @@ class Exchange {
   virtual ~Exchange() {}
 
  public:
-  virtual void calculateVolume(const char* assetsName, TimeStamp ts, Money money,
+  virtual bool calculateVolume(const char* assetsName, TimeStamp ts, Money money,
                                Volume& volume, Money& price, Money& fee) = 0;
 
-  virtual void calculatePrice(const char* assetsName, TimeStamp ts, Volume volume,
+  virtual bool calculatePrice(const char* assetsName, TimeStamp ts, Volume volume,
                               Money& money, Money& price, Money& fee) = 0;
 
  protected:
