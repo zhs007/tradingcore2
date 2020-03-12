@@ -52,6 +52,17 @@ struct WalletHistoryNode {
     this->offMoney = offMoney;
     this->trade = trade;
   }
+
+  void setTrade(TradeType tradeType, const char* assetsName, Money money,
+                Volume volume, TimeStamp ts, Money offMoney) {
+    this->nodeType = WHNT_TRADE;
+    this->offMoney = offMoney;
+
+    this->trade.assetsName = assetsName;
+    this->trade.money = money;
+    this->trade.volume = volume;
+    this->trade.ts = ts;
+  }
 };
 
 class Wallet {

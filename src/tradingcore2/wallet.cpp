@@ -84,6 +84,11 @@ void Wallet::buyAssets(const char* assetsName, Money money, TimeStamp ts) {
   assets->feesPaid += fee;
 
   this->m_money -= money;
+
+  WalletHistoryNode n;
+  n.setTrade(TT_BUY, assetsName, money, volume, ts, -money);
+
+  this->_addHistory(n);
 }
 
 void Wallet::sellAssets(const char* assetsName, Volume volume, TimeStamp ts) {
@@ -107,6 +112,11 @@ void Wallet::sellAssets(const char* assetsName, Volume volume, TimeStamp ts) {
   assets->feesPaid += fee;
 
   this->m_money += money;
+
+  WalletHistoryNode n;
+  n.setTrade(TT_SELL, assetsName, money, volume, ts, money);
+
+  this->_addHistory(n);
 }
 
 CR2END

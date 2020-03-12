@@ -6,7 +6,10 @@
 
 CR2BEGIN
 
+enum TradeType { TT_BUY = 0, TT_SELL = 1 };
+
 struct Trade {
+  TradeType tradeType;
   std::string assetsName;
   Money money;
   Volume volume;
