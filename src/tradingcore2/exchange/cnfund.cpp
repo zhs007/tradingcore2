@@ -44,12 +44,14 @@ void CNFundExchange::loadFundValue(const char* fn) {
 
   csv.load(fn);
 
+  fv->code = csv.getData(0, 0);
+
   for (int y = 0; y < csv.getHeight(); ++y) {
     CNFundValueNode node;
 
     node.value = strtoll(csv.getData(2, y), NULL, 10) / 10000.0;
     node.totalValue = strtoll(csv.getData(3, y), NULL, 10) / 10000.0;
-    node.ts = str2timestamp(csv.getData(3, y), "%Y%m%d");
+    node.ts = str2timestampUTC(csv.getData(1, y), "%Y%m%d");
 
     fv->data.push_back(node);
   }

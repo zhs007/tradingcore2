@@ -9,10 +9,10 @@ include_directories(../deps/googletest/googletest/include)
 link_directories(../deps/googletest/build/lib)
 
 aux_source_directory(. DIR_TESTS_SRCS)
+aux_source_directory(./exchange DIR_TESTS_EXCHANGE_SRCS)
 
-add_executable(tests ${DIR_TESTS_SRCS})
+add_executable(tests ${DIR_TESTS_SRCS} ${DIR_TESTS_EXCHANGE_SRCS})
 
-#target_link_libraries(tests libgtest.a)
 target_link_libraries(tests gtest)
 target_link_libraries(tests libtradingcore2)
 
