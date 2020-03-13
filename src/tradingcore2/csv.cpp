@@ -44,7 +44,12 @@ void CSVLoader::load(const char* fn) {
   this->m_buff[fs] = '\0';
 
   int w = 0, h = 0;
+  int ll = 0;
   for (int i = 0; i < fs; ++i) {
+    if (this->m_buff[i] != '\r' && this->m_buff[i] != '\n') {
+      ++ll;
+    }
+
     if (h == 0 && this->m_buff[i] == ',') {
       w++;
     }
@@ -54,9 +59,17 @@ void CSVLoader::load(const char* fn) {
         w++;
       }
 
-      h++;
+      if (ll > 0) {
+        h++;
+      }
+
+      i++;
+
+      ll = 0;
     }
   }
+
+  h--;
 
   this->m_width = w;
   this->m_height = h;
@@ -94,13 +107,19 @@ void CSVLoader::load(const char* fn) {
         this->m_buff[i] = '\0';
         this->m_head[x] = start;
         start = NULL;
+      } else {
+        this->m_buff[i] = '\0';
+        this->m_data[y][x] = start;
+        start = NULL;
       }
 
       y++;
       x = 0;
 
-      this->m_data[y] =
-          (char**)((char*)data + h * sizeof(char**) + w * y * sizeof(char*));
+      if (y < h) {
+        this->m_data[y] =
+            (char**)((char*)data + h * sizeof(char**) + w * y * sizeof(char*));
+      }
 
       i++;
     }
