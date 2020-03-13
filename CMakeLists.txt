@@ -9,6 +9,8 @@ enable_testing()
 include_directories(./include)
 
 add_subdirectory(./src/tradingcore2)
+add_subdirectory(./tests)
+add_subdirectory(./deps/googletest)
 
 add_executable(tradingcore2 src/main.cpp)
 
