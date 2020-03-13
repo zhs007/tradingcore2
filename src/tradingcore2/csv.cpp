@@ -29,6 +29,9 @@ void CSVLoader::load(const char* fn) {
   FILE* fp;
 
   fp = fopen(fn, "rb");
+  if (fp == NULL) {
+    return;
+  }
 
   fseek(fp, 0, SEEK_END);
   long fs = ftell(fp);
@@ -47,13 +50,19 @@ void CSVLoader::load(const char* fn) {
     }
 
     if (this->m_buff[i] == '\r' && this->m_buff[i + 1] == '\n') {
+      if (h == 0) {
+        w++;
+      }
+
       h++;
     }
   }
 
+  this->m_width = w;
+  this->m_height = h;
   this->m_head = (char**)malloc(w * sizeof(char*));
-  char*** data = (char***)malloc(w * h * sizeof(char*) + h * sizeof(char**));
-  this->m_data = data;
+  void* data = malloc(w * h * sizeof(char*) + h * sizeof(char**));
+  this->m_data = (char***)data;
 
   char* start = NULL;
   int x = 0, y = -1;
@@ -81,11 +90,19 @@ void CSVLoader::load(const char* fn) {
     }
 
     if (this->m_buff[i] == '\r' && this->m_buff[i + 1] == '\n') {
+      if (y == -1) {
+        this->m_buff[i] = '\0';
+        this->m_head[x] = start;
+        start = NULL;
+      }
+
       y++;
       x = 0;
 
       this->m_data[y] =
-          (char**)data + h * sizeof(char**) + w * y * sizeof(char*);
+          (char**)((char*)data + h * sizeof(char**) + w * y * sizeof(char*));
+
+      i++;
     }
   }
 }
