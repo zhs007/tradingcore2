@@ -40,6 +40,14 @@ class CNFundExchange : public Exchange {
                               Volume volume, Money& money, Money& price,
                               Money& fee);
 
+  virtual bool getDataWithTimestamp(const char* assetsName, TimeStamp ts,
+                                    Money& price, Volume& volume);
+
+  virtual bool getData(const char* assetsName, int index, TimeStamp& ts,
+                       Money& price, Volume& volume);
+
+  virtual int getDataLength(const char* assetsName);
+
  public:
   const CNFundValue* getFundValue(const char* assetsName) const;
 

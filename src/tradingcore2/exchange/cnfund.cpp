@@ -116,4 +116,45 @@ bool CNFundExchange::calculatePrice(const char* assetsName, TimeStamp ts,
   return true;
 }
 
+bool CNFundExchange::getDataWithTimestamp(const char* assetsName, TimeStamp ts,
+                                          Money& price, Volume& volume) {
+  auto fv = this->getFundValue(assetsName);
+  assert(fv != NULL);
+
+  auto n = fv->getNode(ts);
+  if (n == NULL) {
+    return false;
+  }
+
+  price = n->totalValue;
+  volume = ZEROVOLUME;
+
+  return true;
+}
+
+bool CNFundExchange::getData(const char* assetsName, int index, TimeStamp& ts,
+                             Money& price, Volume& volume) {
+  assert(index >= 0);
+
+  auto fv = this->getFundValue(assetsName);
+  assert(fv != NULL);
+
+  if (index < fv->data.size()) {
+    price = fv->data[index].totalValue;
+    volume = ZEROVOLUME;
+    ts = fv->data[index].ts;
+
+    return true;
+  }
+
+  return false;
+}
+
+int CNFundExchange::getDataLength(const char* assetsName) {
+  auto fv = this->getFundValue(assetsName);
+  assert(fv != NULL);
+
+  return fv->data.size();
+}
+
 CR2END

@@ -12,6 +12,7 @@ typedef time_t TimeStamp;
 
 typedef double Money;
 typedef double Volume;
+typedef double IndicatorDataValue;
 
 const Money ZEROMONEY = 0.0;
 const Volume ZEROVOLUME = 0.0;
@@ -19,6 +20,7 @@ const Volume ZEROVOLUME = 0.0;
 
 class Wallet;
 class Exchange;
+class Indicator;
 
 CR2END
 
