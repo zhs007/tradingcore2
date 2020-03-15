@@ -1,5 +1,5 @@
-#ifndef __TRADINGCORE2_INDICATOR_WMA_H__
-#define __TRADINGCORE2_INDICATOR_WMA_H__
+#ifndef __TRADINGCORE2_INDICATOR_SMMA_H__
+#define __TRADINGCORE2_INDICATOR_SMMA_H__
 
 #include <assert.h>
 #include <tradingcore2/basedef.h>
@@ -10,7 +10,7 @@ CR2BEGIN
 
 //!! https://en.wikipedia.org/wiki/Moving_average
 
-class IndicatorWMA {
+class IndicatorSMMA {
  public:
   struct Node {
     TimeStamp ts;
@@ -20,10 +20,10 @@ class IndicatorWMA {
   typedef std::vector<Node> List;
 
  public:
-  IndicatorWMA(int avgtimes) : m_avgtimes(avgtimes), m_iStart(-1) {
+  IndicatorSMMA(int avgtimes) : m_avgtimes(avgtimes), m_iStart(-1) {
     assert(avgtimes > 1);
   }
-  virtual ~IndicatorWMA() {}
+  virtual ~IndicatorSMMA() {}
 
  public:
   virtual bool build(Exchange& exchange, const char* assetsName, int start,
@@ -44,10 +44,6 @@ class IndicatorWMA {
   void pushData(TimeStamp ts, IndicatorDataValue val);
 
  protected:
-  Money _getPrice(Exchange& exchange, const char* assetsName, int start,
-                  int index);
-
- protected:
   int m_avgtimes;
   List m_lst;
   int m_iStart;
@@ -55,4 +51,4 @@ class IndicatorWMA {
 
 CR2END
 
-#endif  // __TRADINGCORE2_INDICATOR_WMA_H__
+#endif  // __TRADINGCORE2_INDICATOR_SMMA_H__
