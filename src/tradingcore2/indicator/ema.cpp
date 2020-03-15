@@ -17,26 +17,6 @@ void IndicatorEMA::pushData(TimeStamp ts, IndicatorDataValue val) {
   m_lst.push_back(n);
 }
 
-void IndicatorEMA::_buildFirst(Exchange& exchange, const char* assetsName,
-                               int start, int length, Money& totalPrice) {
-  Money price;
-  Volume volume;
-  TimeStamp ts;
-  auto isok = exchange.getData(assetsName, start, ts, price, volume);
-  assert(isok);
-
-  totalPrice = price;
-  this->pushData(ts, totalPrice);
-
-  for (int i = 1; i < length; ++i) {
-    auto isok = exchange.getData(assetsName, start + i, ts, price, volume);
-    assert(isok);
-
-    totalPrice += price;
-    this->pushData(ts, totalPrice / (i + 1));
-  }
-}
-
 bool IndicatorEMA::build(Exchange& exchange, const char* assetsName, int start,
                          int length) {
   assert(assetsName != NULL);
@@ -60,33 +40,21 @@ bool IndicatorEMA::build(Exchange& exchange, const char* assetsName, int start,
 
   m_iStart = start;
 
-  if (this->m_avgtimes >= length) {
-    Money tp;
-    this->_buildFirst(exchange, assetsName, start, length, tp);
+  Money price;
+  Volume volume;
+  TimeStamp ts;
+  auto isok = exchange.getData(assetsName, start, ts, price, volume);
+  assert(isok);
 
-    return true;
-  }
+  this->pushData(ts, price);
 
-  Money tp;
-  this->_buildFirst(exchange, assetsName, start, this->m_avgtimes, tp);
-
-  for (int i = this->m_avgtimes; i < length; ++i) {
-    Money price;
-    Volume volume;
-    TimeStamp ts;
-
-    auto isok = exchange.getData(assetsName, start + i - this->m_avgtimes, ts,
-                                 price, volume);
+  for (int i = 1; i < length; ++i) {
+    auto isok = exchange.getData(assetsName, start + i, ts, price, volume);
     assert(isok);
 
-    tp -= price;
-
-    isok = exchange.getData(assetsName, start + i, ts, price, volume);
-    assert(isok);
-
-    tp += price;
-
-    this->pushData(ts, tp / this->m_avgtimes);
+    this->pushData(ts, (2 * price +
+                        (this->m_avgtimes - 1) * this->m_lst[i - 1].val.value) /
+                           (this->m_avgtimes + 1));
   }
 
   return true;

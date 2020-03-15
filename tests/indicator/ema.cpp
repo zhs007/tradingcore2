@@ -21,10 +21,14 @@ TEST_F(EMATest, ema_2) {
   EXPECT_EQ(pEMA->getLength(), 2280);
 
   EXPECT_NEAR(pEMA->getSingleValue(0)->value, 1.0, 0.00005);
-  EXPECT_NEAR(pEMA->getSingleValue(1)->value, (1.0 + 1.0009) / 2, 0.00005);
-  EXPECT_NEAR(pEMA->getSingleValue(2)->value, (1.0009 + 1.006) / 2, 0.00005);
-  EXPECT_NEAR(pEMA->getSingleValue(2278)->value, (2.848 + 2.911) / 2, 0.00005);
-  EXPECT_NEAR(pEMA->getSingleValue(2279)->value, (2.911 + 2.915) / 2, 0.00005);
+  EXPECT_NEAR(pEMA->getSingleValue(1)->value,
+              (2 * 1.0009 + pEMA->getSingleValue(0)->value) / 3, 0.00005);
+  EXPECT_NEAR(pEMA->getSingleValue(2)->value,
+              (2 * 1.006 + pEMA->getSingleValue(1)->value) / 3, 0.00005);
+  EXPECT_NEAR(pEMA->getSingleValue(2278)->value,
+              (2 * 2.911 + pEMA->getSingleValue(2277)->value) / 3, 0.00005);
+  EXPECT_NEAR(pEMA->getSingleValue(2279)->value,
+              (2 * 2.915 + pEMA->getSingleValue(2278)->value) / 3, 0.00005);
 }
 
 TEST_F(EMATest, ema_3) {
@@ -36,13 +40,14 @@ TEST_F(EMATest, ema_3) {
   EXPECT_EQ(pEMA->getLength(), 2280);
 
   EXPECT_NEAR(pEMA->getSingleValue(0)->value, 1.0, 0.00005);
-  EXPECT_NEAR(pEMA->getSingleValue(1)->value, (1.0 + 1.0009) / 2, 0.00005);
-  EXPECT_NEAR(pEMA->getSingleValue(2)->value, (1.0 + 1.0009 + 1.006) / 3,
-              0.00005);
-  EXPECT_NEAR(pEMA->getSingleValue(3)->value, (1.0009 + 1.006 + 1.006) / 3,
-              0.00005);
-  EXPECT_NEAR(pEMA->getSingleValue(2278)->value, (2.838 + 2.848 + 2.911) / 3,
-              0.00005);
-  EXPECT_NEAR(pEMA->getSingleValue(2279)->value, (2.848 + 2.911 + 2.915) / 3,
-              0.00005);
+  EXPECT_NEAR(pEMA->getSingleValue(1)->value,
+              (2 * 1.0009 + 2 * pEMA->getSingleValue(0)->value) / 4, 0.00005);
+  EXPECT_NEAR(pEMA->getSingleValue(2)->value,
+              (2 * 1.006 + 2 * pEMA->getSingleValue(1)->value) / 4, 0.00005);
+  EXPECT_NEAR(pEMA->getSingleValue(3)->value,
+              (2 * 1.006 + 2 * pEMA->getSingleValue(2)->value) / 4, 0.00005);
+  EXPECT_NEAR(pEMA->getSingleValue(2278)->value,
+              (2 * 2.911 + 2 * pEMA->getSingleValue(2277)->value) / 4, 0.00005);
+  EXPECT_NEAR(pEMA->getSingleValue(2279)->value,
+              (2 * 2.915 + 2 * pEMA->getSingleValue(2278)->value) / 4, 0.00005);
 }

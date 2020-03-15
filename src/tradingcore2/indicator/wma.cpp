@@ -17,24 +17,25 @@ void IndicatorWMA::pushData(TimeStamp ts, IndicatorDataValue val) {
   m_lst.push_back(n);
 }
 
-void IndicatorWMA::_buildFirst(Exchange& exchange, const char* assetsName,
-                               int start, int length, Money& totalPrice) {
+Money IndicatorWMA::_getPrice(Exchange& exchange, const char* assetsName,
+                              int start, int index) {
+  assert(start >= 0);
+
   Money price;
   Volume volume;
   TimeStamp ts;
-  auto isok = exchange.getData(assetsName, start, ts, price, volume);
-  assert(isok);
 
-  totalPrice = price;
-  this->pushData(ts, totalPrice);
-
-  for (int i = 1; i < length; ++i) {
-    auto isok = exchange.getData(assetsName, start + i, ts, price, volume);
+  if (index <= 0) {
+    auto isok = exchange.getData(assetsName, start, ts, price, volume);
     assert(isok);
 
-    totalPrice += price;
-    this->pushData(ts, totalPrice / (i + 1));
+    return price;
   }
+
+  auto isok = exchange.getData(assetsName, start + index, ts, price, volume);
+  assert(isok);
+
+  return price;
 }
 
 bool IndicatorWMA::build(Exchange& exchange, const char* assetsName, int start,
@@ -60,33 +61,27 @@ bool IndicatorWMA::build(Exchange& exchange, const char* assetsName, int start,
 
   m_iStart = start;
 
-  if (this->m_avgtimes >= length) {
-    Money tp;
-    this->_buildFirst(exchange, assetsName, start, length, tp);
+  Money price;
+  Volume volume;
+  TimeStamp ts;
+  auto isok = exchange.getData(assetsName, start, ts, price, volume);
+  assert(isok);
 
-    return true;
-  }
+  this->pushData(ts, price);
 
-  Money tp;
-  this->_buildFirst(exchange, assetsName, start, this->m_avgtimes, tp);
-
-  for (int i = this->m_avgtimes; i < length; ++i) {
-    Money price;
-    Volume volume;
-    TimeStamp ts;
-
-    auto isok = exchange.getData(assetsName, start + i - this->m_avgtimes, ts,
-                                 price, volume);
+  for (int i = 1; i < length; ++i) {
+    auto isok = exchange.getData(assetsName, start + i, ts, price, volume);
     assert(isok);
 
-    tp -= price;
+    Money tp = price * this->m_avgtimes;
 
-    isok = exchange.getData(assetsName, start + i, ts, price, volume);
-    assert(isok);
+    for (int j = this->m_avgtimes - 1; j > 0; --j) {
+      Money cp = this->_getPrice(exchange, assetsName, start,
+                                 i - this->m_avgtimes + j);
+      tp += j * cp;
+    }
 
-    tp += price;
-
-    this->pushData(ts, tp / this->m_avgtimes);
+    this->pushData(ts, tp / (m_avgtimes * (m_avgtimes + 1) / 2));
   }
 
   return true;

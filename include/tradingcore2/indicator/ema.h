@@ -9,6 +9,7 @@
 CR2BEGIN
 
 //!! https://en.wikipedia.org/wiki/Moving_average
+//!! https://baike.baidu.com/item/EMA/12646151
 
 class IndicatorEMA {
  public:
@@ -42,10 +43,6 @@ class IndicatorEMA {
   void release() { m_lst.clear(); }
 
   void pushData(TimeStamp ts, IndicatorDataValue val);
-
- protected:
-  void _buildFirst(Exchange& exchange, const char* assetsName, int start,
-                   int length, Money& totalPrice);
 
  protected:
   int m_avgtimes;

@@ -44,8 +44,9 @@ class IndicatorWMA {
   void pushData(TimeStamp ts, IndicatorDataValue val);
 
  protected:
-  void _buildFirst(Exchange& exchange, const char* assetsName, int start,
-                   int length, Money& totalPrice);
+
+  Money _getPrice(Exchange& exchange, const char* assetsName, int start,
+                  int index);
 
  protected:
   int m_avgtimes;
