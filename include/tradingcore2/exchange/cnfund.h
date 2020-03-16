@@ -26,6 +26,7 @@ class CNFundExchange : public Exchange {
  public:
   typedef std::map<std::string, CNFundValue*> Map;
   typedef std::pair<std::string, CNFundValue*> Pair;
+  typedef std::vector<TimeStamp> TimeStampList;
 
  public:
   CNFundExchange() {}
@@ -48,6 +49,8 @@ class CNFundExchange : public Exchange {
 
   virtual int getDataLength(const char* assetsName);
 
+  virtual void forEachTimeStamp(FuncOnTimer func) const;
+
  public:
   const CNFundValue* getFundValue(const char* assetsName) const;
 
@@ -57,8 +60,13 @@ class CNFundExchange : public Exchange {
 
   void setFundValue(const char* assetsName, CNFundValue* fv);
 
+  void buildTimeStampList();
+
+  void insertTimeStamp(TimeStamp ts);
+
  protected:
   Map m_map;
+  TimeStampList m_lstTimeStamp;
 };
 
 CR2END

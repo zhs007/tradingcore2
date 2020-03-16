@@ -157,4 +157,39 @@ int CNFundExchange::getDataLength(const char* assetsName) {
   return fv->data.size();
 }
 
+void CNFundExchange::forEachTimeStamp(FuncOnTimer func) const {
+  for (auto it = this->m_lstTimeStamp.begin(); it != this->m_lstTimeStamp.end();
+       ++it) {
+    func(*this, *it);
+  }
+}
+
+void CNFundExchange::buildTimeStampList() {
+  this->m_lstTimeStamp.clear();
+
+  for (auto it = this->m_map.begin(); it != this->m_map.end(); ++it) {
+    for (auto ait = it->second->data.begin(); ait != it->second->data.end();
+         ++ait) {
+      this->insertTimeStamp(ait->ts);
+    }
+  }
+}
+
+void CNFundExchange::insertTimeStamp(TimeStamp ts) {
+  for (auto it = this->m_lstTimeStamp.begin(); it != this->m_lstTimeStamp.end();
+       ++it) {
+    if (ts == *it) {
+      return;
+    }
+
+    if (ts < *it) {
+      this->m_lstTimeStamp.insert(it, ts);
+
+      return;
+    }
+  }
+
+  this->m_lstTimeStamp.push_back(ts);
+}
+
 CR2END

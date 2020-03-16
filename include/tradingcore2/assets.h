@@ -1,0 +1,58 @@
+#ifndef __TRADINGCORE2_ASSETS_H__
+#define __TRADINGCORE2_ASSETS_H__
+
+#include <assert.h>
+#include <tradingcore2/basedef.h>
+#include <tradingcore2/trade.h>
+#include <functional>
+#include <map>
+#include <string>
+#include <vector>
+
+CR2BEGIN
+
+struct AssetsBlock {
+  Volume volume;
+  Money inPrice;
+  Money feesPaid;
+  TimeStamp ts;
+};
+
+struct Assets {
+  std::string name;
+  Volume volume;
+  Money inPrice;
+  Money feesPaid;
+  std::vector<AssetsBlock> blocks;
+
+  Assets() : volume(ZEROVOLUME), inPrice(ZEROMONEY), feesPaid(ZEROMONEY) {}
+};
+
+class AssetsMap {
+ public:
+  typedef std::map<std::string, Assets> Map;
+  typedef std::pair<std::string, Assets> Pair;
+
+ public:
+  AssetsMap() {}
+  ~AssetsMap() {}
+
+ public:
+  const Assets* getAssets(const char* assetsName) const;
+
+  void buyAssets(const char* assetsName, TimeStamp ts, Money price,
+                 Volume volume, Money fee);
+
+  void sellAssets(const char* assetsName, TimeStamp ts, Money price,
+                  Volume volume, Money fee);
+
+ protected:
+  Assets* _getAssets(const char* assetsName);
+
+ protected:
+  Map m_map;
+};
+
+CR2END
+
+#endif  // __TRADINGCORE2_ASSETS_H__

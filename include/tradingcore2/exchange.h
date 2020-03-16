@@ -7,6 +7,9 @@
 
 CR2BEGIN
 
+// FuncOnTimer - for Exchange::forEachTimeStamp
+typedef std::function<void(const Exchange&, TimeStamp)> FuncOnTimer;
+
 class Exchange {
  public:
   Exchange() {}
@@ -28,6 +31,8 @@ class Exchange {
                        Money& price, Volume& volume) = 0;
 
   virtual int getDataLength(const char* assetsName) = 0;
+
+  virtual void forEachTimeStamp(FuncOnTimer func) const = 0;
 
  protected:
 };

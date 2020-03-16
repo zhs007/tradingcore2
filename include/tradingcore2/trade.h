@@ -13,6 +13,8 @@ struct Trade {
   std::string assetsName;
   Money money;
   Volume volume;
+  Money price;
+  Money fee;
   TimeStamp ts;
 };
 

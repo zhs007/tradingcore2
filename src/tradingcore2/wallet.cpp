@@ -7,45 +7,26 @@ CR2BEGIN
 Wallet::Wallet(Exchange& exchange) : m_exchange(exchange) {}
 
 Assets Wallet::getAssets(const char* assetsName) const {
-  auto it = this->m_map.find(assetsName);
-  if (it != this->m_map.end()) {
-    return it->second;
+  auto assets = this->m_map.getAssets(assetsName);
+  if (assets == NULL) {
+    return Assets();
   }
 
-  return Assets();
+  return *assets;
 }
 
-Assets* Wallet::_getAssets(const char* assetsName) {
-  auto it = this->m_map.find(assetsName);
-  if (it != this->m_map.end()) {
-    return &(it->second);
-  }
-
-  Pair p;
-  p.first = assetsName;
-  p.second.name = assetsName;
-
-  auto ret = this->m_map.insert(p);
-  assert(ret.second);
-
-  it = this->m_map.find(assetsName);
-  assert(it != this->m_map.end());
-
-  return &(it->second);
-}
-
-void Wallet::deposit(Money money) {
+void Wallet::deposit(Money money, TimeStamp ts) {
   assert(money > ZEROMONEY);
 
   this->m_money += money;
 
   WalletHistoryNode n;
-  n.setDeposit(money);
+  n.setDeposit(money, ts);
 
   this->_addHistory(n);
 }
 
-void Wallet::withdraw(Money money) {
+void Wallet::withdraw(Money money, TimeStamp ts) {
   assert(money > ZEROMONEY);
 
   if (money > this->m_money) {
@@ -55,7 +36,7 @@ void Wallet::withdraw(Money money) {
   this->m_money -= money;
 
   WalletHistoryNode n;
-  n.setWithdraw(-money);
+  n.setWithdraw(-money, ts);
 
   this->_addHistory(n);
 }
@@ -77,18 +58,12 @@ void Wallet::buyAssets(const char* assetsName, Money money, TimeStamp ts) {
   assert(isok);
   assert(price > ZEROMONEY);
 
-  auto assets = this->_getAssets(assetsName);
-  assert(assets != NULL);
-
-  assets->inPrice = (assets->inPrice * assets->volume + volume * price) /
-                    (assets->volume + volume);
-  assets->volume += volume;
-  assets->feesPaid += fee;
+  this->m_map.buyAssets(assetsName, ts, price, volume, fee);
 
   this->m_money -= money;
 
   WalletHistoryNode n;
-  n.setTrade(TT_BUY, assetsName, money, volume, ts, -money);
+  n.setTrade(TT_BUY, assetsName, price, fee, volume, ts, -money);
 
   this->_addHistory(n);
 }
@@ -97,7 +72,7 @@ void Wallet::sellAssets(const char* assetsName, Volume volume, TimeStamp ts) {
   assert(assetsName != NULL);
   assert(volume > ZEROVOLUME);
 
-  auto assets = this->_getAssets(assetsName);
+  auto assets = this->m_map.getAssets(assetsName);
   assert(assets != NULL);
 
   if (volume > assets->volume) {
@@ -112,15 +87,63 @@ void Wallet::sellAssets(const char* assetsName, Volume volume, TimeStamp ts) {
       m_exchange.calculatePrice(assetsName, ts, volume, money, price, fee);
   assert(isok);
 
-  assets->volume -= volume;
-  assets->feesPaid += fee;
+  this->m_map.sellAssets(assetsName, ts, price, volume, fee);
 
   this->m_money += money;
 
   WalletHistoryNode n;
-  n.setTrade(TT_SELL, assetsName, money, volume, ts, money);
+  n.setTrade(TT_SELL, assetsName, price, fee, volume, ts, money);
 
   this->_addHistory(n);
+}
+
+// forEachHistory - foreach history
+void Wallet::forEachHistory(Wallet::FuncOnHistory func) const {
+  for (auto it = this->m_history.begin(); it != this->m_history.end(); ++it) {
+    func(*it);
+  }
+}
+
+void Wallet::buildTimeLine(Wallet::FuncOnTimeLine func) const {
+  AssetsMap map;
+  Money invest = ZEROMONEY;
+  std::vector<std::string> lstAssetsName;
+
+  History::const_iterator preit = this->m_history.end();
+  for (auto it = this->m_history.begin(); it != this->m_history.end(); ++it) {
+    if (preit != this->m_history.end() && preit->ts < it->ts) {
+    }
+
+    if (it->nodeType == WHNT_DEPOSIT) {
+      invest += it->offMoney;
+
+      func(this->m_exchange, it->ts, map, it->offMoney, 0);
+    } else if (it->nodeType == WHNT_WITHDRAW) {
+      invest += it->offMoney;
+
+      func(this->m_exchange, it->ts, map, 0, -it->offMoney);
+    } else if (it->nodeType == WHNT_TRADE) {
+      if (it->trade.tradeType == TT_BUY) {
+        map.buyAssets(it->trade.assetsName.c_str(), it->ts, it->trade.price,
+                      it->trade.volume, it->trade.fee);
+      } else {
+        map.sellAssets(it->trade.assetsName.c_str(), it->ts, it->trade.price,
+                       it->trade.volume, it->trade.fee);
+      }
+
+      func(this->m_exchange, it->ts, map, 0, 0);
+
+      auto anit = std::find(lstAssetsName.begin(), lstAssetsName.end(),
+                            it->trade.assetsName.c_str());
+      if (anit != lstAssetsName.end()) {
+        lstAssetsName.push_back(it->trade.assetsName.c_str());
+      }
+    } else {
+      assert(false && "Wallet::buildTimeLine invalid nodeType");
+    }
+
+    preit = it;
+  }
 }
 
 CR2END

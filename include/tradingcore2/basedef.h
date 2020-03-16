@@ -22,6 +22,8 @@ class Wallet;
 class Exchange;
 class Indicator;
 
+struct WalletHistoryNode;
+
 CR2END
 
 #endif  // __TRADINGCORE2_BASEDEF_H__
