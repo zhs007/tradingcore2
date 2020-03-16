@@ -2,15 +2,21 @@
 #define __TRADINGCORE2_EXCHANGE_H__
 
 #include <tradingcore2/basedef.h>
+#include <functional>
 #include <map>
 #include <string>
 
 CR2BEGIN
 
-// FuncOnTimer - for Exchange::forEachTimeStamp
-typedef std::function<void(const Exchange&, TimeStamp)> FuncOnTimer;
-
 class Exchange {
+ public:
+  // FuncOnTimeStamp - for Exchange::forEachTimeStamp
+  typedef std::function<void(const Exchange&, TimeStamp)> FuncOnTimeStamp;
+  // FuncOnAssetsData - for Exchange::forEachAssetsData
+  typedef std::function<void(const char* assetsName, TimeStamp ts, Money price,
+                             Volume volume)>
+      FuncOnAssetsData;
+
  public:
   Exchange() {}
   virtual ~Exchange() {}
@@ -32,7 +38,12 @@ class Exchange {
 
   virtual int getDataLength(const char* assetsName) = 0;
 
-  virtual void forEachTimeStamp(FuncOnTimer func) const = 0;
+  virtual void forEachTimeStamp(Exchange::FuncOnTimeStamp func,
+                                TimeStamp tsStart, TimeStamp tsEnd) const = 0;
+
+  virtual void forEachAssetsData(const char* assetsName,
+                                 Exchange::FuncOnAssetsData func,
+                                 TimeStamp tsStart, TimeStamp tsEnd) const = 0;
 
  protected:
 };

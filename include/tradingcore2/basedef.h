@@ -21,6 +21,7 @@ const Volume ZEROVOLUME = 0.0;
 class Wallet;
 class Exchange;
 class Indicator;
+class PNL;
 
 struct WalletHistoryNode;
 

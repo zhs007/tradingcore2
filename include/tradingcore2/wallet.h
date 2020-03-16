@@ -97,7 +97,7 @@ class Wallet {
 
   const Exchange& getExchange() const { return m_exchange; }
 
-  void buildTimeLine(Wallet::FuncOnTimeLine func) const;
+  void buildPNL(PNL& pnl) const;
 
  protected:
   void _addHistory(WalletHistoryNode& n) { m_history.push_back(n); }

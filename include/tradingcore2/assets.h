@@ -46,8 +46,14 @@ class AssetsMap {
   void sellAssets(const char* assetsName, TimeStamp ts, Money price,
                   Volume volume, Money fee);
 
+  void makePNL(PNL& pnl, const Exchange& exchange, Money invest,
+               Money handMoney, TimeStamp tsStart, TimeStamp tsEnd);
+
  protected:
   Assets* _getAssets(const char* assetsName);
+
+  void onAssetsDataForPNL(PNL& pnl, const char* assetsName, TimeStamp ts,
+                          Money price, Volume volume, Volume assetsVolume);
 
  protected:
   Map m_map;

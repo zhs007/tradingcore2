@@ -49,7 +49,12 @@ class CNFundExchange : public Exchange {
 
   virtual int getDataLength(const char* assetsName);
 
-  virtual void forEachTimeStamp(FuncOnTimer func) const;
+  virtual void forEachTimeStamp(Exchange::FuncOnTimeStamp func,
+                                TimeStamp tsStart, TimeStamp tsEnd) const;
+
+  virtual void forEachAssetsData(const char* assetsName,
+                                 Exchange::FuncOnAssetsData func,
+                                 TimeStamp tsStart, TimeStamp tsEnd) const;
 
  public:
   const CNFundValue* getFundValue(const char* assetsName) const;

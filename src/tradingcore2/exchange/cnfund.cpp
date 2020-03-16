@@ -157,10 +157,36 @@ int CNFundExchange::getDataLength(const char* assetsName) {
   return fv->data.size();
 }
 
-void CNFundExchange::forEachTimeStamp(FuncOnTimer func) const {
+void CNFundExchange::forEachTimeStamp(Exchange::FuncOnTimeStamp func,
+                                      TimeStamp tsStart,
+                                      TimeStamp tsEnd) const {
   for (auto it = this->m_lstTimeStamp.begin(); it != this->m_lstTimeStamp.end();
        ++it) {
-    func(*this, *it);
+    if (*it >= tsEnd) {
+      break;
+    }
+
+    if (*it >= tsStart) {
+      func(*this, *it);
+    }
+  }
+}
+
+void CNFundExchange::forEachAssetsData(const char* assetsName,
+                                       Exchange::FuncOnAssetsData func,
+                                       TimeStamp tsStart,
+                                       TimeStamp tsEnd) const {
+  auto fv = this->getFundValue(assetsName);
+  assert(fv != NULL);
+
+  for (auto it = fv->data.begin(); it != fv->data.end(); ++it) {
+    if (it->ts >= tsEnd) {
+      break;
+    }
+
+    if (it->ts >= tsStart) {
+      func(assetsName, it->ts, it->value, ZEROVOLUME);
+    }
   }
 }
 

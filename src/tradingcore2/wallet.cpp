@@ -1,5 +1,6 @@
 
 #include <tradingcore2/exchange.h>
+#include <tradingcore2/pnl.h>
 #include <tradingcore2/wallet.h>
 
 CR2BEGIN
@@ -104,24 +105,21 @@ void Wallet::forEachHistory(Wallet::FuncOnHistory func) const {
   }
 }
 
-void Wallet::buildTimeLine(Wallet::FuncOnTimeLine func) const {
+void Wallet::buildPNL(PNL& pnl) const {
   AssetsMap map;
   Money invest = ZEROMONEY;
-  std::vector<std::string> lstAssetsName;
+  Money handMoney = ZEROMONEY;
 
-  History::const_iterator preit = this->m_history.end();
+  auto preit = this->m_history.end();
   for (auto it = this->m_history.begin(); it != this->m_history.end(); ++it) {
     if (preit != this->m_history.end() && preit->ts < it->ts) {
+      map.makePNL(pnl, this->m_exchange, invest, handMoney, preit->ts, it->ts);
     }
 
     if (it->nodeType == WHNT_DEPOSIT) {
       invest += it->offMoney;
-
-      func(this->m_exchange, it->ts, map, it->offMoney, 0);
     } else if (it->nodeType == WHNT_WITHDRAW) {
       invest += it->offMoney;
-
-      func(this->m_exchange, it->ts, map, 0, -it->offMoney);
     } else if (it->nodeType == WHNT_TRADE) {
       if (it->trade.tradeType == TT_BUY) {
         map.buyAssets(it->trade.assetsName.c_str(), it->ts, it->trade.price,
@@ -130,20 +128,57 @@ void Wallet::buildTimeLine(Wallet::FuncOnTimeLine func) const {
         map.sellAssets(it->trade.assetsName.c_str(), it->ts, it->trade.price,
                        it->trade.volume, it->trade.fee);
       }
-
-      func(this->m_exchange, it->ts, map, 0, 0);
-
-      auto anit = std::find(lstAssetsName.begin(), lstAssetsName.end(),
-                            it->trade.assetsName.c_str());
-      if (anit != lstAssetsName.end()) {
-        lstAssetsName.push_back(it->trade.assetsName.c_str());
-      }
     } else {
-      assert(false && "Wallet::buildTimeLine invalid nodeType");
+      assert(false && "Wallet::buildPNL invalid nodeType");
     }
+
+    handMoney += it->offMoney;
 
     preit = it;
   }
 }
+
+// void Wallet::buildTimeLine(Wallet::FuncOnTimeLine func) const {
+//   AssetsMap map;
+//   Money invest = ZEROMONEY;
+//   std::vector<std::string> lstAssetsName;
+
+//   History::const_iterator preit = this->m_history.end();
+//   for (auto it = this->m_history.begin(); it != this->m_history.end(); ++it)
+//   {
+//     if (preit != this->m_history.end() && preit->ts < it->ts) {
+//     }
+
+//     if (it->nodeType == WHNT_DEPOSIT) {
+//       invest += it->offMoney;
+
+//       func(this->m_exchange, it->ts, map, it->offMoney, 0);
+//     } else if (it->nodeType == WHNT_WITHDRAW) {
+//       invest += it->offMoney;
+
+//       func(this->m_exchange, it->ts, map, 0, -it->offMoney);
+//     } else if (it->nodeType == WHNT_TRADE) {
+//       if (it->trade.tradeType == TT_BUY) {
+//         map.buyAssets(it->trade.assetsName.c_str(), it->ts, it->trade.price,
+//                       it->trade.volume, it->trade.fee);
+//       } else {
+//         map.sellAssets(it->trade.assetsName.c_str(), it->ts, it->trade.price,
+//                        it->trade.volume, it->trade.fee);
+//       }
+
+//       func(this->m_exchange, it->ts, map, 0, 0);
+
+//       auto anit = std::find(lstAssetsName.begin(), lstAssetsName.end(),
+//                             it->trade.assetsName.c_str());
+//       if (anit != lstAssetsName.end()) {
+//         lstAssetsName.push_back(it->trade.assetsName.c_str());
+//       }
+//     } else {
+//       assert(false && "Wallet::buildTimeLine invalid nodeType");
+//     }
+
+//     preit = it;
+//   }
+// }
 
 CR2END

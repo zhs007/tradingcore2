@@ -28,10 +28,18 @@ class PNL {
 
   void release() { m_lst.clear(); }
 
+  void initInvest(const Exchange& exchange, Money invest, Money handMoney,
+                  TimeStamp tsStart, TimeStamp tsEnd);
+
  public:
   void onHistoryNode(const WalletHistoryNode& node);
 
+  void onInitInvestTimeStamp(const Exchange& exchange, TimeStamp ts,
+                             Money invest, Money handMoney);
+
   void pushData(TimeStamp ts, Money invest, Money curMoney);
+
+  void chgData(TimeStamp ts, Money offInvest, Money offMoney);
 
  protected:
   List m_lst;

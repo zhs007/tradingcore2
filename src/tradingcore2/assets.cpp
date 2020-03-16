@@ -1,6 +1,8 @@
 
 #include <tradingcore2/assets.h>
 #include <tradingcore2/exchange.h>
+#include <tradingcore2/pnl.h>
+#include <functional>
 
 CR2BEGIN
 
@@ -75,6 +77,26 @@ Assets* AssetsMap::_getAssets(const char* assetsName) {
   assert(it != this->m_map.end());
 
   return &(it->second);
+}
+
+void AssetsMap::makePNL(PNL& pnl, const Exchange& exchange, Money invest,
+                        Money handMoney, TimeStamp tsStart, TimeStamp tsEnd) {
+  pnl.initInvest(exchange, invest, handMoney, tsStart, tsEnd);
+
+  for (auto it = this->m_map.begin(); it != this->m_map.end(); ++it) {
+    auto f = std::bind(&AssetsMap::onAssetsDataForPNL, this, pnl,
+                       std::placeholders::_1, std::placeholders::_2,
+                       std::placeholders::_3, std::placeholders::_4,
+                       it->second.volume);
+
+    exchange.forEachAssetsData(it->second.name.c_str(), f, tsStart, tsEnd);
+  }
+}
+
+void AssetsMap::onAssetsDataForPNL(PNL& pnl, const char* assetsName,
+                                   TimeStamp ts, Money price, Volume volume,
+                                   Volume assetsVolume) {
+  pnl.chgData(ts, 0, price * assetsVolume);
 }
 
 CR2END
