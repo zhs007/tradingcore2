@@ -55,7 +55,9 @@ struct WalletHistoryNode {
                 Volume volume, Money fee, TimeStamp ts, Money offMoney) {
     this->nodeType = WHNT_TRADE;
     this->offMoney = offMoney;
+    this->ts = ts;
 
+    this->trade.tradeType = tradeType;
     this->trade.assetsName = assetsName;
     this->trade.price = price;
     this->trade.fee = fee;

@@ -2,6 +2,7 @@
 #define __TRADINGCORE2_PNL_H__
 
 #include <tradingcore2/basedef.h>
+
 #include <map>
 #include <string>
 #include <vector>
@@ -15,6 +16,8 @@ class PNL {
     Money invest;
     Money curMoney;
     float percentage;
+
+    Node() : ts(0), invest(0), curMoney(0), percentage(0) {}
   };
 
   typedef std::vector<Node> List;
@@ -30,6 +33,10 @@ class PNL {
 
   void initInvest(const Exchange& exchange, Money invest, Money handMoney,
                   TimeStamp tsStart, TimeStamp tsEnd);
+
+  int getLength() const { return m_lst.size(); }
+
+  PNL::Node getNode(int index) const;
 
  public:
   void onHistoryNode(const WalletHistoryNode& node);

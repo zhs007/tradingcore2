@@ -2,6 +2,7 @@
 #include <tradingcore2/exchange.h>
 #include <tradingcore2/pnl.h>
 #include <tradingcore2/wallet.h>
+
 #include <functional>
 
 CR2BEGIN
@@ -95,6 +96,13 @@ void PNL::onInitInvestTimeStamp(const Exchange& exchange, TimeStamp ts,
   }
 
   this->pushData(ts, invest, handMoney);
+}
+
+PNL::Node PNL::getNode(int index) const {
+  assert(index >= 0);
+  assert(index < this->m_lst.size());
+
+  return this->m_lst[index];
 }
 
 CR2END

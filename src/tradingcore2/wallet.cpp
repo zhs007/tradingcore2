@@ -68,7 +68,7 @@ void Wallet::buyAssets(const char* assetsName, Money money, TimeStamp ts) {
   this->m_money -= money;
 
   WalletHistoryNode n;
-  n.setTrade(TT_BUY, assetsName, price, fee, volume, ts, -money);
+  n.setTrade(TT_BUY, assetsName, price, volume, fee, ts, -money);
 
   this->_addHistory(n);
 }
@@ -97,7 +97,7 @@ void Wallet::sellAssets(const char* assetsName, Volume volume, TimeStamp ts) {
   this->m_money += money;
 
   WalletHistoryNode n;
-  n.setTrade(TT_SELL, assetsName, price, fee, volume, ts, money);
+  n.setTrade(TT_SELL, assetsName, price, volume, fee, ts, money);
 
   this->_addHistory(n);
 }
@@ -140,6 +140,9 @@ void Wallet::buildPNL(PNL& pnl) const {
 
     preit = it;
   }
+
+  map.makePNL(pnl, this->m_exchange, invest, handMoney, preit->ts,
+              this->m_exchange.getLastTimeStamp() + 1);
 }
 
 // void Wallet::buildTimeLine(Wallet::FuncOnTimeLine func) const {

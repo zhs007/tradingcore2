@@ -3,6 +3,7 @@
 #include <tradingcore2/csv.h>
 #include <tradingcore2/exchange/cnfund.h>
 #include <tradingcore2/utils.h>
+
 #include <ctime>
 #include <iomanip>
 
@@ -179,6 +180,20 @@ void CNFundExchange::forEachAssetsData(const char* assetsName,
   auto fv = this->getFundValue(assetsName);
   assert(fv != NULL);
 
+  if (tsStart == tsEnd) {
+    for (auto it = fv->data.begin(); it != fv->data.end(); ++it) {
+      if (it->ts > tsEnd) {
+        break;
+      }
+
+      if (it->ts >= tsStart) {
+        func(assetsName, it->ts, it->value, ZEROVOLUME);
+      }
+    }
+
+    return;
+  }
+
   for (auto it = fv->data.begin(); it != fv->data.end(); ++it) {
     if (it->ts >= tsEnd) {
       break;
@@ -216,6 +231,12 @@ void CNFundExchange::insertTimeStamp(TimeStamp ts) {
   }
 
   this->m_lstTimeStamp.push_back(ts);
+}
+
+TimeStamp CNFundExchange::getLastTimeStamp() const {
+  assert(!this->m_lstTimeStamp.empty());
+
+  return this->m_lstTimeStamp[this->m_lstTimeStamp.size() - 1];
 }
 
 CR2END

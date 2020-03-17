@@ -1,12 +1,16 @@
 #include <gtest/gtest.h>
 #include <stdio.h>
 #include <tradingcore2/exchange/cnfund.h>
+#include <tradingcore2/pnl.h>
 #include <tradingcore2/utils.h>
 #include <tradingcore2/wallet.h>
 
 class WalletTest : public testing::Test {
  protected:
-  virtual void SetUp() override { cnfund.loadFundValue("../data/110022.csv"); }
+  virtual void SetUp() override {
+    cnfund.loadFundValue("../data/110022.csv");
+    cnfund.buildTimeStampList();
+  }
 
   virtual void TearDown() override {}
 
@@ -108,6 +112,80 @@ TEST_F(WalletTest, trade2) {
   EXPECT_EQ(assets.inPrice, (1 * 900 + 1.01 * 1000) / 1900);
   EXPECT_EQ(assets.volume, 100);
   EXPECT_EQ(assets.blocks.size(), 1);
+
+  delete pWallet;
+}
+
+TEST_F(WalletTest, pnl) {
+  auto pWallet = new tr2::Wallet(cnfund);
+
+  pWallet->deposit(10000, tr2::str2timestampUTC("20100820", "%Y%m%d"));
+  EXPECT_EQ(pWallet->getMoney(), 10000);
+
+  pWallet->buyAssets("110022", 1000,
+                     tr2::str2timestampUTC("20100820", "%Y%m%d"));
+  EXPECT_EQ(pWallet->getMoney(), 9000);
+
+  auto assets = pWallet->getAssets("110022");
+  EXPECT_EQ(assets.inPrice, 1);
+  EXPECT_EQ(assets.volume, 1000);
+  EXPECT_EQ(assets.blocks.size(), 1);
+
+  pWallet->sellAssets("110022", 100,
+                      tr2::str2timestampUTC("20100827", "%Y%m%d"));
+  EXPECT_NEAR(pWallet->getMoney(), 9100.09, 0.00004);
+
+  assets = pWallet->getAssets("110022");
+  EXPECT_EQ(assets.inPrice, 1);
+  EXPECT_EQ(assets.volume, 900);
+  EXPECT_EQ(assets.blocks.size(), 1);
+
+  pWallet->buyAssets("110022", 1010,
+                     tr2::str2timestampUTC("20101022", "%Y%m%d"));
+  EXPECT_EQ(pWallet->getMoney(), 9100.09 - 1010);
+
+  assets = pWallet->getAssets("110022");
+  EXPECT_EQ(assets.inPrice, (1 * 900 + 1.01 * 1000) / 1900);
+  EXPECT_EQ(assets.volume, 1900);
+  EXPECT_EQ(assets.blocks.size(), 2);
+
+  pWallet->sellAssets("110022", 1800,
+                      tr2::str2timestampUTC("20200212", "%Y%m%d"));
+  EXPECT_NEAR(pWallet->getMoney(), 9100.09 - 1010 + 1800 * 2.915, 0.00004);
+
+  assets = pWallet->getAssets("110022");
+  EXPECT_EQ(assets.inPrice, (1 * 900 + 1.01 * 1000) / 1900);
+  EXPECT_EQ(assets.volume, 100);
+  EXPECT_EQ(assets.blocks.size(), 1);
+
+  tr2::PNL pnl;
+  pWallet->buildPNL(pnl);
+
+  EXPECT_EQ(pnl.getLength(), 2280);
+
+  auto pnlnode = pnl.getNode(0);
+  EXPECT_EQ(pnlnode.invest, 10000);
+  EXPECT_EQ(pnlnode.curMoney, 10000);
+  EXPECT_EQ(pnlnode.percentage, 0);
+
+  pnlnode = pnl.getNode(1);
+  EXPECT_EQ(pnlnode.invest, 10000);
+  EXPECT_NEAR(pnlnode.curMoney, 9000 + 1000 * 1.0009, 0.00004);
+  EXPECT_NEAR(pnlnode.percentage, 0.9 / 10000, 0.00004);
+
+  pnlnode = pnl.getNode(9);
+  EXPECT_EQ(pnlnode.invest, 10000);
+  EXPECT_NEAR(pnlnode.curMoney,
+              9000 - 1010 + 100 * 1.0009 + 900 * 1.01 + 1000 * 1.01, 0.00004);
+  EXPECT_NEAR(pnlnode.percentage, (pnlnode.curMoney - pnlnode.invest) / 10000,
+              0.00004);
+
+  pnlnode = pnl.getNode(2279);
+  EXPECT_EQ(pnlnode.invest, 10000);
+  EXPECT_NEAR(pnlnode.curMoney, 9000 - 1010 + 100 * 1.0009 + 1900 * 2.915,
+              0.00004);
+  EXPECT_NEAR(pnlnode.percentage, (pnlnode.curMoney - pnlnode.invest) / 10000,
+              0.00004);
 
   delete pWallet;
 }

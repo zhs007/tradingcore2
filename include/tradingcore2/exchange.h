@@ -2,6 +2,7 @@
 #define __TRADINGCORE2_EXCHANGE_H__
 
 #include <tradingcore2/basedef.h>
+
 #include <functional>
 #include <map>
 #include <string>
@@ -44,6 +45,8 @@ class Exchange {
   virtual void forEachAssetsData(const char* assetsName,
                                  Exchange::FuncOnAssetsData func,
                                  TimeStamp tsStart, TimeStamp tsEnd) const = 0;
+
+  virtual TimeStamp getLastTimeStamp() const = 0;
 
  protected:
 };

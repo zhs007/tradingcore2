@@ -3,6 +3,7 @@
 
 #include <tradingcore2/basedef.h>
 #include <tradingcore2/exchange.h>
+
 #include <map>
 #include <string>
 #include <vector>
@@ -55,6 +56,8 @@ class CNFundExchange : public Exchange {
   virtual void forEachAssetsData(const char* assetsName,
                                  Exchange::FuncOnAssetsData func,
                                  TimeStamp tsStart, TimeStamp tsEnd) const;
+
+  virtual TimeStamp getLastTimeStamp() const;
 
  public:
   const CNFundValue* getFundValue(const char* assetsName) const;

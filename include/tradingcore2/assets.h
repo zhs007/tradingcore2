@@ -4,6 +4,7 @@
 #include <assert.h>
 #include <tradingcore2/basedef.h>
 #include <tradingcore2/trade.h>
+
 #include <functional>
 #include <map>
 #include <string>
@@ -52,7 +53,7 @@ class AssetsMap {
  protected:
   Assets* _getAssets(const char* assetsName);
 
-  void onAssetsDataForPNL(PNL& pnl, const char* assetsName, TimeStamp ts,
+  void onAssetsDataForPNL(PNL* pPNL, const char* assetsName, TimeStamp ts,
                           Money price, Volume volume, Volume assetsVolume);
 
  protected:
