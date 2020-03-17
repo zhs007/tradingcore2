@@ -5,7 +5,7 @@
 
 CR2BEGIN
 
-Wallet::Wallet(Exchange& exchange) : m_exchange(exchange) {}
+Wallet::Wallet(Exchange& exchange) : m_exchange(exchange), m_money(ZEROMONEY) {}
 
 Assets Wallet::getAssets(const char* assetsName) const {
   auto assets = this->m_map.getAssets(assetsName);
@@ -32,6 +32,10 @@ void Wallet::withdraw(Money money, TimeStamp ts) {
 
   if (money > this->m_money) {
     money = this->m_money;
+  }
+
+  if (money == 0) {
+    return;
   }
 
   this->m_money -= money;

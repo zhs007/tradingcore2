@@ -2,6 +2,7 @@
 #include <tradingcore2/assets.h>
 #include <tradingcore2/exchange.h>
 #include <tradingcore2/pnl.h>
+
 #include <functional>
 
 CR2BEGIN
@@ -43,6 +44,14 @@ void AssetsMap::sellAssets(const char* assetsName, TimeStamp ts, Money price,
 
   assets->volume -= volume;
   assets->feesPaid += fee;
+
+  if (assets->volume == ZEROVOLUME) {
+    assets->inPrice = ZEROMONEY;
+
+    assets->blocks.clear();
+
+    return;
+  }
 
   for (auto it = assets->blocks.begin(); it != assets->blocks.end();) {
     if (it->volume > volume) {

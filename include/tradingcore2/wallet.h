@@ -5,6 +5,7 @@
 #include <tradingcore2/assets.h>
 #include <tradingcore2/basedef.h>
 #include <tradingcore2/trade.h>
+
 #include <functional>
 #include <map>
 #include <string>
@@ -98,6 +99,8 @@ class Wallet {
   const Exchange& getExchange() const { return m_exchange; }
 
   void buildPNL(PNL& pnl) const;
+
+  Money getMoney() const { return m_money; }
 
  protected:
   void _addHistory(WalletHistoryNode& n) { m_history.push_back(n); }
