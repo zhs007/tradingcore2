@@ -23,12 +23,14 @@ class PNL {
   typedef std::vector<Node> List;
 
  public:
-  PNL() {}
+  PNL()
+      : m_maxDrawdown(0),
+        m_sharpe(0),
+        m_annualizedReturns(0),
+        m_annualizedVolatility(0) {}
   ~PNL() { this->release(); }
 
  public:
-  bool buildData(const Wallet& wallet, TimeStamp startts, TimeStamp endts);
-
   void release() { m_lst.clear(); }
 
   void initInvest(const Exchange& exchange, Money invest, Money handMoney,
@@ -38,9 +40,9 @@ class PNL {
 
   PNL::Node getNode(int index) const;
 
- public:
-  void onHistoryNode(const WalletHistoryNode& node);
+  void onBuildEnd();
 
+ public:
   void onInitInvestTimeStamp(const Exchange& exchange, TimeStamp ts,
                              Money invest, Money handMoney);
 
@@ -49,7 +51,20 @@ class PNL {
   void chgData(TimeStamp ts, Money offInvest, Money offMoney);
 
  protected:
+  void calcMaxDrawdown();
+
+  void calcSharpe();
+
+  void calcAnnualizedReturns();
+
+  void calcAnnualizedVolatility();
+
+ protected:
   List m_lst;
+  float m_maxDrawdown;
+  float m_sharpe;
+  float m_annualizedReturns;
+  float m_annualizedVolatility;
 };
 
 CR2END

@@ -59,6 +59,8 @@ class CNFundExchange : public Exchange {
 
   virtual TimeStamp getLastTimeStamp() const;
 
+  virtual int getTradingDays4Year() const { return 250; }
+
  public:
   const CNFundValue* getFundValue(const char* assetsName) const;
 

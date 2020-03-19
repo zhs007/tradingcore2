@@ -141,8 +141,12 @@ void Wallet::buildPNL(PNL& pnl) const {
     preit = it;
   }
 
+  //! 这里之所以 getLastTimeStamp() + 1
+  //! 是因为makePNL不计算终点，这里要多算一步，才能吧终点也算进去
   map.makePNL(pnl, this->m_exchange, invest, handMoney, preit->ts,
               this->m_exchange.getLastTimeStamp() + 1);
+
+  pnl.onBuildEnd();
 }
 
 // void Wallet::buildTimeLine(Wallet::FuncOnTimeLine func) const {
