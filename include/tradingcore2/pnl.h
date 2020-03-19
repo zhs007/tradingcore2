@@ -40,7 +40,7 @@ class PNL {
 
   PNL::Node getNode(int index) const;
 
-  void onBuildEnd();
+  void onBuildEnd(const Exchange& exchange);
 
  public:
   void onInitInvestTimeStamp(const Exchange& exchange, TimeStamp ts,
@@ -51,13 +51,13 @@ class PNL {
   void chgData(TimeStamp ts, Money offInvest, Money offMoney);
 
  protected:
-  void calcMaxDrawdown();
+  void calcMaxDrawdown(const Exchange& exchange);
 
-  void calcSharpe();
+  void calcSharpe(const Exchange& exchange);
 
-  void calcAnnualizedReturns();
+  void calcAnnualizedReturns(const Exchange& exchange);
 
-  void calcAnnualizedVolatility();
+  void calcAnnualizedVolatility(const Exchange& exchange);
 
  protected:
   List m_lst;

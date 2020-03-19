@@ -1,4 +1,5 @@
 #include <assert.h>
+#include <gsl/statistics/gsl_statistics_float.h>
 #include <math.h>
 #include <tradingcore2/exchange.h>
 #include <tradingcore2/pnl.h>
@@ -120,7 +121,13 @@ void PNL::calcMaxDrawdown(const Exchange& exchange) {
   this->m_maxDrawdown = (itmax->curMoney - itmin->curMoney) / itmax->curMoney;
 }
 
-void PNL::calcSharpe(const Exchange& exchange) {}
+void PNL::calcSharpe(const Exchange& exchange) {
+  // https://www.zhihu.com/question/27264526
+
+  this->m_sharpe =
+      (this->m_annualizedReturns - exchange.getRiskFreeInterestRate()) /
+      this->m_annualizedVolatility;
+}
 
 void PNL::calcAnnualizedReturns(const Exchange& exchange) {
   this->m_annualizedReturns =
@@ -129,11 +136,16 @@ void PNL::calcAnnualizedReturns(const Exchange& exchange) {
 }
 
 void PNL::calcAnnualizedVolatility(const Exchange& exchange) {
+  // https://www.zhihu.com/question/19770602
+
   float* pU = new float[this->m_lst.size() - 1];
 
   for (int i = 1; i < this->m_lst.size(); ++i) {
     pU[i - 1] = log(this->m_lst[i].curMoney / this->m_lst[i - 1].curMoney);
   }
+
+  float s = gsl_stats_float_sd(pU, this->m_lst.size() - 1, 1);
+  this->m_annualizedVolatility = s * sqrt(exchange.getTradingDays4Year());
 
   delete pU;
 }

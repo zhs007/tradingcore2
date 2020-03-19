@@ -61,6 +61,8 @@ class CNFundExchange : public Exchange {
 
   virtual int getTradingDays4Year() const { return 250; }
 
+  virtual float getRiskFreeInterestRate() const { return 0.03; }
+
  public:
   const CNFundValue* getFundValue(const char* assetsName) const;
 

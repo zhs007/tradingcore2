@@ -50,6 +50,8 @@ class Exchange {
 
   virtual int getTradingDays4Year() const = 0;
 
+  virtual float getRiskFreeInterestRate() const = 0;
+
  protected:
 };
 

@@ -146,7 +146,7 @@ void Wallet::buildPNL(PNL& pnl) const {
   map.makePNL(pnl, this->m_exchange, invest, handMoney, preit->ts,
               this->m_exchange.getLastTimeStamp() + 1);
 
-  pnl.onBuildEnd();
+  pnl.onBuildEnd(this->m_exchange);
 }
 
 // void Wallet::buildTimeLine(Wallet::FuncOnTimeLine func) const {
