@@ -1,4 +1,4 @@
-#include <assert.h>
+
 #include <gsl/statistics/gsl_statistics_float.h>
 #include <math.h>
 #include <tradingcore2/exchange.h>
@@ -137,6 +137,7 @@ void PNL::calcAnnualizedReturns(const Exchange& exchange) {
 
 void PNL::calcAnnualizedVolatility(const Exchange& exchange) {
   // https://www.zhihu.com/question/19770602
+  // https://wiki.mbalib.com/wiki/%E5%8E%86%E5%8F%B2%E6%B3%A2%E5%8A%A8%E7%8E%87
 
   float* pU = new float[this->m_lst.size() - 1];
 

@@ -1,5 +1,6 @@
-#include <assert.h>
+
 #include <tradingcore2/utils.h>
+
 #include <iomanip>
 #include <sstream>
 

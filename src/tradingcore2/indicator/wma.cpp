@@ -1,8 +1,9 @@
-#include <assert.h>
+
 #include <stdlib.h>
 #include <tradingcore2/exchange.h>
 #include <tradingcore2/indicator/wma.h>
 #include <tradingcore2/utils.h>
+
 #include <ctime>
 #include <iomanip>
 

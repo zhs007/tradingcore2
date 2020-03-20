@@ -95,7 +95,6 @@ void AssetsMap::makePNL(PNL& pnl, const Exchange& exchange, Money invest,
   for (auto it = this->m_map.begin(); it != this->m_map.end(); ++it) {
     auto f = std::bind(&AssetsMap::onAssetsDataForPNL, this, &pnl,
                        std::placeholders::_1, std::placeholders::_2,
-                       std::placeholders::_3, std::placeholders::_4,
                        it->second.volume);
 
     exchange.forEachAssetsData(it->second.name.c_str(), f, tsStart, tsEnd);
@@ -103,9 +102,11 @@ void AssetsMap::makePNL(PNL& pnl, const Exchange& exchange, Money invest,
 }
 
 void AssetsMap::onAssetsDataForPNL(PNL* pPNL, const char* assetsName,
-                                   TimeStamp ts, Money price, Volume volume,
+                                   const CandleData* pData,
                                    Volume assetsVolume) {
-  pPNL->chgData(ts, 0, price * assetsVolume);
+  assert(pData != NULL);
+
+  pPNL->chgData(pData->ts, 0, pData->close * assetsVolume);
 }
 
 CR2END

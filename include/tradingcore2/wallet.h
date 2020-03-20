@@ -1,7 +1,6 @@
 #ifndef __TRADINGCORE2_WALLET_H__
 #define __TRADINGCORE2_WALLET_H__
 
-#include <assert.h>
 #include <tradingcore2/assets.h>
 #include <tradingcore2/basedef.h>
 #include <tradingcore2/trade.h>

@@ -1,9 +1,9 @@
 #ifndef __TRADINGCORE2_INDICATOR_SMMA_H__
 #define __TRADINGCORE2_INDICATOR_SMMA_H__
 
-#include <assert.h>
 #include <tradingcore2/basedef.h>
 #include <tradingcore2/indicator.h>
+
 #include <vector>
 
 CR2BEGIN

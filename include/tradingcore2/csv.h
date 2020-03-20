@@ -1,8 +1,8 @@
 #ifndef __TRADINGCORE2_CSV_H__
 #define __TRADINGCORE2_CSV_H__
 
-#include <assert.h>
 #include <tradingcore2/basedef.h>
+
 #include <string>
 
 CR2BEGIN

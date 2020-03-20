@@ -1,4 +1,4 @@
-#include <assert.h>
+
 #include <stdlib.h>
 #include <tradingcore2/csv.h>
 #include <tradingcore2/exchange/cnfund.h>
@@ -187,7 +187,9 @@ void CNFundExchange::forEachAssetsData(const char* assetsName,
       }
 
       if (it->ts >= tsStart) {
-        func(assetsName, it->ts, it->value, ZEROVOLUME);
+        CandleData cd(it->ts, it->totalValue);
+
+        func(assetsName, &cd);
       }
     }
 
@@ -200,7 +202,9 @@ void CNFundExchange::forEachAssetsData(const char* assetsName,
     }
 
     if (it->ts >= tsStart) {
-      func(assetsName, it->ts, it->value, ZEROVOLUME);
+      CandleData cd(it->ts, it->totalValue);
+
+      func(assetsName, &cd);
     }
   }
 }

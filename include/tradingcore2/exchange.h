@@ -2,6 +2,7 @@
 #define __TRADINGCORE2_EXCHANGE_H__
 
 #include <tradingcore2/basedef.h>
+#include <tradingcore2/candle.h>
 
 #include <functional>
 #include <map>
@@ -14,8 +15,7 @@ class Exchange {
   // FuncOnTimeStamp - for Exchange::forEachTimeStamp
   typedef std::function<void(const Exchange&, TimeStamp)> FuncOnTimeStamp;
   // FuncOnAssetsData - for Exchange::forEachAssetsData
-  typedef std::function<void(const char* assetsName, TimeStamp ts, Money price,
-                             Volume volume)>
+  typedef std::function<void(const char* assetsName, const CandleData* pData)>
       FuncOnAssetsData;
 
  public:

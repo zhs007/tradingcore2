@@ -1,8 +1,8 @@
 #ifndef __TRADINGCORE2_ASSETS_H__
 #define __TRADINGCORE2_ASSETS_H__
 
-#include <assert.h>
 #include <tradingcore2/basedef.h>
+#include <tradingcore2/candle.h>
 #include <tradingcore2/trade.h>
 
 #include <functional>
@@ -53,8 +53,8 @@ class AssetsMap {
  protected:
   Assets* _getAssets(const char* assetsName);
 
-  void onAssetsDataForPNL(PNL* pPNL, const char* assetsName, TimeStamp ts,
-                          Money price, Volume volume, Volume assetsVolume);
+  void onAssetsDataForPNL(PNL* pPNL, const char* assetsName,
+                          const CandleData* pData, Volume assetsVolume);
 
  protected:
   Map m_map;

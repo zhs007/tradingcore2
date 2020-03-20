@@ -3,8 +3,8 @@ project(tradingcore2 VERSION 0.1.0)
 
 set(CMAKE_CXX_STANDARD 17)
 
-include(CTest)
-enable_testing()
+# include(CTest)
+# enable_testing()
 
 include_directories(./include)
 

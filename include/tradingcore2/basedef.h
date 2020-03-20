@@ -1,6 +1,7 @@
 #ifndef __TRADINGCORE2_BASEDEF_H__
 #define __TRADINGCORE2_BASEDEF_H__
 
+#include <assert.h>
 #include <time.h>
 
 #define CR2BEGIN namespace tr2 {

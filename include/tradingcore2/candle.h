@@ -2,6 +2,7 @@
 #define __TRADINGCORE2_CANDLE_H__
 
 #include <tradingcore2/basedef.h>
+
 #include <vector>
 
 CR2BEGIN
@@ -11,6 +12,18 @@ struct CandleData {
   Money open, close, high, low;
   Volume volume;
   Volume openInterest;
+
+  CandleData()
+      : ts(0), open(0), close(0), high(0), low(0), volume(0), openInterest(0) {}
+
+  CandleData(TimeStamp cts, Money price)
+      : ts(cts),
+        open(price),
+        close(price),
+        high(price),
+        low(price),
+        volume(0),
+        openInterest(0) {}
 };
 
 class Candle {
