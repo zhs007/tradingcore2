@@ -41,21 +41,19 @@ bool IndicatorEMA::build(Exchange& exchange, const char* assetsName, int start,
 
   m_iStart = start;
 
-  Money price;
-  Volume volume;
-  TimeStamp ts;
-  auto isok = exchange.getData(assetsName, start, ts, price, volume);
+  CandleData cd;
+  auto isok = exchange.getData(assetsName, start, cd);
   assert(isok);
 
-  this->pushData(ts, price);
+  this->pushData(cd.ts, cd.close);
 
   for (int i = 1; i < length; ++i) {
-    auto isok = exchange.getData(assetsName, start + i, ts, price, volume);
+    auto isok = exchange.getData(assetsName, start + i, cd);
     assert(isok);
 
-    this->pushData(ts, (2 * price +
-                        (this->m_avgtimes - 1) * this->m_lst[i - 1].val.value) /
-                           (this->m_avgtimes + 1));
+    this->pushData(cd.ts, (2 * cd.close + (this->m_avgtimes - 1) *
+                                              this->m_lst[i - 1].val.value) /
+                              (this->m_avgtimes + 1));
   }
 
   return true;

@@ -20,19 +20,17 @@ void IndicatorROC::pushData(TimeStamp ts, IndicatorDataValue val) {
 
 void IndicatorROC::_buildFirst(Exchange& exchange, const char* assetsName,
                                int start, int length) {
-  Money price;
-  Volume volume;
-  TimeStamp ts;
-  auto isok = exchange.getData(assetsName, start, ts, price, volume);
+  CandleData cd;
+  auto isok = exchange.getData(assetsName, start, cd);
   assert(isok);
 
-  this->pushData(ts, 0.0);
+  this->pushData(cd.ts, 0.0);
 
   for (int i = 1; i < length; ++i) {
-    auto isok = exchange.getData(assetsName, start + 1, ts, price, volume);
+    auto isok = exchange.getData(assetsName, start + 1, cd);
     assert(isok);
 
-    this->pushData(ts, 0.0);
+    this->pushData(cd.ts, 0.0);
   }
 }
 
@@ -68,22 +66,21 @@ bool IndicatorROC::build(Exchange& exchange, const char* assetsName, int start,
   this->_buildFirst(exchange, assetsName, start, this->m_avgtimes);
 
   for (int i = this->m_avgtimes; i < length; ++i) {
-    Money price;
-    Volume volume;
-    TimeStamp ts;
+    CandleData cd;
     Money lastPrice;
 
-    auto isok = exchange.getData(assetsName, start + i - this->m_avgtimes, ts,
-                                 lastPrice, volume);
+    auto isok = exchange.getData(assetsName, start + i - this->m_avgtimes, cd);
     assert(isok);
 
-    isok = exchange.getData(assetsName, start + i, ts, price, volume);
+    lastPrice = cd.close;
+
+    isok = exchange.getData(assetsName, start + i, cd);
     assert(isok);
 
     if (lastPrice == ZEROMONEY) {
-      this->pushData(ts, 0.0);
+      this->pushData(cd.ts, 0.0);
     } else {
-      this->pushData(ts, (price - lastPrice) / lastPrice);
+      this->pushData(cd.ts, (cd.close - lastPrice) / lastPrice);
     }
   }
 

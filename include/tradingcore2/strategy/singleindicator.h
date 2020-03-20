@@ -11,13 +11,21 @@ CR2BEGIN
 class SingleIndicator : public Strategy {
  public:
   SingleIndicator(Wallet& wallet, Exchange& exchange)
-      : Strategy(wallet, exchange) {}
+      : Strategy(wallet, exchange), m_pIndicator(NULL) {}
+  SingleIndicator(Wallet& wallet, Exchange& exchange, const char* nameAssets,
+                  const char* nameIndicator, int avgtimes)
+      : Strategy(wallet, exchange), m_pIndicator(NULL) {}
   virtual ~SingleIndicator() {}
 
  public:
-  virtual void onTimeStamp(TimeStamp ts);
+  virtual void onTimeStamp(TimeStamp ts, int index);
+
+ public:
+  void initIndicator(const char* nameIndicator, int avgtimes);
 
  protected:
+  std::string m_assetsName;
+  Indicator* m_pIndicator;
 };
 
 CR2END

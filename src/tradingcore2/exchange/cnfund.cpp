@@ -118,7 +118,7 @@ bool CNFundExchange::calculatePrice(const char* assetsName, TimeStamp ts,
 }
 
 bool CNFundExchange::getDataWithTimestamp(const char* assetsName, TimeStamp ts,
-                                          Money& price, Volume& volume) {
+                                          CandleData& data) {
   auto fv = this->getFundValue(assetsName);
   assert(fv != NULL);
 
@@ -127,23 +127,24 @@ bool CNFundExchange::getDataWithTimestamp(const char* assetsName, TimeStamp ts,
     return false;
   }
 
-  price = n->totalValue;
-  volume = ZEROVOLUME;
+  data.ts = ts;
+  data.open = data.close = data.high = data.low = n->totalValue;
+  data.volume = ZEROVOLUME;
 
   return true;
 }
 
-bool CNFundExchange::getData(const char* assetsName, int index, TimeStamp& ts,
-                             Money& price, Volume& volume) {
+bool CNFundExchange::getData(const char* assetsName, int index,
+                             CandleData& data) {
   assert(index >= 0);
 
   auto fv = this->getFundValue(assetsName);
   assert(fv != NULL);
 
   if (index < fv->data.size()) {
-    price = fv->data[index].totalValue;
-    volume = ZEROVOLUME;
-    ts = fv->data[index].ts;
+    data.ts = fv->data[index].ts;
+    data.open = data.close = data.high = data.low = fv->data[index].totalValue;
+    data.volume = ZEROVOLUME;
 
     return true;
   }

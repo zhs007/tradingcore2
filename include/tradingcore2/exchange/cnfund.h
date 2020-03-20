@@ -43,10 +43,9 @@ class CNFundExchange : public Exchange {
                               Money& fee);
 
   virtual bool getDataWithTimestamp(const char* assetsName, TimeStamp ts,
-                                    Money& price, Volume& volume);
+                                    CandleData& data);
 
-  virtual bool getData(const char* assetsName, int index, TimeStamp& ts,
-                       Money& price, Volume& volume);
+  virtual bool getData(const char* assetsName, int index, CandleData& data);
 
   virtual int getDataLength(const char* assetsName);
 

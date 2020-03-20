@@ -47,30 +47,28 @@ bool IndicatorRSI::build(Exchange& exchange, const char* assetsName, int start,
 
   m_iStart = start;
 
-  Money price;
-  Volume volume;
-  TimeStamp ts;
-  auto isok = exchange.getData(assetsName, start, ts, price, volume);
+  CandleData cd;
+  auto isok = exchange.getData(assetsName, start, cd);
   assert(isok);
 
-  Money preprice = price;
+  Money preprice = cd.close;
   IndicatorDataValue presmmau = 0;
   IndicatorDataValue presmmad = 0;
 
-  this->pushData(ts, 0.0, 0.0, 0.0, 0.0, 100);
+  this->pushData(cd.ts, 0.0, 0.0, 0.0, 0.0, 100);
 
   for (int i = 1; i < length; ++i) {
-    auto isok = exchange.getData(assetsName, start + i, ts, price, volume);
+    auto isok = exchange.getData(assetsName, start + i, cd);
     assert(isok);
 
     IndicatorDataValue u, d, smmau, smmad;
 
-    if (price > preprice) {
-      u = price - preprice;
+    if (cd.close > preprice) {
+      u = cd.close - preprice;
       d = 0;
     } else {
       u = 0;
-      d = preprice - price;
+      d = preprice - cd.close;
     }
 
     smmau = (presmmau * (this->m_avgtimes - 1) + u) / this->m_avgtimes;
@@ -81,9 +79,9 @@ bool IndicatorRSI::build(Exchange& exchange, const char* assetsName, int start,
       rsi = 100 - 100 / (1 + smmau / smmad);
     }
 
-    this->pushData(ts, u, d, smmau, smmad, rsi);
+    this->pushData(cd.ts, u, d, smmau, smmad, rsi);
 
-    preprice = price;
+    preprice = cd.close;
     presmmau = smmau;
     presmmad = smmad;
   }

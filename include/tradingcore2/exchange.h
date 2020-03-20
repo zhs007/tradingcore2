@@ -32,10 +32,9 @@ class Exchange {
                               Money& fee) = 0;
 
   virtual bool getDataWithTimestamp(const char* assetsName, TimeStamp ts,
-                                    Money& price, Volume& volume) = 0;
+                                    CandleData& data) = 0;
 
-  virtual bool getData(const char* assetsName, int index, TimeStamp& ts,
-                       Money& price, Volume& volume) = 0;
+  virtual bool getData(const char* assetsName, int index, CandleData& data) = 0;
 
   virtual int getDataLength(const char* assetsName) = 0;
 

@@ -17,7 +17,7 @@ class Strategy {
   virtual ~Strategy() {}
 
  public:
-  virtual void onTimeStamp(TimeStamp ts) = 0;
+  virtual void onTimeStamp(TimeStamp ts, int index) = 0;
 
  protected:
   Wallet& m_wallet;

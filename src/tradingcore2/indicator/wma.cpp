@@ -22,21 +22,19 @@ Money IndicatorWMA::_getPrice(Exchange& exchange, const char* assetsName,
                               int start, int index) {
   assert(start >= 0);
 
-  Money price;
-  Volume volume;
-  TimeStamp ts;
+  CandleData cd;
 
   if (index <= 0) {
-    auto isok = exchange.getData(assetsName, start, ts, price, volume);
+    auto isok = exchange.getData(assetsName, start, cd);
     assert(isok);
 
-    return price;
+    return cd.close;
   }
 
-  auto isok = exchange.getData(assetsName, start + index, ts, price, volume);
+  auto isok = exchange.getData(assetsName, start + index, cd);
   assert(isok);
 
-  return price;
+  return cd.close;
 }
 
 bool IndicatorWMA::build(Exchange& exchange, const char* assetsName, int start,
@@ -62,19 +60,17 @@ bool IndicatorWMA::build(Exchange& exchange, const char* assetsName, int start,
 
   m_iStart = start;
 
-  Money price;
-  Volume volume;
-  TimeStamp ts;
-  auto isok = exchange.getData(assetsName, start, ts, price, volume);
+  CandleData cd;
+  auto isok = exchange.getData(assetsName, start, cd);
   assert(isok);
 
-  this->pushData(ts, price);
+  this->pushData(cd.ts, cd.close);
 
   for (int i = 1; i < length; ++i) {
-    auto isok = exchange.getData(assetsName, start + i, ts, price, volume);
+    auto isok = exchange.getData(assetsName, start + i, cd);
     assert(isok);
 
-    Money tp = price * this->m_avgtimes;
+    Money tp = cd.close * this->m_avgtimes;
 
     for (int j = this->m_avgtimes - 1; j > 0; --j) {
       Money cp = this->_getPrice(exchange, assetsName, start,
@@ -82,7 +78,7 @@ bool IndicatorWMA::build(Exchange& exchange, const char* assetsName, int start,
       tp += j * cp;
     }
 
-    this->pushData(ts, tp / (m_avgtimes * (m_avgtimes + 1) / 2));
+    this->pushData(cd.ts, tp / (m_avgtimes * (m_avgtimes + 1) / 2));
   }
 
   return true;

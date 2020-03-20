@@ -20,21 +20,19 @@ void IndicatorSMA::pushData(TimeStamp ts, IndicatorDataValue val) {
 
 void IndicatorSMA::_buildFirst(Exchange& exchange, const char* assetsName,
                                int start, int length, Money& totalPrice) {
-  Money price;
-  Volume volume;
-  TimeStamp ts;
-  auto isok = exchange.getData(assetsName, start, ts, price, volume);
+  CandleData cd;
+  auto isok = exchange.getData(assetsName, start, cd);
   assert(isok);
 
-  totalPrice = price;
-  this->pushData(ts, totalPrice);
+  totalPrice = cd.close;
+  this->pushData(cd.ts, totalPrice);
 
   for (int i = 1; i < length; ++i) {
-    auto isok = exchange.getData(assetsName, start + i, ts, price, volume);
+    auto isok = exchange.getData(assetsName, start + i, cd);
     assert(isok);
 
-    totalPrice += price;
-    this->pushData(ts, totalPrice / (i + 1));
+    totalPrice += cd.close;
+    this->pushData(cd.ts, totalPrice / (i + 1));
   }
 }
 
@@ -71,23 +69,19 @@ bool IndicatorSMA::build(Exchange& exchange, const char* assetsName, int start,
   Money tp;
   this->_buildFirst(exchange, assetsName, start, this->m_avgtimes, tp);
 
+  CandleData cd;
   for (int i = this->m_avgtimes; i < length; ++i) {
-    Money price;
-    Volume volume;
-    TimeStamp ts;
-
-    auto isok = exchange.getData(assetsName, start + i - this->m_avgtimes, ts,
-                                 price, volume);
+    auto isok = exchange.getData(assetsName, start + i - this->m_avgtimes, cd);
     assert(isok);
 
-    tp -= price;
+    tp -= cd.close;
 
-    isok = exchange.getData(assetsName, start + i, ts, price, volume);
+    isok = exchange.getData(assetsName, start + i, cd);
     assert(isok);
 
-    tp += price;
+    tp += cd.close;
 
-    this->pushData(ts, tp / this->m_avgtimes);
+    this->pushData(cd.ts, tp / this->m_avgtimes);
   }
 
   return true;
