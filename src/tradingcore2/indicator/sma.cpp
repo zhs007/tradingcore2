@@ -93,4 +93,7 @@ bool IndicatorSMA::build(Exchange& exchange, const char* assetsName, int start,
   return true;
 }
 
+// NewIndicatorSMA - new IndicatorSMA
+Indicator* NewIndicatorSMA(int avgtimes) { return new IndicatorSMA(avgtimes); }
+
 CR2END

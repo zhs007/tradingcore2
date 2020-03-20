@@ -61,4 +61,7 @@ bool IndicatorEMA::build(Exchange& exchange, const char* assetsName, int start,
   return true;
 }
 
+// NewIndicatorEMA - new IndicatorEMA
+Indicator* NewIndicatorEMA(int avgtimes) { return new IndicatorEMA(avgtimes); }
+
 CR2END

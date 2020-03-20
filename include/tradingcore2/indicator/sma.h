@@ -10,7 +10,7 @@ CR2BEGIN
 
 //!! https://en.wikipedia.org/wiki/Moving_average
 
-class IndicatorSMA {
+class IndicatorSMA : public Indicator {
  public:
   struct Node {
     TimeStamp ts;
@@ -52,6 +52,9 @@ class IndicatorSMA {
   List m_lst;
   int m_iStart;
 };
+
+// NewIndicatorSMA - new IndicatorSMA
+Indicator* NewIndicatorSMA(int avgtimes);
 
 CR2END
 

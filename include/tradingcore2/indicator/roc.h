@@ -10,7 +10,7 @@ CR2BEGIN
 
 // https://school.stockcharts.com/doku.php?id=technical_indicators:rate_of_change_roc_and_momentum
 
-class IndicatorROC {
+class IndicatorROC : public Indicator {
  public:
   struct Node {
     TimeStamp ts;
@@ -52,6 +52,9 @@ class IndicatorROC {
   List m_lst;
   int m_iStart;
 };
+
+// NewIndicatorROC - new IndicatorROC
+Indicator* NewIndicatorROC(int avgtimes);
 
 CR2END
 

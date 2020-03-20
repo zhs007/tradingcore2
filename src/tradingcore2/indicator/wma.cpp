@@ -88,4 +88,7 @@ bool IndicatorWMA::build(Exchange& exchange, const char* assetsName, int start,
   return true;
 }
 
+// NewIndicatorWMA - new IndicatorWMA
+Indicator* NewIndicatorWMA(int avgtimes) { return new IndicatorWMA(avgtimes); }
+
 CR2END

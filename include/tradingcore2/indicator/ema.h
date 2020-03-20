@@ -11,7 +11,7 @@ CR2BEGIN
 //!! https://en.wikipedia.org/wiki/Moving_average
 //!! https://baike.baidu.com/item/EMA/12646151
 
-class IndicatorEMA {
+class IndicatorEMA : public Indicator {
  public:
   struct Node {
     TimeStamp ts;
@@ -49,6 +49,9 @@ class IndicatorEMA {
   List m_lst;
   int m_iStart;
 };
+
+// NewIndicatorEMA - new IndicatorEMA
+Indicator* NewIndicatorEMA(int avgtimes);
 
 CR2END
 

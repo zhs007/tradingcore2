@@ -10,7 +10,7 @@ CR2BEGIN
 
 //!! https://en.wikipedia.org/wiki/Relative_strength_index
 
-class IndicatorRSI {
+class IndicatorRSI : public Indicator {
  public:
   struct Node {
     TimeStamp ts;
@@ -82,6 +82,9 @@ class IndicatorRSI {
   List m_lst;
   int m_iStart;
 };
+
+// NewIndicatorRSI - new IndicatorRSI
+Indicator* NewIndicatorRSI(int avgtimes);
 
 CR2END
 

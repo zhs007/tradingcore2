@@ -90,4 +90,7 @@ bool IndicatorROC::build(Exchange& exchange, const char* assetsName, int start,
   return true;
 }
 
+// NewIndicatorROC - new IndicatorROC
+Indicator* NewIndicatorROC(int avgtimes) { return new IndicatorROC(avgtimes); }
+
 CR2END

@@ -91,4 +91,7 @@ bool IndicatorRSI::build(Exchange& exchange, const char* assetsName, int start,
   return true;
 }
 
+// NewIndicatorRSI - new IndicatorRSI
+Indicator* NewIndicatorRSI(int avgtimes) { return new IndicatorRSI(avgtimes); }
+
 CR2END
