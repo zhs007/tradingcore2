@@ -8,9 +8,9 @@
 
 CR2BEGIN
 
-class SingleIndicator : public Strategy {
+class StrategySI : public Strategy {
  public:
-  SingleIndicator(Wallet& wallet, Exchange& exchange)
+  StrategySI(Wallet& wallet, Exchange& exchange)
       : Strategy(wallet, exchange),
         m_pIndicator(NULL),
         m_minValBuy(0),
@@ -18,7 +18,7 @@ class SingleIndicator : public Strategy {
         m_minValSell(0),
         m_maxValSell(0),
         m_volume(0) {}
-  virtual ~SingleIndicator() {}
+  virtual ~StrategySI() {}
 
  public:
   virtual void onTimeStamp(TimeStamp ts, int index);

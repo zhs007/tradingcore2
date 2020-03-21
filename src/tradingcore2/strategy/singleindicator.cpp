@@ -5,7 +5,7 @@
 
 CR2BEGIN
 
-void SingleIndicator::initIndicator(const char* nameIndicator, int avgtimes) {
+void StrategySI::initIndicator(const char* nameIndicator, int avgtimes) {
   auto mgr = IndicatorMgr::getSingleton();
   this->m_pIndicator = mgr->newIndicator(nameIndicator, avgtimes);
 
@@ -14,7 +14,7 @@ void SingleIndicator::initIndicator(const char* nameIndicator, int avgtimes) {
       this->m_exchange.getDataLength(this->m_assetsName.c_str()));
 }
 
-void SingleIndicator::onTimeStamp(TimeStamp ts, int index) {
+void StrategySI::onTimeStamp(TimeStamp ts, int index) {
   assert(this->m_pIndicator != NULL);
 
   auto cv = this->m_pIndicator->getSingleValue(index);
