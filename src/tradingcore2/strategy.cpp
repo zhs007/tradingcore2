@@ -1,6 +1,7 @@
 
 #include <tradingcore2/exchange.h>
 #include <tradingcore2/strategy.h>
+#include <tradingcore2/wallet.h>
 
 #include <functional>
 
@@ -15,6 +16,26 @@ void Strategy::simulateTrading() {
 
 void Strategy::onSimulateTradingTimeStamp(TimeStamp ts, int index) {
   this->onTimeStamp(ts, index);
+}
+
+Money Strategy::onProcStopLoss(const char* assetsName, Money curPrice,
+                               Volume volume, TimeStamp ts, int index) {
+  if (this->m_curStopLossPrice > 0) {
+    if (curPrice <= this->m_curStopLossPrice) {
+      m_stoplossNums++;
+
+      auto money = this->m_wallet.sellAssets(assetsName, volume, ts);
+
+      return money;
+    }
+  }
+
+  return 0;
+}
+
+void Strategy::print() {
+  printf("win rate: %.3f%%\n",
+         (1 - (float)this->m_stoplossNums / this->m_tradingNums) * 100);
 }
 
 CR2END
