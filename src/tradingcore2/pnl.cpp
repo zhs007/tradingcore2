@@ -163,7 +163,7 @@ void PNL::calcAnnualizedVolatility(const Exchange& exchange) {
     pU[i - 1] = log(this->m_lst[i].curMoney / this->m_lst[i - 1].curMoney);
   }
 
-  float s = gsl_stats_float_sd(pU, this->m_lst.size() - 1, 1);
+  float s = gsl_stats_float_sd(pU, 1, this->m_lst.size() - 1);
   this->m_annualizedVolatility = s * sqrt(exchange.getTradingDays4Year());
 
   delete pU;
@@ -173,7 +173,7 @@ void PNL::print(const char* title) {
   printf("-= %s =-\n", title);
   printf("total returns: %.3f%%\n", this->m_totalReturns * 100);
   printf("max drawdown: %.3f%%\n", this->m_maxDrawdown * 100);
-  printf("sharpe: %.3f%%\n", this->m_sharpe * 100);
+  printf("sharpe: %.5f\n", this->m_sharpe);
   printf("annualized returns: %.3f%%\n", this->m_annualizedReturns * 100);
   printf("annualized volatility: %.3f%%\n", this->m_annualizedVolatility * 100);
 }
