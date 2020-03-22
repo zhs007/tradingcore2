@@ -24,19 +24,10 @@ class StrategySI : public Strategy {
   virtual void onTimeStamp(TimeStamp ts, int index);
 
  public:
-  void initIndicator(const char* nameIndicator, int avgtimes);
-
-  void init(IndicatorDataValue minvalbuy, IndicatorDataValue maxvalbuy,
+  void init(const char* assetsName, const char* nameIndicator, int avgtimes,
+            IndicatorDataValue minvalbuy, IndicatorDataValue maxvalbuy,
             IndicatorDataValue minvalsell, IndicatorDataValue maxvalsell,
-            Money money) {
-    m_minValBuy = minvalbuy;
-    m_maxValBuy = maxvalbuy;
-    m_minValSell = minvalsell;
-    m_maxValSell = maxvalsell;
-
-    m_money = money;
-    m_volume = 0;
-  }
+            Money money);
 
  protected:
   std::string m_assetsName;

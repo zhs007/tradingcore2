@@ -5,6 +5,11 @@
 
 CR2BEGIN
 
-void StrategyBAH::onTimeStamp(TimeStamp ts, int index) {}
+void StrategyBAH::onTimeStamp(TimeStamp ts, int index) {
+  if (index == 0) {
+    this->m_volume =
+        this->m_wallet.buyAssets(this->m_assetsName.c_str(), this->m_money, ts);
+  }
+}
 
 CR2END

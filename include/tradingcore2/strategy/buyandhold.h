@@ -18,9 +18,10 @@ class StrategyBAH : public Strategy {
   virtual void onTimeStamp(TimeStamp ts, int index);
 
  public:
-  void init(Money money) {
+  void init(const char* assetsName, Money money) {
     m_money = money;
     m_volume = 0;
+    m_assetsName = assetsName;
   }
 
  protected:

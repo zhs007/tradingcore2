@@ -92,6 +92,8 @@ PNL::Node PNL::getNode(int index) const {
 void PNL::onBuildEnd(const Exchange& exchange) {
   this->calcMaxDrawdown(exchange);
 
+  this->calcTotalReturns(exchange);
+
   this->calcAnnualizedReturns(exchange);
 
   this->calcAnnualizedVolatility(exchange);
@@ -104,7 +106,7 @@ void PNL::calcMaxDrawdown(const Exchange& exchange) {
   // 从最尾部开始算，找到最尾部以前的最大值，只要当前节点在最大值后面，就可以省掉一个最大值遍历
 
   int maxindex = -1;
-  float mdd = -1;
+  float mdd = 0;
   Money curmaxmoney = -1;
 
   for (auto it = this->m_lst.rbegin(); it != this->m_lst.rend(); ++it) {
@@ -146,6 +148,11 @@ void PNL::calcAnnualizedReturns(const Exchange& exchange) {
       this->m_lst.size() * exchange.getTradingDays4Year();
 }
 
+void PNL::calcTotalReturns(const Exchange& exchange) {
+  this->m_totalReturns =
+      (this->m_lst.back().curMoney / this->m_lst.begin()->curMoney - 1);
+}
+
 void PNL::calcAnnualizedVolatility(const Exchange& exchange) {
   // https://www.zhihu.com/question/19770602
   // https://wiki.mbalib.com/wiki/%E5%8E%86%E5%8F%B2%E6%B3%A2%E5%8A%A8%E7%8E%87
@@ -164,6 +171,7 @@ void PNL::calcAnnualizedVolatility(const Exchange& exchange) {
 
 void PNL::print(const char* title) {
   printf("-= %s =-\n", title);
+  printf("total returns: %.3f%%\n", this->m_totalReturns * 100);
   printf("max drawdown: %.3f%%\n", this->m_maxDrawdown * 100);
   printf("sharpe: %.3f%%\n", this->m_sharpe * 100);
   printf("annualized returns: %.3f%%\n", this->m_annualizedReturns * 100);

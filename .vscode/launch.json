@@ -13,6 +13,19 @@
             "externalConsole": false,
             "MIMode": "lldb",
             "preLaunchTask": "clang build active file"
+        },
+        {
+            "name": "example",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/tradingcore2",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/build",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "lldb",
+            "preLaunchTask": "clang build active file"
         }
     ]
 }

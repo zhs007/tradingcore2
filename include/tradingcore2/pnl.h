@@ -27,7 +27,8 @@ class PNL {
       : m_maxDrawdown(0),
         m_sharpe(0),
         m_annualizedReturns(0),
-        m_annualizedVolatility(0) {}
+        m_annualizedVolatility(0),
+        m_totalReturns(0) {}
   ~PNL() { this->release(); }
 
  public:
@@ -60,6 +61,8 @@ class PNL {
 
   void calcAnnualizedReturns(const Exchange& exchange);
 
+  void calcTotalReturns(const Exchange& exchange);
+
   void calcAnnualizedVolatility(const Exchange& exchange);
 
  protected:
@@ -68,6 +71,7 @@ class PNL {
   float m_sharpe;
   float m_annualizedReturns;
   float m_annualizedVolatility;
+  float m_totalReturns;
 };
 
 CR2END
