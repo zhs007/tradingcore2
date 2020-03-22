@@ -19,6 +19,12 @@ class Strategy {
  public:
   virtual void onTimeStamp(TimeStamp ts, int index) = 0;
 
+ public:
+  void simulateTrading();
+
+ protected:
+  void onSimulateTradingTimeStamp(TimeStamp ts, int index);
+
  protected:
   Wallet& m_wallet;
   Exchange& m_exchange;

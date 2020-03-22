@@ -162,6 +162,10 @@ int CNFundExchange::getDataLength(const char* assetsName) {
 void CNFundExchange::forEachTimeStamp(Exchange::FuncOnTimeStamp func,
                                       TimeStamp tsStart,
                                       TimeStamp tsEnd) const {
+  if (tsEnd <= 0) {
+    tsEnd = this->m_lstTimeStamp.back();
+  }
+
   for (auto it = this->m_lstTimeStamp.begin(); it != this->m_lstTimeStamp.end();
        ++it) {
     if (*it >= tsEnd) {
@@ -169,7 +173,7 @@ void CNFundExchange::forEachTimeStamp(Exchange::FuncOnTimeStamp func,
     }
 
     if (*it >= tsStart) {
-      func(*this, *it);
+      func(*this, *it, std::distance(this->m_lstTimeStamp.begin(), it));
     }
   }
 }

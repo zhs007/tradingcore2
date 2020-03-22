@@ -50,6 +50,9 @@ class PNL {
 
   void chgData(TimeStamp ts, Money offInvest, Money offMoney);
 
+ public:
+  void print(const char* title);
+
  protected:
   void calcMaxDrawdown(const Exchange& exchange);
 

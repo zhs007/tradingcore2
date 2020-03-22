@@ -100,25 +100,36 @@ void PNL::onBuildEnd(const Exchange& exchange) {
 }
 
 void PNL::calcMaxDrawdown(const Exchange& exchange) {
-  auto itmin = this->m_lst.end();
-  for (auto it = this->m_lst.begin(); it != this->m_lst.end(); ++it) {
-    if (itmin == this->m_lst.end()) {
-      itmin = it;
-    } else if (itmin->curMoney >= it->curMoney) {
-      itmin = it;
+  // 最大回撤算法，不应该取最低点来算
+  // 从最尾部开始算，找到最尾部以前的最大值，只要当前节点在最大值后面，就可以省掉一个最大值遍历
+
+  int maxindex = -1;
+  float mdd = -1;
+  Money curmaxmoney = -1;
+
+  for (auto it = this->m_lst.rbegin(); it != this->m_lst.rend(); ++it) {
+    auto co = this->m_lst.size() - 1 - std::distance(this->m_lst.rbegin(), it);
+    if (maxindex == -1 || maxindex >= co) {
+      curmaxmoney = -1;
+      for (auto it2 = it + 1; it2 != this->m_lst.rend(); ++it2) {
+        // 这里 >= ，表示取最远的一个值，可以节省掉更多可能的遍历
+        if (it2->curMoney >= curmaxmoney) {
+          curmaxmoney = it2->curMoney;
+          maxindex =
+              this->m_lst.size() - 1 - std::distance(this->m_lst.rbegin(), it2);
+        }
+      }
+    }
+
+    if (curmaxmoney > it->curMoney) {
+      float cdd = (curmaxmoney - it->curMoney) / curmaxmoney;
+      if (cdd > mdd) {
+        mdd = cdd;
+      }
     }
   }
 
-  auto itmax = this->m_lst.end();
-  for (auto it = this->m_lst.begin(); it != itmin; ++it) {
-    if (itmax == this->m_lst.end()) {
-      itmax = it;
-    } else if (itmax->curMoney < it->curMoney) {
-      itmax = it;
-    }
-  }
-
-  this->m_maxDrawdown = (itmax->curMoney - itmin->curMoney) / itmax->curMoney;
+  this->m_maxDrawdown = mdd;
 }
 
 void PNL::calcSharpe(const Exchange& exchange) {
@@ -149,6 +160,14 @@ void PNL::calcAnnualizedVolatility(const Exchange& exchange) {
   this->m_annualizedVolatility = s * sqrt(exchange.getTradingDays4Year());
 
   delete pU;
+}
+
+void PNL::print(const char* title) {
+  printf("-= %s =-\n", title);
+  printf("max drawdown: %.3f%%\n", this->m_maxDrawdown * 100);
+  printf("sharpe: %.3f%%\n", this->m_sharpe * 100);
+  printf("annualized returns: %.3f%%\n", this->m_annualizedReturns * 100);
+  printf("annualized volatility: %.3f%%\n", this->m_annualizedVolatility * 100);
 }
 
 CR2END

@@ -13,7 +13,7 @@ CR2BEGIN
 class Exchange {
  public:
   // FuncOnTimeStamp - for Exchange::forEachTimeStamp
-  typedef std::function<void(const Exchange&, TimeStamp)> FuncOnTimeStamp;
+  typedef std::function<void(const Exchange&, TimeStamp, int)> FuncOnTimeStamp;
   // FuncOnAssetsData - for Exchange::forEachAssetsData
   typedef std::function<void(const char* assetsName, const CandleData* pData)>
       FuncOnAssetsData;
