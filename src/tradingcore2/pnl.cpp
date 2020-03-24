@@ -1,6 +1,7 @@
 
 #include <gsl/statistics/gsl_statistics_float.h>
 #include <math.h>
+#include <tradingcore2/csv.h>
 #include <tradingcore2/exchange.h>
 #include <tradingcore2/pnl.h>
 #include <tradingcore2/wallet.h>
@@ -56,6 +57,30 @@ void PNL::chgData(TimeStamp ts, Money offInvest, Money offMoney) {
 
   assert(offInvest > 0);
   this->pushData(ts, offInvest, offMoney);
+}
+
+void PNL::setBuy(TimeStamp ts, Money money) {
+  for (auto it = this->m_lst.begin(); it != this->m_lst.end(); ++it) {
+    if (ts == it->ts) {
+      it->buy += money;
+
+      return;
+    }
+  }
+
+  assert(false && "PNL::setBuy can't find timestamp.");
+}
+
+void PNL::setSell(TimeStamp ts, Money money) {
+  for (auto it = this->m_lst.begin(); it != this->m_lst.end(); ++it) {
+    if (ts == it->ts) {
+      it->sell += money;
+
+      return;
+    }
+  }
+
+  assert(false && "PNL::setSell can't find timestamp.");
 }
 
 void PNL::onInitInvestTimeStamp(const Exchange& exchange, TimeStamp ts,
@@ -166,7 +191,7 @@ void PNL::calcAnnualizedVolatility(const Exchange& exchange) {
   float s = gsl_stats_float_sd(pU, 1, this->m_lst.size() - 1);
   this->m_annualizedVolatility = s * sqrt(exchange.getTradingDays4Year());
 
-  delete pU;
+  delete[] pU;
 }
 
 void PNL::print(const char* title) {
@@ -176,6 +201,44 @@ void PNL::print(const char* title) {
   printf("sharpe: %.5f\n", this->m_sharpe);
   printf("annualized returns: %.3f%%\n", this->m_annualizedReturns * 100);
   printf("annualized volatility: %.3f%%\n", this->m_annualizedVolatility * 100);
+}
+
+void PNL::saveCSV(const char* fn, bool useMoney) {
+  if (useMoney) {
+    auto onhead = [](FILE* fp) { fprintf(fp, "ts,invest,money,buy,sell\r\n"); };
+
+    List& lst = this->m_lst;
+    auto onrow = [&lst](FILE* fp, int row) {
+      if (lst.size() <= row) {
+        return false;
+      }
+
+      fprintf(fp, "%ld,%.3f,%.3f,%.3f,%.3f\r\n", lst[row].ts, lst[row].invest,
+              lst[row].curMoney, lst[row].buy, lst[row].sell);
+
+      return true;
+    };
+
+    tr2::saveCSV(fn, onhead, onrow);
+  } else {
+    auto onhead = [](FILE* fp) {
+      fprintf(fp, "ts,invest,percentage,buy,sell\r\n");
+    };
+
+    List& lst = this->m_lst;
+    auto onrow = [&lst](FILE* fp, int row) {
+      if (lst.size() <= row) {
+        return false;
+      }
+
+      fprintf(fp, "%ld,%.3f,%.2f,%.3f,%.3f\r\n", lst[row].ts, lst[row].invest,
+              lst[row].percentage * 100, lst[row].buy, lst[row].sell);
+
+      return true;
+    };
+
+    tr2::saveCSV(fn, onhead, onrow);
+  }
 }
 
 CR2END

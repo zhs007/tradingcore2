@@ -20,6 +20,8 @@ void runBuyAndHold() {
   pWallet->buildPNL(pnl);
 
   pnl.print("buy and hold 110022");
+
+  pnl.saveCSV("../data/buyandhold.110022.csv", true);
 }
 
 void runSIROC() {
@@ -43,6 +45,8 @@ void runSIROC() {
 
   pnl.print("roc 110022");
   si->print();
+
+  pnl.saveCSV("../data/roc.110022.csv", true);
 }
 
 int main() {

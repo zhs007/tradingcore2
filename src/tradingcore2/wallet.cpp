@@ -150,6 +150,17 @@ void Wallet::buildPNL(PNL& pnl) const {
   map.makePNL(pnl, this->m_exchange, invest, handMoney, preit->ts,
               this->m_exchange.getLastTimeStamp() + 1);
 
+  //! 最后还要处理买卖信息，需要重新遍历一次
+  for (auto it = this->m_history.begin(); it != this->m_history.end(); ++it) {
+    if (it->nodeType == WHNT_TRADE) {
+      if (it->trade.tradeType == TT_BUY) {
+        pnl.setBuy(it->ts, it->trade.money);
+      } else {
+        pnl.setSell(it->ts, it->trade.money);
+      }
+    }
+  }
+
   pnl.onBuildEnd(this->m_exchange);
 }
 

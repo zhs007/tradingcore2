@@ -16,8 +16,10 @@ class PNL {
     Money invest;
     Money curMoney;
     float percentage;
+    Money buy;
+    Money sell;
 
-    Node() : ts(0), invest(0), curMoney(0), percentage(0) {}
+    Node() : ts(0), invest(0), curMoney(0), percentage(0), buy(0), sell(0) {}
   };
 
   typedef std::vector<Node> List;
@@ -51,8 +53,14 @@ class PNL {
 
   void chgData(TimeStamp ts, Money offInvest, Money offMoney);
 
+  void setBuy(TimeStamp ts, Money money);
+
+  void setSell(TimeStamp ts, Money money);
+
  public:
   void print(const char* title);
+
+  void saveCSV(const char* fn, bool useMoney);
 
  protected:
   void calcMaxDrawdown(const Exchange& exchange);
