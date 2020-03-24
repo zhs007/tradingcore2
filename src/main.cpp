@@ -34,7 +34,7 @@ void runSIROC() {
 
   tr2::StrategySI* si = new tr2::StrategySI(*pWallet, cnfund);
   si->init("110022", "roc", 1, -0.02, -0.015, 0.03, 0.04, 10000);
-  si->setStopLess(0.05);
+  si->setStopLess(0.10);
 
   si->simulateTrading();
 

@@ -1,8 +1,10 @@
 #ifndef __TRADINGCORE2_CSV_H__
 #define __TRADINGCORE2_CSV_H__
 
+#include <stdio.h>
 #include <tradingcore2/basedef.h>
 
+#include <functional>
 #include <string>
 
 CR2BEGIN
@@ -45,6 +47,16 @@ class CSVLoader {
   char** m_head;
   char*** m_data;
 };
+
+// FuncOnSaveCSVRow - for saveCSV, row starts at 0
+//      - If it returns false, the save is complete
+typedef std::function<bool(FILE* fp, int row)> FuncOnSaveCSVRow;
+// FuncOnSaveCSVHead - for saveCSV
+typedef std::function<void(FILE* fp)> FuncOnSaveCSVHead;
+
+// saveCSV - save a csv file
+void saveCSV(const char* fn, FuncOnSaveCSVHead funcOnHead,
+             FuncOnSaveCSVRow funcOnRow);
 
 CR2END
 

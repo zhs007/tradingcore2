@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include <tradingcore2/csv.h>
 
 CR2BEGIN
@@ -124,6 +123,29 @@ void CSVLoader::load(const char* fn) {
       i++;
     }
   }
+}
+
+// saveCSV - save a csv file
+void saveCSV(const char* fn, FuncOnSaveCSVHead funcOnHead,
+             FuncOnSaveCSVRow funcOnRow) {
+  assert(fn != NULL);
+  assert(funcOnHead != NULL);
+  assert(funcOnRow != NULL);
+
+  FILE* fp;
+
+  fp = fopen(fn, "w");
+  if (fp == NULL) {
+    return;
+  }
+
+  funcOnHead(fp);
+
+  int i = 0;
+  while (funcOnRow(fp, i++)) {
+  }
+
+  fclose(fp);
 }
 
 CR2END

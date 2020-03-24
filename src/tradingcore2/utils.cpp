@@ -36,6 +36,7 @@ TimeStamp time2timestampUTC(tm& t) { return timegm(&t) - timezone; }
 // calcQuartile - sortedArr is a sorted array
 void calcQuartile(float* sortedArr, size_t stride, size_t n, float& q1,
                   float& q2, float& q3) {
+  // https://baike.baidu.com/item/%E5%9B%9B%E5%88%86%E4%BD%8D%E6%95%B0
   assert(n > 4);
 
   int i1 = (n + 1) / 4;
