@@ -57,6 +57,10 @@ bool IndicatorSMA::build(Exchange& exchange, const char* assetsName, int start,
     return false;
   }
 
+  if (this->m_avgtimes == 1) {
+    return this->_build_avg1(exchange, assetsName, start, length);
+  }
+
   m_iStart = start;
 
   if (this->m_avgtimes >= length) {
@@ -82,6 +86,26 @@ bool IndicatorSMA::build(Exchange& exchange, const char* assetsName, int start,
     tp += cd.close;
 
     this->pushData(cd.ts, tp / this->m_avgtimes);
+  }
+
+  return true;
+}
+
+bool IndicatorSMA::_build_avg1(Exchange& exchange, const char* assetsName,
+                               int start, int length) {
+  assert(assetsName != NULL);
+  assert(start >= 0);
+  assert(length > 0);
+  assert(this->m_avgtimes == 1);
+
+  m_iStart = start;
+
+  CandleData cd;
+  for (int i = 0; i < length; ++i) {
+    auto isok = exchange.getData(assetsName, start + i, cd);
+    assert(isok);
+
+    this->pushData(cd.ts, cd.close);
   }
 
   return true;

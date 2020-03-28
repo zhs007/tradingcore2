@@ -3,7 +3,7 @@
 #include <tradingcore2/indicatormgr.h>
 
 TEST(AllIndicators, newWithAvgTimes) {
-  tr2::regAllIndicators();
+  // tr2::regAllIndicators();
 
   auto mgr = tr2::IndicatorMgr::getSingleton();
 

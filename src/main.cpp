@@ -52,8 +52,8 @@ void runSIROC() {
 int main() {
   tr2::regAllIndicators();
 
-  // runBuyAndHold();
-  runSIROC();
+  runBuyAndHold();
+  // runSIROC();
 
   return 0;
 }

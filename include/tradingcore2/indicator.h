@@ -2,6 +2,7 @@
 #define __TRADINGCORE2_INDICATOR_H__
 
 #include <tradingcore2/basedef.h>
+
 #include <map>
 #include <string>
 
@@ -27,6 +28,10 @@ class Indicator {
   }
 
   virtual int getLength() const = 0;
+
+ public:
+  // saveCSV - save to a csv file
+  void saveCSV(const char* fn);
 
  protected:
 };

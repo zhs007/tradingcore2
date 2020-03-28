@@ -21,7 +21,7 @@ class IndicatorSMA : public Indicator {
 
  public:
   IndicatorSMA(int avgtimes) : m_avgtimes(avgtimes), m_iStart(-1) {
-    assert(avgtimes > 1);
+    assert(avgtimes >= 1);
   }
   virtual ~IndicatorSMA() {}
 
@@ -46,6 +46,9 @@ class IndicatorSMA : public Indicator {
  protected:
   void _buildFirst(Exchange& exchange, const char* assetsName, int start,
                    int length, Money& totalPrice);
+
+  bool _build_avg1(Exchange& exchange, const char* assetsName, int start,
+                  int length);
 
  protected:
   int m_avgtimes;
