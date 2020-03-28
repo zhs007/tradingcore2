@@ -36,6 +36,13 @@ class IndicatorSMA : public Indicator {
     return &(m_lst[index].val);
   }
 
+  virtual TimeStamp getTimeStamp(int index) const {
+    assert(index >= 0);
+    assert(index < m_lst.size());
+
+    return m_lst[index].ts;
+  }
+
   virtual int getLength() const { return m_lst.size(); }
 
  public:
@@ -48,7 +55,7 @@ class IndicatorSMA : public Indicator {
                    int length, Money& totalPrice);
 
   bool _build_avg1(Exchange& exchange, const char* assetsName, int start,
-                  int length);
+                   int length);
 
  protected:
   int m_avgtimes;

@@ -27,6 +27,8 @@ class Indicator {
     return NULL;
   }
 
+  virtual TimeStamp getTimeStamp(int index) const = 0;
+
   virtual int getLength() const = 0;
 
  public:

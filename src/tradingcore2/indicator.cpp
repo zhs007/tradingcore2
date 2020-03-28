@@ -7,7 +7,7 @@ CR2BEGIN
 
 // saveCSV - save to a csv file
 void Indicator::saveCSV(const char* fn) {
-  auto onhead = [](FILE* fp) { fprintf(fp, "id,val\r\n"); };
+  auto onhead = [](FILE* fp) { fprintf(fp, "ts,val\r\n"); };
 
   auto pIndicator = this;
 
@@ -16,7 +16,8 @@ void Indicator::saveCSV(const char* fn) {
       return false;
     }
 
-    fprintf(fp, "%d,%.4f\r\n", row + 1, pIndicator->getSingleValue(row)->value);
+    fprintf(fp, "%ld,%.4f\r\n", pIndicator->getTimeStamp(row),
+            pIndicator->getSingleValue(row)->value);
 
     return true;
   };
