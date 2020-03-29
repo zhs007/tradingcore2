@@ -21,6 +21,7 @@
 #include <tradingcore2/strategy/buyandhold.h>
 #include <tradingcore2/strategy/singleindicator.h>
 #include <tradingcore2/trade.h>
+#include <tradingcore2/train.h>
 #include <tradingcore2/utils.h>
 #include <tradingcore2/wallet.h>
 

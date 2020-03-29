@@ -60,6 +60,34 @@ bool IndicatorSMMA::build(Exchange& exchange, const char* assetsName, int start,
   return true;
 }
 
+const IndicatorData_singleValue* IndicatorSMMA::getMinSingleValue(
+    int& index) const {
+  const IndicatorData_singleValue* pMin = NULL;
+
+  for (auto it = this->m_lst.begin(); it != this->m_lst.end(); ++it) {
+    if (it->val.value != 100 && (pMin == NULL || it->val.value < pMin->value)) {
+      pMin = &(it->val);
+      index = std::distance(it, this->m_lst.begin());
+    }
+  }
+
+  return pMin;
+}
+
+const IndicatorData_singleValue* IndicatorSMMA::getMaxSingleValue(
+    int& index) const {
+  const IndicatorData_singleValue* pMax = NULL;
+
+  for (auto it = this->m_lst.begin(); it != this->m_lst.end(); ++it) {
+    if (it->val.value != 100 && (pMax == NULL || it->val.value > pMax->value)) {
+      pMax = &(it->val);
+      index = std::distance(it, this->m_lst.begin());
+    }
+  }
+
+  return pMax;
+}
+
 // NewIndicatorSMMA - new IndicatorSMMA
 Indicator* NewIndicatorSMMA(int avgtimes) {
   return new IndicatorSMMA(avgtimes);

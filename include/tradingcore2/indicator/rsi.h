@@ -40,6 +40,10 @@ class IndicatorRSI : public Indicator {
     return &(m_lst[index].val);
   }
 
+  virtual const IndicatorData_singleValue* getMinSingleValue(int& index) const;
+
+  virtual const IndicatorData_singleValue* getMaxSingleValue(int& index) const;
+
   virtual TimeStamp getTimeStamp(int index) const {
     assert(index >= 0);
     assert(index < m_lst.size());

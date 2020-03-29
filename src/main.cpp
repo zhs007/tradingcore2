@@ -49,11 +49,22 @@ void runSIROC() {
   pnl.saveCSV("../data/roc.110022.csv", true);
 }
 
+void train() {
+  tr2::CNFundExchange cnfund;
+
+  cnfund.loadFundValue("../data/110022.csv");
+  cnfund.buildTimeStampList();
+
+  tr2::trainSingleIndicator(cnfund, "110022", "roc", "../data", 10000, 2, 0.005,
+                            0.015);
+}
+
 int main() {
   tr2::regAllIndicators();
 
-  runBuyAndHold();
+  // runBuyAndHold();
   // runSIROC();
+  train();
 
   return 0;
 }

@@ -241,4 +241,12 @@ void PNL::saveCSV(const char* fn, bool useMoney) {
   }
 }
 
+void PNL::getTrainResult(TrainResult& tr) {
+  tr.totalReturn = this->m_totalReturns;
+  tr.maxDrawDown = this->m_maxDrawdown;
+  tr.sharpe = this->m_sharpe;
+  tr.annualizedReturns = this->m_annualizedReturns;
+  tr.annualizedVolatility = this->m_annualizedVolatility;
+}
+
 CR2END

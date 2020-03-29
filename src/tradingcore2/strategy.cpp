@@ -38,4 +38,10 @@ void Strategy::print() {
          (1 - (float)this->m_stoplossNums / this->m_tradingNums) * 100);
 }
 
+void Strategy::getTrainResult(TrainResult& tr) {
+  tr.tradingNums = this->m_tradingNums;
+  tr.stoplossNums = this->m_stoplossNums;
+  tr.winRate = 1 - (float)this->m_stoplossNums / this->m_tradingNums;
+}
+
 CR2END

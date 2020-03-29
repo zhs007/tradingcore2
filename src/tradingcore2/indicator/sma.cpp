@@ -111,6 +111,34 @@ bool IndicatorSMA::_build_avg1(Exchange& exchange, const char* assetsName,
   return true;
 }
 
+const IndicatorData_singleValue* IndicatorSMA::getMinSingleValue(
+    int& index) const {
+  const IndicatorData_singleValue* pMin = NULL;
+
+  for (auto it = this->m_lst.begin(); it != this->m_lst.end(); ++it) {
+    if (it->val.value != 100 && (pMin == NULL || it->val.value < pMin->value)) {
+      pMin = &(it->val);
+      index = std::distance(it, this->m_lst.begin());
+    }
+  }
+
+  return pMin;
+}
+
+const IndicatorData_singleValue* IndicatorSMA::getMaxSingleValue(
+    int& index) const {
+  const IndicatorData_singleValue* pMax = NULL;
+
+  for (auto it = this->m_lst.begin(); it != this->m_lst.end(); ++it) {
+    if (it->val.value != 100 && (pMax == NULL || it->val.value > pMax->value)) {
+      pMax = &(it->val);
+      index = std::distance(it, this->m_lst.begin());
+    }
+  }
+
+  return pMax;
+}
+
 // NewIndicatorSMA - new IndicatorSMA
 Indicator* NewIndicatorSMA(int avgtimes) { return new IndicatorSMA(avgtimes); }
 

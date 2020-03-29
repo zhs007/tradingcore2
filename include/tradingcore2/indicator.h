@@ -27,6 +27,18 @@ class Indicator {
     return NULL;
   }
 
+  virtual const IndicatorData_singleValue* getMinSingleValue(int& index) const {
+    assert(false && "unimplemented");
+
+    return NULL;
+  }
+
+  virtual const IndicatorData_singleValue* getMaxSingleValue(int& index) const {
+    assert(false && "unimplemented");
+
+    return NULL;
+  }
+
   virtual TimeStamp getTimeStamp(int index) const = 0;
 
   virtual int getLength() const = 0;

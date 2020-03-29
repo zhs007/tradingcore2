@@ -248,4 +248,10 @@ TimeStamp CNFundExchange::getLastTimeStamp() const {
   return this->m_lstTimeStamp[this->m_lstTimeStamp.size() - 1];
 }
 
+TimeStamp CNFundExchange::getFirstTimeStamp() const {
+  assert(!this->m_lstTimeStamp.empty());
+
+  return this->m_lstTimeStamp[0];
+}
+
 CR2END

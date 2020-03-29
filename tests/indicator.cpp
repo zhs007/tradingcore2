@@ -34,3 +34,21 @@ TEST_F(IndicatorTest, sma1) {
 
   pSMA->saveCSV("../data/test.sma1.csv");
 }
+
+TEST_F(IndicatorTest, smma10) {
+  auto mgr = tr2::IndicatorMgr::getSingleton();
+
+  auto pEMA = mgr->newIndicator("smma", 10);
+  pEMA->build(cnfund, "110022", 0, cnfund.getDataLength("110022"));
+
+  pEMA->saveCSV("../data/test.smma10.csv");
+}
+
+TEST_F(IndicatorTest, rsi7) {
+  auto mgr = tr2::IndicatorMgr::getSingleton();
+
+  auto pEMA = mgr->newIndicator("rsi", 7);
+  pEMA->build(cnfund, "110022", 0, cnfund.getDataLength("110022"));
+
+  pEMA->saveCSV("../data/test.rsi.csv");
+}

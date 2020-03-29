@@ -57,6 +57,8 @@ class PNL {
 
   void setSell(TimeStamp ts, Money money);
 
+  void getTrainResult(TrainResult& tr);
+
  public:
   void print(const char* title);
 

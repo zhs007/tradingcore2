@@ -56,6 +56,8 @@ class CNFundExchange : public Exchange {
                                  Exchange::FuncOnAssetsData func,
                                  TimeStamp tsStart, TimeStamp tsEnd) const;
 
+  virtual TimeStamp getFirstTimeStamp() const;
+
   virtual TimeStamp getLastTimeStamp() const;
 
   virtual int getTradingDays4Year() const { return 250; }

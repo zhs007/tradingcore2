@@ -47,6 +47,8 @@ class Exchange {
 
   virtual TimeStamp getLastTimeStamp() const = 0;
 
+  virtual TimeStamp getFirstTimeStamp() const = 0;
+
   virtual int getTradingDays4Year() const = 0;
 
   virtual float getRiskFreeInterestRate() const = 0;

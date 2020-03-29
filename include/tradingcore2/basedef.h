@@ -4,6 +4,8 @@
 #include <assert.h>
 #include <time.h>
 
+#include <string>
+
 #define CR2BEGIN namespace tr2 {
 #define CR2END }
 
@@ -25,6 +27,20 @@ class Indicator;
 class PNL;
 
 struct WalletHistoryNode;
+
+struct TrainResult {
+  std::string name;
+  float totalReturn;
+  float maxDrawDown;
+  float sharpe;
+  float annualizedReturns;
+  float annualizedVolatility;
+  int tradingNums;
+  int stoplossNums;
+  float winRate;
+};
+
+typedef std::vector<TrainResult> TrainResultList;
 
 CR2END
 

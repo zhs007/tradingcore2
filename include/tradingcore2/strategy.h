@@ -32,6 +32,8 @@ class Strategy {
 
   void print();
 
+  void getTrainResult(TrainResult& tr);
+
  protected:
   void onSimulateTradingTimeStamp(TimeStamp ts, int index);
 

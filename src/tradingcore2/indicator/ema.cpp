@@ -59,6 +59,34 @@ bool IndicatorEMA::build(Exchange& exchange, const char* assetsName, int start,
   return true;
 }
 
+const IndicatorData_singleValue* IndicatorEMA::getMinSingleValue(
+    int& index) const {
+  const IndicatorData_singleValue* pMin = NULL;
+
+  for (auto it = this->m_lst.begin(); it != this->m_lst.end(); ++it) {
+    if (pMin == NULL || it->val.value < pMin->value) {
+      pMin = &(it->val);
+      index = std::distance(it, this->m_lst.begin());
+    }
+  }
+
+  return pMin;
+}
+
+const IndicatorData_singleValue* IndicatorEMA::getMaxSingleValue(
+    int& index) const {
+  const IndicatorData_singleValue* pMax = NULL;
+
+  for (auto it = this->m_lst.begin(); it != this->m_lst.end(); ++it) {
+    if (pMax == NULL || it->val.value > pMax->value) {
+      pMax = &(it->val);
+      index = std::distance(it, this->m_lst.begin());
+    }
+  }
+
+  return pMax;
+}
+
 // NewIndicatorEMA - new IndicatorEMA
 Indicator* NewIndicatorEMA(int avgtimes) { return new IndicatorEMA(avgtimes); }
 

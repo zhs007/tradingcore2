@@ -59,3 +59,13 @@ TEST(Utils, calcQuartile1) {
   EXPECT_EQ(q2, 37.5);
   EXPECT_EQ(q3, 40.25);
 }
+
+TEST(Utils, joinPath) {
+  std::string str;
+
+  tr2::joinPath(str, "dir0", "f1.txt");
+  EXPECT_EQ(str, "dir0/f1.txt");
+
+  tr2::joinPath(str, "dir0/", "f1.txt");
+  EXPECT_EQ(str, "dir0/f1.txt");
+}
