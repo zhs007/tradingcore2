@@ -67,17 +67,46 @@ void calcQuartile(float* sortedArr, size_t stride, size_t n, float& q1,
 
 // joinPath - "/dir1", "f0.txt" => "/dir1/f0.txt"
 //            "/dir1/", "f0.txt" => "/dir1/f0.txt"
-void joinPath(std::string& str, const char* root, const char* fn) {
+std::string joinPath(const char* root, const char* fn) {
   assert(root != NULL);
   assert(fn != NULL);
 
-  str = root;
+  std::string str = root;
+
   if (str[str.size() - 1] == '/') {
     str += fn;
   } else {
     str += '/';
     str += fn;
   }
+
+  return str;
+}
+
+// scaleValue - 1.57, 0.05 -> 1.60
+//              -0.23, 0.05 -> -0.25
+IndicatorDataValue scaleValue(IndicatorDataValue val, IndicatorDataValue off) {
+  assert(off > 0);
+
+  if (val > 0) {
+    auto ret = val / off;
+    int iret = ret;
+    if (iret == ret) {
+      return val;
+    }
+
+    return (iret + 1) * off;
+  } else if (val < 0) {
+    auto ret = val / off;
+    int iret = ret;
+    if (iret == ret) {
+      return val;
+    }
+
+    return (iret - 1) * off;
+  }
+
+  return 0;
 }
 
 CR2END

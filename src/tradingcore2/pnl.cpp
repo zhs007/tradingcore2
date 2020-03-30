@@ -115,6 +115,10 @@ PNL::Node PNL::getNode(int index) const {
 }
 
 void PNL::onBuildEnd(const Exchange& exchange) {
+  if (this->m_lst.empty()) {
+    return;
+  }
+
   this->calcMaxDrawdown(exchange);
 
   this->calcTotalReturns(exchange);

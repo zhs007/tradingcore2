@@ -67,7 +67,8 @@ bool calcIndicatorRange(Exchange& exchange, const char* assetsName,
 bool trainSingleIndicator(Exchange& exchange, const char* assetsName,
                           const char* indicatorName, const char* outputPath,
                           Money invest, int avgtimes, IndicatorDataValue off0,
-                          IndicatorDataValue off1) {
+                          IndicatorDataValue off1, IndicatorDataValue off2,
+                          IndicatorDataValue maxoff2) {
   IndicatorDataValue minval, maxval;
   if (!calcIndicatorRange(exchange, assetsName, indicatorName, avgtimes, minval,
                           maxval)) {
@@ -76,48 +77,56 @@ bool trainSingleIndicator(Exchange& exchange, const char* assetsName,
 
   TrainResultList lst;
 
+  minval = scaleValue(minval, off0);
+  maxval = scaleValue(maxval, off0);
+
   for (auto cv0 = minval; cv0 <= maxval; cv0 += off0) {
-    for (auto cv1 = cv0 + off1; cv1 <= maxval; cv1 += off0) {
-      TrainResult tr;
+    for (auto cv0off = off2; cv0off <= maxoff2; cv0off += off2) {
+      for (auto cv1 = cv0 + off1; cv1 <= maxval; cv1 += off0) {
+        for (auto cv1off = off2; cv1off <= maxoff2; cv1off += off2) {
+          TrainResult tr;
 
-      auto pWallet = new Wallet(exchange);
-      pWallet->deposit(invest, exchange.getFirstTimeStamp());
+          auto pWallet = new Wallet(exchange);
+          pWallet->deposit(invest, exchange.getFirstTimeStamp());
 
-      tr2::StrategySI* si = new tr2::StrategySI(*pWallet, exchange);
-      si->init(assetsName, indicatorName, avgtimes, cv0, cv0 + off0, cv1,
-               cv1 + off0, invest);
-      si->setStopLess(0.10);
+          tr2::StrategySI* si = new tr2::StrategySI(*pWallet, exchange);
+          si->init(assetsName, indicatorName, avgtimes, cv0, cv0 + cv0off, cv1,
+                   cv1 + off0, invest);
+          si->setStopLess(0.10);
 
-      si->simulateTrading();
+          si->simulateTrading();
 
-      tr2::PNL pnl;
-      pWallet->buildPNL(pnl);
+          tr2::PNL pnl;
+          pWallet->buildPNL(pnl);
 
-      char strname[1024];
-      sprintf(strname, "%s.%s.%.3f.%.3f", assetsName, indicatorName, cv0, cv1);
+          char strname[1024];
+          sprintf(strname, "%s.%s-[%.3f:%.3f].[%.3f:%.3f]", assetsName,
+                  indicatorName, cv0, cv0 + cv0off, cv1, cv1 + cv1off);
 
-      pnl.print(strname);
-      si->print();
+          pnl.print(strname);
+          si->print();
 
-      std::string fn;
-      joinPath(fn, outputPath, strname);
-      fn += ".csv";
+          tr.name = strname;
+          pnl.getTrainResult(tr);
+          si->getTrainResult(tr);
 
-      pnl.saveCSV(fn.c_str(), true);
+          if (tr.totalReturn > 0) {
+            auto fn1 = joinPath(outputPath, strname);
+            fn1 += ".csv";
 
-      tr.name = strname;
-      pnl.getTrainResult(tr);
-      si->getTrainResult(tr);
+            pnl.saveCSV(fn1.c_str(), true);
+          }
 
-      lst.push_back(tr);
+          lst.push_back(tr);
 
-      delete si;
-      delete pWallet;
+          delete si;
+          delete pWallet;
+        }
+      }
     }
   }
 
-  std::string fn;
-  joinPath(fn, outputPath, "train.csv");
+  auto fn = joinPath(outputPath, "train.csv");
 
   saveTrainResult(fn.c_str(), lst);
 

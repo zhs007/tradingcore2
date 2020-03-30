@@ -20,7 +20,11 @@ void calcQuartile(float* sortedArr, size_t stride, size_t n, float& q1,
 
 // joinPath - "/dir1", "f0.txt" => "/dir1/f0.txt"
 //            "/dir1/", "f0.txt" => "/dir1/f0.txt"
-void joinPath(std::string& str, const char* root, const char* fn);
+std::string joinPath(const char* root, const char* fn);
+
+// scaleValue - 1.57, 0.05 -> 1.60
+//              -0.23, 0.05 -> -0.25
+IndicatorDataValue scaleValue(IndicatorDataValue val, IndicatorDataValue off);
 
 CR2END
 

@@ -61,11 +61,26 @@ TEST(Utils, calcQuartile1) {
 }
 
 TEST(Utils, joinPath) {
-  std::string str;
-
-  tr2::joinPath(str, "dir0", "f1.txt");
+  auto str = tr2::joinPath("dir0", "f1.txt");
   EXPECT_EQ(str, "dir0/f1.txt");
 
-  tr2::joinPath(str, "dir0/", "f1.txt");
+  str = tr2::joinPath("dir0/", "f1.txt");
   EXPECT_EQ(str, "dir0/f1.txt");
+}
+
+TEST(Utils, scaleValue) {
+  auto r = tr2::scaleValue(1.23, 0.05);
+  EXPECT_EQ(r, 1.25);
+
+  r = tr2::scaleValue(-1.23, 0.05);
+  EXPECT_EQ(r, -1.25);
+
+  r = tr2::scaleValue(2.5, 0.05);
+  EXPECT_EQ(r, 2.5);
+
+  r = tr2::scaleValue(-12.5, 0.05);
+  EXPECT_EQ(r, -12.5);
+
+  r = tr2::scaleValue(0, 0.05);
+  EXPECT_EQ(r, 0);
 }

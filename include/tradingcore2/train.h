@@ -16,7 +16,8 @@ bool calcIndicatorRange(Exchange& exchange, const char* assetsName,
 bool trainSingleIndicator(Exchange& exchange, const char* assetsName,
                           const char* indicatorName, const char* outputPath,
                           Money invest, int avgtimes, IndicatorDataValue off0,
-                          IndicatorDataValue off1);
+                          IndicatorDataValue off1, IndicatorDataValue off2,
+                          IndicatorDataValue maxoff2);
 
 CR2END
 
