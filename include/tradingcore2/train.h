@@ -31,6 +31,13 @@ bool trainSingleIndicator(Exchange& exchange, const char* assetsName,
                           IndicatorDataValue off1, IndicatorDataValue off2,
                           IndicatorDataValue maxoff2, float minValidReturn);
 
+// 统计计算次数
+int calcSingleIndicatorTimes2(IndicatorDataValue minval,
+                              IndicatorDataValue maxval,
+                              IndicatorDataValue off0, IndicatorDataValue off1,
+                              IndicatorDataValue off2,
+                              IndicatorDataValue maxoff2);
+
 // trainSingleIndicator2 - 单独一个indicator的策略，考虑方向
 bool trainSingleIndicator2(Exchange& exchange, const char* assetsName,
                            const char* indicatorName, const char* outputPath,

@@ -167,6 +167,30 @@ bool trainSingleIndicator(Exchange& exchange, const char* assetsName,
   return true;
 }
 
+// 统计计算次数
+int calcSingleIndicatorTimes2(IndicatorDataValue minval,
+                              IndicatorDataValue maxval,
+                              IndicatorDataValue off0, IndicatorDataValue off1,
+                              IndicatorDataValue off2,
+                              IndicatorDataValue maxoff2) {
+  int times = 0;
+  for (auto cv0 = minval; cv0 <= maxval; cv0 += off0) {
+    for (auto cv0off = off2; cv0off <= maxoff2; cv0off += off2) {
+      for (auto cv0dir = 0; cv0dir <= 1; cv0dir++) {
+        for (auto cv1 = cv0 + off1; cv1 <= maxval; cv1 += off0) {
+          for (auto cv1off = off2; cv1off <= maxoff2; cv1off += off2) {
+            for (auto cv1dir = 0; cv1dir <= 1; cv1dir++) {
+              times++;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  return times;
+}
+
 // trainSingleIndicator2 - 单独一个indicator的策略，考虑方向
 bool trainSingleIndicator2(Exchange& exchange, const char* assetsName,
                            const char* indicatorName, const char* outputPath,
@@ -184,91 +208,131 @@ bool trainSingleIndicator2(Exchange& exchange, const char* assetsName,
   minval = scaleValue(minval, off0);
   maxval = scaleValue(maxval, off0);
   auto maxtimes =
-      calcSingleIndicatorTimes(minval, maxval, off0, off1, off2, maxoff2);
+      calcSingleIndicatorTimes2(minval, maxval, off0, off1, off2, maxoff2);
   int curtimes = 0;
   auto st = time(NULL);
 
   for (auto cv0 = minval; cv0 <= maxval; cv0 += off0) {
     for (auto cv0off = off2; cv0off <= maxoff2; cv0off += off2) {
-      for (auto cv1 = cv0 + off1; cv1 <= maxval; cv1 += off0) {
-        for (auto cv1off = off2; cv1off <= maxoff2; cv1off += off2) {
-          curtimes++;
-          TrainResult tr;
+      for (auto cv0dir = 0; cv0dir <= 1; cv0dir++) {
+        for (auto cv1 = cv0 + off1; cv1 <= maxval; cv1 += off0) {
+          for (auto cv1off = off2; cv1off <= maxoff2; cv1off += off2) {
+            for (auto cv1dir = 0; cv1dir <= 1; cv1dir++) {
+              curtimes++;
+              TrainResult tr;
 
-          auto pWallet = new Wallet(exchange);
-          pWallet->deposit(invest, exchange.getFirstTimeStamp());
+              auto pWallet = new Wallet(exchange);
+              pWallet->deposit(invest, exchange.getFirstTimeStamp());
 
-          auto pStrategy = new tr2::StrategySI2(*pWallet, exchange);
+              auto pStrategy = new tr2::StrategySI2(*pWallet, exchange);
 
-          auto minbuy = cv0;
-          auto maxbuy = cv0 + cv0off;
-          auto onbuy = [&minbuy, &maxbuy](Exchange* pExchange,
-                                          Indicator* pIndicator, TimeStamp ts,
-                                          int index) -> bool {
-            auto cv = pIndicator->getSingleValue(index);
-            assert(cv);
+              auto minbuy = cv0;
+              auto maxbuy = cv0 + cv0off;
+              auto onbuy = [&minbuy, &maxbuy, &cv0dir](
+                               Exchange* pExchange, Indicator* pIndicator,
+                               TimeStamp ts, int index) -> bool {
+                if (index <= 0) {
+                  return false;
+                }
 
-            if (cv->value >= minbuy && cv->value < maxbuy) {
-              return true;
+                auto lastcv = pIndicator->getSingleValue(index - 1);
+                assert(lastcv);
+
+                auto cv = pIndicator->getSingleValue(index);
+                assert(cv);
+
+                if (cv0dir == 0) {
+                  if (cv->value < lastcv->value) {
+                    return false;
+                  }
+                } else {
+                  if (cv->value > lastcv->value) {
+                    return false;
+                  }
+                }
+
+                if (cv->value >= minbuy && cv->value < maxbuy) {
+                  return true;
+                }
+
+                return false;
+              };
+
+              auto minsell = cv1;
+              auto maxsell = cv1 + cv1off;
+              auto onsell = [&minsell, &maxsell, &cv1dir](
+                                Exchange* pExchange, Indicator* pIndicator,
+                                TimeStamp ts, int index) -> bool {
+                if (index <= 0) {
+                  return false;
+                }
+
+                auto lastcv = pIndicator->getSingleValue(index - 1);
+                assert(lastcv);
+
+                auto cv = pIndicator->getSingleValue(index);
+                assert(cv);
+
+                if (cv1dir == 0) {
+                  if (cv->value < lastcv->value) {
+                    return false;
+                  }
+                } else {
+                  if (cv->value > lastcv->value) {
+                    return false;
+                  }
+                }
+
+                if (cv->value >= minsell && cv->value < maxsell) {
+                  return true;
+                }
+
+                return false;
+              };
+
+              pStrategy->init(assetsName, indicatorName, avgtimes, onbuy,
+                              onsell, invest);
+              pStrategy->setStopLess(0.10);
+
+              pStrategy->simulateTrading();
+
+              tr2::PNL pnl;
+              pWallet->buildPNL(pnl);
+
+              char strname[1024];
+              sprintf(strname, "%s.%s-%d[%.3f:%.3f].%d[%.3f:%.3f]", assetsName,
+                      indicatorName, cv0dir, minbuy, maxbuy, cv1dir, minsell,
+                      maxsell);
+
+              pnl.print(strname);
+              pStrategy->print();
+
+              tr.name = strname;
+              pnl.getTrainResult(tr);
+              pStrategy->getTrainResult(tr);
+
+              if (tr.totalReturn > minValidReturn) {
+                auto fn1 = joinPath(outputPath, strname);
+                fn1 += ".csv";
+
+                pnl.saveCSV(fn1.c_str(), true);
+              }
+
+              lst.push_back(tr);
+
+              delete pStrategy;
+              delete pWallet;
+
+              auto ct = time(NULL);
+              printf("Progress is %.2f%% (%d/%d)\n",
+                     100.0f * curtimes / maxtimes, curtimes, maxtimes);
+
+              if (ct > st) {
+                printf("current time is %d s, last time is %d s\n",
+                       (int)(ct - st),
+                       (int)((ct - st) * maxtimes / curtimes) - (int)(ct - st));
+              }
             }
-
-            return false;
-          };
-
-          auto minsell = cv1;
-          auto maxsell = cv1 + cv1off;
-          auto onsell = [&minsell, &maxsell](Exchange* pExchange,
-                                             Indicator* pIndicator,
-                                             TimeStamp ts, int index) -> bool {
-            auto cv = pIndicator->getSingleValue(index);
-            assert(cv);
-
-            if (cv->value >= minsell && cv->value < maxsell) {
-              return true;
-            }
-
-            return false;
-          };
-
-          pStrategy->init(assetsName, indicatorName, avgtimes, onbuy, onsell,
-                          invest);
-          pStrategy->setStopLess(0.10);
-
-          pStrategy->simulateTrading();
-
-          tr2::PNL pnl;
-          pWallet->buildPNL(pnl);
-
-          char strname[1024];
-          sprintf(strname, "%s.%s-[%.3f:%.3f].[%.3f:%.3f]", assetsName,
-                  indicatorName, minbuy, maxbuy, minsell, maxsell);
-
-          pnl.print(strname);
-          pStrategy->print();
-
-          tr.name = strname;
-          pnl.getTrainResult(tr);
-          pStrategy->getTrainResult(tr);
-
-          if (tr.totalReturn > minValidReturn) {
-            auto fn1 = joinPath(outputPath, strname);
-            fn1 += ".csv";
-
-            pnl.saveCSV(fn1.c_str(), true);
-          }
-
-          lst.push_back(tr);
-
-          delete pStrategy;
-          delete pWallet;
-
-          auto ct = time(NULL);
-          printf("Progress is %.2f%% (%d/%d)\n", 100.0f * curtimes / maxtimes,
-                 curtimes, maxtimes);
-
-          if (ct > st) {
-            printf("current time is %d s, last time is %d s\n", (int)(ct - st),
-                   (int)((ct - st) * maxtimes / curtimes) - (int)(ct - st));
           }
         }
       }
