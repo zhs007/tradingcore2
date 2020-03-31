@@ -2,6 +2,7 @@
 #include <tradingcore2/exchange.h>
 #include <tradingcore2/indicatormgr.h>
 #include <tradingcore2/strategy/singleindicator.h>
+#include <tradingcore2/strategy/singleindicator2.h>
 #include <tradingcore2/train.h>
 #include <tradingcore2/utils.h>
 #include <tradingcore2/wallet.h>
@@ -115,7 +116,7 @@ bool trainSingleIndicator(Exchange& exchange, const char* assetsName,
 
           tr2::StrategySI* si = new tr2::StrategySI(*pWallet, exchange);
           si->init(assetsName, indicatorName, avgtimes, cv0, cv0 + cv0off, cv1,
-                   cv1 + off0, invest);
+                   cv1 + cv1off, invest);
           si->setStopLess(0.10);
 
           si->simulateTrading();
@@ -171,6 +172,114 @@ bool trainSingleIndicator2(Exchange& exchange, const char* assetsName,
                            const char* indicatorName, const char* outputPath,
                            Money invest, int avgtimes, IndicatorDataValue off0,
                            IndicatorDataValue off1, IndicatorDataValue off2,
-                           IndicatorDataValue maxoff2, float minValidReturn) {}
+                           IndicatorDataValue maxoff2, float minValidReturn) {
+  IndicatorDataValue minval, maxval;
+  if (!calcIndicatorRange(exchange, assetsName, indicatorName, avgtimes, minval,
+                          maxval)) {
+    return false;
+  }
+
+  TrainResultList lst;
+
+  minval = scaleValue(minval, off0);
+  maxval = scaleValue(maxval, off0);
+  auto maxtimes =
+      calcSingleIndicatorTimes(minval, maxval, off0, off1, off2, maxoff2);
+  int curtimes = 0;
+  auto st = time(NULL);
+
+  for (auto cv0 = minval; cv0 <= maxval; cv0 += off0) {
+    for (auto cv0off = off2; cv0off <= maxoff2; cv0off += off2) {
+      for (auto cv1 = cv0 + off1; cv1 <= maxval; cv1 += off0) {
+        for (auto cv1off = off2; cv1off <= maxoff2; cv1off += off2) {
+          curtimes++;
+          TrainResult tr;
+
+          auto pWallet = new Wallet(exchange);
+          pWallet->deposit(invest, exchange.getFirstTimeStamp());
+
+          auto pStrategy = new tr2::StrategySI2(*pWallet, exchange);
+
+          auto minbuy = cv0;
+          auto maxbuy = cv0 + cv0off;
+          auto onbuy = [&minbuy, &maxbuy](Exchange* pExchange,
+                                          Indicator* pIndicator, TimeStamp ts,
+                                          int index) -> bool {
+            auto cv = pIndicator->getSingleValue(index);
+            assert(cv);
+
+            if (cv->value >= minbuy && cv->value < maxbuy) {
+              return true;
+            }
+
+            return false;
+          };
+
+          auto minsell = cv1;
+          auto maxsell = cv1 + cv1off;
+          auto onsell = [&minsell, &maxsell](Exchange* pExchange,
+                                             Indicator* pIndicator,
+                                             TimeStamp ts, int index) -> bool {
+            auto cv = pIndicator->getSingleValue(index);
+            assert(cv);
+
+            if (cv->value >= minsell && cv->value < maxsell) {
+              return true;
+            }
+
+            return false;
+          };
+
+          pStrategy->init(assetsName, indicatorName, avgtimes, onbuy, onsell,
+                          invest);
+          pStrategy->setStopLess(0.10);
+
+          pStrategy->simulateTrading();
+
+          tr2::PNL pnl;
+          pWallet->buildPNL(pnl);
+
+          char strname[1024];
+          sprintf(strname, "%s.%s-[%.3f:%.3f].[%.3f:%.3f]", assetsName,
+                  indicatorName, minbuy, maxbuy, minsell, maxsell);
+
+          pnl.print(strname);
+          pStrategy->print();
+
+          tr.name = strname;
+          pnl.getTrainResult(tr);
+          pStrategy->getTrainResult(tr);
+
+          if (tr.totalReturn > minValidReturn) {
+            auto fn1 = joinPath(outputPath, strname);
+            fn1 += ".csv";
+
+            pnl.saveCSV(fn1.c_str(), true);
+          }
+
+          lst.push_back(tr);
+
+          delete pStrategy;
+          delete pWallet;
+
+          auto ct = time(NULL);
+          printf("Progress is %.2f%% (%d/%d)\n", 100.0f * curtimes / maxtimes,
+                 curtimes, maxtimes);
+
+          if (ct > st) {
+            printf("current time is %d s, last time is %d s\n", (int)(ct - st),
+                   (int)((ct - st) * maxtimes / curtimes) - (int)(ct - st));
+          }
+        }
+      }
+    }
+  }
+
+  auto fn = joinPath(outputPath, "train.csv");
+
+  saveTrainResult(fn.c_str(), lst);
+
+  return true;
+}
 
 CR2END
