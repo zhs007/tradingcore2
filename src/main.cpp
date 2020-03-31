@@ -58,8 +58,8 @@ void train() {
   // tr2::trainSingleIndicator(cnfund, "110022", "roc", "../output", 10000, 2,
   // 0.005,
   //                           0.015, 0.005, 0.03);
-  tr2::trainSingleIndicator(cnfund, "110022", "rsi", "../output", 10000, 5, 1,
-                            5, 1, 10);
+  tr2::trainSingleIndicator(cnfund, "110022", "rsi", "../output", 10000, 5, 5,
+                            5, 5, 10, 2);
 }
 
 int main() {

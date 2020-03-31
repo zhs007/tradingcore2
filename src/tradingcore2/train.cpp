@@ -64,11 +64,30 @@ bool calcIndicatorRange(Exchange& exchange, const char* assetsName,
   return false;
 }
 
+// 统计计算次数
+int calcSingleIndicatorTimes(IndicatorDataValue minval,
+                             IndicatorDataValue maxval, IndicatorDataValue off0,
+                             IndicatorDataValue off1, IndicatorDataValue off2,
+                             IndicatorDataValue maxoff2) {
+  int times = 0;
+  for (auto cv0 = minval; cv0 <= maxval; cv0 += off0) {
+    for (auto cv0off = off2; cv0off <= maxoff2; cv0off += off2) {
+      for (auto cv1 = cv0 + off1; cv1 <= maxval; cv1 += off0) {
+        for (auto cv1off = off2; cv1off <= maxoff2; cv1off += off2) {
+          times++;
+        }
+      }
+    }
+  }
+
+  return times;
+}
+
 bool trainSingleIndicator(Exchange& exchange, const char* assetsName,
                           const char* indicatorName, const char* outputPath,
                           Money invest, int avgtimes, IndicatorDataValue off0,
                           IndicatorDataValue off1, IndicatorDataValue off2,
-                          IndicatorDataValue maxoff2) {
+                          IndicatorDataValue maxoff2, float minValidReturn) {
   IndicatorDataValue minval, maxval;
   if (!calcIndicatorRange(exchange, assetsName, indicatorName, avgtimes, minval,
                           maxval)) {
@@ -79,11 +98,16 @@ bool trainSingleIndicator(Exchange& exchange, const char* assetsName,
 
   minval = scaleValue(minval, off0);
   maxval = scaleValue(maxval, off0);
+  auto maxtimes =
+      calcSingleIndicatorTimes(minval, maxval, off0, off1, off2, maxoff2);
+  int curtimes = 0;
+  auto st = time(NULL);
 
   for (auto cv0 = minval; cv0 <= maxval; cv0 += off0) {
     for (auto cv0off = off2; cv0off <= maxoff2; cv0off += off2) {
       for (auto cv1 = cv0 + off1; cv1 <= maxval; cv1 += off0) {
         for (auto cv1off = off2; cv1off <= maxoff2; cv1off += off2) {
+          curtimes++;
           TrainResult tr;
 
           auto pWallet = new Wallet(exchange);
@@ -110,7 +134,7 @@ bool trainSingleIndicator(Exchange& exchange, const char* assetsName,
           pnl.getTrainResult(tr);
           si->getTrainResult(tr);
 
-          if (tr.totalReturn > 0) {
+          if (tr.totalReturn > minValidReturn) {
             auto fn1 = joinPath(outputPath, strname);
             fn1 += ".csv";
 
@@ -121,6 +145,15 @@ bool trainSingleIndicator(Exchange& exchange, const char* assetsName,
 
           delete si;
           delete pWallet;
+
+          auto ct = time(NULL);
+          printf("Progress is %.2f%% (%d/%d)\n", 100.0f * curtimes / maxtimes,
+                 curtimes, maxtimes);
+
+          if (ct > st) {
+            printf("current time is %d s, last time is %d s\n", (int)(ct - st),
+                   (int)((ct - st) * maxtimes / curtimes) - (int)(ct - st));
+          }
         }
       }
     }
@@ -132,5 +165,12 @@ bool trainSingleIndicator(Exchange& exchange, const char* assetsName,
 
   return true;
 }
+
+// trainSingleIndicator2 - 单独一个indicator的策略，考虑方向
+bool trainSingleIndicator2(Exchange& exchange, const char* assetsName,
+                           const char* indicatorName, const char* outputPath,
+                           Money invest, int avgtimes, IndicatorDataValue off0,
+                           IndicatorDataValue off1, IndicatorDataValue off2,
+                           IndicatorDataValue maxoff2, float minValidReturn) {}
 
 CR2END
