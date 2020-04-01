@@ -23,7 +23,7 @@ class StrategySI2 : public Strategy {
         m_funcBuy(NULL),
         m_funcSell(NULL),
         m_volume(0) {}
-  virtual ~StrategySI2() {}
+  virtual ~StrategySI2() { this->release(); }
 
  public:
   virtual void onTimeStamp(TimeStamp ts, int index);
@@ -32,6 +32,8 @@ class StrategySI2 : public Strategy {
   void init(const char* assetsName, const char* nameIndicator, int avgtimes,
             StrategySI2::FuncOnTimeStamp funcBuy,
             StrategySI2::FuncOnTimeStamp funcSell, Money money);
+
+  void release();
 
  protected:
   std::string m_assetsName;

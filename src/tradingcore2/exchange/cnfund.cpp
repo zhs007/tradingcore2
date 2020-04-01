@@ -254,4 +254,12 @@ TimeStamp CNFundExchange::getFirstTimeStamp() const {
   return this->m_lstTimeStamp[0];
 }
 
+void CNFundExchange::release() {
+  for (auto it = this->m_map.begin(); it != this->m_map.end(); ++it) {
+    delete it->second;
+  }
+
+  this->m_map.clear();
+}
+
 CR2END

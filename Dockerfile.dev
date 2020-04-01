@@ -1,0 +1,31 @@
+FROM buildpack-deps:stretch
+
+MAINTAINER zerro "zerrozhao@gmail.com"
+
+RUN echo "deb http://ftp.de.debian.org/debian stretch main" >> /etc/apt/sources.list \
+  && apt-get update -y \
+  && apt-get install git wget gcc make automake libc6-dbg -y \
+  && rm -rf /var/lib/apt/lists/*
+
+RUN wget https://github.com/Kitware/CMake/releases/download/v3.17.0/cmake-3.17.0.tar.gz \
+  && tar zxvf cmake-3.* \
+  && cd cmake-3.* \
+  && ./bootstrap --prefix=/usr/local \
+  && make -j$(nproc) \
+  && make install \
+  && cd .. \
+  && rm -rf cmake-3.*
+
+RUN wget https://sourceware.org/pub/valgrind/valgrind-3.15.0.tar.bz2 \
+  && tar jxvf valgrind-3.* \
+  && cd valgrind-3.* \
+  && ./configure \
+  && make \
+  && make install
+
+WORKDIR /app/
+
+COPY ./ ./
+
+RUN sh initdeps.sh \
+  && sh build.sh

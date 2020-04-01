@@ -62,4 +62,12 @@ void StrategySI::onTimeStamp(TimeStamp ts, int index) {
   }
 }
 
+void StrategySI::release() {
+  if (this->m_pIndicator != NULL) {
+    delete this->m_pIndicator;
+
+    this->m_pIndicator = NULL;
+  }
+}
+
 CR2END

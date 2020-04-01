@@ -31,7 +31,7 @@ class CNFundExchange : public Exchange {
 
  public:
   CNFundExchange() {}
-  virtual ~CNFundExchange() {}
+  virtual ~CNFundExchange() { this->release(); }
 
  public:
   virtual bool calculateVolume(const char* assetsName, TimeStamp ts,
@@ -76,6 +76,8 @@ class CNFundExchange : public Exchange {
   void buildTimeStampList();
 
   void insertTimeStamp(TimeStamp ts);
+
+  void release();
 
  protected:
   Map m_map;

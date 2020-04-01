@@ -18,7 +18,7 @@ class StrategySI : public Strategy {
         m_minValSell(0),
         m_maxValSell(0),
         m_volume(0) {}
-  virtual ~StrategySI() {}
+  virtual ~StrategySI() { this->release(); }
 
  public:
   virtual void onTimeStamp(TimeStamp ts, int index);
@@ -28,6 +28,8 @@ class StrategySI : public Strategy {
             IndicatorDataValue minvalbuy, IndicatorDataValue maxvalbuy,
             IndicatorDataValue minvalsell, IndicatorDataValue maxvalsell,
             Money money);
+
+  void release();
 
  protected:
   std::string m_assetsName;
