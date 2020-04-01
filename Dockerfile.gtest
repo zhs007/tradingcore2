@@ -21,4 +21,5 @@ COPY ./ ./
 
 RUN sh initdeps.sh \
   && sh build.sh \
-  && ./build/tests/tests
+  && cd build \
+  && ./tests/tests
