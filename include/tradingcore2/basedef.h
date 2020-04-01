@@ -5,6 +5,7 @@
 #include <time.h>
 
 #include <string>
+#include <vector>
 
 #define CR2BEGIN namespace tr2 {
 #define CR2END }
