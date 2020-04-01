@@ -52,6 +52,16 @@ docker build -t tradingcore2 .
 因为这是一个完整的编译环境，所以依赖较多，编译过程较长。  
 也可以自己制作二进制包。
 
+除了普通的dockerfile外，我们还提供了：
+
+- dev版，预装了``valgrind``，可以很方便的调试内存泄露等。  
+
+``` sh
+valgrind --tool=memcheck --leak-check=full --show-reachable=yes ./tradingcore2
+```
+
+- gtest版，这个会自动执行单元测试，我们项目的``github``的``workflows``会执行。
+
 # 项目用途
 
 1. 策略训练&回测。
