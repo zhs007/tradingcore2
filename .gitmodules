@@ -7,3 +7,6 @@
 [submodule "deps/gsl"]
 	path = deps/gsl
 	url = https://github.com/ampl/gsl.git
+[submodule "deps/grpc"]
+	path = deps/grpc
+	url = https://github.com/grpc/grpc.git
