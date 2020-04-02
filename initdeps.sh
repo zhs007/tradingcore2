@@ -7,3 +7,8 @@ mkdir build
 cd build
 cmake ..
 make
+
+cd deps/grpc/third_party
+rm -rf zlib
+git submodule init
+git submodule update
