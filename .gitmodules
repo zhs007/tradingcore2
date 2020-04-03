@@ -16,3 +16,21 @@
 [submodule "deps/zlib"]
 	path = deps/zlib
 	url = https://github.com/madler/zlib.git
+[submodule "deps/gflags"]
+	path = deps/gflags
+	url = https://github.com/gflags/gflags.git
+[submodule "deps/snappy"]
+	path = deps/snappy
+	url = https://github.com/google/snappy.git
+[submodule "deps/bzip2-1.0.6"]
+	path = deps/bzip2-1.0.6
+	url = https://github.com/enthought/bzip2-1.0.6.git
+[submodule "deps/lz4"]
+	path = deps/lz4
+	url = https://github.com/lz4/lz4.git
+[submodule "deps/zstd"]
+	path = deps/zstd
+	url = https://github.com/facebook/zstd.git
+[submodule "deps/jemalloc"]
+	path = deps/jemalloc
+	url = https://github.com/jemalloc/jemalloc.git
