@@ -64,12 +64,18 @@ void train() {
                              5, 10, 10, 2);
 }
 
+void startServ(const char* addr) {
+  auto pServ = tr2::newTrainServer(addr);
+  pServ->run();
+}
+
 int main() {
   tr2::regAllIndicators();
 
   // runBuyAndHold();
   // runSIROC();
-  train();
+  // train();
+  startServ("0.0.0.0:3721");
 
   return 0;
 }

@@ -69,3 +69,8 @@ valgrind --tool=memcheck --leak-check=full --show-reachable=yes ./tradingcore2
 3. 各种数据的清洗和处理。
 4. 通过grpc来做分布运算。
 5. 配合Ada做图表。
+
+# 注意事项
+
+- zlib 项目如果手动 build 时，会删除一个文件，所以很容易在项目提交时，造成 submodule dirty 。
+- rocksdb 项目有很多依赖需要手动装，现在全部添加了 submodule ，对项目有少许修改。

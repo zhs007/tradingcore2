@@ -5,603 +5,448 @@
 
 #include <algorithm>
 
-#include <google/protobuf/stubs/common.h>
-#include <google/protobuf/stubs/port.h>
-#include <google/protobuf/stubs/once.h>
 #include <google/protobuf/io/coded_stream.h>
-#include <google/protobuf/wire_format_lite_inl.h>
+#include <google/protobuf/extension_set.h>
+#include <google/protobuf/wire_format_lite.h>
 #include <google/protobuf/descriptor.h>
 #include <google/protobuf/generated_message_reflection.h>
 #include <google/protobuf/reflection_ops.h>
 #include <google/protobuf/wire_format.h>
-// This is a temporary google only hack
-#ifdef GOOGLE_PROTOBUF_ENFORCE_UNIQUENESS
-#include "third_party/protobuf/version.h"
-#endif
 // @@protoc_insertion_point(includes)
-namespace tradingcore2 {
+#include <google/protobuf/port_def.inc>
+namespace tradingcore2pb {
 class TrainDataDefaultTypeInternal {
  public:
-  ::google::protobuf::internal::ExplicitlyConstructed<TrainData>
-      _instance;
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<TrainData> _instance;
 } _TrainData_default_instance_;
 class TrainResultDefaultTypeInternal {
  public:
-  ::google::protobuf::internal::ExplicitlyConstructed<TrainResult>
-      _instance;
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<TrainResult> _instance;
 } _TrainResult_default_instance_;
-}  // namespace tradingcore2
-namespace protobuf_tradingcore2_2eproto {
-void InitDefaultsTrainDataImpl() {
+}  // namespace tradingcore2pb
+static void InitDefaultsscc_info_TrainData_tradingcore2_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
-#ifdef GOOGLE_PROTOBUF_ENFORCE_UNIQUENESS
-  ::google::protobuf::internal::InitProtobufDefaultsForceUnique();
-#else
-  ::google::protobuf::internal::InitProtobufDefaults();
-#endif  // GOOGLE_PROTOBUF_ENFORCE_UNIQUENESS
   {
-    void* ptr = &::tradingcore2::_TrainData_default_instance_;
-    new (ptr) ::tradingcore2::TrainData();
-    ::google::protobuf::internal::OnShutdownDestroyMessage(ptr);
+    void* ptr = &::tradingcore2pb::_TrainData_default_instance_;
+    new (ptr) ::tradingcore2pb::TrainData();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
-  ::tradingcore2::TrainData::InitAsDefaultInstance();
+  ::tradingcore2pb::TrainData::InitAsDefaultInstance();
 }
 
-void InitDefaultsTrainData() {
-  static GOOGLE_PROTOBUF_DECLARE_ONCE(once);
-  ::google::protobuf::GoogleOnceInit(&once, &InitDefaultsTrainDataImpl);
-}
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_TrainData_tradingcore2_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_TrainData_tradingcore2_2eproto}, {}};
 
-void InitDefaultsTrainResultImpl() {
+static void InitDefaultsscc_info_TrainResult_tradingcore2_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
-#ifdef GOOGLE_PROTOBUF_ENFORCE_UNIQUENESS
-  ::google::protobuf::internal::InitProtobufDefaultsForceUnique();
-#else
-  ::google::protobuf::internal::InitProtobufDefaults();
-#endif  // GOOGLE_PROTOBUF_ENFORCE_UNIQUENESS
   {
-    void* ptr = &::tradingcore2::_TrainResult_default_instance_;
-    new (ptr) ::tradingcore2::TrainResult();
-    ::google::protobuf::internal::OnShutdownDestroyMessage(ptr);
+    void* ptr = &::tradingcore2pb::_TrainResult_default_instance_;
+    new (ptr) ::tradingcore2pb::TrainResult();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
   }
-  ::tradingcore2::TrainResult::InitAsDefaultInstance();
+  ::tradingcore2pb::TrainResult::InitAsDefaultInstance();
 }
 
-void InitDefaultsTrainResult() {
-  static GOOGLE_PROTOBUF_DECLARE_ONCE(once);
-  ::google::protobuf::GoogleOnceInit(&once, &InitDefaultsTrainResultImpl);
-}
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_TrainResult_tradingcore2_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_TrainResult_tradingcore2_2eproto}, {}};
 
-::google::protobuf::Metadata file_level_metadata[2];
+static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_tradingcore2_2eproto[2];
+static constexpr ::PROTOBUF_NAMESPACE_ID::EnumDescriptor const** file_level_enum_descriptors_tradingcore2_2eproto = nullptr;
+static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_tradingcore2_2eproto = nullptr;
 
-const ::google::protobuf::uint32 TableStruct::offsets[] GOOGLE_PROTOBUF_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
+const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_tradingcore2_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   ~0u,  // no _has_bits_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::tradingcore2::TrainData, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::tradingcore2pb::TrainData, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::tradingcore2::TrainData, trainid_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::tradingcore2::TrainData, exchangename_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::tradingcore2::TrainData, assetsname_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::tradingcore2::TrainData, strategyname_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::tradingcore2::TrainData, strparam_),
+  PROTOBUF_FIELD_OFFSET(::tradingcore2pb::TrainData, trainid_),
+  PROTOBUF_FIELD_OFFSET(::tradingcore2pb::TrainData, exchangename_),
+  PROTOBUF_FIELD_OFFSET(::tradingcore2pb::TrainData, assetsname_),
+  PROTOBUF_FIELD_OFFSET(::tradingcore2pb::TrainData, strategyname_),
+  PROTOBUF_FIELD_OFFSET(::tradingcore2pb::TrainData, strparam_),
   ~0u,  // no _has_bits_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::tradingcore2::TrainResult, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::tradingcore2pb::TrainResult, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::tradingcore2::TrainResult, trainid_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::tradingcore2::TrainResult, maxdrawdown_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::tradingcore2::TrainResult, sharpe_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::tradingcore2::TrainResult, annualizedreturns_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::tradingcore2::TrainResult, annualizedvolatility_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::tradingcore2::TrainResult, totalreturns_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::tradingcore2::TrainResult, tradingtimes_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::tradingcore2::TrainResult, failtimes_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::tradingcore2::TrainResult, stoplosstimes_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::tradingcore2::TrainResult, winrate_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::tradingcore2::TrainResult, exchangename_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::tradingcore2::TrainResult, assetsname_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::tradingcore2::TrainResult, strategyname_),
-  GOOGLE_PROTOBUF_GENERATED_MESSAGE_FIELD_OFFSET(::tradingcore2::TrainResult, strparam_),
+  PROTOBUF_FIELD_OFFSET(::tradingcore2pb::TrainResult, trainid_),
+  PROTOBUF_FIELD_OFFSET(::tradingcore2pb::TrainResult, maxdrawdown_),
+  PROTOBUF_FIELD_OFFSET(::tradingcore2pb::TrainResult, sharpe_),
+  PROTOBUF_FIELD_OFFSET(::tradingcore2pb::TrainResult, annualizedreturns_),
+  PROTOBUF_FIELD_OFFSET(::tradingcore2pb::TrainResult, annualizedvolatility_),
+  PROTOBUF_FIELD_OFFSET(::tradingcore2pb::TrainResult, totalreturns_),
+  PROTOBUF_FIELD_OFFSET(::tradingcore2pb::TrainResult, tradingtimes_),
+  PROTOBUF_FIELD_OFFSET(::tradingcore2pb::TrainResult, failtimes_),
+  PROTOBUF_FIELD_OFFSET(::tradingcore2pb::TrainResult, stoplosstimes_),
+  PROTOBUF_FIELD_OFFSET(::tradingcore2pb::TrainResult, winrate_),
+  PROTOBUF_FIELD_OFFSET(::tradingcore2pb::TrainResult, exchangename_),
+  PROTOBUF_FIELD_OFFSET(::tradingcore2pb::TrainResult, assetsname_),
+  PROTOBUF_FIELD_OFFSET(::tradingcore2pb::TrainResult, strategyname_),
+  PROTOBUF_FIELD_OFFSET(::tradingcore2pb::TrainResult, strparam_),
 };
-static const ::google::protobuf::internal::MigrationSchema schemas[] GOOGLE_PROTOBUF_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
-  { 0, -1, sizeof(::tradingcore2::TrainData)},
-  { 10, -1, sizeof(::tradingcore2::TrainResult)},
-};
-
-static ::google::protobuf::Message const * const file_default_instances[] = {
-  reinterpret_cast<const ::google::protobuf::Message*>(&::tradingcore2::_TrainData_default_instance_),
-  reinterpret_cast<const ::google::protobuf::Message*>(&::tradingcore2::_TrainResult_default_instance_),
+static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
+  { 0, -1, sizeof(::tradingcore2pb::TrainData)},
+  { 10, -1, sizeof(::tradingcore2pb::TrainResult)},
 };
 
-void protobuf_AssignDescriptors() {
-  AddDescriptors();
-  ::google::protobuf::MessageFactory* factory = NULL;
-  AssignDescriptors(
-      "tradingcore2.proto", schemas, file_default_instances, TableStruct::offsets, factory,
-      file_level_metadata, NULL, NULL);
-}
+static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::tradingcore2pb::_TrainData_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::tradingcore2pb::_TrainResult_default_instance_),
+};
 
-void protobuf_AssignDescriptorsOnce() {
-  static GOOGLE_PROTOBUF_DECLARE_ONCE(once);
-  ::google::protobuf::GoogleOnceInit(&once, &protobuf_AssignDescriptors);
-}
+const char descriptor_table_protodef_tradingcore2_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
+  "\n\022tradingcore2.proto\022\016tradingcore2pb\"n\n\t"
+  "TrainData\022\017\n\007trainID\030\001 \001(\003\022\024\n\014exchangeNa"
+  "me\030\002 \001(\t\022\022\n\nassetsName\030\003 \001(\t\022\024\n\014strategy"
+  "Name\030\004 \001(\t\022\020\n\010strParam\030\005 \001(\t\"\265\002\n\013TrainRe"
+  "sult\022\017\n\007trainID\030\001 \001(\003\022\023\n\013maxDrawdown\030\002 \001"
+  "(\002\022\016\n\006sharpe\030\003 \001(\002\022\031\n\021annualizedReturns\030"
+  "\004 \001(\002\022\034\n\024annualizedVolatility\030\005 \001(\002\022\024\n\014t"
+  "otalReturns\030\006 \001(\002\022\024\n\014tradingTimes\030\007 \001(\005\022"
+  "\021\n\tfailTimes\030\010 \001(\005\022\025\n\rstoplossTimes\030\t \001("
+  "\005\022\017\n\007winRate\030\n \001(\002\022\024\n\014exchangeName\030\013 \001(\t"
+  "\022\022\n\nassetsName\030\014 \001(\t\022\024\n\014strategyName\030\r \001"
+  "(\t\022\020\n\010strParam\030\016 \001(\t2X\n\023TradingCore2Serv"
+  "ice\022A\n\005train\022\031.tradingcore2pb.TrainData\032"
+  "\033.tradingcore2pb.TrainResult\"\000b\006proto3"
+  ;
+static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_tradingcore2_2eproto_deps[1] = {
+};
+static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_tradingcore2_2eproto_sccs[2] = {
+  &scc_info_TrainData_tradingcore2_2eproto.base,
+  &scc_info_TrainResult_tradingcore2_2eproto.base,
+};
+static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_tradingcore2_2eproto_once;
+static bool descriptor_table_tradingcore2_2eproto_initialized = false;
+const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_tradingcore2_2eproto = {
+  &descriptor_table_tradingcore2_2eproto_initialized, descriptor_table_protodef_tradingcore2_2eproto, "tradingcore2.proto", 558,
+  &descriptor_table_tradingcore2_2eproto_once, descriptor_table_tradingcore2_2eproto_sccs, descriptor_table_tradingcore2_2eproto_deps, 2, 0,
+  schemas, file_default_instances, TableStruct_tradingcore2_2eproto::offsets,
+  file_level_metadata_tradingcore2_2eproto, 2, file_level_enum_descriptors_tradingcore2_2eproto, file_level_service_descriptors_tradingcore2_2eproto,
+};
 
-void protobuf_RegisterTypes(const ::std::string&) GOOGLE_PROTOBUF_ATTRIBUTE_COLD;
-void protobuf_RegisterTypes(const ::std::string&) {
-  protobuf_AssignDescriptorsOnce();
-  ::google::protobuf::internal::RegisterAllTypes(file_level_metadata, 2);
-}
-
-void AddDescriptorsImpl() {
-  InitDefaults();
-  static const char descriptor[] GOOGLE_PROTOBUF_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
-      "\n\022tradingcore2.proto\022\014tradingcore2\"n\n\tTr"
-      "ainData\022\017\n\007trainID\030\001 \001(\003\022\024\n\014exchangeName"
-      "\030\002 \001(\t\022\022\n\nassetsName\030\003 \001(\t\022\024\n\014strategyNa"
-      "me\030\004 \001(\t\022\020\n\010strParam\030\005 \001(\t\"\265\002\n\013TrainResu"
-      "lt\022\017\n\007trainID\030\001 \001(\003\022\023\n\013maxDrawdown\030\002 \001(\002"
-      "\022\016\n\006sharpe\030\003 \001(\002\022\031\n\021annualizedReturns\030\004 "
-      "\001(\002\022\034\n\024annualizedVolatility\030\005 \001(\002\022\024\n\014tot"
-      "alReturns\030\006 \001(\002\022\024\n\014tradingTimes\030\007 \001(\005\022\021\n"
-      "\tfailTimes\030\010 \001(\005\022\025\n\rstoplossTimes\030\t \001(\005\022"
-      "\017\n\007winRate\030\n \001(\002\022\024\n\014exchangeName\030\013 \001(\t\022\022"
-      "\n\nassetsName\030\014 \001(\t\022\024\n\014strategyName\030\r \001(\t"
-      "\022\020\n\010strParam\030\016 \001(\t2T\n\023TradingCore2Servic"
-      "e\022=\n\005train\022\027.tradingcore2.TrainData\032\031.tr"
-      "adingcore2.TrainResult\"\000b\006proto3"
-  };
-  ::google::protobuf::DescriptorPool::InternalAddGeneratedFile(
-      descriptor, 552);
-  ::google::protobuf::MessageFactory::InternalRegisterGeneratedFile(
-    "tradingcore2.proto", &protobuf_RegisterTypes);
-}
-
-void AddDescriptors() {
-  static GOOGLE_PROTOBUF_DECLARE_ONCE(once);
-  ::google::protobuf::GoogleOnceInit(&once, &AddDescriptorsImpl);
-}
-// Force AddDescriptors() to be called at dynamic initialization time.
-struct StaticDescriptorInitializer {
-  StaticDescriptorInitializer() {
-    AddDescriptors();
-  }
-} static_descriptor_initializer;
-}  // namespace protobuf_tradingcore2_2eproto
-namespace tradingcore2 {
+// Force running AddDescriptors() at dynamic initialization time.
+static bool dynamic_init_dummy_tradingcore2_2eproto = (  ::PROTOBUF_NAMESPACE_ID::internal::AddDescriptors(&descriptor_table_tradingcore2_2eproto), true);
+namespace tradingcore2pb {
 
 // ===================================================================
 
 void TrainData::InitAsDefaultInstance() {
 }
-#if !defined(_MSC_VER) || _MSC_VER >= 1900
-const int TrainData::kTrainIDFieldNumber;
-const int TrainData::kExchangeNameFieldNumber;
-const int TrainData::kAssetsNameFieldNumber;
-const int TrainData::kStrategyNameFieldNumber;
-const int TrainData::kStrParamFieldNumber;
-#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+class TrainData::_Internal {
+ public:
+};
 
 TrainData::TrainData()
-  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
-  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
-    ::protobuf_tradingcore2_2eproto::InitDefaultsTrainData();
-  }
+  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:tradingcore2.TrainData)
+  // @@protoc_insertion_point(constructor:tradingcore2pb.TrainData)
 }
 TrainData::TrainData(const TrainData& from)
-  : ::google::protobuf::Message(),
-      _internal_metadata_(NULL),
-      _cached_size_(0) {
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _internal_metadata_(nullptr) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
-  exchangename_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (from.exchangename().size() > 0) {
-    exchangename_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.exchangename_);
+  exchangename_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_exchangename().empty()) {
+    exchangename_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.exchangename_);
   }
-  assetsname_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (from.assetsname().size() > 0) {
-    assetsname_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.assetsname_);
+  assetsname_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_assetsname().empty()) {
+    assetsname_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.assetsname_);
   }
-  strategyname_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (from.strategyname().size() > 0) {
-    strategyname_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strategyname_);
+  strategyname_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_strategyname().empty()) {
+    strategyname_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.strategyname_);
   }
-  strparam_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (from.strparam().size() > 0) {
-    strparam_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strparam_);
+  strparam_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_strparam().empty()) {
+    strparam_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.strparam_);
   }
   trainid_ = from.trainid_;
-  // @@protoc_insertion_point(copy_constructor:tradingcore2.TrainData)
+  // @@protoc_insertion_point(copy_constructor:tradingcore2pb.TrainData)
 }
 
 void TrainData::SharedCtor() {
-  exchangename_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  assetsname_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  strategyname_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  strparam_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  trainid_ = GOOGLE_LONGLONG(0);
-  _cached_size_ = 0;
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_TrainData_tradingcore2_2eproto.base);
+  exchangename_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  assetsname_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  strategyname_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  strparam_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  trainid_ = PROTOBUF_LONGLONG(0);
 }
 
 TrainData::~TrainData() {
-  // @@protoc_insertion_point(destructor:tradingcore2.TrainData)
+  // @@protoc_insertion_point(destructor:tradingcore2pb.TrainData)
   SharedDtor();
 }
 
 void TrainData::SharedDtor() {
-  exchangename_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  assetsname_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  strategyname_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  strparam_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  exchangename_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  assetsname_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  strategyname_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  strparam_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
 void TrainData::SetCachedSize(int size) const {
-  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
-  _cached_size_ = size;
-  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  _cached_size_.Set(size);
 }
-const ::google::protobuf::Descriptor* TrainData::descriptor() {
-  ::protobuf_tradingcore2_2eproto::protobuf_AssignDescriptorsOnce();
-  return ::protobuf_tradingcore2_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
-}
-
 const TrainData& TrainData::default_instance() {
-  ::protobuf_tradingcore2_2eproto::InitDefaultsTrainData();
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_TrainData_tradingcore2_2eproto.base);
   return *internal_default_instance();
 }
 
 
 void TrainData::Clear() {
-// @@protoc_insertion_point(message_clear_start:tradingcore2.TrainData)
-  ::google::protobuf::uint32 cached_has_bits = 0;
+// @@protoc_insertion_point(message_clear_start:tradingcore2pb.TrainData)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  exchangename_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  assetsname_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  strategyname_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  strparam_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  trainid_ = GOOGLE_LONGLONG(0);
+  exchangename_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  assetsname_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  strategyname_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  strparam_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  trainid_ = PROTOBUF_LONGLONG(0);
   _internal_metadata_.Clear();
 }
 
-bool TrainData::MergePartialFromCodedStream(
-    ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
-  ::google::protobuf::uint32 tag;
-  // @@protoc_insertion_point(parse_start:tradingcore2.TrainData)
-  for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
-    tag = p.first;
-    if (!p.second) goto handle_unusual;
-    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+const char* TrainData::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
       // int64 trainID = 1;
-      case 1: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(8u /* 8 & 0xFF */)) {
-
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
-                 input, &trainid_)));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          trainid_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       // string exchangeName = 2;
-      case 2: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(18u /* 18 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_exchangename()));
-          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            this->exchangename().data(), static_cast<int>(this->exchangename().length()),
-            ::google::protobuf::internal::WireFormatLite::PARSE,
-            "tradingcore2.TrainData.exchangeName"));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          auto str = _internal_mutable_exchangename();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "tradingcore2pb.TrainData.exchangeName"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       // string assetsName = 3;
-      case 3: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(26u /* 26 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_assetsname()));
-          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            this->assetsname().data(), static_cast<int>(this->assetsname().length()),
-            ::google::protobuf::internal::WireFormatLite::PARSE,
-            "tradingcore2.TrainData.assetsName"));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
+          auto str = _internal_mutable_assetsname();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "tradingcore2pb.TrainData.assetsName"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       // string strategyName = 4;
-      case 4: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(34u /* 34 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_strategyname()));
-          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            this->strategyname().data(), static_cast<int>(this->strategyname().length()),
-            ::google::protobuf::internal::WireFormatLite::PARSE,
-            "tradingcore2.TrainData.strategyName"));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 34)) {
+          auto str = _internal_mutable_strategyname();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "tradingcore2pb.TrainData.strategyName"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       // string strParam = 5;
-      case 5: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(42u /* 42 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_strparam()));
-          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            this->strparam().data(), static_cast<int>(this->strparam().length()),
-            ::google::protobuf::internal::WireFormatLite::PARSE,
-            "tradingcore2.TrainData.strParam"));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 42)) {
+          auto str = _internal_mutable_strparam();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "tradingcore2pb.TrainData.strParam"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       default: {
       handle_unusual:
-        if (tag == 0) {
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
           goto success;
         }
-        DO_(::google::protobuf::internal::WireFormat::SkipField(
-              input, tag, _internal_metadata_.mutable_unknown_fields()));
-        break;
+        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
       }
-    }
-  }
+    }  // switch
+  }  // while
 success:
-  // @@protoc_insertion_point(parse_success:tradingcore2.TrainData)
-  return true;
+  return ptr;
 failure:
-  // @@protoc_insertion_point(parse_failure:tradingcore2.TrainData)
-  return false;
-#undef DO_
+  ptr = nullptr;
+  goto success;
+#undef CHK_
 }
 
-void TrainData::SerializeWithCachedSizes(
-    ::google::protobuf::io::CodedOutputStream* output) const {
-  // @@protoc_insertion_point(serialize_start:tradingcore2.TrainData)
-  ::google::protobuf::uint32 cached_has_bits = 0;
+::PROTOBUF_NAMESPACE_ID::uint8* TrainData::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:tradingcore2pb.TrainData)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   // int64 trainID = 1;
   if (this->trainid() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt64(1, this->trainid(), output);
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt64ToArray(1, this->_internal_trainid(), target);
   }
 
   // string exchangeName = 2;
   if (this->exchangename().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->exchangename().data(), static_cast<int>(this->exchangename().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "tradingcore2.TrainData.exchangeName");
-    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      2, this->exchangename(), output);
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_exchangename().data(), static_cast<int>(this->_internal_exchangename().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "tradingcore2pb.TrainData.exchangeName");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_exchangename(), target);
   }
 
   // string assetsName = 3;
   if (this->assetsname().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->assetsname().data(), static_cast<int>(this->assetsname().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "tradingcore2.TrainData.assetsName");
-    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      3, this->assetsname(), output);
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_assetsname().data(), static_cast<int>(this->_internal_assetsname().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "tradingcore2pb.TrainData.assetsName");
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_assetsname(), target);
   }
 
   // string strategyName = 4;
   if (this->strategyname().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->strategyname().data(), static_cast<int>(this->strategyname().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "tradingcore2.TrainData.strategyName");
-    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      4, this->strategyname(), output);
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_strategyname().data(), static_cast<int>(this->_internal_strategyname().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "tradingcore2pb.TrainData.strategyName");
+    target = stream->WriteStringMaybeAliased(
+        4, this->_internal_strategyname(), target);
   }
 
   // string strParam = 5;
   if (this->strparam().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->strparam().data(), static_cast<int>(this->strparam().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "tradingcore2.TrainData.strParam");
-    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      5, this->strparam(), output);
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_strparam().data(), static_cast<int>(this->_internal_strparam().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "tradingcore2pb.TrainData.strParam");
+    target = stream->WriteStringMaybeAliased(
+        5, this->_internal_strparam(), target);
   }
 
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields(), target, stream);
   }
-  // @@protoc_insertion_point(serialize_end:tradingcore2.TrainData)
-}
-
-::google::protobuf::uint8* TrainData::InternalSerializeWithCachedSizesToArray(
-    bool deterministic, ::google::protobuf::uint8* target) const {
-  (void)deterministic; // Unused
-  // @@protoc_insertion_point(serialize_to_array_start:tradingcore2.TrainData)
-  ::google::protobuf::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  // int64 trainID = 1;
-  if (this->trainid() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(1, this->trainid(), target);
-  }
-
-  // string exchangeName = 2;
-  if (this->exchangename().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->exchangename().data(), static_cast<int>(this->exchangename().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "tradingcore2.TrainData.exchangeName");
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        2, this->exchangename(), target);
-  }
-
-  // string assetsName = 3;
-  if (this->assetsname().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->assetsname().data(), static_cast<int>(this->assetsname().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "tradingcore2.TrainData.assetsName");
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        3, this->assetsname(), target);
-  }
-
-  // string strategyName = 4;
-  if (this->strategyname().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->strategyname().data(), static_cast<int>(this->strategyname().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "tradingcore2.TrainData.strategyName");
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        4, this->strategyname(), target);
-  }
-
-  // string strParam = 5;
-  if (this->strparam().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->strparam().data(), static_cast<int>(this->strparam().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "tradingcore2.TrainData.strParam");
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        5, this->strparam(), target);
-  }
-
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
-  }
-  // @@protoc_insertion_point(serialize_to_array_end:tradingcore2.TrainData)
+  // @@protoc_insertion_point(serialize_to_array_end:tradingcore2pb.TrainData)
   return target;
 }
 
 size_t TrainData::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:tradingcore2.TrainData)
+// @@protoc_insertion_point(message_byte_size_start:tradingcore2pb.TrainData)
   size_t total_size = 0;
 
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    total_size +=
-      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
-  }
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
   // string exchangeName = 2;
   if (this->exchangename().size() > 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::StringSize(
-        this->exchangename());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_exchangename());
   }
 
   // string assetsName = 3;
   if (this->assetsname().size() > 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::StringSize(
-        this->assetsname());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_assetsname());
   }
 
   // string strategyName = 4;
   if (this->strategyname().size() > 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::StringSize(
-        this->strategyname());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_strategyname());
   }
 
   // string strParam = 5;
   if (this->strparam().size() > 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::StringSize(
-        this->strparam());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_strparam());
   }
 
   // int64 trainID = 1;
   if (this->trainid() != 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::Int64Size(
-        this->trainid());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int64Size(
+        this->_internal_trainid());
   }
 
-  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
-  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
-  _cached_size_ = cached_size;
-  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
   return total_size;
 }
 
-void TrainData::MergeFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:tradingcore2.TrainData)
+void TrainData::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:tradingcore2pb.TrainData)
   GOOGLE_DCHECK_NE(&from, this);
   const TrainData* source =
-      ::google::protobuf::internal::DynamicCastToGenerated<const TrainData>(
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<TrainData>(
           &from);
-  if (source == NULL) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:tradingcore2.TrainData)
-    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:tradingcore2pb.TrainData)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
   } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:tradingcore2.TrainData)
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:tradingcore2pb.TrainData)
     MergeFrom(*source);
   }
 }
 
 void TrainData::MergeFrom(const TrainData& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:tradingcore2.TrainData)
+// @@protoc_insertion_point(class_specific_merge_from_start:tradingcore2pb.TrainData)
   GOOGLE_DCHECK_NE(&from, this);
   _internal_metadata_.MergeFrom(from._internal_metadata_);
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from.exchangename().size() > 0) {
 
-    exchangename_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.exchangename_);
+    exchangename_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.exchangename_);
   }
   if (from.assetsname().size() > 0) {
 
-    assetsname_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.assetsname_);
+    assetsname_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.assetsname_);
   }
   if (from.strategyname().size() > 0) {
 
-    strategyname_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strategyname_);
+    strategyname_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.strategyname_);
   }
   if (from.strparam().size() > 0) {
 
-    strparam_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strparam_);
+    strparam_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.strparam_);
   }
   if (from.trainid() != 0) {
-    set_trainid(from.trainid());
+    _internal_set_trainid(from._internal_trainid());
   }
 }
 
-void TrainData::CopyFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:tradingcore2.TrainData)
+void TrainData::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:tradingcore2pb.TrainData)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void TrainData::CopyFrom(const TrainData& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:tradingcore2.TrainData)
+// @@protoc_insertion_point(class_specific_copy_from_start:tradingcore2pb.TrainData)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
@@ -611,24 +456,22 @@ bool TrainData::IsInitialized() const {
   return true;
 }
 
-void TrainData::Swap(TrainData* other) {
-  if (other == this) return;
-  InternalSwap(other);
-}
 void TrainData::InternalSwap(TrainData* other) {
   using std::swap;
-  exchangename_.Swap(&other->exchangename_);
-  assetsname_.Swap(&other->assetsname_);
-  strategyname_.Swap(&other->strategyname_);
-  strparam_.Swap(&other->strparam_);
-  swap(trainid_, other->trainid_);
   _internal_metadata_.Swap(&other->_internal_metadata_);
-  swap(_cached_size_, other->_cached_size_);
+  exchangename_.Swap(&other->exchangename_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+    GetArenaNoVirtual());
+  assetsname_.Swap(&other->assetsname_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+    GetArenaNoVirtual());
+  strategyname_.Swap(&other->strategyname_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+    GetArenaNoVirtual());
+  strparam_.Swap(&other->strparam_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+    GetArenaNoVirtual());
+  swap(trainid_, other->trainid_);
 }
 
-::google::protobuf::Metadata TrainData::GetMetadata() const {
-  protobuf_tradingcore2_2eproto::protobuf_AssignDescriptorsOnce();
-  return ::protobuf_tradingcore2_2eproto::file_level_metadata[kIndexInFileMessages];
+::PROTOBUF_NAMESPACE_ID::Metadata TrainData::GetMetadata() const {
+  return GetMetadataStatic();
 }
 
 
@@ -636,740 +479,518 @@ void TrainData::InternalSwap(TrainData* other) {
 
 void TrainResult::InitAsDefaultInstance() {
 }
-#if !defined(_MSC_VER) || _MSC_VER >= 1900
-const int TrainResult::kTrainIDFieldNumber;
-const int TrainResult::kMaxDrawdownFieldNumber;
-const int TrainResult::kSharpeFieldNumber;
-const int TrainResult::kAnnualizedReturnsFieldNumber;
-const int TrainResult::kAnnualizedVolatilityFieldNumber;
-const int TrainResult::kTotalReturnsFieldNumber;
-const int TrainResult::kTradingTimesFieldNumber;
-const int TrainResult::kFailTimesFieldNumber;
-const int TrainResult::kStoplossTimesFieldNumber;
-const int TrainResult::kWinRateFieldNumber;
-const int TrainResult::kExchangeNameFieldNumber;
-const int TrainResult::kAssetsNameFieldNumber;
-const int TrainResult::kStrategyNameFieldNumber;
-const int TrainResult::kStrParamFieldNumber;
-#endif  // !defined(_MSC_VER) || _MSC_VER >= 1900
+class TrainResult::_Internal {
+ public:
+};
 
 TrainResult::TrainResult()
-  : ::google::protobuf::Message(), _internal_metadata_(NULL) {
-  if (GOOGLE_PREDICT_TRUE(this != internal_default_instance())) {
-    ::protobuf_tradingcore2_2eproto::InitDefaultsTrainResult();
-  }
+  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
   SharedCtor();
-  // @@protoc_insertion_point(constructor:tradingcore2.TrainResult)
+  // @@protoc_insertion_point(constructor:tradingcore2pb.TrainResult)
 }
 TrainResult::TrainResult(const TrainResult& from)
-  : ::google::protobuf::Message(),
-      _internal_metadata_(NULL),
-      _cached_size_(0) {
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _internal_metadata_(nullptr) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
-  exchangename_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (from.exchangename().size() > 0) {
-    exchangename_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.exchangename_);
+  exchangename_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_exchangename().empty()) {
+    exchangename_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.exchangename_);
   }
-  assetsname_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (from.assetsname().size() > 0) {
-    assetsname_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.assetsname_);
+  assetsname_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_assetsname().empty()) {
+    assetsname_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.assetsname_);
   }
-  strategyname_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (from.strategyname().size() > 0) {
-    strategyname_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strategyname_);
+  strategyname_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_strategyname().empty()) {
+    strategyname_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.strategyname_);
   }
-  strparam_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  if (from.strparam().size() > 0) {
-    strparam_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strparam_);
+  strparam_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_strparam().empty()) {
+    strparam_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.strparam_);
   }
   ::memcpy(&trainid_, &from.trainid_,
     static_cast<size_t>(reinterpret_cast<char*>(&winrate_) -
     reinterpret_cast<char*>(&trainid_)) + sizeof(winrate_));
-  // @@protoc_insertion_point(copy_constructor:tradingcore2.TrainResult)
+  // @@protoc_insertion_point(copy_constructor:tradingcore2pb.TrainResult)
 }
 
 void TrainResult::SharedCtor() {
-  exchangename_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  assetsname_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  strategyname_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  strparam_.UnsafeSetDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_TrainResult_tradingcore2_2eproto.base);
+  exchangename_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  assetsname_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  strategyname_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  strparam_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   ::memset(&trainid_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&winrate_) -
       reinterpret_cast<char*>(&trainid_)) + sizeof(winrate_));
-  _cached_size_ = 0;
 }
 
 TrainResult::~TrainResult() {
-  // @@protoc_insertion_point(destructor:tradingcore2.TrainResult)
+  // @@protoc_insertion_point(destructor:tradingcore2pb.TrainResult)
   SharedDtor();
 }
 
 void TrainResult::SharedDtor() {
-  exchangename_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  assetsname_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  strategyname_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  strparam_.DestroyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  exchangename_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  assetsname_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  strategyname_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  strparam_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 
 void TrainResult::SetCachedSize(int size) const {
-  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
-  _cached_size_ = size;
-  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  _cached_size_.Set(size);
 }
-const ::google::protobuf::Descriptor* TrainResult::descriptor() {
-  ::protobuf_tradingcore2_2eproto::protobuf_AssignDescriptorsOnce();
-  return ::protobuf_tradingcore2_2eproto::file_level_metadata[kIndexInFileMessages].descriptor;
-}
-
 const TrainResult& TrainResult::default_instance() {
-  ::protobuf_tradingcore2_2eproto::InitDefaultsTrainResult();
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_TrainResult_tradingcore2_2eproto.base);
   return *internal_default_instance();
 }
 
 
 void TrainResult::Clear() {
-// @@protoc_insertion_point(message_clear_start:tradingcore2.TrainResult)
-  ::google::protobuf::uint32 cached_has_bits = 0;
+// @@protoc_insertion_point(message_clear_start:tradingcore2pb.TrainResult)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  exchangename_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  assetsname_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  strategyname_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
-  strparam_.ClearToEmptyNoArena(&::google::protobuf::internal::GetEmptyStringAlreadyInited());
+  exchangename_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  assetsname_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  strategyname_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  strparam_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   ::memset(&trainid_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&winrate_) -
       reinterpret_cast<char*>(&trainid_)) + sizeof(winrate_));
   _internal_metadata_.Clear();
 }
 
-bool TrainResult::MergePartialFromCodedStream(
-    ::google::protobuf::io::CodedInputStream* input) {
-#define DO_(EXPRESSION) if (!GOOGLE_PREDICT_TRUE(EXPRESSION)) goto failure
-  ::google::protobuf::uint32 tag;
-  // @@protoc_insertion_point(parse_start:tradingcore2.TrainResult)
-  for (;;) {
-    ::std::pair< ::google::protobuf::uint32, bool> p = input->ReadTagWithCutoffNoLastTag(127u);
-    tag = p.first;
-    if (!p.second) goto handle_unusual;
-    switch (::google::protobuf::internal::WireFormatLite::GetTagFieldNumber(tag)) {
+const char* TrainResult::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
       // int64 trainID = 1;
-      case 1: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(8u /* 8 & 0xFF */)) {
-
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::int64, ::google::protobuf::internal::WireFormatLite::TYPE_INT64>(
-                 input, &trainid_)));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          trainid_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       // float maxDrawdown = 2;
-      case 2: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(21u /* 21 & 0xFF */)) {
-
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   float, ::google::protobuf::internal::WireFormatLite::TYPE_FLOAT>(
-                 input, &maxdrawdown_)));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 21)) {
+          maxdrawdown_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else goto handle_unusual;
+        continue;
       // float sharpe = 3;
-      case 3: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(29u /* 29 & 0xFF */)) {
-
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   float, ::google::protobuf::internal::WireFormatLite::TYPE_FLOAT>(
-                 input, &sharpe_)));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 29)) {
+          sharpe_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else goto handle_unusual;
+        continue;
       // float annualizedReturns = 4;
-      case 4: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(37u /* 37 & 0xFF */)) {
-
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   float, ::google::protobuf::internal::WireFormatLite::TYPE_FLOAT>(
-                 input, &annualizedreturns_)));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 37)) {
+          annualizedreturns_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else goto handle_unusual;
+        continue;
       // float annualizedVolatility = 5;
-      case 5: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(45u /* 45 & 0xFF */)) {
-
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   float, ::google::protobuf::internal::WireFormatLite::TYPE_FLOAT>(
-                 input, &annualizedvolatility_)));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 45)) {
+          annualizedvolatility_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else goto handle_unusual;
+        continue;
       // float totalReturns = 6;
-      case 6: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(53u /* 53 & 0xFF */)) {
-
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   float, ::google::protobuf::internal::WireFormatLite::TYPE_FLOAT>(
-                 input, &totalreturns_)));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 53)) {
+          totalreturns_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else goto handle_unusual;
+        continue;
       // int32 tradingTimes = 7;
-      case 7: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(56u /* 56 & 0xFF */)) {
-
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
-                 input, &tradingtimes_)));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 7:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 56)) {
+          tradingtimes_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       // int32 failTimes = 8;
-      case 8: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(64u /* 64 & 0xFF */)) {
-
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
-                 input, &failtimes_)));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 8:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 64)) {
+          failtimes_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       // int32 stoplossTimes = 9;
-      case 9: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(72u /* 72 & 0xFF */)) {
-
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   ::google::protobuf::int32, ::google::protobuf::internal::WireFormatLite::TYPE_INT32>(
-                 input, &stoplosstimes_)));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 9:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 72)) {
+          stoplosstimes_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       // float winRate = 10;
-      case 10: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(85u /* 85 & 0xFF */)) {
-
-          DO_((::google::protobuf::internal::WireFormatLite::ReadPrimitive<
-                   float, ::google::protobuf::internal::WireFormatLite::TYPE_FLOAT>(
-                 input, &winrate_)));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 10:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 85)) {
+          winrate_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else goto handle_unusual;
+        continue;
       // string exchangeName = 11;
-      case 11: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(90u /* 90 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_exchangename()));
-          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            this->exchangename().data(), static_cast<int>(this->exchangename().length()),
-            ::google::protobuf::internal::WireFormatLite::PARSE,
-            "tradingcore2.TrainResult.exchangeName"));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 11:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 90)) {
+          auto str = _internal_mutable_exchangename();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "tradingcore2pb.TrainResult.exchangeName"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       // string assetsName = 12;
-      case 12: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(98u /* 98 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_assetsname()));
-          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            this->assetsname().data(), static_cast<int>(this->assetsname().length()),
-            ::google::protobuf::internal::WireFormatLite::PARSE,
-            "tradingcore2.TrainResult.assetsName"));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 12:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 98)) {
+          auto str = _internal_mutable_assetsname();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "tradingcore2pb.TrainResult.assetsName"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       // string strategyName = 13;
-      case 13: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(106u /* 106 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_strategyname()));
-          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            this->strategyname().data(), static_cast<int>(this->strategyname().length()),
-            ::google::protobuf::internal::WireFormatLite::PARSE,
-            "tradingcore2.TrainResult.strategyName"));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 13:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 106)) {
+          auto str = _internal_mutable_strategyname();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "tradingcore2pb.TrainResult.strategyName"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       // string strParam = 14;
-      case 14: {
-        if (static_cast< ::google::protobuf::uint8>(tag) ==
-            static_cast< ::google::protobuf::uint8>(114u /* 114 & 0xFF */)) {
-          DO_(::google::protobuf::internal::WireFormatLite::ReadString(
-                input, this->mutable_strparam()));
-          DO_(::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-            this->strparam().data(), static_cast<int>(this->strparam().length()),
-            ::google::protobuf::internal::WireFormatLite::PARSE,
-            "tradingcore2.TrainResult.strParam"));
-        } else {
-          goto handle_unusual;
-        }
-        break;
-      }
-
+      case 14:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 114)) {
+          auto str = _internal_mutable_strparam();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "tradingcore2pb.TrainResult.strParam"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
       default: {
       handle_unusual:
-        if (tag == 0) {
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
           goto success;
         }
-        DO_(::google::protobuf::internal::WireFormat::SkipField(
-              input, tag, _internal_metadata_.mutable_unknown_fields()));
-        break;
+        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
       }
-    }
-  }
+    }  // switch
+  }  // while
 success:
-  // @@protoc_insertion_point(parse_success:tradingcore2.TrainResult)
-  return true;
+  return ptr;
 failure:
-  // @@protoc_insertion_point(parse_failure:tradingcore2.TrainResult)
-  return false;
-#undef DO_
+  ptr = nullptr;
+  goto success;
+#undef CHK_
 }
 
-void TrainResult::SerializeWithCachedSizes(
-    ::google::protobuf::io::CodedOutputStream* output) const {
-  // @@protoc_insertion_point(serialize_start:tradingcore2.TrainResult)
-  ::google::protobuf::uint32 cached_has_bits = 0;
+::PROTOBUF_NAMESPACE_ID::uint8* TrainResult::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:tradingcore2pb.TrainResult)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   // int64 trainID = 1;
   if (this->trainid() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt64(1, this->trainid(), output);
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt64ToArray(1, this->_internal_trainid(), target);
   }
 
   // float maxDrawdown = 2;
-  if (this->maxdrawdown() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteFloat(2, this->maxdrawdown(), output);
+  if (!(this->maxdrawdown() <= 0 && this->maxdrawdown() >= 0)) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(2, this->_internal_maxdrawdown(), target);
   }
 
   // float sharpe = 3;
-  if (this->sharpe() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteFloat(3, this->sharpe(), output);
+  if (!(this->sharpe() <= 0 && this->sharpe() >= 0)) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(3, this->_internal_sharpe(), target);
   }
 
   // float annualizedReturns = 4;
-  if (this->annualizedreturns() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteFloat(4, this->annualizedreturns(), output);
+  if (!(this->annualizedreturns() <= 0 && this->annualizedreturns() >= 0)) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(4, this->_internal_annualizedreturns(), target);
   }
 
   // float annualizedVolatility = 5;
-  if (this->annualizedvolatility() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteFloat(5, this->annualizedvolatility(), output);
+  if (!(this->annualizedvolatility() <= 0 && this->annualizedvolatility() >= 0)) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(5, this->_internal_annualizedvolatility(), target);
   }
 
   // float totalReturns = 6;
-  if (this->totalreturns() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteFloat(6, this->totalreturns(), output);
+  if (!(this->totalreturns() <= 0 && this->totalreturns() >= 0)) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(6, this->_internal_totalreturns(), target);
   }
 
   // int32 tradingTimes = 7;
   if (this->tradingtimes() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(7, this->tradingtimes(), output);
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(7, this->_internal_tradingtimes(), target);
   }
 
   // int32 failTimes = 8;
   if (this->failtimes() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(8, this->failtimes(), output);
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(8, this->_internal_failtimes(), target);
   }
 
   // int32 stoplossTimes = 9;
   if (this->stoplosstimes() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteInt32(9, this->stoplosstimes(), output);
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(9, this->_internal_stoplosstimes(), target);
   }
 
   // float winRate = 10;
-  if (this->winrate() != 0) {
-    ::google::protobuf::internal::WireFormatLite::WriteFloat(10, this->winrate(), output);
+  if (!(this->winrate() <= 0 && this->winrate() >= 0)) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(10, this->_internal_winrate(), target);
   }
 
   // string exchangeName = 11;
   if (this->exchangename().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->exchangename().data(), static_cast<int>(this->exchangename().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "tradingcore2.TrainResult.exchangeName");
-    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      11, this->exchangename(), output);
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_exchangename().data(), static_cast<int>(this->_internal_exchangename().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "tradingcore2pb.TrainResult.exchangeName");
+    target = stream->WriteStringMaybeAliased(
+        11, this->_internal_exchangename(), target);
   }
 
   // string assetsName = 12;
   if (this->assetsname().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->assetsname().data(), static_cast<int>(this->assetsname().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "tradingcore2.TrainResult.assetsName");
-    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      12, this->assetsname(), output);
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_assetsname().data(), static_cast<int>(this->_internal_assetsname().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "tradingcore2pb.TrainResult.assetsName");
+    target = stream->WriteStringMaybeAliased(
+        12, this->_internal_assetsname(), target);
   }
 
   // string strategyName = 13;
   if (this->strategyname().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->strategyname().data(), static_cast<int>(this->strategyname().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "tradingcore2.TrainResult.strategyName");
-    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      13, this->strategyname(), output);
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_strategyname().data(), static_cast<int>(this->_internal_strategyname().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "tradingcore2pb.TrainResult.strategyName");
+    target = stream->WriteStringMaybeAliased(
+        13, this->_internal_strategyname(), target);
   }
 
   // string strParam = 14;
   if (this->strparam().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->strparam().data(), static_cast<int>(this->strparam().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "tradingcore2.TrainResult.strParam");
-    ::google::protobuf::internal::WireFormatLite::WriteStringMaybeAliased(
-      14, this->strparam(), output);
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_strparam().data(), static_cast<int>(this->_internal_strparam().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "tradingcore2pb.TrainResult.strParam");
+    target = stream->WriteStringMaybeAliased(
+        14, this->_internal_strparam(), target);
   }
 
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    ::google::protobuf::internal::WireFormat::SerializeUnknownFields(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), output);
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields(), target, stream);
   }
-  // @@protoc_insertion_point(serialize_end:tradingcore2.TrainResult)
-}
-
-::google::protobuf::uint8* TrainResult::InternalSerializeWithCachedSizesToArray(
-    bool deterministic, ::google::protobuf::uint8* target) const {
-  (void)deterministic; // Unused
-  // @@protoc_insertion_point(serialize_to_array_start:tradingcore2.TrainResult)
-  ::google::protobuf::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  // int64 trainID = 1;
-  if (this->trainid() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt64ToArray(1, this->trainid(), target);
-  }
-
-  // float maxDrawdown = 2;
-  if (this->maxdrawdown() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteFloatToArray(2, this->maxdrawdown(), target);
-  }
-
-  // float sharpe = 3;
-  if (this->sharpe() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteFloatToArray(3, this->sharpe(), target);
-  }
-
-  // float annualizedReturns = 4;
-  if (this->annualizedreturns() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteFloatToArray(4, this->annualizedreturns(), target);
-  }
-
-  // float annualizedVolatility = 5;
-  if (this->annualizedvolatility() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteFloatToArray(5, this->annualizedvolatility(), target);
-  }
-
-  // float totalReturns = 6;
-  if (this->totalreturns() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteFloatToArray(6, this->totalreturns(), target);
-  }
-
-  // int32 tradingTimes = 7;
-  if (this->tradingtimes() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(7, this->tradingtimes(), target);
-  }
-
-  // int32 failTimes = 8;
-  if (this->failtimes() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(8, this->failtimes(), target);
-  }
-
-  // int32 stoplossTimes = 9;
-  if (this->stoplosstimes() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteInt32ToArray(9, this->stoplosstimes(), target);
-  }
-
-  // float winRate = 10;
-  if (this->winrate() != 0) {
-    target = ::google::protobuf::internal::WireFormatLite::WriteFloatToArray(10, this->winrate(), target);
-  }
-
-  // string exchangeName = 11;
-  if (this->exchangename().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->exchangename().data(), static_cast<int>(this->exchangename().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "tradingcore2.TrainResult.exchangeName");
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        11, this->exchangename(), target);
-  }
-
-  // string assetsName = 12;
-  if (this->assetsname().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->assetsname().data(), static_cast<int>(this->assetsname().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "tradingcore2.TrainResult.assetsName");
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        12, this->assetsname(), target);
-  }
-
-  // string strategyName = 13;
-  if (this->strategyname().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->strategyname().data(), static_cast<int>(this->strategyname().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "tradingcore2.TrainResult.strategyName");
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        13, this->strategyname(), target);
-  }
-
-  // string strParam = 14;
-  if (this->strparam().size() > 0) {
-    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-      this->strparam().data(), static_cast<int>(this->strparam().length()),
-      ::google::protobuf::internal::WireFormatLite::SERIALIZE,
-      "tradingcore2.TrainResult.strParam");
-    target =
-      ::google::protobuf::internal::WireFormatLite::WriteStringToArray(
-        14, this->strparam(), target);
-  }
-
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    target = ::google::protobuf::internal::WireFormat::SerializeUnknownFieldsToArray(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()), target);
-  }
-  // @@protoc_insertion_point(serialize_to_array_end:tradingcore2.TrainResult)
+  // @@protoc_insertion_point(serialize_to_array_end:tradingcore2pb.TrainResult)
   return target;
 }
 
 size_t TrainResult::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:tradingcore2.TrainResult)
+// @@protoc_insertion_point(message_byte_size_start:tradingcore2pb.TrainResult)
   size_t total_size = 0;
 
-  if ((_internal_metadata_.have_unknown_fields() &&  ::google::protobuf::internal::GetProto3PreserveUnknownsDefault())) {
-    total_size +=
-      ::google::protobuf::internal::WireFormat::ComputeUnknownFieldsSize(
-        (::google::protobuf::internal::GetProto3PreserveUnknownsDefault()   ? _internal_metadata_.unknown_fields()   : _internal_metadata_.default_instance()));
-  }
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
   // string exchangeName = 11;
   if (this->exchangename().size() > 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::StringSize(
-        this->exchangename());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_exchangename());
   }
 
   // string assetsName = 12;
   if (this->assetsname().size() > 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::StringSize(
-        this->assetsname());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_assetsname());
   }
 
   // string strategyName = 13;
   if (this->strategyname().size() > 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::StringSize(
-        this->strategyname());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_strategyname());
   }
 
   // string strParam = 14;
   if (this->strparam().size() > 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::StringSize(
-        this->strparam());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_strparam());
   }
 
   // int64 trainID = 1;
   if (this->trainid() != 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::Int64Size(
-        this->trainid());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int64Size(
+        this->_internal_trainid());
   }
 
   // float maxDrawdown = 2;
-  if (this->maxdrawdown() != 0) {
+  if (!(this->maxdrawdown() <= 0 && this->maxdrawdown() >= 0)) {
     total_size += 1 + 4;
   }
 
   // float sharpe = 3;
-  if (this->sharpe() != 0) {
+  if (!(this->sharpe() <= 0 && this->sharpe() >= 0)) {
     total_size += 1 + 4;
   }
 
   // float annualizedReturns = 4;
-  if (this->annualizedreturns() != 0) {
+  if (!(this->annualizedreturns() <= 0 && this->annualizedreturns() >= 0)) {
     total_size += 1 + 4;
   }
 
   // float annualizedVolatility = 5;
-  if (this->annualizedvolatility() != 0) {
+  if (!(this->annualizedvolatility() <= 0 && this->annualizedvolatility() >= 0)) {
     total_size += 1 + 4;
   }
 
   // float totalReturns = 6;
-  if (this->totalreturns() != 0) {
+  if (!(this->totalreturns() <= 0 && this->totalreturns() >= 0)) {
     total_size += 1 + 4;
   }
 
   // int32 tradingTimes = 7;
   if (this->tradingtimes() != 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::Int32Size(
-        this->tradingtimes());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_tradingtimes());
   }
 
   // int32 failTimes = 8;
   if (this->failtimes() != 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::Int32Size(
-        this->failtimes());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_failtimes());
   }
 
   // int32 stoplossTimes = 9;
   if (this->stoplosstimes() != 0) {
     total_size += 1 +
-      ::google::protobuf::internal::WireFormatLite::Int32Size(
-        this->stoplosstimes());
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_stoplosstimes());
   }
 
   // float winRate = 10;
-  if (this->winrate() != 0) {
+  if (!(this->winrate() <= 0 && this->winrate() >= 0)) {
     total_size += 1 + 4;
   }
 
-  int cached_size = ::google::protobuf::internal::ToCachedSize(total_size);
-  GOOGLE_SAFE_CONCURRENT_WRITES_BEGIN();
-  _cached_size_ = cached_size;
-  GOOGLE_SAFE_CONCURRENT_WRITES_END();
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
   return total_size;
 }
 
-void TrainResult::MergeFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_merge_from_start:tradingcore2.TrainResult)
+void TrainResult::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:tradingcore2pb.TrainResult)
   GOOGLE_DCHECK_NE(&from, this);
   const TrainResult* source =
-      ::google::protobuf::internal::DynamicCastToGenerated<const TrainResult>(
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<TrainResult>(
           &from);
-  if (source == NULL) {
-  // @@protoc_insertion_point(generalized_merge_from_cast_fail:tradingcore2.TrainResult)
-    ::google::protobuf::internal::ReflectionOps::Merge(from, this);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:tradingcore2pb.TrainResult)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
   } else {
-  // @@protoc_insertion_point(generalized_merge_from_cast_success:tradingcore2.TrainResult)
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:tradingcore2pb.TrainResult)
     MergeFrom(*source);
   }
 }
 
 void TrainResult::MergeFrom(const TrainResult& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:tradingcore2.TrainResult)
+// @@protoc_insertion_point(class_specific_merge_from_start:tradingcore2pb.TrainResult)
   GOOGLE_DCHECK_NE(&from, this);
   _internal_metadata_.MergeFrom(from._internal_metadata_);
-  ::google::protobuf::uint32 cached_has_bits = 0;
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
   if (from.exchangename().size() > 0) {
 
-    exchangename_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.exchangename_);
+    exchangename_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.exchangename_);
   }
   if (from.assetsname().size() > 0) {
 
-    assetsname_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.assetsname_);
+    assetsname_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.assetsname_);
   }
   if (from.strategyname().size() > 0) {
 
-    strategyname_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strategyname_);
+    strategyname_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.strategyname_);
   }
   if (from.strparam().size() > 0) {
 
-    strparam_.AssignWithDefault(&::google::protobuf::internal::GetEmptyStringAlreadyInited(), from.strparam_);
+    strparam_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.strparam_);
   }
   if (from.trainid() != 0) {
-    set_trainid(from.trainid());
+    _internal_set_trainid(from._internal_trainid());
   }
-  if (from.maxdrawdown() != 0) {
-    set_maxdrawdown(from.maxdrawdown());
+  if (!(from.maxdrawdown() <= 0 && from.maxdrawdown() >= 0)) {
+    _internal_set_maxdrawdown(from._internal_maxdrawdown());
   }
-  if (from.sharpe() != 0) {
-    set_sharpe(from.sharpe());
+  if (!(from.sharpe() <= 0 && from.sharpe() >= 0)) {
+    _internal_set_sharpe(from._internal_sharpe());
   }
-  if (from.annualizedreturns() != 0) {
-    set_annualizedreturns(from.annualizedreturns());
+  if (!(from.annualizedreturns() <= 0 && from.annualizedreturns() >= 0)) {
+    _internal_set_annualizedreturns(from._internal_annualizedreturns());
   }
-  if (from.annualizedvolatility() != 0) {
-    set_annualizedvolatility(from.annualizedvolatility());
+  if (!(from.annualizedvolatility() <= 0 && from.annualizedvolatility() >= 0)) {
+    _internal_set_annualizedvolatility(from._internal_annualizedvolatility());
   }
-  if (from.totalreturns() != 0) {
-    set_totalreturns(from.totalreturns());
+  if (!(from.totalreturns() <= 0 && from.totalreturns() >= 0)) {
+    _internal_set_totalreturns(from._internal_totalreturns());
   }
   if (from.tradingtimes() != 0) {
-    set_tradingtimes(from.tradingtimes());
+    _internal_set_tradingtimes(from._internal_tradingtimes());
   }
   if (from.failtimes() != 0) {
-    set_failtimes(from.failtimes());
+    _internal_set_failtimes(from._internal_failtimes());
   }
   if (from.stoplosstimes() != 0) {
-    set_stoplosstimes(from.stoplosstimes());
+    _internal_set_stoplosstimes(from._internal_stoplosstimes());
   }
-  if (from.winrate() != 0) {
-    set_winrate(from.winrate());
+  if (!(from.winrate() <= 0 && from.winrate() >= 0)) {
+    _internal_set_winrate(from._internal_winrate());
   }
 }
 
-void TrainResult::CopyFrom(const ::google::protobuf::Message& from) {
-// @@protoc_insertion_point(generalized_copy_from_start:tradingcore2.TrainResult)
+void TrainResult::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:tradingcore2pb.TrainResult)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 void TrainResult::CopyFrom(const TrainResult& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:tradingcore2.TrainResult)
+// @@protoc_insertion_point(class_specific_copy_from_start:tradingcore2pb.TrainResult)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
@@ -1379,16 +1000,17 @@ bool TrainResult::IsInitialized() const {
   return true;
 }
 
-void TrainResult::Swap(TrainResult* other) {
-  if (other == this) return;
-  InternalSwap(other);
-}
 void TrainResult::InternalSwap(TrainResult* other) {
   using std::swap;
-  exchangename_.Swap(&other->exchangename_);
-  assetsname_.Swap(&other->assetsname_);
-  strategyname_.Swap(&other->strategyname_);
-  strparam_.Swap(&other->strparam_);
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  exchangename_.Swap(&other->exchangename_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+    GetArenaNoVirtual());
+  assetsname_.Swap(&other->assetsname_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+    GetArenaNoVirtual());
+  strategyname_.Swap(&other->strategyname_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+    GetArenaNoVirtual());
+  strparam_.Swap(&other->strparam_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+    GetArenaNoVirtual());
   swap(trainid_, other->trainid_);
   swap(maxdrawdown_, other->maxdrawdown_);
   swap(sharpe_, other->sharpe_);
@@ -1399,27 +1021,23 @@ void TrainResult::InternalSwap(TrainResult* other) {
   swap(failtimes_, other->failtimes_);
   swap(stoplosstimes_, other->stoplosstimes_);
   swap(winrate_, other->winrate_);
-  _internal_metadata_.Swap(&other->_internal_metadata_);
-  swap(_cached_size_, other->_cached_size_);
 }
 
-::google::protobuf::Metadata TrainResult::GetMetadata() const {
-  protobuf_tradingcore2_2eproto::protobuf_AssignDescriptorsOnce();
-  return ::protobuf_tradingcore2_2eproto::file_level_metadata[kIndexInFileMessages];
+::PROTOBUF_NAMESPACE_ID::Metadata TrainResult::GetMetadata() const {
+  return GetMetadataStatic();
 }
 
 
 // @@protoc_insertion_point(namespace_scope)
-}  // namespace tradingcore2
-namespace google {
-namespace protobuf {
-template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::tradingcore2::TrainData* Arena::Create< ::tradingcore2::TrainData >(Arena* arena) {
-  return Arena::CreateInternal< ::tradingcore2::TrainData >(arena);
+}  // namespace tradingcore2pb
+PROTOBUF_NAMESPACE_OPEN
+template<> PROTOBUF_NOINLINE ::tradingcore2pb::TrainData* Arena::CreateMaybeMessage< ::tradingcore2pb::TrainData >(Arena* arena) {
+  return Arena::CreateInternal< ::tradingcore2pb::TrainData >(arena);
 }
-template<> GOOGLE_PROTOBUF_ATTRIBUTE_NOINLINE ::tradingcore2::TrainResult* Arena::Create< ::tradingcore2::TrainResult >(Arena* arena) {
-  return Arena::CreateInternal< ::tradingcore2::TrainResult >(arena);
+template<> PROTOBUF_NOINLINE ::tradingcore2pb::TrainResult* Arena::CreateMaybeMessage< ::tradingcore2pb::TrainResult >(Arena* arena) {
+  return Arena::CreateInternal< ::tradingcore2pb::TrainResult >(arena);
 }
-}  // namespace protobuf
-}  // namespace google
+PROTOBUF_NAMESPACE_CLOSE
 
 // @@protoc_insertion_point(global_scope)
+#include <google/protobuf/port_undef.inc>

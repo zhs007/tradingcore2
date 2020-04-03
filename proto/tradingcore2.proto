@@ -1,5 +1,5 @@
 syntax = "proto3";
-package tradingcore2;
+package tradingcore2pb;
 
 // TrainData - train data
 message TrainData {
