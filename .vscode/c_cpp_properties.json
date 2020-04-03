@@ -5,7 +5,9 @@
       "includePath": [
         "${workspaceFolder}/include",
         "${workspaceFolder}/deps/googletest/googletest/include",
-        "${workspaceFolder}/deps"
+        "${workspaceFolder}/deps",
+        "${workspaceFolder}/deps/grpc/include",
+        "${workspaceFolder}/deps/rocksdb/include"
       ],
       "cStandard": "c11",
       "cppStandard": "c++17",
