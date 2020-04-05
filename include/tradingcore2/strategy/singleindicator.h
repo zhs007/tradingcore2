@@ -8,7 +8,7 @@
 
 CR2BEGIN
 
-class StrategySI : public Strategy {
+class StrategySI final : public Strategy {
  public:
   StrategySI(Wallet& wallet, Exchange& exchange)
       : Strategy(wallet, exchange),
@@ -21,7 +21,7 @@ class StrategySI : public Strategy {
   virtual ~StrategySI() { this->release(); }
 
  public:
-  virtual void onTimeStamp(TimeStamp ts, int index);
+  virtual void onTimeStamp(TimeStamp ts, int index) override;
 
  public:
   void init(const char* assetsName, const char* nameIndicator, int avgtimes,

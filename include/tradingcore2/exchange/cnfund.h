@@ -23,7 +23,7 @@ struct CNFundValue {
   const CNFundValueNode* getNode(TimeStamp ts) const;
 };
 
-class CNFundExchange : public Exchange {
+class CNFundExchange final : public Exchange {
  public:
   typedef std::map<std::string, CNFundValue*> Map;
   typedef std::pair<std::string, CNFundValue*> Pair;
@@ -36,33 +36,36 @@ class CNFundExchange : public Exchange {
  public:
   virtual bool calculateVolume(const char* assetsName, TimeStamp ts,
                                Money money, Volume& volume, Money& price,
-                               Money& fee);
+                               Money& fee) override;
 
   virtual bool calculatePrice(const char* assetsName, TimeStamp ts,
                               Volume volume, Money& money, Money& price,
-                              Money& fee);
+                              Money& fee) override;
 
   virtual bool getDataWithTimestamp(const char* assetsName, TimeStamp ts,
-                                    CandleData& data);
+                                    CandleData& data) override;
 
-  virtual bool getData(const char* assetsName, int index, CandleData& data);
+  virtual bool getData(const char* assetsName, int index,
+                       CandleData& data) override;
 
-  virtual int getDataLength(const char* assetsName);
+  virtual int getDataLength(const char* assetsName) override;
 
   virtual void forEachTimeStamp(Exchange::FuncOnTimeStamp func,
-                                TimeStamp tsStart, TimeStamp tsEnd) const;
+                                TimeStamp tsStart,
+                                TimeStamp tsEnd) const override;
 
   virtual void forEachAssetsData(const char* assetsName,
                                  Exchange::FuncOnAssetsData func,
-                                 TimeStamp tsStart, TimeStamp tsEnd) const;
+                                 TimeStamp tsStart,
+                                 TimeStamp tsEnd) const override;
 
-  virtual TimeStamp getFirstTimeStamp() const;
+  virtual TimeStamp getFirstTimeStamp() const override;
 
-  virtual TimeStamp getLastTimeStamp() const;
+  virtual TimeStamp getLastTimeStamp() const override;
 
-  virtual int getTradingDays4Year() const { return 250; }
+  virtual int getTradingDays4Year() const override { return 250; }
 
-  virtual float getRiskFreeInterestRate() const { return 0.03; }
+  virtual float getRiskFreeInterestRate() const override { return 0.03; }
 
  public:
   const CNFundValue* getFundValue(const char* assetsName) const;

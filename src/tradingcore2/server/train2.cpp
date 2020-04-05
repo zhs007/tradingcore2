@@ -22,9 +22,10 @@ CR2BEGIN
 // Logic and data behind the server's behavior.
 class TrainService2Impl final
     : public tradingcore2pb::TradingCore2Service::Service {
-  virtual ::grpc::Status train(::grpc::ServerContext* context,
-                               const ::tradingcore2pb::TrainData* request,
-                               ::tradingcore2pb::TrainResult* response) {
+  virtual ::grpc::Status train(
+      ::grpc::ServerContext* context,
+      const ::tradingcore2pb::TrainData* request,
+      ::tradingcore2pb::TrainResult* response) override {
     return grpc::Status::OK;
   }
 };
@@ -35,7 +36,7 @@ class TrainServer2 final : public Server {
   virtual ~TrainServer2() {}
 
  public:
-  virtual void run() {
+  virtual void run() override {
     std::string server_address(m_bindAddr.c_str());
     TrainService2Impl service;
 

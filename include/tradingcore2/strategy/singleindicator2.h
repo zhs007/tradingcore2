@@ -9,7 +9,7 @@
 
 CR2BEGIN
 
-class StrategySI2 : public Strategy {
+class StrategySI2 final : public Strategy {
  public:
   // FuncOnTimeStamp - for StrategySI2
   typedef std::function<bool(Exchange* pExchange, Indicator* pIndicator,
@@ -26,7 +26,7 @@ class StrategySI2 : public Strategy {
   virtual ~StrategySI2() { this->release(); }
 
  public:
-  virtual void onTimeStamp(TimeStamp ts, int index);
+  virtual void onTimeStamp(TimeStamp ts, int index) override;
 
  public:
   void init(const char* assetsName, const char* nameIndicator, int avgtimes,

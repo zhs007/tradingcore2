@@ -8,14 +8,14 @@
 
 CR2BEGIN
 
-class StrategyBAH : public Strategy {
+class StrategyBAH final : public Strategy {
  public:
   StrategyBAH(Wallet& wallet, Exchange& exchange)
       : Strategy(wallet, exchange), m_money(0), m_volume(0) {}
   virtual ~StrategyBAH() {}
 
  public:
-  virtual void onTimeStamp(TimeStamp ts, int index);
+  virtual void onTimeStamp(TimeStamp ts, int index) override;
 
  public:
   void init(const char* assetsName, Money money) {

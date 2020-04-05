@@ -10,7 +10,7 @@ CR2BEGIN
 
 //!! https://en.wikipedia.org/wiki/Relative_strength_index
 
-class IndicatorRSI : public Indicator {
+class IndicatorRSI final : public Indicator {
  public:
   struct Node {
     TimeStamp ts;
@@ -31,27 +31,30 @@ class IndicatorRSI : public Indicator {
 
  public:
   virtual bool build(Exchange& exchange, const char* assetsName, int start,
-                     int length);
+                     int length) override;
 
-  virtual const IndicatorData_singleValue* getSingleValue(int index) const {
+  virtual const IndicatorData_singleValue* getSingleValue(
+      int index) const override {
     assert(index >= 0);
     assert(index < m_lst.size());
 
     return &(m_lst[index].val);
   }
 
-  virtual const IndicatorData_singleValue* getMinSingleValue(int& index) const;
+  virtual const IndicatorData_singleValue* getMinSingleValue(
+      int& index) const override;
 
-  virtual const IndicatorData_singleValue* getMaxSingleValue(int& index) const;
+  virtual const IndicatorData_singleValue* getMaxSingleValue(
+      int& index) const override;
 
-  virtual TimeStamp getTimeStamp(int index) const {
+  virtual TimeStamp getTimeStamp(int index) const override {
     assert(index >= 0);
     assert(index < m_lst.size());
 
     return m_lst[index].ts;
   }
 
-  virtual int getLength() const { return m_lst.size(); }
+  virtual int getLength() const override { return m_lst.size(); }
 
  public:
   void release() { m_lst.clear(); }
