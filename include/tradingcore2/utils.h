@@ -5,6 +5,7 @@
 
 #include <ctime>
 #include <string>
+#include <functional>
 
 CR2BEGIN
 
