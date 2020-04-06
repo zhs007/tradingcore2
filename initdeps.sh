@@ -9,3 +9,5 @@ sh fixgrpc.sh
 sh buildgflags.sh
 
 sh buildrocksdb.sh
+
+sh buildyamlcpp.sh
