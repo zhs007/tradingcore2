@@ -25,13 +25,17 @@ struct CNFundValue {
 
 static const char* CNFundTypeName = "cnfund";
 
+Exchange* newCNFund(Config& cfg);
+
 class CNFundExchange final : public Exchange {
+  friend Exchange* newCNFund(Config& cfg);
+
  public:
   typedef std::map<std::string, CNFundValue*> Map;
   typedef std::pair<std::string, CNFundValue*> Pair;
   typedef std::vector<TimeStamp> TimeStampList;
 
- public:
+ private:
   CNFundExchange() {}
   virtual ~CNFundExchange() { this->release(); }
 
@@ -93,8 +97,6 @@ class CNFundExchange final : public Exchange {
   Map m_map;
   TimeStampList m_lstTimeStamp;
 };
-
-Exchange* newCNFund(Config& cfg);
 
 CR2END
 

@@ -28,6 +28,8 @@ bool CNFundExchange::init(Config& cfg) {
 
   tr2::foreachPathWithExt(cfg.cnfundpath.c_str(), ".csv", onfile);
 
+  this->buildTimeStampList();
+
   return true;
 }
 

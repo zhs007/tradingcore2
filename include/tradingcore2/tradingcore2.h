@@ -1,6 +1,7 @@
 #ifndef __TRADINGCORE2_TRADINGCORE2_H__
 #define __TRADINGCORE2_TRADINGCORE2_H__
 
+#include <tradingcore2/allexchanges.h>
 #include <tradingcore2/allindicators.h>
 #include <tradingcore2/assets.h>
 #include <tradingcore2/basedef.h>
@@ -8,6 +9,7 @@
 #include <tradingcore2/csv.h>
 #include <tradingcore2/exchange.h>
 #include <tradingcore2/exchange/cnfund.h>
+#include <tradingcore2/exchangemgr.h>
 #include <tradingcore2/indicator.h>
 #include <tradingcore2/indicator/ema.h>
 #include <tradingcore2/indicator/roc.h>

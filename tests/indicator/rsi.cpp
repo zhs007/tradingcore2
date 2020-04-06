@@ -1,21 +1,22 @@
 #include <gtest/gtest.h>
 #include <stdio.h>
-#include <tradingcore2/exchange/cnfund.h>
-#include <tradingcore2/indicator/rsi.h>
+#include <tradingcore2/tradingcore2.h>
 
 class RSITest : public testing::Test {
  protected:
-  virtual void SetUp() override { cnfund.loadFundValue("../data/cnfund/110022.csv"); }
+  virtual void SetUp() override {
+    cnfund = tr2::ExchangeMgr::getSingleton()->getExchange("cnfund");
+  }
 
   virtual void TearDown() override {}
 
-  tr2::CNFundExchange cnfund;
+  tr2::Exchange* cnfund;
 };
 
 TEST_F(RSITest, rsi_2) {
   tr2::IndicatorRSI* pRSI = new tr2::IndicatorRSI(2);
 
-  auto isok = pRSI->build(cnfund, "110022", 0, 2280);
+  auto isok = pRSI->build(*cnfund, "110022", 0, 2280);
   EXPECT_TRUE(isok);
 
   EXPECT_EQ(pRSI->getLength(), 2280);
@@ -75,7 +76,7 @@ TEST_F(RSITest, rsi_2) {
 TEST_F(RSITest, rsi_3) {
   tr2::IndicatorRSI* pRSI = new tr2::IndicatorRSI(3);
 
-  auto isok = pRSI->build(cnfund, "110022", 0, 2280);
+  auto isok = pRSI->build(*cnfund, "110022", 0, 2280);
   EXPECT_TRUE(isok);
 
   EXPECT_EQ(pRSI->getLength(), 2280);

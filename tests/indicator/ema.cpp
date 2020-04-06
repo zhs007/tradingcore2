@@ -1,21 +1,22 @@
 #include <gtest/gtest.h>
 #include <stdio.h>
-#include <tradingcore2/exchange/cnfund.h>
-#include <tradingcore2/indicator/ema.h>
+#include <tradingcore2/tradingcore2.h>
 
 class EMATest : public testing::Test {
  protected:
-  virtual void SetUp() override { cnfund.loadFundValue("../data/cnfund/110022.csv"); }
+  virtual void SetUp() override {
+    cnfund = tr2::ExchangeMgr::getSingleton()->getExchange("cnfund");
+  }
 
   virtual void TearDown() override {}
 
-  tr2::CNFundExchange cnfund;
+  tr2::Exchange* cnfund;
 };
 
 TEST_F(EMATest, ema_2) {
   tr2::IndicatorEMA* pEMA = new tr2::IndicatorEMA(2);
 
-  auto isok = pEMA->build(cnfund, "110022", 0, 2280);
+  auto isok = pEMA->build(*cnfund, "110022", 0, 2280);
   EXPECT_TRUE(isok);
 
   EXPECT_EQ(pEMA->getLength(), 2280);
@@ -34,7 +35,7 @@ TEST_F(EMATest, ema_2) {
 TEST_F(EMATest, ema_3) {
   tr2::IndicatorEMA* pEMA = new tr2::IndicatorEMA(3);
 
-  auto isok = pEMA->build(cnfund, "110022", 0, 2280);
+  auto isok = pEMA->build(*cnfund, "110022", 0, 2280);
   EXPECT_TRUE(isok);
 
   EXPECT_EQ(pEMA->getLength(), 2280);

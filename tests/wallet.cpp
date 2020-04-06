@@ -1,24 +1,22 @@
 #include <gtest/gtest.h>
 #include <stdio.h>
-#include <tradingcore2/exchange/cnfund.h>
-#include <tradingcore2/pnl.h>
-#include <tradingcore2/utils.h>
-#include <tradingcore2/wallet.h>
+#include <tradingcore2/tradingcore2.h>
 
 class WalletTest : public testing::Test {
  protected:
   virtual void SetUp() override {
-    cnfund.loadFundValue("../data/cnfund/110022.csv");
-    cnfund.buildTimeStampList();
+    cnfund = tr2::ExchangeMgr::getSingleton()->getExchange("cnfund");
+    // cnfund.loadFundValue("../data/cnfund/110022.csv");
+    // cnfund.buildTimeStampList();
   }
 
   virtual void TearDown() override {}
 
-  tr2::CNFundExchange cnfund;
+  tr2::Exchange* cnfund;
 };
 
 TEST_F(WalletTest, depositandwithdraw) {
-  auto pWallet = new tr2::Wallet(cnfund);
+  auto pWallet = new tr2::Wallet(*cnfund);
 
   pWallet->deposit(10000, tr2::str2timestampUTC("20100820", "%Y%m%d"));
   EXPECT_EQ(pWallet->getMoney(), 10000);
@@ -45,7 +43,7 @@ TEST_F(WalletTest, depositandwithdraw) {
 }
 
 TEST_F(WalletTest, trade) {
-  auto pWallet = new tr2::Wallet(cnfund);
+  auto pWallet = new tr2::Wallet(*cnfund);
 
   pWallet->deposit(10000, tr2::str2timestampUTC("20100820", "%Y%m%d"));
   EXPECT_EQ(pWallet->getMoney(), 10000);
@@ -72,7 +70,7 @@ TEST_F(WalletTest, trade) {
 }
 
 TEST_F(WalletTest, trade2) {
-  auto pWallet = new tr2::Wallet(cnfund);
+  auto pWallet = new tr2::Wallet(*cnfund);
 
   pWallet->deposit(10000, tr2::str2timestampUTC("20100820", "%Y%m%d"));
   EXPECT_EQ(pWallet->getMoney(), 10000);
@@ -117,7 +115,7 @@ TEST_F(WalletTest, trade2) {
 }
 
 TEST_F(WalletTest, pnl) {
-  auto pWallet = new tr2::Wallet(cnfund);
+  auto pWallet = new tr2::Wallet(*cnfund);
 
   pWallet->deposit(10000, tr2::str2timestampUTC("20100820", "%Y%m%d"));
   EXPECT_EQ(pWallet->getMoney(), 10000);

@@ -1,18 +1,23 @@
 #include <gtest/gtest.h>
 #include <stdio.h>
-#include <tradingcore2/exchange/cnfund.h>
+#include <tradingcore2/tradingcore2.h>
 
 class CNFundTest : public testing::Test {
  protected:
-  virtual void SetUp() override { cnfund.loadFundValue("../data/cnfund/110022.csv"); }
+  virtual void SetUp() override {
+    cnfund =
+        (tr2::CNFundExchange*)tr2::ExchangeMgr::getSingleton()->getExchange(
+            "cnfund");
+    // cnfund.loadFundValue("../data/cnfund/110022.csv");
+  }
 
   virtual void TearDown() override {}
 
-  tr2::CNFundExchange cnfund;
+  tr2::CNFundExchange* cnfund;
 };
 
 TEST_F(CNFundTest, loadfv) {
-  auto fv = cnfund.getFundValue("110022");
+  auto fv = cnfund->getFundValue("110022");
   EXPECT_TRUE(fv != NULL);
 
   EXPECT_STREQ(fv->code.c_str(), "110022");
@@ -33,7 +38,7 @@ TEST_F(CNFundTest, loadfv) {
 }
 
 TEST_F(CNFundTest, getnode) {
-  auto fv = cnfund.getFundValue("110022");
+  auto fv = cnfund->getFundValue("110022");
   EXPECT_TRUE(fv != NULL);
 
   auto n = fv->getNode(1282262400);

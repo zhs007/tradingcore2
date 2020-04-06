@@ -1,21 +1,22 @@
 #include <gtest/gtest.h>
 #include <stdio.h>
-#include <tradingcore2/exchange/cnfund.h>
-#include <tradingcore2/indicator/roc.h>
+#include <tradingcore2/tradingcore2.h>
 
 class ROCTest : public testing::Test {
  protected:
-  virtual void SetUp() override { cnfund.loadFundValue("../data/cnfund/110022.csv"); }
+  virtual void SetUp() override {
+    cnfund = tr2::ExchangeMgr::getSingleton()->getExchange("cnfund");
+  }
 
   virtual void TearDown() override {}
 
-  tr2::CNFundExchange cnfund;
+  tr2::Exchange* cnfund;
 };
 
 TEST_F(ROCTest, roc_1) {
   tr2::IndicatorROC* pROC = new tr2::IndicatorROC(1);
 
-  auto isok = pROC->build(cnfund, "110022", 0, 2280);
+  auto isok = pROC->build(*cnfund, "110022", 0, 2280);
   EXPECT_TRUE(isok);
 
   EXPECT_EQ(pROC->getLength(), 2280);
@@ -33,7 +34,7 @@ TEST_F(ROCTest, roc_1) {
 TEST_F(ROCTest, roc_2) {
   tr2::IndicatorROC* pROC = new tr2::IndicatorROC(2);
 
-  auto isok = pROC->build(cnfund, "110022", 0, 2280);
+  auto isok = pROC->build(*cnfund, "110022", 0, 2280);
   EXPECT_TRUE(isok);
 
   EXPECT_EQ(pROC->getLength(), 2280);
