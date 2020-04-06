@@ -26,6 +26,13 @@ std::string joinPath(const char* root, const char* fn);
 //              -0.23, 0.05 -> -0.25
 IndicatorDataValue scaleValue(IndicatorDataValue val, IndicatorDataValue off);
 
+// FuncOnForEachFile - for foreachPath
+typedef std::function<void(const char* dir, const char* fn)> FuncOnForEachFile;
+
+// foreachPathWithExt - for each path with ext filename
+void foreachPathWithExt(const char* dir, const char* extfn,
+                        FuncOnForEachFile func);
+
 CR2END
 
 #endif  // __TRADINGCORE2_UTILS_H__

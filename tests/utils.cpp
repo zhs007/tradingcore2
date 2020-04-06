@@ -84,3 +84,18 @@ TEST(Utils, scaleValue) {
   r = tr2::scaleValue(0, 0.05);
   EXPECT_EQ(r, 0);
 }
+
+TEST(Utils, in_foreachPathWithExt) {
+  const char* dir = "abc.csv";
+  auto ci = strstr(dir, ".csv");
+
+  EXPECT_EQ(ci - dir, strlen(dir) - strlen(".csv"));
+}
+
+TEST(Utils, foreachPathWithExt) {
+  auto onfile = [](const char* dir, const char* fn) {
+    EXPECT_TRUE(strcmp(fn, "110022.csv") == 0);
+  };
+
+  tr2::foreachPathWithExt("../data/cnfund", ".csv", onfile);
+}

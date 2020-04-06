@@ -28,6 +28,7 @@ class Indicator;
 class PNL;
 
 struct WalletHistoryNode;
+struct Config;
 
 struct TrainResult {
   std::string name;

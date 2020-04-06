@@ -3,6 +3,7 @@
 
 #include <tradingcore2/basedef.h>
 #include <tradingcore2/candle.h>
+#include <tradingcore2/config.h>
 
 #include <functional>
 #include <map>
@@ -21,6 +22,9 @@ class Exchange {
  public:
   Exchange() {}
   virtual ~Exchange() {}
+
+ public:
+  virtual bool init(Config& cfg) = 0;
 
  public:
   virtual bool calculateVolume(const char* assetsName, TimeStamp ts,

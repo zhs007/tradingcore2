@@ -45,7 +45,7 @@ class TrainServer2 final : public Server {
     builder.RegisterService(&service);
     // Finally assemble the server.
     std::unique_ptr<grpc::Server> server(builder.BuildAndStart());
-    std::cout << "Server listening on " << server_address << std::endl;
+    // std::cout << "Server listening on " << server_address << std::endl;
 
     // Wait for the server to shutdown. Note that some other thread must be
     // responsible for shutting down the server for this call to ever return.
@@ -56,7 +56,7 @@ class TrainServer2 final : public Server {
   std::string m_bindAddr;
 };
 
-Server* newTrainServer(const char* strBindAddr) {
+Server* newTrainServer2(const char* strBindAddr) {
   return new TrainServer2(strBindAddr);
 }
 

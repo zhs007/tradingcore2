@@ -65,7 +65,7 @@ void train() {
 }
 
 void startServ(const char* addr) {
-  auto pServ = tr2::newTrainServer(addr);
+  auto pServ = tr2::newTrainServer2(addr);
   pServ->run();
 }
 

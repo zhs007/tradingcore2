@@ -34,6 +34,9 @@ class CNFundExchange final : public Exchange {
   virtual ~CNFundExchange() { this->release(); }
 
  public:
+  virtual bool init(Config& cfg) override;
+
+ public:
   virtual bool calculateVolume(const char* assetsName, TimeStamp ts,
                                Money money, Volume& volume, Money& price,
                                Money& fee) override;

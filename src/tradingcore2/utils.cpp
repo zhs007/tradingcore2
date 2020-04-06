@@ -1,4 +1,5 @@
 
+#include <dirent.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -110,6 +111,25 @@ IndicatorDataValue scaleValue(IndicatorDataValue val, IndicatorDataValue off) {
   }
 
   return 0;
+}
+
+// foreachPathWithExt - for each path with ext filename
+void foreachPathWithExt(const char* dir, const char* extfn,
+                        FuncOnForEachFile func) {
+  auto fd = opendir(dir);
+  if (fd == NULL) {
+    return;
+  }
+
+  dirent* cd;
+  while ((cd = readdir(fd)) != NULL) {
+    auto ci = strstr(cd->d_name, extfn);
+    if (ci - cd->d_name == strlen(cd->d_name) - strlen(extfn)) {
+      func(dir, cd->d_name);
+    }
+  }
+
+  closedir(fd);
 }
 
 CR2END

@@ -1,4 +1,5 @@
 
+#include <dirent.h>
 #include <stdlib.h>
 #include <tradingcore2/csv.h>
 #include <tradingcore2/exchange/cnfund.h>
@@ -17,6 +18,17 @@ const CNFundValueNode* CNFundValue::getNode(TimeStamp ts) const {
   }
 
   return NULL;
+}
+
+bool CNFundExchange::init(Config& cfg) {
+  CNFundExchange* cnfund = this;
+  auto onfile = [&cnfund](const char* dir, const char* fn) {
+    cnfund->loadFundValue(joinPath(dir, fn).c_str());
+  };
+
+  tr2::foreachPathWithExt(cfg.cnfundpath.c_str(), ".csv", onfile);
+
+  return true;
 }
 
 void CNFundExchange::setFundValue(const char* assetsName, CNFundValue* fv) {
