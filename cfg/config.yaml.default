@@ -1,0 +1,4 @@
+cnfundpath: ./data/cnfund
+
+exchanges:
+  - cnfund

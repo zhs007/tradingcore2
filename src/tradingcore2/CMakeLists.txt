@@ -8,6 +8,7 @@ include_directories(../../deps)
 include_directories(../../deps/grpc/include)
 include_directories(../../deps/grpc/third_party/protobuf/src)
 include_directories(../../deps/rocksdb/include)
+include_directories(../../deps/yaml-cpp/include)
 
 aux_source_directory(. DIR_LIB_SRCS)
 aux_source_directory(./exchange DIR_LIB_EXCHANGE_SRCS)

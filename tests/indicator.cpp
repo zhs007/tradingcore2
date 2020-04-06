@@ -9,7 +9,7 @@ class IndicatorTest : public testing::Test {
   virtual void SetUp() override {
     // tr2::regAllIndicators();
 
-    cnfund.loadFundValue("../data/110022.csv");
+    cnfund.loadFundValue("../data/cnfund/110022.csv");
   }
 
   virtual void TearDown() override {}

@@ -5,7 +5,7 @@
 
 class RSITest : public testing::Test {
  protected:
-  virtual void SetUp() override { cnfund.loadFundValue("../data/110022.csv"); }
+  virtual void SetUp() override { cnfund.loadFundValue("../data/cnfund/110022.csv"); }
 
   virtual void TearDown() override {}
 

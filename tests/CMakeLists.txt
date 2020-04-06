@@ -8,6 +8,7 @@ include_directories(../deps/googletest/googletest/include)
 
 # link_directories(../deps/googletest/build/lib)
 link_directories(../deps/gsl/build)
+link_directories(./deps/yaml-cpp/build)
 
 aux_source_directory(. DIR_TESTS_SRCS)
 aux_source_directory(./exchange DIR_TESTS_EXCHANGE_SRCS)
@@ -20,3 +21,4 @@ add_executable(tests ${DIR_TESTS_SRCS}
 target_link_libraries(tests gtest)
 target_link_libraries(tests libtradingcore2)
 target_link_libraries(tests libgsl.a)
+target_link_libraries(tests libyaml-cpp.a)

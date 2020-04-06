@@ -10,6 +10,7 @@ include_directories(./include)
 
 link_directories(./deps/gsl/build)
 link_directories(./deps/rocksdb/build)
+link_directories(./deps/yaml-cpp/build)
 
 add_subdirectory(./src/tradingcore2)
 add_subdirectory(./tests)
@@ -24,6 +25,7 @@ target_link_libraries(tradingcore2 grpc)
 target_link_libraries(tradingcore2 grpc++)
 target_link_libraries(tradingcore2 librocksdb.a)
 target_link_libraries(tradingcore2 libgsl.a)
+target_link_libraries(tradingcore2 libyaml-cpp.a)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})

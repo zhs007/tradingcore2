@@ -11,14 +11,6 @@
 
 CR2BEGIN
 
-// using grpc::Server;
-// using grpc::ServerBuilder;
-// using grpc::ServerContext;
-// using grpc::Status;
-// using helloworld::HelloRequest;
-// using helloworld::HelloReply;
-// using helloworld::Greeter;
-
 // Logic and data behind the server's behavior.
 class TrainService2Impl final
     : public tradingcore2pb::TradingCore2Service::Service {
@@ -26,6 +18,9 @@ class TrainService2Impl final
       ::grpc::ServerContext* context,
       const ::tradingcore2pb::TrainData* request,
       ::tradingcore2pb::TrainResult* response) override {
+
+
+
     return grpc::Status::OK;
   }
 };

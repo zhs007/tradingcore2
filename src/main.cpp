@@ -4,7 +4,7 @@
 void runBuyAndHold() {
   tr2::CNFundExchange cnfund;
 
-  cnfund.loadFundValue("../data/110022.csv");
+  cnfund.loadFundValue("../data/cnfund/110022.csv");
   cnfund.buildTimeStampList();
 
   auto pWallet = new tr2::Wallet(cnfund);
@@ -27,7 +27,7 @@ void runBuyAndHold() {
 void runSIROC() {
   tr2::CNFundExchange cnfund;
 
-  cnfund.loadFundValue("../data/110022.csv");
+  cnfund.loadFundValue("../data/cnfund/110022.csv");
   cnfund.buildTimeStampList();
 
   auto pWallet = new tr2::Wallet(cnfund);
@@ -52,7 +52,7 @@ void runSIROC() {
 void train() {
   tr2::CNFundExchange cnfund;
 
-  cnfund.loadFundValue("../data/110022.csv");
+  cnfund.loadFundValue("../data/cnfund/110022.csv");
   cnfund.buildTimeStampList();
 
   // tr2::trainSingleIndicator2(cnfund, "110022", "roc", "../output", 10000, 2,
