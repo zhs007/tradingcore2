@@ -10,13 +10,15 @@
 
 CR2BEGIN
 
-// FuncNewIndicatorWithAvgTimes - new Indicator(int avgtime)
-typedef std::function<Indicator*(int avgtimes)> FuncNewIndicatorWithAvgTimes;
+// FuncNewExchange - new Exchange()
+typedef std::function<Exchange*(Config& cfg)> FuncNewExchange;
 
 class ExchangeMgr {
  public:
-  typedef std::pair<std::string, FuncNewIndicatorWithAvgTimes> PairWithAvgTimes;
-  typedef std::map<std::string, FuncNewIndicatorWithAvgTimes> MapWithAvgTimes;
+  typedef std::pair<std::string, FuncNewExchange> PairFuncNewExchange;
+  typedef std::map<std::string, FuncNewExchange> MapFuncNewExchange;
+  typedef std::pair<std::string, Exchange*> PairExchange;
+  typedef std::map<std::string, Exchange*> MapExchange;
 
  public:
   static ExchangeMgr* getSingleton();
@@ -26,14 +28,21 @@ class ExchangeMgr {
   ~ExchangeMgr() {}
 
  public:
-  void regIndicatorWithAvgTimes(const char* name,
-                                FuncNewIndicatorWithAvgTimes func);
+  void init(Config& cfg);
+
+  void regNewExchange(const char* name, FuncNewExchange func);
 
  public:
-  Indicator* newIndicator(const char* name, int avgtimes);
+  Exchange* getExchange(const char* name);
 
  protected:
-  MapWithAvgTimes m_mapWithAvgTimes;
+  Exchange* newExchange(const char* name, Config& cfg);
+
+  void addExchange(Exchange* pExchange);
+
+ protected:
+  MapFuncNewExchange m_mapNewFunc;
+  MapExchange m_mapExchange;
 };
 
 CR2END

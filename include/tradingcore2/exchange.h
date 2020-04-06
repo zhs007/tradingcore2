@@ -26,6 +26,8 @@ class Exchange {
  public:
   virtual bool init(Config& cfg) = 0;
 
+  virtual const char* getTypeName() const = 0;
+
  public:
   virtual bool calculateVolume(const char* assetsName, TimeStamp ts,
                                Money money, Volume& volume, Money& price,

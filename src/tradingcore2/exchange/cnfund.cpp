@@ -31,6 +31,8 @@ bool CNFundExchange::init(Config& cfg) {
   return true;
 }
 
+const char* CNFundExchange::getTypeName() const { return CNFundTypeName; }
+
 void CNFundExchange::setFundValue(const char* assetsName, CNFundValue* fv) {
   this->releaseFundValue(assetsName);
 
@@ -272,6 +274,14 @@ void CNFundExchange::release() {
   }
 
   this->m_map.clear();
+}
+
+Exchange* newCNFund(Config& cfg) {
+  auto exchange = new CNFundExchange();
+
+  exchange->init(cfg);
+
+  return exchange;
 }
 
 CR2END

@@ -23,6 +23,8 @@ struct CNFundValue {
   const CNFundValueNode* getNode(TimeStamp ts) const;
 };
 
+static const char* CNFundTypeName = "cnfund";
+
 class CNFundExchange final : public Exchange {
  public:
   typedef std::map<std::string, CNFundValue*> Map;
@@ -35,6 +37,8 @@ class CNFundExchange final : public Exchange {
 
  public:
   virtual bool init(Config& cfg) override;
+
+  virtual const char* getTypeName() const override;
 
  public:
   virtual bool calculateVolume(const char* assetsName, TimeStamp ts,
@@ -89,6 +93,8 @@ class CNFundExchange final : public Exchange {
   Map m_map;
   TimeStampList m_lstTimeStamp;
 };
+
+Exchange* newCNFund(Config& cfg);
 
 CR2END
 
