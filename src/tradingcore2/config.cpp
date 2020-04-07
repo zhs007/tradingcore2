@@ -22,6 +22,18 @@ bool loadConfig(Config& cfg, const char* fn) {
     }
   }
 
+  if (node["bindaddr"].IsScalar()) {
+    cfg.bindaddr = node["bindaddr"].as<std::string>();
+  }
+
+  if (node["servs"].IsSequence()) {
+    for (auto it = node["servs"].begin(); it != node["servs"].end(); ++it) {
+      if (it->IsScalar()) {
+        cfg.servs.push_back(it->as<std::string>());
+      }
+    }
+  }
+
   return true;
 }
 

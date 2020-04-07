@@ -17,7 +17,8 @@ class StrategySI final : public Strategy {
         m_maxValBuy(0),
         m_minValSell(0),
         m_maxValSell(0),
-        m_volume(0) {}
+        m_volume(0),
+        m_buyPrice(0) {}
   virtual ~StrategySI() { this->release(); }
 
  public:
@@ -41,6 +42,8 @@ class StrategySI final : public Strategy {
   IndicatorDataValue m_maxValSell;
   Money m_money;
   Volume m_volume;
+
+  Money m_buyPrice;
 };
 
 CR2END

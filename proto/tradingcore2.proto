@@ -4,6 +4,21 @@ package tradingcore2pb;
 enum ErrorCode {
     ERR_NOERR = 0;
     ERR_NOEXCHANGE = 1;
+    ERR_NOTRAINPARAM = 2;
+    ERR_NOASSETS = 3;
+}
+
+message TrainSingleIndicator2Ex {
+    string indicatorName = 1;
+    int32 avgtimes = 2;
+    float off0 = 3;
+    float off1 = 4;
+    float off2 = 5;
+    float maxoff2 = 6;
+    float minval = 7;
+    float maxval = 8;
+    float cv0 = 9;
+    float cv0off = 10;
 }
 
 // TrainData - train data
@@ -13,6 +28,13 @@ message TrainData {
     string assetsName = 3;
     string strategyName = 4;
     string strParam = 5;
+    string outputPath = 6;
+    float invest = 7;
+    float minValidReturn = 8;
+
+    oneof trainParam {
+        TrainSingleIndicator2Ex si2 = 100;
+    }
 }
 
 message TrainNodeResult {

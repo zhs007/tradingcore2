@@ -48,7 +48,7 @@ struct TableStruct_tradingcore2_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxillaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[3]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[4]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -65,23 +65,29 @@ extern TrainNodeResultDefaultTypeInternal _TrainNodeResult_default_instance_;
 class TrainResult;
 class TrainResultDefaultTypeInternal;
 extern TrainResultDefaultTypeInternal _TrainResult_default_instance_;
+class TrainSingleIndicator2Ex;
+class TrainSingleIndicator2ExDefaultTypeInternal;
+extern TrainSingleIndicator2ExDefaultTypeInternal _TrainSingleIndicator2Ex_default_instance_;
 }  // namespace tradingcore2pb
 PROTOBUF_NAMESPACE_OPEN
 template<> ::tradingcore2pb::TrainData* Arena::CreateMaybeMessage<::tradingcore2pb::TrainData>(Arena*);
 template<> ::tradingcore2pb::TrainNodeResult* Arena::CreateMaybeMessage<::tradingcore2pb::TrainNodeResult>(Arena*);
 template<> ::tradingcore2pb::TrainResult* Arena::CreateMaybeMessage<::tradingcore2pb::TrainResult>(Arena*);
+template<> ::tradingcore2pb::TrainSingleIndicator2Ex* Arena::CreateMaybeMessage<::tradingcore2pb::TrainSingleIndicator2Ex>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace tradingcore2pb {
 
 enum ErrorCode : int {
   ERR_NOERR = 0,
   ERR_NOEXCHANGE = 1,
+  ERR_NOTRAINPARAM = 2,
+  ERR_NOASSETS = 3,
   ErrorCode_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::min(),
   ErrorCode_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::max()
 };
 bool ErrorCode_IsValid(int value);
 constexpr ErrorCode ErrorCode_MIN = ERR_NOERR;
-constexpr ErrorCode ErrorCode_MAX = ERR_NOEXCHANGE;
+constexpr ErrorCode ErrorCode_MAX = ERR_NOASSETS;
 constexpr int ErrorCode_ARRAYSIZE = ErrorCode_MAX + 1;
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* ErrorCode_descriptor();
@@ -99,6 +105,240 @@ inline bool ErrorCode_Parse(
     ErrorCode_descriptor(), name, value);
 }
 // ===================================================================
+
+class TrainSingleIndicator2Ex :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tradingcore2pb.TrainSingleIndicator2Ex) */ {
+ public:
+  TrainSingleIndicator2Ex();
+  virtual ~TrainSingleIndicator2Ex();
+
+  TrainSingleIndicator2Ex(const TrainSingleIndicator2Ex& from);
+  TrainSingleIndicator2Ex(TrainSingleIndicator2Ex&& from) noexcept
+    : TrainSingleIndicator2Ex() {
+    *this = ::std::move(from);
+  }
+
+  inline TrainSingleIndicator2Ex& operator=(const TrainSingleIndicator2Ex& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline TrainSingleIndicator2Ex& operator=(TrainSingleIndicator2Ex&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const TrainSingleIndicator2Ex& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const TrainSingleIndicator2Ex* internal_default_instance() {
+    return reinterpret_cast<const TrainSingleIndicator2Ex*>(
+               &_TrainSingleIndicator2Ex_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    0;
+
+  friend void swap(TrainSingleIndicator2Ex& a, TrainSingleIndicator2Ex& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(TrainSingleIndicator2Ex* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline TrainSingleIndicator2Ex* New() const final {
+    return CreateMaybeMessage<TrainSingleIndicator2Ex>(nullptr);
+  }
+
+  TrainSingleIndicator2Ex* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<TrainSingleIndicator2Ex>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const TrainSingleIndicator2Ex& from);
+  void MergeFrom(const TrainSingleIndicator2Ex& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(TrainSingleIndicator2Ex* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "tradingcore2pb.TrainSingleIndicator2Ex";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_tradingcore2_2eproto);
+    return ::descriptor_table_tradingcore2_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kIndicatorNameFieldNumber = 1,
+    kAvgtimesFieldNumber = 2,
+    kOff0FieldNumber = 3,
+    kOff1FieldNumber = 4,
+    kOff2FieldNumber = 5,
+    kMaxoff2FieldNumber = 6,
+    kMinvalFieldNumber = 7,
+    kMaxvalFieldNumber = 8,
+    kCv0FieldNumber = 9,
+    kCv0OffFieldNumber = 10,
+  };
+  // string indicatorName = 1;
+  void clear_indicatorname();
+  const std::string& indicatorname() const;
+  void set_indicatorname(const std::string& value);
+  void set_indicatorname(std::string&& value);
+  void set_indicatorname(const char* value);
+  void set_indicatorname(const char* value, size_t size);
+  std::string* mutable_indicatorname();
+  std::string* release_indicatorname();
+  void set_allocated_indicatorname(std::string* indicatorname);
+  private:
+  const std::string& _internal_indicatorname() const;
+  void _internal_set_indicatorname(const std::string& value);
+  std::string* _internal_mutable_indicatorname();
+  public:
+
+  // int32 avgtimes = 2;
+  void clear_avgtimes();
+  ::PROTOBUF_NAMESPACE_ID::int32 avgtimes() const;
+  void set_avgtimes(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_avgtimes() const;
+  void _internal_set_avgtimes(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // float off0 = 3;
+  void clear_off0();
+  float off0() const;
+  void set_off0(float value);
+  private:
+  float _internal_off0() const;
+  void _internal_set_off0(float value);
+  public:
+
+  // float off1 = 4;
+  void clear_off1();
+  float off1() const;
+  void set_off1(float value);
+  private:
+  float _internal_off1() const;
+  void _internal_set_off1(float value);
+  public:
+
+  // float off2 = 5;
+  void clear_off2();
+  float off2() const;
+  void set_off2(float value);
+  private:
+  float _internal_off2() const;
+  void _internal_set_off2(float value);
+  public:
+
+  // float maxoff2 = 6;
+  void clear_maxoff2();
+  float maxoff2() const;
+  void set_maxoff2(float value);
+  private:
+  float _internal_maxoff2() const;
+  void _internal_set_maxoff2(float value);
+  public:
+
+  // float minval = 7;
+  void clear_minval();
+  float minval() const;
+  void set_minval(float value);
+  private:
+  float _internal_minval() const;
+  void _internal_set_minval(float value);
+  public:
+
+  // float maxval = 8;
+  void clear_maxval();
+  float maxval() const;
+  void set_maxval(float value);
+  private:
+  float _internal_maxval() const;
+  void _internal_set_maxval(float value);
+  public:
+
+  // float cv0 = 9;
+  void clear_cv0();
+  float cv0() const;
+  void set_cv0(float value);
+  private:
+  float _internal_cv0() const;
+  void _internal_set_cv0(float value);
+  public:
+
+  // float cv0off = 10;
+  void clear_cv0off();
+  float cv0off() const;
+  void set_cv0off(float value);
+  private:
+  float _internal_cv0off() const;
+  void _internal_set_cv0off(float value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:tradingcore2pb.TrainSingleIndicator2Ex)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr indicatorname_;
+  ::PROTOBUF_NAMESPACE_ID::int32 avgtimes_;
+  float off0_;
+  float off1_;
+  float off2_;
+  float maxoff2_;
+  float minval_;
+  float maxval_;
+  float cv0_;
+  float cv0off_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_tradingcore2_2eproto;
+};
+// -------------------------------------------------------------------
 
 class TrainData :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tradingcore2pb.TrainData) */ {
@@ -136,13 +376,18 @@ class TrainData :
   }
   static const TrainData& default_instance();
 
+  enum TrainParamCase {
+    kSi2 = 100,
+    TRAINPARAM_NOT_SET = 0,
+  };
+
   static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
   static inline const TrainData* internal_default_instance() {
     return reinterpret_cast<const TrainData*>(
                &_TrainData_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    0;
+    1;
 
   friend void swap(TrainData& a, TrainData& b) {
     a.Swap(&b);
@@ -210,7 +455,11 @@ class TrainData :
     kAssetsNameFieldNumber = 3,
     kStrategyNameFieldNumber = 4,
     kStrParamFieldNumber = 5,
+    kOutputPathFieldNumber = 6,
     kTrainIDFieldNumber = 1,
+    kInvestFieldNumber = 7,
+    kMinValidReturnFieldNumber = 8,
+    kSi2FieldNumber = 100,
   };
   // string exchangeName = 2;
   void clear_exchangename();
@@ -276,6 +525,22 @@ class TrainData :
   std::string* _internal_mutable_strparam();
   public:
 
+  // string outputPath = 6;
+  void clear_outputpath();
+  const std::string& outputpath() const;
+  void set_outputpath(const std::string& value);
+  void set_outputpath(std::string&& value);
+  void set_outputpath(const char* value);
+  void set_outputpath(const char* value, size_t size);
+  std::string* mutable_outputpath();
+  std::string* release_outputpath();
+  void set_allocated_outputpath(std::string* outputpath);
+  private:
+  const std::string& _internal_outputpath() const;
+  void _internal_set_outputpath(const std::string& value);
+  std::string* _internal_mutable_outputpath();
+  public:
+
   // int64 trainID = 1;
   void clear_trainid();
   ::PROTOBUF_NAMESPACE_ID::int64 trainid() const;
@@ -285,17 +550,65 @@ class TrainData :
   void _internal_set_trainid(::PROTOBUF_NAMESPACE_ID::int64 value);
   public:
 
+  // float invest = 7;
+  void clear_invest();
+  float invest() const;
+  void set_invest(float value);
+  private:
+  float _internal_invest() const;
+  void _internal_set_invest(float value);
+  public:
+
+  // float minValidReturn = 8;
+  void clear_minvalidreturn();
+  float minvalidreturn() const;
+  void set_minvalidreturn(float value);
+  private:
+  float _internal_minvalidreturn() const;
+  void _internal_set_minvalidreturn(float value);
+  public:
+
+  // .tradingcore2pb.TrainSingleIndicator2Ex si2 = 100;
+  bool has_si2() const;
+  private:
+  bool _internal_has_si2() const;
+  public:
+  void clear_si2();
+  const ::tradingcore2pb::TrainSingleIndicator2Ex& si2() const;
+  ::tradingcore2pb::TrainSingleIndicator2Ex* release_si2();
+  ::tradingcore2pb::TrainSingleIndicator2Ex* mutable_si2();
+  void set_allocated_si2(::tradingcore2pb::TrainSingleIndicator2Ex* si2);
+  private:
+  const ::tradingcore2pb::TrainSingleIndicator2Ex& _internal_si2() const;
+  ::tradingcore2pb::TrainSingleIndicator2Ex* _internal_mutable_si2();
+  public:
+
+  void clear_trainParam();
+  TrainParamCase trainParam_case() const;
   // @@protoc_insertion_point(class_scope:tradingcore2pb.TrainData)
  private:
   class _Internal;
+  void set_has_si2();
+
+  inline bool has_trainParam() const;
+  inline void clear_has_trainParam();
 
   ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr exchangename_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr assetsname_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr strategyname_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr strparam_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr outputpath_;
   ::PROTOBUF_NAMESPACE_ID::int64 trainid_;
+  float invest_;
+  float minvalidreturn_;
+  union TrainParamUnion {
+    TrainParamUnion() {}
+    ::tradingcore2pb::TrainSingleIndicator2Ex* si2_;
+  } trainParam_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  ::PROTOBUF_NAMESPACE_ID::uint32 _oneof_case_[1];
+
   friend struct ::TableStruct_tradingcore2_2eproto;
 };
 // -------------------------------------------------------------------
@@ -342,7 +655,7 @@ class TrainNodeResult :
                &_TrainNodeResult_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    1;
+    2;
 
   friend void swap(TrainNodeResult& a, TrainNodeResult& b) {
     a.Swap(&b);
@@ -576,7 +889,7 @@ class TrainResult :
                &_TrainResult_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    2;
+    3;
 
   friend void swap(TrainResult& a, TrainResult& b) {
     a.Swap(&b);
@@ -772,6 +1085,250 @@ class TrainResult :
   #pragma GCC diagnostic push
   #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
+// TrainSingleIndicator2Ex
+
+// string indicatorName = 1;
+inline void TrainSingleIndicator2Ex::clear_indicatorname() {
+  indicatorname_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline const std::string& TrainSingleIndicator2Ex::indicatorname() const {
+  // @@protoc_insertion_point(field_get:tradingcore2pb.TrainSingleIndicator2Ex.indicatorName)
+  return _internal_indicatorname();
+}
+inline void TrainSingleIndicator2Ex::set_indicatorname(const std::string& value) {
+  _internal_set_indicatorname(value);
+  // @@protoc_insertion_point(field_set:tradingcore2pb.TrainSingleIndicator2Ex.indicatorName)
+}
+inline std::string* TrainSingleIndicator2Ex::mutable_indicatorname() {
+  // @@protoc_insertion_point(field_mutable:tradingcore2pb.TrainSingleIndicator2Ex.indicatorName)
+  return _internal_mutable_indicatorname();
+}
+inline const std::string& TrainSingleIndicator2Ex::_internal_indicatorname() const {
+  return indicatorname_.GetNoArena();
+}
+inline void TrainSingleIndicator2Ex::_internal_set_indicatorname(const std::string& value) {
+  
+  indicatorname_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+}
+inline void TrainSingleIndicator2Ex::set_indicatorname(std::string&& value) {
+  
+  indicatorname_.SetNoArena(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:tradingcore2pb.TrainSingleIndicator2Ex.indicatorName)
+}
+inline void TrainSingleIndicator2Ex::set_indicatorname(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  indicatorname_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:tradingcore2pb.TrainSingleIndicator2Ex.indicatorName)
+}
+inline void TrainSingleIndicator2Ex::set_indicatorname(const char* value, size_t size) {
+  
+  indicatorname_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:tradingcore2pb.TrainSingleIndicator2Ex.indicatorName)
+}
+inline std::string* TrainSingleIndicator2Ex::_internal_mutable_indicatorname() {
+  
+  return indicatorname_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline std::string* TrainSingleIndicator2Ex::release_indicatorname() {
+  // @@protoc_insertion_point(field_release:tradingcore2pb.TrainSingleIndicator2Ex.indicatorName)
+  
+  return indicatorname_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline void TrainSingleIndicator2Ex::set_allocated_indicatorname(std::string* indicatorname) {
+  if (indicatorname != nullptr) {
+    
+  } else {
+    
+  }
+  indicatorname_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), indicatorname);
+  // @@protoc_insertion_point(field_set_allocated:tradingcore2pb.TrainSingleIndicator2Ex.indicatorName)
+}
+
+// int32 avgtimes = 2;
+inline void TrainSingleIndicator2Ex::clear_avgtimes() {
+  avgtimes_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 TrainSingleIndicator2Ex::_internal_avgtimes() const {
+  return avgtimes_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 TrainSingleIndicator2Ex::avgtimes() const {
+  // @@protoc_insertion_point(field_get:tradingcore2pb.TrainSingleIndicator2Ex.avgtimes)
+  return _internal_avgtimes();
+}
+inline void TrainSingleIndicator2Ex::_internal_set_avgtimes(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  avgtimes_ = value;
+}
+inline void TrainSingleIndicator2Ex::set_avgtimes(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_avgtimes(value);
+  // @@protoc_insertion_point(field_set:tradingcore2pb.TrainSingleIndicator2Ex.avgtimes)
+}
+
+// float off0 = 3;
+inline void TrainSingleIndicator2Ex::clear_off0() {
+  off0_ = 0;
+}
+inline float TrainSingleIndicator2Ex::_internal_off0() const {
+  return off0_;
+}
+inline float TrainSingleIndicator2Ex::off0() const {
+  // @@protoc_insertion_point(field_get:tradingcore2pb.TrainSingleIndicator2Ex.off0)
+  return _internal_off0();
+}
+inline void TrainSingleIndicator2Ex::_internal_set_off0(float value) {
+  
+  off0_ = value;
+}
+inline void TrainSingleIndicator2Ex::set_off0(float value) {
+  _internal_set_off0(value);
+  // @@protoc_insertion_point(field_set:tradingcore2pb.TrainSingleIndicator2Ex.off0)
+}
+
+// float off1 = 4;
+inline void TrainSingleIndicator2Ex::clear_off1() {
+  off1_ = 0;
+}
+inline float TrainSingleIndicator2Ex::_internal_off1() const {
+  return off1_;
+}
+inline float TrainSingleIndicator2Ex::off1() const {
+  // @@protoc_insertion_point(field_get:tradingcore2pb.TrainSingleIndicator2Ex.off1)
+  return _internal_off1();
+}
+inline void TrainSingleIndicator2Ex::_internal_set_off1(float value) {
+  
+  off1_ = value;
+}
+inline void TrainSingleIndicator2Ex::set_off1(float value) {
+  _internal_set_off1(value);
+  // @@protoc_insertion_point(field_set:tradingcore2pb.TrainSingleIndicator2Ex.off1)
+}
+
+// float off2 = 5;
+inline void TrainSingleIndicator2Ex::clear_off2() {
+  off2_ = 0;
+}
+inline float TrainSingleIndicator2Ex::_internal_off2() const {
+  return off2_;
+}
+inline float TrainSingleIndicator2Ex::off2() const {
+  // @@protoc_insertion_point(field_get:tradingcore2pb.TrainSingleIndicator2Ex.off2)
+  return _internal_off2();
+}
+inline void TrainSingleIndicator2Ex::_internal_set_off2(float value) {
+  
+  off2_ = value;
+}
+inline void TrainSingleIndicator2Ex::set_off2(float value) {
+  _internal_set_off2(value);
+  // @@protoc_insertion_point(field_set:tradingcore2pb.TrainSingleIndicator2Ex.off2)
+}
+
+// float maxoff2 = 6;
+inline void TrainSingleIndicator2Ex::clear_maxoff2() {
+  maxoff2_ = 0;
+}
+inline float TrainSingleIndicator2Ex::_internal_maxoff2() const {
+  return maxoff2_;
+}
+inline float TrainSingleIndicator2Ex::maxoff2() const {
+  // @@protoc_insertion_point(field_get:tradingcore2pb.TrainSingleIndicator2Ex.maxoff2)
+  return _internal_maxoff2();
+}
+inline void TrainSingleIndicator2Ex::_internal_set_maxoff2(float value) {
+  
+  maxoff2_ = value;
+}
+inline void TrainSingleIndicator2Ex::set_maxoff2(float value) {
+  _internal_set_maxoff2(value);
+  // @@protoc_insertion_point(field_set:tradingcore2pb.TrainSingleIndicator2Ex.maxoff2)
+}
+
+// float minval = 7;
+inline void TrainSingleIndicator2Ex::clear_minval() {
+  minval_ = 0;
+}
+inline float TrainSingleIndicator2Ex::_internal_minval() const {
+  return minval_;
+}
+inline float TrainSingleIndicator2Ex::minval() const {
+  // @@protoc_insertion_point(field_get:tradingcore2pb.TrainSingleIndicator2Ex.minval)
+  return _internal_minval();
+}
+inline void TrainSingleIndicator2Ex::_internal_set_minval(float value) {
+  
+  minval_ = value;
+}
+inline void TrainSingleIndicator2Ex::set_minval(float value) {
+  _internal_set_minval(value);
+  // @@protoc_insertion_point(field_set:tradingcore2pb.TrainSingleIndicator2Ex.minval)
+}
+
+// float maxval = 8;
+inline void TrainSingleIndicator2Ex::clear_maxval() {
+  maxval_ = 0;
+}
+inline float TrainSingleIndicator2Ex::_internal_maxval() const {
+  return maxval_;
+}
+inline float TrainSingleIndicator2Ex::maxval() const {
+  // @@protoc_insertion_point(field_get:tradingcore2pb.TrainSingleIndicator2Ex.maxval)
+  return _internal_maxval();
+}
+inline void TrainSingleIndicator2Ex::_internal_set_maxval(float value) {
+  
+  maxval_ = value;
+}
+inline void TrainSingleIndicator2Ex::set_maxval(float value) {
+  _internal_set_maxval(value);
+  // @@protoc_insertion_point(field_set:tradingcore2pb.TrainSingleIndicator2Ex.maxval)
+}
+
+// float cv0 = 9;
+inline void TrainSingleIndicator2Ex::clear_cv0() {
+  cv0_ = 0;
+}
+inline float TrainSingleIndicator2Ex::_internal_cv0() const {
+  return cv0_;
+}
+inline float TrainSingleIndicator2Ex::cv0() const {
+  // @@protoc_insertion_point(field_get:tradingcore2pb.TrainSingleIndicator2Ex.cv0)
+  return _internal_cv0();
+}
+inline void TrainSingleIndicator2Ex::_internal_set_cv0(float value) {
+  
+  cv0_ = value;
+}
+inline void TrainSingleIndicator2Ex::set_cv0(float value) {
+  _internal_set_cv0(value);
+  // @@protoc_insertion_point(field_set:tradingcore2pb.TrainSingleIndicator2Ex.cv0)
+}
+
+// float cv0off = 10;
+inline void TrainSingleIndicator2Ex::clear_cv0off() {
+  cv0off_ = 0;
+}
+inline float TrainSingleIndicator2Ex::_internal_cv0off() const {
+  return cv0off_;
+}
+inline float TrainSingleIndicator2Ex::cv0off() const {
+  // @@protoc_insertion_point(field_get:tradingcore2pb.TrainSingleIndicator2Ex.cv0off)
+  return _internal_cv0off();
+}
+inline void TrainSingleIndicator2Ex::_internal_set_cv0off(float value) {
+  
+  cv0off_ = value;
+}
+inline void TrainSingleIndicator2Ex::set_cv0off(float value) {
+  _internal_set_cv0off(value);
+  // @@protoc_insertion_point(field_set:tradingcore2pb.TrainSingleIndicator2Ex.cv0off)
+}
+
+// -------------------------------------------------------------------
+
 // TrainData
 
 // int64 trainID = 1;
@@ -1034,6 +1591,165 @@ inline void TrainData::set_allocated_strparam(std::string* strparam) {
   // @@protoc_insertion_point(field_set_allocated:tradingcore2pb.TrainData.strParam)
 }
 
+// string outputPath = 6;
+inline void TrainData::clear_outputpath() {
+  outputpath_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline const std::string& TrainData::outputpath() const {
+  // @@protoc_insertion_point(field_get:tradingcore2pb.TrainData.outputPath)
+  return _internal_outputpath();
+}
+inline void TrainData::set_outputpath(const std::string& value) {
+  _internal_set_outputpath(value);
+  // @@protoc_insertion_point(field_set:tradingcore2pb.TrainData.outputPath)
+}
+inline std::string* TrainData::mutable_outputpath() {
+  // @@protoc_insertion_point(field_mutable:tradingcore2pb.TrainData.outputPath)
+  return _internal_mutable_outputpath();
+}
+inline const std::string& TrainData::_internal_outputpath() const {
+  return outputpath_.GetNoArena();
+}
+inline void TrainData::_internal_set_outputpath(const std::string& value) {
+  
+  outputpath_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+}
+inline void TrainData::set_outputpath(std::string&& value) {
+  
+  outputpath_.SetNoArena(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:tradingcore2pb.TrainData.outputPath)
+}
+inline void TrainData::set_outputpath(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  outputpath_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:tradingcore2pb.TrainData.outputPath)
+}
+inline void TrainData::set_outputpath(const char* value, size_t size) {
+  
+  outputpath_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:tradingcore2pb.TrainData.outputPath)
+}
+inline std::string* TrainData::_internal_mutable_outputpath() {
+  
+  return outputpath_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline std::string* TrainData::release_outputpath() {
+  // @@protoc_insertion_point(field_release:tradingcore2pb.TrainData.outputPath)
+  
+  return outputpath_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline void TrainData::set_allocated_outputpath(std::string* outputpath) {
+  if (outputpath != nullptr) {
+    
+  } else {
+    
+  }
+  outputpath_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), outputpath);
+  // @@protoc_insertion_point(field_set_allocated:tradingcore2pb.TrainData.outputPath)
+}
+
+// float invest = 7;
+inline void TrainData::clear_invest() {
+  invest_ = 0;
+}
+inline float TrainData::_internal_invest() const {
+  return invest_;
+}
+inline float TrainData::invest() const {
+  // @@protoc_insertion_point(field_get:tradingcore2pb.TrainData.invest)
+  return _internal_invest();
+}
+inline void TrainData::_internal_set_invest(float value) {
+  
+  invest_ = value;
+}
+inline void TrainData::set_invest(float value) {
+  _internal_set_invest(value);
+  // @@protoc_insertion_point(field_set:tradingcore2pb.TrainData.invest)
+}
+
+// float minValidReturn = 8;
+inline void TrainData::clear_minvalidreturn() {
+  minvalidreturn_ = 0;
+}
+inline float TrainData::_internal_minvalidreturn() const {
+  return minvalidreturn_;
+}
+inline float TrainData::minvalidreturn() const {
+  // @@protoc_insertion_point(field_get:tradingcore2pb.TrainData.minValidReturn)
+  return _internal_minvalidreturn();
+}
+inline void TrainData::_internal_set_minvalidreturn(float value) {
+  
+  minvalidreturn_ = value;
+}
+inline void TrainData::set_minvalidreturn(float value) {
+  _internal_set_minvalidreturn(value);
+  // @@protoc_insertion_point(field_set:tradingcore2pb.TrainData.minValidReturn)
+}
+
+// .tradingcore2pb.TrainSingleIndicator2Ex si2 = 100;
+inline bool TrainData::_internal_has_si2() const {
+  return trainParam_case() == kSi2;
+}
+inline bool TrainData::has_si2() const {
+  return _internal_has_si2();
+}
+inline void TrainData::set_has_si2() {
+  _oneof_case_[0] = kSi2;
+}
+inline void TrainData::clear_si2() {
+  if (_internal_has_si2()) {
+    delete trainParam_.si2_;
+    clear_has_trainParam();
+  }
+}
+inline ::tradingcore2pb::TrainSingleIndicator2Ex* TrainData::release_si2() {
+  // @@protoc_insertion_point(field_release:tradingcore2pb.TrainData.si2)
+  if (_internal_has_si2()) {
+    clear_has_trainParam();
+      ::tradingcore2pb::TrainSingleIndicator2Ex* temp = trainParam_.si2_;
+    trainParam_.si2_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline const ::tradingcore2pb::TrainSingleIndicator2Ex& TrainData::_internal_si2() const {
+  return _internal_has_si2()
+      ? *trainParam_.si2_
+      : *reinterpret_cast< ::tradingcore2pb::TrainSingleIndicator2Ex*>(&::tradingcore2pb::_TrainSingleIndicator2Ex_default_instance_);
+}
+inline const ::tradingcore2pb::TrainSingleIndicator2Ex& TrainData::si2() const {
+  // @@protoc_insertion_point(field_get:tradingcore2pb.TrainData.si2)
+  return _internal_si2();
+}
+inline ::tradingcore2pb::TrainSingleIndicator2Ex* TrainData::_internal_mutable_si2() {
+  if (!_internal_has_si2()) {
+    clear_trainParam();
+    set_has_si2();
+    trainParam_.si2_ = CreateMaybeMessage< ::tradingcore2pb::TrainSingleIndicator2Ex >(
+        GetArenaNoVirtual());
+  }
+  return trainParam_.si2_;
+}
+inline ::tradingcore2pb::TrainSingleIndicator2Ex* TrainData::mutable_si2() {
+  // @@protoc_insertion_point(field_mutable:tradingcore2pb.TrainData.si2)
+  return _internal_mutable_si2();
+}
+
+inline bool TrainData::has_trainParam() const {
+  return trainParam_case() != TRAINPARAM_NOT_SET;
+}
+inline void TrainData::clear_has_trainParam() {
+  _oneof_case_[0] = TRAINPARAM_NOT_SET;
+}
+inline TrainData::TrainParamCase TrainData::trainParam_case() const {
+  return TrainData::TrainParamCase(_oneof_case_[0]);
+}
 // -------------------------------------------------------------------
 
 // TrainNodeResult
@@ -1604,6 +2320,8 @@ TrainResult::nodes() const {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

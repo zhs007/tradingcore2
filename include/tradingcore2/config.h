@@ -12,6 +12,10 @@ struct Config {
   std::vector<std::string> exchanges;
 
   std::string cnfundpath;
+
+  std::string bindaddr;
+
+  std::vector<std::string> servs;
 };
 
 bool loadConfig(Config& cfg, const char* fn);

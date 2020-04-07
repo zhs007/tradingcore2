@@ -3,6 +3,7 @@
 #include <grpcpp/health_check_service_interface.h>
 #include <tradingcore2/exchangemgr.h>
 #include <tradingcore2/server/train2.h>
+#include <tradingcore2/train.h>
 
 #include <iostream>
 #include <memory>
@@ -23,6 +24,44 @@ class TrainService2Impl final
     auto exchange = mgr->getExchange(request->exchangename().c_str());
     if (exchange == NULL) {
       response->set_errcode(tradingcore2pb::ERR_NOEXCHANGE);
+
+      return grpc::Status::OK;
+    }
+
+    auto datasize = exchange->getDataLength(request->assetsname().c_str());
+    if (datasize <= 0) {
+      response->set_errcode(tradingcore2pb::ERR_NOASSETS);
+
+      return grpc::Status::OK;
+    }
+
+    if (request->has_si2()) {
+      auto si2 = request->si2();
+
+      TrainResultList lst;
+      _trainSingleIndicator2Ex(
+          lst, *exchange, request->assetsname().c_str(),
+          si2.indicatorname().c_str(), request->outputpath().c_str(),
+          request->invest(), si2.avgtimes(), si2.off0(), si2.off1(), si2.off2(),
+          si2.maxoff2(), request->minvalidreturn(), si2.minval(), si2.maxval(),
+          si2.cv0(), si2.cv0off());
+
+      for (auto it = lst.begin(); it != lst.end(); ++it) {
+        auto tr = response->add_nodes();
+
+        tr->set_maxdrawdown(it->maxDrawDown);
+        tr->set_sharpe(it->sharpe);
+        tr->set_annualizedreturns(it->annualizedReturns);
+        tr->set_annualizedvolatility(it->annualizedVolatility);
+        tr->set_totalreturns(it->totalReturn);
+        tr->set_tradingtimes(it->tradingNums);
+        tr->set_stoplosstimes(it->stoplossNums);
+        tr->set_winrate(it->winRate);
+        tr->set_failtimes(it->failNums);
+        tr->set_name(it->name.c_str());
+      }
+    } else {
+      response->set_errcode(tradingcore2pb::ERR_NOTRAINPARAM);
 
       return grpc::Status::OK;
     }

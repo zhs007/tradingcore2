@@ -22,7 +22,8 @@ class StrategySI2 final : public Strategy {
         m_pIndicator(NULL),
         m_funcBuy(NULL),
         m_funcSell(NULL),
-        m_volume(0) {}
+        m_volume(0),
+        m_buyPrice(0) {}
   virtual ~StrategySI2() { this->release(); }
 
  public:
@@ -43,6 +44,8 @@ class StrategySI2 final : public Strategy {
   FuncOnTimeStamp m_funcSell;
   Money m_money;
   Volume m_volume;
+
+  Money m_buyPrice;
 };
 
 CR2END

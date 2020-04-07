@@ -9,4 +9,7 @@ TEST(config, loadConfig) {
   EXPECT_EQ(cfg.cnfundpath, "../data/cnfund");
   EXPECT_EQ(cfg.exchanges.size(), 1);
   EXPECT_EQ(cfg.exchanges[0], "cnfund");
+  EXPECT_EQ(cfg.bindaddr, "0.0.0.0:3777");
+  EXPECT_EQ(cfg.servs.size(), 1);
+  EXPECT_EQ(cfg.servs[0], "0.0.0.0:3777");
 }

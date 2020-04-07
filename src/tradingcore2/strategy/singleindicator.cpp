@@ -43,12 +43,20 @@ void StrategySI::onTimeStamp(TimeStamp ts, int index) {
                                                 this->m_money, ts);
 
       this->onTrading();
+
+      this->m_buyPrice = cd.close;
+
       this->setStopLossPrice((1 - this->m_stoploss) * cd.close);
     }
   } else {
     if (cv->value >= this->m_minValSell && cv->value < this->m_maxValSell) {
       this->m_money = this->m_wallet.sellAssets(this->m_assetsName.c_str(),
                                                 this->m_volume, ts);
+
+      if (cd.close <= this->m_buyPrice) {
+        this->onTradingFail();
+      }
+
       this->m_volume = 0;
     } else {
       auto curmoney = this->onProcStopLoss(this->m_assetsName.c_str(), cd.close,

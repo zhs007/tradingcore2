@@ -18,7 +18,8 @@ class Strategy {
         m_stoploss(-1),
         m_curStopLossPrice(-1),
         m_tradingNums(0),
-        m_stoplossNums(0) {}
+        m_stoplossNums(0),
+        m_failNums(0) {}
   virtual ~Strategy() {}
 
  public:
@@ -42,6 +43,8 @@ class Strategy {
   Money onProcStopLoss(const char* assetsName, Money curPrice, Volume volume,
                        TimeStamp ts, int index);
 
+  void onTradingFail() { m_failNums++; }
+
   void onTrading() { m_tradingNums++; }
 
  protected:
@@ -54,6 +57,7 @@ class Strategy {
 
   int m_tradingNums;
   int m_stoplossNums;
+  int m_failNums;
 };
 
 CR2END

@@ -170,7 +170,9 @@ bool CNFundExchange::getData(const char* assetsName, int index,
 
 int CNFundExchange::getDataLength(const char* assetsName) {
   auto fv = this->getFundValue(assetsName);
-  assert(fv != NULL);
+  if (fv == NULL) {
+    return 0;
+  }
 
   return fv->data.size();
 }

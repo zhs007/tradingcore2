@@ -13,6 +13,7 @@ link_directories(./deps/rocksdb/build)
 link_directories(./deps/yaml-cpp/build)
 
 add_subdirectory(./src/tradingcore2)
+add_subdirectory(./src/server)
 add_subdirectory(./tests)
 add_subdirectory(./deps/googletest)
 add_subdirectory(./deps/grpc)

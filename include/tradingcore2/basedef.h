@@ -38,6 +38,7 @@ struct TrainResult {
   float annualizedReturns;
   float annualizedVolatility;
   int tradingNums;
+  int failNums;
   int stoplossNums;
   float winRate;
 };
