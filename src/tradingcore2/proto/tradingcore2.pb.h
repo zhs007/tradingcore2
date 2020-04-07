@@ -31,6 +31,7 @@
 #include <google/protobuf/message.h>
 #include <google/protobuf/repeated_field.h>  // IWYU pragma: export
 #include <google/protobuf/extension_set.h>  // IWYU pragma: export
+#include <google/protobuf/generated_enum_reflection.h>
 #include <google/protobuf/unknown_field_set.h>
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
@@ -47,7 +48,7 @@ struct TableStruct_tradingcore2_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxillaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[2]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[3]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -58,16 +59,45 @@ namespace tradingcore2pb {
 class TrainData;
 class TrainDataDefaultTypeInternal;
 extern TrainDataDefaultTypeInternal _TrainData_default_instance_;
+class TrainNodeResult;
+class TrainNodeResultDefaultTypeInternal;
+extern TrainNodeResultDefaultTypeInternal _TrainNodeResult_default_instance_;
 class TrainResult;
 class TrainResultDefaultTypeInternal;
 extern TrainResultDefaultTypeInternal _TrainResult_default_instance_;
 }  // namespace tradingcore2pb
 PROTOBUF_NAMESPACE_OPEN
 template<> ::tradingcore2pb::TrainData* Arena::CreateMaybeMessage<::tradingcore2pb::TrainData>(Arena*);
+template<> ::tradingcore2pb::TrainNodeResult* Arena::CreateMaybeMessage<::tradingcore2pb::TrainNodeResult>(Arena*);
 template<> ::tradingcore2pb::TrainResult* Arena::CreateMaybeMessage<::tradingcore2pb::TrainResult>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace tradingcore2pb {
 
+enum ErrorCode : int {
+  ERR_NOERR = 0,
+  ERR_NOEXCHANGE = 1,
+  ErrorCode_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::min(),
+  ErrorCode_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::max()
+};
+bool ErrorCode_IsValid(int value);
+constexpr ErrorCode ErrorCode_MIN = ERR_NOERR;
+constexpr ErrorCode ErrorCode_MAX = ERR_NOEXCHANGE;
+constexpr int ErrorCode_ARRAYSIZE = ErrorCode_MAX + 1;
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* ErrorCode_descriptor();
+template<typename T>
+inline const std::string& ErrorCode_Name(T enum_t_value) {
+  static_assert(::std::is_same<T, ErrorCode>::value ||
+    ::std::is_integral<T>::value,
+    "Incorrect type passed to function ErrorCode_Name.");
+  return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
+    ErrorCode_descriptor(), enum_t_value);
+}
+inline bool ErrorCode_Parse(
+    const std::string& name, ErrorCode* value) {
+  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<ErrorCode>(
+    ErrorCode_descriptor(), name, value);
+}
 // ===================================================================
 
 class TrainData :
@@ -270,6 +300,240 @@ class TrainData :
 };
 // -------------------------------------------------------------------
 
+class TrainNodeResult :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tradingcore2pb.TrainNodeResult) */ {
+ public:
+  TrainNodeResult();
+  virtual ~TrainNodeResult();
+
+  TrainNodeResult(const TrainNodeResult& from);
+  TrainNodeResult(TrainNodeResult&& from) noexcept
+    : TrainNodeResult() {
+    *this = ::std::move(from);
+  }
+
+  inline TrainNodeResult& operator=(const TrainNodeResult& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline TrainNodeResult& operator=(TrainNodeResult&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const TrainNodeResult& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const TrainNodeResult* internal_default_instance() {
+    return reinterpret_cast<const TrainNodeResult*>(
+               &_TrainNodeResult_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    1;
+
+  friend void swap(TrainNodeResult& a, TrainNodeResult& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(TrainNodeResult* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline TrainNodeResult* New() const final {
+    return CreateMaybeMessage<TrainNodeResult>(nullptr);
+  }
+
+  TrainNodeResult* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<TrainNodeResult>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const TrainNodeResult& from);
+  void MergeFrom(const TrainNodeResult& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(TrainNodeResult* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "tradingcore2pb.TrainNodeResult";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_tradingcore2_2eproto);
+    return ::descriptor_table_tradingcore2_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kNameFieldNumber = 10,
+    kMaxDrawdownFieldNumber = 1,
+    kSharpeFieldNumber = 2,
+    kAnnualizedReturnsFieldNumber = 3,
+    kAnnualizedVolatilityFieldNumber = 4,
+    kTotalReturnsFieldNumber = 5,
+    kTradingTimesFieldNumber = 6,
+    kFailTimesFieldNumber = 7,
+    kStoplossTimesFieldNumber = 8,
+    kWinRateFieldNumber = 9,
+  };
+  // string name = 10;
+  void clear_name();
+  const std::string& name() const;
+  void set_name(const std::string& value);
+  void set_name(std::string&& value);
+  void set_name(const char* value);
+  void set_name(const char* value, size_t size);
+  std::string* mutable_name();
+  std::string* release_name();
+  void set_allocated_name(std::string* name);
+  private:
+  const std::string& _internal_name() const;
+  void _internal_set_name(const std::string& value);
+  std::string* _internal_mutable_name();
+  public:
+
+  // float maxDrawdown = 1;
+  void clear_maxdrawdown();
+  float maxdrawdown() const;
+  void set_maxdrawdown(float value);
+  private:
+  float _internal_maxdrawdown() const;
+  void _internal_set_maxdrawdown(float value);
+  public:
+
+  // float sharpe = 2;
+  void clear_sharpe();
+  float sharpe() const;
+  void set_sharpe(float value);
+  private:
+  float _internal_sharpe() const;
+  void _internal_set_sharpe(float value);
+  public:
+
+  // float annualizedReturns = 3;
+  void clear_annualizedreturns();
+  float annualizedreturns() const;
+  void set_annualizedreturns(float value);
+  private:
+  float _internal_annualizedreturns() const;
+  void _internal_set_annualizedreturns(float value);
+  public:
+
+  // float annualizedVolatility = 4;
+  void clear_annualizedvolatility();
+  float annualizedvolatility() const;
+  void set_annualizedvolatility(float value);
+  private:
+  float _internal_annualizedvolatility() const;
+  void _internal_set_annualizedvolatility(float value);
+  public:
+
+  // float totalReturns = 5;
+  void clear_totalreturns();
+  float totalreturns() const;
+  void set_totalreturns(float value);
+  private:
+  float _internal_totalreturns() const;
+  void _internal_set_totalreturns(float value);
+  public:
+
+  // int32 tradingTimes = 6;
+  void clear_tradingtimes();
+  ::PROTOBUF_NAMESPACE_ID::int32 tradingtimes() const;
+  void set_tradingtimes(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_tradingtimes() const;
+  void _internal_set_tradingtimes(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // int32 failTimes = 7;
+  void clear_failtimes();
+  ::PROTOBUF_NAMESPACE_ID::int32 failtimes() const;
+  void set_failtimes(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_failtimes() const;
+  void _internal_set_failtimes(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // int32 stoplossTimes = 8;
+  void clear_stoplosstimes();
+  ::PROTOBUF_NAMESPACE_ID::int32 stoplosstimes() const;
+  void set_stoplosstimes(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_stoplosstimes() const;
+  void _internal_set_stoplosstimes(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // float winRate = 9;
+  void clear_winrate();
+  float winrate() const;
+  void set_winrate(float value);
+  private:
+  float _internal_winrate() const;
+  void _internal_set_winrate(float value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:tradingcore2pb.TrainNodeResult)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+  float maxdrawdown_;
+  float sharpe_;
+  float annualizedreturns_;
+  float annualizedvolatility_;
+  float totalreturns_;
+  ::PROTOBUF_NAMESPACE_ID::int32 tradingtimes_;
+  ::PROTOBUF_NAMESPACE_ID::int32 failtimes_;
+  ::PROTOBUF_NAMESPACE_ID::int32 stoplosstimes_;
+  float winrate_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_tradingcore2_2eproto;
+};
+// -------------------------------------------------------------------
+
 class TrainResult :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tradingcore2pb.TrainResult) */ {
  public:
@@ -312,7 +576,7 @@ class TrainResult :
                &_TrainResult_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    1;
+    2;
 
   friend void swap(TrainResult& a, TrainResult& b) {
     a.Swap(&b);
@@ -376,22 +640,33 @@ class TrainResult :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kExchangeNameFieldNumber = 11,
-    kAssetsNameFieldNumber = 12,
-    kStrategyNameFieldNumber = 13,
-    kStrParamFieldNumber = 14,
+    kNodesFieldNumber = 7,
+    kExchangeNameFieldNumber = 2,
+    kAssetsNameFieldNumber = 3,
+    kStrategyNameFieldNumber = 4,
+    kStrParamFieldNumber = 5,
     kTrainIDFieldNumber = 1,
-    kMaxDrawdownFieldNumber = 2,
-    kSharpeFieldNumber = 3,
-    kAnnualizedReturnsFieldNumber = 4,
-    kAnnualizedVolatilityFieldNumber = 5,
-    kTotalReturnsFieldNumber = 6,
-    kTradingTimesFieldNumber = 7,
-    kFailTimesFieldNumber = 8,
-    kStoplossTimesFieldNumber = 9,
-    kWinRateFieldNumber = 10,
+    kErrCodeFieldNumber = 6,
   };
-  // string exchangeName = 11;
+  // repeated .tradingcore2pb.TrainNodeResult nodes = 7;
+  int nodes_size() const;
+  private:
+  int _internal_nodes_size() const;
+  public:
+  void clear_nodes();
+  ::tradingcore2pb::TrainNodeResult* mutable_nodes(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingcore2pb::TrainNodeResult >*
+      mutable_nodes();
+  private:
+  const ::tradingcore2pb::TrainNodeResult& _internal_nodes(int index) const;
+  ::tradingcore2pb::TrainNodeResult* _internal_add_nodes();
+  public:
+  const ::tradingcore2pb::TrainNodeResult& nodes(int index) const;
+  ::tradingcore2pb::TrainNodeResult* add_nodes();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingcore2pb::TrainNodeResult >&
+      nodes() const;
+
+  // string exchangeName = 2;
   void clear_exchangename();
   const std::string& exchangename() const;
   void set_exchangename(const std::string& value);
@@ -407,7 +682,7 @@ class TrainResult :
   std::string* _internal_mutable_exchangename();
   public:
 
-  // string assetsName = 12;
+  // string assetsName = 3;
   void clear_assetsname();
   const std::string& assetsname() const;
   void set_assetsname(const std::string& value);
@@ -423,7 +698,7 @@ class TrainResult :
   std::string* _internal_mutable_assetsname();
   public:
 
-  // string strategyName = 13;
+  // string strategyName = 4;
   void clear_strategyname();
   const std::string& strategyname() const;
   void set_strategyname(const std::string& value);
@@ -439,7 +714,7 @@ class TrainResult :
   std::string* _internal_mutable_strategyname();
   public:
 
-  // string strParam = 14;
+  // string strParam = 5;
   void clear_strparam();
   const std::string& strparam() const;
   void set_strparam(const std::string& value);
@@ -464,85 +739,13 @@ class TrainResult :
   void _internal_set_trainid(::PROTOBUF_NAMESPACE_ID::int64 value);
   public:
 
-  // float maxDrawdown = 2;
-  void clear_maxdrawdown();
-  float maxdrawdown() const;
-  void set_maxdrawdown(float value);
+  // .tradingcore2pb.ErrorCode errCode = 6;
+  void clear_errcode();
+  ::tradingcore2pb::ErrorCode errcode() const;
+  void set_errcode(::tradingcore2pb::ErrorCode value);
   private:
-  float _internal_maxdrawdown() const;
-  void _internal_set_maxdrawdown(float value);
-  public:
-
-  // float sharpe = 3;
-  void clear_sharpe();
-  float sharpe() const;
-  void set_sharpe(float value);
-  private:
-  float _internal_sharpe() const;
-  void _internal_set_sharpe(float value);
-  public:
-
-  // float annualizedReturns = 4;
-  void clear_annualizedreturns();
-  float annualizedreturns() const;
-  void set_annualizedreturns(float value);
-  private:
-  float _internal_annualizedreturns() const;
-  void _internal_set_annualizedreturns(float value);
-  public:
-
-  // float annualizedVolatility = 5;
-  void clear_annualizedvolatility();
-  float annualizedvolatility() const;
-  void set_annualizedvolatility(float value);
-  private:
-  float _internal_annualizedvolatility() const;
-  void _internal_set_annualizedvolatility(float value);
-  public:
-
-  // float totalReturns = 6;
-  void clear_totalreturns();
-  float totalreturns() const;
-  void set_totalreturns(float value);
-  private:
-  float _internal_totalreturns() const;
-  void _internal_set_totalreturns(float value);
-  public:
-
-  // int32 tradingTimes = 7;
-  void clear_tradingtimes();
-  ::PROTOBUF_NAMESPACE_ID::int32 tradingtimes() const;
-  void set_tradingtimes(::PROTOBUF_NAMESPACE_ID::int32 value);
-  private:
-  ::PROTOBUF_NAMESPACE_ID::int32 _internal_tradingtimes() const;
-  void _internal_set_tradingtimes(::PROTOBUF_NAMESPACE_ID::int32 value);
-  public:
-
-  // int32 failTimes = 8;
-  void clear_failtimes();
-  ::PROTOBUF_NAMESPACE_ID::int32 failtimes() const;
-  void set_failtimes(::PROTOBUF_NAMESPACE_ID::int32 value);
-  private:
-  ::PROTOBUF_NAMESPACE_ID::int32 _internal_failtimes() const;
-  void _internal_set_failtimes(::PROTOBUF_NAMESPACE_ID::int32 value);
-  public:
-
-  // int32 stoplossTimes = 9;
-  void clear_stoplosstimes();
-  ::PROTOBUF_NAMESPACE_ID::int32 stoplosstimes() const;
-  void set_stoplosstimes(::PROTOBUF_NAMESPACE_ID::int32 value);
-  private:
-  ::PROTOBUF_NAMESPACE_ID::int32 _internal_stoplosstimes() const;
-  void _internal_set_stoplosstimes(::PROTOBUF_NAMESPACE_ID::int32 value);
-  public:
-
-  // float winRate = 10;
-  void clear_winrate();
-  float winrate() const;
-  void set_winrate(float value);
-  private:
-  float _internal_winrate() const;
-  void _internal_set_winrate(float value);
+  ::tradingcore2pb::ErrorCode _internal_errcode() const;
+  void _internal_set_errcode(::tradingcore2pb::ErrorCode value);
   public:
 
   // @@protoc_insertion_point(class_scope:tradingcore2pb.TrainResult)
@@ -550,20 +753,13 @@ class TrainResult :
   class _Internal;
 
   ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingcore2pb::TrainNodeResult > nodes_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr exchangename_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr assetsname_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr strategyname_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr strparam_;
   ::PROTOBUF_NAMESPACE_ID::int64 trainid_;
-  float maxdrawdown_;
-  float sharpe_;
-  float annualizedreturns_;
-  float annualizedvolatility_;
-  float totalreturns_;
-  ::PROTOBUF_NAMESPACE_ID::int32 tradingtimes_;
-  ::PROTOBUF_NAMESPACE_ID::int32 failtimes_;
-  ::PROTOBUF_NAMESPACE_ID::int32 stoplosstimes_;
-  float winrate_;
+  int errcode_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_tradingcore2_2eproto;
 };
@@ -840,6 +1036,250 @@ inline void TrainData::set_allocated_strparam(std::string* strparam) {
 
 // -------------------------------------------------------------------
 
+// TrainNodeResult
+
+// float maxDrawdown = 1;
+inline void TrainNodeResult::clear_maxdrawdown() {
+  maxdrawdown_ = 0;
+}
+inline float TrainNodeResult::_internal_maxdrawdown() const {
+  return maxdrawdown_;
+}
+inline float TrainNodeResult::maxdrawdown() const {
+  // @@protoc_insertion_point(field_get:tradingcore2pb.TrainNodeResult.maxDrawdown)
+  return _internal_maxdrawdown();
+}
+inline void TrainNodeResult::_internal_set_maxdrawdown(float value) {
+  
+  maxdrawdown_ = value;
+}
+inline void TrainNodeResult::set_maxdrawdown(float value) {
+  _internal_set_maxdrawdown(value);
+  // @@protoc_insertion_point(field_set:tradingcore2pb.TrainNodeResult.maxDrawdown)
+}
+
+// float sharpe = 2;
+inline void TrainNodeResult::clear_sharpe() {
+  sharpe_ = 0;
+}
+inline float TrainNodeResult::_internal_sharpe() const {
+  return sharpe_;
+}
+inline float TrainNodeResult::sharpe() const {
+  // @@protoc_insertion_point(field_get:tradingcore2pb.TrainNodeResult.sharpe)
+  return _internal_sharpe();
+}
+inline void TrainNodeResult::_internal_set_sharpe(float value) {
+  
+  sharpe_ = value;
+}
+inline void TrainNodeResult::set_sharpe(float value) {
+  _internal_set_sharpe(value);
+  // @@protoc_insertion_point(field_set:tradingcore2pb.TrainNodeResult.sharpe)
+}
+
+// float annualizedReturns = 3;
+inline void TrainNodeResult::clear_annualizedreturns() {
+  annualizedreturns_ = 0;
+}
+inline float TrainNodeResult::_internal_annualizedreturns() const {
+  return annualizedreturns_;
+}
+inline float TrainNodeResult::annualizedreturns() const {
+  // @@protoc_insertion_point(field_get:tradingcore2pb.TrainNodeResult.annualizedReturns)
+  return _internal_annualizedreturns();
+}
+inline void TrainNodeResult::_internal_set_annualizedreturns(float value) {
+  
+  annualizedreturns_ = value;
+}
+inline void TrainNodeResult::set_annualizedreturns(float value) {
+  _internal_set_annualizedreturns(value);
+  // @@protoc_insertion_point(field_set:tradingcore2pb.TrainNodeResult.annualizedReturns)
+}
+
+// float annualizedVolatility = 4;
+inline void TrainNodeResult::clear_annualizedvolatility() {
+  annualizedvolatility_ = 0;
+}
+inline float TrainNodeResult::_internal_annualizedvolatility() const {
+  return annualizedvolatility_;
+}
+inline float TrainNodeResult::annualizedvolatility() const {
+  // @@protoc_insertion_point(field_get:tradingcore2pb.TrainNodeResult.annualizedVolatility)
+  return _internal_annualizedvolatility();
+}
+inline void TrainNodeResult::_internal_set_annualizedvolatility(float value) {
+  
+  annualizedvolatility_ = value;
+}
+inline void TrainNodeResult::set_annualizedvolatility(float value) {
+  _internal_set_annualizedvolatility(value);
+  // @@protoc_insertion_point(field_set:tradingcore2pb.TrainNodeResult.annualizedVolatility)
+}
+
+// float totalReturns = 5;
+inline void TrainNodeResult::clear_totalreturns() {
+  totalreturns_ = 0;
+}
+inline float TrainNodeResult::_internal_totalreturns() const {
+  return totalreturns_;
+}
+inline float TrainNodeResult::totalreturns() const {
+  // @@protoc_insertion_point(field_get:tradingcore2pb.TrainNodeResult.totalReturns)
+  return _internal_totalreturns();
+}
+inline void TrainNodeResult::_internal_set_totalreturns(float value) {
+  
+  totalreturns_ = value;
+}
+inline void TrainNodeResult::set_totalreturns(float value) {
+  _internal_set_totalreturns(value);
+  // @@protoc_insertion_point(field_set:tradingcore2pb.TrainNodeResult.totalReturns)
+}
+
+// int32 tradingTimes = 6;
+inline void TrainNodeResult::clear_tradingtimes() {
+  tradingtimes_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 TrainNodeResult::_internal_tradingtimes() const {
+  return tradingtimes_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 TrainNodeResult::tradingtimes() const {
+  // @@protoc_insertion_point(field_get:tradingcore2pb.TrainNodeResult.tradingTimes)
+  return _internal_tradingtimes();
+}
+inline void TrainNodeResult::_internal_set_tradingtimes(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  tradingtimes_ = value;
+}
+inline void TrainNodeResult::set_tradingtimes(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_tradingtimes(value);
+  // @@protoc_insertion_point(field_set:tradingcore2pb.TrainNodeResult.tradingTimes)
+}
+
+// int32 failTimes = 7;
+inline void TrainNodeResult::clear_failtimes() {
+  failtimes_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 TrainNodeResult::_internal_failtimes() const {
+  return failtimes_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 TrainNodeResult::failtimes() const {
+  // @@protoc_insertion_point(field_get:tradingcore2pb.TrainNodeResult.failTimes)
+  return _internal_failtimes();
+}
+inline void TrainNodeResult::_internal_set_failtimes(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  failtimes_ = value;
+}
+inline void TrainNodeResult::set_failtimes(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_failtimes(value);
+  // @@protoc_insertion_point(field_set:tradingcore2pb.TrainNodeResult.failTimes)
+}
+
+// int32 stoplossTimes = 8;
+inline void TrainNodeResult::clear_stoplosstimes() {
+  stoplosstimes_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 TrainNodeResult::_internal_stoplosstimes() const {
+  return stoplosstimes_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 TrainNodeResult::stoplosstimes() const {
+  // @@protoc_insertion_point(field_get:tradingcore2pb.TrainNodeResult.stoplossTimes)
+  return _internal_stoplosstimes();
+}
+inline void TrainNodeResult::_internal_set_stoplosstimes(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  stoplosstimes_ = value;
+}
+inline void TrainNodeResult::set_stoplosstimes(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_stoplosstimes(value);
+  // @@protoc_insertion_point(field_set:tradingcore2pb.TrainNodeResult.stoplossTimes)
+}
+
+// float winRate = 9;
+inline void TrainNodeResult::clear_winrate() {
+  winrate_ = 0;
+}
+inline float TrainNodeResult::_internal_winrate() const {
+  return winrate_;
+}
+inline float TrainNodeResult::winrate() const {
+  // @@protoc_insertion_point(field_get:tradingcore2pb.TrainNodeResult.winRate)
+  return _internal_winrate();
+}
+inline void TrainNodeResult::_internal_set_winrate(float value) {
+  
+  winrate_ = value;
+}
+inline void TrainNodeResult::set_winrate(float value) {
+  _internal_set_winrate(value);
+  // @@protoc_insertion_point(field_set:tradingcore2pb.TrainNodeResult.winRate)
+}
+
+// string name = 10;
+inline void TrainNodeResult::clear_name() {
+  name_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline const std::string& TrainNodeResult::name() const {
+  // @@protoc_insertion_point(field_get:tradingcore2pb.TrainNodeResult.name)
+  return _internal_name();
+}
+inline void TrainNodeResult::set_name(const std::string& value) {
+  _internal_set_name(value);
+  // @@protoc_insertion_point(field_set:tradingcore2pb.TrainNodeResult.name)
+}
+inline std::string* TrainNodeResult::mutable_name() {
+  // @@protoc_insertion_point(field_mutable:tradingcore2pb.TrainNodeResult.name)
+  return _internal_mutable_name();
+}
+inline const std::string& TrainNodeResult::_internal_name() const {
+  return name_.GetNoArena();
+}
+inline void TrainNodeResult::_internal_set_name(const std::string& value) {
+  
+  name_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+}
+inline void TrainNodeResult::set_name(std::string&& value) {
+  
+  name_.SetNoArena(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:tradingcore2pb.TrainNodeResult.name)
+}
+inline void TrainNodeResult::set_name(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  name_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:tradingcore2pb.TrainNodeResult.name)
+}
+inline void TrainNodeResult::set_name(const char* value, size_t size) {
+  
+  name_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:tradingcore2pb.TrainNodeResult.name)
+}
+inline std::string* TrainNodeResult::_internal_mutable_name() {
+  
+  return name_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline std::string* TrainNodeResult::release_name() {
+  // @@protoc_insertion_point(field_release:tradingcore2pb.TrainNodeResult.name)
+  
+  return name_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline void TrainNodeResult::set_allocated_name(std::string* name) {
+  if (name != nullptr) {
+    
+  } else {
+    
+  }
+  name_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), name);
+  // @@protoc_insertion_point(field_set_allocated:tradingcore2pb.TrainNodeResult.name)
+}
+
+// -------------------------------------------------------------------
+
 // TrainResult
 
 // int64 trainID = 1;
@@ -862,187 +1302,7 @@ inline void TrainResult::set_trainid(::PROTOBUF_NAMESPACE_ID::int64 value) {
   // @@protoc_insertion_point(field_set:tradingcore2pb.TrainResult.trainID)
 }
 
-// float maxDrawdown = 2;
-inline void TrainResult::clear_maxdrawdown() {
-  maxdrawdown_ = 0;
-}
-inline float TrainResult::_internal_maxdrawdown() const {
-  return maxdrawdown_;
-}
-inline float TrainResult::maxdrawdown() const {
-  // @@protoc_insertion_point(field_get:tradingcore2pb.TrainResult.maxDrawdown)
-  return _internal_maxdrawdown();
-}
-inline void TrainResult::_internal_set_maxdrawdown(float value) {
-  
-  maxdrawdown_ = value;
-}
-inline void TrainResult::set_maxdrawdown(float value) {
-  _internal_set_maxdrawdown(value);
-  // @@protoc_insertion_point(field_set:tradingcore2pb.TrainResult.maxDrawdown)
-}
-
-// float sharpe = 3;
-inline void TrainResult::clear_sharpe() {
-  sharpe_ = 0;
-}
-inline float TrainResult::_internal_sharpe() const {
-  return sharpe_;
-}
-inline float TrainResult::sharpe() const {
-  // @@protoc_insertion_point(field_get:tradingcore2pb.TrainResult.sharpe)
-  return _internal_sharpe();
-}
-inline void TrainResult::_internal_set_sharpe(float value) {
-  
-  sharpe_ = value;
-}
-inline void TrainResult::set_sharpe(float value) {
-  _internal_set_sharpe(value);
-  // @@protoc_insertion_point(field_set:tradingcore2pb.TrainResult.sharpe)
-}
-
-// float annualizedReturns = 4;
-inline void TrainResult::clear_annualizedreturns() {
-  annualizedreturns_ = 0;
-}
-inline float TrainResult::_internal_annualizedreturns() const {
-  return annualizedreturns_;
-}
-inline float TrainResult::annualizedreturns() const {
-  // @@protoc_insertion_point(field_get:tradingcore2pb.TrainResult.annualizedReturns)
-  return _internal_annualizedreturns();
-}
-inline void TrainResult::_internal_set_annualizedreturns(float value) {
-  
-  annualizedreturns_ = value;
-}
-inline void TrainResult::set_annualizedreturns(float value) {
-  _internal_set_annualizedreturns(value);
-  // @@protoc_insertion_point(field_set:tradingcore2pb.TrainResult.annualizedReturns)
-}
-
-// float annualizedVolatility = 5;
-inline void TrainResult::clear_annualizedvolatility() {
-  annualizedvolatility_ = 0;
-}
-inline float TrainResult::_internal_annualizedvolatility() const {
-  return annualizedvolatility_;
-}
-inline float TrainResult::annualizedvolatility() const {
-  // @@protoc_insertion_point(field_get:tradingcore2pb.TrainResult.annualizedVolatility)
-  return _internal_annualizedvolatility();
-}
-inline void TrainResult::_internal_set_annualizedvolatility(float value) {
-  
-  annualizedvolatility_ = value;
-}
-inline void TrainResult::set_annualizedvolatility(float value) {
-  _internal_set_annualizedvolatility(value);
-  // @@protoc_insertion_point(field_set:tradingcore2pb.TrainResult.annualizedVolatility)
-}
-
-// float totalReturns = 6;
-inline void TrainResult::clear_totalreturns() {
-  totalreturns_ = 0;
-}
-inline float TrainResult::_internal_totalreturns() const {
-  return totalreturns_;
-}
-inline float TrainResult::totalreturns() const {
-  // @@protoc_insertion_point(field_get:tradingcore2pb.TrainResult.totalReturns)
-  return _internal_totalreturns();
-}
-inline void TrainResult::_internal_set_totalreturns(float value) {
-  
-  totalreturns_ = value;
-}
-inline void TrainResult::set_totalreturns(float value) {
-  _internal_set_totalreturns(value);
-  // @@protoc_insertion_point(field_set:tradingcore2pb.TrainResult.totalReturns)
-}
-
-// int32 tradingTimes = 7;
-inline void TrainResult::clear_tradingtimes() {
-  tradingtimes_ = 0;
-}
-inline ::PROTOBUF_NAMESPACE_ID::int32 TrainResult::_internal_tradingtimes() const {
-  return tradingtimes_;
-}
-inline ::PROTOBUF_NAMESPACE_ID::int32 TrainResult::tradingtimes() const {
-  // @@protoc_insertion_point(field_get:tradingcore2pb.TrainResult.tradingTimes)
-  return _internal_tradingtimes();
-}
-inline void TrainResult::_internal_set_tradingtimes(::PROTOBUF_NAMESPACE_ID::int32 value) {
-  
-  tradingtimes_ = value;
-}
-inline void TrainResult::set_tradingtimes(::PROTOBUF_NAMESPACE_ID::int32 value) {
-  _internal_set_tradingtimes(value);
-  // @@protoc_insertion_point(field_set:tradingcore2pb.TrainResult.tradingTimes)
-}
-
-// int32 failTimes = 8;
-inline void TrainResult::clear_failtimes() {
-  failtimes_ = 0;
-}
-inline ::PROTOBUF_NAMESPACE_ID::int32 TrainResult::_internal_failtimes() const {
-  return failtimes_;
-}
-inline ::PROTOBUF_NAMESPACE_ID::int32 TrainResult::failtimes() const {
-  // @@protoc_insertion_point(field_get:tradingcore2pb.TrainResult.failTimes)
-  return _internal_failtimes();
-}
-inline void TrainResult::_internal_set_failtimes(::PROTOBUF_NAMESPACE_ID::int32 value) {
-  
-  failtimes_ = value;
-}
-inline void TrainResult::set_failtimes(::PROTOBUF_NAMESPACE_ID::int32 value) {
-  _internal_set_failtimes(value);
-  // @@protoc_insertion_point(field_set:tradingcore2pb.TrainResult.failTimes)
-}
-
-// int32 stoplossTimes = 9;
-inline void TrainResult::clear_stoplosstimes() {
-  stoplosstimes_ = 0;
-}
-inline ::PROTOBUF_NAMESPACE_ID::int32 TrainResult::_internal_stoplosstimes() const {
-  return stoplosstimes_;
-}
-inline ::PROTOBUF_NAMESPACE_ID::int32 TrainResult::stoplosstimes() const {
-  // @@protoc_insertion_point(field_get:tradingcore2pb.TrainResult.stoplossTimes)
-  return _internal_stoplosstimes();
-}
-inline void TrainResult::_internal_set_stoplosstimes(::PROTOBUF_NAMESPACE_ID::int32 value) {
-  
-  stoplosstimes_ = value;
-}
-inline void TrainResult::set_stoplosstimes(::PROTOBUF_NAMESPACE_ID::int32 value) {
-  _internal_set_stoplosstimes(value);
-  // @@protoc_insertion_point(field_set:tradingcore2pb.TrainResult.stoplossTimes)
-}
-
-// float winRate = 10;
-inline void TrainResult::clear_winrate() {
-  winrate_ = 0;
-}
-inline float TrainResult::_internal_winrate() const {
-  return winrate_;
-}
-inline float TrainResult::winrate() const {
-  // @@protoc_insertion_point(field_get:tradingcore2pb.TrainResult.winRate)
-  return _internal_winrate();
-}
-inline void TrainResult::_internal_set_winrate(float value) {
-  
-  winrate_ = value;
-}
-inline void TrainResult::set_winrate(float value) {
-  _internal_set_winrate(value);
-  // @@protoc_insertion_point(field_set:tradingcore2pb.TrainResult.winRate)
-}
-
-// string exchangeName = 11;
+// string exchangeName = 2;
 inline void TrainResult::clear_exchangename() {
   exchangename_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
@@ -1102,7 +1362,7 @@ inline void TrainResult::set_allocated_exchangename(std::string* exchangename) {
   // @@protoc_insertion_point(field_set_allocated:tradingcore2pb.TrainResult.exchangeName)
 }
 
-// string assetsName = 12;
+// string assetsName = 3;
 inline void TrainResult::clear_assetsname() {
   assetsname_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
@@ -1162,7 +1422,7 @@ inline void TrainResult::set_allocated_assetsname(std::string* assetsname) {
   // @@protoc_insertion_point(field_set_allocated:tradingcore2pb.TrainResult.assetsName)
 }
 
-// string strategyName = 13;
+// string strategyName = 4;
 inline void TrainResult::clear_strategyname() {
   strategyname_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
@@ -1222,7 +1482,7 @@ inline void TrainResult::set_allocated_strategyname(std::string* strategyname) {
   // @@protoc_insertion_point(field_set_allocated:tradingcore2pb.TrainResult.strategyName)
 }
 
-// string strParam = 14;
+// string strParam = 5;
 inline void TrainResult::clear_strparam() {
   strparam_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
@@ -1282,15 +1542,86 @@ inline void TrainResult::set_allocated_strparam(std::string* strparam) {
   // @@protoc_insertion_point(field_set_allocated:tradingcore2pb.TrainResult.strParam)
 }
 
+// .tradingcore2pb.ErrorCode errCode = 6;
+inline void TrainResult::clear_errcode() {
+  errcode_ = 0;
+}
+inline ::tradingcore2pb::ErrorCode TrainResult::_internal_errcode() const {
+  return static_cast< ::tradingcore2pb::ErrorCode >(errcode_);
+}
+inline ::tradingcore2pb::ErrorCode TrainResult::errcode() const {
+  // @@protoc_insertion_point(field_get:tradingcore2pb.TrainResult.errCode)
+  return _internal_errcode();
+}
+inline void TrainResult::_internal_set_errcode(::tradingcore2pb::ErrorCode value) {
+  
+  errcode_ = value;
+}
+inline void TrainResult::set_errcode(::tradingcore2pb::ErrorCode value) {
+  _internal_set_errcode(value);
+  // @@protoc_insertion_point(field_set:tradingcore2pb.TrainResult.errCode)
+}
+
+// repeated .tradingcore2pb.TrainNodeResult nodes = 7;
+inline int TrainResult::_internal_nodes_size() const {
+  return nodes_.size();
+}
+inline int TrainResult::nodes_size() const {
+  return _internal_nodes_size();
+}
+inline void TrainResult::clear_nodes() {
+  nodes_.Clear();
+}
+inline ::tradingcore2pb::TrainNodeResult* TrainResult::mutable_nodes(int index) {
+  // @@protoc_insertion_point(field_mutable:tradingcore2pb.TrainResult.nodes)
+  return nodes_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingcore2pb::TrainNodeResult >*
+TrainResult::mutable_nodes() {
+  // @@protoc_insertion_point(field_mutable_list:tradingcore2pb.TrainResult.nodes)
+  return &nodes_;
+}
+inline const ::tradingcore2pb::TrainNodeResult& TrainResult::_internal_nodes(int index) const {
+  return nodes_.Get(index);
+}
+inline const ::tradingcore2pb::TrainNodeResult& TrainResult::nodes(int index) const {
+  // @@protoc_insertion_point(field_get:tradingcore2pb.TrainResult.nodes)
+  return _internal_nodes(index);
+}
+inline ::tradingcore2pb::TrainNodeResult* TrainResult::_internal_add_nodes() {
+  return nodes_.Add();
+}
+inline ::tradingcore2pb::TrainNodeResult* TrainResult::add_nodes() {
+  // @@protoc_insertion_point(field_add:tradingcore2pb.TrainResult.nodes)
+  return _internal_add_nodes();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingcore2pb::TrainNodeResult >&
+TrainResult::nodes() const {
+  // @@protoc_insertion_point(field_list:tradingcore2pb.TrainResult.nodes)
+  return nodes_;
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 
 // @@protoc_insertion_point(namespace_scope)
 
 }  // namespace tradingcore2pb
+
+PROTOBUF_NAMESPACE_OPEN
+
+template <> struct is_proto_enum< ::tradingcore2pb::ErrorCode> : ::std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::tradingcore2pb::ErrorCode>() {
+  return ::tradingcore2pb::ErrorCode_descriptor();
+}
+
+PROTOBUF_NAMESPACE_CLOSE
 
 // @@protoc_insertion_point(global_scope)
 

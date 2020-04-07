@@ -1,7 +1,8 @@
 #include <grpcpp/ext/proto_server_reflection_plugin.h>
 #include <grpcpp/grpcpp.h>
 #include <grpcpp/health_check_service_interface.h>
-#include <tradingcore2/server/train.h>
+#include <tradingcore2/exchangemgr.h>
+#include <tradingcore2/server/train2.h>
 
 #include <iostream>
 #include <memory>
@@ -18,8 +19,13 @@ class TrainService2Impl final
       ::grpc::ServerContext* context,
       const ::tradingcore2pb::TrainData* request,
       ::tradingcore2pb::TrainResult* response) override {
+    auto mgr = ExchangeMgr::getSingleton();
+    auto exchange = mgr->getExchange(request->exchangename().c_str());
+    if (exchange == NULL) {
+      response->set_errcode(tradingcore2pb::ERR_NOEXCHANGE);
 
-
+      return grpc::Status::OK;
+    }
 
     return grpc::Status::OK;
   }

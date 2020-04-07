@@ -45,6 +45,27 @@ bool trainSingleIndicator2(Exchange& exchange, const char* assetsName,
                            IndicatorDataValue off1, IndicatorDataValue off2,
                            IndicatorDataValue maxoff2, float minValidReturn);
 
+// _trainSingleIndicator2Ex -
+// 单独一个indicator的策略，考虑方向，一次只算若干次数，用于server分布式运算
+bool _trainSingleIndicator2Ex(TrainResultList& lst, Exchange& exchange,
+                              const char* assetsName, const char* indicatorName,
+                              const char* outputPath, Money invest,
+                              int avgtimes, IndicatorDataValue off0,
+                              IndicatorDataValue off1, IndicatorDataValue off2,
+                              IndicatorDataValue maxoff2, float minValidReturn,
+                              IndicatorDataValue minval,
+                              IndicatorDataValue maxval, IndicatorDataValue cv0,
+                              IndicatorDataValue cv0off);
+
+// trainSingleIndicator2Ex -
+// 单独一个indicator的策略，考虑方向，调用 _trainSingleIndicator2Ex
+bool trainSingleIndicator2Ex(Exchange& exchange, const char* assetsName,
+                             const char* indicatorName, const char* outputPath,
+                             Money invest, int avgtimes,
+                             IndicatorDataValue off0, IndicatorDataValue off1,
+                             IndicatorDataValue off2,
+                             IndicatorDataValue maxoff2, float minValidReturn);
+
 CR2END
 
 #endif  // __TRADINGCORE2_TRAIN_H__

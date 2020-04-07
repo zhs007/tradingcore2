@@ -73,4 +73,5 @@ valgrind --tool=memcheck --leak-check=full --show-reachable=yes ./tradingcore2
 # 注意事项
 
 - zlib 项目如果手动 build 时，会删除一个文件，所以很容易在项目提交时，造成 submodule dirty 。
-- rocksdb 项目有很多依赖需要手动装，现在全部添加了 submodule ，对项目有少许修改。
+- rocksdb 项目有很多依赖需要手动装，现在全部添加了 submodule ，不用手动装官方install文档里的那些依赖了。
+- cmake 对link项目顺序有要求，要先add直接的依赖项目，再add依赖的依赖。

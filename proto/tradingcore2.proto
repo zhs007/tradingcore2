@@ -1,6 +1,11 @@
 syntax = "proto3";
 package tradingcore2pb;
 
+enum ErrorCode {
+    ERR_NOERR = 0;
+    ERR_NOEXCHANGE = 1;
+}
+
 // TrainData - train data
 message TrainData {
     int64 trainID = 1;
@@ -10,22 +15,28 @@ message TrainData {
     string strParam = 5;
 }
 
+message TrainNodeResult {
+    float maxDrawdown = 1;
+    float sharpe = 2;
+    float annualizedReturns = 3;
+    float annualizedVolatility = 4;
+    float totalReturns = 5;
+    int32 tradingTimes = 6;
+    int32 failTimes = 7;
+    int32 stoplossTimes = 8;
+    float winRate = 9;
+    string name = 10;
+}
+
 // TrainResult - train result
 message TrainResult {
     int64 trainID = 1;
-    float maxDrawdown = 2;
-    float sharpe = 3;
-    float annualizedReturns = 4;
-    float annualizedVolatility = 5;
-    float totalReturns = 6;
-    int32 tradingTimes = 7;
-    int32 failTimes = 8;
-    int32 stoplossTimes = 9;
-    float winRate = 10;
-    string exchangeName = 11;
-    string assetsName = 12;
-    string strategyName = 13;
-    string strParam = 14;
+    string exchangeName = 2;
+    string assetsName = 3;
+    string strategyName = 4;
+    string strParam = 5;
+    ErrorCode errCode = 6;
+    repeated TrainNodeResult nodes = 7;
 }
 
 // TradingCore2Service - TradingCore2 service

@@ -62,8 +62,8 @@ void train() {
   // tr2::trainSingleIndicator2(cnfund, "110022", "rsi", "../output", 10000, 5,
   // 2,
   //                            5, 2, 10, 2);
-  tr2::trainSingleIndicator2(*cnfund, "110022", "rsi", "../output", 10000, 5,
-                             10, 5, 10, 10, 2);
+  tr2::trainSingleIndicator2Ex(*cnfund, "110022", "rsi", "../output", 10000, 5,
+                               10, 5, 10, 10, 2);
 }
 
 void startServ(const char* addr) {
