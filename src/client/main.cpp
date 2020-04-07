@@ -8,12 +8,18 @@ void train(const char* addr) {
                                     2);
 }
 
-int main() {
+int main(int argc, char* argv[]) {
+  if (argc != 2) {
+    printf("please type client cfgfile.");
+
+    return -1;
+  }
+
   tr2::regAllIndicators();
   tr2::regAllExchanges();
 
   tr2::Config cfg;
-  tr2::loadConfig(cfg, "../cfg/config.yaml.default");
+  tr2::loadConfig(cfg, argv[1]);
 
   auto mgr = tr2::ExchangeMgr::getSingleton();
   mgr->init(cfg);
