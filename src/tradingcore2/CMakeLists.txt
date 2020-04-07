@@ -16,6 +16,7 @@ aux_source_directory(./indicator DIR_LIB_INDICATOR_SRCS)
 aux_source_directory(./strategy DIR_LIB_STRATEGY_SRCS)
 aux_source_directory(./proto DIR_LIB_PROTO_SRCS)
 aux_source_directory(./server DIR_LIB_SERVER_SRCS)
+aux_source_directory(./client DIR_LIB_CLIENT_SRCS)
 
 add_library(libtradingcore2 
     ${DIR_LIB_SRCS} 
@@ -23,4 +24,5 @@ add_library(libtradingcore2
     ${DIR_LIB_INDICATOR_SRCS} 
     ${DIR_LIB_STRATEGY_SRCS}
     ${DIR_LIB_PROTO_SRCS}
-    ${DIR_LIB_SERVER_SRCS})
+    ${DIR_LIB_SERVER_SRCS}
+    ${DIR_LIB_CLIENT_SRCS})

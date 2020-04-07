@@ -6,6 +6,7 @@
 #include <tradingcore2/assets.h>
 #include <tradingcore2/basedef.h>
 #include <tradingcore2/candle.h>
+#include <tradingcore2/client/train2.h>
 #include <tradingcore2/csv.h>
 #include <tradingcore2/exchange.h>
 #include <tradingcore2/exchange/cnfund.h>

@@ -1,6 +1,7 @@
 #include <grpc/support/log.h>
 #include <grpcpp/grpcpp.h>
 #include <tradingcore2/client/train2.h>
+#include <tradingcore2/exchange.h>
 #include <tradingcore2/train.h>
 #include <tradingcore2/utils.h>
 
@@ -28,10 +29,34 @@ class TrainClient2 {
       : m_stub(tradingcore2pb::TradingCore2Service::NewStub(channel)) {}
 
   // Assembles the client's payload and sends it to the server.
-  void train(const std::string& user) {
+  void train(const char* exchangeName, const char* assetsName,
+             const char* indicatorName, const char* outputPath, Money invest,
+             int avgtimes, IndicatorDataValue off0, IndicatorDataValue off1,
+             IndicatorDataValue off2, IndicatorDataValue maxoff2,
+             float minValidReturn, IndicatorDataValue minval,
+             IndicatorDataValue maxval, IndicatorDataValue cv0,
+             IndicatorDataValue cv0off) {
     // Data we are sending to the server.
     // HelloRequest request;
     tradingcore2pb::TrainData request;
+
+    request.set_exchangename(exchangeName);
+    request.set_assetsname(assetsName);
+    request.set_invest(invest);
+    request.set_outputpath(outputPath);
+    request.set_minvalidreturn(minValidReturn);
+
+    auto si2 = request.mutable_si2();
+    si2->set_indicatorname(indicatorName);
+    si2->set_avgtimes(avgtimes);
+    si2->set_off0(off0);
+    si2->set_off1(off1);
+    si2->set_off2(off2);
+    si2->set_maxoff2(maxoff2);
+    si2->set_minval(minval);
+    si2->set_maxval(maxval);
+    si2->set_cv0(cv0);
+    si2->set_cv0off(cv0off);
 
     // request.set_name(user);
 
@@ -71,7 +96,7 @@ class TrainClient2 {
       GPR_ASSERT(ok);
 
       if (call->status.ok())
-        std::cout << "RPC received: " << call->reply.trainid() << std::endl;
+        std::cout << "RPC received: " << call->reply.nodes_size() << std::endl;
       else
         std::cout << "RPC failed" << std::endl;
 
@@ -147,10 +172,9 @@ bool startTrainSingleIndicator2Ex(
 
   for (auto cv0 = minval; cv0 <= maxval; cv0 += off0) {
     for (auto cv0off = off2; cv0off <= maxoff2; cv0off += off2) {
-      _trainSingleIndicator2Ex(lst, exchange, assetsName, indicatorName,
-                               outputPath, invest, avgtimes, off0, off1, off2,
-                               maxoff2, minValidReturn, minval, maxval, cv0,
-                               cv0off);
+      client.train(exchange.getTypeName(), assetsName, indicatorName,
+                   outputPath, invest, avgtimes, off0, off1, off2, maxoff2,
+                   minValidReturn, minval, maxval, cv0, cv0off);
 
       curtimes++;
 
@@ -165,10 +189,10 @@ bool startTrainSingleIndicator2Ex(
     }
   }
 
-  for (int i = 0; i < 100; i++) {
-    // std::string user("world " + std::to_string(i));
-    client.train(user);  // The actual RPC call!
-  }
+  //   for (int i = 0; i < 100; i++) {
+  //     // std::string user("world " + std::to_string(i));
+  //     client.train(user);  // The actual RPC call!
+  //   }
 
   //   std::cout << "Press control-c to quit" << std::endl << std::endl;
   thread_.join();  // blocks forever
