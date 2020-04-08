@@ -79,7 +79,7 @@ class TrainService2Impl final
     assert(request != NULL);
     assert(response != NULL);
 
-    AutoIncDec aid(&m_curTaskNums);
+    AutoIncDec<std::atomic<int>> aid(&m_curTaskNums);
 
     auto req = request->train();
     auto res = response->mutable_train();

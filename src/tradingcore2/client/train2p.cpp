@@ -39,7 +39,7 @@ class TrainClient2Pool {
 
  public:
   void init(const Config& cfg) {
-    std::unique_lock lock(m_mtx);
+    std::unique_lock<std::mutex> lock(m_mtx);
 
     // assert(m_threads.empty());
     assert(m_pCfg == NULL);
@@ -72,7 +72,7 @@ class TrainClient2Pool {
 
   void start() {
     {
-      std::unique_lock lock(m_mtx);
+      std::unique_lock<std::mutex> lock(m_mtx);
       m_isStop = false;
     }
 
@@ -102,7 +102,7 @@ class TrainClient2Pool {
   }
 
   void release() {
-    std::unique_lock lock(m_mtx);
+    std::unique_lock<std::mutex> lock(m_mtx);
 
     m_isStop = true;
 
@@ -122,7 +122,7 @@ class TrainClient2Pool {
              IndicatorDataValue maxval, IndicatorDataValue cv0,
              IndicatorDataValue cv0off) {
     {
-      std::unique_lock lock(m_mtx);
+      std::unique_lock<std::mutex> lock(m_mtx);
       if (m_isStop) {
         return;
       }
@@ -218,7 +218,7 @@ class TrainClient2Pool {
     tradingcore2pb::RequestTrain* rt = NULL;
 
     {
-      std::unique_lock lock(m_mtx);
+      std::unique_lock<std::mutex> lock(m_mtx);
       if (m_pool.empty()) {
         return new tradingcore2pb::RequestTrain();
       }
@@ -235,7 +235,7 @@ class TrainClient2Pool {
   void deleteRequestTrain(tradingcore2pb::RequestTrain* rt) {
     assert(rt != NULL);
 
-    std::unique_lock lock(m_mtx);
+    std::unique_lock<std::mutex> lock(m_mtx);
     m_pool.push(rt);
   }
 
@@ -250,12 +250,12 @@ class TrainClient2Pool {
   void pushRequestTrain(tradingcore2pb::RequestTrain* rt) {
     assert(rt != NULL);
 
-    std::unique_lock lock(m_mtx);
+    std::unique_lock<std::mutex> lock(m_mtx);
     m_tasks.push(rt);
   }
 
   tradingcore2pb::RequestTrain* popRequestTrain() {
-    std::unique_lock lock(m_mtx);
+    std::unique_lock<std::mutex> lock(m_mtx);
     if (m_tasks.empty()) {
       return NULL;
     }
