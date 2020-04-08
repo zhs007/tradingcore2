@@ -9,12 +9,16 @@
 CR2BEGIN
 
 struct Config {
+  // for exchangemgr
   std::vector<std::string> exchanges;
 
+  // for cnfund
   std::string cnfundpath;
 
+  // for server
   std::string bindaddr;
 
+  // for client
   std::vector<std::string> servs;
 };
 

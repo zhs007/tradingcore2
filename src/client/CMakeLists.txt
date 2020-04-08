@@ -1,9 +1,9 @@
 cmake_minimum_required(VERSION 3.0.0)
 
-include_directories(../include)
+include_directories(../../include)
 
-link_directories(../deps/gsl/build)
-link_directories(./deps/yaml-cpp/build)
+link_directories(../../deps/gsl/build)
+link_directories(../../deps/yaml-cpp/build)
 
 aux_source_directory(. DIR_MAIN_SRCS)
 

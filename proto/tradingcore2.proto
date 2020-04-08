@@ -8,6 +8,14 @@ enum ErrorCode {
     ERR_NOASSETS = 3;
 }
 
+message BasicRequestData {
+    string token = 1;
+}
+
+message BasicReplyData {
+    ErrorCode errCode = 1;
+}
+
 message TrainSingleIndicator2Ex {
     string indicatorName = 1;
     int32 avgtimes = 2;
@@ -61,8 +69,32 @@ message TrainResult {
     repeated TrainNodeResult nodes = 7;
 }
 
+// RequestServerInfo - request server info
+message RequestServerInfo {
+    BasicRequestData basicRequest = 1;
+}
+
+message ReplyServerInfo {
+    BasicReplyData basicReply = 1;
+    int32 maxTasks = 2;
+    int32 curTasks = 3;
+}
+
+message RequestTrain {
+    BasicRequestData basicRequest = 1;
+    TrainData train = 2;
+}
+
+message ReplyTrain {
+    BasicReplyData basicReply = 1;
+    TrainResult train = 2;
+}
+
 // TradingCore2Service - TradingCore2 service
 service TradingCore2Service {
+    // getServerInfo - get server infomation
+    rpc getServerInfo(RequestServerInfo) returns (ReplyServerInfo) {}
+
     // train - train
-    rpc train(TrainData) returns (TrainResult) {}
+    rpc train(RequestTrain) returns (ReplyTrain) {}
 }

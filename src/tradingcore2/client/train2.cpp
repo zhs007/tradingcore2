@@ -12,11 +12,11 @@
 
 #include "../proto/tradingcore2.grpc.pb.h"
 
-using grpc::Channel;
-using grpc::ClientAsyncResponseReader;
-using grpc::ClientContext;
-using grpc::CompletionQueue;
-using grpc::Status;
+// using grpc::Channel;
+// using grpc::ClientAsyncResponseReader;
+// using grpc::ClientContext;
+// using grpc::CompletionQueue;
+// using grpc::Status;
 // using helloworld::Greeter;
 // using helloworld::HelloReply;
 // using helloworld::HelloRequest;
@@ -25,7 +25,7 @@ CR2BEGIN
 
 class TrainClient2 {
  public:
-  explicit TrainClient2(std::shared_ptr<Channel> channel)
+  explicit TrainClient2(std::shared_ptr<grpc::Channel> channel)
       : m_stub(tradingcore2pb::TradingCore2Service::NewStub(channel)) {}
 
   // Assembles the client's payload and sends it to the server.
@@ -38,15 +38,16 @@ class TrainClient2 {
              IndicatorDataValue cv0off) {
     // Data we are sending to the server.
     // HelloRequest request;
-    tradingcore2pb::TrainData request;
+    tradingcore2pb::RequestTrain request;
+    auto req = request.mutable_train();
 
-    request.set_exchangename(exchangeName);
-    request.set_assetsname(assetsName);
-    request.set_invest(invest);
-    request.set_outputpath(outputPath);
-    request.set_minvalidreturn(minValidReturn);
+    req->set_exchangename(exchangeName);
+    req->set_assetsname(assetsName);
+    req->set_invest(invest);
+    req->set_outputpath(outputPath);
+    req->set_minvalidreturn(minValidReturn);
 
-    auto si2 = request.mutable_si2();
+    auto si2 = req->mutable_si2();
     si2->set_indicatorname(indicatorName);
     si2->set_avgtimes(avgtimes);
     si2->set_off0(off0);
@@ -96,7 +97,8 @@ class TrainClient2 {
       GPR_ASSERT(ok);
 
       if (call->status.ok())
-        std::cout << "RPC received: " << call->reply.nodes_size() << std::endl;
+        std::cout << "RPC received: " << call->reply.train().nodes_size()
+                  << std::endl;
       else
         std::cout << "RPC failed" << std::endl;
 
@@ -110,17 +112,17 @@ class TrainClient2 {
   struct AsyncClientCall {
     // Container for the data we expect from the server.
     // HelloReply reply;
-    tradingcore2pb::TrainResult reply;
+    tradingcore2pb::ReplyTrain reply;
 
     // Context for the client. It could be used to convey extra information to
     // the server and/or tweak certain RPC behaviors.
-    ClientContext context;
+    grpc::ClientContext context;
 
     // Storage for the status of the RPC upon completion.
-    Status status;
+    grpc::Status status;
 
     std::unique_ptr<
-        grpc::ClientAsyncResponseReader<tradingcore2pb::TrainResult>>
+        grpc::ClientAsyncResponseReader<tradingcore2pb::ReplyTrain>>
         response_reader;
   };
 

@@ -22,6 +22,7 @@
 namespace tradingcore2pb {
 
 static const char* TradingCore2Service_method_names[] = {
+  "/tradingcore2pb.TradingCore2Service/getServerInfo",
   "/tradingcore2pb.TradingCore2Service/train",
 };
 
@@ -32,46 +33,85 @@ std::unique_ptr< TradingCore2Service::Stub> TradingCore2Service::NewStub(const s
 }
 
 TradingCore2Service::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel)
-  : channel_(channel), rpcmethod_train_(TradingCore2Service_method_names[0], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  : channel_(channel), rpcmethod_getServerInfo_(TradingCore2Service_method_names[0], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_train_(TradingCore2Service_method_names[1], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
-::grpc::Status TradingCore2Service::Stub::train(::grpc::ClientContext* context, const ::tradingcore2pb::TrainData& request, ::tradingcore2pb::TrainResult* response) {
+::grpc::Status TradingCore2Service::Stub::getServerInfo(::grpc::ClientContext* context, const ::tradingcore2pb::RequestServerInfo& request, ::tradingcore2pb::ReplyServerInfo* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_getServerInfo_, context, request, response);
+}
+
+void TradingCore2Service::Stub::experimental_async::getServerInfo(::grpc::ClientContext* context, const ::tradingcore2pb::RequestServerInfo* request, ::tradingcore2pb::ReplyServerInfo* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_getServerInfo_, context, request, response, std::move(f));
+}
+
+void TradingCore2Service::Stub::experimental_async::getServerInfo(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::tradingcore2pb::ReplyServerInfo* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_getServerInfo_, context, request, response, std::move(f));
+}
+
+void TradingCore2Service::Stub::experimental_async::getServerInfo(::grpc::ClientContext* context, const ::tradingcore2pb::RequestServerInfo* request, ::tradingcore2pb::ReplyServerInfo* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_getServerInfo_, context, request, response, reactor);
+}
+
+void TradingCore2Service::Stub::experimental_async::getServerInfo(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::tradingcore2pb::ReplyServerInfo* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_getServerInfo_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::tradingcore2pb::ReplyServerInfo>* TradingCore2Service::Stub::AsyncgetServerInfoRaw(::grpc::ClientContext* context, const ::tradingcore2pb::RequestServerInfo& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::tradingcore2pb::ReplyServerInfo>::Create(channel_.get(), cq, rpcmethod_getServerInfo_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::tradingcore2pb::ReplyServerInfo>* TradingCore2Service::Stub::PrepareAsyncgetServerInfoRaw(::grpc::ClientContext* context, const ::tradingcore2pb::RequestServerInfo& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::tradingcore2pb::ReplyServerInfo>::Create(channel_.get(), cq, rpcmethod_getServerInfo_, context, request, false);
+}
+
+::grpc::Status TradingCore2Service::Stub::train(::grpc::ClientContext* context, const ::tradingcore2pb::RequestTrain& request, ::tradingcore2pb::ReplyTrain* response) {
   return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_train_, context, request, response);
 }
 
-void TradingCore2Service::Stub::experimental_async::train(::grpc::ClientContext* context, const ::tradingcore2pb::TrainData* request, ::tradingcore2pb::TrainResult* response, std::function<void(::grpc::Status)> f) {
+void TradingCore2Service::Stub::experimental_async::train(::grpc::ClientContext* context, const ::tradingcore2pb::RequestTrain* request, ::tradingcore2pb::ReplyTrain* response, std::function<void(::grpc::Status)> f) {
   ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_train_, context, request, response, std::move(f));
 }
 
-void TradingCore2Service::Stub::experimental_async::train(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::tradingcore2pb::TrainResult* response, std::function<void(::grpc::Status)> f) {
+void TradingCore2Service::Stub::experimental_async::train(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::tradingcore2pb::ReplyTrain* response, std::function<void(::grpc::Status)> f) {
   ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_train_, context, request, response, std::move(f));
 }
 
-void TradingCore2Service::Stub::experimental_async::train(::grpc::ClientContext* context, const ::tradingcore2pb::TrainData* request, ::tradingcore2pb::TrainResult* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+void TradingCore2Service::Stub::experimental_async::train(::grpc::ClientContext* context, const ::tradingcore2pb::RequestTrain* request, ::tradingcore2pb::ReplyTrain* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
   ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_train_, context, request, response, reactor);
 }
 
-void TradingCore2Service::Stub::experimental_async::train(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::tradingcore2pb::TrainResult* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+void TradingCore2Service::Stub::experimental_async::train(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::tradingcore2pb::ReplyTrain* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
   ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_train_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::tradingcore2pb::TrainResult>* TradingCore2Service::Stub::AsynctrainRaw(::grpc::ClientContext* context, const ::tradingcore2pb::TrainData& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::tradingcore2pb::TrainResult>::Create(channel_.get(), cq, rpcmethod_train_, context, request, true);
+::grpc::ClientAsyncResponseReader< ::tradingcore2pb::ReplyTrain>* TradingCore2Service::Stub::AsynctrainRaw(::grpc::ClientContext* context, const ::tradingcore2pb::RequestTrain& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::tradingcore2pb::ReplyTrain>::Create(channel_.get(), cq, rpcmethod_train_, context, request, true);
 }
 
-::grpc::ClientAsyncResponseReader< ::tradingcore2pb::TrainResult>* TradingCore2Service::Stub::PrepareAsynctrainRaw(::grpc::ClientContext* context, const ::tradingcore2pb::TrainData& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::tradingcore2pb::TrainResult>::Create(channel_.get(), cq, rpcmethod_train_, context, request, false);
+::grpc::ClientAsyncResponseReader< ::tradingcore2pb::ReplyTrain>* TradingCore2Service::Stub::PrepareAsynctrainRaw(::grpc::ClientContext* context, const ::tradingcore2pb::RequestTrain& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::tradingcore2pb::ReplyTrain>::Create(channel_.get(), cq, rpcmethod_train_, context, request, false);
 }
 
 TradingCore2Service::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       TradingCore2Service_method_names[0],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< TradingCore2Service::Service, ::tradingcore2pb::TrainData, ::tradingcore2pb::TrainResult>(
+      new ::grpc::internal::RpcMethodHandler< TradingCore2Service::Service, ::tradingcore2pb::RequestServerInfo, ::tradingcore2pb::ReplyServerInfo>(
           [](TradingCore2Service::Service* service,
              ::grpc_impl::ServerContext* ctx,
-             const ::tradingcore2pb::TrainData* req,
-             ::tradingcore2pb::TrainResult* resp) {
+             const ::tradingcore2pb::RequestServerInfo* req,
+             ::tradingcore2pb::ReplyServerInfo* resp) {
+               return service->getServerInfo(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      TradingCore2Service_method_names[1],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< TradingCore2Service::Service, ::tradingcore2pb::RequestTrain, ::tradingcore2pb::ReplyTrain>(
+          [](TradingCore2Service::Service* service,
+             ::grpc_impl::ServerContext* ctx,
+             const ::tradingcore2pb::RequestTrain* req,
+             ::tradingcore2pb::ReplyTrain* resp) {
                return service->train(ctx, req, resp);
              }, this)));
 }
@@ -79,7 +119,14 @@ TradingCore2Service::Service::Service() {
 TradingCore2Service::Service::~Service() {
 }
 
-::grpc::Status TradingCore2Service::Service::train(::grpc::ServerContext* context, const ::tradingcore2pb::TrainData* request, ::tradingcore2pb::TrainResult* response) {
+::grpc::Status TradingCore2Service::Service::getServerInfo(::grpc::ServerContext* context, const ::tradingcore2pb::RequestServerInfo* request, ::tradingcore2pb::ReplyServerInfo* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status TradingCore2Service::Service::train(::grpc::ServerContext* context, const ::tradingcore2pb::RequestTrain* request, ::tradingcore2pb::ReplyTrain* response) {
   (void) context;
   (void) request;
   (void) response;

@@ -21,7 +21,6 @@
 #include <tradingcore2/indicatormgr.h>
 #include <tradingcore2/pnl.h>
 #include <tradingcore2/server.h>
-#include <tradingcore2/server/train.h>
 #include <tradingcore2/server/train2.h>
 #include <tradingcore2/strategy.h>
 #include <tradingcore2/strategy/buyandhold.h>

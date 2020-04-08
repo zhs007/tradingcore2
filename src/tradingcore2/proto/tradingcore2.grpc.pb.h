@@ -37,29 +37,50 @@ class TradingCore2Service final {
   class StubInterface {
    public:
     virtual ~StubInterface() {}
-    // train - train
-    virtual ::grpc::Status train(::grpc::ClientContext* context, const ::tradingcore2pb::TrainData& request, ::tradingcore2pb::TrainResult* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::tradingcore2pb::TrainResult>> Asynctrain(::grpc::ClientContext* context, const ::tradingcore2pb::TrainData& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::tradingcore2pb::TrainResult>>(AsynctrainRaw(context, request, cq));
+    // getServerInfo - get server infomation
+    virtual ::grpc::Status getServerInfo(::grpc::ClientContext* context, const ::tradingcore2pb::RequestServerInfo& request, ::tradingcore2pb::ReplyServerInfo* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::tradingcore2pb::ReplyServerInfo>> AsyncgetServerInfo(::grpc::ClientContext* context, const ::tradingcore2pb::RequestServerInfo& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::tradingcore2pb::ReplyServerInfo>>(AsyncgetServerInfoRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::tradingcore2pb::TrainResult>> PrepareAsynctrain(::grpc::ClientContext* context, const ::tradingcore2pb::TrainData& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::tradingcore2pb::TrainResult>>(PrepareAsynctrainRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::tradingcore2pb::ReplyServerInfo>> PrepareAsyncgetServerInfo(::grpc::ClientContext* context, const ::tradingcore2pb::RequestServerInfo& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::tradingcore2pb::ReplyServerInfo>>(PrepareAsyncgetServerInfoRaw(context, request, cq));
+    }
+    // train - train
+    virtual ::grpc::Status train(::grpc::ClientContext* context, const ::tradingcore2pb::RequestTrain& request, ::tradingcore2pb::ReplyTrain* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::tradingcore2pb::ReplyTrain>> Asynctrain(::grpc::ClientContext* context, const ::tradingcore2pb::RequestTrain& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::tradingcore2pb::ReplyTrain>>(AsynctrainRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::tradingcore2pb::ReplyTrain>> PrepareAsynctrain(::grpc::ClientContext* context, const ::tradingcore2pb::RequestTrain& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::tradingcore2pb::ReplyTrain>>(PrepareAsynctrainRaw(context, request, cq));
     }
     class experimental_async_interface {
      public:
       virtual ~experimental_async_interface() {}
-      // train - train
-      virtual void train(::grpc::ClientContext* context, const ::tradingcore2pb::TrainData* request, ::tradingcore2pb::TrainResult* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void train(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::tradingcore2pb::TrainResult* response, std::function<void(::grpc::Status)>) = 0;
+      // getServerInfo - get server infomation
+      virtual void getServerInfo(::grpc::ClientContext* context, const ::tradingcore2pb::RequestServerInfo* request, ::tradingcore2pb::ReplyServerInfo* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void getServerInfo(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::tradingcore2pb::ReplyServerInfo* response, std::function<void(::grpc::Status)>) = 0;
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void train(::grpc::ClientContext* context, const ::tradingcore2pb::TrainData* request, ::tradingcore2pb::TrainResult* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void getServerInfo(::grpc::ClientContext* context, const ::tradingcore2pb::RequestServerInfo* request, ::tradingcore2pb::ReplyServerInfo* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       #else
-      virtual void train(::grpc::ClientContext* context, const ::tradingcore2pb::TrainData* request, ::tradingcore2pb::TrainResult* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      virtual void getServerInfo(::grpc::ClientContext* context, const ::tradingcore2pb::RequestServerInfo* request, ::tradingcore2pb::ReplyServerInfo* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      virtual void train(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::tradingcore2pb::TrainResult* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void getServerInfo(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::tradingcore2pb::ReplyServerInfo* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       #else
-      virtual void train(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::tradingcore2pb::TrainResult* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      virtual void getServerInfo(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::tradingcore2pb::ReplyServerInfo* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      // train - train
+      virtual void train(::grpc::ClientContext* context, const ::tradingcore2pb::RequestTrain* request, ::tradingcore2pb::ReplyTrain* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void train(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::tradingcore2pb::ReplyTrain* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void train(::grpc::ClientContext* context, const ::tradingcore2pb::RequestTrain* request, ::tradingcore2pb::ReplyTrain* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void train(::grpc::ClientContext* context, const ::tradingcore2pb::RequestTrain* request, ::tradingcore2pb::ReplyTrain* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void train(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::tradingcore2pb::ReplyTrain* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void train(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::tradingcore2pb::ReplyTrain* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
     };
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -70,33 +91,54 @@ class TradingCore2Service final {
     #endif
     virtual class experimental_async_interface* experimental_async() { return nullptr; }
   private:
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::tradingcore2pb::TrainResult>* AsynctrainRaw(::grpc::ClientContext* context, const ::tradingcore2pb::TrainData& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::tradingcore2pb::TrainResult>* PrepareAsynctrainRaw(::grpc::ClientContext* context, const ::tradingcore2pb::TrainData& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::tradingcore2pb::ReplyServerInfo>* AsyncgetServerInfoRaw(::grpc::ClientContext* context, const ::tradingcore2pb::RequestServerInfo& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::tradingcore2pb::ReplyServerInfo>* PrepareAsyncgetServerInfoRaw(::grpc::ClientContext* context, const ::tradingcore2pb::RequestServerInfo& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::tradingcore2pb::ReplyTrain>* AsynctrainRaw(::grpc::ClientContext* context, const ::tradingcore2pb::RequestTrain& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::tradingcore2pb::ReplyTrain>* PrepareAsynctrainRaw(::grpc::ClientContext* context, const ::tradingcore2pb::RequestTrain& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
     Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel);
-    ::grpc::Status train(::grpc::ClientContext* context, const ::tradingcore2pb::TrainData& request, ::tradingcore2pb::TrainResult* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::tradingcore2pb::TrainResult>> Asynctrain(::grpc::ClientContext* context, const ::tradingcore2pb::TrainData& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::tradingcore2pb::TrainResult>>(AsynctrainRaw(context, request, cq));
+    ::grpc::Status getServerInfo(::grpc::ClientContext* context, const ::tradingcore2pb::RequestServerInfo& request, ::tradingcore2pb::ReplyServerInfo* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::tradingcore2pb::ReplyServerInfo>> AsyncgetServerInfo(::grpc::ClientContext* context, const ::tradingcore2pb::RequestServerInfo& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::tradingcore2pb::ReplyServerInfo>>(AsyncgetServerInfoRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::tradingcore2pb::TrainResult>> PrepareAsynctrain(::grpc::ClientContext* context, const ::tradingcore2pb::TrainData& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::tradingcore2pb::TrainResult>>(PrepareAsynctrainRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::tradingcore2pb::ReplyServerInfo>> PrepareAsyncgetServerInfo(::grpc::ClientContext* context, const ::tradingcore2pb::RequestServerInfo& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::tradingcore2pb::ReplyServerInfo>>(PrepareAsyncgetServerInfoRaw(context, request, cq));
+    }
+    ::grpc::Status train(::grpc::ClientContext* context, const ::tradingcore2pb::RequestTrain& request, ::tradingcore2pb::ReplyTrain* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::tradingcore2pb::ReplyTrain>> Asynctrain(::grpc::ClientContext* context, const ::tradingcore2pb::RequestTrain& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::tradingcore2pb::ReplyTrain>>(AsynctrainRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::tradingcore2pb::ReplyTrain>> PrepareAsynctrain(::grpc::ClientContext* context, const ::tradingcore2pb::RequestTrain& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::tradingcore2pb::ReplyTrain>>(PrepareAsynctrainRaw(context, request, cq));
     }
     class experimental_async final :
       public StubInterface::experimental_async_interface {
      public:
-      void train(::grpc::ClientContext* context, const ::tradingcore2pb::TrainData* request, ::tradingcore2pb::TrainResult* response, std::function<void(::grpc::Status)>) override;
-      void train(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::tradingcore2pb::TrainResult* response, std::function<void(::grpc::Status)>) override;
+      void getServerInfo(::grpc::ClientContext* context, const ::tradingcore2pb::RequestServerInfo* request, ::tradingcore2pb::ReplyServerInfo* response, std::function<void(::grpc::Status)>) override;
+      void getServerInfo(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::tradingcore2pb::ReplyServerInfo* response, std::function<void(::grpc::Status)>) override;
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void train(::grpc::ClientContext* context, const ::tradingcore2pb::TrainData* request, ::tradingcore2pb::TrainResult* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void getServerInfo(::grpc::ClientContext* context, const ::tradingcore2pb::RequestServerInfo* request, ::tradingcore2pb::ReplyServerInfo* response, ::grpc::ClientUnaryReactor* reactor) override;
       #else
-      void train(::grpc::ClientContext* context, const ::tradingcore2pb::TrainData* request, ::tradingcore2pb::TrainResult* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      void getServerInfo(::grpc::ClientContext* context, const ::tradingcore2pb::RequestServerInfo* request, ::tradingcore2pb::ReplyServerInfo* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
       #endif
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      void train(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::tradingcore2pb::TrainResult* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void getServerInfo(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::tradingcore2pb::ReplyServerInfo* response, ::grpc::ClientUnaryReactor* reactor) override;
       #else
-      void train(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::tradingcore2pb::TrainResult* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      void getServerInfo(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::tradingcore2pb::ReplyServerInfo* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      void train(::grpc::ClientContext* context, const ::tradingcore2pb::RequestTrain* request, ::tradingcore2pb::ReplyTrain* response, std::function<void(::grpc::Status)>) override;
+      void train(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::tradingcore2pb::ReplyTrain* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void train(::grpc::ClientContext* context, const ::tradingcore2pb::RequestTrain* request, ::tradingcore2pb::ReplyTrain* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void train(::grpc::ClientContext* context, const ::tradingcore2pb::RequestTrain* request, ::tradingcore2pb::ReplyTrain* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void train(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::tradingcore2pb::ReplyTrain* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void train(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::tradingcore2pb::ReplyTrain* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
       #endif
      private:
       friend class Stub;
@@ -109,8 +151,11 @@ class TradingCore2Service final {
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
     class experimental_async async_stub_{this};
-    ::grpc::ClientAsyncResponseReader< ::tradingcore2pb::TrainResult>* AsynctrainRaw(::grpc::ClientContext* context, const ::tradingcore2pb::TrainData& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::tradingcore2pb::TrainResult>* PrepareAsynctrainRaw(::grpc::ClientContext* context, const ::tradingcore2pb::TrainData& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::tradingcore2pb::ReplyServerInfo>* AsyncgetServerInfoRaw(::grpc::ClientContext* context, const ::tradingcore2pb::RequestServerInfo& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::tradingcore2pb::ReplyServerInfo>* PrepareAsyncgetServerInfoRaw(::grpc::ClientContext* context, const ::tradingcore2pb::RequestServerInfo& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::tradingcore2pb::ReplyTrain>* AsynctrainRaw(::grpc::ClientContext* context, const ::tradingcore2pb::RequestTrain& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::tradingcore2pb::ReplyTrain>* PrepareAsynctrainRaw(::grpc::ClientContext* context, const ::tradingcore2pb::RequestTrain& request, ::grpc::CompletionQueue* cq) override;
+    const ::grpc::internal::RpcMethod rpcmethod_getServerInfo_;
     const ::grpc::internal::RpcMethod rpcmethod_train_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
@@ -119,8 +164,30 @@ class TradingCore2Service final {
    public:
     Service();
     virtual ~Service();
+    // getServerInfo - get server infomation
+    virtual ::grpc::Status getServerInfo(::grpc::ServerContext* context, const ::tradingcore2pb::RequestServerInfo* request, ::tradingcore2pb::ReplyServerInfo* response);
     // train - train
-    virtual ::grpc::Status train(::grpc::ServerContext* context, const ::tradingcore2pb::TrainData* request, ::tradingcore2pb::TrainResult* response);
+    virtual ::grpc::Status train(::grpc::ServerContext* context, const ::tradingcore2pb::RequestTrain* request, ::tradingcore2pb::ReplyTrain* response);
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_getServerInfo : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_getServerInfo() {
+      ::grpc::Service::MarkMethodAsync(0);
+    }
+    ~WithAsyncMethod_getServerInfo() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status getServerInfo(::grpc::ServerContext* /*context*/, const ::tradingcore2pb::RequestServerInfo* /*request*/, ::tradingcore2pb::ReplyServerInfo* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestgetServerInfo(::grpc::ServerContext* context, ::tradingcore2pb::RequestServerInfo* request, ::grpc::ServerAsyncResponseWriter< ::tradingcore2pb::ReplyServerInfo>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
+    }
   };
   template <class BaseClass>
   class WithAsyncMethod_train : public BaseClass {
@@ -128,21 +195,68 @@ class TradingCore2Service final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithAsyncMethod_train() {
-      ::grpc::Service::MarkMethodAsync(0);
+      ::grpc::Service::MarkMethodAsync(1);
     }
     ~WithAsyncMethod_train() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status train(::grpc::ServerContext* /*context*/, const ::tradingcore2pb::TrainData* /*request*/, ::tradingcore2pb::TrainResult* /*response*/) override {
+    ::grpc::Status train(::grpc::ServerContext* /*context*/, const ::tradingcore2pb::RequestTrain* /*request*/, ::tradingcore2pb::ReplyTrain* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void Requesttrain(::grpc::ServerContext* context, ::tradingcore2pb::TrainData* request, ::grpc::ServerAsyncResponseWriter< ::tradingcore2pb::TrainResult>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
+    void Requesttrain(::grpc::ServerContext* context, ::tradingcore2pb::RequestTrain* request, ::grpc::ServerAsyncResponseWriter< ::tradingcore2pb::ReplyTrain>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_train<Service > AsyncService;
+  typedef WithAsyncMethod_getServerInfo<WithAsyncMethod_train<Service > > AsyncService;
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_getServerInfo : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_getServerInfo() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(0,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::tradingcore2pb::RequestServerInfo, ::tradingcore2pb::ReplyServerInfo>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::tradingcore2pb::RequestServerInfo* request, ::tradingcore2pb::ReplyServerInfo* response) { return this->getServerInfo(context, request, response); }));}
+    void SetMessageAllocatorFor_getServerInfo(
+        ::grpc::experimental::MessageAllocator< ::tradingcore2pb::RequestServerInfo, ::tradingcore2pb::ReplyServerInfo>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(0);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::tradingcore2pb::RequestServerInfo, ::tradingcore2pb::ReplyServerInfo>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~ExperimentalWithCallbackMethod_getServerInfo() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status getServerInfo(::grpc::ServerContext* /*context*/, const ::tradingcore2pb::RequestServerInfo* /*request*/, ::tradingcore2pb::ReplyServerInfo* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* getServerInfo(
+      ::grpc::CallbackServerContext* /*context*/, const ::tradingcore2pb::RequestServerInfo* /*request*/, ::tradingcore2pb::ReplyServerInfo* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* getServerInfo(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::tradingcore2pb::RequestServerInfo* /*request*/, ::tradingcore2pb::ReplyServerInfo* /*response*/)
+    #endif
+      { return nullptr; }
+  };
   template <class BaseClass>
   class ExperimentalWithCallbackMethod_train : public BaseClass {
    private:
@@ -154,62 +268,99 @@ class TradingCore2Service final {
     #else
       ::grpc::Service::experimental().
     #endif
-        MarkMethodCallback(0,
-          new ::grpc_impl::internal::CallbackUnaryHandler< ::tradingcore2pb::TrainData, ::tradingcore2pb::TrainResult>(
+        MarkMethodCallback(1,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::tradingcore2pb::RequestTrain, ::tradingcore2pb::ReplyTrain>(
             [this](
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
                    ::grpc::CallbackServerContext*
     #else
                    ::grpc::experimental::CallbackServerContext*
     #endif
-                     context, const ::tradingcore2pb::TrainData* request, ::tradingcore2pb::TrainResult* response) { return this->train(context, request, response); }));}
+                     context, const ::tradingcore2pb::RequestTrain* request, ::tradingcore2pb::ReplyTrain* response) { return this->train(context, request, response); }));}
     void SetMessageAllocatorFor_train(
-        ::grpc::experimental::MessageAllocator< ::tradingcore2pb::TrainData, ::tradingcore2pb::TrainResult>* allocator) {
+        ::grpc::experimental::MessageAllocator< ::tradingcore2pb::RequestTrain, ::tradingcore2pb::ReplyTrain>* allocator) {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
     #else
-      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(0);
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(1);
     #endif
-      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::tradingcore2pb::TrainData, ::tradingcore2pb::TrainResult>*>(handler)
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::tradingcore2pb::RequestTrain, ::tradingcore2pb::ReplyTrain>*>(handler)
               ->SetMessageAllocator(allocator);
     }
     ~ExperimentalWithCallbackMethod_train() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status train(::grpc::ServerContext* /*context*/, const ::tradingcore2pb::TrainData* /*request*/, ::tradingcore2pb::TrainResult* /*response*/) override {
+    ::grpc::Status train(::grpc::ServerContext* /*context*/, const ::tradingcore2pb::RequestTrain* /*request*/, ::tradingcore2pb::ReplyTrain* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     virtual ::grpc::ServerUnaryReactor* train(
-      ::grpc::CallbackServerContext* /*context*/, const ::tradingcore2pb::TrainData* /*request*/, ::tradingcore2pb::TrainResult* /*response*/)
+      ::grpc::CallbackServerContext* /*context*/, const ::tradingcore2pb::RequestTrain* /*request*/, ::tradingcore2pb::ReplyTrain* /*response*/)
     #else
     virtual ::grpc::experimental::ServerUnaryReactor* train(
-      ::grpc::experimental::CallbackServerContext* /*context*/, const ::tradingcore2pb::TrainData* /*request*/, ::tradingcore2pb::TrainResult* /*response*/)
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::tradingcore2pb::RequestTrain* /*request*/, ::tradingcore2pb::ReplyTrain* /*response*/)
     #endif
       { return nullptr; }
   };
   #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-  typedef ExperimentalWithCallbackMethod_train<Service > CallbackService;
+  typedef ExperimentalWithCallbackMethod_getServerInfo<ExperimentalWithCallbackMethod_train<Service > > CallbackService;
   #endif
 
-  typedef ExperimentalWithCallbackMethod_train<Service > ExperimentalCallbackService;
+  typedef ExperimentalWithCallbackMethod_getServerInfo<ExperimentalWithCallbackMethod_train<Service > > ExperimentalCallbackService;
+  template <class BaseClass>
+  class WithGenericMethod_getServerInfo : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_getServerInfo() {
+      ::grpc::Service::MarkMethodGeneric(0);
+    }
+    ~WithGenericMethod_getServerInfo() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status getServerInfo(::grpc::ServerContext* /*context*/, const ::tradingcore2pb::RequestServerInfo* /*request*/, ::tradingcore2pb::ReplyServerInfo* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
   template <class BaseClass>
   class WithGenericMethod_train : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithGenericMethod_train() {
-      ::grpc::Service::MarkMethodGeneric(0);
+      ::grpc::Service::MarkMethodGeneric(1);
     }
     ~WithGenericMethod_train() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status train(::grpc::ServerContext* /*context*/, const ::tradingcore2pb::TrainData* /*request*/, ::tradingcore2pb::TrainResult* /*response*/) override {
+    ::grpc::Status train(::grpc::ServerContext* /*context*/, const ::tradingcore2pb::RequestTrain* /*request*/, ::tradingcore2pb::ReplyTrain* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_getServerInfo : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_getServerInfo() {
+      ::grpc::Service::MarkMethodRaw(0);
+    }
+    ~WithRawMethod_getServerInfo() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status getServerInfo(::grpc::ServerContext* /*context*/, const ::tradingcore2pb::RequestServerInfo* /*request*/, ::tradingcore2pb::ReplyServerInfo* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestgetServerInfo(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -218,26 +369,26 @@ class TradingCore2Service final {
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithRawMethod_train() {
-      ::grpc::Service::MarkMethodRaw(0);
+      ::grpc::Service::MarkMethodRaw(1);
     }
     ~WithRawMethod_train() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status train(::grpc::ServerContext* /*context*/, const ::tradingcore2pb::TrainData* /*request*/, ::tradingcore2pb::TrainResult* /*response*/) override {
+    ::grpc::Status train(::grpc::ServerContext* /*context*/, const ::tradingcore2pb::RequestTrain* /*request*/, ::tradingcore2pb::ReplyTrain* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     void Requesttrain(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
-      ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
+      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
-  class ExperimentalWithRawCallbackMethod_train : public BaseClass {
+  class ExperimentalWithRawCallbackMethod_getServerInfo : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    ExperimentalWithRawCallbackMethod_train() {
+    ExperimentalWithRawCallbackMethod_getServerInfo() {
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       ::grpc::Service::
     #else
@@ -251,13 +402,51 @@ class TradingCore2Service final {
     #else
                    ::grpc::experimental::CallbackServerContext*
     #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->getServerInfo(context, request, response); }));
+    }
+    ~ExperimentalWithRawCallbackMethod_getServerInfo() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status getServerInfo(::grpc::ServerContext* /*context*/, const ::tradingcore2pb::RequestServerInfo* /*request*/, ::tradingcore2pb::ReplyServerInfo* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* getServerInfo(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* getServerInfo(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_train : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_train() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(1,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
                      context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->train(context, request, response); }));
     }
     ~ExperimentalWithRawCallbackMethod_train() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status train(::grpc::ServerContext* /*context*/, const ::tradingcore2pb::TrainData* /*request*/, ::tradingcore2pb::TrainResult* /*response*/) override {
+    ::grpc::Status train(::grpc::ServerContext* /*context*/, const ::tradingcore2pb::RequestTrain* /*request*/, ::tradingcore2pb::ReplyTrain* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -271,17 +460,44 @@ class TradingCore2Service final {
       { return nullptr; }
   };
   template <class BaseClass>
+  class WithStreamedUnaryMethod_getServerInfo : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_getServerInfo() {
+      ::grpc::Service::MarkMethodStreamed(0,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::tradingcore2pb::RequestServerInfo, ::tradingcore2pb::ReplyServerInfo>(
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
+                     ::tradingcore2pb::RequestServerInfo, ::tradingcore2pb::ReplyServerInfo>* streamer) {
+                       return this->StreamedgetServerInfo(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_getServerInfo() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status getServerInfo(::grpc::ServerContext* /*context*/, const ::tradingcore2pb::RequestServerInfo* /*request*/, ::tradingcore2pb::ReplyServerInfo* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedgetServerInfo(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::tradingcore2pb::RequestServerInfo,::tradingcore2pb::ReplyServerInfo>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
   class WithStreamedUnaryMethod_train : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
     WithStreamedUnaryMethod_train() {
-      ::grpc::Service::MarkMethodStreamed(0,
+      ::grpc::Service::MarkMethodStreamed(1,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::tradingcore2pb::TrainData, ::tradingcore2pb::TrainResult>(
+          ::tradingcore2pb::RequestTrain, ::tradingcore2pb::ReplyTrain>(
             [this](::grpc_impl::ServerContext* context,
                    ::grpc_impl::ServerUnaryStreamer<
-                     ::tradingcore2pb::TrainData, ::tradingcore2pb::TrainResult>* streamer) {
+                     ::tradingcore2pb::RequestTrain, ::tradingcore2pb::ReplyTrain>* streamer) {
                        return this->Streamedtrain(context,
                          streamer);
                   }));
@@ -290,16 +506,16 @@ class TradingCore2Service final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status train(::grpc::ServerContext* /*context*/, const ::tradingcore2pb::TrainData* /*request*/, ::tradingcore2pb::TrainResult* /*response*/) override {
+    ::grpc::Status train(::grpc::ServerContext* /*context*/, const ::tradingcore2pb::RequestTrain* /*request*/, ::tradingcore2pb::ReplyTrain* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status Streamedtrain(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::tradingcore2pb::TrainData,::tradingcore2pb::TrainResult>* server_unary_streamer) = 0;
+    virtual ::grpc::Status Streamedtrain(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::tradingcore2pb::RequestTrain,::tradingcore2pb::ReplyTrain>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_train<Service > StreamedUnaryService;
+  typedef WithStreamedUnaryMethod_getServerInfo<WithStreamedUnaryMethod_train<Service > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_train<Service > StreamedService;
+  typedef WithStreamedUnaryMethod_getServerInfo<WithStreamedUnaryMethod_train<Service > > StreamedService;
 };
 
 }  // namespace tradingcore2pb

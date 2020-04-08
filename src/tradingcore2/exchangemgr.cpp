@@ -27,6 +27,8 @@ Exchange* ExchangeMgr::newExchange(const char* name, Config& cfg) {
 
   auto pExchange = it->second(cfg);
   this->addExchange(pExchange);
+
+  return pExchange;
 }
 
 void ExchangeMgr::addExchange(Exchange* pExchange) {

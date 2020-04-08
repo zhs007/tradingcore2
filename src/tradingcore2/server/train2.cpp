@@ -10,44 +10,63 @@
 #include <string>
 
 #include "../proto/tradingcore2.grpc.pb.h"
+#include "utils.h"
 
 CR2BEGIN
 
 // Logic and data behind the server's behavior.
 class TrainService2Impl final
     : public tradingcore2pb::TradingCore2Service::Service {
-  virtual ::grpc::Status train(
+  // getServerInfo - get server infomation
+  virtual ::grpc::Status getServerInfo(
       ::grpc::ServerContext* context,
-      const ::tradingcore2pb::TrainData* request,
-      ::tradingcore2pb::TrainResult* response) override {
+      const ::tradingcore2pb::RequestServerInfo* request,
+      ::tradingcore2pb::ReplyServerInfo* response) {
+    assert(context != NULL);
+    assert(request != NULL);
+    assert(response != NULL);
+
+    return grpc::Status::OK;
+  }
+
+  // train - train
+  virtual ::grpc::Status train(::grpc::ServerContext* context,
+                               const ::tradingcore2pb::RequestTrain* request,
+                               ::tradingcore2pb::ReplyTrain* response) {
+    assert(context != NULL);
+    assert(request != NULL);
+    assert(response != NULL);
+
+    auto req = request->train();
+    auto res = response->mutable_train();
+
     auto mgr = ExchangeMgr::getSingleton();
-    auto exchange = mgr->getExchange(request->exchangename().c_str());
+    auto exchange = mgr->getExchange(req.exchangename().c_str());
     if (exchange == NULL) {
-      response->set_errcode(tradingcore2pb::ERR_NOEXCHANGE);
+      setResponse_ErrorCode(response, tradingcore2pb::ERR_NOEXCHANGE);
 
       return grpc::Status::OK;
     }
 
-    auto datasize = exchange->getDataLength(request->assetsname().c_str());
+    auto datasize = exchange->getDataLength(req.assetsname().c_str());
     if (datasize <= 0) {
-      response->set_errcode(tradingcore2pb::ERR_NOASSETS);
+      setResponse_ErrorCode(response, tradingcore2pb::ERR_NOASSETS);
 
       return grpc::Status::OK;
     }
 
-    if (request->has_si2()) {
-      auto si2 = request->si2();
+    if (req.has_si2()) {
+      auto si2 = req.si2();
 
       TrainResultList lst;
       _trainSingleIndicator2Ex(
-          lst, *exchange, request->assetsname().c_str(),
-          si2.indicatorname().c_str(), request->outputpath().c_str(),
-          request->invest(), si2.avgtimes(), si2.off0(), si2.off1(), si2.off2(),
-          si2.maxoff2(), request->minvalidreturn(), si2.minval(), si2.maxval(),
-          si2.cv0(), si2.cv0off());
+          lst, *exchange, req.assetsname().c_str(), si2.indicatorname().c_str(),
+          req.outputpath().c_str(), req.invest(), si2.avgtimes(), si2.off0(),
+          si2.off1(), si2.off2(), si2.maxoff2(), req.minvalidreturn(),
+          si2.minval(), si2.maxval(), si2.cv0(), si2.cv0off());
 
       for (auto it = lst.begin(); it != lst.end(); ++it) {
-        auto tr = response->add_nodes();
+        auto tr = res->add_nodes();
 
         tr->set_maxdrawdown(it->maxDrawDown);
         tr->set_sharpe(it->sharpe);
@@ -61,7 +80,7 @@ class TrainService2Impl final
         tr->set_name(it->name.c_str());
       }
     } else {
-      response->set_errcode(tradingcore2pb::ERR_NOTRAINPARAM);
+      setResponse_ErrorCode(response, tradingcore2pb::ERR_NOTRAINPARAM);
 
       return grpc::Status::OK;
     }
