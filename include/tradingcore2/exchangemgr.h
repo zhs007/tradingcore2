@@ -11,7 +11,7 @@
 CR2BEGIN
 
 // FuncNewExchange - new Exchange()
-typedef std::function<Exchange*(Config& cfg)> FuncNewExchange;
+typedef std::function<Exchange*(const Config& cfg)> FuncNewExchange;
 
 class ExchangeMgr {
  public:
@@ -28,7 +28,7 @@ class ExchangeMgr {
   ~ExchangeMgr() {}
 
  public:
-  void init(Config& cfg);
+  void init(const Config& cfg);
 
   void regNewExchange(const char* name, FuncNewExchange func);
 
@@ -36,7 +36,7 @@ class ExchangeMgr {
   Exchange* getExchange(const char* name);
 
  protected:
-  Exchange* newExchange(const char* name, Config& cfg);
+  Exchange* newExchange(const char* name, const Config& cfg);
 
   void addExchange(Exchange* pExchange);
 

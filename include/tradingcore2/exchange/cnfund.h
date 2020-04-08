@@ -25,10 +25,10 @@ struct CNFundValue {
 
 static const char* CNFundTypeName = "cnfund";
 
-Exchange* newCNFund(Config& cfg);
+Exchange* newCNFund(const Config& cfg);
 
 class CNFundExchange final : public Exchange {
-  friend Exchange* newCNFund(Config& cfg);
+  friend Exchange* newCNFund(const Config& cfg);
 
  public:
   typedef std::map<std::string, CNFundValue*> Map;
@@ -40,7 +40,7 @@ class CNFundExchange final : public Exchange {
   virtual ~CNFundExchange() { this->release(); }
 
  public:
-  virtual bool init(Config& cfg) override;
+  virtual bool init(const Config& cfg) override;
 
   virtual const char* getTypeName() const override;
 

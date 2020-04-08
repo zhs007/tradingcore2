@@ -24,7 +24,7 @@ class Exchange {
   virtual ~Exchange() {}
 
  public:
-  virtual bool init(Config& cfg) = 0;
+  virtual bool init(const Config& cfg) = 0;
 
   virtual const char* getTypeName() const = 0;
 

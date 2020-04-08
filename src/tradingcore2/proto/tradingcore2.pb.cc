@@ -376,14 +376,14 @@ const char descriptor_table_protodef_tradingcore2_2eproto[] PROTOBUF_SECTION_VAR
   "dingcore2pb.TrainData\"l\n\nReplyTrain\0222\n\nb"
   "asicReply\030\001 \001(\0132\036.tradingcore2pb.BasicRe"
   "plyData\022*\n\005train\030\002 \001(\0132\033.tradingcore2pb."
-  "TrainResult*V\n\tErrorCode\022\r\n\tERR_NOERR\020\000\022"
+  "TrainResult*l\n\tErrorCode\022\r\n\tERR_NOERR\020\000\022"
   "\022\n\016ERR_NOEXCHANGE\020\001\022\024\n\020ERR_NOTRAINPARAM\020"
-  "\002\022\020\n\014ERR_NOASSETS\020\0032\261\001\n\023TradingCore2Serv"
-  "ice\022U\n\rgetServerInfo\022!.tradingcore2pb.Re"
-  "questServerInfo\032\037.tradingcore2pb.ReplySe"
-  "rverInfo\"\000\022C\n\005train\022\034.tradingcore2pb.Req"
-  "uestTrain\032\032.tradingcore2pb.ReplyTrain\"\000b"
-  "\006proto3"
+  "\002\022\020\n\014ERR_NOASSETS\020\003\022\024\n\020ERR_INVALIDTOKEN\020"
+  "\0042\261\001\n\023TradingCore2Service\022U\n\rgetServerIn"
+  "fo\022!.tradingcore2pb.RequestServerInfo\032\037."
+  "tradingcore2pb.ReplyServerInfo\"\000\022C\n\005trai"
+  "n\022\034.tradingcore2pb.RequestTrain\032\032.tradin"
+  "gcore2pb.ReplyTrain\"\000b\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_tradingcore2_2eproto_deps[1] = {
 };
@@ -402,7 +402,7 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_tra
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_tradingcore2_2eproto_once;
 static bool descriptor_table_tradingcore2_2eproto_initialized = false;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_tradingcore2_2eproto = {
-  &descriptor_table_tradingcore2_2eproto_initialized, descriptor_table_protodef_tradingcore2_2eproto, "tradingcore2.proto", 1687,
+  &descriptor_table_tradingcore2_2eproto_initialized, descriptor_table_protodef_tradingcore2_2eproto, "tradingcore2.proto", 1709,
   &descriptor_table_tradingcore2_2eproto_once, descriptor_table_tradingcore2_2eproto_sccs, descriptor_table_tradingcore2_2eproto_deps, 10, 0,
   schemas, file_default_instances, TableStruct_tradingcore2_2eproto::offsets,
   file_level_metadata_tradingcore2_2eproto, 10, file_level_enum_descriptors_tradingcore2_2eproto, file_level_service_descriptors_tradingcore2_2eproto,
@@ -421,6 +421,7 @@ bool ErrorCode_IsValid(int value) {
     case 1:
     case 2:
     case 3:
+    case 4:
       return true;
     default:
       return false;

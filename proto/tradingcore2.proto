@@ -6,6 +6,7 @@ enum ErrorCode {
     ERR_NOEXCHANGE = 1;
     ERR_NOTRAINPARAM = 2;
     ERR_NOASSETS = 3;
+    ERR_INVALIDTOKEN = 4;
 }
 
 message BasicRequestData {

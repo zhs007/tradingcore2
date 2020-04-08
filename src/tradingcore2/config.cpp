@@ -10,7 +10,7 @@ bool loadConfig(Config& cfg, const char* fn) {
   }
 
   if (node["cnfundpath"].IsScalar()) {
-    cfg.cnfundpath = node["cnfundpath"].as<std::string>();
+    cfg.cnfundPath = node["cnfundpath"].as<std::string>();
   }
 
   if (node["exchanges"].IsSequence()) {
@@ -26,12 +26,30 @@ bool loadConfig(Config& cfg, const char* fn) {
     cfg.bindaddr = node["bindaddr"].as<std::string>();
   }
 
+  if (node["tasknums"].IsScalar()) {
+    cfg.taskNums = node["tasknums"].as<int>();
+  } else {
+    cfg.taskNums = 0;
+  }
+
+  if (node["tokens"].IsSequence()) {
+    for (auto it = node["tokens"].begin(); it != node["tokens"].end(); ++it) {
+      if (it->IsScalar()) {
+        cfg.tokens.push_back(it->as<std::string>());
+      }
+    }
+  }
+
   if (node["servs"].IsSequence()) {
     for (auto it = node["servs"].begin(); it != node["servs"].end(); ++it) {
       if (it->IsScalar()) {
         cfg.servs.push_back(it->as<std::string>());
       }
     }
+  }
+
+  if (node["token"].IsScalar()) {
+    cfg.token = node["token"].as<std::string>();
   }
 
   return true;

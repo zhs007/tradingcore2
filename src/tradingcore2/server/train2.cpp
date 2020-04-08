@@ -1,10 +1,13 @@
 #include <grpcpp/ext/proto_server_reflection_plugin.h>
 #include <grpcpp/grpcpp.h>
 #include <grpcpp/health_check_service_interface.h>
+#include <tradingcore2/autorun.h>
 #include <tradingcore2/exchangemgr.h>
 #include <tradingcore2/server/train2.h>
 #include <tradingcore2/train.h>
+#include <unistd.h>
 
+#include <atomic>
 #include <iostream>
 #include <memory>
 #include <string>
@@ -17,25 +20,61 @@ CR2BEGIN
 // Logic and data behind the server's behavior.
 class TrainService2Impl final
     : public tradingcore2pb::TradingCore2Service::Service {
+ public:
+  TrainService2Impl() : m_maxTaskNums(0), m_curTaskNums(0), m_pCfg(NULL) {}
+
+ public:
+  void init(const Config& cfg) {
+    m_pCfg = &cfg;
+
+    long cpus = sysconf(_SC_NPROCESSORS_ONLN);  // get # of online cores
+    if (cfg.taskNums == 0) {
+      m_maxTaskNums = cpus;
+    } else if (cfg.taskNums >= cpus) {
+      m_maxTaskNums = cpus;
+    } else if (cfg.taskNums > 0) {
+      m_maxTaskNums = cfg.taskNums;
+    } else if (cfg.taskNums < 0) {
+      if (-cfg.taskNums < cpus) {
+        m_maxTaskNums = cpus + cfg.taskNums;
+      } else {
+        m_maxTaskNums = 1;
+      }
+    } else {
+      assert(false && "TrainService2Impl::init() error");
+    }
+  }
+
+ public:
   // getServerInfo - get server infomation
   virtual ::grpc::Status getServerInfo(
       ::grpc::ServerContext* context,
       const ::tradingcore2pb::RequestServerInfo* request,
-      ::tradingcore2pb::ReplyServerInfo* response) {
+      ::tradingcore2pb::ReplyServerInfo* response) override {
     assert(context != NULL);
     assert(request != NULL);
     assert(response != NULL);
+
+    if (!isValidTokens(request, response, *m_pCfg)) {
+      return grpc::Status::OK;
+    }
+
+    response->set_curtasks(this->m_curTaskNums);
+    response->set_maxtasks(this->m_maxTaskNums);
 
     return grpc::Status::OK;
   }
 
   // train - train
-  virtual ::grpc::Status train(::grpc::ServerContext* context,
-                               const ::tradingcore2pb::RequestTrain* request,
-                               ::tradingcore2pb::ReplyTrain* response) {
+  virtual ::grpc::Status train(
+      ::grpc::ServerContext* context,
+      const ::tradingcore2pb::RequestTrain* request,
+      ::tradingcore2pb::ReplyTrain* response) override {
     assert(context != NULL);
     assert(request != NULL);
     assert(response != NULL);
+
+    AutoIncDec aid(&m_curTaskNums);
 
     auto req = request->train();
     auto res = response->mutable_train();
@@ -87,6 +126,11 @@ class TrainService2Impl final
 
     return grpc::Status::OK;
   }
+
+ private:
+  int m_maxTaskNums;
+  std::atomic<int> m_curTaskNums;
+  const Config* m_pCfg;
 };
 
 class TrainServer2 final : public Server {

@@ -106,12 +106,13 @@ enum ErrorCode : int {
   ERR_NOEXCHANGE = 1,
   ERR_NOTRAINPARAM = 2,
   ERR_NOASSETS = 3,
+  ERR_INVALIDTOKEN = 4,
   ErrorCode_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::min(),
   ErrorCode_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::max()
 };
 bool ErrorCode_IsValid(int value);
 constexpr ErrorCode ErrorCode_MIN = ERR_NOERR;
-constexpr ErrorCode ErrorCode_MAX = ERR_NOASSETS;
+constexpr ErrorCode ErrorCode_MAX = ERR_INVALIDTOKEN;
 constexpr int ErrorCode_ARRAYSIZE = ErrorCode_MAX + 1;
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* ErrorCode_descriptor();

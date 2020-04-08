@@ -4,6 +4,7 @@
 #include <tradingcore2/allexchanges.h>
 #include <tradingcore2/allindicators.h>
 #include <tradingcore2/assets.h>
+#include <tradingcore2/autorun.h>
 #include <tradingcore2/basedef.h>
 #include <tradingcore2/candle.h>
 #include <tradingcore2/client/train2.h>

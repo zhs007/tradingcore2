@@ -4,8 +4,8 @@ exchanges:
   - cnfund
 
 bindaddr: 0.0.0.0:3777
-tasknums: -1
-tokens: 
+tasknums:
+tokens:
   - wzDkh9h2fhfUVuS9jZ8uVbhV3vC5AWX3
 
 servs:

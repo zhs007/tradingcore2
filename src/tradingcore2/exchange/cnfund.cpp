@@ -20,13 +20,13 @@ const CNFundValueNode* CNFundValue::getNode(TimeStamp ts) const {
   return NULL;
 }
 
-bool CNFundExchange::init(Config& cfg) {
+bool CNFundExchange::init(const Config& cfg) {
   CNFundExchange* cnfund = this;
   auto onfile = [&cnfund](const char* dir, const char* fn) {
     cnfund->loadFundValue(joinPath(dir, fn).c_str());
   };
 
-  tr2::foreachPathWithExt(cfg.cnfundpath.c_str(), ".csv", onfile);
+  tr2::foreachPathWithExt(cfg.cnfundPath.c_str(), ".csv", onfile);
 
   this->buildTimeStampList();
 
@@ -280,7 +280,7 @@ void CNFundExchange::release() {
   this->m_map.clear();
 }
 
-Exchange* newCNFund(Config& cfg) {
+Exchange* newCNFund(const Config& cfg) {
   auto exchange = new CNFundExchange();
 
   exchange->init(cfg);

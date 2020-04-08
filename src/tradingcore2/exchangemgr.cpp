@@ -21,7 +21,7 @@ Exchange* ExchangeMgr::getExchange(const char* name) {
   return NULL;
 }
 
-Exchange* ExchangeMgr::newExchange(const char* name, Config& cfg) {
+Exchange* ExchangeMgr::newExchange(const char* name, const Config& cfg) {
   auto it = this->m_mapNewFunc.find(name);
   assert(it != this->m_mapNewFunc.end());
 
@@ -40,7 +40,7 @@ void ExchangeMgr::addExchange(Exchange* pExchange) {
   assert(ret.second);
 }
 
-void ExchangeMgr::init(Config& cfg) {
+void ExchangeMgr::init(const Config& cfg) {
   assert(this->m_mapExchange.size() == 0);
 
   for (auto it = cfg.exchanges.begin(); it != cfg.exchanges.end(); ++it) {
