@@ -18,8 +18,8 @@ TEST(config, loadConfig) {
   EXPECT_EQ(cfg.tokens[0], "wzDkh9h2fhfUVuS9jZ8uVbhV3vC5AWX3");
 
   EXPECT_EQ(cfg.servs.size(), 1);
-  EXPECT_EQ(cfg.servs[0], "0.0.0.0:3777");
-  EXPECT_EQ(cfg.token, "wzDkh9h2fhfUVuS9jZ8uVbhV3vC5AWX3");
+  EXPECT_EQ(cfg.servs[0].host, "0.0.0.0:3777");
+  EXPECT_EQ(cfg.servs[0].token, "wzDkh9h2fhfUVuS9jZ8uVbhV3vC5AWX3");
 }
 
 TEST(config, loadConfig2) {
@@ -39,6 +39,6 @@ TEST(config, loadConfig2) {
   EXPECT_EQ(cfg.tokens[0], "wzDkh9h2fhfUVuS9jZ8uVbhV3vC5AWX3");
 
   EXPECT_EQ(cfg.servs.size(), 1);
-  EXPECT_EQ(cfg.servs[0], "0.0.0.0:3777");
-  EXPECT_EQ(cfg.token, "wzDkh9h2fhfUVuS9jZ8uVbhV3vC5AWX3");
+  EXPECT_EQ(cfg.servs[0].host, "0.0.0.0:3777");
+  EXPECT_EQ(cfg.servs[0].token, "wzDkh9h2fhfUVuS9jZ8uVbhV3vC5AWX3");
 }

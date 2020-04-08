@@ -66,10 +66,10 @@ void train() {
                                10, 5, 10, 10, 2);
 }
 
-void startServ(const char* addr) {
-  auto pServ = tr2::newTrainServer2(addr);
-  pServ->run();
-}
+// void startServ(const char* addr) {
+//   auto pServ = tr2::newTrainServer2(addr);
+//   pServ->run();
+// }
 
 int main() {
   tr2::regAllIndicators();

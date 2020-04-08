@@ -5,9 +5,9 @@ exchanges:
 
 bindaddr: 0.0.0.0:3777
 tasknums: -1
-tokens: 
+tokens:
   - wzDkh9h2fhfUVuS9jZ8uVbhV3vC5AWX3
 
 servs:
-  - 0.0.0.0:3777
-token: wzDkh9h2fhfUVuS9jZ8uVbhV3vC5AWX3
+  - host: 0.0.0.0:3777
+    token: wzDkh9h2fhfUVuS9jZ8uVbhV3vC5AWX3

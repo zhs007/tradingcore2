@@ -43,6 +43,8 @@ class TrainService2Impl final
     } else {
       assert(false && "TrainService2Impl::init() error");
     }
+
+    printf("max tasks num : %d\n", m_maxTaskNums);
   }
 
  public:
@@ -61,6 +63,9 @@ class TrainService2Impl final
 
     response->set_curtasks(this->m_curTaskNums);
     response->set_maxtasks(this->m_maxTaskNums);
+
+    printf("current tasks num : %d\n", (int)m_curTaskNums);
+    printf("max tasks num : %d\n", m_maxTaskNums);
 
     return grpc::Status::OK;
   }
@@ -135,13 +140,15 @@ class TrainService2Impl final
 
 class TrainServer2 final : public Server {
  public:
-  TrainServer2(const char* strBindAddr) : m_bindAddr(strBindAddr) {}
+  TrainServer2(const Config& cfg) : m_pCfg(&cfg) {}
   virtual ~TrainServer2() {}
 
  public:
   virtual void run() override {
-    std::string server_address(m_bindAddr.c_str());
+    std::string server_address(m_pCfg->bindaddr.c_str());
     TrainService2Impl service;
+
+    service.init(*m_pCfg);
 
     grpc::EnableDefaultHealthCheckService(true);
     grpc::reflection::InitProtoReflectionServerBuilderPlugin();
@@ -161,11 +168,10 @@ class TrainServer2 final : public Server {
   }
 
  private:
-  std::string m_bindAddr;
+  const Config* m_pCfg;
+  // std::string m_bindAddr;
 };
 
-Server* newTrainServer2(const char* strBindAddr) {
-  return new TrainServer2(strBindAddr);
-}
+Server* newTrainServer2(const Config& cfg) { return new TrainServer2(cfg); }
 
 CR2END

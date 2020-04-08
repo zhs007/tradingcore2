@@ -6,7 +6,7 @@
 
 CR2BEGIN
 
-Server* newTrainServer2(const char* strBindAddr);
+Server* newTrainServer2(const Config& cfg);
 
 CR2END
 

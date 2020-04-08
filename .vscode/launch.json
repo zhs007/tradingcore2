@@ -26,6 +26,32 @@
             "externalConsole": false,
             "MIMode": "lldb",
             "preLaunchTask": "clang build active file"
+        },
+        {
+            "name": "server",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/src/server/server",
+            "args": ["../cfg/config.yaml.default"],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/build",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "lldb",
+            "preLaunchTask": "clang build active file"
+        },
+        {
+            "name": "client",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/src/client/client",
+            "args": ["../cfg/config.yaml.default"],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/build",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "lldb",
+            "preLaunchTask": "clang build active file"
         }
     ]
 }

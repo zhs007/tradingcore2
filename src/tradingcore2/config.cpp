@@ -42,14 +42,20 @@ bool loadConfig(Config& cfg, const char* fn) {
 
   if (node["servs"].IsSequence()) {
     for (auto it = node["servs"].begin(); it != node["servs"].end(); ++it) {
-      if (it->IsScalar()) {
-        cfg.servs.push_back(it->as<std::string>());
+      if (it->IsMap()) {
+        Config::ServerInfo si;
+
+        if ((*it)["host"].IsScalar()) {
+          si.host = (*it)["host"].as<std::string>();
+        }
+
+        if ((*it)["token"].IsScalar()) {
+          si.token = (*it)["token"].as<std::string>();
+        }
+
+        cfg.servs.push_back(si);
       }
     }
-  }
-
-  if (node["token"].IsScalar()) {
-    cfg.token = node["token"].as<std::string>();
   }
 
   return true;

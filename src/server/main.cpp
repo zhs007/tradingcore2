@@ -1,8 +1,9 @@
 #include <stdio.h>
 #include <tradingcore2/tradingcore2.h>
 
-void startServ(const char* addr) {
-  auto pServ = tr2::newTrainServer2(addr);
+void startServ(const tr2::Config& cfg) {
+  auto pServ = tr2::newTrainServer2(cfg);
+  //   pServ->init(cfg);
   pServ->run();
 }
 
@@ -22,7 +23,7 @@ int main(int argc, char* argv[]) {
   auto mgr = tr2::ExchangeMgr::getSingleton();
   mgr->init(cfg);
 
-  startServ(cfg.bindaddr.c_str());
+  startServ(cfg);
 
   return 0;
 }

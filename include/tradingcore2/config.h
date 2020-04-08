@@ -9,6 +9,11 @@
 CR2BEGIN
 
 struct Config {
+  struct ServerInfo {
+    std::string host;
+    std::string token;
+  };
+
   // for exchangemgr
   std::vector<std::string> exchanges;
 
@@ -31,8 +36,7 @@ struct Config {
   }
 
   // for client
-  std::vector<std::string> servs;
-  std::string token;
+  std::vector<ServerInfo> servs;
 };
 
 bool loadConfig(Config& cfg, const char* fn);
