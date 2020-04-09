@@ -41,6 +41,7 @@ struct TrainResult {
   int failNums;
   int stoplossNums;
   float winRate;
+  void* data;
 };
 
 typedef std::vector<TrainResult> TrainResultList;

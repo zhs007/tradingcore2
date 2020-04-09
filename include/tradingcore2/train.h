@@ -3,6 +3,7 @@
 
 #include <tradingcore2/basedef.h>
 
+#include <functional>
 #include <string>
 
 CR2BEGIN
@@ -45,6 +46,10 @@ bool trainSingleIndicator2(Exchange& exchange, const char* assetsName,
                            IndicatorDataValue off1, IndicatorDataValue off2,
                            IndicatorDataValue maxoff2, float minValidReturn);
 
+// FuncOnTrainEnd - for _trainSingleIndicator2Ex
+typedef std::function<void(const Wallet& wallet, TrainResult& tr)>
+    FuncOnTrainEnd;
+
 // _trainSingleIndicator2Ex -
 // 单独一个indicator的策略，考虑方向，一次只算若干次数，用于server分布式运算
 bool _trainSingleIndicator2Ex(TrainResultList& lst, Exchange& exchange,
@@ -55,7 +60,7 @@ bool _trainSingleIndicator2Ex(TrainResultList& lst, Exchange& exchange,
                               IndicatorDataValue maxoff2, float minValidReturn,
                               IndicatorDataValue minval,
                               IndicatorDataValue maxval, IndicatorDataValue cv0,
-                              IndicatorDataValue cv0off);
+                              IndicatorDataValue cv0off, FuncOnTrainEnd onend);
 
 // trainSingleIndicator2Ex -
 // 单独一个indicator的策略，考虑方向，调用 _trainSingleIndicator2Ex

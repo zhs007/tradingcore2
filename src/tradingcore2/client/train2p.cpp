@@ -107,9 +107,15 @@ class TrainClient2Pool {
     m_isStop = true;
 
     // __releaseThreads();
+    __releaseResults();
     __releaseClients();
     __releaseTasks();
     __releasePool();
+  }
+
+  void saveResults(const char* fn) {
+    std::unique_lock<std::mutex> lock(m_mtx);
+    saveTrainResult(fn, m_results);
   }
 
  public:
@@ -159,6 +165,9 @@ class TrainClient2Pool {
 
     while (true) {
       auto task = popRequestTrain();
+      if (task == NULL) {
+        break;
+      }
 
       setRequest_Token(task, pClient->token.c_str());
 
@@ -169,12 +178,19 @@ class TrainClient2Pool {
       grpc::Status status = pClient->stub->train(&context, *task, &reply);
 
       if (status.ok()) {
+        for (auto i = 0; i < reply.train().nodes_size(); ++i) {
+          TrainResult tr;
+          setTradeHistory2TrainResult(tr, reply.train().nodes(i));
+
+          this->addTrainResult(tr);
+        }
       }
 
       deleteRequestTrain(task);
     }
 
     printf("thread end.\n");
+    m_curThreadNums--;
   }
 
  private:
@@ -274,6 +290,21 @@ class TrainClient2Pool {
     }
   }
 
+  void addTrainResult(TrainResult& tr) {
+    std::unique_lock<std::mutex> lock(m_mtx);
+    m_results.push_back(tr);
+  }
+
+  void __releaseResults() {
+    for (auto it = m_results.begin(); it != m_results.end(); ++it) {
+      if (it->data != NULL) {
+        delete (tradingcore2pb::TrainNodeResult*)it->data;
+      }
+    }
+
+    m_results.clear();
+  }
+
  private:
   const Config* m_pCfg;
   // std::shared_ptr<grpc::Channel> m_channel;
@@ -288,6 +319,8 @@ class TrainClient2Pool {
 
   bool m_isStop;
   std::atomic<int> m_curThreadNums;
+
+  TrainResultList m_results;
 };
 
 // startTrainSingleIndicator2ExPool -
@@ -346,6 +379,7 @@ bool startTrainSingleIndicator2ExPool(
   }
 
   client.start();
+  client.saveResults("../output/train.csv");
   //   for (int i = 0; i < 100; i++) {
   //     // std::string user("world " + std::to_string(i));
   //     client.train(user);  // The actual RPC call!

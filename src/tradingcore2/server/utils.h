@@ -25,6 +25,11 @@ bool isValidTokens(const REQUEST* request, RESPONSE* response,
   return true;
 }
 
+void setTradeData(tradingcore2pb::TradeData& td, const WalletHistoryNode& node);
+
+void setTradeHistory(tradingcore2pb::TrainNodeResult& tnr,
+                     const Wallet& wallet);
+
 CR2END
 
 #endif  // __TRADINGCORE2_SRC_SERVER_UTILS_H__

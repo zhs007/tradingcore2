@@ -16,8 +16,9 @@
 #include <google/protobuf/port_def.inc>
 extern PROTOBUF_INTERNAL_EXPORT_tradingcore2_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_BasicReplyData_tradingcore2_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_tradingcore2_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_BasicRequestData_tradingcore2_2eproto;
+extern PROTOBUF_INTERNAL_EXPORT_tradingcore2_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_TradeData_tradingcore2_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_tradingcore2_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_TrainData_tradingcore2_2eproto;
-extern PROTOBUF_INTERNAL_EXPORT_tradingcore2_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_TrainNodeResult_tradingcore2_2eproto;
+extern PROTOBUF_INTERNAL_EXPORT_tradingcore2_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_TrainNodeResult_tradingcore2_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_tradingcore2_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_TrainResult_tradingcore2_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_tradingcore2_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_TrainSingleIndicator2Ex_tradingcore2_2eproto;
 namespace tradingcore2pb {
@@ -29,6 +30,10 @@ class BasicReplyDataDefaultTypeInternal {
  public:
   ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<BasicReplyData> _instance;
 } _BasicReplyData_default_instance_;
+class TradeDataDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<TradeData> _instance;
+} _TradeData_default_instance_;
 class TrainSingleIndicator2ExDefaultTypeInternal {
  public:
   ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<TrainSingleIndicator2Ex> _instance;
@@ -153,6 +158,20 @@ static void InitDefaultsscc_info_RequestTrain_tradingcore2_2eproto() {
       &scc_info_BasicRequestData_tradingcore2_2eproto.base,
       &scc_info_TrainData_tradingcore2_2eproto.base,}};
 
+static void InitDefaultsscc_info_TradeData_tradingcore2_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::tradingcore2pb::_TradeData_default_instance_;
+    new (ptr) ::tradingcore2pb::TradeData();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::tradingcore2pb::TradeData::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_TradeData_tradingcore2_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_TradeData_tradingcore2_2eproto}, {}};
+
 static void InitDefaultsscc_info_TrainData_tradingcore2_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
@@ -179,8 +198,9 @@ static void InitDefaultsscc_info_TrainNodeResult_tradingcore2_2eproto() {
   ::tradingcore2pb::TrainNodeResult::InitAsDefaultInstance();
 }
 
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_TrainNodeResult_tradingcore2_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_TrainNodeResult_tradingcore2_2eproto}, {}};
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_TrainNodeResult_tradingcore2_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_TrainNodeResult_tradingcore2_2eproto}, {
+      &scc_info_TradeData_tradingcore2_2eproto.base,}};
 
 static void InitDefaultsscc_info_TrainResult_tradingcore2_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
@@ -211,8 +231,8 @@ static void InitDefaultsscc_info_TrainSingleIndicator2Ex_tradingcore2_2eproto() 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_TrainSingleIndicator2Ex_tradingcore2_2eproto =
     {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_TrainSingleIndicator2Ex_tradingcore2_2eproto}, {}};
 
-static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_tradingcore2_2eproto[10];
-static const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* file_level_enum_descriptors_tradingcore2_2eproto[1];
+static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_tradingcore2_2eproto[11];
+static const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* file_level_enum_descriptors_tradingcore2_2eproto[2];
 static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_tradingcore2_2eproto = nullptr;
 
 const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_tradingcore2_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
@@ -228,6 +248,19 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_tradingcore2_2eproto::offsets[
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   PROTOBUF_FIELD_OFFSET(::tradingcore2pb::BasicReplyData, errcode_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::tradingcore2pb::TradeData, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::tradingcore2pb::TradeData, tradetype_),
+  PROTOBUF_FIELD_OFFSET(::tradingcore2pb::TradeData, assetsname_),
+  PROTOBUF_FIELD_OFFSET(::tradingcore2pb::TradeData, money_),
+  PROTOBUF_FIELD_OFFSET(::tradingcore2pb::TradeData, volume_),
+  PROTOBUF_FIELD_OFFSET(::tradingcore2pb::TradeData, price_),
+  PROTOBUF_FIELD_OFFSET(::tradingcore2pb::TradeData, fee_),
+  PROTOBUF_FIELD_OFFSET(::tradingcore2pb::TradeData, ts_),
+  PROTOBUF_FIELD_OFFSET(::tradingcore2pb::TradeData, offmoney_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::tradingcore2pb::TrainSingleIndicator2Ex, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -273,6 +306,7 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_tradingcore2_2eproto::offsets[
   PROTOBUF_FIELD_OFFSET(::tradingcore2pb::TrainNodeResult, stoplosstimes_),
   PROTOBUF_FIELD_OFFSET(::tradingcore2pb::TrainNodeResult, winrate_),
   PROTOBUF_FIELD_OFFSET(::tradingcore2pb::TrainNodeResult, name_),
+  PROTOBUF_FIELD_OFFSET(::tradingcore2pb::TrainNodeResult, history_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::tradingcore2pb::TrainResult, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -317,19 +351,21 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_tradingcore2_2eproto::offsets[
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, sizeof(::tradingcore2pb::BasicRequestData)},
   { 6, -1, sizeof(::tradingcore2pb::BasicReplyData)},
-  { 12, -1, sizeof(::tradingcore2pb::TrainSingleIndicator2Ex)},
-  { 27, -1, sizeof(::tradingcore2pb::TrainData)},
-  { 42, -1, sizeof(::tradingcore2pb::TrainNodeResult)},
-  { 57, -1, sizeof(::tradingcore2pb::TrainResult)},
-  { 69, -1, sizeof(::tradingcore2pb::RequestServerInfo)},
-  { 75, -1, sizeof(::tradingcore2pb::ReplyServerInfo)},
-  { 83, -1, sizeof(::tradingcore2pb::RequestTrain)},
-  { 90, -1, sizeof(::tradingcore2pb::ReplyTrain)},
+  { 12, -1, sizeof(::tradingcore2pb::TradeData)},
+  { 25, -1, sizeof(::tradingcore2pb::TrainSingleIndicator2Ex)},
+  { 40, -1, sizeof(::tradingcore2pb::TrainData)},
+  { 55, -1, sizeof(::tradingcore2pb::TrainNodeResult)},
+  { 71, -1, sizeof(::tradingcore2pb::TrainResult)},
+  { 83, -1, sizeof(::tradingcore2pb::RequestServerInfo)},
+  { 89, -1, sizeof(::tradingcore2pb::ReplyServerInfo)},
+  { 97, -1, sizeof(::tradingcore2pb::RequestTrain)},
+  { 104, -1, sizeof(::tradingcore2pb::ReplyTrain)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::tradingcore2pb::_BasicRequestData_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::tradingcore2pb::_BasicReplyData_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::tradingcore2pb::_TradeData_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::tradingcore2pb::_TrainSingleIndicator2Ex_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::tradingcore2pb::_TrainData_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::tradingcore2pb::_TrainNodeResult_default_instance_),
@@ -344,56 +380,63 @@ const char descriptor_table_protodef_tradingcore2_2eproto[] PROTOBUF_SECTION_VAR
   "\n\022tradingcore2.proto\022\016tradingcore2pb\"!\n\020"
   "BasicRequestData\022\r\n\005token\030\001 \001(\t\"<\n\016Basic"
   "ReplyData\022*\n\007errCode\030\001 \001(\0162\031.tradingcore"
-  "2pb.ErrorCode\"\272\001\n\027TrainSingleIndicator2E"
-  "x\022\025\n\rindicatorName\030\001 \001(\t\022\020\n\010avgtimes\030\002 \001"
-  "(\005\022\014\n\004off0\030\003 \001(\002\022\014\n\004off1\030\004 \001(\002\022\014\n\004off2\030\005"
-  " \001(\002\022\017\n\007maxoff2\030\006 \001(\002\022\016\n\006minval\030\007 \001(\002\022\016\n"
-  "\006maxval\030\010 \001(\002\022\013\n\003cv0\030\t \001(\002\022\016\n\006cv0off\030\n \001"
-  "(\002\"\360\001\n\tTrainData\022\017\n\007trainID\030\001 \001(\003\022\024\n\014exc"
-  "hangeName\030\002 \001(\t\022\022\n\nassetsName\030\003 \001(\t\022\024\n\014s"
-  "trategyName\030\004 \001(\t\022\020\n\010strParam\030\005 \001(\t\022\022\n\no"
-  "utputPath\030\006 \001(\t\022\016\n\006invest\030\007 \001(\002\022\026\n\016minVa"
-  "lidReturn\030\010 \001(\002\0226\n\003si2\030d \001(\0132\'.tradingco"
-  "re2pb.TrainSingleIndicator2ExH\000B\014\n\ntrain"
-  "Param\"\344\001\n\017TrainNodeResult\022\023\n\013maxDrawdown"
-  "\030\001 \001(\002\022\016\n\006sharpe\030\002 \001(\002\022\031\n\021annualizedRetu"
-  "rns\030\003 \001(\002\022\034\n\024annualizedVolatility\030\004 \001(\002\022"
-  "\024\n\014totalReturns\030\005 \001(\002\022\024\n\014tradingTimes\030\006 "
-  "\001(\005\022\021\n\tfailTimes\030\007 \001(\005\022\025\n\rstoplossTimes\030"
-  "\010 \001(\005\022\017\n\007winRate\030\t \001(\002\022\014\n\004name\030\n \001(\t\"\314\001\n"
-  "\013TrainResult\022\017\n\007trainID\030\001 \001(\003\022\024\n\014exchang"
-  "eName\030\002 \001(\t\022\022\n\nassetsName\030\003 \001(\t\022\024\n\014strat"
-  "egyName\030\004 \001(\t\022\020\n\010strParam\030\005 \001(\t\022*\n\007errCo"
-  "de\030\006 \001(\0162\031.tradingcore2pb.ErrorCode\022.\n\005n"
-  "odes\030\007 \003(\0132\037.tradingcore2pb.TrainNodeRes"
-  "ult\"K\n\021RequestServerInfo\0226\n\014basicRequest"
-  "\030\001 \001(\0132 .tradingcore2pb.BasicRequestData"
-  "\"i\n\017ReplyServerInfo\0222\n\nbasicReply\030\001 \001(\0132"
-  "\036.tradingcore2pb.BasicReplyData\022\020\n\010maxTa"
-  "sks\030\002 \001(\005\022\020\n\010curTasks\030\003 \001(\005\"p\n\014RequestTr"
-  "ain\0226\n\014basicRequest\030\001 \001(\0132 .tradingcore2"
-  "pb.BasicRequestData\022(\n\005train\030\002 \001(\0132\031.tra"
-  "dingcore2pb.TrainData\"l\n\nReplyTrain\0222\n\nb"
-  "asicReply\030\001 \001(\0132\036.tradingcore2pb.BasicRe"
-  "plyData\022*\n\005train\030\002 \001(\0132\033.tradingcore2pb."
-  "TrainResult*l\n\tErrorCode\022\r\n\tERR_NOERR\020\000\022"
-  "\022\n\016ERR_NOEXCHANGE\020\001\022\024\n\020ERR_NOTRAINPARAM\020"
-  "\002\022\020\n\014ERR_NOASSETS\020\003\022\024\n\020ERR_INVALIDTOKEN\020"
-  "\0042\261\001\n\023TradingCore2Service\022U\n\rgetServerIn"
-  "fo\022!.tradingcore2pb.RequestServerInfo\032\037."
-  "tradingcore2pb.ReplyServerInfo\"\000\022C\n\005trai"
-  "n\022\034.tradingcore2pb.RequestTrain\032\032.tradin"
-  "gcore2pb.ReplyTrain\"\000b\006proto3"
+  "2pb.ErrorCode\"\246\001\n\tTradeData\022,\n\ttradeType"
+  "\030\001 \001(\0162\031.tradingcore2pb.TradeType\022\022\n\nass"
+  "etsName\030\002 \001(\t\022\r\n\005money\030\003 \001(\002\022\016\n\006volume\030\004"
+  " \001(\002\022\r\n\005price\030\005 \001(\002\022\013\n\003fee\030\006 \001(\002\022\n\n\002ts\030\007"
+  " \001(\003\022\020\n\010offMoney\030\010 \001(\002\"\272\001\n\027TrainSingleIn"
+  "dicator2Ex\022\025\n\rindicatorName\030\001 \001(\t\022\020\n\010avg"
+  "times\030\002 \001(\005\022\014\n\004off0\030\003 \001(\002\022\014\n\004off1\030\004 \001(\002\022"
+  "\014\n\004off2\030\005 \001(\002\022\017\n\007maxoff2\030\006 \001(\002\022\016\n\006minval"
+  "\030\007 \001(\002\022\016\n\006maxval\030\010 \001(\002\022\013\n\003cv0\030\t \001(\002\022\016\n\006c"
+  "v0off\030\n \001(\002\"\360\001\n\tTrainData\022\017\n\007trainID\030\001 \001"
+  "(\003\022\024\n\014exchangeName\030\002 \001(\t\022\022\n\nassetsName\030\003"
+  " \001(\t\022\024\n\014strategyName\030\004 \001(\t\022\020\n\010strParam\030\005"
+  " \001(\t\022\022\n\noutputPath\030\006 \001(\t\022\016\n\006invest\030\007 \001(\002"
+  "\022\026\n\016minValidReturn\030\010 \001(\002\0226\n\003si2\030d \001(\0132\'."
+  "tradingcore2pb.TrainSingleIndicator2ExH\000"
+  "B\014\n\ntrainParam\"\220\002\n\017TrainNodeResult\022\023\n\013ma"
+  "xDrawdown\030\001 \001(\002\022\016\n\006sharpe\030\002 \001(\002\022\031\n\021annua"
+  "lizedReturns\030\003 \001(\002\022\034\n\024annualizedVolatili"
+  "ty\030\004 \001(\002\022\024\n\014totalReturns\030\005 \001(\002\022\024\n\014tradin"
+  "gTimes\030\006 \001(\005\022\021\n\tfailTimes\030\007 \001(\005\022\025\n\rstopl"
+  "ossTimes\030\010 \001(\005\022\017\n\007winRate\030\t \001(\002\022\014\n\004name\030"
+  "\n \001(\t\022*\n\007history\030\013 \003(\0132\031.tradingcore2pb."
+  "TradeData\"\314\001\n\013TrainResult\022\017\n\007trainID\030\001 \001"
+  "(\003\022\024\n\014exchangeName\030\002 \001(\t\022\022\n\nassetsName\030\003"
+  " \001(\t\022\024\n\014strategyName\030\004 \001(\t\022\020\n\010strParam\030\005"
+  " \001(\t\022*\n\007errCode\030\006 \001(\0162\031.tradingcore2pb.E"
+  "rrorCode\022.\n\005nodes\030\007 \003(\0132\037.tradingcore2pb"
+  ".TrainNodeResult\"K\n\021RequestServerInfo\0226\n"
+  "\014basicRequest\030\001 \001(\0132 .tradingcore2pb.Bas"
+  "icRequestData\"i\n\017ReplyServerInfo\0222\n\nbasi"
+  "cReply\030\001 \001(\0132\036.tradingcore2pb.BasicReply"
+  "Data\022\020\n\010maxTasks\030\002 \001(\005\022\020\n\010curTasks\030\003 \001(\005"
+  "\"p\n\014RequestTrain\0226\n\014basicRequest\030\001 \001(\0132 "
+  ".tradingcore2pb.BasicRequestData\022(\n\005trai"
+  "n\030\002 \001(\0132\031.tradingcore2pb.TrainData\"l\n\nRe"
+  "plyTrain\0222\n\nbasicReply\030\001 \001(\0132\036.tradingco"
+  "re2pb.BasicReplyData\022*\n\005train\030\002 \001(\0132\033.tr"
+  "adingcore2pb.TrainResult*l\n\tErrorCode\022\r\n"
+  "\tERR_NOERR\020\000\022\022\n\016ERR_NOEXCHANGE\020\001\022\024\n\020ERR_"
+  "NOTRAINPARAM\020\002\022\020\n\014ERR_NOASSETS\020\003\022\024\n\020ERR_"
+  "INVALIDTOKEN\020\004*$\n\tTradeType\022\n\n\006TT_BUY\020\000\022"
+  "\013\n\007TT_SELL\020\0012\261\001\n\023TradingCore2Service\022U\n\r"
+  "getServerInfo\022!.tradingcore2pb.RequestSe"
+  "rverInfo\032\037.tradingcore2pb.ReplyServerInf"
+  "o\"\000\022C\n\005train\022\034.tradingcore2pb.RequestTra"
+  "in\032\032.tradingcore2pb.ReplyTrain\"\000b\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_tradingcore2_2eproto_deps[1] = {
 };
-static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_tradingcore2_2eproto_sccs[10] = {
+static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_tradingcore2_2eproto_sccs[11] = {
   &scc_info_BasicReplyData_tradingcore2_2eproto.base,
   &scc_info_BasicRequestData_tradingcore2_2eproto.base,
   &scc_info_ReplyServerInfo_tradingcore2_2eproto.base,
   &scc_info_ReplyTrain_tradingcore2_2eproto.base,
   &scc_info_RequestServerInfo_tradingcore2_2eproto.base,
   &scc_info_RequestTrain_tradingcore2_2eproto.base,
+  &scc_info_TradeData_tradingcore2_2eproto.base,
   &scc_info_TrainData_tradingcore2_2eproto.base,
   &scc_info_TrainNodeResult_tradingcore2_2eproto.base,
   &scc_info_TrainResult_tradingcore2_2eproto.base,
@@ -402,10 +445,10 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_tra
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_tradingcore2_2eproto_once;
 static bool descriptor_table_tradingcore2_2eproto_initialized = false;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_tradingcore2_2eproto = {
-  &descriptor_table_tradingcore2_2eproto_initialized, descriptor_table_protodef_tradingcore2_2eproto, "tradingcore2.proto", 1709,
-  &descriptor_table_tradingcore2_2eproto_once, descriptor_table_tradingcore2_2eproto_sccs, descriptor_table_tradingcore2_2eproto_deps, 10, 0,
+  &descriptor_table_tradingcore2_2eproto_initialized, descriptor_table_protodef_tradingcore2_2eproto, "tradingcore2.proto", 1960,
+  &descriptor_table_tradingcore2_2eproto_once, descriptor_table_tradingcore2_2eproto_sccs, descriptor_table_tradingcore2_2eproto_deps, 11, 0,
   schemas, file_default_instances, TableStruct_tradingcore2_2eproto::offsets,
-  file_level_metadata_tradingcore2_2eproto, 10, file_level_enum_descriptors_tradingcore2_2eproto, file_level_service_descriptors_tradingcore2_2eproto,
+  file_level_metadata_tradingcore2_2eproto, 11, file_level_enum_descriptors_tradingcore2_2eproto, file_level_service_descriptors_tradingcore2_2eproto,
 };
 
 // Force running AddDescriptors() at dynamic initialization time.
@@ -422,6 +465,20 @@ bool ErrorCode_IsValid(int value) {
     case 2:
     case 3:
     case 4:
+      return true;
+    default:
+      return false;
+  }
+}
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* TradeType_descriptor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_tradingcore2_2eproto);
+  return file_level_enum_descriptors_tradingcore2_2eproto[1];
+}
+bool TradeType_IsValid(int value) {
+  switch (value) {
+    case 0:
+    case 1:
       return true;
     default:
       return false;
@@ -811,6 +868,373 @@ void BasicReplyData::InternalSwap(BasicReplyData* other) {
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata BasicReplyData::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
+
+// ===================================================================
+
+void TradeData::InitAsDefaultInstance() {
+}
+class TradeData::_Internal {
+ public:
+};
+
+TradeData::TradeData()
+  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:tradingcore2pb.TradeData)
+}
+TradeData::TradeData(const TradeData& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _internal_metadata_(nullptr) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  assetsname_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_assetsname().empty()) {
+    assetsname_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.assetsname_);
+  }
+  ::memcpy(&tradetype_, &from.tradetype_,
+    static_cast<size_t>(reinterpret_cast<char*>(&offmoney_) -
+    reinterpret_cast<char*>(&tradetype_)) + sizeof(offmoney_));
+  // @@protoc_insertion_point(copy_constructor:tradingcore2pb.TradeData)
+}
+
+void TradeData::SharedCtor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_TradeData_tradingcore2_2eproto.base);
+  assetsname_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  ::memset(&tradetype_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&offmoney_) -
+      reinterpret_cast<char*>(&tradetype_)) + sizeof(offmoney_));
+}
+
+TradeData::~TradeData() {
+  // @@protoc_insertion_point(destructor:tradingcore2pb.TradeData)
+  SharedDtor();
+}
+
+void TradeData::SharedDtor() {
+  assetsname_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+void TradeData::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const TradeData& TradeData::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_TradeData_tradingcore2_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void TradeData::Clear() {
+// @@protoc_insertion_point(message_clear_start:tradingcore2pb.TradeData)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  assetsname_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  ::memset(&tradetype_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&offmoney_) -
+      reinterpret_cast<char*>(&tradetype_)) + sizeof(offmoney_));
+  _internal_metadata_.Clear();
+}
+
+const char* TradeData::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // .tradingcore2pb.TradeType tradeType = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+          _internal_set_tradetype(static_cast<::tradingcore2pb::TradeType>(val));
+        } else goto handle_unusual;
+        continue;
+      // string assetsName = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          auto str = _internal_mutable_assetsname();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "tradingcore2pb.TradeData.assetsName"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // float money = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 29)) {
+          money_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else goto handle_unusual;
+        continue;
+      // float volume = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 37)) {
+          volume_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else goto handle_unusual;
+        continue;
+      // float price = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 45)) {
+          price_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else goto handle_unusual;
+        continue;
+      // float fee = 6;
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 53)) {
+          fee_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else goto handle_unusual;
+        continue;
+      // int64 ts = 7;
+      case 7:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 56)) {
+          ts_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // float offMoney = 8;
+      case 8:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 69)) {
+          offmoney_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* TradeData::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:tradingcore2pb.TradeData)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .tradingcore2pb.TradeType tradeType = 1;
+  if (this->tradetype() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
+      1, this->_internal_tradetype(), target);
+  }
+
+  // string assetsName = 2;
+  if (this->assetsname().size() > 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_assetsname().data(), static_cast<int>(this->_internal_assetsname().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "tradingcore2pb.TradeData.assetsName");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_assetsname(), target);
+  }
+
+  // float money = 3;
+  if (!(this->money() <= 0 && this->money() >= 0)) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(3, this->_internal_money(), target);
+  }
+
+  // float volume = 4;
+  if (!(this->volume() <= 0 && this->volume() >= 0)) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(4, this->_internal_volume(), target);
+  }
+
+  // float price = 5;
+  if (!(this->price() <= 0 && this->price() >= 0)) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(5, this->_internal_price(), target);
+  }
+
+  // float fee = 6;
+  if (!(this->fee() <= 0 && this->fee() >= 0)) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(6, this->_internal_fee(), target);
+  }
+
+  // int64 ts = 7;
+  if (this->ts() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt64ToArray(7, this->_internal_ts(), target);
+  }
+
+  // float offMoney = 8;
+  if (!(this->offmoney() <= 0 && this->offmoney() >= 0)) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(8, this->_internal_offmoney(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields(), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:tradingcore2pb.TradeData)
+  return target;
+}
+
+size_t TradeData::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:tradingcore2pb.TradeData)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string assetsName = 2;
+  if (this->assetsname().size() > 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_assetsname());
+  }
+
+  // .tradingcore2pb.TradeType tradeType = 1;
+  if (this->tradetype() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->_internal_tradetype());
+  }
+
+  // float money = 3;
+  if (!(this->money() <= 0 && this->money() >= 0)) {
+    total_size += 1 + 4;
+  }
+
+  // float volume = 4;
+  if (!(this->volume() <= 0 && this->volume() >= 0)) {
+    total_size += 1 + 4;
+  }
+
+  // float price = 5;
+  if (!(this->price() <= 0 && this->price() >= 0)) {
+    total_size += 1 + 4;
+  }
+
+  // int64 ts = 7;
+  if (this->ts() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int64Size(
+        this->_internal_ts());
+  }
+
+  // float fee = 6;
+  if (!(this->fee() <= 0 && this->fee() >= 0)) {
+    total_size += 1 + 4;
+  }
+
+  // float offMoney = 8;
+  if (!(this->offmoney() <= 0 && this->offmoney() >= 0)) {
+    total_size += 1 + 4;
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void TradeData::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:tradingcore2pb.TradeData)
+  GOOGLE_DCHECK_NE(&from, this);
+  const TradeData* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<TradeData>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:tradingcore2pb.TradeData)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:tradingcore2pb.TradeData)
+    MergeFrom(*source);
+  }
+}
+
+void TradeData::MergeFrom(const TradeData& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:tradingcore2pb.TradeData)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.assetsname().size() > 0) {
+
+    assetsname_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.assetsname_);
+  }
+  if (from.tradetype() != 0) {
+    _internal_set_tradetype(from._internal_tradetype());
+  }
+  if (!(from.money() <= 0 && from.money() >= 0)) {
+    _internal_set_money(from._internal_money());
+  }
+  if (!(from.volume() <= 0 && from.volume() >= 0)) {
+    _internal_set_volume(from._internal_volume());
+  }
+  if (!(from.price() <= 0 && from.price() >= 0)) {
+    _internal_set_price(from._internal_price());
+  }
+  if (from.ts() != 0) {
+    _internal_set_ts(from._internal_ts());
+  }
+  if (!(from.fee() <= 0 && from.fee() >= 0)) {
+    _internal_set_fee(from._internal_fee());
+  }
+  if (!(from.offmoney() <= 0 && from.offmoney() >= 0)) {
+    _internal_set_offmoney(from._internal_offmoney());
+  }
+}
+
+void TradeData::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:tradingcore2pb.TradeData)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void TradeData::CopyFrom(const TradeData& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:tradingcore2pb.TradeData)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool TradeData::IsInitialized() const {
+  return true;
+}
+
+void TradeData::InternalSwap(TradeData* other) {
+  using std::swap;
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  assetsname_.Swap(&other->assetsname_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+    GetArenaNoVirtual());
+  swap(tradetype_, other->tradetype_);
+  swap(money_, other->money_);
+  swap(volume_, other->volume_);
+  swap(price_, other->price_);
+  swap(ts_, other->ts_);
+  swap(fee_, other->fee_);
+  swap(offmoney_, other->offmoney_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata TradeData::GetMetadata() const {
   return GetMetadataStatic();
 }
 
@@ -1759,7 +2183,8 @@ TrainNodeResult::TrainNodeResult()
 }
 TrainNodeResult::TrainNodeResult(const TrainNodeResult& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _internal_metadata_(nullptr) {
+      _internal_metadata_(nullptr),
+      history_(from.history_) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (!from._internal_name().empty()) {
@@ -1803,6 +2228,7 @@ void TrainNodeResult::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  history_.Clear();
   name_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   ::memset(&maxdrawdown_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&winrate_) -
@@ -1887,6 +2313,18 @@ const char* TrainNodeResult::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPAC
           ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "tradingcore2pb.TrainNodeResult.name"));
           CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // repeated .tradingcore2pb.TradeData history = 11;
+      case 11:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 90)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(_internal_add_history(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<90>(ptr));
         } else goto handle_unusual;
         continue;
       default: {
@@ -1979,6 +2417,14 @@ failure:
         10, this->_internal_name(), target);
   }
 
+  // repeated .tradingcore2pb.TradeData history = 11;
+  for (unsigned int i = 0,
+      n = static_cast<unsigned int>(this->_internal_history_size()); i < n; i++) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(11, this->_internal_history(i), target, stream);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields(), target, stream);
@@ -1994,6 +2440,13 @@ size_t TrainNodeResult::ByteSizeLong() const {
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
+
+  // repeated .tradingcore2pb.TradeData history = 11;
+  total_size += 1UL * this->_internal_history_size();
+  for (const auto& msg : this->history_) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+  }
 
   // string name = 10;
   if (this->name().size() > 0) {
@@ -2084,6 +2537,7 @@ void TrainNodeResult::MergeFrom(const TrainNodeResult& from) {
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
+  history_.MergeFrom(from.history_);
   if (from.name().size() > 0) {
 
     name_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.name_);
@@ -2138,6 +2592,7 @@ bool TrainNodeResult::IsInitialized() const {
 void TrainNodeResult::InternalSwap(TrainNodeResult* other) {
   using std::swap;
   _internal_metadata_.Swap(&other->_internal_metadata_);
+  history_.InternalSwap(&other->history_);
   name_.Swap(&other->name_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
     GetArenaNoVirtual());
   swap(maxdrawdown_, other->maxdrawdown_);
@@ -3531,6 +3986,9 @@ template<> PROTOBUF_NOINLINE ::tradingcore2pb::BasicRequestData* Arena::CreateMa
 }
 template<> PROTOBUF_NOINLINE ::tradingcore2pb::BasicReplyData* Arena::CreateMaybeMessage< ::tradingcore2pb::BasicReplyData >(Arena* arena) {
   return Arena::CreateInternal< ::tradingcore2pb::BasicReplyData >(arena);
+}
+template<> PROTOBUF_NOINLINE ::tradingcore2pb::TradeData* Arena::CreateMaybeMessage< ::tradingcore2pb::TradeData >(Arena* arena) {
+  return Arena::CreateInternal< ::tradingcore2pb::TradeData >(arena);
 }
 template<> PROTOBUF_NOINLINE ::tradingcore2pb::TrainSingleIndicator2Ex* Arena::CreateMaybeMessage< ::tradingcore2pb::TrainSingleIndicator2Ex >(Arena* arena) {
   return Arena::CreateInternal< ::tradingcore2pb::TrainSingleIndicator2Ex >(arena);

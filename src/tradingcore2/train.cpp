@@ -356,7 +356,7 @@ bool _trainSingleIndicator2Ex(TrainResultList& lst, Exchange& exchange,
                               IndicatorDataValue maxoff2, float minValidReturn,
                               IndicatorDataValue minval,
                               IndicatorDataValue maxval, IndicatorDataValue cv0,
-                              IndicatorDataValue cv0off) {
+                              IndicatorDataValue cv0off, FuncOnTrainEnd onend) {
   // for (auto cv0 = minv0; cv0 <= maxv0; cv0 += off0) {
   // for (auto cv0off = off2; cv0off <= maxoff2; cv0off += off2) {
   for (auto cv0dir = 0; cv0dir <= 1; cv0dir++) {
@@ -455,14 +455,18 @@ bool _trainSingleIndicator2Ex(TrainResultList& lst, Exchange& exchange,
           pnl.getTrainResult(tr);
           pStrategy->getTrainResult(tr);
 
-          if (tr.totalReturn > minValidReturn) {
-            auto fn1 = joinPath(outputPath, strname);
-            fn1 += ".csv";
+          if (onend != NULL) {
+            onend(*pWallet, tr);
+          } else {
+            if (tr.totalReturn > minValidReturn) {
+              auto fn1 = joinPath(outputPath, strname);
+              fn1 += ".csv";
 
-            pnl.saveCSV(fn1.c_str(), true);
+              pnl.saveCSV(fn1.c_str(), true);
+            }
+
+            lst.push_back(tr);
           }
-
-          lst.push_back(tr);
 
           delete pStrategy;
           delete pWallet;
@@ -525,7 +529,7 @@ bool trainSingleIndicator2Ex(Exchange& exchange, const char* assetsName,
       _trainSingleIndicator2Ex(lst, exchange, assetsName, indicatorName,
                                outputPath, invest, avgtimes, off0, off1, off2,
                                maxoff2, minValidReturn, minval, maxval, cv0,
-                               cv0off);
+                               cv0off, NULL);
 
       curtimes++;
 

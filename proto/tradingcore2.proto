@@ -17,6 +17,22 @@ message BasicReplyData {
     ErrorCode errCode = 1;
 }
 
+enum TradeType { 
+    TT_BUY = 0;
+    TT_SELL = 1; 
+}
+
+message TradeData {
+  TradeType tradeType = 1;
+  string assetsName = 2;
+  float money = 3;
+  float volume = 4;
+  float price = 5;
+  float fee = 6;
+  int64 ts = 7;
+  float offMoney = 8;
+};
+
 message TrainSingleIndicator2Ex {
     string indicatorName = 1;
     int32 avgtimes = 2;
@@ -57,6 +73,7 @@ message TrainNodeResult {
     int32 stoplossTimes = 8;
     float winRate = 9;
     string name = 10;
+    repeated TradeData history = 11;
 }
 
 // TrainResult - train result

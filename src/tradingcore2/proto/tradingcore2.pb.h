@@ -48,7 +48,7 @@ struct TableStruct_tradingcore2_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxillaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[10]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[11]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -74,6 +74,9 @@ extern RequestServerInfoDefaultTypeInternal _RequestServerInfo_default_instance_
 class RequestTrain;
 class RequestTrainDefaultTypeInternal;
 extern RequestTrainDefaultTypeInternal _RequestTrain_default_instance_;
+class TradeData;
+class TradeDataDefaultTypeInternal;
+extern TradeDataDefaultTypeInternal _TradeData_default_instance_;
 class TrainData;
 class TrainDataDefaultTypeInternal;
 extern TrainDataDefaultTypeInternal _TrainData_default_instance_;
@@ -94,6 +97,7 @@ template<> ::tradingcore2pb::ReplyServerInfo* Arena::CreateMaybeMessage<::tradin
 template<> ::tradingcore2pb::ReplyTrain* Arena::CreateMaybeMessage<::tradingcore2pb::ReplyTrain>(Arena*);
 template<> ::tradingcore2pb::RequestServerInfo* Arena::CreateMaybeMessage<::tradingcore2pb::RequestServerInfo>(Arena*);
 template<> ::tradingcore2pb::RequestTrain* Arena::CreateMaybeMessage<::tradingcore2pb::RequestTrain>(Arena*);
+template<> ::tradingcore2pb::TradeData* Arena::CreateMaybeMessage<::tradingcore2pb::TradeData>(Arena*);
 template<> ::tradingcore2pb::TrainData* Arena::CreateMaybeMessage<::tradingcore2pb::TrainData>(Arena*);
 template<> ::tradingcore2pb::TrainNodeResult* Arena::CreateMaybeMessage<::tradingcore2pb::TrainNodeResult>(Arena*);
 template<> ::tradingcore2pb::TrainResult* Arena::CreateMaybeMessage<::tradingcore2pb::TrainResult>(Arena*);
@@ -128,6 +132,31 @@ inline bool ErrorCode_Parse(
     const std::string& name, ErrorCode* value) {
   return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<ErrorCode>(
     ErrorCode_descriptor(), name, value);
+}
+enum TradeType : int {
+  TT_BUY = 0,
+  TT_SELL = 1,
+  TradeType_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::min(),
+  TradeType_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::max()
+};
+bool TradeType_IsValid(int value);
+constexpr TradeType TradeType_MIN = TT_BUY;
+constexpr TradeType TradeType_MAX = TT_SELL;
+constexpr int TradeType_ARRAYSIZE = TradeType_MAX + 1;
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* TradeType_descriptor();
+template<typename T>
+inline const std::string& TradeType_Name(T enum_t_value) {
+  static_assert(::std::is_same<T, TradeType>::value ||
+    ::std::is_integral<T>::value,
+    "Incorrect type passed to function TradeType_Name.");
+  return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
+    TradeType_descriptor(), enum_t_value);
+}
+inline bool TradeType_Parse(
+    const std::string& name, TradeType* value) {
+  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<TradeType>(
+    TradeType_descriptor(), name, value);
 }
 // ===================================================================
 
@@ -394,6 +423,218 @@ class BasicReplyData :
 };
 // -------------------------------------------------------------------
 
+class TradeData :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tradingcore2pb.TradeData) */ {
+ public:
+  TradeData();
+  virtual ~TradeData();
+
+  TradeData(const TradeData& from);
+  TradeData(TradeData&& from) noexcept
+    : TradeData() {
+    *this = ::std::move(from);
+  }
+
+  inline TradeData& operator=(const TradeData& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline TradeData& operator=(TradeData&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const TradeData& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const TradeData* internal_default_instance() {
+    return reinterpret_cast<const TradeData*>(
+               &_TradeData_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    2;
+
+  friend void swap(TradeData& a, TradeData& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(TradeData* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline TradeData* New() const final {
+    return CreateMaybeMessage<TradeData>(nullptr);
+  }
+
+  TradeData* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<TradeData>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const TradeData& from);
+  void MergeFrom(const TradeData& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(TradeData* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "tradingcore2pb.TradeData";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_tradingcore2_2eproto);
+    return ::descriptor_table_tradingcore2_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kAssetsNameFieldNumber = 2,
+    kTradeTypeFieldNumber = 1,
+    kMoneyFieldNumber = 3,
+    kVolumeFieldNumber = 4,
+    kPriceFieldNumber = 5,
+    kTsFieldNumber = 7,
+    kFeeFieldNumber = 6,
+    kOffMoneyFieldNumber = 8,
+  };
+  // string assetsName = 2;
+  void clear_assetsname();
+  const std::string& assetsname() const;
+  void set_assetsname(const std::string& value);
+  void set_assetsname(std::string&& value);
+  void set_assetsname(const char* value);
+  void set_assetsname(const char* value, size_t size);
+  std::string* mutable_assetsname();
+  std::string* release_assetsname();
+  void set_allocated_assetsname(std::string* assetsname);
+  private:
+  const std::string& _internal_assetsname() const;
+  void _internal_set_assetsname(const std::string& value);
+  std::string* _internal_mutable_assetsname();
+  public:
+
+  // .tradingcore2pb.TradeType tradeType = 1;
+  void clear_tradetype();
+  ::tradingcore2pb::TradeType tradetype() const;
+  void set_tradetype(::tradingcore2pb::TradeType value);
+  private:
+  ::tradingcore2pb::TradeType _internal_tradetype() const;
+  void _internal_set_tradetype(::tradingcore2pb::TradeType value);
+  public:
+
+  // float money = 3;
+  void clear_money();
+  float money() const;
+  void set_money(float value);
+  private:
+  float _internal_money() const;
+  void _internal_set_money(float value);
+  public:
+
+  // float volume = 4;
+  void clear_volume();
+  float volume() const;
+  void set_volume(float value);
+  private:
+  float _internal_volume() const;
+  void _internal_set_volume(float value);
+  public:
+
+  // float price = 5;
+  void clear_price();
+  float price() const;
+  void set_price(float value);
+  private:
+  float _internal_price() const;
+  void _internal_set_price(float value);
+  public:
+
+  // int64 ts = 7;
+  void clear_ts();
+  ::PROTOBUF_NAMESPACE_ID::int64 ts() const;
+  void set_ts(::PROTOBUF_NAMESPACE_ID::int64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int64 _internal_ts() const;
+  void _internal_set_ts(::PROTOBUF_NAMESPACE_ID::int64 value);
+  public:
+
+  // float fee = 6;
+  void clear_fee();
+  float fee() const;
+  void set_fee(float value);
+  private:
+  float _internal_fee() const;
+  void _internal_set_fee(float value);
+  public:
+
+  // float offMoney = 8;
+  void clear_offmoney();
+  float offmoney() const;
+  void set_offmoney(float value);
+  private:
+  float _internal_offmoney() const;
+  void _internal_set_offmoney(float value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:tradingcore2pb.TradeData)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr assetsname_;
+  int tradetype_;
+  float money_;
+  float volume_;
+  float price_;
+  ::PROTOBUF_NAMESPACE_ID::int64 ts_;
+  float fee_;
+  float offmoney_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_tradingcore2_2eproto;
+};
+// -------------------------------------------------------------------
+
 class TrainSingleIndicator2Ex :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tradingcore2pb.TrainSingleIndicator2Ex) */ {
  public:
@@ -436,7 +677,7 @@ class TrainSingleIndicator2Ex :
                &_TrainSingleIndicator2Ex_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    2;
+    3;
 
   friend void swap(TrainSingleIndicator2Ex& a, TrainSingleIndicator2Ex& b) {
     a.Swap(&b);
@@ -675,7 +916,7 @@ class TrainData :
                &_TrainData_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    3;
+    4;
 
   friend void swap(TrainData& a, TrainData& b) {
     a.Swap(&b);
@@ -943,7 +1184,7 @@ class TrainNodeResult :
                &_TrainNodeResult_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    4;
+    5;
 
   friend void swap(TrainNodeResult& a, TrainNodeResult& b) {
     a.Swap(&b);
@@ -1007,6 +1248,7 @@ class TrainNodeResult :
   // accessors -------------------------------------------------------
 
   enum : int {
+    kHistoryFieldNumber = 11,
     kNameFieldNumber = 10,
     kMaxDrawdownFieldNumber = 1,
     kSharpeFieldNumber = 2,
@@ -1018,6 +1260,24 @@ class TrainNodeResult :
     kStoplossTimesFieldNumber = 8,
     kWinRateFieldNumber = 9,
   };
+  // repeated .tradingcore2pb.TradeData history = 11;
+  int history_size() const;
+  private:
+  int _internal_history_size() const;
+  public:
+  void clear_history();
+  ::tradingcore2pb::TradeData* mutable_history(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingcore2pb::TradeData >*
+      mutable_history();
+  private:
+  const ::tradingcore2pb::TradeData& _internal_history(int index) const;
+  ::tradingcore2pb::TradeData* _internal_add_history();
+  public:
+  const ::tradingcore2pb::TradeData& history(int index) const;
+  ::tradingcore2pb::TradeData* add_history();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingcore2pb::TradeData >&
+      history() const;
+
   // string name = 10;
   void clear_name();
   const std::string& name() const;
@@ -1120,6 +1380,7 @@ class TrainNodeResult :
   class _Internal;
 
   ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingcore2pb::TradeData > history_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
   float maxdrawdown_;
   float sharpe_;
@@ -1177,7 +1438,7 @@ class TrainResult :
                &_TrainResult_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    5;
+    6;
 
   friend void swap(TrainResult& a, TrainResult& b) {
     a.Swap(&b);
@@ -1408,7 +1669,7 @@ class RequestServerInfo :
                &_RequestServerInfo_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    6;
+    7;
 
   friend void swap(RequestServerInfo& a, RequestServerInfo& b) {
     a.Swap(&b);
@@ -1542,7 +1803,7 @@ class ReplyServerInfo :
                &_ReplyServerInfo_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    7;
+    8;
 
   friend void swap(ReplyServerInfo& a, ReplyServerInfo& b) {
     a.Swap(&b);
@@ -1698,7 +1959,7 @@ class RequestTrain :
                &_RequestTrain_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    8;
+    9;
 
   friend void swap(RequestTrain& a, RequestTrain& b) {
     a.Swap(&b);
@@ -1849,7 +2110,7 @@ class ReplyTrain :
                &_ReplyTrain_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    9;
+    10;
 
   friend void swap(ReplyTrain& a, ReplyTrain& b) {
     a.Swap(&b);
@@ -2049,6 +2310,210 @@ inline void BasicReplyData::_internal_set_errcode(::tradingcore2pb::ErrorCode va
 inline void BasicReplyData::set_errcode(::tradingcore2pb::ErrorCode value) {
   _internal_set_errcode(value);
   // @@protoc_insertion_point(field_set:tradingcore2pb.BasicReplyData.errCode)
+}
+
+// -------------------------------------------------------------------
+
+// TradeData
+
+// .tradingcore2pb.TradeType tradeType = 1;
+inline void TradeData::clear_tradetype() {
+  tradetype_ = 0;
+}
+inline ::tradingcore2pb::TradeType TradeData::_internal_tradetype() const {
+  return static_cast< ::tradingcore2pb::TradeType >(tradetype_);
+}
+inline ::tradingcore2pb::TradeType TradeData::tradetype() const {
+  // @@protoc_insertion_point(field_get:tradingcore2pb.TradeData.tradeType)
+  return _internal_tradetype();
+}
+inline void TradeData::_internal_set_tradetype(::tradingcore2pb::TradeType value) {
+  
+  tradetype_ = value;
+}
+inline void TradeData::set_tradetype(::tradingcore2pb::TradeType value) {
+  _internal_set_tradetype(value);
+  // @@protoc_insertion_point(field_set:tradingcore2pb.TradeData.tradeType)
+}
+
+// string assetsName = 2;
+inline void TradeData::clear_assetsname() {
+  assetsname_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline const std::string& TradeData::assetsname() const {
+  // @@protoc_insertion_point(field_get:tradingcore2pb.TradeData.assetsName)
+  return _internal_assetsname();
+}
+inline void TradeData::set_assetsname(const std::string& value) {
+  _internal_set_assetsname(value);
+  // @@protoc_insertion_point(field_set:tradingcore2pb.TradeData.assetsName)
+}
+inline std::string* TradeData::mutable_assetsname() {
+  // @@protoc_insertion_point(field_mutable:tradingcore2pb.TradeData.assetsName)
+  return _internal_mutable_assetsname();
+}
+inline const std::string& TradeData::_internal_assetsname() const {
+  return assetsname_.GetNoArena();
+}
+inline void TradeData::_internal_set_assetsname(const std::string& value) {
+  
+  assetsname_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+}
+inline void TradeData::set_assetsname(std::string&& value) {
+  
+  assetsname_.SetNoArena(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:tradingcore2pb.TradeData.assetsName)
+}
+inline void TradeData::set_assetsname(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  assetsname_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:tradingcore2pb.TradeData.assetsName)
+}
+inline void TradeData::set_assetsname(const char* value, size_t size) {
+  
+  assetsname_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:tradingcore2pb.TradeData.assetsName)
+}
+inline std::string* TradeData::_internal_mutable_assetsname() {
+  
+  return assetsname_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline std::string* TradeData::release_assetsname() {
+  // @@protoc_insertion_point(field_release:tradingcore2pb.TradeData.assetsName)
+  
+  return assetsname_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline void TradeData::set_allocated_assetsname(std::string* assetsname) {
+  if (assetsname != nullptr) {
+    
+  } else {
+    
+  }
+  assetsname_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), assetsname);
+  // @@protoc_insertion_point(field_set_allocated:tradingcore2pb.TradeData.assetsName)
+}
+
+// float money = 3;
+inline void TradeData::clear_money() {
+  money_ = 0;
+}
+inline float TradeData::_internal_money() const {
+  return money_;
+}
+inline float TradeData::money() const {
+  // @@protoc_insertion_point(field_get:tradingcore2pb.TradeData.money)
+  return _internal_money();
+}
+inline void TradeData::_internal_set_money(float value) {
+  
+  money_ = value;
+}
+inline void TradeData::set_money(float value) {
+  _internal_set_money(value);
+  // @@protoc_insertion_point(field_set:tradingcore2pb.TradeData.money)
+}
+
+// float volume = 4;
+inline void TradeData::clear_volume() {
+  volume_ = 0;
+}
+inline float TradeData::_internal_volume() const {
+  return volume_;
+}
+inline float TradeData::volume() const {
+  // @@protoc_insertion_point(field_get:tradingcore2pb.TradeData.volume)
+  return _internal_volume();
+}
+inline void TradeData::_internal_set_volume(float value) {
+  
+  volume_ = value;
+}
+inline void TradeData::set_volume(float value) {
+  _internal_set_volume(value);
+  // @@protoc_insertion_point(field_set:tradingcore2pb.TradeData.volume)
+}
+
+// float price = 5;
+inline void TradeData::clear_price() {
+  price_ = 0;
+}
+inline float TradeData::_internal_price() const {
+  return price_;
+}
+inline float TradeData::price() const {
+  // @@protoc_insertion_point(field_get:tradingcore2pb.TradeData.price)
+  return _internal_price();
+}
+inline void TradeData::_internal_set_price(float value) {
+  
+  price_ = value;
+}
+inline void TradeData::set_price(float value) {
+  _internal_set_price(value);
+  // @@protoc_insertion_point(field_set:tradingcore2pb.TradeData.price)
+}
+
+// float fee = 6;
+inline void TradeData::clear_fee() {
+  fee_ = 0;
+}
+inline float TradeData::_internal_fee() const {
+  return fee_;
+}
+inline float TradeData::fee() const {
+  // @@protoc_insertion_point(field_get:tradingcore2pb.TradeData.fee)
+  return _internal_fee();
+}
+inline void TradeData::_internal_set_fee(float value) {
+  
+  fee_ = value;
+}
+inline void TradeData::set_fee(float value) {
+  _internal_set_fee(value);
+  // @@protoc_insertion_point(field_set:tradingcore2pb.TradeData.fee)
+}
+
+// int64 ts = 7;
+inline void TradeData::clear_ts() {
+  ts_ = PROTOBUF_LONGLONG(0);
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 TradeData::_internal_ts() const {
+  return ts_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 TradeData::ts() const {
+  // @@protoc_insertion_point(field_get:tradingcore2pb.TradeData.ts)
+  return _internal_ts();
+}
+inline void TradeData::_internal_set_ts(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  
+  ts_ = value;
+}
+inline void TradeData::set_ts(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  _internal_set_ts(value);
+  // @@protoc_insertion_point(field_set:tradingcore2pb.TradeData.ts)
+}
+
+// float offMoney = 8;
+inline void TradeData::clear_offmoney() {
+  offmoney_ = 0;
+}
+inline float TradeData::_internal_offmoney() const {
+  return offmoney_;
+}
+inline float TradeData::offmoney() const {
+  // @@protoc_insertion_point(field_get:tradingcore2pb.TradeData.offMoney)
+  return _internal_offmoney();
+}
+inline void TradeData::_internal_set_offmoney(float value) {
+  
+  offmoney_ = value;
+}
+inline void TradeData::set_offmoney(float value) {
+  _internal_set_offmoney(value);
+  // @@protoc_insertion_point(field_set:tradingcore2pb.TradeData.offMoney)
 }
 
 // -------------------------------------------------------------------
@@ -2962,6 +3427,45 @@ inline void TrainNodeResult::set_allocated_name(std::string* name) {
   // @@protoc_insertion_point(field_set_allocated:tradingcore2pb.TrainNodeResult.name)
 }
 
+// repeated .tradingcore2pb.TradeData history = 11;
+inline int TrainNodeResult::_internal_history_size() const {
+  return history_.size();
+}
+inline int TrainNodeResult::history_size() const {
+  return _internal_history_size();
+}
+inline void TrainNodeResult::clear_history() {
+  history_.Clear();
+}
+inline ::tradingcore2pb::TradeData* TrainNodeResult::mutable_history(int index) {
+  // @@protoc_insertion_point(field_mutable:tradingcore2pb.TrainNodeResult.history)
+  return history_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingcore2pb::TradeData >*
+TrainNodeResult::mutable_history() {
+  // @@protoc_insertion_point(field_mutable_list:tradingcore2pb.TrainNodeResult.history)
+  return &history_;
+}
+inline const ::tradingcore2pb::TradeData& TrainNodeResult::_internal_history(int index) const {
+  return history_.Get(index);
+}
+inline const ::tradingcore2pb::TradeData& TrainNodeResult::history(int index) const {
+  // @@protoc_insertion_point(field_get:tradingcore2pb.TrainNodeResult.history)
+  return _internal_history(index);
+}
+inline ::tradingcore2pb::TradeData* TrainNodeResult::_internal_add_history() {
+  return history_.Add();
+}
+inline ::tradingcore2pb::TradeData* TrainNodeResult::add_history() {
+  // @@protoc_insertion_point(field_add:tradingcore2pb.TrainNodeResult.history)
+  return _internal_add_history();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingcore2pb::TradeData >&
+TrainNodeResult::history() const {
+  // @@protoc_insertion_point(field_list:tradingcore2pb.TrainNodeResult.history)
+  return history_;
+}
+
 // -------------------------------------------------------------------
 
 // TrainResult
@@ -3722,6 +4226,8 @@ inline void ReplyTrain::set_allocated_train(::tradingcore2pb::TrainResult* train
 
 // -------------------------------------------------------------------
 
+// -------------------------------------------------------------------
+
 
 // @@protoc_insertion_point(namespace_scope)
 
@@ -3733,6 +4239,11 @@ template <> struct is_proto_enum< ::tradingcore2pb::ErrorCode> : ::std::true_typ
 template <>
 inline const EnumDescriptor* GetEnumDescriptor< ::tradingcore2pb::ErrorCode>() {
   return ::tradingcore2pb::ErrorCode_descriptor();
+}
+template <> struct is_proto_enum< ::tradingcore2pb::TradeType> : ::std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::tradingcore2pb::TradeType>() {
+  return ::tradingcore2pb::TradeType_descriptor();
 }
 
 PROTOBUF_NAMESPACE_CLOSE

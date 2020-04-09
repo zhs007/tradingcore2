@@ -99,6 +99,25 @@ class TrainService2Impl final
       return grpc::Status::OK;
     }
 
+    auto onend = [&req, &res](const Wallet& wallet, TrainResult& tr) {
+      auto pTR = res->add_nodes();
+
+      pTR->set_maxdrawdown(tr.maxDrawDown);
+      pTR->set_sharpe(tr.sharpe);
+      pTR->set_annualizedreturns(tr.annualizedReturns);
+      pTR->set_annualizedvolatility(tr.annualizedVolatility);
+      pTR->set_totalreturns(tr.totalReturn);
+      pTR->set_tradingtimes(tr.tradingNums);
+      pTR->set_stoplosstimes(tr.stoplossNums);
+      pTR->set_winrate(tr.winRate);
+      pTR->set_failtimes(tr.failNums);
+      pTR->set_name(tr.name.c_str());
+
+      if (tr.totalReturn > req.minvalidreturn()) {
+        setTradeHistory(*pTR, wallet);
+      }
+    };
+
     if (req.has_si2()) {
       auto si2 = req.si2();
 
@@ -107,22 +126,22 @@ class TrainService2Impl final
           lst, *exchange, req.assetsname().c_str(), si2.indicatorname().c_str(),
           req.outputpath().c_str(), req.invest(), si2.avgtimes(), si2.off0(),
           si2.off1(), si2.off2(), si2.maxoff2(), req.minvalidreturn(),
-          si2.minval(), si2.maxval(), si2.cv0(), si2.cv0off());
+          si2.minval(), si2.maxval(), si2.cv0(), si2.cv0off(), onend);
 
-      for (auto it = lst.begin(); it != lst.end(); ++it) {
-        auto tr = res->add_nodes();
+      // for (auto it = lst.begin(); it != lst.end(); ++it) {
+      //   auto tr = res->add_nodes();
 
-        tr->set_maxdrawdown(it->maxDrawDown);
-        tr->set_sharpe(it->sharpe);
-        tr->set_annualizedreturns(it->annualizedReturns);
-        tr->set_annualizedvolatility(it->annualizedVolatility);
-        tr->set_totalreturns(it->totalReturn);
-        tr->set_tradingtimes(it->tradingNums);
-        tr->set_stoplosstimes(it->stoplossNums);
-        tr->set_winrate(it->winRate);
-        tr->set_failtimes(it->failNums);
-        tr->set_name(it->name.c_str());
-      }
+      //   tr->set_maxdrawdown(it->maxDrawDown);
+      //   tr->set_sharpe(it->sharpe);
+      //   tr->set_annualizedreturns(it->annualizedReturns);
+      //   tr->set_annualizedvolatility(it->annualizedVolatility);
+      //   tr->set_totalreturns(it->totalReturn);
+      //   tr->set_tradingtimes(it->tradingNums);
+      //   tr->set_stoplosstimes(it->stoplossNums);
+      //   tr->set_winrate(it->winRate);
+      //   tr->set_failtimes(it->failNums);
+      //   tr->set_name(it->name.c_str());
+      // }
     } else {
       setResponse_ErrorCode(response, tradingcore2pb::ERR_NOTRAINPARAM);
 

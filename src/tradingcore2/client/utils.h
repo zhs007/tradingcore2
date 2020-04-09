@@ -12,6 +12,9 @@ void setRequest_Token(REQUEST* request, const char* token) {
   request->mutable_basicrequest()->set_token(token);
 }
 
+void setTradeHistory2TrainResult(TrainResult& tr,
+                                 const tradingcore2pb::TrainNodeResult& tnr);
+
 CR2END
 
 #endif  // __TRADINGCORE2_SRC_CLIENT_UTILS_H__
