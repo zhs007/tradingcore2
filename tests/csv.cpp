@@ -56,11 +56,11 @@ TEST(CSV, savecsv) {
     return true;
   };
 
-  tr2::saveCSV("../data/test.savecsv.csv", onhead, onrow);
+  tr2::saveCSV("../output/test.savecsv.csv", onhead, onrow);
 
   tr2::CSVLoader csv;
 
-  csv.load("../data/test.savecsv.csv");
+  csv.load("../output/test.savecsv.csv");
 
   EXPECT_EQ(csv.getWidth(), 3);
   EXPECT_EQ(csv.getHeight(), 2);
