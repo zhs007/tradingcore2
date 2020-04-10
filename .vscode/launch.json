@@ -45,7 +45,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/build/src/client/client",
-            "args": ["../cfg/config.yaml.default"],
+            "args": ["../cfg/config.yaml"],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}/build",
             "environment": [],

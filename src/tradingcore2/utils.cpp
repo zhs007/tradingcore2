@@ -8,6 +8,8 @@
 #include <iomanip>
 #include <sstream>
 
+#include "version.h"
+
 CR2BEGIN
 
 TimeStamp str2timestampUTC(const char* str, const char* format) {
@@ -131,5 +133,7 @@ void foreachPathWithExt(const char* dir, const char* extfn,
 
   closedir(fd);
 }
+
+const char* getVersion() { return TC2_VERSION; }
 
 CR2END

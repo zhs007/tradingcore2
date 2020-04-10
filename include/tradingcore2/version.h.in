@@ -1,0 +1,6 @@
+#ifndef __TRADINGCORE2_VERSION_H__
+#define __TRADINGCORE2_VERSION_H__
+
+#cmakedefine TC2_VERSION "@TC2_VERSION@"
+
+#endif  // __TRADINGCORE2_VERSION_H__

@@ -57,6 +57,8 @@ class TrainService2Impl final
     assert(request != NULL);
     assert(response != NULL);
 
+    printf("getServerInfo...\n");
+
     if (!isValidTokens(request, response, *m_pCfg)) {
       return grpc::Status::OK;
     }
@@ -78,6 +80,8 @@ class TrainService2Impl final
     assert(context != NULL);
     assert(request != NULL);
     assert(response != NULL);
+
+    printf("train...\n");
 
     AutoIncDec<std::atomic<int>> aid(&m_curTaskNums);
 

@@ -3,6 +3,14 @@ include(CMakeToolsHelpers OPTIONAL)
 cmake_minimum_required(VERSION 3.0.0)
 project(libtradingcore2 VERSION 0.1.0)
 
+file(STRINGS ../../VERSION TC2_VERSION)
+
+configure_file(
+    ../../include/tradingcore2/version.h.in
+    version.h
+    @ONLY)
+
+include_directories(${CMAKE_CURRENT_BINARY_DIR})
 include_directories(../../include)
 include_directories(../../deps)
 include_directories(../../deps/grpc/include)

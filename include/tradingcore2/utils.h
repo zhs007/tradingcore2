@@ -4,8 +4,8 @@
 #include <tradingcore2/basedef.h>
 
 #include <ctime>
-#include <string>
 #include <functional>
+#include <string>
 
 CR2BEGIN
 
@@ -33,6 +33,8 @@ typedef std::function<void(const char* dir, const char* fn)> FuncOnForEachFile;
 // foreachPathWithExt - for each path with ext filename
 void foreachPathWithExt(const char* dir, const char* extfn,
                         FuncOnForEachFile func);
+
+const char* getVersion();
 
 CR2END
 
