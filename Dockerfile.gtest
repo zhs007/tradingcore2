@@ -20,6 +20,7 @@ WORKDIR /app/
 COPY ./ ./
 
 RUN sh initdeps.sh \
+  && mkdir output \
   && sh build.sh \
   && cd build \
   && ./tests/tests

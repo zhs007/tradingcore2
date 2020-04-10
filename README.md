@@ -53,6 +53,10 @@ make
 
 # Docker
 
+如果你只想部署训练节点，可以看[这里](https://github.com/zhs007/dockerscripts/tree/master/tc2)。  
+这是一个用于快速部署的脚本，不需要编译，镜像大小仅27MB。  
+且自动同步master分支最新版。
+
 除非是开发环境，否则我们建议直接使用docker来部署。  
 所以我们提供了Dockerfile，可以一键编译部署。
 
