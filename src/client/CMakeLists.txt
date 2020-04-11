@@ -1,6 +1,7 @@
 cmake_minimum_required(VERSION 3.0.0)
 
 include_directories(../../include)
+# include_directories(${CMAKE_BINARY_DIR}/deps/glog)
 
 link_directories(../../deps/gsl/build)
 link_directories(../../deps/yaml-cpp/build)
@@ -16,3 +17,4 @@ target_link_libraries(client grpc++)
 target_link_libraries(client grpc++_reflection)
 target_link_libraries(client librocksdb.a)
 target_link_libraries(client libyaml-cpp.a)
+target_link_libraries(client ${glog_LIBRARIES})

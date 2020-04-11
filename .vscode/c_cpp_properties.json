@@ -8,7 +8,8 @@
         "${workspaceFolder}/deps",
         "${workspaceFolder}/deps/grpc/include",
         "${workspaceFolder}/deps/rocksdb/include",
-        "${workspaceFolder}/deps/yaml-cpp/include"
+        "${workspaceFolder}/deps/yaml-cpp/include",
+        "${workspaceFolder}/deps/glog/src"
       ],
       "cStandard": "c11",
       "cppStandard": "c++17",
