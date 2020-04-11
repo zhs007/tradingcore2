@@ -25,6 +25,6 @@ RUN sh initdeps.sh \
 FROM debian:stretch-slim
 WORKDIR /app/tr2
 COPY --from=builder /app/tr2/build/src/server/server /app/tr2/
-COPY ./data /app/tr2/
+COPY ./data /app/tr2/data
 RUN mkdir output
 CMD ["./server", "./cfg/config.yaml"]

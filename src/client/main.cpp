@@ -9,7 +9,8 @@ void train(const tr2::Config& cfg) {
 }
 
 int main(int argc, char* argv[]) {
-  printf("tr2client starting...\nversion is %s\n", tr2::getVersion());
+  printf("tr2client starting...\n");
+  printf("version is %s\n", tr2::getVersion());
 
   if (argc != 2) {
     printf("please type client cfgfile.");
