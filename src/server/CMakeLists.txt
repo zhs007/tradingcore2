@@ -5,6 +5,7 @@ include_directories(../../include)
 
 link_directories(../../deps/gsl/build)
 link_directories(../../deps/yaml-cpp/build)
+link_directories(../../deps/glog/cmakebuild)
 
 aux_source_directory(. DIR_MAIN_SRCS)
 
@@ -17,4 +18,4 @@ target_link_libraries(server grpc++)
 target_link_libraries(server grpc++_reflection)
 target_link_libraries(server librocksdb.a)
 target_link_libraries(server libyaml-cpp.a)
-target_link_libraries(server ${glog_LIBRARIES})
+target_link_libraries(server libglog.a)

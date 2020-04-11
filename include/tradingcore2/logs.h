@@ -6,9 +6,11 @@
 
 CR2BEGIN
 
-void initLogs(const char* name);
-
-void releaseLogs();
+class LogHelper {
+ public:
+  LogHelper(const char* name);
+  ~LogHelper();
+};
 
 CR2END
 

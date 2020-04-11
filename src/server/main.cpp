@@ -8,11 +8,16 @@ void startServ(const tr2::Config& cfg) {
 }
 
 int main(int argc, char* argv[]) {
-  printf("tr2serv starting...\n");
-  printf("version is %s\n", tr2::getVersion());
+  tr2::LogHelper log(argv[0]);
+
+  LOG(INFO) << "tr2serv (" << tr2::getVersion() << ") starting...";
+  // LOG(INFO) << "tr2serv starting...";
+  // printf("tr2serv starting...\n");
+  // printf("version is %s\n", tr2::getVersion());
 
   if (argc != 2) {
-    printf("please type server cfgfile.\n");
+    LOG(ERROR) << "tr2serv argv file.";
+    // printf("please type server cfgfile.\n");
 
     return -1;
   }
@@ -26,7 +31,11 @@ int main(int argc, char* argv[]) {
   auto mgr = tr2::ExchangeMgr::getSingleton();
   mgr->init(cfg);
 
+  LOG(INFO) << "tr2serv started.";
+
   startServ(cfg);
+
+  LOG(INFO) << "tr2serv exit.";
 
   return 0;
 }

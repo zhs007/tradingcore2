@@ -71,7 +71,9 @@ void train() {
 //   pServ->run();
 // }
 
-int main() {
+int main(int argc, char* argv[]) {
+  tr2::LogHelper log(argv[0]);
+
   tr2::regAllIndicators();
   tr2::regAllExchanges();
 

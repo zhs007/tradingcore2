@@ -9,6 +9,8 @@ void train(const tr2::Config& cfg) {
 }
 
 int main(int argc, char* argv[]) {
+  tr2::LogHelper log(argv[0]);
+
   printf("tr2client starting...\n");
   printf("version is %s\n", tr2::getVersion());
 

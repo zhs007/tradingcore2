@@ -44,7 +44,8 @@ class TrainService2Impl final
       assert(false && "TrainService2Impl::init() error");
     }
 
-    printf("max tasks num : %d\n", m_maxTaskNums);
+    LOG(INFO) << "max tasks num :" << m_maxTaskNums;
+    // printf("max tasks num : %d\n", m_maxTaskNums);
   }
 
  public:
@@ -57,7 +58,7 @@ class TrainService2Impl final
     assert(request != NULL);
     assert(response != NULL);
 
-    printf("getServerInfo...\n");
+    LOG(INFO) << "getServerInfo...";
 
     if (!isValidTokens(request, response, *m_pCfg)) {
       return grpc::Status::OK;
@@ -66,8 +67,10 @@ class TrainService2Impl final
     response->set_curtasks(this->m_curTaskNums);
     response->set_maxtasks(this->m_maxTaskNums);
 
-    printf("current tasks num : %d\n", (int)m_curTaskNums);
-    printf("max tasks num : %d\n", m_maxTaskNums);
+    LOG(INFO) << "current tasks num :" << (int)m_curTaskNums;
+    LOG(INFO) << "max tasks num :" << m_maxTaskNums;
+    // printf("current tasks num : %d\n", (int)m_curTaskNums);
+    // printf("max tasks num : %d\n", m_maxTaskNums);
 
     return grpc::Status::OK;
   }
@@ -81,7 +84,8 @@ class TrainService2Impl final
     assert(request != NULL);
     assert(response != NULL);
 
-    printf("train...\n");
+    LOG(INFO) << "train...";
+    // printf("train...\n");
 
     AutoIncDec<std::atomic<int>> aid(&m_curTaskNums);
 
