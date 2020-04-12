@@ -1,7 +1,6 @@
 #ifndef __TRADINGCORE2_LOG_H__
 #define __TRADINGCORE2_LOG_H__
 
-#include <glog/logging.h>
 #include <tradingcore2/basedef.h>
 
 CR2BEGIN

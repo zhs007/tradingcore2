@@ -4,6 +4,7 @@
 #include <tradingcore2/autorun.h>
 #include <tradingcore2/exchangemgr.h>
 #include <tradingcore2/server/train2.h>
+#include <tradingcore2/spinlock.h>
 #include <tradingcore2/train.h>
 #include <unistd.h>
 
@@ -84,10 +85,26 @@ class TrainService2Impl final
     assert(request != NULL);
     assert(response != NULL);
 
-    LOG(INFO) << "train...";
-    // printf("train...\n");
+    if (m_pCfg->isLimitTasks) {
+      SpinLockMaxVal<int> lock(&m_curTaskNums, m_maxTaskNums);
+
+      return _train(context, request, response);
+    }
 
     AutoIncDec<std::atomic<int>> aid(&m_curTaskNums);
+
+    return _train(context, request, response);
+  }
+
+ private:
+  ::grpc::Status _train(::grpc::ServerContext* context,
+                        const ::tradingcore2pb::RequestTrain* request,
+                        ::tradingcore2pb::ReplyTrain* response) {
+    if (m_pCfg->taskTimeOff > 0) {
+      usleep(m_pCfg->taskTimeOff * 1000);
+    }
+
+    LOG(INFO) << "train...";
 
     auto req = request->train();
     auto res = response->mutable_train();
@@ -136,20 +153,6 @@ class TrainService2Impl final
           si2.off1(), si2.off2(), si2.maxoff2(), req.minvalidreturn(),
           si2.minval(), si2.maxval(), si2.cv0(), si2.cv0off(), onend);
 
-      // for (auto it = lst.begin(); it != lst.end(); ++it) {
-      //   auto tr = res->add_nodes();
-
-      //   tr->set_maxdrawdown(it->maxDrawDown);
-      //   tr->set_sharpe(it->sharpe);
-      //   tr->set_annualizedreturns(it->annualizedReturns);
-      //   tr->set_annualizedvolatility(it->annualizedVolatility);
-      //   tr->set_totalreturns(it->totalReturn);
-      //   tr->set_tradingtimes(it->tradingNums);
-      //   tr->set_stoplosstimes(it->stoplossNums);
-      //   tr->set_winrate(it->winRate);
-      //   tr->set_failtimes(it->failNums);
-      //   tr->set_name(it->name.c_str());
-      // }
     } else {
       setResponse_ErrorCode(response, tradingcore2pb::ERR_NOTRAINPARAM);
 

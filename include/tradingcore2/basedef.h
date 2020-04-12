@@ -2,6 +2,7 @@
 #define __TRADINGCORE2_BASEDEF_H__
 
 #include <assert.h>
+#include <glog/logging.h>
 #include <time.h>
 
 #include <string>

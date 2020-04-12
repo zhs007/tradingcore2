@@ -176,6 +176,7 @@ class TrainClient2Pool {
       grpc::ClientContext context;
 
       grpc::Status status = pClient->stub->train(&context, *task, &reply);
+      printf("task end.\n");
 
       if (status.ok()) {
         for (auto i = 0; i < reply.train().nodes_size(); ++i) {
