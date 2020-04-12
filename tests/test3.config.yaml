@@ -4,9 +4,9 @@ exchanges:
   - cnfund
 
 bindaddr: 0.0.0.0:3777
-tasknums: -1
-islimittasks: true
-tasktimeoff: 100
+tasknums: 
+islimittasks: 1
+tasktimeoff: -1
 tokens:
   - wzDkh9h2fhfUVuS9jZ8uVbhV3vC5AWX3
 

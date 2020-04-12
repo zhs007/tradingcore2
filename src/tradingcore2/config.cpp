@@ -1,6 +1,8 @@
 #include <tradingcore2/config.h>
 #include <yaml-cpp/yaml.h>
 
+#include "yamlutils.h"
+
 CR2BEGIN
 
 bool loadConfig(Config& cfg, const char* fn) {
@@ -27,9 +29,24 @@ bool loadConfig(Config& cfg, const char* fn) {
   }
 
   if (node["tasknums"].IsScalar()) {
-    cfg.taskNums = node["tasknums"].as<int>();
+    cfg.taskNums = yamlGetScalar<int>(node["tasknums"], 0);
   } else {
     cfg.taskNums = 0;
+  }
+
+  if (node["islimittasks"].IsScalar()) {
+    cfg.isLimitTasks = yamlGetScalar<bool>(node["islimittasks"], false);
+  } else {
+    cfg.isLimitTasks = false;
+  }
+
+  if (node["tasktimeoff"].IsScalar()) {
+    cfg.taskTimeOff = yamlGetScalar<int>(node["tasktimeoff"], 0);
+    if (cfg.taskTimeOff < 0) {
+      cfg.taskTimeOff = 0;
+    }
+  } else {
+    cfg.taskTimeOff = 0;
   }
 
   if (node["tokens"].IsSequence()) {

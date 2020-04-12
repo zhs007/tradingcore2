@@ -12,7 +12,9 @@
 
 1. 底层算法实现，包括各种indicator、各种数据转换、数据清洗等。
 2. 计算节点，主要用于分布式训练。  
-默认情况下会将节点cpu占满，建议``tasknums``配置为-1，这样会保留一个cpu内核出来。
+默认情况下会将节点cpu占满，建议``tasknums``配置为-1，这样会保留一个cpu内核出来。  
+如果运算节点对cpu占用有较高要求（不允许长时间满负载运行），还可以配置``tasktimeoff``，这个是任意2个task之间最小时间间隔，单位为ms，可以自行尝试合适的配置。  
+如果外网节点，希望防止运算节点被别人滥用，可以配置有效``tokens``。
 
 # Build & Test
 
@@ -23,9 +25,13 @@ git submodule init
 git submodule update --recursive
 git submodule update --init --recursive
 
+sh buildgoogletest.sh
+
 sh buildgsl.sh
 
 sh fixgrpc.sh
+
+sh buildglog.sh
 
 sh buildgflags.sh
 
@@ -55,7 +61,7 @@ make
 
 如果你只想部署训练节点，可以看[这里](https://github.com/zhs007/dockerscripts/tree/master/tc2)。  
 这是一个用于快速部署的脚本，不需要编译，镜像大小仅27MB。  
-且自动同步master分支最新版。
+且自动同步master分支最新版（``dockerhub``的build非常慢，和``github``代码发布大概有1小时以上的延迟）。
 
 除非是开发环境，否则我们建议直接使用docker来部署。  
 所以我们提供了Dockerfile，可以一键编译部署。

@@ -23,6 +23,8 @@ struct Config {
   // for server
   std::string bindaddr;
   int taskNums;
+  bool isLimitTasks;
+  int taskTimeOff;
   std::vector<std::string> tokens;
 
   bool hasToken(const char* strToken) const {

@@ -34,6 +34,7 @@ typedef std::function<void(const char* dir, const char* fn)> FuncOnForEachFile;
 void foreachPathWithExt(const char* dir, const char* extfn,
                         FuncOnForEachFile func);
 
+// getVersion - get version from ./VERSION
 const char* getVersion();
 
 CR2END
