@@ -97,3 +97,4 @@ valgrind --tool=memcheck --leak-check=full --show-reachable=yes ./tradingcore2
 - rocksdb 项目有很多依赖需要手动装，现在全部添加了 submodule ，不用手动装官方install文档里的那些依赖了。
 - cmake 对link项目顺序有要求，要先add直接的依赖项目，再add依赖的依赖。
 - 基于 buildpack-deps:stretch 编译出来的项目，不能放在 alpine 里运行，可以放 debian:stretch-slim 里。
+- 在mac下编译为啥用不到多核。
