@@ -1,4 +1,4 @@
-sh cleardeps.sh
+sh cleargflags.sh
 
 rm -rf $PWD/deps/gflags/cmakebuild
 rm -rf $PWD/deps/glog/cmakebuild

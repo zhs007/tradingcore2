@@ -2,7 +2,7 @@ name: Docker gtest
 
 on:
   push:
-    branches: [ master, v0.1 ]
+    branches: [ master, v0.1, v0.2 ]
   pull_request:
     branches: [ master ]
 
