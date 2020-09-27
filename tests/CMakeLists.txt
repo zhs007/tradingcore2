@@ -4,12 +4,14 @@ cmake_minimum_required(VERSION 3.0.0)
 
 include_directories(../include)
 include_directories(../deps/googletest/googletest/include)
+include_directories(../deps/grpc/third_party/protobuf/src)
+include_directories(../deps/grpc/include)
 # include_directories(${CMAKE_BINARY_DIR}/deps/glog)
 
 link_directories(../deps/googletest/build/lib)
 link_directories(../deps/gsl/build)
-link_directories(./deps/yaml-cpp/build)
-link_directories(./deps/glog/cmakebuild)
+link_directories(../deps/yaml-cpp/build)
+link_directories(../deps/glog/cmakebuild)
 
 aux_source_directory(. DIR_TESTS_SRCS)
 aux_source_directory(./exchange DIR_TESTS_EXCHANGE_SRCS)

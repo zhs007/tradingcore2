@@ -13,3 +13,6 @@ tokens:
 servs:
   - host: 0.0.0.0:3777
     token: wzDkh9h2fhfUVuS9jZ8uVbhV3vC5AWX3
+
+trdb2serv: 127.0.0.1:5002
+trdb2token: 1234567

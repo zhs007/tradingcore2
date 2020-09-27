@@ -2,6 +2,7 @@
 #define __TRADINGCORE2_TRDB2_CLIENT_H__
 
 #include <tradingcore2/basedef.h>
+#include <tradingcore2/proto/tradingdb2.grpc.pb.h>
 
 CR2BEGIN
 

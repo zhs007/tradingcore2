@@ -1,6 +1,7 @@
-FROM buildpack-deps:stretch as builder
+# https://github.com/zhs007/tradingcore2
+# zerrozhao@gmail.com
 
-MAINTAINER zerro "zerrozhao@gmail.com"
+FROM buildpack-deps:stretch as builder
 
 RUN apt-get update -y \
   && apt-get install git wget gcc make automake -y \

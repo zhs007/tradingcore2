@@ -23,6 +23,8 @@
 #include <tradingcore2/indicatormgr.h>
 #include <tradingcore2/logs.h>
 #include <tradingcore2/pnl.h>
+#include <tradingcore2/proto/tradingcore2.grpc.pb.h>
+#include <tradingcore2/proto/tradingdb2.grpc.pb.h>
 #include <tradingcore2/server.h>
 #include <tradingcore2/server/train2.h>
 #include <tradingcore2/spinlock.h>
@@ -31,6 +33,7 @@
 #include <tradingcore2/strategy/singleindicator.h>
 #include <tradingcore2/trade.h>
 #include <tradingcore2/train.h>
+#include <tradingcore2/trdb2/client.h>
 #include <tradingcore2/utils.h>
 #include <tradingcore2/wallet.h>
 
