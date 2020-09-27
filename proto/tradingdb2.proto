@@ -1,0 +1,60 @@
+syntax = "proto3";
+package tradingdb2pb;
+option go_package = "github.com/zhs007/tradingdb2/tradingdb2pb";
+
+// Candle - candle
+message Candle {
+    int64 ts = 1;
+    int64 open = 2;
+    int64 close = 3;
+    int64 high = 4;
+    int64 low = 5;
+    int64 volume = 6;
+    int64 openInterest = 7;
+    int64 trades = 8;
+    double vwap = 9;
+    int64 lastSize = 10;
+    int64 turnover = 11;
+    double homeNotional = 12;
+    double foreignNotional = 13;
+}
+
+// Candles - candles
+message Candles {
+    string market = 1;
+    string symbol = 2;
+    string tag = 3;
+    repeated Candle candles = 4;
+}
+
+// RequestUpdCandles - request UpdCandles
+message RequestUpdCandles {
+    string token = 1;
+    Candles candles = 2;
+}
+
+// ReplyUpdCandles - reply UpdCandles
+message ReplyUpdCandles{
+    int32 lengthOK = 1;
+}
+
+// RequestGetCandles - request GetCandles
+message RequestGetCandles {
+    string token = 1;
+    string market = 2;
+    string symbol = 3;
+    string tag = 4;
+}
+
+// ReplyGetCandles - reply GetCandles
+message ReplyGetCandles{
+    Candles candles = 1;
+}
+
+// TradingDB2Service - TradingDB2 service
+service TradingDB2Service {
+	// updCandles - update candles
+    rpc updCandles(stream RequestUpdCandles) returns (ReplyUpdCandles) {}
+	// getCandles - get candles
+	rpc getCandles(RequestGetCandles) returns (stream ReplyGetCandles) {}    
+}
