@@ -57,6 +57,22 @@ class TradingDB2Service final {
     std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::tradingdb2pb::ReplyGetCandles>> PrepareAsyncgetCandles(::grpc::ClientContext* context, const ::tradingdb2pb::RequestGetCandles& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncReaderInterface< ::tradingdb2pb::ReplyGetCandles>>(PrepareAsyncgetCandlesRaw(context, request, cq));
     }
+    // updSymbol - update symbol
+    virtual ::grpc::Status updSymbol(::grpc::ClientContext* context, const ::tradingdb2pb::RequestUpdSymbol& request, ::tradingdb2pb::ReplyUpdSymbol* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::tradingdb2pb::ReplyUpdSymbol>> AsyncupdSymbol(::grpc::ClientContext* context, const ::tradingdb2pb::RequestUpdSymbol& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::tradingdb2pb::ReplyUpdSymbol>>(AsyncupdSymbolRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::tradingdb2pb::ReplyUpdSymbol>> PrepareAsyncupdSymbol(::grpc::ClientContext* context, const ::tradingdb2pb::RequestUpdSymbol& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::tradingdb2pb::ReplyUpdSymbol>>(PrepareAsyncupdSymbolRaw(context, request, cq));
+    }
+    // getSymbol - get symbol
+    virtual ::grpc::Status getSymbol(::grpc::ClientContext* context, const ::tradingdb2pb::RequestGetSymbol& request, ::tradingdb2pb::ReplyGetSymbol* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::tradingdb2pb::ReplyGetSymbol>> AsyncgetSymbol(::grpc::ClientContext* context, const ::tradingdb2pb::RequestGetSymbol& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::tradingdb2pb::ReplyGetSymbol>>(AsyncgetSymbolRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::tradingdb2pb::ReplyGetSymbol>> PrepareAsyncgetSymbol(::grpc::ClientContext* context, const ::tradingdb2pb::RequestGetSymbol& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::tradingdb2pb::ReplyGetSymbol>>(PrepareAsyncgetSymbolRaw(context, request, cq));
+    }
     class experimental_async_interface {
      public:
       virtual ~experimental_async_interface() {}
@@ -71,6 +87,32 @@ class TradingDB2Service final {
       virtual void getCandles(::grpc::ClientContext* context, ::tradingdb2pb::RequestGetCandles* request, ::grpc::ClientReadReactor< ::tradingdb2pb::ReplyGetCandles>* reactor) = 0;
       #else
       virtual void getCandles(::grpc::ClientContext* context, ::tradingdb2pb::RequestGetCandles* request, ::grpc::experimental::ClientReadReactor< ::tradingdb2pb::ReplyGetCandles>* reactor) = 0;
+      #endif
+      // updSymbol - update symbol
+      virtual void updSymbol(::grpc::ClientContext* context, const ::tradingdb2pb::RequestUpdSymbol* request, ::tradingdb2pb::ReplyUpdSymbol* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void updSymbol(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::tradingdb2pb::ReplyUpdSymbol* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void updSymbol(::grpc::ClientContext* context, const ::tradingdb2pb::RequestUpdSymbol* request, ::tradingdb2pb::ReplyUpdSymbol* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void updSymbol(::grpc::ClientContext* context, const ::tradingdb2pb::RequestUpdSymbol* request, ::tradingdb2pb::ReplyUpdSymbol* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void updSymbol(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::tradingdb2pb::ReplyUpdSymbol* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void updSymbol(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::tradingdb2pb::ReplyUpdSymbol* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      // getSymbol - get symbol
+      virtual void getSymbol(::grpc::ClientContext* context, const ::tradingdb2pb::RequestGetSymbol* request, ::tradingdb2pb::ReplyGetSymbol* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void getSymbol(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::tradingdb2pb::ReplyGetSymbol* response, std::function<void(::grpc::Status)>) = 0;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void getSymbol(::grpc::ClientContext* context, const ::tradingdb2pb::RequestGetSymbol* request, ::tradingdb2pb::ReplyGetSymbol* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void getSymbol(::grpc::ClientContext* context, const ::tradingdb2pb::RequestGetSymbol* request, ::tradingdb2pb::ReplyGetSymbol* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void getSymbol(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::tradingdb2pb::ReplyGetSymbol* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      #else
+      virtual void getSymbol(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::tradingdb2pb::ReplyGetSymbol* response, ::grpc::experimental::ClientUnaryReactor* reactor) = 0;
       #endif
     };
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
@@ -87,6 +129,10 @@ class TradingDB2Service final {
     virtual ::grpc::ClientReaderInterface< ::tradingdb2pb::ReplyGetCandles>* getCandlesRaw(::grpc::ClientContext* context, const ::tradingdb2pb::RequestGetCandles& request) = 0;
     virtual ::grpc::ClientAsyncReaderInterface< ::tradingdb2pb::ReplyGetCandles>* AsyncgetCandlesRaw(::grpc::ClientContext* context, const ::tradingdb2pb::RequestGetCandles& request, ::grpc::CompletionQueue* cq, void* tag) = 0;
     virtual ::grpc::ClientAsyncReaderInterface< ::tradingdb2pb::ReplyGetCandles>* PrepareAsyncgetCandlesRaw(::grpc::ClientContext* context, const ::tradingdb2pb::RequestGetCandles& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::tradingdb2pb::ReplyUpdSymbol>* AsyncupdSymbolRaw(::grpc::ClientContext* context, const ::tradingdb2pb::RequestUpdSymbol& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::tradingdb2pb::ReplyUpdSymbol>* PrepareAsyncupdSymbolRaw(::grpc::ClientContext* context, const ::tradingdb2pb::RequestUpdSymbol& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::tradingdb2pb::ReplyGetSymbol>* AsyncgetSymbolRaw(::grpc::ClientContext* context, const ::tradingdb2pb::RequestGetSymbol& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::tradingdb2pb::ReplyGetSymbol>* PrepareAsyncgetSymbolRaw(::grpc::ClientContext* context, const ::tradingdb2pb::RequestGetSymbol& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -109,6 +155,20 @@ class TradingDB2Service final {
     std::unique_ptr< ::grpc::ClientAsyncReader< ::tradingdb2pb::ReplyGetCandles>> PrepareAsyncgetCandles(::grpc::ClientContext* context, const ::tradingdb2pb::RequestGetCandles& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncReader< ::tradingdb2pb::ReplyGetCandles>>(PrepareAsyncgetCandlesRaw(context, request, cq));
     }
+    ::grpc::Status updSymbol(::grpc::ClientContext* context, const ::tradingdb2pb::RequestUpdSymbol& request, ::tradingdb2pb::ReplyUpdSymbol* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::tradingdb2pb::ReplyUpdSymbol>> AsyncupdSymbol(::grpc::ClientContext* context, const ::tradingdb2pb::RequestUpdSymbol& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::tradingdb2pb::ReplyUpdSymbol>>(AsyncupdSymbolRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::tradingdb2pb::ReplyUpdSymbol>> PrepareAsyncupdSymbol(::grpc::ClientContext* context, const ::tradingdb2pb::RequestUpdSymbol& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::tradingdb2pb::ReplyUpdSymbol>>(PrepareAsyncupdSymbolRaw(context, request, cq));
+    }
+    ::grpc::Status getSymbol(::grpc::ClientContext* context, const ::tradingdb2pb::RequestGetSymbol& request, ::tradingdb2pb::ReplyGetSymbol* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::tradingdb2pb::ReplyGetSymbol>> AsyncgetSymbol(::grpc::ClientContext* context, const ::tradingdb2pb::RequestGetSymbol& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::tradingdb2pb::ReplyGetSymbol>>(AsyncgetSymbolRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::tradingdb2pb::ReplyGetSymbol>> PrepareAsyncgetSymbol(::grpc::ClientContext* context, const ::tradingdb2pb::RequestGetSymbol& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::tradingdb2pb::ReplyGetSymbol>>(PrepareAsyncgetSymbolRaw(context, request, cq));
+    }
     class experimental_async final :
       public StubInterface::experimental_async_interface {
      public:
@@ -121,6 +181,30 @@ class TradingDB2Service final {
       void getCandles(::grpc::ClientContext* context, ::tradingdb2pb::RequestGetCandles* request, ::grpc::ClientReadReactor< ::tradingdb2pb::ReplyGetCandles>* reactor) override;
       #else
       void getCandles(::grpc::ClientContext* context, ::tradingdb2pb::RequestGetCandles* request, ::grpc::experimental::ClientReadReactor< ::tradingdb2pb::ReplyGetCandles>* reactor) override;
+      #endif
+      void updSymbol(::grpc::ClientContext* context, const ::tradingdb2pb::RequestUpdSymbol* request, ::tradingdb2pb::ReplyUpdSymbol* response, std::function<void(::grpc::Status)>) override;
+      void updSymbol(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::tradingdb2pb::ReplyUpdSymbol* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void updSymbol(::grpc::ClientContext* context, const ::tradingdb2pb::RequestUpdSymbol* request, ::tradingdb2pb::ReplyUpdSymbol* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void updSymbol(::grpc::ClientContext* context, const ::tradingdb2pb::RequestUpdSymbol* request, ::tradingdb2pb::ReplyUpdSymbol* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void updSymbol(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::tradingdb2pb::ReplyUpdSymbol* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void updSymbol(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::tradingdb2pb::ReplyUpdSymbol* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      void getSymbol(::grpc::ClientContext* context, const ::tradingdb2pb::RequestGetSymbol* request, ::tradingdb2pb::ReplyGetSymbol* response, std::function<void(::grpc::Status)>) override;
+      void getSymbol(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::tradingdb2pb::ReplyGetSymbol* response, std::function<void(::grpc::Status)>) override;
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void getSymbol(::grpc::ClientContext* context, const ::tradingdb2pb::RequestGetSymbol* request, ::tradingdb2pb::ReplyGetSymbol* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void getSymbol(::grpc::ClientContext* context, const ::tradingdb2pb::RequestGetSymbol* request, ::tradingdb2pb::ReplyGetSymbol* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void getSymbol(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::tradingdb2pb::ReplyGetSymbol* response, ::grpc::ClientUnaryReactor* reactor) override;
+      #else
+      void getSymbol(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::tradingdb2pb::ReplyGetSymbol* response, ::grpc::experimental::ClientUnaryReactor* reactor) override;
       #endif
      private:
       friend class Stub;
@@ -139,8 +223,14 @@ class TradingDB2Service final {
     ::grpc::ClientReader< ::tradingdb2pb::ReplyGetCandles>* getCandlesRaw(::grpc::ClientContext* context, const ::tradingdb2pb::RequestGetCandles& request) override;
     ::grpc::ClientAsyncReader< ::tradingdb2pb::ReplyGetCandles>* AsyncgetCandlesRaw(::grpc::ClientContext* context, const ::tradingdb2pb::RequestGetCandles& request, ::grpc::CompletionQueue* cq, void* tag) override;
     ::grpc::ClientAsyncReader< ::tradingdb2pb::ReplyGetCandles>* PrepareAsyncgetCandlesRaw(::grpc::ClientContext* context, const ::tradingdb2pb::RequestGetCandles& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::tradingdb2pb::ReplyUpdSymbol>* AsyncupdSymbolRaw(::grpc::ClientContext* context, const ::tradingdb2pb::RequestUpdSymbol& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::tradingdb2pb::ReplyUpdSymbol>* PrepareAsyncupdSymbolRaw(::grpc::ClientContext* context, const ::tradingdb2pb::RequestUpdSymbol& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::tradingdb2pb::ReplyGetSymbol>* AsyncgetSymbolRaw(::grpc::ClientContext* context, const ::tradingdb2pb::RequestGetSymbol& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::tradingdb2pb::ReplyGetSymbol>* PrepareAsyncgetSymbolRaw(::grpc::ClientContext* context, const ::tradingdb2pb::RequestGetSymbol& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_updCandles_;
     const ::grpc::internal::RpcMethod rpcmethod_getCandles_;
+    const ::grpc::internal::RpcMethod rpcmethod_updSymbol_;
+    const ::grpc::internal::RpcMethod rpcmethod_getSymbol_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -152,6 +242,10 @@ class TradingDB2Service final {
     virtual ::grpc::Status updCandles(::grpc::ServerContext* context, ::grpc::ServerReader< ::tradingdb2pb::RequestUpdCandles>* reader, ::tradingdb2pb::ReplyUpdCandles* response);
     // getCandles - get candles
     virtual ::grpc::Status getCandles(::grpc::ServerContext* context, const ::tradingdb2pb::RequestGetCandles* request, ::grpc::ServerWriter< ::tradingdb2pb::ReplyGetCandles>* writer);
+    // updSymbol - update symbol
+    virtual ::grpc::Status updSymbol(::grpc::ServerContext* context, const ::tradingdb2pb::RequestUpdSymbol* request, ::tradingdb2pb::ReplyUpdSymbol* response);
+    // getSymbol - get symbol
+    virtual ::grpc::Status getSymbol(::grpc::ServerContext* context, const ::tradingdb2pb::RequestGetSymbol* request, ::tradingdb2pb::ReplyGetSymbol* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_updCandles : public BaseClass {
@@ -193,7 +287,47 @@ class TradingDB2Service final {
       ::grpc::Service::RequestAsyncServerStreaming(1, context, request, writer, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_updCandles<WithAsyncMethod_getCandles<Service > > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_updSymbol : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_updSymbol() {
+      ::grpc::Service::MarkMethodAsync(2);
+    }
+    ~WithAsyncMethod_updSymbol() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status updSymbol(::grpc::ServerContext* /*context*/, const ::tradingdb2pb::RequestUpdSymbol* /*request*/, ::tradingdb2pb::ReplyUpdSymbol* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestupdSymbol(::grpc::ServerContext* context, ::tradingdb2pb::RequestUpdSymbol* request, ::grpc::ServerAsyncResponseWriter< ::tradingdb2pb::ReplyUpdSymbol>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_getSymbol : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_getSymbol() {
+      ::grpc::Service::MarkMethodAsync(3);
+    }
+    ~WithAsyncMethod_getSymbol() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status getSymbol(::grpc::ServerContext* /*context*/, const ::tradingdb2pb::RequestGetSymbol* /*request*/, ::tradingdb2pb::ReplyGetSymbol* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestgetSymbol(::grpc::ServerContext* context, ::tradingdb2pb::RequestGetSymbol* request, ::grpc::ServerAsyncResponseWriter< ::tradingdb2pb::ReplyGetSymbol>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_updCandles<WithAsyncMethod_getCandles<WithAsyncMethod_updSymbol<WithAsyncMethod_getSymbol<Service > > > > AsyncService;
   template <class BaseClass>
   class ExperimentalWithCallbackMethod_updCandles : public BaseClass {
    private:
@@ -270,11 +404,105 @@ class TradingDB2Service final {
     #endif
       { return nullptr; }
   };
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_updSymbol : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_updSymbol() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(2,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::tradingdb2pb::RequestUpdSymbol, ::tradingdb2pb::ReplyUpdSymbol>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::tradingdb2pb::RequestUpdSymbol* request, ::tradingdb2pb::ReplyUpdSymbol* response) { return this->updSymbol(context, request, response); }));}
+    void SetMessageAllocatorFor_updSymbol(
+        ::grpc::experimental::MessageAllocator< ::tradingdb2pb::RequestUpdSymbol, ::tradingdb2pb::ReplyUpdSymbol>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(2);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::tradingdb2pb::RequestUpdSymbol, ::tradingdb2pb::ReplyUpdSymbol>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~ExperimentalWithCallbackMethod_updSymbol() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status updSymbol(::grpc::ServerContext* /*context*/, const ::tradingdb2pb::RequestUpdSymbol* /*request*/, ::tradingdb2pb::ReplyUpdSymbol* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* updSymbol(
+      ::grpc::CallbackServerContext* /*context*/, const ::tradingdb2pb::RequestUpdSymbol* /*request*/, ::tradingdb2pb::ReplyUpdSymbol* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* updSymbol(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::tradingdb2pb::RequestUpdSymbol* /*request*/, ::tradingdb2pb::ReplyUpdSymbol* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_getSymbol : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_getSymbol() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(3,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::tradingdb2pb::RequestGetSymbol, ::tradingdb2pb::ReplyGetSymbol>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::tradingdb2pb::RequestGetSymbol* request, ::tradingdb2pb::ReplyGetSymbol* response) { return this->getSymbol(context, request, response); }));}
+    void SetMessageAllocatorFor_getSymbol(
+        ::grpc::experimental::MessageAllocator< ::tradingdb2pb::RequestGetSymbol, ::tradingdb2pb::ReplyGetSymbol>* allocator) {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(3);
+    #else
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::experimental().GetHandler(3);
+    #endif
+      static_cast<::grpc_impl::internal::CallbackUnaryHandler< ::tradingdb2pb::RequestGetSymbol, ::tradingdb2pb::ReplyGetSymbol>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~ExperimentalWithCallbackMethod_getSymbol() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status getSymbol(::grpc::ServerContext* /*context*/, const ::tradingdb2pb::RequestGetSymbol* /*request*/, ::tradingdb2pb::ReplyGetSymbol* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* getSymbol(
+      ::grpc::CallbackServerContext* /*context*/, const ::tradingdb2pb::RequestGetSymbol* /*request*/, ::tradingdb2pb::ReplyGetSymbol* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* getSymbol(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::tradingdb2pb::RequestGetSymbol* /*request*/, ::tradingdb2pb::ReplyGetSymbol* /*response*/)
+    #endif
+      { return nullptr; }
+  };
   #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-  typedef ExperimentalWithCallbackMethod_updCandles<ExperimentalWithCallbackMethod_getCandles<Service > > CallbackService;
+  typedef ExperimentalWithCallbackMethod_updCandles<ExperimentalWithCallbackMethod_getCandles<ExperimentalWithCallbackMethod_updSymbol<ExperimentalWithCallbackMethod_getSymbol<Service > > > > CallbackService;
   #endif
 
-  typedef ExperimentalWithCallbackMethod_updCandles<ExperimentalWithCallbackMethod_getCandles<Service > > ExperimentalCallbackService;
+  typedef ExperimentalWithCallbackMethod_updCandles<ExperimentalWithCallbackMethod_getCandles<ExperimentalWithCallbackMethod_updSymbol<ExperimentalWithCallbackMethod_getSymbol<Service > > > > ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_updCandles : public BaseClass {
    private:
@@ -305,6 +533,40 @@ class TradingDB2Service final {
     }
     // disable synchronous version of this method
     ::grpc::Status getCandles(::grpc::ServerContext* /*context*/, const ::tradingdb2pb::RequestGetCandles* /*request*/, ::grpc::ServerWriter< ::tradingdb2pb::ReplyGetCandles>* /*writer*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_updSymbol : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_updSymbol() {
+      ::grpc::Service::MarkMethodGeneric(2);
+    }
+    ~WithGenericMethod_updSymbol() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status updSymbol(::grpc::ServerContext* /*context*/, const ::tradingdb2pb::RequestUpdSymbol* /*request*/, ::tradingdb2pb::ReplyUpdSymbol* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_getSymbol : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_getSymbol() {
+      ::grpc::Service::MarkMethodGeneric(3);
+    }
+    ~WithGenericMethod_getSymbol() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status getSymbol(::grpc::ServerContext* /*context*/, const ::tradingdb2pb::RequestGetSymbol* /*request*/, ::tradingdb2pb::ReplyGetSymbol* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -347,6 +609,46 @@ class TradingDB2Service final {
     }
     void RequestgetCandles(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncWriter< ::grpc::ByteBuffer>* writer, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncServerStreaming(1, context, request, writer, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_updSymbol : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_updSymbol() {
+      ::grpc::Service::MarkMethodRaw(2);
+    }
+    ~WithRawMethod_updSymbol() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status updSymbol(::grpc::ServerContext* /*context*/, const ::tradingdb2pb::RequestUpdSymbol* /*request*/, ::tradingdb2pb::ReplyUpdSymbol* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestupdSymbol(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_getSymbol : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_getSymbol() {
+      ::grpc::Service::MarkMethodRaw(3);
+    }
+    ~WithRawMethod_getSymbol() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status getSymbol(::grpc::ServerContext* /*context*/, const ::tradingdb2pb::RequestGetSymbol* /*request*/, ::tradingdb2pb::ReplyGetSymbol* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestgetSymbol(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(3, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -425,7 +727,137 @@ class TradingDB2Service final {
     #endif
       { return nullptr; }
   };
-  typedef Service StreamedUnaryService;
+  template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_updSymbol : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_updSymbol() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(2,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->updSymbol(context, request, response); }));
+    }
+    ~ExperimentalWithRawCallbackMethod_updSymbol() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status updSymbol(::grpc::ServerContext* /*context*/, const ::tradingdb2pb::RequestUpdSymbol* /*request*/, ::tradingdb2pb::ReplyUpdSymbol* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* updSymbol(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* updSymbol(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_getSymbol : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_getSymbol() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(3,
+          new ::grpc_impl::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->getSymbol(context, request, response); }));
+    }
+    ~ExperimentalWithRawCallbackMethod_getSymbol() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status getSymbol(::grpc::ServerContext* /*context*/, const ::tradingdb2pb::RequestGetSymbol* /*request*/, ::tradingdb2pb::ReplyGetSymbol* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerUnaryReactor* getSymbol(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #else
+    virtual ::grpc::experimental::ServerUnaryReactor* getSymbol(
+      ::grpc::experimental::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_updSymbol : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_updSymbol() {
+      ::grpc::Service::MarkMethodStreamed(2,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::tradingdb2pb::RequestUpdSymbol, ::tradingdb2pb::ReplyUpdSymbol>(
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
+                     ::tradingdb2pb::RequestUpdSymbol, ::tradingdb2pb::ReplyUpdSymbol>* streamer) {
+                       return this->StreamedupdSymbol(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_updSymbol() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status updSymbol(::grpc::ServerContext* /*context*/, const ::tradingdb2pb::RequestUpdSymbol* /*request*/, ::tradingdb2pb::ReplyUpdSymbol* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedupdSymbol(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::tradingdb2pb::RequestUpdSymbol,::tradingdb2pb::ReplyUpdSymbol>* server_unary_streamer) = 0;
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_getSymbol : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_getSymbol() {
+      ::grpc::Service::MarkMethodStreamed(3,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::tradingdb2pb::RequestGetSymbol, ::tradingdb2pb::ReplyGetSymbol>(
+            [this](::grpc_impl::ServerContext* context,
+                   ::grpc_impl::ServerUnaryStreamer<
+                     ::tradingdb2pb::RequestGetSymbol, ::tradingdb2pb::ReplyGetSymbol>* streamer) {
+                       return this->StreamedgetSymbol(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_getSymbol() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status getSymbol(::grpc::ServerContext* /*context*/, const ::tradingdb2pb::RequestGetSymbol* /*request*/, ::tradingdb2pb::ReplyGetSymbol* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedgetSymbol(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::tradingdb2pb::RequestGetSymbol,::tradingdb2pb::ReplyGetSymbol>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_updSymbol<WithStreamedUnaryMethod_getSymbol<Service > > StreamedUnaryService;
   template <class BaseClass>
   class WithSplitStreamingMethod_getCandles : public BaseClass {
    private:
@@ -454,7 +886,7 @@ class TradingDB2Service final {
     virtual ::grpc::Status StreamedgetCandles(::grpc::ServerContext* context, ::grpc::ServerSplitStreamer< ::tradingdb2pb::RequestGetCandles,::tradingdb2pb::ReplyGetCandles>* server_split_streamer) = 0;
   };
   typedef WithSplitStreamingMethod_getCandles<Service > SplitStreamedService;
-  typedef WithSplitStreamingMethod_getCandles<Service > StreamedService;
+  typedef WithSplitStreamingMethod_getCandles<WithStreamedUnaryMethod_updSymbol<WithStreamedUnaryMethod_getSymbol<Service > > > StreamedService;
 };
 
 }  // namespace tradingdb2pb

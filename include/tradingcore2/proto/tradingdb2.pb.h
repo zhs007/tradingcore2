@@ -47,7 +47,7 @@ struct TableStruct_tradingdb2_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxillaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[6]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[15]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -61,26 +61,62 @@ extern CandleDefaultTypeInternal _Candle_default_instance_;
 class Candles;
 class CandlesDefaultTypeInternal;
 extern CandlesDefaultTypeInternal _Candles_default_instance_;
+class Fund;
+class FundDefaultTypeInternal;
+extern FundDefaultTypeInternal _Fund_default_instance_;
+class FundManager;
+class FundManagerDefaultTypeInternal;
+extern FundManagerDefaultTypeInternal _FundManager_default_instance_;
+class FundResult;
+class FundResultDefaultTypeInternal;
+extern FundResultDefaultTypeInternal _FundResult_default_instance_;
+class FundSize;
+class FundSizeDefaultTypeInternal;
+extern FundSizeDefaultTypeInternal _FundSize_default_instance_;
 class ReplyGetCandles;
 class ReplyGetCandlesDefaultTypeInternal;
 extern ReplyGetCandlesDefaultTypeInternal _ReplyGetCandles_default_instance_;
+class ReplyGetSymbol;
+class ReplyGetSymbolDefaultTypeInternal;
+extern ReplyGetSymbolDefaultTypeInternal _ReplyGetSymbol_default_instance_;
 class ReplyUpdCandles;
 class ReplyUpdCandlesDefaultTypeInternal;
 extern ReplyUpdCandlesDefaultTypeInternal _ReplyUpdCandles_default_instance_;
+class ReplyUpdSymbol;
+class ReplyUpdSymbolDefaultTypeInternal;
+extern ReplyUpdSymbolDefaultTypeInternal _ReplyUpdSymbol_default_instance_;
 class RequestGetCandles;
 class RequestGetCandlesDefaultTypeInternal;
 extern RequestGetCandlesDefaultTypeInternal _RequestGetCandles_default_instance_;
+class RequestGetSymbol;
+class RequestGetSymbolDefaultTypeInternal;
+extern RequestGetSymbolDefaultTypeInternal _RequestGetSymbol_default_instance_;
 class RequestUpdCandles;
 class RequestUpdCandlesDefaultTypeInternal;
 extern RequestUpdCandlesDefaultTypeInternal _RequestUpdCandles_default_instance_;
+class RequestUpdSymbol;
+class RequestUpdSymbolDefaultTypeInternal;
+extern RequestUpdSymbolDefaultTypeInternal _RequestUpdSymbol_default_instance_;
+class SymbolInfo;
+class SymbolInfoDefaultTypeInternal;
+extern SymbolInfoDefaultTypeInternal _SymbolInfo_default_instance_;
 }  // namespace tradingdb2pb
 PROTOBUF_NAMESPACE_OPEN
 template<> ::tradingdb2pb::Candle* Arena::CreateMaybeMessage<::tradingdb2pb::Candle>(Arena*);
 template<> ::tradingdb2pb::Candles* Arena::CreateMaybeMessage<::tradingdb2pb::Candles>(Arena*);
+template<> ::tradingdb2pb::Fund* Arena::CreateMaybeMessage<::tradingdb2pb::Fund>(Arena*);
+template<> ::tradingdb2pb::FundManager* Arena::CreateMaybeMessage<::tradingdb2pb::FundManager>(Arena*);
+template<> ::tradingdb2pb::FundResult* Arena::CreateMaybeMessage<::tradingdb2pb::FundResult>(Arena*);
+template<> ::tradingdb2pb::FundSize* Arena::CreateMaybeMessage<::tradingdb2pb::FundSize>(Arena*);
 template<> ::tradingdb2pb::ReplyGetCandles* Arena::CreateMaybeMessage<::tradingdb2pb::ReplyGetCandles>(Arena*);
+template<> ::tradingdb2pb::ReplyGetSymbol* Arena::CreateMaybeMessage<::tradingdb2pb::ReplyGetSymbol>(Arena*);
 template<> ::tradingdb2pb::ReplyUpdCandles* Arena::CreateMaybeMessage<::tradingdb2pb::ReplyUpdCandles>(Arena*);
+template<> ::tradingdb2pb::ReplyUpdSymbol* Arena::CreateMaybeMessage<::tradingdb2pb::ReplyUpdSymbol>(Arena*);
 template<> ::tradingdb2pb::RequestGetCandles* Arena::CreateMaybeMessage<::tradingdb2pb::RequestGetCandles>(Arena*);
+template<> ::tradingdb2pb::RequestGetSymbol* Arena::CreateMaybeMessage<::tradingdb2pb::RequestGetSymbol>(Arena*);
 template<> ::tradingdb2pb::RequestUpdCandles* Arena::CreateMaybeMessage<::tradingdb2pb::RequestUpdCandles>(Arena*);
+template<> ::tradingdb2pb::RequestUpdSymbol* Arena::CreateMaybeMessage<::tradingdb2pb::RequestUpdSymbol>(Arena*);
+template<> ::tradingdb2pb::SymbolInfo* Arena::CreateMaybeMessage<::tradingdb2pb::SymbolInfo>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace tradingdb2pb {
 
@@ -537,6 +573,1028 @@ class Candles :
 };
 // -------------------------------------------------------------------
 
+class FundSize :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tradingdb2pb.FundSize) */ {
+ public:
+  FundSize();
+  virtual ~FundSize();
+
+  FundSize(const FundSize& from);
+  FundSize(FundSize&& from) noexcept
+    : FundSize() {
+    *this = ::std::move(from);
+  }
+
+  inline FundSize& operator=(const FundSize& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline FundSize& operator=(FundSize&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const FundSize& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const FundSize* internal_default_instance() {
+    return reinterpret_cast<const FundSize*>(
+               &_FundSize_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    2;
+
+  friend void swap(FundSize& a, FundSize& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(FundSize* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline FundSize* New() const final {
+    return CreateMaybeMessage<FundSize>(nullptr);
+  }
+
+  FundSize* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<FundSize>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const FundSize& from);
+  void MergeFrom(const FundSize& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(FundSize* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "tradingdb2pb.FundSize";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_tradingdb2_2eproto);
+    return ::descriptor_table_tradingdb2_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kTimeFieldNumber = 2,
+    kSizeFieldNumber = 1,
+  };
+  // int64 time = 2;
+  void clear_time();
+  ::PROTOBUF_NAMESPACE_ID::int64 time() const;
+  void set_time(::PROTOBUF_NAMESPACE_ID::int64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int64 _internal_time() const;
+  void _internal_set_time(::PROTOBUF_NAMESPACE_ID::int64 value);
+  public:
+
+  // float size = 1;
+  void clear_size();
+  float size() const;
+  void set_size(float value);
+  private:
+  float _internal_size() const;
+  void _internal_set_size(float value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:tradingdb2pb.FundSize)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::PROTOBUF_NAMESPACE_ID::int64 time_;
+  float size_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_tradingdb2_2eproto;
+};
+// -------------------------------------------------------------------
+
+class FundManager :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tradingdb2pb.FundManager) */ {
+ public:
+  FundManager();
+  virtual ~FundManager();
+
+  FundManager(const FundManager& from);
+  FundManager(FundManager&& from) noexcept
+    : FundManager() {
+    *this = ::std::move(from);
+  }
+
+  inline FundManager& operator=(const FundManager& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline FundManager& operator=(FundManager&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const FundManager& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const FundManager* internal_default_instance() {
+    return reinterpret_cast<const FundManager*>(
+               &_FundManager_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    3;
+
+  friend void swap(FundManager& a, FundManager& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(FundManager* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline FundManager* New() const final {
+    return CreateMaybeMessage<FundManager>(nullptr);
+  }
+
+  FundManager* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<FundManager>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const FundManager& from);
+  void MergeFrom(const FundManager& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(FundManager* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "tradingdb2pb.FundManager";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_tradingdb2_2eproto);
+    return ::descriptor_table_tradingdb2_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kNameFieldNumber = 1,
+    kEducationFieldNumber = 6,
+    kCountryFieldNumber = 7,
+    kResumeFieldNumber = 8,
+    kStartTimeFieldNumber = 2,
+    kEndTimeFieldNumber = 3,
+    kBirthYearFieldNumber = 4,
+    kSexFieldNumber = 5,
+  };
+  // string name = 1;
+  void clear_name();
+  const std::string& name() const;
+  void set_name(const std::string& value);
+  void set_name(std::string&& value);
+  void set_name(const char* value);
+  void set_name(const char* value, size_t size);
+  std::string* mutable_name();
+  std::string* release_name();
+  void set_allocated_name(std::string* name);
+  private:
+  const std::string& _internal_name() const;
+  void _internal_set_name(const std::string& value);
+  std::string* _internal_mutable_name();
+  public:
+
+  // string education = 6;
+  void clear_education();
+  const std::string& education() const;
+  void set_education(const std::string& value);
+  void set_education(std::string&& value);
+  void set_education(const char* value);
+  void set_education(const char* value, size_t size);
+  std::string* mutable_education();
+  std::string* release_education();
+  void set_allocated_education(std::string* education);
+  private:
+  const std::string& _internal_education() const;
+  void _internal_set_education(const std::string& value);
+  std::string* _internal_mutable_education();
+  public:
+
+  // string country = 7;
+  void clear_country();
+  const std::string& country() const;
+  void set_country(const std::string& value);
+  void set_country(std::string&& value);
+  void set_country(const char* value);
+  void set_country(const char* value, size_t size);
+  std::string* mutable_country();
+  std::string* release_country();
+  void set_allocated_country(std::string* country);
+  private:
+  const std::string& _internal_country() const;
+  void _internal_set_country(const std::string& value);
+  std::string* _internal_mutable_country();
+  public:
+
+  // string resume = 8;
+  void clear_resume();
+  const std::string& resume() const;
+  void set_resume(const std::string& value);
+  void set_resume(std::string&& value);
+  void set_resume(const char* value);
+  void set_resume(const char* value, size_t size);
+  std::string* mutable_resume();
+  std::string* release_resume();
+  void set_allocated_resume(std::string* resume);
+  private:
+  const std::string& _internal_resume() const;
+  void _internal_set_resume(const std::string& value);
+  std::string* _internal_mutable_resume();
+  public:
+
+  // int64 startTime = 2;
+  void clear_starttime();
+  ::PROTOBUF_NAMESPACE_ID::int64 starttime() const;
+  void set_starttime(::PROTOBUF_NAMESPACE_ID::int64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int64 _internal_starttime() const;
+  void _internal_set_starttime(::PROTOBUF_NAMESPACE_ID::int64 value);
+  public:
+
+  // int64 endTime = 3;
+  void clear_endtime();
+  ::PROTOBUF_NAMESPACE_ID::int64 endtime() const;
+  void set_endtime(::PROTOBUF_NAMESPACE_ID::int64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int64 _internal_endtime() const;
+  void _internal_set_endtime(::PROTOBUF_NAMESPACE_ID::int64 value);
+  public:
+
+  // int64 birthYear = 4;
+  void clear_birthyear();
+  ::PROTOBUF_NAMESPACE_ID::int64 birthyear() const;
+  void set_birthyear(::PROTOBUF_NAMESPACE_ID::int64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int64 _internal_birthyear() const;
+  void _internal_set_birthyear(::PROTOBUF_NAMESPACE_ID::int64 value);
+  public:
+
+  // bool sex = 5;
+  void clear_sex();
+  bool sex() const;
+  void set_sex(bool value);
+  private:
+  bool _internal_sex() const;
+  void _internal_set_sex(bool value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:tradingdb2pb.FundManager)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr education_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr country_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr resume_;
+  ::PROTOBUF_NAMESPACE_ID::int64 starttime_;
+  ::PROTOBUF_NAMESPACE_ID::int64 endtime_;
+  ::PROTOBUF_NAMESPACE_ID::int64 birthyear_;
+  bool sex_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_tradingdb2_2eproto;
+};
+// -------------------------------------------------------------------
+
+class FundResult :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tradingdb2pb.FundResult) */ {
+ public:
+  FundResult();
+  virtual ~FundResult();
+
+  FundResult(const FundResult& from);
+  FundResult(FundResult&& from) noexcept
+    : FundResult() {
+    *this = ::std::move(from);
+  }
+
+  inline FundResult& operator=(const FundResult& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline FundResult& operator=(FundResult&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const FundResult& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const FundResult* internal_default_instance() {
+    return reinterpret_cast<const FundResult*>(
+               &_FundResult_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    4;
+
+  friend void swap(FundResult& a, FundResult& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(FundResult* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline FundResult* New() const final {
+    return CreateMaybeMessage<FundResult>(nullptr);
+  }
+
+  FundResult* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<FundResult>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const FundResult& from);
+  void MergeFrom(const FundResult& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(FundResult* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "tradingdb2pb.FundResult";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_tradingdb2_2eproto);
+    return ::descriptor_table_tradingdb2_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kNameFieldNumber = 8,
+    kMaxDrawdownFieldNumber = 1,
+    kSharpeFieldNumber = 2,
+    kAnnualizedReturnsFieldNumber = 3,
+    kAnnualizedVolatilityFieldNumber = 4,
+    kStartTimeFieldNumber = 6,
+    kEndTimeFieldNumber = 7,
+    kTotalReturnsFieldNumber = 5,
+  };
+  // string name = 8;
+  void clear_name();
+  const std::string& name() const;
+  void set_name(const std::string& value);
+  void set_name(std::string&& value);
+  void set_name(const char* value);
+  void set_name(const char* value, size_t size);
+  std::string* mutable_name();
+  std::string* release_name();
+  void set_allocated_name(std::string* name);
+  private:
+  const std::string& _internal_name() const;
+  void _internal_set_name(const std::string& value);
+  std::string* _internal_mutable_name();
+  public:
+
+  // float maxDrawdown = 1;
+  void clear_maxdrawdown();
+  float maxdrawdown() const;
+  void set_maxdrawdown(float value);
+  private:
+  float _internal_maxdrawdown() const;
+  void _internal_set_maxdrawdown(float value);
+  public:
+
+  // float sharpe = 2;
+  void clear_sharpe();
+  float sharpe() const;
+  void set_sharpe(float value);
+  private:
+  float _internal_sharpe() const;
+  void _internal_set_sharpe(float value);
+  public:
+
+  // float annualizedReturns = 3;
+  void clear_annualizedreturns();
+  float annualizedreturns() const;
+  void set_annualizedreturns(float value);
+  private:
+  float _internal_annualizedreturns() const;
+  void _internal_set_annualizedreturns(float value);
+  public:
+
+  // float annualizedVolatility = 4;
+  void clear_annualizedvolatility();
+  float annualizedvolatility() const;
+  void set_annualizedvolatility(float value);
+  private:
+  float _internal_annualizedvolatility() const;
+  void _internal_set_annualizedvolatility(float value);
+  public:
+
+  // int64 startTime = 6;
+  void clear_starttime();
+  ::PROTOBUF_NAMESPACE_ID::int64 starttime() const;
+  void set_starttime(::PROTOBUF_NAMESPACE_ID::int64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int64 _internal_starttime() const;
+  void _internal_set_starttime(::PROTOBUF_NAMESPACE_ID::int64 value);
+  public:
+
+  // int64 endTime = 7;
+  void clear_endtime();
+  ::PROTOBUF_NAMESPACE_ID::int64 endtime() const;
+  void set_endtime(::PROTOBUF_NAMESPACE_ID::int64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int64 _internal_endtime() const;
+  void _internal_set_endtime(::PROTOBUF_NAMESPACE_ID::int64 value);
+  public:
+
+  // float totalReturns = 5;
+  void clear_totalreturns();
+  float totalreturns() const;
+  void set_totalreturns(float value);
+  private:
+  float _internal_totalreturns() const;
+  void _internal_set_totalreturns(float value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:tradingdb2pb.FundResult)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+  float maxdrawdown_;
+  float sharpe_;
+  float annualizedreturns_;
+  float annualizedvolatility_;
+  ::PROTOBUF_NAMESPACE_ID::int64 starttime_;
+  ::PROTOBUF_NAMESPACE_ID::int64 endtime_;
+  float totalreturns_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_tradingdb2_2eproto;
+};
+// -------------------------------------------------------------------
+
+class Fund :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tradingdb2pb.Fund) */ {
+ public:
+  Fund();
+  virtual ~Fund();
+
+  Fund(const Fund& from);
+  Fund(Fund&& from) noexcept
+    : Fund() {
+    *this = ::std::move(from);
+  }
+
+  inline Fund& operator=(const Fund& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Fund& operator=(Fund&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const Fund& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const Fund* internal_default_instance() {
+    return reinterpret_cast<const Fund*>(
+               &_Fund_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    5;
+
+  friend void swap(Fund& a, Fund& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(Fund* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline Fund* New() const final {
+    return CreateMaybeMessage<Fund>(nullptr);
+  }
+
+  Fund* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<Fund>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const Fund& from);
+  void MergeFrom(const Fund& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(Fund* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "tradingdb2pb.Fund";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_tradingdb2_2eproto);
+    return ::descriptor_table_tradingdb2_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kTagsFieldNumber = 3,
+    kSizeFieldNumber = 5,
+    kManagersFieldNumber = 7,
+    kResultsFieldNumber = 8,
+    kCodeFieldNumber = 1,
+    kNameFieldNumber = 2,
+    kCompanyFieldNumber = 6,
+    kCreateTimeFieldNumber = 4,
+  };
+  // repeated string tags = 3;
+  int tags_size() const;
+  private:
+  int _internal_tags_size() const;
+  public:
+  void clear_tags();
+  const std::string& tags(int index) const;
+  std::string* mutable_tags(int index);
+  void set_tags(int index, const std::string& value);
+  void set_tags(int index, std::string&& value);
+  void set_tags(int index, const char* value);
+  void set_tags(int index, const char* value, size_t size);
+  std::string* add_tags();
+  void add_tags(const std::string& value);
+  void add_tags(std::string&& value);
+  void add_tags(const char* value);
+  void add_tags(const char* value, size_t size);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& tags() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_tags();
+  private:
+  const std::string& _internal_tags(int index) const;
+  std::string* _internal_add_tags();
+  public:
+
+  // repeated .tradingdb2pb.FundSize size = 5;
+  int size_size() const;
+  private:
+  int _internal_size_size() const;
+  public:
+  void clear_size();
+  ::tradingdb2pb::FundSize* mutable_size(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingdb2pb::FundSize >*
+      mutable_size();
+  private:
+  const ::tradingdb2pb::FundSize& _internal_size(int index) const;
+  ::tradingdb2pb::FundSize* _internal_add_size();
+  public:
+  const ::tradingdb2pb::FundSize& size(int index) const;
+  ::tradingdb2pb::FundSize* add_size();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingdb2pb::FundSize >&
+      size() const;
+
+  // repeated .tradingdb2pb.FundManager managers = 7;
+  int managers_size() const;
+  private:
+  int _internal_managers_size() const;
+  public:
+  void clear_managers();
+  ::tradingdb2pb::FundManager* mutable_managers(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingdb2pb::FundManager >*
+      mutable_managers();
+  private:
+  const ::tradingdb2pb::FundManager& _internal_managers(int index) const;
+  ::tradingdb2pb::FundManager* _internal_add_managers();
+  public:
+  const ::tradingdb2pb::FundManager& managers(int index) const;
+  ::tradingdb2pb::FundManager* add_managers();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingdb2pb::FundManager >&
+      managers() const;
+
+  // repeated .tradingdb2pb.FundResult results = 8;
+  int results_size() const;
+  private:
+  int _internal_results_size() const;
+  public:
+  void clear_results();
+  ::tradingdb2pb::FundResult* mutable_results(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingdb2pb::FundResult >*
+      mutable_results();
+  private:
+  const ::tradingdb2pb::FundResult& _internal_results(int index) const;
+  ::tradingdb2pb::FundResult* _internal_add_results();
+  public:
+  const ::tradingdb2pb::FundResult& results(int index) const;
+  ::tradingdb2pb::FundResult* add_results();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingdb2pb::FundResult >&
+      results() const;
+
+  // string code = 1;
+  void clear_code();
+  const std::string& code() const;
+  void set_code(const std::string& value);
+  void set_code(std::string&& value);
+  void set_code(const char* value);
+  void set_code(const char* value, size_t size);
+  std::string* mutable_code();
+  std::string* release_code();
+  void set_allocated_code(std::string* code);
+  private:
+  const std::string& _internal_code() const;
+  void _internal_set_code(const std::string& value);
+  std::string* _internal_mutable_code();
+  public:
+
+  // string name = 2;
+  void clear_name();
+  const std::string& name() const;
+  void set_name(const std::string& value);
+  void set_name(std::string&& value);
+  void set_name(const char* value);
+  void set_name(const char* value, size_t size);
+  std::string* mutable_name();
+  std::string* release_name();
+  void set_allocated_name(std::string* name);
+  private:
+  const std::string& _internal_name() const;
+  void _internal_set_name(const std::string& value);
+  std::string* _internal_mutable_name();
+  public:
+
+  // string company = 6;
+  void clear_company();
+  const std::string& company() const;
+  void set_company(const std::string& value);
+  void set_company(std::string&& value);
+  void set_company(const char* value);
+  void set_company(const char* value, size_t size);
+  std::string* mutable_company();
+  std::string* release_company();
+  void set_allocated_company(std::string* company);
+  private:
+  const std::string& _internal_company() const;
+  void _internal_set_company(const std::string& value);
+  std::string* _internal_mutable_company();
+  public:
+
+  // int64 createTime = 4;
+  void clear_createtime();
+  ::PROTOBUF_NAMESPACE_ID::int64 createtime() const;
+  void set_createtime(::PROTOBUF_NAMESPACE_ID::int64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int64 _internal_createtime() const;
+  void _internal_set_createtime(::PROTOBUF_NAMESPACE_ID::int64 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:tradingdb2pb.Fund)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> tags_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingdb2pb::FundSize > size_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingdb2pb::FundManager > managers_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingdb2pb::FundResult > results_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr code_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr company_;
+  ::PROTOBUF_NAMESPACE_ID::int64 createtime_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_tradingdb2_2eproto;
+};
+// -------------------------------------------------------------------
+
+class SymbolInfo :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tradingdb2pb.SymbolInfo) */ {
+ public:
+  SymbolInfo();
+  virtual ~SymbolInfo();
+
+  SymbolInfo(const SymbolInfo& from);
+  SymbolInfo(SymbolInfo&& from) noexcept
+    : SymbolInfo() {
+    *this = ::std::move(from);
+  }
+
+  inline SymbolInfo& operator=(const SymbolInfo& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline SymbolInfo& operator=(SymbolInfo&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const SymbolInfo& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const SymbolInfo* internal_default_instance() {
+    return reinterpret_cast<const SymbolInfo*>(
+               &_SymbolInfo_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    6;
+
+  friend void swap(SymbolInfo& a, SymbolInfo& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(SymbolInfo* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline SymbolInfo* New() const final {
+    return CreateMaybeMessage<SymbolInfo>(nullptr);
+  }
+
+  SymbolInfo* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<SymbolInfo>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const SymbolInfo& from);
+  void MergeFrom(const SymbolInfo& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(SymbolInfo* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "tradingdb2pb.SymbolInfo";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_tradingdb2_2eproto);
+    return ::descriptor_table_tradingdb2_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kMarketFieldNumber = 1,
+    kSymbolFieldNumber = 2,
+    kFundFieldNumber = 3,
+  };
+  // string market = 1;
+  void clear_market();
+  const std::string& market() const;
+  void set_market(const std::string& value);
+  void set_market(std::string&& value);
+  void set_market(const char* value);
+  void set_market(const char* value, size_t size);
+  std::string* mutable_market();
+  std::string* release_market();
+  void set_allocated_market(std::string* market);
+  private:
+  const std::string& _internal_market() const;
+  void _internal_set_market(const std::string& value);
+  std::string* _internal_mutable_market();
+  public:
+
+  // string symbol = 2;
+  void clear_symbol();
+  const std::string& symbol() const;
+  void set_symbol(const std::string& value);
+  void set_symbol(std::string&& value);
+  void set_symbol(const char* value);
+  void set_symbol(const char* value, size_t size);
+  std::string* mutable_symbol();
+  std::string* release_symbol();
+  void set_allocated_symbol(std::string* symbol);
+  private:
+  const std::string& _internal_symbol() const;
+  void _internal_set_symbol(const std::string& value);
+  std::string* _internal_mutable_symbol();
+  public:
+
+  // .tradingdb2pb.Fund fund = 3;
+  bool has_fund() const;
+  private:
+  bool _internal_has_fund() const;
+  public:
+  void clear_fund();
+  const ::tradingdb2pb::Fund& fund() const;
+  ::tradingdb2pb::Fund* release_fund();
+  ::tradingdb2pb::Fund* mutable_fund();
+  void set_allocated_fund(::tradingdb2pb::Fund* fund);
+  private:
+  const ::tradingdb2pb::Fund& _internal_fund() const;
+  ::tradingdb2pb::Fund* _internal_mutable_fund();
+  public:
+
+  // @@protoc_insertion_point(class_scope:tradingdb2pb.SymbolInfo)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr market_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr symbol_;
+  ::tradingdb2pb::Fund* fund_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_tradingdb2_2eproto;
+};
+// -------------------------------------------------------------------
+
 class RequestUpdCandles :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tradingdb2pb.RequestUpdCandles) */ {
  public:
@@ -579,7 +1637,7 @@ class RequestUpdCandles :
                &_RequestUpdCandles_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    2;
+    7;
 
   friend void swap(RequestUpdCandles& a, RequestUpdCandles& b) {
     a.Swap(&b);
@@ -731,7 +1789,7 @@ class ReplyUpdCandles :
                &_ReplyUpdCandles_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    3;
+    8;
 
   friend void swap(ReplyUpdCandles& a, ReplyUpdCandles& b) {
     a.Swap(&b);
@@ -859,7 +1917,7 @@ class RequestGetCandles :
                &_RequestGetCandles_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    4;
+    9;
 
   friend void swap(RequestGetCandles& a, RequestGetCandles& b) {
     a.Swap(&b);
@@ -1048,7 +2106,7 @@ class ReplyGetCandles :
                &_ReplyGetCandles_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    5;
+    10;
 
   friend void swap(ReplyGetCandles& a, ReplyGetCandles& b) {
     a.Swap(&b);
@@ -1135,6 +2193,591 @@ class ReplyGetCandles :
 
   ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
   ::tradingdb2pb::Candles* candles_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_tradingdb2_2eproto;
+};
+// -------------------------------------------------------------------
+
+class RequestUpdSymbol :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tradingdb2pb.RequestUpdSymbol) */ {
+ public:
+  RequestUpdSymbol();
+  virtual ~RequestUpdSymbol();
+
+  RequestUpdSymbol(const RequestUpdSymbol& from);
+  RequestUpdSymbol(RequestUpdSymbol&& from) noexcept
+    : RequestUpdSymbol() {
+    *this = ::std::move(from);
+  }
+
+  inline RequestUpdSymbol& operator=(const RequestUpdSymbol& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline RequestUpdSymbol& operator=(RequestUpdSymbol&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const RequestUpdSymbol& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const RequestUpdSymbol* internal_default_instance() {
+    return reinterpret_cast<const RequestUpdSymbol*>(
+               &_RequestUpdSymbol_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    11;
+
+  friend void swap(RequestUpdSymbol& a, RequestUpdSymbol& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(RequestUpdSymbol* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline RequestUpdSymbol* New() const final {
+    return CreateMaybeMessage<RequestUpdSymbol>(nullptr);
+  }
+
+  RequestUpdSymbol* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<RequestUpdSymbol>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const RequestUpdSymbol& from);
+  void MergeFrom(const RequestUpdSymbol& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(RequestUpdSymbol* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "tradingdb2pb.RequestUpdSymbol";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_tradingdb2_2eproto);
+    return ::descriptor_table_tradingdb2_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kTokenFieldNumber = 1,
+    kSymbolFieldNumber = 2,
+  };
+  // string token = 1;
+  void clear_token();
+  const std::string& token() const;
+  void set_token(const std::string& value);
+  void set_token(std::string&& value);
+  void set_token(const char* value);
+  void set_token(const char* value, size_t size);
+  std::string* mutable_token();
+  std::string* release_token();
+  void set_allocated_token(std::string* token);
+  private:
+  const std::string& _internal_token() const;
+  void _internal_set_token(const std::string& value);
+  std::string* _internal_mutable_token();
+  public:
+
+  // .tradingdb2pb.SymbolInfo symbol = 2;
+  bool has_symbol() const;
+  private:
+  bool _internal_has_symbol() const;
+  public:
+  void clear_symbol();
+  const ::tradingdb2pb::SymbolInfo& symbol() const;
+  ::tradingdb2pb::SymbolInfo* release_symbol();
+  ::tradingdb2pb::SymbolInfo* mutable_symbol();
+  void set_allocated_symbol(::tradingdb2pb::SymbolInfo* symbol);
+  private:
+  const ::tradingdb2pb::SymbolInfo& _internal_symbol() const;
+  ::tradingdb2pb::SymbolInfo* _internal_mutable_symbol();
+  public:
+
+  // @@protoc_insertion_point(class_scope:tradingdb2pb.RequestUpdSymbol)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr token_;
+  ::tradingdb2pb::SymbolInfo* symbol_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_tradingdb2_2eproto;
+};
+// -------------------------------------------------------------------
+
+class ReplyUpdSymbol :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tradingdb2pb.ReplyUpdSymbol) */ {
+ public:
+  ReplyUpdSymbol();
+  virtual ~ReplyUpdSymbol();
+
+  ReplyUpdSymbol(const ReplyUpdSymbol& from);
+  ReplyUpdSymbol(ReplyUpdSymbol&& from) noexcept
+    : ReplyUpdSymbol() {
+    *this = ::std::move(from);
+  }
+
+  inline ReplyUpdSymbol& operator=(const ReplyUpdSymbol& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ReplyUpdSymbol& operator=(ReplyUpdSymbol&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const ReplyUpdSymbol& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const ReplyUpdSymbol* internal_default_instance() {
+    return reinterpret_cast<const ReplyUpdSymbol*>(
+               &_ReplyUpdSymbol_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    12;
+
+  friend void swap(ReplyUpdSymbol& a, ReplyUpdSymbol& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ReplyUpdSymbol* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline ReplyUpdSymbol* New() const final {
+    return CreateMaybeMessage<ReplyUpdSymbol>(nullptr);
+  }
+
+  ReplyUpdSymbol* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<ReplyUpdSymbol>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const ReplyUpdSymbol& from);
+  void MergeFrom(const ReplyUpdSymbol& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ReplyUpdSymbol* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "tradingdb2pb.ReplyUpdSymbol";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_tradingdb2_2eproto);
+    return ::descriptor_table_tradingdb2_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kIsOKFieldNumber = 1,
+  };
+  // bool isOK = 1;
+  void clear_isok();
+  bool isok() const;
+  void set_isok(bool value);
+  private:
+  bool _internal_isok() const;
+  void _internal_set_isok(bool value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:tradingdb2pb.ReplyUpdSymbol)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  bool isok_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_tradingdb2_2eproto;
+};
+// -------------------------------------------------------------------
+
+class RequestGetSymbol :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tradingdb2pb.RequestGetSymbol) */ {
+ public:
+  RequestGetSymbol();
+  virtual ~RequestGetSymbol();
+
+  RequestGetSymbol(const RequestGetSymbol& from);
+  RequestGetSymbol(RequestGetSymbol&& from) noexcept
+    : RequestGetSymbol() {
+    *this = ::std::move(from);
+  }
+
+  inline RequestGetSymbol& operator=(const RequestGetSymbol& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline RequestGetSymbol& operator=(RequestGetSymbol&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const RequestGetSymbol& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const RequestGetSymbol* internal_default_instance() {
+    return reinterpret_cast<const RequestGetSymbol*>(
+               &_RequestGetSymbol_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    13;
+
+  friend void swap(RequestGetSymbol& a, RequestGetSymbol& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(RequestGetSymbol* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline RequestGetSymbol* New() const final {
+    return CreateMaybeMessage<RequestGetSymbol>(nullptr);
+  }
+
+  RequestGetSymbol* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<RequestGetSymbol>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const RequestGetSymbol& from);
+  void MergeFrom(const RequestGetSymbol& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(RequestGetSymbol* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "tradingdb2pb.RequestGetSymbol";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_tradingdb2_2eproto);
+    return ::descriptor_table_tradingdb2_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kTokenFieldNumber = 1,
+    kMarketFieldNumber = 2,
+    kSymbolFieldNumber = 3,
+  };
+  // string token = 1;
+  void clear_token();
+  const std::string& token() const;
+  void set_token(const std::string& value);
+  void set_token(std::string&& value);
+  void set_token(const char* value);
+  void set_token(const char* value, size_t size);
+  std::string* mutable_token();
+  std::string* release_token();
+  void set_allocated_token(std::string* token);
+  private:
+  const std::string& _internal_token() const;
+  void _internal_set_token(const std::string& value);
+  std::string* _internal_mutable_token();
+  public:
+
+  // string market = 2;
+  void clear_market();
+  const std::string& market() const;
+  void set_market(const std::string& value);
+  void set_market(std::string&& value);
+  void set_market(const char* value);
+  void set_market(const char* value, size_t size);
+  std::string* mutable_market();
+  std::string* release_market();
+  void set_allocated_market(std::string* market);
+  private:
+  const std::string& _internal_market() const;
+  void _internal_set_market(const std::string& value);
+  std::string* _internal_mutable_market();
+  public:
+
+  // string symbol = 3;
+  void clear_symbol();
+  const std::string& symbol() const;
+  void set_symbol(const std::string& value);
+  void set_symbol(std::string&& value);
+  void set_symbol(const char* value);
+  void set_symbol(const char* value, size_t size);
+  std::string* mutable_symbol();
+  std::string* release_symbol();
+  void set_allocated_symbol(std::string* symbol);
+  private:
+  const std::string& _internal_symbol() const;
+  void _internal_set_symbol(const std::string& value);
+  std::string* _internal_mutable_symbol();
+  public:
+
+  // @@protoc_insertion_point(class_scope:tradingdb2pb.RequestGetSymbol)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr token_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr market_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr symbol_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_tradingdb2_2eproto;
+};
+// -------------------------------------------------------------------
+
+class ReplyGetSymbol :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tradingdb2pb.ReplyGetSymbol) */ {
+ public:
+  ReplyGetSymbol();
+  virtual ~ReplyGetSymbol();
+
+  ReplyGetSymbol(const ReplyGetSymbol& from);
+  ReplyGetSymbol(ReplyGetSymbol&& from) noexcept
+    : ReplyGetSymbol() {
+    *this = ::std::move(from);
+  }
+
+  inline ReplyGetSymbol& operator=(const ReplyGetSymbol& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ReplyGetSymbol& operator=(ReplyGetSymbol&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const ReplyGetSymbol& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const ReplyGetSymbol* internal_default_instance() {
+    return reinterpret_cast<const ReplyGetSymbol*>(
+               &_ReplyGetSymbol_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    14;
+
+  friend void swap(ReplyGetSymbol& a, ReplyGetSymbol& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ReplyGetSymbol* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline ReplyGetSymbol* New() const final {
+    return CreateMaybeMessage<ReplyGetSymbol>(nullptr);
+  }
+
+  ReplyGetSymbol* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<ReplyGetSymbol>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const ReplyGetSymbol& from);
+  void MergeFrom(const ReplyGetSymbol& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ReplyGetSymbol* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "tradingdb2pb.ReplyGetSymbol";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_tradingdb2_2eproto);
+    return ::descriptor_table_tradingdb2_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kSymbolFieldNumber = 1,
+  };
+  // .tradingdb2pb.SymbolInfo symbol = 1;
+  bool has_symbol() const;
+  private:
+  bool _internal_has_symbol() const;
+  public:
+  void clear_symbol();
+  const ::tradingdb2pb::SymbolInfo& symbol() const;
+  ::tradingdb2pb::SymbolInfo* release_symbol();
+  ::tradingdb2pb::SymbolInfo* mutable_symbol();
+  void set_allocated_symbol(::tradingdb2pb::SymbolInfo* symbol);
+  private:
+  const ::tradingdb2pb::SymbolInfo& _internal_symbol() const;
+  ::tradingdb2pb::SymbolInfo* _internal_mutable_symbol();
+  public:
+
+  // @@protoc_insertion_point(class_scope:tradingdb2pb.ReplyGetSymbol)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::tradingdb2pb::SymbolInfo* symbol_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_tradingdb2_2eproto;
 };
@@ -1634,6 +3277,1157 @@ Candles::candles() const {
 
 // -------------------------------------------------------------------
 
+// FundSize
+
+// float size = 1;
+inline void FundSize::clear_size() {
+  size_ = 0;
+}
+inline float FundSize::_internal_size() const {
+  return size_;
+}
+inline float FundSize::size() const {
+  // @@protoc_insertion_point(field_get:tradingdb2pb.FundSize.size)
+  return _internal_size();
+}
+inline void FundSize::_internal_set_size(float value) {
+  
+  size_ = value;
+}
+inline void FundSize::set_size(float value) {
+  _internal_set_size(value);
+  // @@protoc_insertion_point(field_set:tradingdb2pb.FundSize.size)
+}
+
+// int64 time = 2;
+inline void FundSize::clear_time() {
+  time_ = PROTOBUF_LONGLONG(0);
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 FundSize::_internal_time() const {
+  return time_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 FundSize::time() const {
+  // @@protoc_insertion_point(field_get:tradingdb2pb.FundSize.time)
+  return _internal_time();
+}
+inline void FundSize::_internal_set_time(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  
+  time_ = value;
+}
+inline void FundSize::set_time(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  _internal_set_time(value);
+  // @@protoc_insertion_point(field_set:tradingdb2pb.FundSize.time)
+}
+
+// -------------------------------------------------------------------
+
+// FundManager
+
+// string name = 1;
+inline void FundManager::clear_name() {
+  name_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline const std::string& FundManager::name() const {
+  // @@protoc_insertion_point(field_get:tradingdb2pb.FundManager.name)
+  return _internal_name();
+}
+inline void FundManager::set_name(const std::string& value) {
+  _internal_set_name(value);
+  // @@protoc_insertion_point(field_set:tradingdb2pb.FundManager.name)
+}
+inline std::string* FundManager::mutable_name() {
+  // @@protoc_insertion_point(field_mutable:tradingdb2pb.FundManager.name)
+  return _internal_mutable_name();
+}
+inline const std::string& FundManager::_internal_name() const {
+  return name_.GetNoArena();
+}
+inline void FundManager::_internal_set_name(const std::string& value) {
+  
+  name_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+}
+inline void FundManager::set_name(std::string&& value) {
+  
+  name_.SetNoArena(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:tradingdb2pb.FundManager.name)
+}
+inline void FundManager::set_name(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  name_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:tradingdb2pb.FundManager.name)
+}
+inline void FundManager::set_name(const char* value, size_t size) {
+  
+  name_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:tradingdb2pb.FundManager.name)
+}
+inline std::string* FundManager::_internal_mutable_name() {
+  
+  return name_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline std::string* FundManager::release_name() {
+  // @@protoc_insertion_point(field_release:tradingdb2pb.FundManager.name)
+  
+  return name_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline void FundManager::set_allocated_name(std::string* name) {
+  if (name != nullptr) {
+    
+  } else {
+    
+  }
+  name_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), name);
+  // @@protoc_insertion_point(field_set_allocated:tradingdb2pb.FundManager.name)
+}
+
+// int64 startTime = 2;
+inline void FundManager::clear_starttime() {
+  starttime_ = PROTOBUF_LONGLONG(0);
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 FundManager::_internal_starttime() const {
+  return starttime_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 FundManager::starttime() const {
+  // @@protoc_insertion_point(field_get:tradingdb2pb.FundManager.startTime)
+  return _internal_starttime();
+}
+inline void FundManager::_internal_set_starttime(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  
+  starttime_ = value;
+}
+inline void FundManager::set_starttime(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  _internal_set_starttime(value);
+  // @@protoc_insertion_point(field_set:tradingdb2pb.FundManager.startTime)
+}
+
+// int64 endTime = 3;
+inline void FundManager::clear_endtime() {
+  endtime_ = PROTOBUF_LONGLONG(0);
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 FundManager::_internal_endtime() const {
+  return endtime_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 FundManager::endtime() const {
+  // @@protoc_insertion_point(field_get:tradingdb2pb.FundManager.endTime)
+  return _internal_endtime();
+}
+inline void FundManager::_internal_set_endtime(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  
+  endtime_ = value;
+}
+inline void FundManager::set_endtime(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  _internal_set_endtime(value);
+  // @@protoc_insertion_point(field_set:tradingdb2pb.FundManager.endTime)
+}
+
+// int64 birthYear = 4;
+inline void FundManager::clear_birthyear() {
+  birthyear_ = PROTOBUF_LONGLONG(0);
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 FundManager::_internal_birthyear() const {
+  return birthyear_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 FundManager::birthyear() const {
+  // @@protoc_insertion_point(field_get:tradingdb2pb.FundManager.birthYear)
+  return _internal_birthyear();
+}
+inline void FundManager::_internal_set_birthyear(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  
+  birthyear_ = value;
+}
+inline void FundManager::set_birthyear(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  _internal_set_birthyear(value);
+  // @@protoc_insertion_point(field_set:tradingdb2pb.FundManager.birthYear)
+}
+
+// bool sex = 5;
+inline void FundManager::clear_sex() {
+  sex_ = false;
+}
+inline bool FundManager::_internal_sex() const {
+  return sex_;
+}
+inline bool FundManager::sex() const {
+  // @@protoc_insertion_point(field_get:tradingdb2pb.FundManager.sex)
+  return _internal_sex();
+}
+inline void FundManager::_internal_set_sex(bool value) {
+  
+  sex_ = value;
+}
+inline void FundManager::set_sex(bool value) {
+  _internal_set_sex(value);
+  // @@protoc_insertion_point(field_set:tradingdb2pb.FundManager.sex)
+}
+
+// string education = 6;
+inline void FundManager::clear_education() {
+  education_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline const std::string& FundManager::education() const {
+  // @@protoc_insertion_point(field_get:tradingdb2pb.FundManager.education)
+  return _internal_education();
+}
+inline void FundManager::set_education(const std::string& value) {
+  _internal_set_education(value);
+  // @@protoc_insertion_point(field_set:tradingdb2pb.FundManager.education)
+}
+inline std::string* FundManager::mutable_education() {
+  // @@protoc_insertion_point(field_mutable:tradingdb2pb.FundManager.education)
+  return _internal_mutable_education();
+}
+inline const std::string& FundManager::_internal_education() const {
+  return education_.GetNoArena();
+}
+inline void FundManager::_internal_set_education(const std::string& value) {
+  
+  education_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+}
+inline void FundManager::set_education(std::string&& value) {
+  
+  education_.SetNoArena(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:tradingdb2pb.FundManager.education)
+}
+inline void FundManager::set_education(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  education_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:tradingdb2pb.FundManager.education)
+}
+inline void FundManager::set_education(const char* value, size_t size) {
+  
+  education_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:tradingdb2pb.FundManager.education)
+}
+inline std::string* FundManager::_internal_mutable_education() {
+  
+  return education_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline std::string* FundManager::release_education() {
+  // @@protoc_insertion_point(field_release:tradingdb2pb.FundManager.education)
+  
+  return education_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline void FundManager::set_allocated_education(std::string* education) {
+  if (education != nullptr) {
+    
+  } else {
+    
+  }
+  education_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), education);
+  // @@protoc_insertion_point(field_set_allocated:tradingdb2pb.FundManager.education)
+}
+
+// string country = 7;
+inline void FundManager::clear_country() {
+  country_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline const std::string& FundManager::country() const {
+  // @@protoc_insertion_point(field_get:tradingdb2pb.FundManager.country)
+  return _internal_country();
+}
+inline void FundManager::set_country(const std::string& value) {
+  _internal_set_country(value);
+  // @@protoc_insertion_point(field_set:tradingdb2pb.FundManager.country)
+}
+inline std::string* FundManager::mutable_country() {
+  // @@protoc_insertion_point(field_mutable:tradingdb2pb.FundManager.country)
+  return _internal_mutable_country();
+}
+inline const std::string& FundManager::_internal_country() const {
+  return country_.GetNoArena();
+}
+inline void FundManager::_internal_set_country(const std::string& value) {
+  
+  country_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+}
+inline void FundManager::set_country(std::string&& value) {
+  
+  country_.SetNoArena(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:tradingdb2pb.FundManager.country)
+}
+inline void FundManager::set_country(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  country_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:tradingdb2pb.FundManager.country)
+}
+inline void FundManager::set_country(const char* value, size_t size) {
+  
+  country_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:tradingdb2pb.FundManager.country)
+}
+inline std::string* FundManager::_internal_mutable_country() {
+  
+  return country_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline std::string* FundManager::release_country() {
+  // @@protoc_insertion_point(field_release:tradingdb2pb.FundManager.country)
+  
+  return country_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline void FundManager::set_allocated_country(std::string* country) {
+  if (country != nullptr) {
+    
+  } else {
+    
+  }
+  country_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), country);
+  // @@protoc_insertion_point(field_set_allocated:tradingdb2pb.FundManager.country)
+}
+
+// string resume = 8;
+inline void FundManager::clear_resume() {
+  resume_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline const std::string& FundManager::resume() const {
+  // @@protoc_insertion_point(field_get:tradingdb2pb.FundManager.resume)
+  return _internal_resume();
+}
+inline void FundManager::set_resume(const std::string& value) {
+  _internal_set_resume(value);
+  // @@protoc_insertion_point(field_set:tradingdb2pb.FundManager.resume)
+}
+inline std::string* FundManager::mutable_resume() {
+  // @@protoc_insertion_point(field_mutable:tradingdb2pb.FundManager.resume)
+  return _internal_mutable_resume();
+}
+inline const std::string& FundManager::_internal_resume() const {
+  return resume_.GetNoArena();
+}
+inline void FundManager::_internal_set_resume(const std::string& value) {
+  
+  resume_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+}
+inline void FundManager::set_resume(std::string&& value) {
+  
+  resume_.SetNoArena(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:tradingdb2pb.FundManager.resume)
+}
+inline void FundManager::set_resume(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  resume_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:tradingdb2pb.FundManager.resume)
+}
+inline void FundManager::set_resume(const char* value, size_t size) {
+  
+  resume_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:tradingdb2pb.FundManager.resume)
+}
+inline std::string* FundManager::_internal_mutable_resume() {
+  
+  return resume_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline std::string* FundManager::release_resume() {
+  // @@protoc_insertion_point(field_release:tradingdb2pb.FundManager.resume)
+  
+  return resume_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline void FundManager::set_allocated_resume(std::string* resume) {
+  if (resume != nullptr) {
+    
+  } else {
+    
+  }
+  resume_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), resume);
+  // @@protoc_insertion_point(field_set_allocated:tradingdb2pb.FundManager.resume)
+}
+
+// -------------------------------------------------------------------
+
+// FundResult
+
+// float maxDrawdown = 1;
+inline void FundResult::clear_maxdrawdown() {
+  maxdrawdown_ = 0;
+}
+inline float FundResult::_internal_maxdrawdown() const {
+  return maxdrawdown_;
+}
+inline float FundResult::maxdrawdown() const {
+  // @@protoc_insertion_point(field_get:tradingdb2pb.FundResult.maxDrawdown)
+  return _internal_maxdrawdown();
+}
+inline void FundResult::_internal_set_maxdrawdown(float value) {
+  
+  maxdrawdown_ = value;
+}
+inline void FundResult::set_maxdrawdown(float value) {
+  _internal_set_maxdrawdown(value);
+  // @@protoc_insertion_point(field_set:tradingdb2pb.FundResult.maxDrawdown)
+}
+
+// float sharpe = 2;
+inline void FundResult::clear_sharpe() {
+  sharpe_ = 0;
+}
+inline float FundResult::_internal_sharpe() const {
+  return sharpe_;
+}
+inline float FundResult::sharpe() const {
+  // @@protoc_insertion_point(field_get:tradingdb2pb.FundResult.sharpe)
+  return _internal_sharpe();
+}
+inline void FundResult::_internal_set_sharpe(float value) {
+  
+  sharpe_ = value;
+}
+inline void FundResult::set_sharpe(float value) {
+  _internal_set_sharpe(value);
+  // @@protoc_insertion_point(field_set:tradingdb2pb.FundResult.sharpe)
+}
+
+// float annualizedReturns = 3;
+inline void FundResult::clear_annualizedreturns() {
+  annualizedreturns_ = 0;
+}
+inline float FundResult::_internal_annualizedreturns() const {
+  return annualizedreturns_;
+}
+inline float FundResult::annualizedreturns() const {
+  // @@protoc_insertion_point(field_get:tradingdb2pb.FundResult.annualizedReturns)
+  return _internal_annualizedreturns();
+}
+inline void FundResult::_internal_set_annualizedreturns(float value) {
+  
+  annualizedreturns_ = value;
+}
+inline void FundResult::set_annualizedreturns(float value) {
+  _internal_set_annualizedreturns(value);
+  // @@protoc_insertion_point(field_set:tradingdb2pb.FundResult.annualizedReturns)
+}
+
+// float annualizedVolatility = 4;
+inline void FundResult::clear_annualizedvolatility() {
+  annualizedvolatility_ = 0;
+}
+inline float FundResult::_internal_annualizedvolatility() const {
+  return annualizedvolatility_;
+}
+inline float FundResult::annualizedvolatility() const {
+  // @@protoc_insertion_point(field_get:tradingdb2pb.FundResult.annualizedVolatility)
+  return _internal_annualizedvolatility();
+}
+inline void FundResult::_internal_set_annualizedvolatility(float value) {
+  
+  annualizedvolatility_ = value;
+}
+inline void FundResult::set_annualizedvolatility(float value) {
+  _internal_set_annualizedvolatility(value);
+  // @@protoc_insertion_point(field_set:tradingdb2pb.FundResult.annualizedVolatility)
+}
+
+// float totalReturns = 5;
+inline void FundResult::clear_totalreturns() {
+  totalreturns_ = 0;
+}
+inline float FundResult::_internal_totalreturns() const {
+  return totalreturns_;
+}
+inline float FundResult::totalreturns() const {
+  // @@protoc_insertion_point(field_get:tradingdb2pb.FundResult.totalReturns)
+  return _internal_totalreturns();
+}
+inline void FundResult::_internal_set_totalreturns(float value) {
+  
+  totalreturns_ = value;
+}
+inline void FundResult::set_totalreturns(float value) {
+  _internal_set_totalreturns(value);
+  // @@protoc_insertion_point(field_set:tradingdb2pb.FundResult.totalReturns)
+}
+
+// int64 startTime = 6;
+inline void FundResult::clear_starttime() {
+  starttime_ = PROTOBUF_LONGLONG(0);
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 FundResult::_internal_starttime() const {
+  return starttime_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 FundResult::starttime() const {
+  // @@protoc_insertion_point(field_get:tradingdb2pb.FundResult.startTime)
+  return _internal_starttime();
+}
+inline void FundResult::_internal_set_starttime(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  
+  starttime_ = value;
+}
+inline void FundResult::set_starttime(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  _internal_set_starttime(value);
+  // @@protoc_insertion_point(field_set:tradingdb2pb.FundResult.startTime)
+}
+
+// int64 endTime = 7;
+inline void FundResult::clear_endtime() {
+  endtime_ = PROTOBUF_LONGLONG(0);
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 FundResult::_internal_endtime() const {
+  return endtime_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 FundResult::endtime() const {
+  // @@protoc_insertion_point(field_get:tradingdb2pb.FundResult.endTime)
+  return _internal_endtime();
+}
+inline void FundResult::_internal_set_endtime(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  
+  endtime_ = value;
+}
+inline void FundResult::set_endtime(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  _internal_set_endtime(value);
+  // @@protoc_insertion_point(field_set:tradingdb2pb.FundResult.endTime)
+}
+
+// string name = 8;
+inline void FundResult::clear_name() {
+  name_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline const std::string& FundResult::name() const {
+  // @@protoc_insertion_point(field_get:tradingdb2pb.FundResult.name)
+  return _internal_name();
+}
+inline void FundResult::set_name(const std::string& value) {
+  _internal_set_name(value);
+  // @@protoc_insertion_point(field_set:tradingdb2pb.FundResult.name)
+}
+inline std::string* FundResult::mutable_name() {
+  // @@protoc_insertion_point(field_mutable:tradingdb2pb.FundResult.name)
+  return _internal_mutable_name();
+}
+inline const std::string& FundResult::_internal_name() const {
+  return name_.GetNoArena();
+}
+inline void FundResult::_internal_set_name(const std::string& value) {
+  
+  name_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+}
+inline void FundResult::set_name(std::string&& value) {
+  
+  name_.SetNoArena(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:tradingdb2pb.FundResult.name)
+}
+inline void FundResult::set_name(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  name_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:tradingdb2pb.FundResult.name)
+}
+inline void FundResult::set_name(const char* value, size_t size) {
+  
+  name_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:tradingdb2pb.FundResult.name)
+}
+inline std::string* FundResult::_internal_mutable_name() {
+  
+  return name_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline std::string* FundResult::release_name() {
+  // @@protoc_insertion_point(field_release:tradingdb2pb.FundResult.name)
+  
+  return name_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline void FundResult::set_allocated_name(std::string* name) {
+  if (name != nullptr) {
+    
+  } else {
+    
+  }
+  name_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), name);
+  // @@protoc_insertion_point(field_set_allocated:tradingdb2pb.FundResult.name)
+}
+
+// -------------------------------------------------------------------
+
+// Fund
+
+// string code = 1;
+inline void Fund::clear_code() {
+  code_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline const std::string& Fund::code() const {
+  // @@protoc_insertion_point(field_get:tradingdb2pb.Fund.code)
+  return _internal_code();
+}
+inline void Fund::set_code(const std::string& value) {
+  _internal_set_code(value);
+  // @@protoc_insertion_point(field_set:tradingdb2pb.Fund.code)
+}
+inline std::string* Fund::mutable_code() {
+  // @@protoc_insertion_point(field_mutable:tradingdb2pb.Fund.code)
+  return _internal_mutable_code();
+}
+inline const std::string& Fund::_internal_code() const {
+  return code_.GetNoArena();
+}
+inline void Fund::_internal_set_code(const std::string& value) {
+  
+  code_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+}
+inline void Fund::set_code(std::string&& value) {
+  
+  code_.SetNoArena(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:tradingdb2pb.Fund.code)
+}
+inline void Fund::set_code(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  code_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:tradingdb2pb.Fund.code)
+}
+inline void Fund::set_code(const char* value, size_t size) {
+  
+  code_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:tradingdb2pb.Fund.code)
+}
+inline std::string* Fund::_internal_mutable_code() {
+  
+  return code_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline std::string* Fund::release_code() {
+  // @@protoc_insertion_point(field_release:tradingdb2pb.Fund.code)
+  
+  return code_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline void Fund::set_allocated_code(std::string* code) {
+  if (code != nullptr) {
+    
+  } else {
+    
+  }
+  code_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), code);
+  // @@protoc_insertion_point(field_set_allocated:tradingdb2pb.Fund.code)
+}
+
+// string name = 2;
+inline void Fund::clear_name() {
+  name_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline const std::string& Fund::name() const {
+  // @@protoc_insertion_point(field_get:tradingdb2pb.Fund.name)
+  return _internal_name();
+}
+inline void Fund::set_name(const std::string& value) {
+  _internal_set_name(value);
+  // @@protoc_insertion_point(field_set:tradingdb2pb.Fund.name)
+}
+inline std::string* Fund::mutable_name() {
+  // @@protoc_insertion_point(field_mutable:tradingdb2pb.Fund.name)
+  return _internal_mutable_name();
+}
+inline const std::string& Fund::_internal_name() const {
+  return name_.GetNoArena();
+}
+inline void Fund::_internal_set_name(const std::string& value) {
+  
+  name_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+}
+inline void Fund::set_name(std::string&& value) {
+  
+  name_.SetNoArena(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:tradingdb2pb.Fund.name)
+}
+inline void Fund::set_name(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  name_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:tradingdb2pb.Fund.name)
+}
+inline void Fund::set_name(const char* value, size_t size) {
+  
+  name_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:tradingdb2pb.Fund.name)
+}
+inline std::string* Fund::_internal_mutable_name() {
+  
+  return name_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline std::string* Fund::release_name() {
+  // @@protoc_insertion_point(field_release:tradingdb2pb.Fund.name)
+  
+  return name_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline void Fund::set_allocated_name(std::string* name) {
+  if (name != nullptr) {
+    
+  } else {
+    
+  }
+  name_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), name);
+  // @@protoc_insertion_point(field_set_allocated:tradingdb2pb.Fund.name)
+}
+
+// repeated string tags = 3;
+inline int Fund::_internal_tags_size() const {
+  return tags_.size();
+}
+inline int Fund::tags_size() const {
+  return _internal_tags_size();
+}
+inline void Fund::clear_tags() {
+  tags_.Clear();
+}
+inline std::string* Fund::add_tags() {
+  // @@protoc_insertion_point(field_add_mutable:tradingdb2pb.Fund.tags)
+  return _internal_add_tags();
+}
+inline const std::string& Fund::_internal_tags(int index) const {
+  return tags_.Get(index);
+}
+inline const std::string& Fund::tags(int index) const {
+  // @@protoc_insertion_point(field_get:tradingdb2pb.Fund.tags)
+  return _internal_tags(index);
+}
+inline std::string* Fund::mutable_tags(int index) {
+  // @@protoc_insertion_point(field_mutable:tradingdb2pb.Fund.tags)
+  return tags_.Mutable(index);
+}
+inline void Fund::set_tags(int index, const std::string& value) {
+  // @@protoc_insertion_point(field_set:tradingdb2pb.Fund.tags)
+  tags_.Mutable(index)->assign(value);
+}
+inline void Fund::set_tags(int index, std::string&& value) {
+  // @@protoc_insertion_point(field_set:tradingdb2pb.Fund.tags)
+  tags_.Mutable(index)->assign(std::move(value));
+}
+inline void Fund::set_tags(int index, const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  tags_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:tradingdb2pb.Fund.tags)
+}
+inline void Fund::set_tags(int index, const char* value, size_t size) {
+  tags_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:tradingdb2pb.Fund.tags)
+}
+inline std::string* Fund::_internal_add_tags() {
+  return tags_.Add();
+}
+inline void Fund::add_tags(const std::string& value) {
+  tags_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:tradingdb2pb.Fund.tags)
+}
+inline void Fund::add_tags(std::string&& value) {
+  tags_.Add(std::move(value));
+  // @@protoc_insertion_point(field_add:tradingdb2pb.Fund.tags)
+}
+inline void Fund::add_tags(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  tags_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:tradingdb2pb.Fund.tags)
+}
+inline void Fund::add_tags(const char* value, size_t size) {
+  tags_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:tradingdb2pb.Fund.tags)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
+Fund::tags() const {
+  // @@protoc_insertion_point(field_list:tradingdb2pb.Fund.tags)
+  return tags_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
+Fund::mutable_tags() {
+  // @@protoc_insertion_point(field_mutable_list:tradingdb2pb.Fund.tags)
+  return &tags_;
+}
+
+// int64 createTime = 4;
+inline void Fund::clear_createtime() {
+  createtime_ = PROTOBUF_LONGLONG(0);
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 Fund::_internal_createtime() const {
+  return createtime_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 Fund::createtime() const {
+  // @@protoc_insertion_point(field_get:tradingdb2pb.Fund.createTime)
+  return _internal_createtime();
+}
+inline void Fund::_internal_set_createtime(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  
+  createtime_ = value;
+}
+inline void Fund::set_createtime(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  _internal_set_createtime(value);
+  // @@protoc_insertion_point(field_set:tradingdb2pb.Fund.createTime)
+}
+
+// repeated .tradingdb2pb.FundSize size = 5;
+inline int Fund::_internal_size_size() const {
+  return size_.size();
+}
+inline int Fund::size_size() const {
+  return _internal_size_size();
+}
+inline void Fund::clear_size() {
+  size_.Clear();
+}
+inline ::tradingdb2pb::FundSize* Fund::mutable_size(int index) {
+  // @@protoc_insertion_point(field_mutable:tradingdb2pb.Fund.size)
+  return size_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingdb2pb::FundSize >*
+Fund::mutable_size() {
+  // @@protoc_insertion_point(field_mutable_list:tradingdb2pb.Fund.size)
+  return &size_;
+}
+inline const ::tradingdb2pb::FundSize& Fund::_internal_size(int index) const {
+  return size_.Get(index);
+}
+inline const ::tradingdb2pb::FundSize& Fund::size(int index) const {
+  // @@protoc_insertion_point(field_get:tradingdb2pb.Fund.size)
+  return _internal_size(index);
+}
+inline ::tradingdb2pb::FundSize* Fund::_internal_add_size() {
+  return size_.Add();
+}
+inline ::tradingdb2pb::FundSize* Fund::add_size() {
+  // @@protoc_insertion_point(field_add:tradingdb2pb.Fund.size)
+  return _internal_add_size();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingdb2pb::FundSize >&
+Fund::size() const {
+  // @@protoc_insertion_point(field_list:tradingdb2pb.Fund.size)
+  return size_;
+}
+
+// string company = 6;
+inline void Fund::clear_company() {
+  company_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline const std::string& Fund::company() const {
+  // @@protoc_insertion_point(field_get:tradingdb2pb.Fund.company)
+  return _internal_company();
+}
+inline void Fund::set_company(const std::string& value) {
+  _internal_set_company(value);
+  // @@protoc_insertion_point(field_set:tradingdb2pb.Fund.company)
+}
+inline std::string* Fund::mutable_company() {
+  // @@protoc_insertion_point(field_mutable:tradingdb2pb.Fund.company)
+  return _internal_mutable_company();
+}
+inline const std::string& Fund::_internal_company() const {
+  return company_.GetNoArena();
+}
+inline void Fund::_internal_set_company(const std::string& value) {
+  
+  company_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+}
+inline void Fund::set_company(std::string&& value) {
+  
+  company_.SetNoArena(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:tradingdb2pb.Fund.company)
+}
+inline void Fund::set_company(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  company_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:tradingdb2pb.Fund.company)
+}
+inline void Fund::set_company(const char* value, size_t size) {
+  
+  company_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:tradingdb2pb.Fund.company)
+}
+inline std::string* Fund::_internal_mutable_company() {
+  
+  return company_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline std::string* Fund::release_company() {
+  // @@protoc_insertion_point(field_release:tradingdb2pb.Fund.company)
+  
+  return company_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline void Fund::set_allocated_company(std::string* company) {
+  if (company != nullptr) {
+    
+  } else {
+    
+  }
+  company_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), company);
+  // @@protoc_insertion_point(field_set_allocated:tradingdb2pb.Fund.company)
+}
+
+// repeated .tradingdb2pb.FundManager managers = 7;
+inline int Fund::_internal_managers_size() const {
+  return managers_.size();
+}
+inline int Fund::managers_size() const {
+  return _internal_managers_size();
+}
+inline void Fund::clear_managers() {
+  managers_.Clear();
+}
+inline ::tradingdb2pb::FundManager* Fund::mutable_managers(int index) {
+  // @@protoc_insertion_point(field_mutable:tradingdb2pb.Fund.managers)
+  return managers_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingdb2pb::FundManager >*
+Fund::mutable_managers() {
+  // @@protoc_insertion_point(field_mutable_list:tradingdb2pb.Fund.managers)
+  return &managers_;
+}
+inline const ::tradingdb2pb::FundManager& Fund::_internal_managers(int index) const {
+  return managers_.Get(index);
+}
+inline const ::tradingdb2pb::FundManager& Fund::managers(int index) const {
+  // @@protoc_insertion_point(field_get:tradingdb2pb.Fund.managers)
+  return _internal_managers(index);
+}
+inline ::tradingdb2pb::FundManager* Fund::_internal_add_managers() {
+  return managers_.Add();
+}
+inline ::tradingdb2pb::FundManager* Fund::add_managers() {
+  // @@protoc_insertion_point(field_add:tradingdb2pb.Fund.managers)
+  return _internal_add_managers();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingdb2pb::FundManager >&
+Fund::managers() const {
+  // @@protoc_insertion_point(field_list:tradingdb2pb.Fund.managers)
+  return managers_;
+}
+
+// repeated .tradingdb2pb.FundResult results = 8;
+inline int Fund::_internal_results_size() const {
+  return results_.size();
+}
+inline int Fund::results_size() const {
+  return _internal_results_size();
+}
+inline void Fund::clear_results() {
+  results_.Clear();
+}
+inline ::tradingdb2pb::FundResult* Fund::mutable_results(int index) {
+  // @@protoc_insertion_point(field_mutable:tradingdb2pb.Fund.results)
+  return results_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingdb2pb::FundResult >*
+Fund::mutable_results() {
+  // @@protoc_insertion_point(field_mutable_list:tradingdb2pb.Fund.results)
+  return &results_;
+}
+inline const ::tradingdb2pb::FundResult& Fund::_internal_results(int index) const {
+  return results_.Get(index);
+}
+inline const ::tradingdb2pb::FundResult& Fund::results(int index) const {
+  // @@protoc_insertion_point(field_get:tradingdb2pb.Fund.results)
+  return _internal_results(index);
+}
+inline ::tradingdb2pb::FundResult* Fund::_internal_add_results() {
+  return results_.Add();
+}
+inline ::tradingdb2pb::FundResult* Fund::add_results() {
+  // @@protoc_insertion_point(field_add:tradingdb2pb.Fund.results)
+  return _internal_add_results();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingdb2pb::FundResult >&
+Fund::results() const {
+  // @@protoc_insertion_point(field_list:tradingdb2pb.Fund.results)
+  return results_;
+}
+
+// -------------------------------------------------------------------
+
+// SymbolInfo
+
+// string market = 1;
+inline void SymbolInfo::clear_market() {
+  market_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline const std::string& SymbolInfo::market() const {
+  // @@protoc_insertion_point(field_get:tradingdb2pb.SymbolInfo.market)
+  return _internal_market();
+}
+inline void SymbolInfo::set_market(const std::string& value) {
+  _internal_set_market(value);
+  // @@protoc_insertion_point(field_set:tradingdb2pb.SymbolInfo.market)
+}
+inline std::string* SymbolInfo::mutable_market() {
+  // @@protoc_insertion_point(field_mutable:tradingdb2pb.SymbolInfo.market)
+  return _internal_mutable_market();
+}
+inline const std::string& SymbolInfo::_internal_market() const {
+  return market_.GetNoArena();
+}
+inline void SymbolInfo::_internal_set_market(const std::string& value) {
+  
+  market_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+}
+inline void SymbolInfo::set_market(std::string&& value) {
+  
+  market_.SetNoArena(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:tradingdb2pb.SymbolInfo.market)
+}
+inline void SymbolInfo::set_market(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  market_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:tradingdb2pb.SymbolInfo.market)
+}
+inline void SymbolInfo::set_market(const char* value, size_t size) {
+  
+  market_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:tradingdb2pb.SymbolInfo.market)
+}
+inline std::string* SymbolInfo::_internal_mutable_market() {
+  
+  return market_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline std::string* SymbolInfo::release_market() {
+  // @@protoc_insertion_point(field_release:tradingdb2pb.SymbolInfo.market)
+  
+  return market_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline void SymbolInfo::set_allocated_market(std::string* market) {
+  if (market != nullptr) {
+    
+  } else {
+    
+  }
+  market_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), market);
+  // @@protoc_insertion_point(field_set_allocated:tradingdb2pb.SymbolInfo.market)
+}
+
+// string symbol = 2;
+inline void SymbolInfo::clear_symbol() {
+  symbol_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline const std::string& SymbolInfo::symbol() const {
+  // @@protoc_insertion_point(field_get:tradingdb2pb.SymbolInfo.symbol)
+  return _internal_symbol();
+}
+inline void SymbolInfo::set_symbol(const std::string& value) {
+  _internal_set_symbol(value);
+  // @@protoc_insertion_point(field_set:tradingdb2pb.SymbolInfo.symbol)
+}
+inline std::string* SymbolInfo::mutable_symbol() {
+  // @@protoc_insertion_point(field_mutable:tradingdb2pb.SymbolInfo.symbol)
+  return _internal_mutable_symbol();
+}
+inline const std::string& SymbolInfo::_internal_symbol() const {
+  return symbol_.GetNoArena();
+}
+inline void SymbolInfo::_internal_set_symbol(const std::string& value) {
+  
+  symbol_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+}
+inline void SymbolInfo::set_symbol(std::string&& value) {
+  
+  symbol_.SetNoArena(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:tradingdb2pb.SymbolInfo.symbol)
+}
+inline void SymbolInfo::set_symbol(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  symbol_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:tradingdb2pb.SymbolInfo.symbol)
+}
+inline void SymbolInfo::set_symbol(const char* value, size_t size) {
+  
+  symbol_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:tradingdb2pb.SymbolInfo.symbol)
+}
+inline std::string* SymbolInfo::_internal_mutable_symbol() {
+  
+  return symbol_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline std::string* SymbolInfo::release_symbol() {
+  // @@protoc_insertion_point(field_release:tradingdb2pb.SymbolInfo.symbol)
+  
+  return symbol_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline void SymbolInfo::set_allocated_symbol(std::string* symbol) {
+  if (symbol != nullptr) {
+    
+  } else {
+    
+  }
+  symbol_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), symbol);
+  // @@protoc_insertion_point(field_set_allocated:tradingdb2pb.SymbolInfo.symbol)
+}
+
+// .tradingdb2pb.Fund fund = 3;
+inline bool SymbolInfo::_internal_has_fund() const {
+  return this != internal_default_instance() && fund_ != nullptr;
+}
+inline bool SymbolInfo::has_fund() const {
+  return _internal_has_fund();
+}
+inline void SymbolInfo::clear_fund() {
+  if (GetArenaNoVirtual() == nullptr && fund_ != nullptr) {
+    delete fund_;
+  }
+  fund_ = nullptr;
+}
+inline const ::tradingdb2pb::Fund& SymbolInfo::_internal_fund() const {
+  const ::tradingdb2pb::Fund* p = fund_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::tradingdb2pb::Fund*>(
+      &::tradingdb2pb::_Fund_default_instance_);
+}
+inline const ::tradingdb2pb::Fund& SymbolInfo::fund() const {
+  // @@protoc_insertion_point(field_get:tradingdb2pb.SymbolInfo.fund)
+  return _internal_fund();
+}
+inline ::tradingdb2pb::Fund* SymbolInfo::release_fund() {
+  // @@protoc_insertion_point(field_release:tradingdb2pb.SymbolInfo.fund)
+  
+  ::tradingdb2pb::Fund* temp = fund_;
+  fund_ = nullptr;
+  return temp;
+}
+inline ::tradingdb2pb::Fund* SymbolInfo::_internal_mutable_fund() {
+  
+  if (fund_ == nullptr) {
+    auto* p = CreateMaybeMessage<::tradingdb2pb::Fund>(GetArenaNoVirtual());
+    fund_ = p;
+  }
+  return fund_;
+}
+inline ::tradingdb2pb::Fund* SymbolInfo::mutable_fund() {
+  // @@protoc_insertion_point(field_mutable:tradingdb2pb.SymbolInfo.fund)
+  return _internal_mutable_fund();
+}
+inline void SymbolInfo::set_allocated_fund(::tradingdb2pb::Fund* fund) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == nullptr) {
+    delete fund_;
+  }
+  if (fund) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    if (message_arena != submessage_arena) {
+      fund = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, fund, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  fund_ = fund;
+  // @@protoc_insertion_point(field_set_allocated:tradingdb2pb.SymbolInfo.fund)
+}
+
+// -------------------------------------------------------------------
+
 // RequestUpdCandles
 
 // string token = 1;
@@ -2088,9 +4882,423 @@ inline void ReplyGetCandles::set_allocated_candles(::tradingdb2pb::Candles* cand
   // @@protoc_insertion_point(field_set_allocated:tradingdb2pb.ReplyGetCandles.candles)
 }
 
+// -------------------------------------------------------------------
+
+// RequestUpdSymbol
+
+// string token = 1;
+inline void RequestUpdSymbol::clear_token() {
+  token_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline const std::string& RequestUpdSymbol::token() const {
+  // @@protoc_insertion_point(field_get:tradingdb2pb.RequestUpdSymbol.token)
+  return _internal_token();
+}
+inline void RequestUpdSymbol::set_token(const std::string& value) {
+  _internal_set_token(value);
+  // @@protoc_insertion_point(field_set:tradingdb2pb.RequestUpdSymbol.token)
+}
+inline std::string* RequestUpdSymbol::mutable_token() {
+  // @@protoc_insertion_point(field_mutable:tradingdb2pb.RequestUpdSymbol.token)
+  return _internal_mutable_token();
+}
+inline const std::string& RequestUpdSymbol::_internal_token() const {
+  return token_.GetNoArena();
+}
+inline void RequestUpdSymbol::_internal_set_token(const std::string& value) {
+  
+  token_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+}
+inline void RequestUpdSymbol::set_token(std::string&& value) {
+  
+  token_.SetNoArena(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:tradingdb2pb.RequestUpdSymbol.token)
+}
+inline void RequestUpdSymbol::set_token(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  token_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:tradingdb2pb.RequestUpdSymbol.token)
+}
+inline void RequestUpdSymbol::set_token(const char* value, size_t size) {
+  
+  token_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:tradingdb2pb.RequestUpdSymbol.token)
+}
+inline std::string* RequestUpdSymbol::_internal_mutable_token() {
+  
+  return token_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline std::string* RequestUpdSymbol::release_token() {
+  // @@protoc_insertion_point(field_release:tradingdb2pb.RequestUpdSymbol.token)
+  
+  return token_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline void RequestUpdSymbol::set_allocated_token(std::string* token) {
+  if (token != nullptr) {
+    
+  } else {
+    
+  }
+  token_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), token);
+  // @@protoc_insertion_point(field_set_allocated:tradingdb2pb.RequestUpdSymbol.token)
+}
+
+// .tradingdb2pb.SymbolInfo symbol = 2;
+inline bool RequestUpdSymbol::_internal_has_symbol() const {
+  return this != internal_default_instance() && symbol_ != nullptr;
+}
+inline bool RequestUpdSymbol::has_symbol() const {
+  return _internal_has_symbol();
+}
+inline void RequestUpdSymbol::clear_symbol() {
+  if (GetArenaNoVirtual() == nullptr && symbol_ != nullptr) {
+    delete symbol_;
+  }
+  symbol_ = nullptr;
+}
+inline const ::tradingdb2pb::SymbolInfo& RequestUpdSymbol::_internal_symbol() const {
+  const ::tradingdb2pb::SymbolInfo* p = symbol_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::tradingdb2pb::SymbolInfo*>(
+      &::tradingdb2pb::_SymbolInfo_default_instance_);
+}
+inline const ::tradingdb2pb::SymbolInfo& RequestUpdSymbol::symbol() const {
+  // @@protoc_insertion_point(field_get:tradingdb2pb.RequestUpdSymbol.symbol)
+  return _internal_symbol();
+}
+inline ::tradingdb2pb::SymbolInfo* RequestUpdSymbol::release_symbol() {
+  // @@protoc_insertion_point(field_release:tradingdb2pb.RequestUpdSymbol.symbol)
+  
+  ::tradingdb2pb::SymbolInfo* temp = symbol_;
+  symbol_ = nullptr;
+  return temp;
+}
+inline ::tradingdb2pb::SymbolInfo* RequestUpdSymbol::_internal_mutable_symbol() {
+  
+  if (symbol_ == nullptr) {
+    auto* p = CreateMaybeMessage<::tradingdb2pb::SymbolInfo>(GetArenaNoVirtual());
+    symbol_ = p;
+  }
+  return symbol_;
+}
+inline ::tradingdb2pb::SymbolInfo* RequestUpdSymbol::mutable_symbol() {
+  // @@protoc_insertion_point(field_mutable:tradingdb2pb.RequestUpdSymbol.symbol)
+  return _internal_mutable_symbol();
+}
+inline void RequestUpdSymbol::set_allocated_symbol(::tradingdb2pb::SymbolInfo* symbol) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == nullptr) {
+    delete symbol_;
+  }
+  if (symbol) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    if (message_arena != submessage_arena) {
+      symbol = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, symbol, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  symbol_ = symbol;
+  // @@protoc_insertion_point(field_set_allocated:tradingdb2pb.RequestUpdSymbol.symbol)
+}
+
+// -------------------------------------------------------------------
+
+// ReplyUpdSymbol
+
+// bool isOK = 1;
+inline void ReplyUpdSymbol::clear_isok() {
+  isok_ = false;
+}
+inline bool ReplyUpdSymbol::_internal_isok() const {
+  return isok_;
+}
+inline bool ReplyUpdSymbol::isok() const {
+  // @@protoc_insertion_point(field_get:tradingdb2pb.ReplyUpdSymbol.isOK)
+  return _internal_isok();
+}
+inline void ReplyUpdSymbol::_internal_set_isok(bool value) {
+  
+  isok_ = value;
+}
+inline void ReplyUpdSymbol::set_isok(bool value) {
+  _internal_set_isok(value);
+  // @@protoc_insertion_point(field_set:tradingdb2pb.ReplyUpdSymbol.isOK)
+}
+
+// -------------------------------------------------------------------
+
+// RequestGetSymbol
+
+// string token = 1;
+inline void RequestGetSymbol::clear_token() {
+  token_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline const std::string& RequestGetSymbol::token() const {
+  // @@protoc_insertion_point(field_get:tradingdb2pb.RequestGetSymbol.token)
+  return _internal_token();
+}
+inline void RequestGetSymbol::set_token(const std::string& value) {
+  _internal_set_token(value);
+  // @@protoc_insertion_point(field_set:tradingdb2pb.RequestGetSymbol.token)
+}
+inline std::string* RequestGetSymbol::mutable_token() {
+  // @@protoc_insertion_point(field_mutable:tradingdb2pb.RequestGetSymbol.token)
+  return _internal_mutable_token();
+}
+inline const std::string& RequestGetSymbol::_internal_token() const {
+  return token_.GetNoArena();
+}
+inline void RequestGetSymbol::_internal_set_token(const std::string& value) {
+  
+  token_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+}
+inline void RequestGetSymbol::set_token(std::string&& value) {
+  
+  token_.SetNoArena(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:tradingdb2pb.RequestGetSymbol.token)
+}
+inline void RequestGetSymbol::set_token(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  token_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:tradingdb2pb.RequestGetSymbol.token)
+}
+inline void RequestGetSymbol::set_token(const char* value, size_t size) {
+  
+  token_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:tradingdb2pb.RequestGetSymbol.token)
+}
+inline std::string* RequestGetSymbol::_internal_mutable_token() {
+  
+  return token_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline std::string* RequestGetSymbol::release_token() {
+  // @@protoc_insertion_point(field_release:tradingdb2pb.RequestGetSymbol.token)
+  
+  return token_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline void RequestGetSymbol::set_allocated_token(std::string* token) {
+  if (token != nullptr) {
+    
+  } else {
+    
+  }
+  token_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), token);
+  // @@protoc_insertion_point(field_set_allocated:tradingdb2pb.RequestGetSymbol.token)
+}
+
+// string market = 2;
+inline void RequestGetSymbol::clear_market() {
+  market_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline const std::string& RequestGetSymbol::market() const {
+  // @@protoc_insertion_point(field_get:tradingdb2pb.RequestGetSymbol.market)
+  return _internal_market();
+}
+inline void RequestGetSymbol::set_market(const std::string& value) {
+  _internal_set_market(value);
+  // @@protoc_insertion_point(field_set:tradingdb2pb.RequestGetSymbol.market)
+}
+inline std::string* RequestGetSymbol::mutable_market() {
+  // @@protoc_insertion_point(field_mutable:tradingdb2pb.RequestGetSymbol.market)
+  return _internal_mutable_market();
+}
+inline const std::string& RequestGetSymbol::_internal_market() const {
+  return market_.GetNoArena();
+}
+inline void RequestGetSymbol::_internal_set_market(const std::string& value) {
+  
+  market_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+}
+inline void RequestGetSymbol::set_market(std::string&& value) {
+  
+  market_.SetNoArena(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:tradingdb2pb.RequestGetSymbol.market)
+}
+inline void RequestGetSymbol::set_market(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  market_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:tradingdb2pb.RequestGetSymbol.market)
+}
+inline void RequestGetSymbol::set_market(const char* value, size_t size) {
+  
+  market_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:tradingdb2pb.RequestGetSymbol.market)
+}
+inline std::string* RequestGetSymbol::_internal_mutable_market() {
+  
+  return market_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline std::string* RequestGetSymbol::release_market() {
+  // @@protoc_insertion_point(field_release:tradingdb2pb.RequestGetSymbol.market)
+  
+  return market_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline void RequestGetSymbol::set_allocated_market(std::string* market) {
+  if (market != nullptr) {
+    
+  } else {
+    
+  }
+  market_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), market);
+  // @@protoc_insertion_point(field_set_allocated:tradingdb2pb.RequestGetSymbol.market)
+}
+
+// string symbol = 3;
+inline void RequestGetSymbol::clear_symbol() {
+  symbol_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline const std::string& RequestGetSymbol::symbol() const {
+  // @@protoc_insertion_point(field_get:tradingdb2pb.RequestGetSymbol.symbol)
+  return _internal_symbol();
+}
+inline void RequestGetSymbol::set_symbol(const std::string& value) {
+  _internal_set_symbol(value);
+  // @@protoc_insertion_point(field_set:tradingdb2pb.RequestGetSymbol.symbol)
+}
+inline std::string* RequestGetSymbol::mutable_symbol() {
+  // @@protoc_insertion_point(field_mutable:tradingdb2pb.RequestGetSymbol.symbol)
+  return _internal_mutable_symbol();
+}
+inline const std::string& RequestGetSymbol::_internal_symbol() const {
+  return symbol_.GetNoArena();
+}
+inline void RequestGetSymbol::_internal_set_symbol(const std::string& value) {
+  
+  symbol_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+}
+inline void RequestGetSymbol::set_symbol(std::string&& value) {
+  
+  symbol_.SetNoArena(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:tradingdb2pb.RequestGetSymbol.symbol)
+}
+inline void RequestGetSymbol::set_symbol(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  symbol_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:tradingdb2pb.RequestGetSymbol.symbol)
+}
+inline void RequestGetSymbol::set_symbol(const char* value, size_t size) {
+  
+  symbol_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:tradingdb2pb.RequestGetSymbol.symbol)
+}
+inline std::string* RequestGetSymbol::_internal_mutable_symbol() {
+  
+  return symbol_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline std::string* RequestGetSymbol::release_symbol() {
+  // @@protoc_insertion_point(field_release:tradingdb2pb.RequestGetSymbol.symbol)
+  
+  return symbol_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline void RequestGetSymbol::set_allocated_symbol(std::string* symbol) {
+  if (symbol != nullptr) {
+    
+  } else {
+    
+  }
+  symbol_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), symbol);
+  // @@protoc_insertion_point(field_set_allocated:tradingdb2pb.RequestGetSymbol.symbol)
+}
+
+// -------------------------------------------------------------------
+
+// ReplyGetSymbol
+
+// .tradingdb2pb.SymbolInfo symbol = 1;
+inline bool ReplyGetSymbol::_internal_has_symbol() const {
+  return this != internal_default_instance() && symbol_ != nullptr;
+}
+inline bool ReplyGetSymbol::has_symbol() const {
+  return _internal_has_symbol();
+}
+inline void ReplyGetSymbol::clear_symbol() {
+  if (GetArenaNoVirtual() == nullptr && symbol_ != nullptr) {
+    delete symbol_;
+  }
+  symbol_ = nullptr;
+}
+inline const ::tradingdb2pb::SymbolInfo& ReplyGetSymbol::_internal_symbol() const {
+  const ::tradingdb2pb::SymbolInfo* p = symbol_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::tradingdb2pb::SymbolInfo*>(
+      &::tradingdb2pb::_SymbolInfo_default_instance_);
+}
+inline const ::tradingdb2pb::SymbolInfo& ReplyGetSymbol::symbol() const {
+  // @@protoc_insertion_point(field_get:tradingdb2pb.ReplyGetSymbol.symbol)
+  return _internal_symbol();
+}
+inline ::tradingdb2pb::SymbolInfo* ReplyGetSymbol::release_symbol() {
+  // @@protoc_insertion_point(field_release:tradingdb2pb.ReplyGetSymbol.symbol)
+  
+  ::tradingdb2pb::SymbolInfo* temp = symbol_;
+  symbol_ = nullptr;
+  return temp;
+}
+inline ::tradingdb2pb::SymbolInfo* ReplyGetSymbol::_internal_mutable_symbol() {
+  
+  if (symbol_ == nullptr) {
+    auto* p = CreateMaybeMessage<::tradingdb2pb::SymbolInfo>(GetArenaNoVirtual());
+    symbol_ = p;
+  }
+  return symbol_;
+}
+inline ::tradingdb2pb::SymbolInfo* ReplyGetSymbol::mutable_symbol() {
+  // @@protoc_insertion_point(field_mutable:tradingdb2pb.ReplyGetSymbol.symbol)
+  return _internal_mutable_symbol();
+}
+inline void ReplyGetSymbol::set_allocated_symbol(::tradingdb2pb::SymbolInfo* symbol) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == nullptr) {
+    delete symbol_;
+  }
+  if (symbol) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    if (message_arena != submessage_arena) {
+      symbol = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, symbol, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  symbol_ = symbol;
+  // @@protoc_insertion_point(field_set_allocated:tradingdb2pb.ReplyGetSymbol.symbol)
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

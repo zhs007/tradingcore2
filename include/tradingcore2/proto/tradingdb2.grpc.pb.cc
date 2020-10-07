@@ -24,6 +24,8 @@ namespace tradingdb2pb {
 static const char* TradingDB2Service_method_names[] = {
   "/tradingdb2pb.TradingDB2Service/updCandles",
   "/tradingdb2pb.TradingDB2Service/getCandles",
+  "/tradingdb2pb.TradingDB2Service/updSymbol",
+  "/tradingdb2pb.TradingDB2Service/getSymbol",
 };
 
 std::unique_ptr< TradingDB2Service::Stub> TradingDB2Service::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -35,6 +37,8 @@ std::unique_ptr< TradingDB2Service::Stub> TradingDB2Service::NewStub(const std::
 TradingDB2Service::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel)
   : channel_(channel), rpcmethod_updCandles_(TradingDB2Service_method_names[0], ::grpc::internal::RpcMethod::CLIENT_STREAMING, channel)
   , rpcmethod_getCandles_(TradingDB2Service_method_names[1], ::grpc::internal::RpcMethod::SERVER_STREAMING, channel)
+  , rpcmethod_updSymbol_(TradingDB2Service_method_names[2], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_getSymbol_(TradingDB2Service_method_names[3], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::ClientWriter< ::tradingdb2pb::RequestUpdCandles>* TradingDB2Service::Stub::updCandlesRaw(::grpc::ClientContext* context, ::tradingdb2pb::ReplyUpdCandles* response) {
@@ -69,6 +73,62 @@ void TradingDB2Service::Stub::experimental_async::getCandles(::grpc::ClientConte
   return ::grpc_impl::internal::ClientAsyncReaderFactory< ::tradingdb2pb::ReplyGetCandles>::Create(channel_.get(), cq, rpcmethod_getCandles_, context, request, false, nullptr);
 }
 
+::grpc::Status TradingDB2Service::Stub::updSymbol(::grpc::ClientContext* context, const ::tradingdb2pb::RequestUpdSymbol& request, ::tradingdb2pb::ReplyUpdSymbol* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_updSymbol_, context, request, response);
+}
+
+void TradingDB2Service::Stub::experimental_async::updSymbol(::grpc::ClientContext* context, const ::tradingdb2pb::RequestUpdSymbol* request, ::tradingdb2pb::ReplyUpdSymbol* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_updSymbol_, context, request, response, std::move(f));
+}
+
+void TradingDB2Service::Stub::experimental_async::updSymbol(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::tradingdb2pb::ReplyUpdSymbol* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_updSymbol_, context, request, response, std::move(f));
+}
+
+void TradingDB2Service::Stub::experimental_async::updSymbol(::grpc::ClientContext* context, const ::tradingdb2pb::RequestUpdSymbol* request, ::tradingdb2pb::ReplyUpdSymbol* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_updSymbol_, context, request, response, reactor);
+}
+
+void TradingDB2Service::Stub::experimental_async::updSymbol(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::tradingdb2pb::ReplyUpdSymbol* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_updSymbol_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::tradingdb2pb::ReplyUpdSymbol>* TradingDB2Service::Stub::AsyncupdSymbolRaw(::grpc::ClientContext* context, const ::tradingdb2pb::RequestUpdSymbol& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::tradingdb2pb::ReplyUpdSymbol>::Create(channel_.get(), cq, rpcmethod_updSymbol_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::tradingdb2pb::ReplyUpdSymbol>* TradingDB2Service::Stub::PrepareAsyncupdSymbolRaw(::grpc::ClientContext* context, const ::tradingdb2pb::RequestUpdSymbol& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::tradingdb2pb::ReplyUpdSymbol>::Create(channel_.get(), cq, rpcmethod_updSymbol_, context, request, false);
+}
+
+::grpc::Status TradingDB2Service::Stub::getSymbol(::grpc::ClientContext* context, const ::tradingdb2pb::RequestGetSymbol& request, ::tradingdb2pb::ReplyGetSymbol* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_getSymbol_, context, request, response);
+}
+
+void TradingDB2Service::Stub::experimental_async::getSymbol(::grpc::ClientContext* context, const ::tradingdb2pb::RequestGetSymbol* request, ::tradingdb2pb::ReplyGetSymbol* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_getSymbol_, context, request, response, std::move(f));
+}
+
+void TradingDB2Service::Stub::experimental_async::getSymbol(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::tradingdb2pb::ReplyGetSymbol* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_getSymbol_, context, request, response, std::move(f));
+}
+
+void TradingDB2Service::Stub::experimental_async::getSymbol(::grpc::ClientContext* context, const ::tradingdb2pb::RequestGetSymbol* request, ::tradingdb2pb::ReplyGetSymbol* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_getSymbol_, context, request, response, reactor);
+}
+
+void TradingDB2Service::Stub::experimental_async::getSymbol(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::tradingdb2pb::ReplyGetSymbol* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_getSymbol_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::tradingdb2pb::ReplyGetSymbol>* TradingDB2Service::Stub::AsyncgetSymbolRaw(::grpc::ClientContext* context, const ::tradingdb2pb::RequestGetSymbol& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::tradingdb2pb::ReplyGetSymbol>::Create(channel_.get(), cq, rpcmethod_getSymbol_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::tradingdb2pb::ReplyGetSymbol>* TradingDB2Service::Stub::PrepareAsyncgetSymbolRaw(::grpc::ClientContext* context, const ::tradingdb2pb::RequestGetSymbol& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::tradingdb2pb::ReplyGetSymbol>::Create(channel_.get(), cq, rpcmethod_getSymbol_, context, request, false);
+}
+
 TradingDB2Service::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       TradingDB2Service_method_names[0],
@@ -90,6 +150,26 @@ TradingDB2Service::Service::Service() {
              ::grpc_impl::ServerWriter<::tradingdb2pb::ReplyGetCandles>* writer) {
                return service->getCandles(ctx, req, writer);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      TradingDB2Service_method_names[2],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< TradingDB2Service::Service, ::tradingdb2pb::RequestUpdSymbol, ::tradingdb2pb::ReplyUpdSymbol>(
+          [](TradingDB2Service::Service* service,
+             ::grpc_impl::ServerContext* ctx,
+             const ::tradingdb2pb::RequestUpdSymbol* req,
+             ::tradingdb2pb::ReplyUpdSymbol* resp) {
+               return service->updSymbol(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      TradingDB2Service_method_names[3],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< TradingDB2Service::Service, ::tradingdb2pb::RequestGetSymbol, ::tradingdb2pb::ReplyGetSymbol>(
+          [](TradingDB2Service::Service* service,
+             ::grpc_impl::ServerContext* ctx,
+             const ::tradingdb2pb::RequestGetSymbol* req,
+             ::tradingdb2pb::ReplyGetSymbol* resp) {
+               return service->getSymbol(ctx, req, resp);
+             }, this)));
 }
 
 TradingDB2Service::Service::~Service() {
@@ -106,6 +186,20 @@ TradingDB2Service::Service::~Service() {
   (void) context;
   (void) request;
   (void) writer;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status TradingDB2Service::Service::updSymbol(::grpc::ServerContext* context, const ::tradingdb2pb::RequestUpdSymbol* request, ::tradingdb2pb::ReplyUpdSymbol* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status TradingDB2Service::Service::getSymbol(::grpc::ServerContext* context, const ::tradingdb2pb::RequestGetSymbol* request, ::tradingdb2pb::ReplyGetSymbol* response) {
+  (void) context;
+  (void) request;
+  (void) response;
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
