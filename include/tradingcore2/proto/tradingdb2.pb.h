@@ -1981,11 +1981,38 @@ class RequestGetCandles :
   // accessors -------------------------------------------------------
 
   enum : int {
+    kTagsFieldNumber = 7,
     kTokenFieldNumber = 1,
     kMarketFieldNumber = 2,
     kSymbolFieldNumber = 3,
     kTagFieldNumber = 4,
+    kTsStartFieldNumber = 5,
+    kTsEndFieldNumber = 6,
   };
+  // repeated string tags = 7;
+  int tags_size() const;
+  private:
+  int _internal_tags_size() const;
+  public:
+  void clear_tags();
+  const std::string& tags(int index) const;
+  std::string* mutable_tags(int index);
+  void set_tags(int index, const std::string& value);
+  void set_tags(int index, std::string&& value);
+  void set_tags(int index, const char* value);
+  void set_tags(int index, const char* value, size_t size);
+  std::string* add_tags();
+  void add_tags(const std::string& value);
+  void add_tags(std::string&& value);
+  void add_tags(const char* value);
+  void add_tags(const char* value, size_t size);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& tags() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_tags();
+  private:
+  const std::string& _internal_tags(int index) const;
+  std::string* _internal_add_tags();
+  public:
+
   // string token = 1;
   void clear_token();
   const std::string& token() const;
@@ -2034,20 +2061,38 @@ class RequestGetCandles :
   std::string* _internal_mutable_symbol();
   public:
 
-  // string tag = 4;
-  void clear_tag();
-  const std::string& tag() const;
-  void set_tag(const std::string& value);
-  void set_tag(std::string&& value);
-  void set_tag(const char* value);
-  void set_tag(const char* value, size_t size);
-  std::string* mutable_tag();
-  std::string* release_tag();
-  void set_allocated_tag(std::string* tag);
+  // string tag = 4 [deprecated = true];
+  PROTOBUF_DEPRECATED void clear_tag();
+  PROTOBUF_DEPRECATED const std::string& tag() const;
+  PROTOBUF_DEPRECATED void set_tag(const std::string& value);
+  PROTOBUF_DEPRECATED void set_tag(std::string&& value);
+  PROTOBUF_DEPRECATED void set_tag(const char* value);
+  PROTOBUF_DEPRECATED void set_tag(const char* value, size_t size);
+  PROTOBUF_DEPRECATED std::string* mutable_tag();
+  PROTOBUF_DEPRECATED std::string* release_tag();
+  PROTOBUF_DEPRECATED void set_allocated_tag(std::string* tag);
   private:
   const std::string& _internal_tag() const;
   void _internal_set_tag(const std::string& value);
   std::string* _internal_mutable_tag();
+  public:
+
+  // int64 tsStart = 5;
+  void clear_tsstart();
+  ::PROTOBUF_NAMESPACE_ID::int64 tsstart() const;
+  void set_tsstart(::PROTOBUF_NAMESPACE_ID::int64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int64 _internal_tsstart() const;
+  void _internal_set_tsstart(::PROTOBUF_NAMESPACE_ID::int64 value);
+  public:
+
+  // int64 tsEnd = 6;
+  void clear_tsend();
+  ::PROTOBUF_NAMESPACE_ID::int64 tsend() const;
+  void set_tsend(::PROTOBUF_NAMESPACE_ID::int64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int64 _internal_tsend() const;
+  void _internal_set_tsend(::PROTOBUF_NAMESPACE_ID::int64 value);
   public:
 
   // @@protoc_insertion_point(class_scope:tradingdb2pb.RequestGetCandles)
@@ -2055,10 +2100,13 @@ class RequestGetCandles :
   class _Internal;
 
   ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> tags_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr token_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr market_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr symbol_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr tag_;
+  ::PROTOBUF_NAMESPACE_ID::int64 tsstart_;
+  ::PROTOBUF_NAMESPACE_ID::int64 tsend_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_tradingdb2_2eproto;
 };
@@ -4758,7 +4806,7 @@ inline void RequestGetCandles::set_allocated_symbol(std::string* symbol) {
   // @@protoc_insertion_point(field_set_allocated:tradingdb2pb.RequestGetCandles.symbol)
 }
 
-// string tag = 4;
+// string tag = 4 [deprecated = true];
 inline void RequestGetCandles::clear_tag() {
   tag_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
@@ -4816,6 +4864,120 @@ inline void RequestGetCandles::set_allocated_tag(std::string* tag) {
   }
   tag_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), tag);
   // @@protoc_insertion_point(field_set_allocated:tradingdb2pb.RequestGetCandles.tag)
+}
+
+// int64 tsStart = 5;
+inline void RequestGetCandles::clear_tsstart() {
+  tsstart_ = PROTOBUF_LONGLONG(0);
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 RequestGetCandles::_internal_tsstart() const {
+  return tsstart_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 RequestGetCandles::tsstart() const {
+  // @@protoc_insertion_point(field_get:tradingdb2pb.RequestGetCandles.tsStart)
+  return _internal_tsstart();
+}
+inline void RequestGetCandles::_internal_set_tsstart(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  
+  tsstart_ = value;
+}
+inline void RequestGetCandles::set_tsstart(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  _internal_set_tsstart(value);
+  // @@protoc_insertion_point(field_set:tradingdb2pb.RequestGetCandles.tsStart)
+}
+
+// int64 tsEnd = 6;
+inline void RequestGetCandles::clear_tsend() {
+  tsend_ = PROTOBUF_LONGLONG(0);
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 RequestGetCandles::_internal_tsend() const {
+  return tsend_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 RequestGetCandles::tsend() const {
+  // @@protoc_insertion_point(field_get:tradingdb2pb.RequestGetCandles.tsEnd)
+  return _internal_tsend();
+}
+inline void RequestGetCandles::_internal_set_tsend(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  
+  tsend_ = value;
+}
+inline void RequestGetCandles::set_tsend(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  _internal_set_tsend(value);
+  // @@protoc_insertion_point(field_set:tradingdb2pb.RequestGetCandles.tsEnd)
+}
+
+// repeated string tags = 7;
+inline int RequestGetCandles::_internal_tags_size() const {
+  return tags_.size();
+}
+inline int RequestGetCandles::tags_size() const {
+  return _internal_tags_size();
+}
+inline void RequestGetCandles::clear_tags() {
+  tags_.Clear();
+}
+inline std::string* RequestGetCandles::add_tags() {
+  // @@protoc_insertion_point(field_add_mutable:tradingdb2pb.RequestGetCandles.tags)
+  return _internal_add_tags();
+}
+inline const std::string& RequestGetCandles::_internal_tags(int index) const {
+  return tags_.Get(index);
+}
+inline const std::string& RequestGetCandles::tags(int index) const {
+  // @@protoc_insertion_point(field_get:tradingdb2pb.RequestGetCandles.tags)
+  return _internal_tags(index);
+}
+inline std::string* RequestGetCandles::mutable_tags(int index) {
+  // @@protoc_insertion_point(field_mutable:tradingdb2pb.RequestGetCandles.tags)
+  return tags_.Mutable(index);
+}
+inline void RequestGetCandles::set_tags(int index, const std::string& value) {
+  // @@protoc_insertion_point(field_set:tradingdb2pb.RequestGetCandles.tags)
+  tags_.Mutable(index)->assign(value);
+}
+inline void RequestGetCandles::set_tags(int index, std::string&& value) {
+  // @@protoc_insertion_point(field_set:tradingdb2pb.RequestGetCandles.tags)
+  tags_.Mutable(index)->assign(std::move(value));
+}
+inline void RequestGetCandles::set_tags(int index, const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  tags_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:tradingdb2pb.RequestGetCandles.tags)
+}
+inline void RequestGetCandles::set_tags(int index, const char* value, size_t size) {
+  tags_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:tradingdb2pb.RequestGetCandles.tags)
+}
+inline std::string* RequestGetCandles::_internal_add_tags() {
+  return tags_.Add();
+}
+inline void RequestGetCandles::add_tags(const std::string& value) {
+  tags_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:tradingdb2pb.RequestGetCandles.tags)
+}
+inline void RequestGetCandles::add_tags(std::string&& value) {
+  tags_.Add(std::move(value));
+  // @@protoc_insertion_point(field_add:tradingdb2pb.RequestGetCandles.tags)
+}
+inline void RequestGetCandles::add_tags(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  tags_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:tradingdb2pb.RequestGetCandles.tags)
+}
+inline void RequestGetCandles::add_tags(const char* value, size_t size) {
+  tags_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:tradingdb2pb.RequestGetCandles.tags)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
+RequestGetCandles::tags() const {
+  // @@protoc_insertion_point(field_list:tradingdb2pb.RequestGetCandles.tags)
+  return tags_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
+RequestGetCandles::mutable_tags() {
+  // @@protoc_insertion_point(field_mutable_list:tradingdb2pb.RequestGetCandles.tags)
+  return &tags_;
 }
 
 // -------------------------------------------------------------------

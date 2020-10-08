@@ -16,10 +16,11 @@ CR2BEGIN
 // getCandles - get candles
 bool getCandles(tradingdb2pb::Candles &candles, const char *host,
                 const char *token, const char *market, const char *symbol,
-                const char *tag) {
+                std::vector<const char *> *pTags, int64_t tsStart,
+                int64_t tsEnd) {
   candles.set_market(market);
   candles.set_symbol(symbol);
-  candles.set_tag(tag);
+  // candles.set_tag(tag);
 
   auto stub = tradingdb2pb::TradingDB2Service::NewStub(
       grpc::CreateChannel(host, grpc::InsecureChannelCredentials()));
@@ -31,7 +32,14 @@ bool getCandles(tradingdb2pb::Candles &candles, const char *host,
   req.set_token(token);
   req.set_market(market);
   req.set_symbol(symbol);
-  req.set_tag(tag);
+  req.set_tsstart(tsStart);
+  req.set_tsend(tsEnd);
+
+  if (pTags != NULL) {
+    for (auto it = pTags->begin(); it != pTags->end(); ++it) {
+      req.add_tags(*it);
+    }
+  }
 
   std::unique_ptr<grpc::ClientReader<tradingdb2pb::ReplyGetCandles>> reader(
       stub->getCandles(&context, req));

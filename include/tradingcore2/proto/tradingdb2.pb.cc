@@ -410,6 +410,9 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_tradingdb2_2eproto::offsets[] 
   PROTOBUF_FIELD_OFFSET(::tradingdb2pb::RequestGetCandles, market_),
   PROTOBUF_FIELD_OFFSET(::tradingdb2pb::RequestGetCandles, symbol_),
   PROTOBUF_FIELD_OFFSET(::tradingdb2pb::RequestGetCandles, tag_),
+  PROTOBUF_FIELD_OFFSET(::tradingdb2pb::RequestGetCandles, tsstart_),
+  PROTOBUF_FIELD_OFFSET(::tradingdb2pb::RequestGetCandles, tsend_),
+  PROTOBUF_FIELD_OFFSET(::tradingdb2pb::RequestGetCandles, tags_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::tradingdb2pb::ReplyGetCandles, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -455,11 +458,11 @@ static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOB
   { 81, -1, sizeof(::tradingdb2pb::RequestUpdCandles)},
   { 88, -1, sizeof(::tradingdb2pb::ReplyUpdCandles)},
   { 94, -1, sizeof(::tradingdb2pb::RequestGetCandles)},
-  { 103, -1, sizeof(::tradingdb2pb::ReplyGetCandles)},
-  { 109, -1, sizeof(::tradingdb2pb::RequestUpdSymbol)},
-  { 116, -1, sizeof(::tradingdb2pb::ReplyUpdSymbol)},
-  { 122, -1, sizeof(::tradingdb2pb::RequestGetSymbol)},
-  { 130, -1, sizeof(::tradingdb2pb::ReplyGetSymbol)},
+  { 106, -1, sizeof(::tradingdb2pb::ReplyGetCandles)},
+  { 112, -1, sizeof(::tradingdb2pb::RequestUpdSymbol)},
+  { 119, -1, sizeof(::tradingdb2pb::ReplyUpdSymbol)},
+  { 125, -1, sizeof(::tradingdb2pb::RequestGetSymbol)},
+  { 133, -1, sizeof(::tradingdb2pb::ReplyGetSymbol)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
@@ -509,26 +512,27 @@ const char descriptor_table_protodef_tradingdb2_2eproto[] PROTOBUF_SECTION_VARIA
   "(\0132\022.tradingdb2pb.Fund\"J\n\021RequestUpdCand"
   "les\022\r\n\005token\030\001 \001(\t\022&\n\007candles\030\002 \001(\0132\025.tr"
   "adingdb2pb.Candles\"#\n\017ReplyUpdCandles\022\020\n"
-  "\010lengthOK\030\001 \001(\005\"O\n\021RequestGetCandles\022\r\n\005"
-  "token\030\001 \001(\t\022\016\n\006market\030\002 \001(\t\022\016\n\006symbol\030\003 "
-  "\001(\t\022\013\n\003tag\030\004 \001(\t\"9\n\017ReplyGetCandles\022&\n\007c"
-  "andles\030\001 \001(\0132\025.tradingdb2pb.Candles\"K\n\020R"
-  "equestUpdSymbol\022\r\n\005token\030\001 \001(\t\022(\n\006symbol"
-  "\030\002 \001(\0132\030.tradingdb2pb.SymbolInfo\"\036\n\016Repl"
-  "yUpdSymbol\022\014\n\004isOK\030\001 \001(\010\"A\n\020RequestGetSy"
-  "mbol\022\r\n\005token\030\001 \001(\t\022\016\n\006market\030\002 \001(\t\022\016\n\006s"
-  "ymbol\030\003 \001(\t\":\n\016ReplyGetSymbol\022(\n\006symbol\030"
-  "\001 \001(\0132\030.tradingdb2pb.SymbolInfo2\321\002\n\021Trad"
-  "ingDB2Service\022P\n\nupdCandles\022\037.tradingdb2"
-  "pb.RequestUpdCandles\032\035.tradingdb2pb.Repl"
-  "yUpdCandles\"\000(\001\022P\n\ngetCandles\022\037.tradingd"
-  "b2pb.RequestGetCandles\032\035.tradingdb2pb.Re"
-  "plyGetCandles\"\0000\001\022K\n\tupdSymbol\022\036.trading"
-  "db2pb.RequestUpdSymbol\032\034.tradingdb2pb.Re"
-  "plyUpdSymbol\"\000\022K\n\tgetSymbol\022\036.tradingdb2"
-  "pb.RequestGetSymbol\032\034.tradingdb2pb.Reply"
-  "GetSymbol\"\000B+Z)github.com/zhs007/trading"
-  "db2/tradingdb2pbb\006proto3"
+  "\010lengthOK\030\001 \001(\005\"\201\001\n\021RequestGetCandles\022\r\n"
+  "\005token\030\001 \001(\t\022\016\n\006market\030\002 \001(\t\022\016\n\006symbol\030\003"
+  " \001(\t\022\017\n\003tag\030\004 \001(\tB\002\030\001\022\017\n\007tsStart\030\005 \001(\003\022\r"
+  "\n\005tsEnd\030\006 \001(\003\022\014\n\004tags\030\007 \003(\t\"9\n\017ReplyGetC"
+  "andles\022&\n\007candles\030\001 \001(\0132\025.tradingdb2pb.C"
+  "andles\"K\n\020RequestUpdSymbol\022\r\n\005token\030\001 \001("
+  "\t\022(\n\006symbol\030\002 \001(\0132\030.tradingdb2pb.SymbolI"
+  "nfo\"\036\n\016ReplyUpdSymbol\022\014\n\004isOK\030\001 \001(\010\"A\n\020R"
+  "equestGetSymbol\022\r\n\005token\030\001 \001(\t\022\016\n\006market"
+  "\030\002 \001(\t\022\016\n\006symbol\030\003 \001(\t\":\n\016ReplyGetSymbol"
+  "\022(\n\006symbol\030\001 \001(\0132\030.tradingdb2pb.SymbolIn"
+  "fo2\321\002\n\021TradingDB2Service\022P\n\nupdCandles\022\037"
+  ".tradingdb2pb.RequestUpdCandles\032\035.tradin"
+  "gdb2pb.ReplyUpdCandles\"\000(\001\022P\n\ngetCandles"
+  "\022\037.tradingdb2pb.RequestGetCandles\032\035.trad"
+  "ingdb2pb.ReplyGetCandles\"\0000\001\022K\n\tupdSymbo"
+  "l\022\036.tradingdb2pb.RequestUpdSymbol\032\034.trad"
+  "ingdb2pb.ReplyUpdSymbol\"\000\022K\n\tgetSymbol\022\036"
+  ".tradingdb2pb.RequestGetSymbol\032\034.trading"
+  "db2pb.ReplyGetSymbol\"\000B+Z)github.com/zhs"
+  "007/tradingdb2/tradingdb2pbb\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_tradingdb2_2eproto_deps[1] = {
 };
@@ -552,7 +556,7 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_tra
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_tradingdb2_2eproto_once;
 static bool descriptor_table_tradingdb2_2eproto_initialized = false;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_tradingdb2_2eproto = {
-  &descriptor_table_tradingdb2_2eproto_initialized, descriptor_table_protodef_tradingdb2_2eproto, "tradingdb2.proto", 1904,
+  &descriptor_table_tradingdb2_2eproto_initialized, descriptor_table_protodef_tradingdb2_2eproto, "tradingdb2.proto", 1955,
   &descriptor_table_tradingdb2_2eproto_once, descriptor_table_tradingdb2_2eproto_sccs, descriptor_table_tradingdb2_2eproto_deps, 15, 0,
   schemas, file_default_instances, TableStruct_tradingdb2_2eproto::offsets,
   file_level_metadata_tradingdb2_2eproto, 15, file_level_enum_descriptors_tradingdb2_2eproto, file_level_service_descriptors_tradingdb2_2eproto,
@@ -3502,7 +3506,8 @@ RequestGetCandles::RequestGetCandles()
 }
 RequestGetCandles::RequestGetCandles(const RequestGetCandles& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _internal_metadata_(nullptr) {
+      _internal_metadata_(nullptr),
+      tags_(from.tags_) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   token_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (!from._internal_token().empty()) {
@@ -3520,6 +3525,9 @@ RequestGetCandles::RequestGetCandles(const RequestGetCandles& from)
   if (!from._internal_tag().empty()) {
     tag_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.tag_);
   }
+  ::memcpy(&tsstart_, &from.tsstart_,
+    static_cast<size_t>(reinterpret_cast<char*>(&tsend_) -
+    reinterpret_cast<char*>(&tsstart_)) + sizeof(tsend_));
   // @@protoc_insertion_point(copy_constructor:tradingdb2pb.RequestGetCandles)
 }
 
@@ -3529,6 +3537,9 @@ void RequestGetCandles::SharedCtor() {
   market_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   symbol_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   tag_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  ::memset(&tsstart_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&tsend_) -
+      reinterpret_cast<char*>(&tsstart_)) + sizeof(tsend_));
 }
 
 RequestGetCandles::~RequestGetCandles() {
@@ -3558,10 +3569,14 @@ void RequestGetCandles::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  tags_.Clear();
   token_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   market_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   symbol_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   tag_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  ::memset(&tsstart_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&tsend_) -
+      reinterpret_cast<char*>(&tsstart_)) + sizeof(tsend_));
   _internal_metadata_.Clear();
 }
 
@@ -3599,13 +3614,41 @@ const char* RequestGetCandles::_InternalParse(const char* ptr, ::PROTOBUF_NAMESP
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
-      // string tag = 4;
+      // string tag = 4 [deprecated = true];
       case 4:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 34)) {
           auto str = _internal_mutable_tag();
           ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "tradingdb2pb.RequestGetCandles.tag"));
           CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // int64 tsStart = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 40)) {
+          tsstart_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // int64 tsEnd = 6;
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 48)) {
+          tsend_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // repeated string tags = 7;
+      case 7:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 58)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            auto str = _internal_add_tags();
+            ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+            CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "tradingdb2pb.RequestGetCandles.tags"));
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<58>(ptr));
         } else goto handle_unusual;
         continue;
       default: {
@@ -3664,7 +3707,7 @@ failure:
         3, this->_internal_symbol(), target);
   }
 
-  // string tag = 4;
+  // string tag = 4 [deprecated = true];
   if (this->tag().size() > 0) {
     ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
       this->_internal_tag().data(), static_cast<int>(this->_internal_tag().length()),
@@ -3672,6 +3715,28 @@ failure:
       "tradingdb2pb.RequestGetCandles.tag");
     target = stream->WriteStringMaybeAliased(
         4, this->_internal_tag(), target);
+  }
+
+  // int64 tsStart = 5;
+  if (this->tsstart() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt64ToArray(5, this->_internal_tsstart(), target);
+  }
+
+  // int64 tsEnd = 6;
+  if (this->tsend() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt64ToArray(6, this->_internal_tsend(), target);
+  }
+
+  // repeated string tags = 7;
+  for (int i = 0, n = this->_internal_tags_size(); i < n; i++) {
+    const auto& s = this->_internal_tags(i);
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      s.data(), static_cast<int>(s.length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "tradingdb2pb.RequestGetCandles.tags");
+    target = stream->WriteString(7, s, target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -3689,6 +3754,14 @@ size_t RequestGetCandles::ByteSizeLong() const {
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
+
+  // repeated string tags = 7;
+  total_size += 1 *
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(tags_.size());
+  for (int i = 0, n = tags_.size(); i < n; i++) {
+    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+      tags_.Get(i));
+  }
 
   // string token = 1;
   if (this->token().size() > 0) {
@@ -3711,11 +3784,25 @@ size_t RequestGetCandles::ByteSizeLong() const {
         this->_internal_symbol());
   }
 
-  // string tag = 4;
+  // string tag = 4 [deprecated = true];
   if (this->tag().size() > 0) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
         this->_internal_tag());
+  }
+
+  // int64 tsStart = 5;
+  if (this->tsstart() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int64Size(
+        this->_internal_tsstart());
+  }
+
+  // int64 tsEnd = 6;
+  if (this->tsend() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int64Size(
+        this->_internal_tsend());
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -3749,6 +3836,7 @@ void RequestGetCandles::MergeFrom(const RequestGetCandles& from) {
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
+  tags_.MergeFrom(from.tags_);
   if (from.token().size() > 0) {
 
     token_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.token_);
@@ -3764,6 +3852,12 @@ void RequestGetCandles::MergeFrom(const RequestGetCandles& from) {
   if (from.tag().size() > 0) {
 
     tag_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.tag_);
+  }
+  if (from.tsstart() != 0) {
+    _internal_set_tsstart(from._internal_tsstart());
+  }
+  if (from.tsend() != 0) {
+    _internal_set_tsend(from._internal_tsend());
   }
 }
 
@@ -3788,6 +3882,7 @@ bool RequestGetCandles::IsInitialized() const {
 void RequestGetCandles::InternalSwap(RequestGetCandles* other) {
   using std::swap;
   _internal_metadata_.Swap(&other->_internal_metadata_);
+  tags_.InternalSwap(&other->tags_);
   token_.Swap(&other->token_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
     GetArenaNoVirtual());
   market_.Swap(&other->market_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
@@ -3796,6 +3891,8 @@ void RequestGetCandles::InternalSwap(RequestGetCandles* other) {
     GetArenaNoVirtual());
   tag_.Swap(&other->tag_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
     GetArenaNoVirtual());
+  swap(tsstart_, other->tsstart_);
+  swap(tsend_, other->tsend_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata RequestGetCandles::GetMetadata() const {

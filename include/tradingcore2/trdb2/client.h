@@ -9,7 +9,7 @@ CR2BEGIN
 // getCandles - get candles
 bool getCandles(tradingdb2pb::Candles &candles, const char *host,
                 const char *token, const char *market, const char *symbol,
-                const char *tag);
+                std::vector<const char *>* pTags, int64_t tsStart, int64_t tsEnd);
 
 CR2END
 

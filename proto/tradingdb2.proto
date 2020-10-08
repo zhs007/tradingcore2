@@ -91,7 +91,10 @@ message RequestGetCandles {
     string token = 1;
     string market = 2;
     string symbol = 3;
-    string tag = 4;
+    string tag = 4 [deprecated = true];
+    int64 tsStart = 5;
+    int64 tsEnd = 6;
+    repeated string tags = 7;
 }
 
 // ReplyGetCandles - reply GetCandles
