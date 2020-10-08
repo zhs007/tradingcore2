@@ -52,6 +52,19 @@
             "externalConsole": false,
             "MIMode": "lldb",
             "preLaunchTask": "clang build active file"
+        },
+        {
+            "name": "trdb2client",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/src/trdb2client/trdb2client",
+            "args": ["../cfg/config.yaml"],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/build",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "lldb",
+            "preLaunchTask": "clang build active file"
         }
     ]
 }
