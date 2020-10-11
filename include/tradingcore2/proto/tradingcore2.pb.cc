@@ -289,6 +289,11 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_tradingcore2_2eproto::offsets[
   PROTOBUF_FIELD_OFFSET(::tradingcore2pb::TrainData, outputpath_),
   PROTOBUF_FIELD_OFFSET(::tradingcore2pb::TrainData, invest_),
   PROTOBUF_FIELD_OFFSET(::tradingcore2pb::TrainData, minvalidreturn_),
+  PROTOBUF_FIELD_OFFSET(::tradingcore2pb::TrainData, market_),
+  PROTOBUF_FIELD_OFFSET(::tradingcore2pb::TrainData, symbol_),
+  PROTOBUF_FIELD_OFFSET(::tradingcore2pb::TrainData, tags_),
+  PROTOBUF_FIELD_OFFSET(::tradingcore2pb::TrainData, tsstart_),
+  PROTOBUF_FIELD_OFFSET(::tradingcore2pb::TrainData, tsend_),
   offsetof(::tradingcore2pb::TrainDataDefaultTypeInternal, si2_),
   PROTOBUF_FIELD_OFFSET(::tradingcore2pb::TrainData, trainParam_),
   ~0u,  // no _has_bits_
@@ -354,12 +359,12 @@ static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOB
   { 12, -1, sizeof(::tradingcore2pb::TradeData)},
   { 25, -1, sizeof(::tradingcore2pb::TrainSingleIndicator2Ex)},
   { 40, -1, sizeof(::tradingcore2pb::TrainData)},
-  { 55, -1, sizeof(::tradingcore2pb::TrainNodeResult)},
-  { 71, -1, sizeof(::tradingcore2pb::TrainResult)},
-  { 83, -1, sizeof(::tradingcore2pb::RequestServerInfo)},
-  { 89, -1, sizeof(::tradingcore2pb::ReplyServerInfo)},
-  { 97, -1, sizeof(::tradingcore2pb::RequestTrain)},
-  { 104, -1, sizeof(::tradingcore2pb::ReplyTrain)},
+  { 60, -1, sizeof(::tradingcore2pb::TrainNodeResult)},
+  { 76, -1, sizeof(::tradingcore2pb::TrainResult)},
+  { 88, -1, sizeof(::tradingcore2pb::RequestServerInfo)},
+  { 94, -1, sizeof(::tradingcore2pb::ReplyServerInfo)},
+  { 102, -1, sizeof(::tradingcore2pb::RequestTrain)},
+  { 109, -1, sizeof(::tradingcore2pb::ReplyTrain)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
@@ -389,43 +394,45 @@ const char descriptor_table_protodef_tradingcore2_2eproto[] PROTOBUF_SECTION_VAR
   "times\030\002 \001(\005\022\014\n\004off0\030\003 \001(\002\022\014\n\004off1\030\004 \001(\002\022"
   "\014\n\004off2\030\005 \001(\002\022\017\n\007maxoff2\030\006 \001(\002\022\016\n\006minval"
   "\030\007 \001(\002\022\016\n\006maxval\030\010 \001(\002\022\013\n\003cv0\030\t \001(\002\022\016\n\006c"
-  "v0off\030\n \001(\002\"\360\001\n\tTrainData\022\017\n\007trainID\030\001 \001"
+  "v0off\030\n \001(\002\"\276\002\n\tTrainData\022\017\n\007trainID\030\001 \001"
   "(\003\022\024\n\014exchangeName\030\002 \001(\t\022\022\n\nassetsName\030\003"
   " \001(\t\022\024\n\014strategyName\030\004 \001(\t\022\020\n\010strParam\030\005"
   " \001(\t\022\022\n\noutputPath\030\006 \001(\t\022\016\n\006invest\030\007 \001(\002"
-  "\022\026\n\016minValidReturn\030\010 \001(\002\0226\n\003si2\030d \001(\0132\'."
-  "tradingcore2pb.TrainSingleIndicator2ExH\000"
-  "B\014\n\ntrainParam\"\220\002\n\017TrainNodeResult\022\023\n\013ma"
-  "xDrawdown\030\001 \001(\002\022\016\n\006sharpe\030\002 \001(\002\022\031\n\021annua"
-  "lizedReturns\030\003 \001(\002\022\034\n\024annualizedVolatili"
-  "ty\030\004 \001(\002\022\024\n\014totalReturns\030\005 \001(\002\022\024\n\014tradin"
-  "gTimes\030\006 \001(\005\022\021\n\tfailTimes\030\007 \001(\005\022\025\n\rstopl"
-  "ossTimes\030\010 \001(\005\022\017\n\007winRate\030\t \001(\002\022\014\n\004name\030"
-  "\n \001(\t\022*\n\007history\030\013 \003(\0132\031.tradingcore2pb."
-  "TradeData\"\314\001\n\013TrainResult\022\017\n\007trainID\030\001 \001"
-  "(\003\022\024\n\014exchangeName\030\002 \001(\t\022\022\n\nassetsName\030\003"
-  " \001(\t\022\024\n\014strategyName\030\004 \001(\t\022\020\n\010strParam\030\005"
-  " \001(\t\022*\n\007errCode\030\006 \001(\0162\031.tradingcore2pb.E"
-  "rrorCode\022.\n\005nodes\030\007 \003(\0132\037.tradingcore2pb"
-  ".TrainNodeResult\"K\n\021RequestServerInfo\0226\n"
-  "\014basicRequest\030\001 \001(\0132 .tradingcore2pb.Bas"
-  "icRequestData\"i\n\017ReplyServerInfo\0222\n\nbasi"
-  "cReply\030\001 \001(\0132\036.tradingcore2pb.BasicReply"
-  "Data\022\020\n\010maxTasks\030\002 \001(\005\022\020\n\010curTasks\030\003 \001(\005"
-  "\"p\n\014RequestTrain\0226\n\014basicRequest\030\001 \001(\0132 "
-  ".tradingcore2pb.BasicRequestData\022(\n\005trai"
-  "n\030\002 \001(\0132\031.tradingcore2pb.TrainData\"l\n\nRe"
-  "plyTrain\0222\n\nbasicReply\030\001 \001(\0132\036.tradingco"
-  "re2pb.BasicReplyData\022*\n\005train\030\002 \001(\0132\033.tr"
-  "adingcore2pb.TrainResult*l\n\tErrorCode\022\r\n"
-  "\tERR_NOERR\020\000\022\022\n\016ERR_NOEXCHANGE\020\001\022\024\n\020ERR_"
-  "NOTRAINPARAM\020\002\022\020\n\014ERR_NOASSETS\020\003\022\024\n\020ERR_"
-  "INVALIDTOKEN\020\004*$\n\tTradeType\022\n\n\006TT_BUY\020\000\022"
-  "\013\n\007TT_SELL\020\0012\261\001\n\023TradingCore2Service\022U\n\r"
-  "getServerInfo\022!.tradingcore2pb.RequestSe"
-  "rverInfo\032\037.tradingcore2pb.ReplyServerInf"
-  "o\"\000\022C\n\005train\022\034.tradingcore2pb.RequestTra"
-  "in\032\032.tradingcore2pb.ReplyTrain\"\000b\006proto3"
+  "\022\026\n\016minValidReturn\030\010 \001(\002\022\016\n\006market\030\t \001(\t"
+  "\022\016\n\006symbol\030\n \001(\t\022\014\n\004tags\030\013 \003(\t\022\017\n\007tsStar"
+  "t\030\014 \001(\003\022\r\n\005tsEnd\030\r \001(\003\0226\n\003si2\030d \001(\0132\'.tr"
+  "adingcore2pb.TrainSingleIndicator2ExH\000B\014"
+  "\n\ntrainParam\"\220\002\n\017TrainNodeResult\022\023\n\013maxD"
+  "rawdown\030\001 \001(\002\022\016\n\006sharpe\030\002 \001(\002\022\031\n\021annuali"
+  "zedReturns\030\003 \001(\002\022\034\n\024annualizedVolatility"
+  "\030\004 \001(\002\022\024\n\014totalReturns\030\005 \001(\002\022\024\n\014tradingT"
+  "imes\030\006 \001(\005\022\021\n\tfailTimes\030\007 \001(\005\022\025\n\rstoplos"
+  "sTimes\030\010 \001(\005\022\017\n\007winRate\030\t \001(\002\022\014\n\004name\030\n "
+  "\001(\t\022*\n\007history\030\013 \003(\0132\031.tradingcore2pb.Tr"
+  "adeData\"\314\001\n\013TrainResult\022\017\n\007trainID\030\001 \001(\003"
+  "\022\024\n\014exchangeName\030\002 \001(\t\022\022\n\nassetsName\030\003 \001"
+  "(\t\022\024\n\014strategyName\030\004 \001(\t\022\020\n\010strParam\030\005 \001"
+  "(\t\022*\n\007errCode\030\006 \001(\0162\031.tradingcore2pb.Err"
+  "orCode\022.\n\005nodes\030\007 \003(\0132\037.tradingcore2pb.T"
+  "rainNodeResult\"K\n\021RequestServerInfo\0226\n\014b"
+  "asicRequest\030\001 \001(\0132 .tradingcore2pb.Basic"
+  "RequestData\"i\n\017ReplyServerInfo\0222\n\nbasicR"
+  "eply\030\001 \001(\0132\036.tradingcore2pb.BasicReplyDa"
+  "ta\022\020\n\010maxTasks\030\002 \001(\005\022\020\n\010curTasks\030\003 \001(\005\"p"
+  "\n\014RequestTrain\0226\n\014basicRequest\030\001 \001(\0132 .t"
+  "radingcore2pb.BasicRequestData\022(\n\005train\030"
+  "\002 \001(\0132\031.tradingcore2pb.TrainData\"l\n\nRepl"
+  "yTrain\0222\n\nbasicReply\030\001 \001(\0132\036.tradingcore"
+  "2pb.BasicReplyData\022*\n\005train\030\002 \001(\0132\033.trad"
+  "ingcore2pb.TrainResult*l\n\tErrorCode\022\r\n\tE"
+  "RR_NOERR\020\000\022\022\n\016ERR_NOEXCHANGE\020\001\022\024\n\020ERR_NO"
+  "TRAINPARAM\020\002\022\020\n\014ERR_NOASSETS\020\003\022\024\n\020ERR_IN"
+  "VALIDTOKEN\020\004*$\n\tTradeType\022\n\n\006TT_BUY\020\000\022\013\n"
+  "\007TT_SELL\020\0012\261\001\n\023TradingCore2Service\022U\n\rge"
+  "tServerInfo\022!.tradingcore2pb.RequestServ"
+  "erInfo\032\037.tradingcore2pb.ReplyServerInfo\""
+  "\000\022C\n\005train\022\034.tradingcore2pb.RequestTrain"
+  "\032\032.tradingcore2pb.ReplyTrain\"\000b\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_tradingcore2_2eproto_deps[1] = {
 };
@@ -445,7 +452,7 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_tra
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_tradingcore2_2eproto_once;
 static bool descriptor_table_tradingcore2_2eproto_initialized = false;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_tradingcore2_2eproto = {
-  &descriptor_table_tradingcore2_2eproto_initialized, descriptor_table_protodef_tradingcore2_2eproto, "tradingcore2.proto", 1960,
+  &descriptor_table_tradingcore2_2eproto_initialized, descriptor_table_protodef_tradingcore2_2eproto, "tradingcore2.proto", 2038,
   &descriptor_table_tradingcore2_2eproto_once, descriptor_table_tradingcore2_2eproto_sccs, descriptor_table_tradingcore2_2eproto_deps, 11, 0,
   schemas, file_default_instances, TableStruct_tradingcore2_2eproto::offsets,
   file_level_metadata_tradingcore2_2eproto, 11, file_level_enum_descriptors_tradingcore2_2eproto, file_level_service_descriptors_tradingcore2_2eproto,
@@ -1683,7 +1690,8 @@ TrainData::TrainData()
 }
 TrainData::TrainData(const TrainData& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _internal_metadata_(nullptr) {
+      _internal_metadata_(nullptr),
+      tags_(from.tags_) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   exchangename_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (!from._internal_exchangename().empty()) {
@@ -1705,9 +1713,17 @@ TrainData::TrainData(const TrainData& from)
   if (!from._internal_outputpath().empty()) {
     outputpath_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.outputpath_);
   }
+  market_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_market().empty()) {
+    market_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.market_);
+  }
+  symbol_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_symbol().empty()) {
+    symbol_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.symbol_);
+  }
   ::memcpy(&trainid_, &from.trainid_,
-    static_cast<size_t>(reinterpret_cast<char*>(&minvalidreturn_) -
-    reinterpret_cast<char*>(&trainid_)) + sizeof(minvalidreturn_));
+    static_cast<size_t>(reinterpret_cast<char*>(&tsend_) -
+    reinterpret_cast<char*>(&trainid_)) + sizeof(tsend_));
   clear_has_trainParam();
   switch (from.trainParam_case()) {
     case kSi2: {
@@ -1728,9 +1744,11 @@ void TrainData::SharedCtor() {
   strategyname_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   strparam_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   outputpath_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  market_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  symbol_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   ::memset(&trainid_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&minvalidreturn_) -
-      reinterpret_cast<char*>(&trainid_)) + sizeof(minvalidreturn_));
+      reinterpret_cast<char*>(&tsend_) -
+      reinterpret_cast<char*>(&trainid_)) + sizeof(tsend_));
   clear_has_trainParam();
 }
 
@@ -1745,6 +1763,8 @@ void TrainData::SharedDtor() {
   strategyname_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   strparam_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   outputpath_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  market_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  symbol_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (has_trainParam()) {
     clear_trainParam();
   }
@@ -1780,14 +1800,17 @@ void TrainData::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  tags_.Clear();
   exchangename_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   assetsname_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   strategyname_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   strparam_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   outputpath_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  market_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  symbol_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   ::memset(&trainid_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&minvalidreturn_) -
-      reinterpret_cast<char*>(&trainid_)) + sizeof(minvalidreturn_));
+      reinterpret_cast<char*>(&tsend_) -
+      reinterpret_cast<char*>(&trainid_)) + sizeof(tsend_));
   clear_trainParam();
   _internal_metadata_.Clear();
 }
@@ -1863,6 +1886,52 @@ const char* TrainData::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 69)) {
           minvalidreturn_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
+        } else goto handle_unusual;
+        continue;
+      // string market = 9;
+      case 9:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 74)) {
+          auto str = _internal_mutable_market();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "tradingcore2pb.TrainData.market"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string symbol = 10;
+      case 10:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 82)) {
+          auto str = _internal_mutable_symbol();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "tradingcore2pb.TrainData.symbol"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // repeated string tags = 11;
+      case 11:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 90)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            auto str = _internal_add_tags();
+            ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+            CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "tradingcore2pb.TrainData.tags"));
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<90>(ptr));
+        } else goto handle_unusual;
+        continue;
+      // int64 tsStart = 12;
+      case 12:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 96)) {
+          tsstart_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // int64 tsEnd = 13;
+      case 13:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 104)) {
+          tsend_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
         } else goto handle_unusual;
         continue;
       // .tradingcore2pb.TrainSingleIndicator2Ex si2 = 100;
@@ -1966,6 +2035,48 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(8, this->_internal_minvalidreturn(), target);
   }
 
+  // string market = 9;
+  if (this->market().size() > 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_market().data(), static_cast<int>(this->_internal_market().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "tradingcore2pb.TrainData.market");
+    target = stream->WriteStringMaybeAliased(
+        9, this->_internal_market(), target);
+  }
+
+  // string symbol = 10;
+  if (this->symbol().size() > 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_symbol().data(), static_cast<int>(this->_internal_symbol().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "tradingcore2pb.TrainData.symbol");
+    target = stream->WriteStringMaybeAliased(
+        10, this->_internal_symbol(), target);
+  }
+
+  // repeated string tags = 11;
+  for (int i = 0, n = this->_internal_tags_size(); i < n; i++) {
+    const auto& s = this->_internal_tags(i);
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      s.data(), static_cast<int>(s.length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "tradingcore2pb.TrainData.tags");
+    target = stream->WriteString(11, s, target);
+  }
+
+  // int64 tsStart = 12;
+  if (this->tsstart() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt64ToArray(12, this->_internal_tsstart(), target);
+  }
+
+  // int64 tsEnd = 13;
+  if (this->tsend() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt64ToArray(13, this->_internal_tsend(), target);
+  }
+
   // .tradingcore2pb.TrainSingleIndicator2Ex si2 = 100;
   if (_internal_has_si2()) {
     target = stream->EnsureSpace(target);
@@ -1989,6 +2100,14 @@ size_t TrainData::ByteSizeLong() const {
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
+
+  // repeated string tags = 11;
+  total_size += 1 *
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(tags_.size());
+  for (int i = 0, n = tags_.size(); i < n; i++) {
+    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+      tags_.Get(i));
+  }
 
   // string exchangeName = 2;
   if (this->exchangename().size() > 0) {
@@ -2025,6 +2144,20 @@ size_t TrainData::ByteSizeLong() const {
         this->_internal_outputpath());
   }
 
+  // string market = 9;
+  if (this->market().size() > 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_market());
+  }
+
+  // string symbol = 10;
+  if (this->symbol().size() > 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_symbol());
+  }
+
   // int64 trainID = 1;
   if (this->trainid() != 0) {
     total_size += 1 +
@@ -2040,6 +2173,20 @@ size_t TrainData::ByteSizeLong() const {
   // float minValidReturn = 8;
   if (!(this->minvalidreturn() <= 0 && this->minvalidreturn() >= 0)) {
     total_size += 1 + 4;
+  }
+
+  // int64 tsStart = 12;
+  if (this->tsstart() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int64Size(
+        this->_internal_tsstart());
+  }
+
+  // int64 tsEnd = 13;
+  if (this->tsend() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int64Size(
+        this->_internal_tsend());
   }
 
   switch (trainParam_case()) {
@@ -2085,6 +2232,7 @@ void TrainData::MergeFrom(const TrainData& from) {
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
+  tags_.MergeFrom(from.tags_);
   if (from.exchangename().size() > 0) {
 
     exchangename_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.exchangename_);
@@ -2105,6 +2253,14 @@ void TrainData::MergeFrom(const TrainData& from) {
 
     outputpath_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.outputpath_);
   }
+  if (from.market().size() > 0) {
+
+    market_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.market_);
+  }
+  if (from.symbol().size() > 0) {
+
+    symbol_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.symbol_);
+  }
   if (from.trainid() != 0) {
     _internal_set_trainid(from._internal_trainid());
   }
@@ -2113,6 +2269,12 @@ void TrainData::MergeFrom(const TrainData& from) {
   }
   if (!(from.minvalidreturn() <= 0 && from.minvalidreturn() >= 0)) {
     _internal_set_minvalidreturn(from._internal_minvalidreturn());
+  }
+  if (from.tsstart() != 0) {
+    _internal_set_tsstart(from._internal_tsstart());
+  }
+  if (from.tsend() != 0) {
+    _internal_set_tsend(from._internal_tsend());
   }
   switch (from.trainParam_case()) {
     case kSi2: {
@@ -2146,6 +2308,7 @@ bool TrainData::IsInitialized() const {
 void TrainData::InternalSwap(TrainData* other) {
   using std::swap;
   _internal_metadata_.Swap(&other->_internal_metadata_);
+  tags_.InternalSwap(&other->tags_);
   exchangename_.Swap(&other->exchangename_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
     GetArenaNoVirtual());
   assetsname_.Swap(&other->assetsname_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
@@ -2156,9 +2319,15 @@ void TrainData::InternalSwap(TrainData* other) {
     GetArenaNoVirtual());
   outputpath_.Swap(&other->outputpath_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
     GetArenaNoVirtual());
+  market_.Swap(&other->market_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+    GetArenaNoVirtual());
+  symbol_.Swap(&other->symbol_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+    GetArenaNoVirtual());
   swap(trainid_, other->trainid_);
   swap(invest_, other->invest_);
   swap(minvalidreturn_, other->minvalidreturn_);
+  swap(tsstart_, other->tsstart_);
+  swap(tsend_, other->tsend_);
   swap(trainParam_, other->trainParam_);
   swap(_oneof_case_[0], other->_oneof_case_[0]);
 }

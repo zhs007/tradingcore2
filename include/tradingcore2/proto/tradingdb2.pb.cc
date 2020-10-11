@@ -82,6 +82,10 @@ class ReplyGetSymbolDefaultTypeInternal {
  public:
   ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<ReplyGetSymbol> _instance;
 } _ReplyGetSymbol_default_instance_;
+class RequestGetSymbolsDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<RequestGetSymbols> _instance;
+} _RequestGetSymbols_default_instance_;
 }  // namespace tradingdb2pb
 static void InitDefaultsscc_info_Candle_tradingdb2_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
@@ -257,6 +261,20 @@ static void InitDefaultsscc_info_RequestGetSymbol_tradingdb2_2eproto() {
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_RequestGetSymbol_tradingdb2_2eproto =
     {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_RequestGetSymbol_tradingdb2_2eproto}, {}};
 
+static void InitDefaultsscc_info_RequestGetSymbols_tradingdb2_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::tradingdb2pb::_RequestGetSymbols_default_instance_;
+    new (ptr) ::tradingdb2pb::RequestGetSymbols();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::tradingdb2pb::RequestGetSymbols::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_RequestGetSymbols_tradingdb2_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_RequestGetSymbols_tradingdb2_2eproto}, {}};
+
 static void InitDefaultsscc_info_RequestUpdCandles_tradingdb2_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
@@ -302,7 +320,7 @@ static void InitDefaultsscc_info_SymbolInfo_tradingdb2_2eproto() {
     {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_SymbolInfo_tradingdb2_2eproto}, {
       &scc_info_Fund_tradingdb2_2eproto.base,}};
 
-static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_tradingdb2_2eproto[15];
+static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_tradingdb2_2eproto[16];
 static constexpr ::PROTOBUF_NAMESPACE_ID::EnumDescriptor const** file_level_enum_descriptors_tradingdb2_2eproto = nullptr;
 static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_tradingdb2_2eproto = nullptr;
 
@@ -446,6 +464,14 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_tradingdb2_2eproto::offsets[] 
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   PROTOBUF_FIELD_OFFSET(::tradingdb2pb::ReplyGetSymbol, symbol_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::tradingdb2pb::RequestGetSymbols, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::tradingdb2pb::RequestGetSymbols, token_),
+  PROTOBUF_FIELD_OFFSET(::tradingdb2pb::RequestGetSymbols, market_),
+  PROTOBUF_FIELD_OFFSET(::tradingdb2pb::RequestGetSymbols, symbols_),
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, sizeof(::tradingdb2pb::Candle)},
@@ -463,6 +489,7 @@ static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOB
   { 119, -1, sizeof(::tradingdb2pb::ReplyUpdSymbol)},
   { 125, -1, sizeof(::tradingdb2pb::RequestGetSymbol)},
   { 133, -1, sizeof(::tradingdb2pb::ReplyGetSymbol)},
+  { 139, -1, sizeof(::tradingdb2pb::RequestGetSymbols)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
@@ -481,6 +508,7 @@ static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] =
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::tradingdb2pb::_ReplyUpdSymbol_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::tradingdb2pb::_RequestGetSymbol_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::tradingdb2pb::_ReplyGetSymbol_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::tradingdb2pb::_RequestGetSymbols_default_instance_),
 };
 
 const char descriptor_table_protodef_tradingdb2_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
@@ -523,20 +551,24 @@ const char descriptor_table_protodef_tradingdb2_2eproto[] PROTOBUF_SECTION_VARIA
   "equestGetSymbol\022\r\n\005token\030\001 \001(\t\022\016\n\006market"
   "\030\002 \001(\t\022\016\n\006symbol\030\003 \001(\t\":\n\016ReplyGetSymbol"
   "\022(\n\006symbol\030\001 \001(\0132\030.tradingdb2pb.SymbolIn"
-  "fo2\321\002\n\021TradingDB2Service\022P\n\nupdCandles\022\037"
-  ".tradingdb2pb.RequestUpdCandles\032\035.tradin"
-  "gdb2pb.ReplyUpdCandles\"\000(\001\022P\n\ngetCandles"
-  "\022\037.tradingdb2pb.RequestGetCandles\032\035.trad"
-  "ingdb2pb.ReplyGetCandles\"\0000\001\022K\n\tupdSymbo"
-  "l\022\036.tradingdb2pb.RequestUpdSymbol\032\034.trad"
-  "ingdb2pb.ReplyUpdSymbol\"\000\022K\n\tgetSymbol\022\036"
-  ".tradingdb2pb.RequestGetSymbol\032\034.trading"
-  "db2pb.ReplyGetSymbol\"\000B+Z)github.com/zhs"
-  "007/tradingdb2/tradingdb2pbb\006proto3"
+  "fo\"C\n\021RequestGetSymbols\022\r\n\005token\030\001 \001(\t\022\016"
+  "\n\006market\030\002 \001(\t\022\017\n\007symbols\030\003 \003(\t2\242\003\n\021Trad"
+  "ingDB2Service\022P\n\nupdCandles\022\037.tradingdb2"
+  "pb.RequestUpdCandles\032\035.tradingdb2pb.Repl"
+  "yUpdCandles\"\000(\001\022P\n\ngetCandles\022\037.tradingd"
+  "b2pb.RequestGetCandles\032\035.tradingdb2pb.Re"
+  "plyGetCandles\"\0000\001\022K\n\tupdSymbol\022\036.trading"
+  "db2pb.RequestUpdSymbol\032\034.tradingdb2pb.Re"
+  "plyUpdSymbol\"\000\022K\n\tgetSymbol\022\036.tradingdb2"
+  "pb.RequestGetSymbol\032\034.tradingdb2pb.Reply"
+  "GetSymbol\"\000\022O\n\ngetSymbols\022\037.tradingdb2pb"
+  ".RequestGetSymbols\032\034.tradingdb2pb.ReplyG"
+  "etSymbol\"\0000\001B+Z)github.com/zhs007/tradin"
+  "gdb2/tradingdb2pbb\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_tradingdb2_2eproto_deps[1] = {
 };
-static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_tradingdb2_2eproto_sccs[15] = {
+static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_tradingdb2_2eproto_sccs[16] = {
   &scc_info_Candle_tradingdb2_2eproto.base,
   &scc_info_Candles_tradingdb2_2eproto.base,
   &scc_info_Fund_tradingdb2_2eproto.base,
@@ -549,6 +581,7 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_tra
   &scc_info_ReplyUpdSymbol_tradingdb2_2eproto.base,
   &scc_info_RequestGetCandles_tradingdb2_2eproto.base,
   &scc_info_RequestGetSymbol_tradingdb2_2eproto.base,
+  &scc_info_RequestGetSymbols_tradingdb2_2eproto.base,
   &scc_info_RequestUpdCandles_tradingdb2_2eproto.base,
   &scc_info_RequestUpdSymbol_tradingdb2_2eproto.base,
   &scc_info_SymbolInfo_tradingdb2_2eproto.base,
@@ -556,10 +589,10 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_tra
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_tradingdb2_2eproto_once;
 static bool descriptor_table_tradingdb2_2eproto_initialized = false;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_tradingdb2_2eproto = {
-  &descriptor_table_tradingdb2_2eproto_initialized, descriptor_table_protodef_tradingdb2_2eproto, "tradingdb2.proto", 1955,
-  &descriptor_table_tradingdb2_2eproto_once, descriptor_table_tradingdb2_2eproto_sccs, descriptor_table_tradingdb2_2eproto_deps, 15, 0,
+  &descriptor_table_tradingdb2_2eproto_initialized, descriptor_table_protodef_tradingdb2_2eproto, "tradingdb2.proto", 2105,
+  &descriptor_table_tradingdb2_2eproto_once, descriptor_table_tradingdb2_2eproto_sccs, descriptor_table_tradingdb2_2eproto_deps, 16, 0,
   schemas, file_default_instances, TableStruct_tradingdb2_2eproto::offsets,
-  file_level_metadata_tradingdb2_2eproto, 15, file_level_enum_descriptors_tradingdb2_2eproto, file_level_service_descriptors_tradingdb2_2eproto,
+  file_level_metadata_tradingdb2_2eproto, 16, file_level_enum_descriptors_tradingdb2_2eproto, file_level_service_descriptors_tradingdb2_2eproto,
 };
 
 // Force running AddDescriptors() at dynamic initialization time.
@@ -5012,6 +5045,280 @@ void ReplyGetSymbol::InternalSwap(ReplyGetSymbol* other) {
 }
 
 
+// ===================================================================
+
+void RequestGetSymbols::InitAsDefaultInstance() {
+}
+class RequestGetSymbols::_Internal {
+ public:
+};
+
+RequestGetSymbols::RequestGetSymbols()
+  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:tradingdb2pb.RequestGetSymbols)
+}
+RequestGetSymbols::RequestGetSymbols(const RequestGetSymbols& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _internal_metadata_(nullptr),
+      symbols_(from.symbols_) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  token_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_token().empty()) {
+    token_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.token_);
+  }
+  market_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_market().empty()) {
+    market_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.market_);
+  }
+  // @@protoc_insertion_point(copy_constructor:tradingdb2pb.RequestGetSymbols)
+}
+
+void RequestGetSymbols::SharedCtor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_RequestGetSymbols_tradingdb2_2eproto.base);
+  token_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  market_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+RequestGetSymbols::~RequestGetSymbols() {
+  // @@protoc_insertion_point(destructor:tradingdb2pb.RequestGetSymbols)
+  SharedDtor();
+}
+
+void RequestGetSymbols::SharedDtor() {
+  token_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  market_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+
+void RequestGetSymbols::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const RequestGetSymbols& RequestGetSymbols::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_RequestGetSymbols_tradingdb2_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void RequestGetSymbols::Clear() {
+// @@protoc_insertion_point(message_clear_start:tradingdb2pb.RequestGetSymbols)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  symbols_.Clear();
+  token_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  market_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  _internal_metadata_.Clear();
+}
+
+const char* RequestGetSymbols::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // string token = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          auto str = _internal_mutable_token();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "tradingdb2pb.RequestGetSymbols.token"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string market = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          auto str = _internal_mutable_market();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "tradingdb2pb.RequestGetSymbols.market"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // repeated string symbols = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            auto str = _internal_add_symbols();
+            ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+            CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "tradingdb2pb.RequestGetSymbols.symbols"));
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<26>(ptr));
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* RequestGetSymbols::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:tradingdb2pb.RequestGetSymbols)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string token = 1;
+  if (this->token().size() > 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_token().data(), static_cast<int>(this->_internal_token().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "tradingdb2pb.RequestGetSymbols.token");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_token(), target);
+  }
+
+  // string market = 2;
+  if (this->market().size() > 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_market().data(), static_cast<int>(this->_internal_market().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "tradingdb2pb.RequestGetSymbols.market");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_market(), target);
+  }
+
+  // repeated string symbols = 3;
+  for (int i = 0, n = this->_internal_symbols_size(); i < n; i++) {
+    const auto& s = this->_internal_symbols(i);
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      s.data(), static_cast<int>(s.length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "tradingdb2pb.RequestGetSymbols.symbols");
+    target = stream->WriteString(3, s, target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields(), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:tradingdb2pb.RequestGetSymbols)
+  return target;
+}
+
+size_t RequestGetSymbols::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:tradingdb2pb.RequestGetSymbols)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated string symbols = 3;
+  total_size += 1 *
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(symbols_.size());
+  for (int i = 0, n = symbols_.size(); i < n; i++) {
+    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+      symbols_.Get(i));
+  }
+
+  // string token = 1;
+  if (this->token().size() > 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_token());
+  }
+
+  // string market = 2;
+  if (this->market().size() > 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_market());
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void RequestGetSymbols::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:tradingdb2pb.RequestGetSymbols)
+  GOOGLE_DCHECK_NE(&from, this);
+  const RequestGetSymbols* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<RequestGetSymbols>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:tradingdb2pb.RequestGetSymbols)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:tradingdb2pb.RequestGetSymbols)
+    MergeFrom(*source);
+  }
+}
+
+void RequestGetSymbols::MergeFrom(const RequestGetSymbols& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:tradingdb2pb.RequestGetSymbols)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  symbols_.MergeFrom(from.symbols_);
+  if (from.token().size() > 0) {
+
+    token_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.token_);
+  }
+  if (from.market().size() > 0) {
+
+    market_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.market_);
+  }
+}
+
+void RequestGetSymbols::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:tradingdb2pb.RequestGetSymbols)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void RequestGetSymbols::CopyFrom(const RequestGetSymbols& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:tradingdb2pb.RequestGetSymbols)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool RequestGetSymbols::IsInitialized() const {
+  return true;
+}
+
+void RequestGetSymbols::InternalSwap(RequestGetSymbols* other) {
+  using std::swap;
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  symbols_.InternalSwap(&other->symbols_);
+  token_.Swap(&other->token_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+    GetArenaNoVirtual());
+  market_.Swap(&other->market_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+    GetArenaNoVirtual());
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata RequestGetSymbols::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
+
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace tradingdb2pb
 PROTOBUF_NAMESPACE_OPEN
@@ -5059,6 +5366,9 @@ template<> PROTOBUF_NOINLINE ::tradingdb2pb::RequestGetSymbol* Arena::CreateMayb
 }
 template<> PROTOBUF_NOINLINE ::tradingdb2pb::ReplyGetSymbol* Arena::CreateMaybeMessage< ::tradingdb2pb::ReplyGetSymbol >(Arena* arena) {
   return Arena::CreateInternal< ::tradingdb2pb::ReplyGetSymbol >(arena);
+}
+template<> PROTOBUF_NOINLINE ::tradingdb2pb::RequestGetSymbols* Arena::CreateMaybeMessage< ::tradingdb2pb::RequestGetSymbols >(Arena* arena) {
+  return Arena::CreateInternal< ::tradingdb2pb::RequestGetSymbols >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 

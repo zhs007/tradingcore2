@@ -125,6 +125,13 @@ message ReplyGetSymbol{
     SymbolInfo symbol = 1;
 }
 
+// RequestGetSymbols - request GetSymbols
+message RequestGetSymbols {
+    string token = 1;
+    string market = 2;
+    repeated string symbols = 3;
+}
+
 // TradingDB2Service - TradingDB2 service
 service TradingDB2Service {
 	// updCandles - update candles
@@ -134,5 +141,7 @@ service TradingDB2Service {
 	// updSymbol - update symbol
     rpc updSymbol(RequestUpdSymbol) returns (ReplyUpdSymbol) {}
 	// getSymbol - get symbol
-	rpc getSymbol(RequestGetSymbol) returns (ReplyGetSymbol) {}    
+    rpc getSymbol(RequestGetSymbol) returns (ReplyGetSymbol) {}    
+	// getSymbols - get symbols
+	rpc getSymbols(RequestGetSymbols) returns (stream ReplyGetSymbol) {}        
 }

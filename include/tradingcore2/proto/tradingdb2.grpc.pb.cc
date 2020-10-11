@@ -26,6 +26,7 @@ static const char* TradingDB2Service_method_names[] = {
   "/tradingdb2pb.TradingDB2Service/getCandles",
   "/tradingdb2pb.TradingDB2Service/updSymbol",
   "/tradingdb2pb.TradingDB2Service/getSymbol",
+  "/tradingdb2pb.TradingDB2Service/getSymbols",
 };
 
 std::unique_ptr< TradingDB2Service::Stub> TradingDB2Service::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -39,6 +40,7 @@ TradingDB2Service::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& 
   , rpcmethod_getCandles_(TradingDB2Service_method_names[1], ::grpc::internal::RpcMethod::SERVER_STREAMING, channel)
   , rpcmethod_updSymbol_(TradingDB2Service_method_names[2], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_getSymbol_(TradingDB2Service_method_names[3], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_getSymbols_(TradingDB2Service_method_names[4], ::grpc::internal::RpcMethod::SERVER_STREAMING, channel)
   {}
 
 ::grpc::ClientWriter< ::tradingdb2pb::RequestUpdCandles>* TradingDB2Service::Stub::updCandlesRaw(::grpc::ClientContext* context, ::tradingdb2pb::ReplyUpdCandles* response) {
@@ -129,6 +131,22 @@ void TradingDB2Service::Stub::experimental_async::getSymbol(::grpc::ClientContex
   return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::tradingdb2pb::ReplyGetSymbol>::Create(channel_.get(), cq, rpcmethod_getSymbol_, context, request, false);
 }
 
+::grpc::ClientReader< ::tradingdb2pb::ReplyGetSymbol>* TradingDB2Service::Stub::getSymbolsRaw(::grpc::ClientContext* context, const ::tradingdb2pb::RequestGetSymbols& request) {
+  return ::grpc_impl::internal::ClientReaderFactory< ::tradingdb2pb::ReplyGetSymbol>::Create(channel_.get(), rpcmethod_getSymbols_, context, request);
+}
+
+void TradingDB2Service::Stub::experimental_async::getSymbols(::grpc::ClientContext* context, ::tradingdb2pb::RequestGetSymbols* request, ::grpc::experimental::ClientReadReactor< ::tradingdb2pb::ReplyGetSymbol>* reactor) {
+  ::grpc_impl::internal::ClientCallbackReaderFactory< ::tradingdb2pb::ReplyGetSymbol>::Create(stub_->channel_.get(), stub_->rpcmethod_getSymbols_, context, request, reactor);
+}
+
+::grpc::ClientAsyncReader< ::tradingdb2pb::ReplyGetSymbol>* TradingDB2Service::Stub::AsyncgetSymbolsRaw(::grpc::ClientContext* context, const ::tradingdb2pb::RequestGetSymbols& request, ::grpc::CompletionQueue* cq, void* tag) {
+  return ::grpc_impl::internal::ClientAsyncReaderFactory< ::tradingdb2pb::ReplyGetSymbol>::Create(channel_.get(), cq, rpcmethod_getSymbols_, context, request, true, tag);
+}
+
+::grpc::ClientAsyncReader< ::tradingdb2pb::ReplyGetSymbol>* TradingDB2Service::Stub::PrepareAsyncgetSymbolsRaw(::grpc::ClientContext* context, const ::tradingdb2pb::RequestGetSymbols& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncReaderFactory< ::tradingdb2pb::ReplyGetSymbol>::Create(channel_.get(), cq, rpcmethod_getSymbols_, context, request, false, nullptr);
+}
+
 TradingDB2Service::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       TradingDB2Service_method_names[0],
@@ -170,6 +188,16 @@ TradingDB2Service::Service::Service() {
              ::tradingdb2pb::ReplyGetSymbol* resp) {
                return service->getSymbol(ctx, req, resp);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      TradingDB2Service_method_names[4],
+      ::grpc::internal::RpcMethod::SERVER_STREAMING,
+      new ::grpc::internal::ServerStreamingHandler< TradingDB2Service::Service, ::tradingdb2pb::RequestGetSymbols, ::tradingdb2pb::ReplyGetSymbol>(
+          [](TradingDB2Service::Service* service,
+             ::grpc_impl::ServerContext* ctx,
+             const ::tradingdb2pb::RequestGetSymbols* req,
+             ::grpc_impl::ServerWriter<::tradingdb2pb::ReplyGetSymbol>* writer) {
+               return service->getSymbols(ctx, req, writer);
+             }, this)));
 }
 
 TradingDB2Service::Service::~Service() {
@@ -200,6 +228,13 @@ TradingDB2Service::Service::~Service() {
   (void) context;
   (void) request;
   (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status TradingDB2Service::Service::getSymbols(::grpc::ServerContext* context, const ::tradingdb2pb::RequestGetSymbols* request, ::grpc::ServerWriter< ::tradingdb2pb::ReplyGetSymbol>* writer) {
+  (void) context;
+  (void) request;
+  (void) writer;
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 

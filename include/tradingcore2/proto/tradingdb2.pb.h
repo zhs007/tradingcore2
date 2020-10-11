@@ -47,7 +47,7 @@ struct TableStruct_tradingdb2_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxillaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[15]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[16]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -91,6 +91,9 @@ extern RequestGetCandlesDefaultTypeInternal _RequestGetCandles_default_instance_
 class RequestGetSymbol;
 class RequestGetSymbolDefaultTypeInternal;
 extern RequestGetSymbolDefaultTypeInternal _RequestGetSymbol_default_instance_;
+class RequestGetSymbols;
+class RequestGetSymbolsDefaultTypeInternal;
+extern RequestGetSymbolsDefaultTypeInternal _RequestGetSymbols_default_instance_;
 class RequestUpdCandles;
 class RequestUpdCandlesDefaultTypeInternal;
 extern RequestUpdCandlesDefaultTypeInternal _RequestUpdCandles_default_instance_;
@@ -114,6 +117,7 @@ template<> ::tradingdb2pb::ReplyUpdCandles* Arena::CreateMaybeMessage<::tradingd
 template<> ::tradingdb2pb::ReplyUpdSymbol* Arena::CreateMaybeMessage<::tradingdb2pb::ReplyUpdSymbol>(Arena*);
 template<> ::tradingdb2pb::RequestGetCandles* Arena::CreateMaybeMessage<::tradingdb2pb::RequestGetCandles>(Arena*);
 template<> ::tradingdb2pb::RequestGetSymbol* Arena::CreateMaybeMessage<::tradingdb2pb::RequestGetSymbol>(Arena*);
+template<> ::tradingdb2pb::RequestGetSymbols* Arena::CreateMaybeMessage<::tradingdb2pb::RequestGetSymbols>(Arena*);
 template<> ::tradingdb2pb::RequestUpdCandles* Arena::CreateMaybeMessage<::tradingdb2pb::RequestUpdCandles>(Arena*);
 template<> ::tradingdb2pb::RequestUpdSymbol* Arena::CreateMaybeMessage<::tradingdb2pb::RequestUpdSymbol>(Arena*);
 template<> ::tradingdb2pb::SymbolInfo* Arena::CreateMaybeMessage<::tradingdb2pb::SymbolInfo>(Arena*);
@@ -2829,6 +2833,185 @@ class ReplyGetSymbol :
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_tradingdb2_2eproto;
 };
+// -------------------------------------------------------------------
+
+class RequestGetSymbols :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tradingdb2pb.RequestGetSymbols) */ {
+ public:
+  RequestGetSymbols();
+  virtual ~RequestGetSymbols();
+
+  RequestGetSymbols(const RequestGetSymbols& from);
+  RequestGetSymbols(RequestGetSymbols&& from) noexcept
+    : RequestGetSymbols() {
+    *this = ::std::move(from);
+  }
+
+  inline RequestGetSymbols& operator=(const RequestGetSymbols& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline RequestGetSymbols& operator=(RequestGetSymbols&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const RequestGetSymbols& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const RequestGetSymbols* internal_default_instance() {
+    return reinterpret_cast<const RequestGetSymbols*>(
+               &_RequestGetSymbols_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    15;
+
+  friend void swap(RequestGetSymbols& a, RequestGetSymbols& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(RequestGetSymbols* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline RequestGetSymbols* New() const final {
+    return CreateMaybeMessage<RequestGetSymbols>(nullptr);
+  }
+
+  RequestGetSymbols* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<RequestGetSymbols>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const RequestGetSymbols& from);
+  void MergeFrom(const RequestGetSymbols& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(RequestGetSymbols* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "tradingdb2pb.RequestGetSymbols";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_tradingdb2_2eproto);
+    return ::descriptor_table_tradingdb2_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kSymbolsFieldNumber = 3,
+    kTokenFieldNumber = 1,
+    kMarketFieldNumber = 2,
+  };
+  // repeated string symbols = 3;
+  int symbols_size() const;
+  private:
+  int _internal_symbols_size() const;
+  public:
+  void clear_symbols();
+  const std::string& symbols(int index) const;
+  std::string* mutable_symbols(int index);
+  void set_symbols(int index, const std::string& value);
+  void set_symbols(int index, std::string&& value);
+  void set_symbols(int index, const char* value);
+  void set_symbols(int index, const char* value, size_t size);
+  std::string* add_symbols();
+  void add_symbols(const std::string& value);
+  void add_symbols(std::string&& value);
+  void add_symbols(const char* value);
+  void add_symbols(const char* value, size_t size);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& symbols() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_symbols();
+  private:
+  const std::string& _internal_symbols(int index) const;
+  std::string* _internal_add_symbols();
+  public:
+
+  // string token = 1;
+  void clear_token();
+  const std::string& token() const;
+  void set_token(const std::string& value);
+  void set_token(std::string&& value);
+  void set_token(const char* value);
+  void set_token(const char* value, size_t size);
+  std::string* mutable_token();
+  std::string* release_token();
+  void set_allocated_token(std::string* token);
+  private:
+  const std::string& _internal_token() const;
+  void _internal_set_token(const std::string& value);
+  std::string* _internal_mutable_token();
+  public:
+
+  // string market = 2;
+  void clear_market();
+  const std::string& market() const;
+  void set_market(const std::string& value);
+  void set_market(std::string&& value);
+  void set_market(const char* value);
+  void set_market(const char* value, size_t size);
+  std::string* mutable_market();
+  std::string* release_market();
+  void set_allocated_market(std::string* market);
+  private:
+  const std::string& _internal_market() const;
+  void _internal_set_market(const std::string& value);
+  std::string* _internal_mutable_market();
+  public:
+
+  // @@protoc_insertion_point(class_scope:tradingdb2pb.RequestGetSymbols)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> symbols_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr token_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr market_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_tradingdb2_2eproto;
+};
 // ===================================================================
 
 
@@ -5440,9 +5623,209 @@ inline void ReplyGetSymbol::set_allocated_symbol(::tradingdb2pb::SymbolInfo* sym
   // @@protoc_insertion_point(field_set_allocated:tradingdb2pb.ReplyGetSymbol.symbol)
 }
 
+// -------------------------------------------------------------------
+
+// RequestGetSymbols
+
+// string token = 1;
+inline void RequestGetSymbols::clear_token() {
+  token_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline const std::string& RequestGetSymbols::token() const {
+  // @@protoc_insertion_point(field_get:tradingdb2pb.RequestGetSymbols.token)
+  return _internal_token();
+}
+inline void RequestGetSymbols::set_token(const std::string& value) {
+  _internal_set_token(value);
+  // @@protoc_insertion_point(field_set:tradingdb2pb.RequestGetSymbols.token)
+}
+inline std::string* RequestGetSymbols::mutable_token() {
+  // @@protoc_insertion_point(field_mutable:tradingdb2pb.RequestGetSymbols.token)
+  return _internal_mutable_token();
+}
+inline const std::string& RequestGetSymbols::_internal_token() const {
+  return token_.GetNoArena();
+}
+inline void RequestGetSymbols::_internal_set_token(const std::string& value) {
+  
+  token_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+}
+inline void RequestGetSymbols::set_token(std::string&& value) {
+  
+  token_.SetNoArena(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:tradingdb2pb.RequestGetSymbols.token)
+}
+inline void RequestGetSymbols::set_token(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  token_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:tradingdb2pb.RequestGetSymbols.token)
+}
+inline void RequestGetSymbols::set_token(const char* value, size_t size) {
+  
+  token_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:tradingdb2pb.RequestGetSymbols.token)
+}
+inline std::string* RequestGetSymbols::_internal_mutable_token() {
+  
+  return token_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline std::string* RequestGetSymbols::release_token() {
+  // @@protoc_insertion_point(field_release:tradingdb2pb.RequestGetSymbols.token)
+  
+  return token_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline void RequestGetSymbols::set_allocated_token(std::string* token) {
+  if (token != nullptr) {
+    
+  } else {
+    
+  }
+  token_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), token);
+  // @@protoc_insertion_point(field_set_allocated:tradingdb2pb.RequestGetSymbols.token)
+}
+
+// string market = 2;
+inline void RequestGetSymbols::clear_market() {
+  market_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline const std::string& RequestGetSymbols::market() const {
+  // @@protoc_insertion_point(field_get:tradingdb2pb.RequestGetSymbols.market)
+  return _internal_market();
+}
+inline void RequestGetSymbols::set_market(const std::string& value) {
+  _internal_set_market(value);
+  // @@protoc_insertion_point(field_set:tradingdb2pb.RequestGetSymbols.market)
+}
+inline std::string* RequestGetSymbols::mutable_market() {
+  // @@protoc_insertion_point(field_mutable:tradingdb2pb.RequestGetSymbols.market)
+  return _internal_mutable_market();
+}
+inline const std::string& RequestGetSymbols::_internal_market() const {
+  return market_.GetNoArena();
+}
+inline void RequestGetSymbols::_internal_set_market(const std::string& value) {
+  
+  market_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+}
+inline void RequestGetSymbols::set_market(std::string&& value) {
+  
+  market_.SetNoArena(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:tradingdb2pb.RequestGetSymbols.market)
+}
+inline void RequestGetSymbols::set_market(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  market_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:tradingdb2pb.RequestGetSymbols.market)
+}
+inline void RequestGetSymbols::set_market(const char* value, size_t size) {
+  
+  market_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:tradingdb2pb.RequestGetSymbols.market)
+}
+inline std::string* RequestGetSymbols::_internal_mutable_market() {
+  
+  return market_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline std::string* RequestGetSymbols::release_market() {
+  // @@protoc_insertion_point(field_release:tradingdb2pb.RequestGetSymbols.market)
+  
+  return market_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline void RequestGetSymbols::set_allocated_market(std::string* market) {
+  if (market != nullptr) {
+    
+  } else {
+    
+  }
+  market_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), market);
+  // @@protoc_insertion_point(field_set_allocated:tradingdb2pb.RequestGetSymbols.market)
+}
+
+// repeated string symbols = 3;
+inline int RequestGetSymbols::_internal_symbols_size() const {
+  return symbols_.size();
+}
+inline int RequestGetSymbols::symbols_size() const {
+  return _internal_symbols_size();
+}
+inline void RequestGetSymbols::clear_symbols() {
+  symbols_.Clear();
+}
+inline std::string* RequestGetSymbols::add_symbols() {
+  // @@protoc_insertion_point(field_add_mutable:tradingdb2pb.RequestGetSymbols.symbols)
+  return _internal_add_symbols();
+}
+inline const std::string& RequestGetSymbols::_internal_symbols(int index) const {
+  return symbols_.Get(index);
+}
+inline const std::string& RequestGetSymbols::symbols(int index) const {
+  // @@protoc_insertion_point(field_get:tradingdb2pb.RequestGetSymbols.symbols)
+  return _internal_symbols(index);
+}
+inline std::string* RequestGetSymbols::mutable_symbols(int index) {
+  // @@protoc_insertion_point(field_mutable:tradingdb2pb.RequestGetSymbols.symbols)
+  return symbols_.Mutable(index);
+}
+inline void RequestGetSymbols::set_symbols(int index, const std::string& value) {
+  // @@protoc_insertion_point(field_set:tradingdb2pb.RequestGetSymbols.symbols)
+  symbols_.Mutable(index)->assign(value);
+}
+inline void RequestGetSymbols::set_symbols(int index, std::string&& value) {
+  // @@protoc_insertion_point(field_set:tradingdb2pb.RequestGetSymbols.symbols)
+  symbols_.Mutable(index)->assign(std::move(value));
+}
+inline void RequestGetSymbols::set_symbols(int index, const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  symbols_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:tradingdb2pb.RequestGetSymbols.symbols)
+}
+inline void RequestGetSymbols::set_symbols(int index, const char* value, size_t size) {
+  symbols_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:tradingdb2pb.RequestGetSymbols.symbols)
+}
+inline std::string* RequestGetSymbols::_internal_add_symbols() {
+  return symbols_.Add();
+}
+inline void RequestGetSymbols::add_symbols(const std::string& value) {
+  symbols_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:tradingdb2pb.RequestGetSymbols.symbols)
+}
+inline void RequestGetSymbols::add_symbols(std::string&& value) {
+  symbols_.Add(std::move(value));
+  // @@protoc_insertion_point(field_add:tradingdb2pb.RequestGetSymbols.symbols)
+}
+inline void RequestGetSymbols::add_symbols(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  symbols_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:tradingdb2pb.RequestGetSymbols.symbols)
+}
+inline void RequestGetSymbols::add_symbols(const char* value, size_t size) {
+  symbols_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:tradingdb2pb.RequestGetSymbols.symbols)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
+RequestGetSymbols::symbols() const {
+  // @@protoc_insertion_point(field_list:tradingdb2pb.RequestGetSymbols.symbols)
+  return symbols_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
+RequestGetSymbols::mutable_symbols() {
+  // @@protoc_insertion_point(field_mutable_list:tradingdb2pb.RequestGetSymbols.symbols)
+  return &symbols_;
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
