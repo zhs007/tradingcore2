@@ -4,12 +4,21 @@
 #include <tradingcore2/basedef.h>
 #include <tradingcore2/proto/tradingdb2.grpc.pb.h>
 
+#include <functional>
+
 CR2BEGIN
+
+typedef std::function<void(tradingdb2pb::SymbolInfo &pSI)> FuncOnSymbol;
 
 // getCandles - get candles
 bool getCandles(tradingdb2pb::Candles &candles, const char *host,
                 const char *token, const char *market, const char *symbol,
-                std::vector<const char *>* pTags, int64_t tsStart, int64_t tsEnd);
+                std::vector<const char *> *pTags, int64_t tsStart,
+                int64_t tsEnd);
+
+// getSymbols - get symbols
+bool getSymbols(const char *host, const char *token, const char *market,
+                std::vector<const char *> *pSymbols, FuncOnSymbol funcOnSymbol);
 
 CR2END
 

@@ -4,6 +4,7 @@
 #include <tradingcore2/exchange.h>
 #include <tradingcore2/proto/tradingdb2.grpc.pb.h>
 #include <tradingcore2/train.h>
+#include <tradingcore2/trdb2/client.h>
 #include <tradingcore2/utils.h>
 
 #include <iostream>
@@ -64,6 +65,44 @@ bool getCandles(tradingdb2pb::Candles &candles, const char *host,
       cc->set_homenotional(csc.homenotional());
       cc->set_foreignnotional(csc.foreignnotional());
     }
+  }
+
+  grpc::Status status = reader->Finish();
+
+  if (status.ok()) {
+    return true;
+  }
+
+  return false;
+}
+
+// getSymbols - get symbols
+bool getSymbols(const char *host, const char *token, const char *market,
+                std::vector<const char *> *pSymbols,
+                FuncOnSymbol funcOnSymbol) {
+  auto stub = tradingdb2pb::TradingDB2Service::NewStub(
+      grpc::CreateChannel(host, grpc::InsecureChannelCredentials()));
+
+  tradingdb2pb::RequestGetSymbols req;
+  grpc::ClientContext context;
+  tradingdb2pb::ReplyGetSymbol reply;
+
+  req.set_token(token);
+  req.set_market(market);
+
+  if (pSymbols != NULL) {
+    for (auto it = pSymbols->begin(); it != pSymbols->end(); ++it) {
+      req.add_symbols(*it);
+    }
+  }
+
+  std::unique_ptr<grpc::ClientReader<tradingdb2pb::ReplyGetSymbol>> reader(
+      stub->getSymbols(&context, req));
+
+  while (reader->Read(&reply)) {
+    auto cs = reply.symbol();
+
+    funcOnSymbol(cs);
   }
 
   grpc::Status status = reader->Finish();
