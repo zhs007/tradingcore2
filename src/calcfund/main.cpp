@@ -16,13 +16,25 @@ int main(int argc, char *argv[]) {
   tr2::Config cfg;
   tr2::loadConfig(cfg, argv[1]);
 
-  tradingdb2pb::Candles candles;
-  auto ret =
-      tr2::getCandles(candles, cfg.trdb2Serv.c_str(), cfg.trdb2Token.c_str(),
-                      "cnfunds", "000001", NULL, 0, 0);
+  int totalnums = 0;
+  auto ret = tr2::getSymbols(
+      cfg.trdb2Serv.c_str(), cfg.trdb2Token.c_str(), "cnfunds", NULL,
+      [&](tradingdb2pb::SymbolInfo &si) {
+        printf("onSymbol %s\n", si.fund().code().c_str());
 
-  printf("getCandles %s\n", ret ? "ok" : "fail");
-  printf("candles %d\n", candles.candles_size());
+        tradingdb2pb::Candles candles;
+        auto ret = tr2::getCandles(candles, cfg.trdb2Serv.c_str(),
+                                   cfg.trdb2Token.c_str(), "cnfunds",
+                                   si.fund().code().c_str(), NULL, 0, 0);
+
+        printf("getCandles %s\n", ret ? "ok" : "fail");
+        printf("candles %d\n", candles.candles_size());
+
+        ++totalnums;
+      });
+
+  printf("getSymbols %s\n", ret ? "ok" : "fail");
+  printf("getSymbols %d\n", totalnums);
 
   return 0;
 }

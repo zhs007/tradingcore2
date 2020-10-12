@@ -8,7 +8,7 @@
 
 CR2BEGIN
 
-typedef std::function<void(tradingdb2pb::SymbolInfo &pSI)> FuncOnSymbol;
+typedef std::function<void(tradingdb2pb::SymbolInfo &si)> FuncOnSymbol;
 
 // getCandles - get candles
 bool getCandles(tradingdb2pb::Candles &candles, const char *host,
@@ -19,6 +19,10 @@ bool getCandles(tradingdb2pb::Candles &candles, const char *host,
 // getSymbols - get symbols
 bool getSymbols(const char *host, const char *token, const char *market,
                 std::vector<const char *> *pSymbols, FuncOnSymbol funcOnSymbol);
+
+// updSymbol - update symbol
+bool updSymbol(const char *host, const char *token,
+               tradingdb2pb::SymbolInfo &si);
 
 CR2END
 

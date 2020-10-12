@@ -65,6 +65,19 @@
             "externalConsole": false,
             "MIMode": "lldb",
             "preLaunchTask": "clang build active file"
+        },
+        {
+            "name": "calcfund",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/src/calcfund/calcfund",
+            "args": ["../cfg/config.yaml"],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/build",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "lldb",
+            "preLaunchTask": "clang build active file"
         }
     ]
 }

@@ -114,4 +114,26 @@ bool getSymbols(const char *host, const char *token, const char *market,
   return false;
 }
 
+// updSymbol - update symbol
+bool updSymbol(const char *host, const char *token,
+               tradingdb2pb::SymbolInfo &si) {
+  auto stub = tradingdb2pb::TradingDB2Service::NewStub(
+      grpc::CreateChannel(host, grpc::InsecureChannelCredentials()));
+  grpc::ClientContext context;
+  tradingdb2pb::RequestUpdSymbol req;
+  tradingdb2pb::ReplyUpdSymbol reply;
+
+  req.set_token(token);
+  req.set_allocated_symbol(&si);
+
+  auto status = stub->updSymbol(&context, req, &reply);
+  if (status.ok()) {
+    if (reply.isok()) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
 CR2END
