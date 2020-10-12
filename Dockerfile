@@ -20,8 +20,8 @@ WORKDIR /app/tr2
 
 COPY ./ ./
 
-RUN sh initdeps.sh \
-  && sh build.sh
+RUN sh initdeps.sh
+RUN sh build.sh
 
 FROM debian:stretch-slim
 WORKDIR /app/tr2
