@@ -2,6 +2,7 @@
 #define __TRADINGCORE2_PNL_H__
 
 #include <tradingcore2/basedef.h>
+#include <tradingcore2/proto/tradingdb2.grpc.pb.h>
 
 #include <map>
 #include <string>
@@ -30,11 +31,14 @@ class PNL {
         m_sharpe(0),
         m_annualizedReturns(0),
         m_annualizedVolatility(0),
-        m_totalReturns(0) {}
+        m_totalReturns(0),
+        m_variance(0) {}
   ~PNL() { this->release(); }
 
  public:
   void release() { m_lst.clear(); }
+
+  void initWithCandles(const tradingdb2pb::Candles& candles);
 
   void initInvest(const Exchange& exchange, Money invest, Money handMoney,
                   TimeStamp tsStart, TimeStamp tsEnd);
@@ -75,6 +79,8 @@ class PNL {
 
   void calcAnnualizedVolatility(const Exchange& exchange);
 
+  void calcVariance(const Exchange& exchange);
+
  protected:
   List m_lst;
   float m_maxDrawdown;
@@ -82,6 +88,7 @@ class PNL {
   float m_annualizedReturns;
   float m_annualizedVolatility;
   float m_totalReturns;
+  float m_variance;
 };
 
 CR2END

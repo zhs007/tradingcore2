@@ -10,6 +10,14 @@
 
 CR2BEGIN
 
+void PNL::initWithCandles(const tradingdb2pb::Candles& candles) {
+  for (auto i = 0; i < candles.candles_size(); ++i) {
+    auto cc = candles.candles(i);
+
+    this->pushData(cc.ts(), cc.close(), 0);
+  }
+}
+
 void PNL::initInvest(const Exchange& exchange, Money invest, Money handMoney,
                      TimeStamp tsStart, TimeStamp tsEnd) {
   auto f = std::bind(&PNL::onInitInvestTimeStamp, this, std::placeholders::_1,
@@ -128,6 +136,8 @@ void PNL::onBuildEnd(const Exchange& exchange) {
   this->calcAnnualizedVolatility(exchange);
 
   this->calcSharpe(exchange);
+
+  this->calcVariance(exchange);
 }
 
 void PNL::calcMaxDrawdown(const Exchange& exchange) {
@@ -245,12 +255,26 @@ void PNL::saveCSV(const char* fn, bool useMoney) {
   }
 }
 
+void PNL::calcVariance(const Exchange& exchange) {
+  float* pU = new float[this->m_lst.size()];
+
+  for (int i = 0; i < this->m_lst.size(); ++i) {
+    pU[i] = this->m_lst[i].curMoney;
+  }
+
+  float s = gsl_stats_float_variance(pU, 1, this->m_lst.size());
+  this->m_variance = s;
+
+  delete[] pU;
+}
+
 void PNL::getTrainResult(TrainResult& tr) {
   tr.totalReturn = this->m_totalReturns;
   tr.maxDrawDown = this->m_maxDrawdown;
   tr.sharpe = this->m_sharpe;
   tr.annualizedReturns = this->m_annualizedReturns;
   tr.annualizedVolatility = this->m_annualizedVolatility;
+  tr.variance = this->m_variance;
 }
 
 CR2END
