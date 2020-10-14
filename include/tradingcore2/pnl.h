@@ -32,7 +32,9 @@ class PNL {
         m_annualizedReturns(0),
         m_annualizedVolatility(0),
         m_totalReturns(0),
-        m_variance(0) {}
+        m_variance(0),
+        m_maxDrawdownStartI(-1),
+        m_maxDrawdownEndI(-1) {}
   ~PNL() { this->release(); }
 
  public:
@@ -68,9 +70,10 @@ class PNL {
 
   void saveCSV(const char* fn, bool useMoney);
 
- protected:
-  void calcMaxDrawdown(const Exchange& exchange);
+ public:
+  void calcMaxDrawdown();
 
+ protected:
   void calcSharpe(const Exchange& exchange);
 
   void calcAnnualizedReturns(const Exchange& exchange);
@@ -81,9 +84,19 @@ class PNL {
 
   void calcVariance(const Exchange& exchange);
 
- protected:
+  // 找到 starti 前面的最高点
+  int findPreMax(int starti);
+  // 找到starti前面第一个阶段性低点
+  // 假设starti是一个高点，该函数返回这个高点前一个下跌的终点
+  int findPreUpMin(int starti);
+  // 找到 starti 后面的最低点
+  int findNextMin(int starti);
+
+ public:
   List m_lst;
   float m_maxDrawdown;
+  int m_maxDrawdownStartI;
+  int m_maxDrawdownEndI;
   float m_sharpe;
   float m_annualizedReturns;
   float m_annualizedVolatility;

@@ -127,7 +127,7 @@ void PNL::onBuildEnd(const Exchange& exchange) {
     return;
   }
 
-  this->calcMaxDrawdown(exchange);
+  this->calcMaxDrawdown();
 
   this->calcTotalReturns(exchange);
 
@@ -140,37 +140,103 @@ void PNL::onBuildEnd(const Exchange& exchange) {
   this->calcVariance(exchange);
 }
 
-void PNL::calcMaxDrawdown(const Exchange& exchange) {
-  // 最大回撤算法，不应该取最低点来算
-  // 从最尾部开始算，找到最尾部以前的最大值，只要当前节点在最大值后面，就可以省掉一个最大值遍历
+// 找到 starti 前面的最高点
+int PNL::findPreMax(int starti) {
+  if (this->m_lst.empty()) {
+    return -1;
+  }
 
-  int maxindex = -1;
-  float mdd = 0;
-  Money curmaxmoney = -1;
+  if (starti < 0 || starti >= this->m_lst.size()) {
+    starti = this->m_lst.size() - 1;
+  }
 
-  for (auto it = this->m_lst.rbegin(); it != this->m_lst.rend(); ++it) {
-    auto co = this->m_lst.size() - 1 - std::distance(this->m_lst.rbegin(), it);
-    if (maxindex == -1 || maxindex >= co) {
-      curmaxmoney = -1;
-      for (auto it2 = it + 1; it2 != this->m_lst.rend(); ++it2) {
-        // 这里 >= ，表示取最远的一个值，可以节省掉更多可能的遍历
-        if (it2->curMoney >= curmaxmoney) {
-          curmaxmoney = it2->curMoney;
-          maxindex =
-              this->m_lst.size() - 1 - std::distance(this->m_lst.rbegin(), it2);
-        }
-      }
-    }
-
-    if (curmaxmoney > it->curMoney) {
-      float cdd = (curmaxmoney - it->curMoney) / curmaxmoney;
-      if (cdd > mdd) {
-        mdd = cdd;
-      }
+  auto ci = starti;
+  auto mm = this->m_lst[starti].curMoney;
+  for (int i = starti - 1; i >= 0; --i) {
+    if (mm <= this->m_lst[i].curMoney) {
+      ci = i;
+      mm = this->m_lst[i].curMoney;
     }
   }
 
+  return ci;
+}
+
+// 找到 starti 后面的最低点
+int PNL::findNextMin(int starti) {
+  if (this->m_lst.empty()) {
+    return -1;
+  }
+
+  if (starti < 0 || starti >= this->m_lst.size()) {
+    starti = 0;
+  }
+
+  auto ci = starti;
+  auto mm = this->m_lst[starti].curMoney;
+  for (int i = starti + 1; i < this->m_lst.size(); ++i) {
+    if (mm >= this->m_lst[i].curMoney) {
+      ci = i;
+      mm = this->m_lst[i].curMoney;
+    }
+  }
+
+  return ci;
+}
+
+// 找到starti前面第一个阶段性低点
+// 假设starti是一个高点，该函数返回这个高点前一个下跌的终点
+int PNL::findPreUpMin(int starti) {
+  if (this->m_lst.empty()) {
+    return -1;
+  }
+
+  if (starti < 0 || starti >= this->m_lst.size()) {
+    starti = this->m_lst.size() - 1;
+  }
+
+  auto mm = this->m_lst[starti].curMoney;
+  for (int i = starti - 1; i >= 0; --i) {
+    if (this->m_lst[i].curMoney > this->m_lst[i + 1].curMoney) {
+      return i + 1;
+    }
+  }
+
+  return 0;
+}
+
+void PNL::calcMaxDrawdown() {
+  // 最大回撤算法，不应该取最低点来算
+  // 从最尾部开始算，找到最尾部以前的最大值，再找到这个最大值以后的最小值，然后从最大值再向前重复计算
+
+  int si = -1, ei = -1;
+  float mdd = 0;
+  int ci = this->m_lst.size() - 1;
+
+  while (ci > 0) {
+    auto csi = this->findPreMax(ci);
+    if (csi < 0) {
+      break;
+    }
+
+    auto cei = this->findNextMin(csi);
+    if (cei < 0) {
+      break;
+    }
+
+    auto cmdd = this->m_lst[csi].curMoney - this->m_lst[cei].curMoney;
+    if (cmdd > mdd) {
+      si = csi;
+      ei = cei;
+      mdd = cmdd;
+    }
+
+    ci = this->findPreUpMin(csi);
+  }
+
   this->m_maxDrawdown = mdd;
+  this->m_maxDrawdownStartI = si;
+  this->m_maxDrawdownEndI = ei;
 }
 
 void PNL::calcSharpe(const Exchange& exchange) {
