@@ -3,6 +3,8 @@
 
 struct trData {
   int nums;
+  float perValidData;
+  float durationYear;
   tr2::TrainResult tr;
 };
 
@@ -48,17 +50,22 @@ int main(int argc, char* argv[]) {
           tr2::PNL pnl;
           tr2::analysisFund(pnl, *cnfund, candles);
 
+          pnl.calcValidDataPer(si, *cnfund);
+
           trData trd;
           trd.nums = candles.candles_size();
+          trd.perValidData = pnl.m_perValidData;
+          trd.durationYear = pnl.m_durationYear;
           pnl.getTrainResult(trd.tr);
           trd.tr.name = si.fund().code().c_str();
 
           printf(
               "fund totalReturn: %f maxDrawDown: %f sharpe: %f "
-              "annualizedReturns: %f annualizedVolatility: %f variance: %f\n",
+              "annualizedReturns: %f annualizedVolatility: %f variance: %f "
+              "perValidData: %f durationYear: %f\n",
               trd.tr.totalReturn, trd.tr.maxDrawDown, trd.tr.sharpe,
               trd.tr.annualizedReturns, trd.tr.annualizedVolatility,
-              trd.tr.variance);
+              trd.tr.variance, trd.perValidData, trd.durationYear);
 
           ++totalnums;
 
@@ -72,7 +79,7 @@ int main(int argc, char* argv[]) {
   auto onhead = [](FILE* fp) {
     fprintf(fp,
             "code,nums,totalReturn,maxDrawDown,sharpe,annualizedReturns,"
-            "annualizedVolatility,variance\r\n");
+            "annualizedVolatility,variance,perValidData,durationYear\r\n");
   };
 
   auto onrow = [&lst](FILE* fp, int row) {
@@ -80,10 +87,11 @@ int main(int argc, char* argv[]) {
       return false;
     }
 
-    fprintf(fp, "%s,%d,%f,%f,%f,%f,%f,%f\r\n", lst[row].tr.name.c_str(),
+    fprintf(fp, "%s,%d,%f,%f,%f,%f,%f,%f,%f,%f\r\n", lst[row].tr.name.c_str(),
             lst[row].nums, lst[row].tr.totalReturn, lst[row].tr.maxDrawDown,
             lst[row].tr.sharpe, lst[row].tr.annualizedReturns,
-            lst[row].tr.annualizedVolatility, lst[row].tr.variance);
+            lst[row].tr.annualizedVolatility, lst[row].tr.variance,
+            lst[row].perValidData, lst[row].durationYear);
     return true;
   };
 

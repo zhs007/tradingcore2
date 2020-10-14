@@ -224,7 +224,8 @@ void PNL::calcMaxDrawdown() {
       break;
     }
 
-    auto cmdd = this->m_lst[csi].curMoney - this->m_lst[cei].curMoney;
+    auto cmdd = (this->m_lst[csi].curMoney - this->m_lst[cei].curMoney) * 1.0f /
+                this->m_lst[csi].curMoney;
     if (cmdd > mdd) {
       si = csi;
       ei = cei;
@@ -341,6 +342,33 @@ void PNL::getTrainResult(TrainResult& tr) {
   tr.annualizedReturns = this->m_annualizedReturns;
   tr.annualizedVolatility = this->m_annualizedVolatility;
   tr.variance = this->m_variance;
+}
+
+void PNL::calcValidDataPer(const tradingdb2pb::SymbolInfo& si,
+                           const Exchange& exchange) {
+  this->m_perValidData = 0;
+  this->m_durationYear = 0;
+
+  if (this->m_lst.empty()) {
+    return;
+  }
+
+  if (si.has_fund()) {
+    time_t st = si.fund().createtime();
+    tm startti;
+    gmtime_r(&st, &startti);
+
+    time_t et = this->m_lst[this->m_lst.size() - 1].ts;
+    tm endti;
+    gmtime_r(&et, &endti);
+
+    int yearoff = endti.tm_year - startti.tm_year;
+    int dayoff = yearoff * exchange.getTradingDays4Year() -
+                 int(startti.tm_yday) + int(endti.tm_yday);
+
+    this->m_perValidData = this->m_lst.size() * 1.0f / dayoff;
+    this->m_durationYear = dayoff * 1.0f / 365;
+  }
 }
 
 CR2END

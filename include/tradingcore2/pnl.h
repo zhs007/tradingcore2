@@ -34,7 +34,9 @@ class PNL {
         m_totalReturns(0),
         m_variance(0),
         m_maxDrawdownStartI(-1),
-        m_maxDrawdownEndI(-1) {}
+        m_maxDrawdownEndI(-1),
+        m_perValidData(0),
+        m_durationYear(0) {}
   ~PNL() { this->release(); }
 
  public:
@@ -73,6 +75,9 @@ class PNL {
  public:
   void calcMaxDrawdown();
 
+  void calcValidDataPer(const tradingdb2pb::SymbolInfo& si,
+                        const Exchange& exchange);
+
  protected:
   void calcSharpe(const Exchange& exchange);
 
@@ -102,6 +107,8 @@ class PNL {
   float m_annualizedVolatility;
   float m_totalReturns;
   float m_variance;
+  float m_perValidData;
+  float m_durationYear;
 };
 
 CR2END
