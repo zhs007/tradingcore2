@@ -13,6 +13,7 @@
 #include <tradingcore2/exchange.h>
 #include <tradingcore2/exchange/cnfund.h>
 #include <tradingcore2/exchangemgr.h>
+#include <tradingcore2/fund.h>
 #include <tradingcore2/indicator.h>
 #include <tradingcore2/indicator/ema.h>
 #include <tradingcore2/indicator/roc.h>

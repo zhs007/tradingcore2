@@ -14,7 +14,7 @@ void PNL::initWithCandles(const tradingdb2pb::Candles& candles) {
   for (auto i = 0; i < candles.candles_size(); ++i) {
     auto cc = candles.candles(i);
 
-    this->pushData(cc.ts(), cc.close(), 0);
+    this->pushData(cc.ts(), cc.close(), cc.close());
   }
 }
 

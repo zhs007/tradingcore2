@@ -21,6 +21,7 @@ bool analysisFund(PNL& pnl, const Exchange& exchange,
                   const tradingdb2pb::Candles& candles) {
   pnl.release();
   pnl.initWithCandles(candles);
+  pnl.onBuildEnd(exchange);
 
   return true;
 }

@@ -1,7 +1,12 @@
 #include <stdio.h>
 #include <tradingcore2/tradingcore2.h>
 
-int main(int argc, char *argv[]) {
+struct trData {
+  int nums;
+  tr2::TrainResult tr;
+};
+
+int main(int argc, char* argv[]) {
   tr2::LogHelper log(argv[0]);
 
   printf("trdb2client starting...\n");
@@ -13,13 +18,22 @@ int main(int argc, char *argv[]) {
     return -1;
   }
 
+  tr2::regAllIndicators();
+  tr2::regAllExchanges();
+
   tr2::Config cfg;
   tr2::loadConfig(cfg, argv[1]);
+
+  auto mgr = tr2::ExchangeMgr::getSingleton();
+  mgr->init(cfg);
+  auto cnfund = mgr->getExchange("cnfund");
+
+  std::vector<trData> lst;
 
   int totalnums = 0;
   auto ret = tr2::getSymbols(
       cfg.trdb2Serv.c_str(), cfg.trdb2Token.c_str(), "cnfunds", NULL,
-      [&](tradingdb2pb::SymbolInfo &si) {
+      [&](tradingdb2pb::SymbolInfo& si) {
         printf("onSymbol %s\n", si.fund().code().c_str());
 
         tradingdb2pb::Candles candles;
@@ -30,11 +44,50 @@ int main(int argc, char *argv[]) {
         printf("getCandles %s\n", ret ? "ok" : "fail");
         printf("candles %d\n", candles.candles_size());
 
-        ++totalnums;
+        if (candles.candles_size() > 0) {
+          tr2::PNL pnl;
+          tr2::analysisFund(pnl, *cnfund, candles);
+
+          trData trd;
+          trd.nums = candles.candles_size();
+          pnl.getTrainResult(trd.tr);
+          trd.tr.name = si.fund().code().c_str();
+
+          printf(
+              "fund totalReturn: %f maxDrawDown: %f sharpe: %f "
+              "annualizedReturns: %f annualizedVolatility: %f variance: %f\n",
+              trd.tr.totalReturn, trd.tr.maxDrawDown, trd.tr.sharpe,
+              trd.tr.annualizedReturns, trd.tr.annualizedVolatility,
+              trd.tr.variance);
+
+          ++totalnums;
+
+          lst.push_back(trd);
+        }
       });
 
   printf("getSymbols %s\n", ret ? "ok" : "fail");
   printf("getSymbols %d\n", totalnums);
+
+  auto onhead = [](FILE* fp) {
+    fprintf(fp,
+            "code,nums,totalReturn,maxDrawDown,sharpe,annualizedReturns,"
+            "annualizedVolatility,variance\r\n");
+  };
+
+  auto onrow = [&lst](FILE* fp, int row) {
+    if (lst.size() <= row) {
+      return false;
+    }
+
+    fprintf(fp, "%s,%d,%f,%f,%f,%f,%f,%f\r\n", lst[row].tr.name.c_str(),
+            lst[row].nums, lst[row].tr.totalReturn, lst[row].tr.maxDrawDown,
+            lst[row].tr.sharpe, lst[row].tr.annualizedReturns,
+            lst[row].tr.annualizedVolatility, lst[row].tr.variance);
+    return true;
+  };
+
+  tr2::saveCSV("../output/calcfund.csv", onhead, onrow);
 
   return 0;
 }
