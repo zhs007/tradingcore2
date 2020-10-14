@@ -15,7 +15,7 @@ TEST(PNL, pnl_maxdrawdown1) {
 
   pnl.calcMaxDrawdown();
 
-  EXPECT_EQ(pnl.m_maxDrawdown, 28);
+  EXPECT_DOUBLE_EQ(pnl.m_maxDrawdown, 28.0f / 30.0f);
   EXPECT_EQ(pnl.m_maxDrawdownStartI, 2);
   EXPECT_EQ(pnl.m_maxDrawdownEndI, 5);
 }
@@ -36,7 +36,7 @@ TEST(PNL, pnl_maxdrawdown2) {
 
   pnl.calcMaxDrawdown();
 
-  EXPECT_EQ(pnl.m_maxDrawdown, 28);
+  EXPECT_DOUBLE_EQ(pnl.m_maxDrawdown, 28.0f / 30.0f);
   EXPECT_EQ(pnl.m_maxDrawdownStartI, 2);
   EXPECT_EQ(pnl.m_maxDrawdownEndI, 5);
 }
@@ -57,7 +57,7 @@ TEST(PNL, pnl_maxdrawdown3) {
 
   pnl.calcMaxDrawdown();
 
-  EXPECT_EQ(pnl.m_maxDrawdown, 28);
-  EXPECT_EQ(pnl.m_maxDrawdownStartI, 7);
-  EXPECT_EQ(pnl.m_maxDrawdownEndI, 8);
+  EXPECT_DOUBLE_EQ(pnl.m_maxDrawdown, 28.0f / 30.0f);
+  EXPECT_EQ(pnl.m_maxDrawdownStartI, 2);
+  EXPECT_EQ(pnl.m_maxDrawdownEndI, 5);
 }
