@@ -2,7 +2,9 @@
 #include <grpcpp/grpcpp.h>
 #include <tradingcore2/client/train2.h>
 #include <tradingcore2/exchange.h>
+#include <tradingcore2/proto/tradingdb2.grpc.pb.h>
 #include <tradingcore2/train.h>
+#include <tradingcore2/trdb2/client.h>
 #include <tradingcore2/utils.h>
 
 #include <iostream>
@@ -10,17 +12,16 @@
 #include <string>
 #include <thread>
 
-#include "../proto/tradingdb2.grpc.pb.h"
-
 CR2BEGIN
 
 // getCandles - get candles
 bool getCandles(tradingdb2pb::Candles &candles, const char *host,
                 const char *token, const char *market, const char *symbol,
-                const char *tag) {
+                std::vector<const char *> *pTags, int64_t tsStart,
+                int64_t tsEnd) {
   candles.set_market(market);
   candles.set_symbol(symbol);
-  candles.set_tag(tag);
+  // candles.set_tag(tag);
 
   auto stub = tradingdb2pb::TradingDB2Service::NewStub(
       grpc::CreateChannel(host, grpc::InsecureChannelCredentials()));
@@ -32,7 +33,14 @@ bool getCandles(tradingdb2pb::Candles &candles, const char *host,
   req.set_token(token);
   req.set_market(market);
   req.set_symbol(symbol);
-  req.set_tag(tag);
+  req.set_tsstart(tsStart);
+  req.set_tsend(tsEnd);
+
+  if (pTags != NULL) {
+    for (auto it = pTags->begin(); it != pTags->end(); ++it) {
+      req.add_tags(*it);
+    }
+  }
 
   std::unique_ptr<grpc::ClientReader<tradingdb2pb::ReplyGetCandles>> reader(
       stub->getCandles(&context, req));
@@ -63,6 +71,66 @@ bool getCandles(tradingdb2pb::Candles &candles, const char *host,
 
   if (status.ok()) {
     return true;
+  }
+
+  return false;
+}
+
+// getSymbols - get symbols
+bool getSymbols(const char *host, const char *token, const char *market,
+                std::vector<const char *> *pSymbols,
+                FuncOnSymbol funcOnSymbol) {
+  auto stub = tradingdb2pb::TradingDB2Service::NewStub(
+      grpc::CreateChannel(host, grpc::InsecureChannelCredentials()));
+
+  tradingdb2pb::RequestGetSymbols req;
+  grpc::ClientContext context;
+  tradingdb2pb::ReplyGetSymbol reply;
+
+  req.set_token(token);
+  req.set_market(market);
+
+  if (pSymbols != NULL) {
+    for (auto it = pSymbols->begin(); it != pSymbols->end(); ++it) {
+      req.add_symbols(*it);
+    }
+  }
+
+  std::unique_ptr<grpc::ClientReader<tradingdb2pb::ReplyGetSymbol>> reader(
+      stub->getSymbols(&context, req));
+
+  while (reader->Read(&reply)) {
+    auto cs = reply.symbol();
+
+    funcOnSymbol(cs);
+  }
+
+  grpc::Status status = reader->Finish();
+
+  if (status.ok()) {
+    return true;
+  }
+
+  return false;
+}
+
+// updSymbol - update symbol
+bool updSymbol(const char *host, const char *token,
+               tradingdb2pb::SymbolInfo &si) {
+  auto stub = tradingdb2pb::TradingDB2Service::NewStub(
+      grpc::CreateChannel(host, grpc::InsecureChannelCredentials()));
+  grpc::ClientContext context;
+  tradingdb2pb::RequestUpdSymbol req;
+  tradingdb2pb::ReplyUpdSymbol reply;
+
+  req.set_token(token);
+  req.set_allocated_symbol(&si);
+
+  auto status = stub->updSymbol(&context, req, &reply);
+  if (status.ok()) {
+    if (reply.isok()) {
+      return true;
+    }
   }
 
   return false;

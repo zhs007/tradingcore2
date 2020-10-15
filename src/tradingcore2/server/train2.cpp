@@ -3,6 +3,7 @@
 #include <grpcpp/health_check_service_interface.h>
 #include <tradingcore2/autorun.h>
 #include <tradingcore2/exchangemgr.h>
+#include <tradingcore2/proto/tradingcore2.grpc.pb.h>
 #include <tradingcore2/server/train2.h>
 #include <tradingcore2/spinlock.h>
 #include <tradingcore2/train.h>
@@ -13,7 +14,6 @@
 #include <memory>
 #include <string>
 
-#include "../proto/tradingcore2.grpc.pb.h"
 #include "utils.h"
 
 CR2BEGIN

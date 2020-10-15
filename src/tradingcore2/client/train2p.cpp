@@ -2,6 +2,7 @@
 #include <grpcpp/grpcpp.h>
 #include <tradingcore2/client/train2.h>
 #include <tradingcore2/exchange.h>
+#include <tradingcore2/proto/tradingcore2.grpc.pb.h>
 #include <tradingcore2/train.h>
 #include <tradingcore2/utils.h>
 
@@ -15,7 +16,6 @@
 #include <thread>
 #include <vector>
 
-#include "../proto/tradingcore2.grpc.pb.h"
 #include "./utils.h"
 
 CR2BEGIN

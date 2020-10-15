@@ -27,6 +27,9 @@ struct Config {
   int taskTimeOff;
   std::vector<std::string> tokens;
 
+  std::string trdb2Serv;
+  std::string trdb2Token;
+
   bool hasToken(const char* strToken) const {
     for (auto it = tokens.begin(); it != tokens.end(); ++it) {
       if (*it == strToken) {

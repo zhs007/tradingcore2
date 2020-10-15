@@ -38,6 +38,7 @@ struct TrainResult {
   float sharpe;
   float annualizedReturns;
   float annualizedVolatility;
+  float variance;
   int tradingNums;
   int failNums;
   int stoplossNums;

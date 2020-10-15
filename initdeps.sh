@@ -8,7 +8,7 @@ sh buildgsl.sh
 
 sh fixgrpc.sh
 
-# sh buildgrpc.sh
+sh buildgrpc.sh
 
 sh buildglog.sh
 

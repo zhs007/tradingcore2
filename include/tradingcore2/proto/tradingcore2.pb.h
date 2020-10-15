@@ -980,16 +980,45 @@ class TrainData :
   // accessors -------------------------------------------------------
 
   enum : int {
+    kTagsFieldNumber = 11,
     kExchangeNameFieldNumber = 2,
     kAssetsNameFieldNumber = 3,
     kStrategyNameFieldNumber = 4,
     kStrParamFieldNumber = 5,
     kOutputPathFieldNumber = 6,
+    kMarketFieldNumber = 9,
+    kSymbolFieldNumber = 10,
     kTrainIDFieldNumber = 1,
     kInvestFieldNumber = 7,
     kMinValidReturnFieldNumber = 8,
+    kTsStartFieldNumber = 12,
+    kTsEndFieldNumber = 13,
     kSi2FieldNumber = 100,
   };
+  // repeated string tags = 11;
+  int tags_size() const;
+  private:
+  int _internal_tags_size() const;
+  public:
+  void clear_tags();
+  const std::string& tags(int index) const;
+  std::string* mutable_tags(int index);
+  void set_tags(int index, const std::string& value);
+  void set_tags(int index, std::string&& value);
+  void set_tags(int index, const char* value);
+  void set_tags(int index, const char* value, size_t size);
+  std::string* add_tags();
+  void add_tags(const std::string& value);
+  void add_tags(std::string&& value);
+  void add_tags(const char* value);
+  void add_tags(const char* value, size_t size);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& tags() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_tags();
+  private:
+  const std::string& _internal_tags(int index) const;
+  std::string* _internal_add_tags();
+  public:
+
   // string exchangeName = 2;
   void clear_exchangename();
   const std::string& exchangename() const;
@@ -1070,6 +1099,38 @@ class TrainData :
   std::string* _internal_mutable_outputpath();
   public:
 
+  // string market = 9;
+  void clear_market();
+  const std::string& market() const;
+  void set_market(const std::string& value);
+  void set_market(std::string&& value);
+  void set_market(const char* value);
+  void set_market(const char* value, size_t size);
+  std::string* mutable_market();
+  std::string* release_market();
+  void set_allocated_market(std::string* market);
+  private:
+  const std::string& _internal_market() const;
+  void _internal_set_market(const std::string& value);
+  std::string* _internal_mutable_market();
+  public:
+
+  // string symbol = 10;
+  void clear_symbol();
+  const std::string& symbol() const;
+  void set_symbol(const std::string& value);
+  void set_symbol(std::string&& value);
+  void set_symbol(const char* value);
+  void set_symbol(const char* value, size_t size);
+  std::string* mutable_symbol();
+  std::string* release_symbol();
+  void set_allocated_symbol(std::string* symbol);
+  private:
+  const std::string& _internal_symbol() const;
+  void _internal_set_symbol(const std::string& value);
+  std::string* _internal_mutable_symbol();
+  public:
+
   // int64 trainID = 1;
   void clear_trainid();
   ::PROTOBUF_NAMESPACE_ID::int64 trainid() const;
@@ -1095,6 +1156,24 @@ class TrainData :
   private:
   float _internal_minvalidreturn() const;
   void _internal_set_minvalidreturn(float value);
+  public:
+
+  // int64 tsStart = 12;
+  void clear_tsstart();
+  ::PROTOBUF_NAMESPACE_ID::int64 tsstart() const;
+  void set_tsstart(::PROTOBUF_NAMESPACE_ID::int64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int64 _internal_tsstart() const;
+  void _internal_set_tsstart(::PROTOBUF_NAMESPACE_ID::int64 value);
+  public:
+
+  // int64 tsEnd = 13;
+  void clear_tsend();
+  ::PROTOBUF_NAMESPACE_ID::int64 tsend() const;
+  void set_tsend(::PROTOBUF_NAMESPACE_ID::int64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int64 _internal_tsend() const;
+  void _internal_set_tsend(::PROTOBUF_NAMESPACE_ID::int64 value);
   public:
 
   // .tradingcore2pb.TrainSingleIndicator2Ex si2 = 100;
@@ -1123,14 +1202,19 @@ class TrainData :
   inline void clear_has_trainParam();
 
   ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> tags_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr exchangename_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr assetsname_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr strategyname_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr strparam_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr outputpath_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr market_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr symbol_;
   ::PROTOBUF_NAMESPACE_ID::int64 trainid_;
   float invest_;
   float minvalidreturn_;
+  ::PROTOBUF_NAMESPACE_ID::int64 tsstart_;
+  ::PROTOBUF_NAMESPACE_ID::int64 tsend_;
   union TrainParamUnion {
     TrainParamUnion() {}
     ::tradingcore2pb::TrainSingleIndicator2Ex* si2_;
@@ -3122,6 +3206,240 @@ inline void TrainData::_internal_set_minvalidreturn(float value) {
 inline void TrainData::set_minvalidreturn(float value) {
   _internal_set_minvalidreturn(value);
   // @@protoc_insertion_point(field_set:tradingcore2pb.TrainData.minValidReturn)
+}
+
+// string market = 9;
+inline void TrainData::clear_market() {
+  market_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline const std::string& TrainData::market() const {
+  // @@protoc_insertion_point(field_get:tradingcore2pb.TrainData.market)
+  return _internal_market();
+}
+inline void TrainData::set_market(const std::string& value) {
+  _internal_set_market(value);
+  // @@protoc_insertion_point(field_set:tradingcore2pb.TrainData.market)
+}
+inline std::string* TrainData::mutable_market() {
+  // @@protoc_insertion_point(field_mutable:tradingcore2pb.TrainData.market)
+  return _internal_mutable_market();
+}
+inline const std::string& TrainData::_internal_market() const {
+  return market_.GetNoArena();
+}
+inline void TrainData::_internal_set_market(const std::string& value) {
+  
+  market_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+}
+inline void TrainData::set_market(std::string&& value) {
+  
+  market_.SetNoArena(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:tradingcore2pb.TrainData.market)
+}
+inline void TrainData::set_market(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  market_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:tradingcore2pb.TrainData.market)
+}
+inline void TrainData::set_market(const char* value, size_t size) {
+  
+  market_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:tradingcore2pb.TrainData.market)
+}
+inline std::string* TrainData::_internal_mutable_market() {
+  
+  return market_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline std::string* TrainData::release_market() {
+  // @@protoc_insertion_point(field_release:tradingcore2pb.TrainData.market)
+  
+  return market_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline void TrainData::set_allocated_market(std::string* market) {
+  if (market != nullptr) {
+    
+  } else {
+    
+  }
+  market_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), market);
+  // @@protoc_insertion_point(field_set_allocated:tradingcore2pb.TrainData.market)
+}
+
+// string symbol = 10;
+inline void TrainData::clear_symbol() {
+  symbol_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline const std::string& TrainData::symbol() const {
+  // @@protoc_insertion_point(field_get:tradingcore2pb.TrainData.symbol)
+  return _internal_symbol();
+}
+inline void TrainData::set_symbol(const std::string& value) {
+  _internal_set_symbol(value);
+  // @@protoc_insertion_point(field_set:tradingcore2pb.TrainData.symbol)
+}
+inline std::string* TrainData::mutable_symbol() {
+  // @@protoc_insertion_point(field_mutable:tradingcore2pb.TrainData.symbol)
+  return _internal_mutable_symbol();
+}
+inline const std::string& TrainData::_internal_symbol() const {
+  return symbol_.GetNoArena();
+}
+inline void TrainData::_internal_set_symbol(const std::string& value) {
+  
+  symbol_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+}
+inline void TrainData::set_symbol(std::string&& value) {
+  
+  symbol_.SetNoArena(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:tradingcore2pb.TrainData.symbol)
+}
+inline void TrainData::set_symbol(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  symbol_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:tradingcore2pb.TrainData.symbol)
+}
+inline void TrainData::set_symbol(const char* value, size_t size) {
+  
+  symbol_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:tradingcore2pb.TrainData.symbol)
+}
+inline std::string* TrainData::_internal_mutable_symbol() {
+  
+  return symbol_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline std::string* TrainData::release_symbol() {
+  // @@protoc_insertion_point(field_release:tradingcore2pb.TrainData.symbol)
+  
+  return symbol_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline void TrainData::set_allocated_symbol(std::string* symbol) {
+  if (symbol != nullptr) {
+    
+  } else {
+    
+  }
+  symbol_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), symbol);
+  // @@protoc_insertion_point(field_set_allocated:tradingcore2pb.TrainData.symbol)
+}
+
+// repeated string tags = 11;
+inline int TrainData::_internal_tags_size() const {
+  return tags_.size();
+}
+inline int TrainData::tags_size() const {
+  return _internal_tags_size();
+}
+inline void TrainData::clear_tags() {
+  tags_.Clear();
+}
+inline std::string* TrainData::add_tags() {
+  // @@protoc_insertion_point(field_add_mutable:tradingcore2pb.TrainData.tags)
+  return _internal_add_tags();
+}
+inline const std::string& TrainData::_internal_tags(int index) const {
+  return tags_.Get(index);
+}
+inline const std::string& TrainData::tags(int index) const {
+  // @@protoc_insertion_point(field_get:tradingcore2pb.TrainData.tags)
+  return _internal_tags(index);
+}
+inline std::string* TrainData::mutable_tags(int index) {
+  // @@protoc_insertion_point(field_mutable:tradingcore2pb.TrainData.tags)
+  return tags_.Mutable(index);
+}
+inline void TrainData::set_tags(int index, const std::string& value) {
+  // @@protoc_insertion_point(field_set:tradingcore2pb.TrainData.tags)
+  tags_.Mutable(index)->assign(value);
+}
+inline void TrainData::set_tags(int index, std::string&& value) {
+  // @@protoc_insertion_point(field_set:tradingcore2pb.TrainData.tags)
+  tags_.Mutable(index)->assign(std::move(value));
+}
+inline void TrainData::set_tags(int index, const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  tags_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:tradingcore2pb.TrainData.tags)
+}
+inline void TrainData::set_tags(int index, const char* value, size_t size) {
+  tags_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:tradingcore2pb.TrainData.tags)
+}
+inline std::string* TrainData::_internal_add_tags() {
+  return tags_.Add();
+}
+inline void TrainData::add_tags(const std::string& value) {
+  tags_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:tradingcore2pb.TrainData.tags)
+}
+inline void TrainData::add_tags(std::string&& value) {
+  tags_.Add(std::move(value));
+  // @@protoc_insertion_point(field_add:tradingcore2pb.TrainData.tags)
+}
+inline void TrainData::add_tags(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  tags_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:tradingcore2pb.TrainData.tags)
+}
+inline void TrainData::add_tags(const char* value, size_t size) {
+  tags_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:tradingcore2pb.TrainData.tags)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
+TrainData::tags() const {
+  // @@protoc_insertion_point(field_list:tradingcore2pb.TrainData.tags)
+  return tags_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
+TrainData::mutable_tags() {
+  // @@protoc_insertion_point(field_mutable_list:tradingcore2pb.TrainData.tags)
+  return &tags_;
+}
+
+// int64 tsStart = 12;
+inline void TrainData::clear_tsstart() {
+  tsstart_ = PROTOBUF_LONGLONG(0);
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 TrainData::_internal_tsstart() const {
+  return tsstart_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 TrainData::tsstart() const {
+  // @@protoc_insertion_point(field_get:tradingcore2pb.TrainData.tsStart)
+  return _internal_tsstart();
+}
+inline void TrainData::_internal_set_tsstart(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  
+  tsstart_ = value;
+}
+inline void TrainData::set_tsstart(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  _internal_set_tsstart(value);
+  // @@protoc_insertion_point(field_set:tradingcore2pb.TrainData.tsStart)
+}
+
+// int64 tsEnd = 13;
+inline void TrainData::clear_tsend() {
+  tsend_ = PROTOBUF_LONGLONG(0);
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 TrainData::_internal_tsend() const {
+  return tsend_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 TrainData::tsend() const {
+  // @@protoc_insertion_point(field_get:tradingcore2pb.TrainData.tsEnd)
+  return _internal_tsend();
+}
+inline void TrainData::_internal_set_tsend(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  
+  tsend_ = value;
+}
+inline void TrainData::set_tsend(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  _internal_set_tsend(value);
+  // @@protoc_insertion_point(field_set:tradingcore2pb.TrainData.tsEnd)
 }
 
 // .tradingcore2pb.TrainSingleIndicator2Ex si2 = 100;

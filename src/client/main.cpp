@@ -15,7 +15,7 @@ int main(int argc, char* argv[]) {
   printf("version is %s\n", tr2::getVersion());
 
   if (argc != 2) {
-    printf("please type client cfgfile.");
+    printf("please type tr2client cfgfile.");
 
     return -1;
   }

@@ -56,6 +56,11 @@ message TrainData {
     string outputPath = 6;
     float invest = 7;
     float minValidReturn = 8;
+    string market = 9;
+    string symbol = 10;
+    repeated string tags = 11;
+    int64 tsStart = 12;
+    int64 tsEnd = 13;
 
     oneof trainParam {
         TrainSingleIndicator2Ex si2 = 100;

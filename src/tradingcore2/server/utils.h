@@ -1,9 +1,8 @@
 #ifndef __TRADINGCORE2_SRC_SERVER_UTILS_H__
 #define __TRADINGCORE2_SRC_SERVER_UTILS_H__
 
+#include <tradingcore2/proto/tradingcore2.grpc.pb.h>
 #include <tradingcore2/tradingcore2.h>
-
-#include "../proto/tradingcore2.grpc.pb.h"
 
 CR2BEGIN
 

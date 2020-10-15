@@ -75,6 +75,14 @@ bool loadConfig(Config& cfg, const char* fn) {
     }
   }
 
+  if (node["trdb2serv"].IsScalar()) {
+    cfg.trdb2Serv = node["trdb2serv"].as<std::string>();
+  }
+
+  if (node["trdb2token"].IsScalar()) {
+    cfg.trdb2Token = node["trdb2token"].as<std::string>();
+  }
+
   return true;
 }
 

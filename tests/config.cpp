@@ -22,6 +22,9 @@ TEST(config, loadConfig) {
   EXPECT_EQ(cfg.servs.size(), 1);
   EXPECT_EQ(cfg.servs[0].host, "0.0.0.0:3777");
   EXPECT_EQ(cfg.servs[0].token, "wzDkh9h2fhfUVuS9jZ8uVbhV3vC5AWX3");
+
+  EXPECT_EQ(cfg.trdb2Serv, "127.0.0.1:5002");
+  EXPECT_EQ(cfg.trdb2Token, "1234567");
 }
 
 TEST(config, loadConfig2) {
@@ -45,6 +48,9 @@ TEST(config, loadConfig2) {
   EXPECT_EQ(cfg.servs.size(), 1);
   EXPECT_EQ(cfg.servs[0].host, "0.0.0.0:3777");
   EXPECT_EQ(cfg.servs[0].token, "wzDkh9h2fhfUVuS9jZ8uVbhV3vC5AWX3");
+
+  EXPECT_EQ(cfg.trdb2Serv, "");
+  EXPECT_EQ(cfg.trdb2Token, "");
 }
 
 TEST(config, loadConfig3) {

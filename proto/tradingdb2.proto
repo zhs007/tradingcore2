@@ -27,6 +27,54 @@ message Candles {
     repeated Candle candles = 4;
 }
 
+// FundSize - fund size
+message FundSize {
+    float size = 1;
+    int64 time = 2;
+}
+
+// FundManager - fund manager
+message FundManager {
+    string name = 1;
+    int64 startTime = 2;
+    int64 endTime = 3;
+    int64 birthYear = 4;
+    bool sex = 5;
+    string education = 6;
+    string country = 7;
+    string resume = 8;
+}
+
+message FundResult {
+    float maxDrawdown = 1;
+    float sharpe = 2;
+    float annualizedReturns = 3;
+    float annualizedVolatility = 4;
+    float totalReturns = 5;
+    int64 startTime = 6;
+    int64 endTime = 7;
+    string name = 8;
+}
+
+// Fund - fund
+message Fund {
+    string code = 1;
+    string name = 2;
+    repeated string tags = 3;
+    int64 createTime = 4;
+    repeated FundSize size = 5;
+    string company = 6;
+    repeated FundManager managers = 7;
+    repeated FundResult results = 8;
+}
+
+// SymbolInfo - symbol infomation
+message SymbolInfo {
+    string market = 1;
+    string symbol = 2;
+    Fund fund = 3;
+}
+
 // RequestUpdCandles - request UpdCandles
 message RequestUpdCandles {
     string token = 1;
@@ -43,7 +91,10 @@ message RequestGetCandles {
     string token = 1;
     string market = 2;
     string symbol = 3;
-    string tag = 4;
+    string tag = 4 [deprecated = true];
+    int64 tsStart = 5;
+    int64 tsEnd = 6;
+    repeated string tags = 7;
 }
 
 // ReplyGetCandles - reply GetCandles
@@ -51,10 +102,46 @@ message ReplyGetCandles{
     Candles candles = 1;
 }
 
+// RequestUpdSymbol - request UpdSymbol
+message RequestUpdSymbol {
+    string token = 1;
+    SymbolInfo symbol = 2;
+}
+
+// ReplyUpdSymbol - reply UpdSymbol
+message ReplyUpdSymbol{
+    bool isOK = 1;
+}
+
+// RequestGetSymbol - request GetSymbol
+message RequestGetSymbol {
+    string token = 1;
+    string market = 2;
+    string symbol = 3;
+}
+
+// ReplyGetSymbol - reply GetSymbol
+message ReplyGetSymbol{
+    SymbolInfo symbol = 1;
+}
+
+// RequestGetSymbols - request GetSymbols
+message RequestGetSymbols {
+    string token = 1;
+    string market = 2;
+    repeated string symbols = 3;
+}
+
 // TradingDB2Service - TradingDB2 service
 service TradingDB2Service {
 	// updCandles - update candles
     rpc updCandles(stream RequestUpdCandles) returns (ReplyUpdCandles) {}
 	// getCandles - get candles
-	rpc getCandles(RequestGetCandles) returns (stream ReplyGetCandles) {}    
+    rpc getCandles(RequestGetCandles) returns (stream ReplyGetCandles) {}
+	// updSymbol - update symbol
+    rpc updSymbol(RequestUpdSymbol) returns (ReplyUpdSymbol) {}
+	// getSymbol - get symbol
+    rpc getSymbol(RequestGetSymbol) returns (ReplyGetSymbol) {}    
+	// getSymbols - get symbols
+	rpc getSymbols(RequestGetSymbols) returns (stream ReplyGetSymbol) {}        
 }

@@ -1,6 +1,7 @@
-FROM buildpack-deps:stretch
+# https://github.com/zhs007/tradingcore2
+# zerrozhao@gmail.com
 
-MAINTAINER zerro "zerrozhao@gmail.com"
+FROM buildpack-deps:stretch
 
 RUN echo "deb http://ftp.de.debian.org/debian stretch main" >> /etc/apt/sources.list \
   && apt-get update -y \

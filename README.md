@@ -98,3 +98,4 @@ valgrind --tool=memcheck --leak-check=full --show-reachable=yes ./tradingcore2
 - cmake 对link项目顺序有要求，要先add直接的依赖项目，再add依赖的依赖。
 - 基于 buildpack-deps:stretch 编译出来的项目，不能放在 alpine 里运行，可以放 debian:stretch-slim 里。
 - 在mac下编译为啥用不到多核。
+- 修改某些配置后，cmake 的 submodule 会重新编译，对于这个项目来说其实意义不大，所以尽可能不要用 submodule 。
