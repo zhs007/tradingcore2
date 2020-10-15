@@ -18,7 +18,7 @@
 
 # Build & Test
 
-所有依赖都通过submodule加入，有些依赖的cmake脚本没写好（各种路径错误和冲突），为了保证和官方git源不冲突，所以需要单独编译一些依赖。
+不管是不是开发环境，都需要先初始化依赖。
 
 ``` bash
 git submodule init
@@ -30,6 +30,8 @@ sh buildgoogletest.sh
 sh buildgsl.sh
 
 sh fixgrpc.sh
+
+sh buildgrpc.sh
 
 sh buildglog.sh
 
@@ -90,6 +92,17 @@ valgrind --tool=memcheck --leak-check=full --show-reachable=yes ./tradingcore2
 3. 各种数据的清洗和处理。
 4. 通过grpc来做分布运算。
 5. 配合Ada做图表。
+6. 通过tradingdb2读写数据，维护数据。
+
+# TradingDB2
+
+v0.3版开始，数据读取支持 ``tradingdb2`` 。
+配置如下：
+
+``` yaml
+trdb2serv: 127.0.0.1:5002
+trdb2token: 1234567
+```
 
 # 注意事项
 
@@ -99,3 +112,19 @@ valgrind --tool=memcheck --leak-check=full --show-reachable=yes ./tradingcore2
 - 基于 buildpack-deps:stretch 编译出来的项目，不能放在 alpine 里运行，可以放 debian:stretch-slim 里。
 - 在mac下编译为啥用不到多核。
 - 修改某些配置后，cmake 的 submodule 会重新编译，对于这个项目来说其实意义不大，所以尽可能不要用 submodule 。
+
+# 更新日志
+
+### v0.3
+
+- 支持基金的数据计算。
+- 支持tradingdb2数据源。
+
+### v0.2
+
+- 优化编译流程，提升开发环境下编译速度。
+
+### v0.1
+
+- 完成基本结构。
+- 能进行分布式的训练。
