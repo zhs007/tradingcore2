@@ -36,7 +36,13 @@ class PNL {
         m_maxDrawdownStartI(-1),
         m_maxDrawdownEndI(-1),
         m_perValidData(0),
-        m_durationYear(0) {}
+        m_durationYear(0),
+        m_maxUpDay(0),
+        m_maxDownDay(0),
+        m_maxUpMonth(0),
+        m_maxDownMonth(0),
+        m_maxUpYear(0),
+        m_maxDownYear(0) {}
   ~PNL() { this->release(); }
 
  public:
@@ -79,6 +85,12 @@ class PNL {
                         const Exchange& exchange);
 
  protected:
+  void calcMaxDate();
+
+  void calcMaxDate_Day();
+
+  void calcMaxDate_Month();
+
   void calcSharpe(const Exchange& exchange);
 
   void calcAnnualizedReturns(const Exchange& exchange);
@@ -99,16 +111,26 @@ class PNL {
 
  public:
   List m_lst;
+
   float m_maxDrawdown;
   int m_maxDrawdownStartI;
   int m_maxDrawdownEndI;
+
   float m_sharpe;
   float m_annualizedReturns;
   float m_annualizedVolatility;
   float m_totalReturns;
   float m_variance;
+
   float m_perValidData;
   float m_durationYear;
+
+  time_t m_maxUpDay;
+  time_t m_maxDownDay;
+  time_t m_maxUpMonth;
+  time_t m_maxDownMonth;
+  time_t m_maxUpYear;
+  time_t m_maxDownYear;
 };
 
 CR2END

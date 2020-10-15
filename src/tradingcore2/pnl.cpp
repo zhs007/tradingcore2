@@ -371,4 +371,44 @@ void PNL::calcValidDataPer(const tradingdb2pb::SymbolInfo& si,
   }
 }
 
+void PNL::calcMaxDate_Day() {
+  this->m_maxUpDay = 0;
+  this->m_maxDownDay = 0;
+
+  if (this->m_lst.empty()) {
+    return;
+  }
+
+  this->m_maxUpDay = this->m_lst[0].ts;
+  this->m_maxDownDay = this->m_lst[0].ts;
+
+  auto maxm = this->m_lst[0].curMoney;
+  auto minm = this->m_lst[0].curMoney;
+  for (int i = 1; i < this->m_lst.size(); ++i) {
+    if (maxm < this->m_lst[i].curMoney) {
+      maxm = this->m_lst[i].curMoney;
+      this->m_maxUpDay = this->m_lst[i].ts;
+    }
+
+    if (minm > this->m_lst[i].curMoney) {
+      minm = this->m_lst[i].curMoney;
+      this->m_maxDownDay = this->m_lst[i].ts;
+    }
+  }
+}
+
+void PNL::calcMaxDate_Month() {
+  this->m_maxUpMonth = 0;
+  this->m_maxDownMonth = 0;
+
+  if (this->m_lst.empty()) {
+    return;
+  }
+}
+
+void PNL::calcMaxDate() {
+  this->calcMaxDate_Day();
+  this->calcMaxDate_Month();
+}
+
 CR2END
