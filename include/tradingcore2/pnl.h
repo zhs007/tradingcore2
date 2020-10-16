@@ -39,10 +39,20 @@ class PNL {
         m_durationYear(0),
         m_maxUpDay(0),
         m_maxDownDay(0),
+        m_maxUpWeek(0),
+        m_maxDownWeek(0),
         m_maxUpMonth(0),
         m_maxDownMonth(0),
         m_maxUpYear(0),
-        m_maxDownYear(0) {}
+        m_maxDownYear(0),
+        m_maxMoneyUpDay(0),
+        m_maxMoneyDownDay(0),
+        m_maxMoneyUpWeek(0),
+        m_maxMoneyDownWeek(0),
+        m_maxMoneyUpMonth(0),
+        m_maxMoneyDownMonth(0),
+        m_maxMoneyUpYear(0),
+        m_maxMoneyDownYear(0) {}
   ~PNL() { this->release(); }
 
  public:
@@ -84,12 +94,18 @@ class PNL {
   void calcValidDataPer(const tradingdb2pb::SymbolInfo& si,
                         const Exchange& exchange);
 
- protected:
+  void calcVariance();
+
   void calcMaxDate();
 
+ protected:
   void calcMaxDate_Day();
 
+  void calcMaxDate_Week();
+
   void calcMaxDate_Month();
+
+  void calcMaxDate_Year();
 
   void calcSharpe(const Exchange& exchange);
 
@@ -98,8 +114,6 @@ class PNL {
   void calcTotalReturns(const Exchange& exchange);
 
   void calcAnnualizedVolatility(const Exchange& exchange);
-
-  void calcVariance(const Exchange& exchange);
 
   // 找到 starti 前面的最高点
   int findPreMax(int starti);
@@ -127,10 +141,20 @@ class PNL {
 
   time_t m_maxUpDay;
   time_t m_maxDownDay;
+  time_t m_maxUpWeek;
+  time_t m_maxDownWeek;
   time_t m_maxUpMonth;
   time_t m_maxDownMonth;
   time_t m_maxUpYear;
   time_t m_maxDownYear;
+  float m_maxMoneyUpDay;
+  float m_maxMoneyDownDay;
+  float m_maxMoneyUpWeek;
+  float m_maxMoneyDownWeek;
+  float m_maxMoneyUpMonth;
+  float m_maxMoneyDownMonth;
+  float m_maxMoneyUpYear;
+  float m_maxMoneyDownYear;
 };
 
 CR2END

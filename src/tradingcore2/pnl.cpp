@@ -4,6 +4,7 @@
 #include <tradingcore2/csv.h>
 #include <tradingcore2/exchange.h>
 #include <tradingcore2/pnl.h>
+#include <tradingcore2/utils.h>
 #include <tradingcore2/wallet.h>
 
 #include <functional>
@@ -137,7 +138,9 @@ void PNL::onBuildEnd(const Exchange& exchange) {
 
   this->calcSharpe(exchange);
 
-  this->calcVariance(exchange);
+  this->calcVariance();
+
+  this->calcMaxDate();
 }
 
 // 找到 starti 前面的最高点
@@ -322,11 +325,12 @@ void PNL::saveCSV(const char* fn, bool useMoney) {
   }
 }
 
-void PNL::calcVariance(const Exchange& exchange) {
+void PNL::calcVariance() {
   float* pU = new float[this->m_lst.size()];
 
+  float sm = this->m_lst[0].curMoney;
   for (int i = 0; i < this->m_lst.size(); ++i) {
-    pU[i] = this->m_lst[i].curMoney;
+    pU[i] = this->m_lst[i].curMoney / sm;
   }
 
   float s = gsl_stats_float_variance(pU, 1, this->m_lst.size());
@@ -356,11 +360,11 @@ void PNL::calcValidDataPer(const tradingdb2pb::SymbolInfo& si,
   if (si.has_fund()) {
     time_t st = si.fund().createtime();
     tm startti;
-    gmtime_r(&st, &startti);
+    timestamp2timeUTC(st, startti);
 
     time_t et = this->m_lst[this->m_lst.size() - 1].ts;
     tm endti;
-    gmtime_r(&et, &endti);
+    timestamp2timeUTC(et, endti);
 
     int yearoff = endti.tm_year - startti.tm_year;
     int dayoff = yearoff * exchange.getTradingDays4Year() -
@@ -374,6 +378,8 @@ void PNL::calcValidDataPer(const tradingdb2pb::SymbolInfo& si,
 void PNL::calcMaxDate_Day() {
   this->m_maxUpDay = 0;
   this->m_maxDownDay = 0;
+  this->m_maxMoneyUpDay = 0;
+  this->m_maxMoneyDownDay = 0;
 
   if (this->m_lst.empty()) {
     return;
@@ -382,33 +388,169 @@ void PNL::calcMaxDate_Day() {
   this->m_maxUpDay = this->m_lst[0].ts;
   this->m_maxDownDay = this->m_lst[0].ts;
 
-  auto maxm = this->m_lst[0].curMoney;
-  auto minm = this->m_lst[0].curMoney;
+  this->m_maxMoneyUpDay = -1;
+  this->m_maxMoneyDownDay = -1;
+
   for (int i = 1; i < this->m_lst.size(); ++i) {
-    if (maxm < this->m_lst[i].curMoney) {
-      maxm = this->m_lst[i].curMoney;
+    auto co = this->m_lst[i].curMoney - this->m_lst[i - 1].curMoney;
+    if (co > 0) {
+      co = co / this->m_lst[i].curMoney;
+    } else {
+      co = co / this->m_lst[i - 1].curMoney;
+    }
+
+    if (this->m_maxMoneyUpDay < 0 || this->m_maxMoneyUpDay < co) {
+      this->m_maxMoneyUpDay = co;
       this->m_maxUpDay = this->m_lst[i].ts;
     }
 
-    if (minm > this->m_lst[i].curMoney) {
-      minm = this->m_lst[i].curMoney;
+    if (this->m_maxMoneyDownDay < 0 || this->m_maxMoneyDownDay > co) {
+      this->m_maxMoneyDownDay = co;
       this->m_maxDownDay = this->m_lst[i].ts;
     }
+  }
+}
+
+void PNL::calcMaxDate_Week() {
+  this->m_maxUpWeek = 0;
+  this->m_maxDownWeek = 0;
+  this->m_maxMoneyUpWeek = 0;
+  this->m_maxMoneyDownWeek = 0;
+
+  if (this->m_lst.empty()) {
+    return;
+  }
+
+  this->m_maxMoneyUpWeek = -1;
+  this->m_maxMoneyDownWeek = -1;
+
+  auto cw = getYearWeek(this->m_lst[0].ts);
+  this->m_maxUpWeek = this->m_lst[0].ts;
+  this->m_maxDownWeek = this->m_lst[0].ts;
+
+  auto smaxm = this->m_lst[0].curMoney;
+  auto sminm = this->m_lst[0].curMoney;
+  auto sst = this->m_lst[0].ts;
+
+  // auto maxm = -1;
+  // auto minm = -1;
+
+  for (int i = 1; i < this->m_lst.size(); ++i) {
+    auto ccw = getYearWeek(this->m_lst[i].ts);
+    if (ccw != cw) {
+      if (this->m_maxMoneyUpWeek < 0 || this->m_maxMoneyUpWeek < smaxm) {
+        this->m_maxMoneyUpWeek = smaxm;
+        this->m_maxUpWeek = sst;
+      }
+
+      if (this->m_maxMoneyDownWeek < 0 || this->m_maxMoneyDownWeek > sminm) {
+        this->m_maxMoneyDownWeek = sminm;
+        this->m_maxDownWeek = sst;
+      }
+    } else {
+      smaxm = this->m_lst[i].curMoney;
+      sminm = this->m_lst[i].curMoney;
+    }
+
+    sst = this->m_lst[i].ts;
   }
 }
 
 void PNL::calcMaxDate_Month() {
   this->m_maxUpMonth = 0;
   this->m_maxDownMonth = 0;
+  this->m_maxMoneyUpMonth = 0;
+  this->m_maxMoneyDownMonth = 0;
 
   if (this->m_lst.empty()) {
     return;
+  }
+
+  this->m_maxMoneyUpMonth = -1;
+  this->m_maxMoneyDownMonth = -1;
+
+  auto cm = getYearMonth(this->m_lst[0].ts);
+  this->m_maxUpMonth = this->m_lst[0].ts;
+  this->m_maxDownMonth = this->m_lst[0].ts;
+
+  auto smaxm = this->m_lst[0].curMoney;
+  auto sminm = this->m_lst[0].curMoney;
+  auto sst = this->m_lst[0].ts;
+
+  // auto maxm = -1;
+  // auto minm = -1;
+
+  for (int i = 1; i < this->m_lst.size(); ++i) {
+    auto ccm = getYearMonth(this->m_lst[i].ts);
+    if (ccm != cm) {
+      if (this->m_maxMoneyUpMonth < 0 || this->m_maxMoneyUpMonth < smaxm) {
+        this->m_maxMoneyUpMonth = smaxm;
+        this->m_maxUpWeek = sst;
+      }
+
+      if (this->m_maxMoneyDownMonth < 0 || this->m_maxMoneyDownMonth > sminm) {
+        this->m_maxMoneyDownMonth = sminm;
+        this->m_maxDownWeek = sst;
+      }
+    } else {
+      smaxm = this->m_lst[i].curMoney;
+      sminm = this->m_lst[i].curMoney;
+    }
+
+    sst = this->m_lst[i].ts;
+  }
+}
+
+void PNL::calcMaxDate_Year() {
+  this->m_maxUpYear = 0;
+  this->m_maxDownYear = 0;
+  this->m_maxMoneyUpYear = 0;
+  this->m_maxMoneyDownYear = 0;
+
+  if (this->m_lst.empty()) {
+    return;
+  }
+
+  this->m_maxMoneyUpYear = -1;
+  this->m_maxMoneyDownYear = -1;
+
+  auto cm = getYear(this->m_lst[0].ts);
+  this->m_maxUpYear = this->m_lst[0].ts;
+  this->m_maxDownYear = this->m_lst[0].ts;
+
+  auto smaxm = this->m_lst[0].curMoney;
+  auto sminm = this->m_lst[0].curMoney;
+  auto sst = this->m_lst[0].ts;
+
+  // auto maxm = -1;
+  // auto minm = -1;
+
+  for (int i = 1; i < this->m_lst.size(); ++i) {
+    auto ccm = getYear(this->m_lst[i].ts);
+    if (ccm != cm) {
+      if (this->m_maxMoneyUpYear < 0 || this->m_maxMoneyUpYear < smaxm) {
+        this->m_maxMoneyUpYear = smaxm;
+        this->m_maxUpWeek = sst;
+      }
+
+      if (this->m_maxMoneyDownYear < 0 || this->m_maxMoneyDownYear > sminm) {
+        this->m_maxMoneyDownYear = sminm;
+        this->m_maxDownWeek = sst;
+      }
+    } else {
+      smaxm = this->m_lst[i].curMoney;
+      sminm = this->m_lst[i].curMoney;
+    }
+
+    sst = this->m_lst[i].ts;
   }
 }
 
 void PNL::calcMaxDate() {
   this->calcMaxDate_Day();
+  this->calcMaxDate_Week();
   this->calcMaxDate_Month();
+  this->calcMaxDate_Year();
 }
 
 CR2END

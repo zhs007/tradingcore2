@@ -99,3 +99,51 @@ TEST(Utils, foreachPathWithExt) {
 
   tr2::foreachPathWithExt("../data/cnfund", ".csv", onfile);
 }
+
+TEST(Utils, timestamp2timeUTC) {
+  tm t0;
+  tr2::timestamp2timeUTC(1484611200, t0);
+
+  tm t1;
+  tr2::timestamp2timeUTC(1602827513, t1);
+
+  EXPECT_EQ(t0.tm_year, 2017 - 1900);
+  EXPECT_EQ(t0.tm_mday, 17);
+  EXPECT_EQ(t0.tm_mon, 0);
+
+  EXPECT_EQ(t1.tm_year, 2020 - 1900);
+  EXPECT_EQ(t1.tm_mday, 16);
+  EXPECT_EQ(t1.tm_mon, 9);
+}
+
+TEST(Utils, getYearWeek) {
+  auto yw = tr2::getYearWeek(1484611200);
+  EXPECT_EQ(yw, 2);
+
+  yw = tr2::getYearWeek(1602827513);
+  EXPECT_EQ(yw, 41);
+}
+
+TEST(Utils, getYearMonth) {
+  auto ym = tr2::getYearMonth(1484611200);
+  EXPECT_EQ(ym, 0);
+
+  ym = tr2::getYearMonth(1602827513);
+  EXPECT_EQ(ym, 9);
+}
+
+TEST(Utils, getYear) {
+  auto ym = tr2::getYear(1484611200);
+  EXPECT_EQ(ym, 2017);
+
+  ym = tr2::getYear(1602827513);
+  EXPECT_EQ(ym, 2020);
+}
+
+TEST(Utils, getDate) {
+  auto ym = tr2::getDate(1484611200);
+  EXPECT_EQ(ym, 20170117);
+
+  ym = tr2::getDate(1602827513);
+  EXPECT_EQ(ym, 20201016);
+}

@@ -15,6 +15,20 @@ void str2time(const char* str, const char* format, tm& t);
 
 TimeStamp time2timestampUTC(tm& t);
 
+void timestamp2timeUTC(time_t ts, tm& t);
+
+// getYearWeek - get week of the year with ts
+int getYearWeek(time_t ts);
+
+// getYearMonth - get month of the year with ts
+int getYearMonth(time_t ts);
+
+// getYear - get year
+int getYear(time_t ts);
+
+// getDate - get date, it's like 20201001
+int getDate(time_t ts);
+
 // calcQuartile - sortedArr is a sorted array
 void calcQuartile(float* sortedArr, size_t stride, size_t n, float& q1,
                   float& q2, float& q3);

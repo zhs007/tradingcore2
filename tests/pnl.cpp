@@ -1,6 +1,8 @@
 #include <gtest/gtest.h>
 #include <stdio.h>
+#include <tradingcore2/exchangemgr.h>
 #include <tradingcore2/pnl.h>
+#include <tradingcore2/utils.h>
 
 TEST(PNL, pnl_maxdrawdown1) {
   tr2::PNL pnl;
@@ -60,4 +62,37 @@ TEST(PNL, pnl_maxdrawdown3) {
   EXPECT_DOUBLE_EQ(pnl.m_maxDrawdown, 28.0f / 30.0f);
   EXPECT_EQ(pnl.m_maxDrawdownStartI, 2);
   EXPECT_EQ(pnl.m_maxDrawdownEndI, 5);
+}
+
+TEST(PNL, pnl_maxupdown) {
+  tr2::PNL pnl;
+  auto cnfund = tr2::ExchangeMgr::getSingleton()->getExchange("cnfund");
+
+  for (auto i = 0; i < cnfund->getDataLength("110022"); i++) {
+    tr2::CandleData cd;
+
+    if (cnfund->getData("110022", i, cd)) {
+      pnl.pushData(cd.ts, cd.close, cd.close);
+    }
+  }
+
+  pnl.calcMaxDate();
+
+  // EXPECT_EQ(tr2::getYear(pnl.m_maxUpDay), 2019);
+  // EXPECT_EQ(pnl.m_maxDownDay, 5);
+  // EXPECT_EQ(pnl.m_maxUpWeek, 5);
+  // EXPECT_EQ(pnl.m_maxDownWeek, 5);
+  // EXPECT_EQ(pnl.m_maxUpMonth, 5);
+  // EXPECT_EQ(pnl.m_maxDownMonth, 5);
+  // EXPECT_EQ(pnl.m_maxUpYear, 5);
+  // EXPECT_EQ(pnl.m_maxDownYear, 5);
+
+  // EXPECT_EQ(pnl.m_maxMoneyUpDay, 5);
+  // EXPECT_EQ(pnl.m_maxMoneyDownDay, 5);
+  // EXPECT_EQ(pnl.m_maxMoneyUpWeek, 5);
+  // EXPECT_EQ(pnl.m_maxMoneyDownWeek, 5);
+  // EXPECT_EQ(pnl.m_maxMoneyUpMonth, 5);
+  // EXPECT_EQ(pnl.m_maxMoneyDownMonth, 5);
+  // EXPECT_EQ(pnl.m_maxMoneyUpYear, 5);
+  // EXPECT_EQ(pnl.m_maxMoneyDownYear, 5);
 }
