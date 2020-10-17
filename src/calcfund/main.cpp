@@ -22,6 +22,7 @@ struct trData {
   float maxMoneyUpYear;
   float maxMoneyDownYear;
   std::string tags;
+  time_t tsCreate;
   tr2::TrainResult tr;
 };
 
@@ -56,10 +57,11 @@ int main(int argc, char* argv[]) {
         printf("onSymbol %s\n", si.fund().code().c_str());
 
         tradingdb2pb::Candles candles;
-        auto ret = tr2::getCandles(
-            candles, cfg.trdb2Serv.c_str(), cfg.trdb2Token.c_str(), "cnfunds",
-            si.fund().code().c_str(), NULL,
-            tr2::str2timestampUTC("20200101", "%Y%m%d"), 0);
+        auto ret = tr2::getCandles(candles, cfg.trdb2Serv.c_str(),
+                                   cfg.trdb2Token.c_str(), "cnfunds",
+                                   si.fund().code().c_str(), NULL, 0, 0);
+        // tr2::str2timestampUTC("20190101", "%Y%m%d"),
+        // tr2::str2timestampUTC("20200101", "%Y%m%d") - 1);
 
         printf("getCandles %s\n", ret ? "ok" : "fail");
         printf("candles %d\n", candles.candles_size());
@@ -90,6 +92,7 @@ int main(int argc, char* argv[]) {
           trd.maxMoneyDownMonth = pnl.m_maxMoneyDownMonth;
           trd.maxMoneyUpYear = pnl.m_maxMoneyUpYear;
           trd.maxMoneyDownYear = pnl.m_maxMoneyDownYear;
+          trd.tsCreate = si.fund().createtime();
           pnl.getTrainResult(trd.tr);
           trd.tr.name = si.fund().code().c_str();
 
@@ -124,7 +127,7 @@ int main(int argc, char* argv[]) {
             "permaxupday,maxdownday,permaxdownday,maxupweek,permaxupweek,"
             "maxdownweek,permaxdownweek,maxupmonth,permaxupmonth,maxdownmonth,"
             "permaxdownmonth,maxupyear,permaxupyear,maxdownyear,"
-            "permaxdownyear\r\n");
+            "permaxdownyear,tags,createtime\r\n");
   };
 
   auto onrow = [&lst](FILE* fp, int row) {
@@ -134,7 +137,7 @@ int main(int argc, char* argv[]) {
 
     fprintf(fp,
             "%s,%d,%f,%f,%f,%f,%f,%f,%f,%f,%d,%f,%d,%f,%d,%f,%d,%f,%d,%f,%d,%f,"
-            "%d,%f,%d,%f,%s\r\n",
+            "%d,%f,%d,%f,%s,%d\r\n",
             lst[row].tr.name.c_str(), lst[row].nums, lst[row].tr.totalReturn,
             lst[row].tr.maxDrawDown, lst[row].tr.sharpe,
             lst[row].tr.annualizedReturns, lst[row].tr.annualizedVolatility,
@@ -147,7 +150,7 @@ int main(int argc, char* argv[]) {
             tr2::getDate(lst[row].maxDownMonth), lst[row].maxMoneyDownMonth,
             tr2::getDate(lst[row].maxUpYear), lst[row].maxMoneyUpYear,
             tr2::getDate(lst[row].maxDownYear), lst[row].maxMoneyDownYear,
-            lst[row].tags.c_str());
+            lst[row].tags.c_str(), tr2::getDate(lst[row].tsCreate));
     return true;
   };
 
