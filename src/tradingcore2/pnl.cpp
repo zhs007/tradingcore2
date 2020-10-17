@@ -388,23 +388,19 @@ void PNL::calcMaxDate_Day() {
   this->m_maxUpDay = this->m_lst[0].ts;
   this->m_maxDownDay = this->m_lst[0].ts;
 
-  this->m_maxMoneyUpDay = -1;
-  this->m_maxMoneyDownDay = -1;
+  this->m_maxMoneyUpDay = -999999;
+  this->m_maxMoneyDownDay = 999999;
 
   for (int i = 1; i < this->m_lst.size(); ++i) {
-    auto co = this->m_lst[i].curMoney - this->m_lst[i - 1].curMoney;
-    if (co > 0) {
-      co = co / this->m_lst[i].curMoney;
-    } else {
-      co = co / this->m_lst[i - 1].curMoney;
-    }
+    auto co = (this->m_lst[i].curMoney - this->m_lst[i - 1].curMoney) /
+              this->m_lst[i - 1].curMoney;
 
-    if (this->m_maxMoneyUpDay < 0 || this->m_maxMoneyUpDay < co) {
+    if (this->m_maxMoneyUpDay < co) {
       this->m_maxMoneyUpDay = co;
       this->m_maxUpDay = this->m_lst[i].ts;
     }
 
-    if (this->m_maxMoneyDownDay < 0 || this->m_maxMoneyDownDay > co) {
+    if (this->m_maxMoneyDownDay > co) {
       this->m_maxMoneyDownDay = co;
       this->m_maxDownDay = this->m_lst[i].ts;
     }
@@ -421,38 +417,36 @@ void PNL::calcMaxDate_Week() {
     return;
   }
 
-  this->m_maxMoneyUpWeek = -1;
-  this->m_maxMoneyDownWeek = -1;
+  this->m_maxMoneyUpWeek = -999999;
+  this->m_maxMoneyDownWeek = 999999;
 
-  auto cw = getYearWeek(this->m_lst[0].ts);
+  auto cm = getYearWeek(this->m_lst[0].ts);
   this->m_maxUpWeek = this->m_lst[0].ts;
   this->m_maxDownWeek = this->m_lst[0].ts;
 
-  auto smaxm = this->m_lst[0].curMoney;
-  auto sminm = this->m_lst[0].curMoney;
   auto sst = this->m_lst[0].ts;
-
-  // auto maxm = -1;
-  // auto minm = -1;
+  auto msm = this->m_lst[0].curMoney;
 
   for (int i = 1; i < this->m_lst.size(); ++i) {
-    auto ccw = getYearWeek(this->m_lst[i].ts);
-    if (ccw != cw) {
-      if (this->m_maxMoneyUpWeek < 0 || this->m_maxMoneyUpWeek < smaxm) {
-        this->m_maxMoneyUpWeek = smaxm;
+    auto ccm = getYearWeek(this->m_lst[i].ts);
+    if (ccm != cm) {
+      auto mo = (this->m_lst[i - 1].curMoney - msm) / msm;
+
+      if (this->m_maxMoneyUpWeek < mo) {
+        this->m_maxMoneyUpWeek = mo;
         this->m_maxUpWeek = sst;
       }
 
-      if (this->m_maxMoneyDownWeek < 0 || this->m_maxMoneyDownWeek > sminm) {
-        this->m_maxMoneyDownWeek = sminm;
+      if (this->m_maxMoneyDownWeek > mo) {
+        this->m_maxMoneyDownWeek = mo;
         this->m_maxDownWeek = sst;
       }
-    } else {
-      smaxm = this->m_lst[i].curMoney;
-      sminm = this->m_lst[i].curMoney;
-    }
 
-    sst = this->m_lst[i].ts;
+      sst = this->m_lst[i].ts;
+      msm = this->m_lst[i].curMoney;
+
+      cm = ccm;
+    }
   }
 }
 
@@ -466,38 +460,36 @@ void PNL::calcMaxDate_Month() {
     return;
   }
 
-  this->m_maxMoneyUpMonth = -1;
-  this->m_maxMoneyDownMonth = -1;
+  this->m_maxMoneyUpMonth = -999999;
+  this->m_maxMoneyDownMonth = 999999;
 
   auto cm = getYearMonth(this->m_lst[0].ts);
   this->m_maxUpMonth = this->m_lst[0].ts;
   this->m_maxDownMonth = this->m_lst[0].ts;
 
-  auto smaxm = this->m_lst[0].curMoney;
-  auto sminm = this->m_lst[0].curMoney;
   auto sst = this->m_lst[0].ts;
-
-  // auto maxm = -1;
-  // auto minm = -1;
+  auto msm = this->m_lst[0].curMoney;
 
   for (int i = 1; i < this->m_lst.size(); ++i) {
     auto ccm = getYearMonth(this->m_lst[i].ts);
     if (ccm != cm) {
-      if (this->m_maxMoneyUpMonth < 0 || this->m_maxMoneyUpMonth < smaxm) {
-        this->m_maxMoneyUpMonth = smaxm;
-        this->m_maxUpWeek = sst;
+      auto mo = (this->m_lst[i - 1].curMoney - msm) / msm;
+
+      if (this->m_maxMoneyUpMonth < mo) {
+        this->m_maxMoneyUpMonth = mo;
+        this->m_maxUpMonth = sst;
       }
 
-      if (this->m_maxMoneyDownMonth < 0 || this->m_maxMoneyDownMonth > sminm) {
-        this->m_maxMoneyDownMonth = sminm;
-        this->m_maxDownWeek = sst;
+      if (this->m_maxMoneyDownMonth > mo) {
+        this->m_maxMoneyDownMonth = mo;
+        this->m_maxDownMonth = sst;
       }
-    } else {
-      smaxm = this->m_lst[i].curMoney;
-      sminm = this->m_lst[i].curMoney;
+
+      sst = this->m_lst[i].ts;
+      msm = this->m_lst[i].curMoney;
+
+      cm = ccm;
     }
-
-    sst = this->m_lst[i].ts;
   }
 }
 
@@ -511,38 +503,36 @@ void PNL::calcMaxDate_Year() {
     return;
   }
 
-  this->m_maxMoneyUpYear = -1;
-  this->m_maxMoneyDownYear = -1;
+  this->m_maxMoneyUpYear = -999999;
+  this->m_maxMoneyDownYear = 999999;
 
   auto cm = getYear(this->m_lst[0].ts);
   this->m_maxUpYear = this->m_lst[0].ts;
   this->m_maxDownYear = this->m_lst[0].ts;
 
-  auto smaxm = this->m_lst[0].curMoney;
-  auto sminm = this->m_lst[0].curMoney;
   auto sst = this->m_lst[0].ts;
-
-  // auto maxm = -1;
-  // auto minm = -1;
+  auto msm = this->m_lst[0].curMoney;
 
   for (int i = 1; i < this->m_lst.size(); ++i) {
     auto ccm = getYear(this->m_lst[i].ts);
     if (ccm != cm) {
-      if (this->m_maxMoneyUpYear < 0 || this->m_maxMoneyUpYear < smaxm) {
-        this->m_maxMoneyUpYear = smaxm;
-        this->m_maxUpWeek = sst;
+      auto mo = (this->m_lst[i - 1].curMoney - msm) / msm;
+
+      if (this->m_maxMoneyUpYear < mo) {
+        this->m_maxMoneyUpYear = mo;
+        this->m_maxUpYear = sst;
       }
 
-      if (this->m_maxMoneyDownYear < 0 || this->m_maxMoneyDownYear > sminm) {
-        this->m_maxMoneyDownYear = sminm;
-        this->m_maxDownWeek = sst;
+      if (this->m_maxMoneyDownYear > mo) {
+        this->m_maxMoneyDownYear = mo;
+        this->m_maxDownYear = sst;
       }
-    } else {
-      smaxm = this->m_lst[i].curMoney;
-      sminm = this->m_lst[i].curMoney;
+
+      sst = this->m_lst[i].ts;
+      msm = this->m_lst[i].curMoney;
+
+      cm = ccm;
     }
-
-    sst = this->m_lst[i].ts;
   }
 }
 

@@ -146,19 +146,19 @@ int getYearWeek(time_t ts) {
     return 0;
   }
 
-  int cw = ctm.tm_yday / 7;
-
   char buf[1024];
   sprintf(buf, "%d0101", ctm.tm_year + 1900);
   auto fts = tr2::str2timestampUTC(buf, "%Y%m%d");
 
   timestamp2timeUTC(fts, fctm);
-  // 如果元旦是周5，那么除元旦以外的周1-周5都+1
-  if (ctm.tm_wday <= fctm.tm_wday) {
-    return cw + 1;
-  }
 
-  return cw;
+  return (ctm.tm_yday + fctm.tm_wday) / 7;
+  // // 如果元旦是周5，那么除元旦以外的周1-周5都+1
+  // if (ctm.tm_wday <= fctm.tm_wday) {
+  //   return cw + 1;
+  // }
+
+  // return cw;
 }
 
 // getYearMonth - get month of the year with ts
