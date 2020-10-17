@@ -1,5 +1,6 @@
 #include <gtest/gtest.h>
 #include <stdio.h>
+#include <math.h>
 #include <tradingcore2/exchangemgr.h>
 #include <tradingcore2/pnl.h>
 #include <tradingcore2/utils.h>
