@@ -5,6 +5,23 @@ struct trData {
   int nums;
   float perValidData;
   float durationYear;
+  time_t maxUpDay;
+  time_t maxDownDay;
+  time_t maxUpWeek;
+  time_t maxDownWeek;
+  time_t maxUpMonth;
+  time_t maxDownMonth;
+  time_t maxUpYear;
+  time_t maxDownYear;
+  float maxMoneyUpDay;
+  float maxMoneyDownDay;
+  float maxMoneyUpWeek;
+  float maxMoneyDownWeek;
+  float maxMoneyUpMonth;
+  float maxMoneyDownMonth;
+  float maxMoneyUpYear;
+  float maxMoneyDownYear;
+  std::string tags;
   tr2::TrainResult tr;
 };
 
@@ -56,8 +73,31 @@ int main(int argc, char* argv[]) {
           trd.nums = candles.candles_size();
           trd.perValidData = pnl.m_perValidData;
           trd.durationYear = pnl.m_durationYear;
+          trd.maxUpDay = pnl.m_maxUpDay;
+          trd.maxDownDay = pnl.m_maxDownDay;
+          trd.maxUpWeek = pnl.m_maxUpWeek;
+          trd.maxDownWeek = pnl.m_maxDownWeek;
+          trd.maxUpMonth = pnl.m_maxUpMonth;
+          trd.maxDownMonth = pnl.m_maxDownMonth;
+          trd.maxUpYear = pnl.m_maxUpYear;
+          trd.maxDownYear = pnl.m_maxDownYear;
+          trd.maxMoneyUpDay = pnl.m_maxMoneyUpDay;
+          trd.maxMoneyDownDay = pnl.m_maxMoneyDownDay;
+          trd.maxMoneyUpWeek = pnl.m_maxMoneyUpWeek;
+          trd.maxMoneyDownWeek = pnl.m_maxMoneyDownWeek;
+          trd.maxMoneyUpMonth = pnl.m_maxMoneyUpMonth;
+          trd.maxMoneyDownMonth = pnl.m_maxMoneyDownMonth;
+          trd.maxMoneyUpYear = pnl.m_maxMoneyUpYear;
+          trd.maxMoneyDownYear = pnl.m_maxMoneyDownYear;
           pnl.getTrainResult(trd.tr);
           trd.tr.name = si.fund().code().c_str();
+
+          for (int i = 0; i < si.fund().tags_size(); ++i) {
+            if (i > 0) {
+              trd.tags.append(";");
+            }
+            trd.tags.append(si.fund().tags(i));
+          }
 
           printf(
               "fund totalReturn: %f maxDrawDown: %f sharpe: %f "
@@ -79,7 +119,11 @@ int main(int argc, char* argv[]) {
   auto onhead = [](FILE* fp) {
     fprintf(fp,
             "code,nums,totalReturn,maxDrawDown,sharpe,annualizedReturns,"
-            "annualizedVolatility,variance,perValidData,durationYear\r\n");
+            "annualizedVolatility,variance,perValidData,durationYear,maxupday,"
+            "permaxupday,maxdownday,permaxdownday,maxupweek,permaxupweek,"
+            "maxdownweek,permaxdownweek,maxupmonth,permaxupmonth,maxdownmonth,"
+            "permaxdownmonth,maxupyear,permaxupyear,maxdownyear,"
+            "permaxdownyear\r\n");
   };
 
   auto onrow = [&lst](FILE* fp, int row) {
@@ -87,11 +131,22 @@ int main(int argc, char* argv[]) {
       return false;
     }
 
-    fprintf(fp, "%s,%d,%f,%f,%f,%f,%f,%f,%f,%f\r\n", lst[row].tr.name.c_str(),
-            lst[row].nums, lst[row].tr.totalReturn, lst[row].tr.maxDrawDown,
-            lst[row].tr.sharpe, lst[row].tr.annualizedReturns,
-            lst[row].tr.annualizedVolatility, lst[row].tr.variance,
-            lst[row].perValidData, lst[row].durationYear);
+    fprintf(fp,
+            "%s,%d,%f,%f,%f,%f,%f,%f,%f,%f,%d,%f,%d,%f,%d,%f,%d,%f,%d,%f,%d,%f,"
+            "%d,%f,%d,%f,%s\r\n",
+            lst[row].tr.name.c_str(), lst[row].nums, lst[row].tr.totalReturn,
+            lst[row].tr.maxDrawDown, lst[row].tr.sharpe,
+            lst[row].tr.annualizedReturns, lst[row].tr.annualizedVolatility,
+            lst[row].tr.variance, lst[row].perValidData, lst[row].durationYear,
+            tr2::getDate(lst[row].maxUpDay), lst[row].maxMoneyUpDay,
+            tr2::getDate(lst[row].maxDownDay), lst[row].maxMoneyDownDay,
+            tr2::getDate(lst[row].maxUpWeek), lst[row].maxMoneyUpWeek,
+            tr2::getDate(lst[row].maxDownWeek), lst[row].maxMoneyDownWeek,
+            tr2::getDate(lst[row].maxUpMonth), lst[row].maxMoneyUpMonth,
+            tr2::getDate(lst[row].maxDownMonth), lst[row].maxMoneyDownMonth,
+            tr2::getDate(lst[row].maxUpYear), lst[row].maxMoneyUpYear,
+            tr2::getDate(lst[row].maxDownYear), lst[row].maxMoneyDownYear,
+            lst[row].tags.c_str());
     return true;
   };
 
