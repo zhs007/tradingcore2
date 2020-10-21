@@ -98,6 +98,10 @@ class PNL {
 
   void calcMaxDate();
 
+  TimeStamp getMaxDrawdownStartTime();
+
+  TimeStamp getMaxDrawdownEndTime();
+
  protected:
   void calcMaxDate_Day();
 

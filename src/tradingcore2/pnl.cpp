@@ -543,4 +543,21 @@ void PNL::calcMaxDate() {
   this->calcMaxDate_Year();
 }
 
+TimeStamp PNL::getMaxDrawdownStartTime() {
+  if (this->m_maxDrawdownStartI >= 0 &&
+      this->m_maxDrawdownStartI < m_lst.size()) {
+    return this->m_lst[this->m_maxDrawdownStartI].ts;
+  }
+
+  return 0;
+}
+
+TimeStamp PNL::getMaxDrawdownEndTime() {
+  if (this->m_maxDrawdownEndI >= 0 && this->m_maxDrawdownEndI < m_lst.size()) {
+    return this->m_lst[this->m_maxDrawdownEndI].ts;
+  }
+
+  return 0;
+}
+
 CR2END
