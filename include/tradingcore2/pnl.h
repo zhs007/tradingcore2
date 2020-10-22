@@ -17,10 +17,18 @@ class PNL {
     Money invest;
     Money curMoney;
     float percentage;
+    float profitRatio;
     Money buy;
     Money sell;
 
-    Node() : ts(0), invest(0), curMoney(0), percentage(0), buy(0), sell(0) {}
+    Node()
+        : ts(0),
+          invest(0),
+          curMoney(0),
+          percentage(0),
+          buy(0),
+          sell(0),
+          profitRatio(0) {}
   };
 
   typedef std::vector<Node> List;

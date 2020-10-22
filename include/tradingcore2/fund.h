@@ -11,6 +11,7 @@ CR2BEGIN
 
 // analysisFund - analysis fund
 bool analysisFund(PNL& pnl, const Exchange& exchange,
+                  const tradingdb2pb::SymbolInfo& si,
                   const tradingdb2pb::Candles& candles);
 
 CR2END

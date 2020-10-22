@@ -36,6 +36,13 @@ void PNL::pushData(TimeStamp ts, Money invest, Money curMoney) {
   n.curMoney = curMoney;
   n.percentage = (curMoney - invest) / invest;
 
+  if (this->m_lst.empty()) {
+    n.profitRatio = 1;
+  } else {
+    auto it = this->m_lst.begin();
+    n.profitRatio = curMoney * 1.0 / it->curMoney;
+  }
+
   this->m_lst.push_back(n);
 }
 
@@ -227,8 +234,15 @@ void PNL::calcMaxDrawdown() {
       break;
     }
 
-    auto cmdd = (this->m_lst[csi].curMoney - this->m_lst[cei].curMoney) * 1.0f /
-                this->m_lst[csi].curMoney;
+    // auto cmdd = 0;
+    // if (this->m_lst[csi].profitRatio == 0) {
+    //   cmdd = fabs(this->m_lst[cei].profitRatio);
+    // } else {
+    auto cmdd =
+        fabs(this->m_lst[csi].profitRatio - this->m_lst[cei].profitRatio) *
+        1.0f / this->m_lst[csi].profitRatio;
+    // }
+
     if (cmdd > mdd) {
       si = csi;
       ei = cei;
@@ -252,9 +266,12 @@ void PNL::calcSharpe(const Exchange& exchange) {
 }
 
 void PNL::calcAnnualizedReturns(const Exchange& exchange) {
+  // this->m_annualizedReturns =
+  //     (this->m_lst.back().curMoney / this->m_lst.begin()->curMoney - 1) /
+  //     this->m_lst.size() * exchange.getTradingDays4Year();
   this->m_annualizedReturns =
       (this->m_lst.back().curMoney / this->m_lst.begin()->curMoney - 1) /
-      this->m_lst.size() * exchange.getTradingDays4Year();
+      this->m_durationYear;
 }
 
 void PNL::calcTotalReturns(const Exchange& exchange) {

@@ -71,9 +71,9 @@ int main(int argc, char* argv[]) {
 
         if (candles.candles_size() > 0) {
           tr2::PNL pnl;
-          tr2::analysisFund(pnl, *cnfund, candles);
+          tr2::analysisFund(pnl, *cnfund, si, candles);
 
-          pnl.calcValidDataPer(si, *cnfund);
+          // pnl.calcValidDataPer(si, *cnfund);
 
           trData trd;
           trd.nums = candles.candles_size();
