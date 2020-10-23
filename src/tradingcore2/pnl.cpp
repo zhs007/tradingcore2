@@ -269,13 +269,27 @@ void PNL::calcAnnualizedReturns(const Exchange& exchange) {
   // this->m_annualizedReturns =
   //     (this->m_lst.back().curMoney / this->m_lst.begin()->curMoney - 1) /
   //     this->m_lst.size() * exchange.getTradingDays4Year();
-  if (this->m_durationYear < 1) {
+
+  time_t st = this->m_lst[0].ts;
+  tm startti;
+  timestamp2timeUTC(st, startti);
+
+  time_t et = this->m_lst[this->m_lst.size() - 1].ts;
+  tm endti;
+  timestamp2timeUTC(et, endti);
+
+  int yearoff = endti.tm_year - startti.tm_year;
+  int dayoff = yearoff * 365 - int(startti.tm_yday) + int(endti.tm_yday);
+
+  auto durationYear = dayoff * 1.0f / 365;
+
+  if (durationYear < 1) {
     this->m_annualizedReturns =
         (this->m_lst.back().curMoney / this->m_lst.begin()->curMoney - 1);
   } else {
     this->m_annualizedReturns =
         (this->m_lst.back().curMoney / this->m_lst.begin()->curMoney - 1) /
-        this->m_durationYear;
+        durationYear;
   }
 }
 
