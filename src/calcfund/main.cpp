@@ -59,11 +59,11 @@ int main(int argc, char* argv[]) {
         printf("onSymbol %s\n", si.fund().code().c_str());
 
         tradingdb2pb::Candles candles;
-        auto ret = tr2::getCandles(candles, cfg.trdb2Serv.c_str(),
-                                   cfg.trdb2Token.c_str(), "cnfunds",
-                                   si.fund().code().c_str(), NULL, 0, 0);
-        // tr2::str2timestampUTC("20200101", "%Y%m%d"), 0);
-        // tr2::str2timestampUTC("20200101", "%Y%m%d") - 1);
+        auto ret = tr2::getCandles(
+            candles, cfg.trdb2Serv.c_str(), cfg.trdb2Token.c_str(), "cnfunds",
+            si.fund().code().c_str(), NULL,               // 0, 0);
+            tr2::str2timestampUTC("20190101", "%Y%m%d"),  // 0);
+            tr2::str2timestampUTC("20200101", "%Y%m%d") - 1);
 
         printf("getCandles %s\n", ret ? "ok" : "fail");
         printf("candles %d\n", candles.candles_size());
