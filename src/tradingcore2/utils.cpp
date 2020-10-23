@@ -134,6 +134,60 @@ void foreachPathWithExt(const char* dir, const char* extfn,
   closedir(fd);
 }
 
+void timestamp2timeUTC(time_t ts, tm& t) { gmtime_r(&ts, &t); }
+
+// getYearWeek - get weeks of the year with ts
+int getYearWeek(time_t ts) {
+  tm ctm;
+  tm fctm;
+
+  timestamp2timeUTC(ts, ctm);
+  if (ctm.tm_yday == 0) {
+    return 0;
+  }
+
+  char buf[1024];
+  sprintf(buf, "%d0101", ctm.tm_year + 1900);
+  auto fts = tr2::str2timestampUTC(buf, "%Y%m%d");
+
+  timestamp2timeUTC(fts, fctm);
+
+  return (ctm.tm_yday + fctm.tm_wday) / 7;
+  // // 如果元旦是周5，那么除元旦以外的周1-周5都+1
+  // if (ctm.tm_wday <= fctm.tm_wday) {
+  //   return cw + 1;
+  // }
+
+  // return cw;
+}
+
+// getYearMonth - get month of the year with ts
+int getYearMonth(time_t ts) {
+  tm ctm;
+
+  timestamp2timeUTC(ts, ctm);
+
+  return ctm.tm_mon;
+}
+
+// getYear - get year
+int getYear(time_t ts) {
+  tm ctm;
+
+  timestamp2timeUTC(ts, ctm);
+
+  return ctm.tm_year + 1900;
+}
+
+// getDate - get date, it's like 20201001
+int getDate(time_t ts) {
+  tm ctm;
+
+  timestamp2timeUTC(ts, ctm);
+
+  return (ctm.tm_year + 1900) * 10000 + (ctm.tm_mon + 1) * 100 + ctm.tm_mday;
+}
+
 const char* getVersion() { return TC2_VERSION; }
 
 CR2END

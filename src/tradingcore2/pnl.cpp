@@ -4,6 +4,7 @@
 #include <tradingcore2/csv.h>
 #include <tradingcore2/exchange.h>
 #include <tradingcore2/pnl.h>
+#include <tradingcore2/utils.h>
 #include <tradingcore2/wallet.h>
 
 #include <functional>
@@ -34,6 +35,13 @@ void PNL::pushData(TimeStamp ts, Money invest, Money curMoney) {
   n.invest = invest;
   n.curMoney = curMoney;
   n.percentage = (curMoney - invest) / invest;
+
+  if (this->m_lst.empty()) {
+    n.profitRatio = 1;
+  } else {
+    auto it = this->m_lst.begin();
+    n.profitRatio = curMoney * 1.0 / it->curMoney;
+  }
 
   this->m_lst.push_back(n);
 }
@@ -137,7 +145,9 @@ void PNL::onBuildEnd(const Exchange& exchange) {
 
   this->calcSharpe(exchange);
 
-  this->calcVariance(exchange);
+  this->calcVariance();
+
+  this->calcMaxDate();
 }
 
 // 找到 starti 前面的最高点
@@ -224,8 +234,15 @@ void PNL::calcMaxDrawdown() {
       break;
     }
 
-    auto cmdd = (this->m_lst[csi].curMoney - this->m_lst[cei].curMoney) * 1.0f /
-                this->m_lst[csi].curMoney;
+    // auto cmdd = 0;
+    // if (this->m_lst[csi].profitRatio == 0) {
+    //   cmdd = fabs(this->m_lst[cei].profitRatio);
+    // } else {
+    auto cmdd =
+        fabs(this->m_lst[csi].profitRatio - this->m_lst[cei].profitRatio) *
+        1.0f / this->m_lst[csi].profitRatio;
+    // }
+
     if (cmdd > mdd) {
       si = csi;
       ei = cei;
@@ -249,9 +266,31 @@ void PNL::calcSharpe(const Exchange& exchange) {
 }
 
 void PNL::calcAnnualizedReturns(const Exchange& exchange) {
-  this->m_annualizedReturns =
-      (this->m_lst.back().curMoney / this->m_lst.begin()->curMoney - 1) /
-      this->m_lst.size() * exchange.getTradingDays4Year();
+  // this->m_annualizedReturns =
+  //     (this->m_lst.back().curMoney / this->m_lst.begin()->curMoney - 1) /
+  //     this->m_lst.size() * exchange.getTradingDays4Year();
+
+  time_t st = this->m_lst[0].ts;
+  tm startti;
+  timestamp2timeUTC(st, startti);
+
+  time_t et = this->m_lst[this->m_lst.size() - 1].ts;
+  tm endti;
+  timestamp2timeUTC(et, endti);
+
+  int yearoff = endti.tm_year - startti.tm_year;
+  int dayoff = yearoff * 365 - int(startti.tm_yday) + int(endti.tm_yday);
+
+  auto durationYear = dayoff * 1.0f / 365;
+
+  if (durationYear < 1) {
+    this->m_annualizedReturns =
+        (this->m_lst.back().curMoney / this->m_lst.begin()->curMoney - 1);
+  } else {
+    this->m_annualizedReturns =
+        (this->m_lst.back().curMoney / this->m_lst.begin()->curMoney - 1) /
+        durationYear;
+  }
 }
 
 void PNL::calcTotalReturns(const Exchange& exchange) {
@@ -322,11 +361,12 @@ void PNL::saveCSV(const char* fn, bool useMoney) {
   }
 }
 
-void PNL::calcVariance(const Exchange& exchange) {
+void PNL::calcVariance() {
   float* pU = new float[this->m_lst.size()];
 
+  float sm = this->m_lst[0].curMoney;
   for (int i = 0; i < this->m_lst.size(); ++i) {
-    pU[i] = this->m_lst[i].curMoney;
+    pU[i] = this->m_lst[i].curMoney / sm;
   }
 
   float s = gsl_stats_float_variance(pU, 1, this->m_lst.size());
@@ -356,11 +396,11 @@ void PNL::calcValidDataPer(const tradingdb2pb::SymbolInfo& si,
   if (si.has_fund()) {
     time_t st = si.fund().createtime();
     tm startti;
-    gmtime_r(&st, &startti);
+    timestamp2timeUTC(st, startti);
 
     time_t et = this->m_lst[this->m_lst.size() - 1].ts;
     tm endti;
-    gmtime_r(&et, &endti);
+    timestamp2timeUTC(et, endti);
 
     int yearoff = endti.tm_year - startti.tm_year;
     int dayoff = yearoff * exchange.getTradingDays4Year() -
@@ -369,6 +409,191 @@ void PNL::calcValidDataPer(const tradingdb2pb::SymbolInfo& si,
     this->m_perValidData = this->m_lst.size() * 1.0f / dayoff;
     this->m_durationYear = dayoff * 1.0f / 365;
   }
+}
+
+void PNL::calcMaxDate_Day() {
+  this->m_maxUpDay = 0;
+  this->m_maxDownDay = 0;
+  this->m_maxMoneyUpDay = 0;
+  this->m_maxMoneyDownDay = 0;
+
+  if (this->m_lst.empty()) {
+    return;
+  }
+
+  this->m_maxUpDay = this->m_lst[0].ts;
+  this->m_maxDownDay = this->m_lst[0].ts;
+
+  this->m_maxMoneyUpDay = -999999;
+  this->m_maxMoneyDownDay = 999999;
+
+  for (int i = 1; i < this->m_lst.size(); ++i) {
+    auto co = (this->m_lst[i].curMoney - this->m_lst[i - 1].curMoney) /
+              this->m_lst[i - 1].curMoney;
+
+    if (this->m_maxMoneyUpDay < co) {
+      this->m_maxMoneyUpDay = co;
+      this->m_maxUpDay = this->m_lst[i].ts;
+    }
+
+    if (this->m_maxMoneyDownDay > co) {
+      this->m_maxMoneyDownDay = co;
+      this->m_maxDownDay = this->m_lst[i].ts;
+    }
+  }
+}
+
+void PNL::calcMaxDate_Week() {
+  this->m_maxUpWeek = 0;
+  this->m_maxDownWeek = 0;
+  this->m_maxMoneyUpWeek = 0;
+  this->m_maxMoneyDownWeek = 0;
+
+  if (this->m_lst.empty()) {
+    return;
+  }
+
+  this->m_maxMoneyUpWeek = -999999;
+  this->m_maxMoneyDownWeek = 999999;
+
+  auto cm = getYearWeek(this->m_lst[0].ts);
+  this->m_maxUpWeek = this->m_lst[0].ts;
+  this->m_maxDownWeek = this->m_lst[0].ts;
+
+  auto sst = this->m_lst[0].ts;
+  auto msm = this->m_lst[0].curMoney;
+
+  for (int i = 1; i < this->m_lst.size(); ++i) {
+    auto ccm = getYearWeek(this->m_lst[i].ts);
+    if (ccm != cm) {
+      auto mo = (this->m_lst[i - 1].curMoney - msm) / msm;
+
+      if (this->m_maxMoneyUpWeek < mo) {
+        this->m_maxMoneyUpWeek = mo;
+        this->m_maxUpWeek = sst;
+      }
+
+      if (this->m_maxMoneyDownWeek > mo) {
+        this->m_maxMoneyDownWeek = mo;
+        this->m_maxDownWeek = sst;
+      }
+
+      sst = this->m_lst[i].ts;
+      msm = this->m_lst[i].curMoney;
+
+      cm = ccm;
+    }
+  }
+}
+
+void PNL::calcMaxDate_Month() {
+  this->m_maxUpMonth = 0;
+  this->m_maxDownMonth = 0;
+  this->m_maxMoneyUpMonth = 0;
+  this->m_maxMoneyDownMonth = 0;
+
+  if (this->m_lst.empty()) {
+    return;
+  }
+
+  this->m_maxMoneyUpMonth = -999999;
+  this->m_maxMoneyDownMonth = 999999;
+
+  auto cm = getYearMonth(this->m_lst[0].ts);
+  this->m_maxUpMonth = this->m_lst[0].ts;
+  this->m_maxDownMonth = this->m_lst[0].ts;
+
+  auto sst = this->m_lst[0].ts;
+  auto msm = this->m_lst[0].curMoney;
+
+  for (int i = 1; i < this->m_lst.size(); ++i) {
+    auto ccm = getYearMonth(this->m_lst[i].ts);
+    if (ccm != cm) {
+      auto mo = (this->m_lst[i - 1].curMoney - msm) / msm;
+
+      if (this->m_maxMoneyUpMonth < mo) {
+        this->m_maxMoneyUpMonth = mo;
+        this->m_maxUpMonth = sst;
+      }
+
+      if (this->m_maxMoneyDownMonth > mo) {
+        this->m_maxMoneyDownMonth = mo;
+        this->m_maxDownMonth = sst;
+      }
+
+      sst = this->m_lst[i].ts;
+      msm = this->m_lst[i].curMoney;
+
+      cm = ccm;
+    }
+  }
+}
+
+void PNL::calcMaxDate_Year() {
+  this->m_maxUpYear = 0;
+  this->m_maxDownYear = 0;
+  this->m_maxMoneyUpYear = 0;
+  this->m_maxMoneyDownYear = 0;
+
+  if (this->m_lst.empty()) {
+    return;
+  }
+
+  this->m_maxMoneyUpYear = -999999;
+  this->m_maxMoneyDownYear = 999999;
+
+  auto cm = getYear(this->m_lst[0].ts);
+  this->m_maxUpYear = this->m_lst[0].ts;
+  this->m_maxDownYear = this->m_lst[0].ts;
+
+  auto sst = this->m_lst[0].ts;
+  auto msm = this->m_lst[0].curMoney;
+
+  for (int i = 1; i < this->m_lst.size(); ++i) {
+    auto ccm = getYear(this->m_lst[i].ts);
+    if (ccm != cm) {
+      auto mo = (this->m_lst[i - 1].curMoney - msm) / msm;
+
+      if (this->m_maxMoneyUpYear < mo) {
+        this->m_maxMoneyUpYear = mo;
+        this->m_maxUpYear = sst;
+      }
+
+      if (this->m_maxMoneyDownYear > mo) {
+        this->m_maxMoneyDownYear = mo;
+        this->m_maxDownYear = sst;
+      }
+
+      sst = this->m_lst[i].ts;
+      msm = this->m_lst[i].curMoney;
+
+      cm = ccm;
+    }
+  }
+}
+
+void PNL::calcMaxDate() {
+  this->calcMaxDate_Day();
+  this->calcMaxDate_Week();
+  this->calcMaxDate_Month();
+  this->calcMaxDate_Year();
+}
+
+TimeStamp PNL::getMaxDrawdownStartTime() {
+  if (this->m_maxDrawdownStartI >= 0 &&
+      this->m_maxDrawdownStartI < m_lst.size()) {
+    return this->m_lst[this->m_maxDrawdownStartI].ts;
+  }
+
+  return 0;
+}
+
+TimeStamp PNL::getMaxDrawdownEndTime() {
+  if (this->m_maxDrawdownEndI >= 0 && this->m_maxDrawdownEndI < m_lst.size()) {
+    return this->m_lst[this->m_maxDrawdownEndI].ts;
+  }
+
+  return 0;
 }
 
 CR2END

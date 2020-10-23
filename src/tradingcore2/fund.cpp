@@ -18,9 +18,11 @@ CR2BEGIN
 
 // analysisFund - analysis fund
 bool analysisFund(PNL& pnl, const Exchange& exchange,
+                  const tradingdb2pb::SymbolInfo& si,
                   const tradingdb2pb::Candles& candles) {
   pnl.release();
   pnl.initWithCandles(candles);
+  pnl.calcValidDataPer(si, exchange);
   pnl.onBuildEnd(exchange);
 
   return true;
