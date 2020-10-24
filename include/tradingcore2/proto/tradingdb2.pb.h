@@ -822,6 +822,7 @@ class FundManager :
   // accessors -------------------------------------------------------
 
   enum : int {
+    kResultsFieldNumber = 9,
     kNameFieldNumber = 1,
     kEducationFieldNumber = 6,
     kCountryFieldNumber = 7,
@@ -831,6 +832,24 @@ class FundManager :
     kBirthYearFieldNumber = 4,
     kSexFieldNumber = 5,
   };
+  // repeated .tradingdb2pb.FundResult results = 9;
+  int results_size() const;
+  private:
+  int _internal_results_size() const;
+  public:
+  void clear_results();
+  ::tradingdb2pb::FundResult* mutable_results(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingdb2pb::FundResult >*
+      mutable_results();
+  private:
+  const ::tradingdb2pb::FundResult& _internal_results(int index) const;
+  ::tradingdb2pb::FundResult* _internal_add_results();
+  public:
+  const ::tradingdb2pb::FundResult& results(int index) const;
+  ::tradingdb2pb::FundResult* add_results();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingdb2pb::FundResult >&
+      results() const;
+
   // string name = 1;
   void clear_name();
   const std::string& name() const;
@@ -936,6 +955,7 @@ class FundManager :
   class _Internal;
 
   ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingdb2pb::FundResult > results_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr education_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr country_;
@@ -3872,6 +3892,45 @@ inline void FundManager::set_allocated_resume(std::string* resume) {
   }
   resume_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), resume);
   // @@protoc_insertion_point(field_set_allocated:tradingdb2pb.FundManager.resume)
+}
+
+// repeated .tradingdb2pb.FundResult results = 9;
+inline int FundManager::_internal_results_size() const {
+  return results_.size();
+}
+inline int FundManager::results_size() const {
+  return _internal_results_size();
+}
+inline void FundManager::clear_results() {
+  results_.Clear();
+}
+inline ::tradingdb2pb::FundResult* FundManager::mutable_results(int index) {
+  // @@protoc_insertion_point(field_mutable:tradingdb2pb.FundManager.results)
+  return results_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingdb2pb::FundResult >*
+FundManager::mutable_results() {
+  // @@protoc_insertion_point(field_mutable_list:tradingdb2pb.FundManager.results)
+  return &results_;
+}
+inline const ::tradingdb2pb::FundResult& FundManager::_internal_results(int index) const {
+  return results_.Get(index);
+}
+inline const ::tradingdb2pb::FundResult& FundManager::results(int index) const {
+  // @@protoc_insertion_point(field_get:tradingdb2pb.FundManager.results)
+  return _internal_results(index);
+}
+inline ::tradingdb2pb::FundResult* FundManager::_internal_add_results() {
+  return results_.Add();
+}
+inline ::tradingdb2pb::FundResult* FundManager::add_results() {
+  // @@protoc_insertion_point(field_add:tradingdb2pb.FundManager.results)
+  return _internal_add_results();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingdb2pb::FundResult >&
+FundManager::results() const {
+  // @@protoc_insertion_point(field_list:tradingdb2pb.FundManager.results)
+  return results_;
 }
 
 // -------------------------------------------------------------------

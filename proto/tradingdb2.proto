@@ -43,6 +43,7 @@ message FundManager {
     string education = 6;
     string country = 7;
     string resume = 8;
+    repeated FundResult results = 9;
 }
 
 message FundResult {

@@ -17,7 +17,7 @@
 extern PROTOBUF_INTERNAL_EXPORT_tradingdb2_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Candle_tradingdb2_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_tradingdb2_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_Candles_tradingdb2_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_tradingdb2_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<3> scc_info_Fund_tradingdb2_2eproto;
-extern PROTOBUF_INTERNAL_EXPORT_tradingdb2_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_FundManager_tradingdb2_2eproto;
+extern PROTOBUF_INTERNAL_EXPORT_tradingdb2_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_FundManager_tradingdb2_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_tradingdb2_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_FundResult_tradingdb2_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_tradingdb2_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_FundSize_tradingdb2_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_tradingdb2_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_SymbolInfo_tradingdb2_2eproto;
@@ -144,8 +144,9 @@ static void InitDefaultsscc_info_FundManager_tradingdb2_2eproto() {
   ::tradingdb2pb::FundManager::InitAsDefaultInstance();
 }
 
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_FundManager_tradingdb2_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_FundManager_tradingdb2_2eproto}, {}};
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_FundManager_tradingdb2_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_FundManager_tradingdb2_2eproto}, {
+      &scc_info_FundResult_tradingdb2_2eproto.base,}};
 
 static void InitDefaultsscc_info_FundResult_tradingdb2_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
@@ -372,6 +373,7 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_tradingdb2_2eproto::offsets[] 
   PROTOBUF_FIELD_OFFSET(::tradingdb2pb::FundManager, education_),
   PROTOBUF_FIELD_OFFSET(::tradingdb2pb::FundManager, country_),
   PROTOBUF_FIELD_OFFSET(::tradingdb2pb::FundManager, resume_),
+  PROTOBUF_FIELD_OFFSET(::tradingdb2pb::FundManager, results_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::tradingdb2pb::FundResult, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -478,18 +480,18 @@ static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOB
   { 18, -1, sizeof(::tradingdb2pb::Candles)},
   { 27, -1, sizeof(::tradingdb2pb::FundSize)},
   { 34, -1, sizeof(::tradingdb2pb::FundManager)},
-  { 47, -1, sizeof(::tradingdb2pb::FundResult)},
-  { 60, -1, sizeof(::tradingdb2pb::Fund)},
-  { 73, -1, sizeof(::tradingdb2pb::SymbolInfo)},
-  { 81, -1, sizeof(::tradingdb2pb::RequestUpdCandles)},
-  { 88, -1, sizeof(::tradingdb2pb::ReplyUpdCandles)},
-  { 94, -1, sizeof(::tradingdb2pb::RequestGetCandles)},
-  { 106, -1, sizeof(::tradingdb2pb::ReplyGetCandles)},
-  { 112, -1, sizeof(::tradingdb2pb::RequestUpdSymbol)},
-  { 119, -1, sizeof(::tradingdb2pb::ReplyUpdSymbol)},
-  { 125, -1, sizeof(::tradingdb2pb::RequestGetSymbol)},
-  { 133, -1, sizeof(::tradingdb2pb::ReplyGetSymbol)},
-  { 139, -1, sizeof(::tradingdb2pb::RequestGetSymbols)},
+  { 48, -1, sizeof(::tradingdb2pb::FundResult)},
+  { 61, -1, sizeof(::tradingdb2pb::Fund)},
+  { 74, -1, sizeof(::tradingdb2pb::SymbolInfo)},
+  { 82, -1, sizeof(::tradingdb2pb::RequestUpdCandles)},
+  { 89, -1, sizeof(::tradingdb2pb::ReplyUpdCandles)},
+  { 95, -1, sizeof(::tradingdb2pb::RequestGetCandles)},
+  { 107, -1, sizeof(::tradingdb2pb::ReplyGetCandles)},
+  { 113, -1, sizeof(::tradingdb2pb::RequestUpdSymbol)},
+  { 120, -1, sizeof(::tradingdb2pb::ReplyUpdSymbol)},
+  { 126, -1, sizeof(::tradingdb2pb::RequestGetSymbol)},
+  { 134, -1, sizeof(::tradingdb2pb::ReplyGetSymbol)},
+  { 140, -1, sizeof(::tradingdb2pb::RequestGetSymbols)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
@@ -521,50 +523,51 @@ const char descriptor_table_protodef_tradingdb2_2eproto[] PROTOBUF_SECTION_VARIA
   "\017foreignNotional\030\r \001(\001\"]\n\007Candles\022\016\n\006mar"
   "ket\030\001 \001(\t\022\016\n\006symbol\030\002 \001(\t\022\013\n\003tag\030\003 \001(\t\022%"
   "\n\007candles\030\004 \003(\0132\024.tradingdb2pb.Candle\"&\n"
-  "\010FundSize\022\014\n\004size\030\001 \001(\002\022\014\n\004time\030\002 \001(\003\"\223\001"
+  "\010FundSize\022\014\n\004size\030\001 \001(\002\022\014\n\004time\030\002 \001(\003\"\276\001"
   "\n\013FundManager\022\014\n\004name\030\001 \001(\t\022\021\n\tstartTime"
   "\030\002 \001(\003\022\017\n\007endTime\030\003 \001(\003\022\021\n\tbirthYear\030\004 \001"
   "(\003\022\013\n\003sex\030\005 \001(\010\022\021\n\teducation\030\006 \001(\t\022\017\n\007co"
-  "untry\030\007 \001(\t\022\016\n\006resume\030\010 \001(\t\"\262\001\n\nFundResu"
-  "lt\022\023\n\013maxDrawdown\030\001 \001(\002\022\016\n\006sharpe\030\002 \001(\002\022"
-  "\031\n\021annualizedReturns\030\003 \001(\002\022\034\n\024annualized"
-  "Volatility\030\004 \001(\002\022\024\n\014totalReturns\030\005 \001(\002\022\021"
-  "\n\tstartTime\030\006 \001(\003\022\017\n\007endTime\030\007 \001(\003\022\014\n\004na"
-  "me\030\010 \001(\t\"\323\001\n\004Fund\022\014\n\004code\030\001 \001(\t\022\014\n\004name\030"
-  "\002 \001(\t\022\014\n\004tags\030\003 \003(\t\022\022\n\ncreateTime\030\004 \001(\003\022"
-  "$\n\004size\030\005 \003(\0132\026.tradingdb2pb.FundSize\022\017\n"
-  "\007company\030\006 \001(\t\022+\n\010managers\030\007 \003(\0132\031.tradi"
-  "ngdb2pb.FundManager\022)\n\007results\030\010 \003(\0132\030.t"
-  "radingdb2pb.FundResult\"N\n\nSymbolInfo\022\016\n\006"
-  "market\030\001 \001(\t\022\016\n\006symbol\030\002 \001(\t\022 \n\004fund\030\003 \001"
-  "(\0132\022.tradingdb2pb.Fund\"J\n\021RequestUpdCand"
-  "les\022\r\n\005token\030\001 \001(\t\022&\n\007candles\030\002 \001(\0132\025.tr"
-  "adingdb2pb.Candles\"#\n\017ReplyUpdCandles\022\020\n"
-  "\010lengthOK\030\001 \001(\005\"\201\001\n\021RequestGetCandles\022\r\n"
-  "\005token\030\001 \001(\t\022\016\n\006market\030\002 \001(\t\022\016\n\006symbol\030\003"
-  " \001(\t\022\017\n\003tag\030\004 \001(\tB\002\030\001\022\017\n\007tsStart\030\005 \001(\003\022\r"
-  "\n\005tsEnd\030\006 \001(\003\022\014\n\004tags\030\007 \003(\t\"9\n\017ReplyGetC"
-  "andles\022&\n\007candles\030\001 \001(\0132\025.tradingdb2pb.C"
-  "andles\"K\n\020RequestUpdSymbol\022\r\n\005token\030\001 \001("
-  "\t\022(\n\006symbol\030\002 \001(\0132\030.tradingdb2pb.SymbolI"
-  "nfo\"\036\n\016ReplyUpdSymbol\022\014\n\004isOK\030\001 \001(\010\"A\n\020R"
-  "equestGetSymbol\022\r\n\005token\030\001 \001(\t\022\016\n\006market"
-  "\030\002 \001(\t\022\016\n\006symbol\030\003 \001(\t\":\n\016ReplyGetSymbol"
-  "\022(\n\006symbol\030\001 \001(\0132\030.tradingdb2pb.SymbolIn"
-  "fo\"C\n\021RequestGetSymbols\022\r\n\005token\030\001 \001(\t\022\016"
-  "\n\006market\030\002 \001(\t\022\017\n\007symbols\030\003 \003(\t2\242\003\n\021Trad"
-  "ingDB2Service\022P\n\nupdCandles\022\037.tradingdb2"
-  "pb.RequestUpdCandles\032\035.tradingdb2pb.Repl"
-  "yUpdCandles\"\000(\001\022P\n\ngetCandles\022\037.tradingd"
-  "b2pb.RequestGetCandles\032\035.tradingdb2pb.Re"
-  "plyGetCandles\"\0000\001\022K\n\tupdSymbol\022\036.trading"
-  "db2pb.RequestUpdSymbol\032\034.tradingdb2pb.Re"
-  "plyUpdSymbol\"\000\022K\n\tgetSymbol\022\036.tradingdb2"
-  "pb.RequestGetSymbol\032\034.tradingdb2pb.Reply"
-  "GetSymbol\"\000\022O\n\ngetSymbols\022\037.tradingdb2pb"
-  ".RequestGetSymbols\032\034.tradingdb2pb.ReplyG"
-  "etSymbol\"\0000\001B+Z)github.com/zhs007/tradin"
-  "gdb2/tradingdb2pbb\006proto3"
+  "untry\030\007 \001(\t\022\016\n\006resume\030\010 \001(\t\022)\n\007results\030\t"
+  " \003(\0132\030.tradingdb2pb.FundResult\"\262\001\n\nFundR"
+  "esult\022\023\n\013maxDrawdown\030\001 \001(\002\022\016\n\006sharpe\030\002 \001"
+  "(\002\022\031\n\021annualizedReturns\030\003 \001(\002\022\034\n\024annuali"
+  "zedVolatility\030\004 \001(\002\022\024\n\014totalReturns\030\005 \001("
+  "\002\022\021\n\tstartTime\030\006 \001(\003\022\017\n\007endTime\030\007 \001(\003\022\014\n"
+  "\004name\030\010 \001(\t\"\323\001\n\004Fund\022\014\n\004code\030\001 \001(\t\022\014\n\004na"
+  "me\030\002 \001(\t\022\014\n\004tags\030\003 \003(\t\022\022\n\ncreateTime\030\004 \001"
+  "(\003\022$\n\004size\030\005 \003(\0132\026.tradingdb2pb.FundSize"
+  "\022\017\n\007company\030\006 \001(\t\022+\n\010managers\030\007 \003(\0132\031.tr"
+  "adingdb2pb.FundManager\022)\n\007results\030\010 \003(\0132"
+  "\030.tradingdb2pb.FundResult\"N\n\nSymbolInfo\022"
+  "\016\n\006market\030\001 \001(\t\022\016\n\006symbol\030\002 \001(\t\022 \n\004fund\030"
+  "\003 \001(\0132\022.tradingdb2pb.Fund\"J\n\021RequestUpdC"
+  "andles\022\r\n\005token\030\001 \001(\t\022&\n\007candles\030\002 \001(\0132\025"
+  ".tradingdb2pb.Candles\"#\n\017ReplyUpdCandles"
+  "\022\020\n\010lengthOK\030\001 \001(\005\"\201\001\n\021RequestGetCandles"
+  "\022\r\n\005token\030\001 \001(\t\022\016\n\006market\030\002 \001(\t\022\016\n\006symbo"
+  "l\030\003 \001(\t\022\017\n\003tag\030\004 \001(\tB\002\030\001\022\017\n\007tsStart\030\005 \001("
+  "\003\022\r\n\005tsEnd\030\006 \001(\003\022\014\n\004tags\030\007 \003(\t\"9\n\017ReplyG"
+  "etCandles\022&\n\007candles\030\001 \001(\0132\025.tradingdb2p"
+  "b.Candles\"K\n\020RequestUpdSymbol\022\r\n\005token\030\001"
+  " \001(\t\022(\n\006symbol\030\002 \001(\0132\030.tradingdb2pb.Symb"
+  "olInfo\"\036\n\016ReplyUpdSymbol\022\014\n\004isOK\030\001 \001(\010\"A"
+  "\n\020RequestGetSymbol\022\r\n\005token\030\001 \001(\t\022\016\n\006mar"
+  "ket\030\002 \001(\t\022\016\n\006symbol\030\003 \001(\t\":\n\016ReplyGetSym"
+  "bol\022(\n\006symbol\030\001 \001(\0132\030.tradingdb2pb.Symbo"
+  "lInfo\"C\n\021RequestGetSymbols\022\r\n\005token\030\001 \001("
+  "\t\022\016\n\006market\030\002 \001(\t\022\017\n\007symbols\030\003 \003(\t2\242\003\n\021T"
+  "radingDB2Service\022P\n\nupdCandles\022\037.trading"
+  "db2pb.RequestUpdCandles\032\035.tradingdb2pb.R"
+  "eplyUpdCandles\"\000(\001\022P\n\ngetCandles\022\037.tradi"
+  "ngdb2pb.RequestGetCandles\032\035.tradingdb2pb"
+  ".ReplyGetCandles\"\0000\001\022K\n\tupdSymbol\022\036.trad"
+  "ingdb2pb.RequestUpdSymbol\032\034.tradingdb2pb"
+  ".ReplyUpdSymbol\"\000\022K\n\tgetSymbol\022\036.trading"
+  "db2pb.RequestGetSymbol\032\034.tradingdb2pb.Re"
+  "plyGetSymbol\"\000\022O\n\ngetSymbols\022\037.tradingdb"
+  "2pb.RequestGetSymbols\032\034.tradingdb2pb.Rep"
+  "lyGetSymbol\"\0000\001B+Z)github.com/zhs007/tra"
+  "dingdb2/tradingdb2pbb\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_tradingdb2_2eproto_deps[1] = {
 };
@@ -589,7 +592,7 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_tra
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_tradingdb2_2eproto_once;
 static bool descriptor_table_tradingdb2_2eproto_initialized = false;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_tradingdb2_2eproto = {
-  &descriptor_table_tradingdb2_2eproto_initialized, descriptor_table_protodef_tradingdb2_2eproto, "tradingdb2.proto", 2105,
+  &descriptor_table_tradingdb2_2eproto_initialized, descriptor_table_protodef_tradingdb2_2eproto, "tradingdb2.proto", 2148,
   &descriptor_table_tradingdb2_2eproto_once, descriptor_table_tradingdb2_2eproto_sccs, descriptor_table_tradingdb2_2eproto_deps, 16, 0,
   schemas, file_default_instances, TableStruct_tradingdb2_2eproto::offsets,
   file_level_metadata_tradingdb2_2eproto, 16, file_level_enum_descriptors_tradingdb2_2eproto, file_level_service_descriptors_tradingdb2_2eproto,
@@ -1610,7 +1613,8 @@ FundManager::FundManager()
 }
 FundManager::FundManager(const FundManager& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _internal_metadata_(nullptr) {
+      _internal_metadata_(nullptr),
+      results_(from.results_) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (!from._internal_name().empty()) {
@@ -1672,6 +1676,7 @@ void FundManager::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  results_.Clear();
   name_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   education_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   country_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
@@ -1751,6 +1756,18 @@ const char* FundManager::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID
           ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "tradingdb2pb.FundManager.resume"));
           CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // repeated .tradingdb2pb.FundResult results = 9;
+      case 9:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 74)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(_internal_add_results(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<74>(ptr));
         } else goto handle_unusual;
         continue;
       default: {
@@ -1843,6 +1860,14 @@ failure:
         8, this->_internal_resume(), target);
   }
 
+  // repeated .tradingdb2pb.FundResult results = 9;
+  for (unsigned int i = 0,
+      n = static_cast<unsigned int>(this->_internal_results_size()); i < n; i++) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(9, this->_internal_results(i), target, stream);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields(), target, stream);
@@ -1858,6 +1883,13 @@ size_t FundManager::ByteSizeLong() const {
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
+
+  // repeated .tradingdb2pb.FundResult results = 9;
+  total_size += 1UL * this->_internal_results_size();
+  for (const auto& msg : this->results_) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+  }
 
   // string name = 1;
   if (this->name().size() > 0) {
@@ -1944,6 +1976,7 @@ void FundManager::MergeFrom(const FundManager& from) {
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
+  results_.MergeFrom(from.results_);
   if (from.name().size() > 0) {
 
     name_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.name_);
@@ -1995,6 +2028,7 @@ bool FundManager::IsInitialized() const {
 void FundManager::InternalSwap(FundManager* other) {
   using std::swap;
   _internal_metadata_.Swap(&other->_internal_metadata_);
+  results_.InternalSwap(&other->results_);
   name_.Swap(&other->name_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
     GetArenaNoVirtual());
   education_.Swap(&other->education_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
