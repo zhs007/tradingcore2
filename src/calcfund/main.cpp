@@ -271,6 +271,7 @@ void calcAllManagers(std::string fn, tr2::Config& cfg) {
               cr->set_totalreturns(trd.tr.totalReturn);
               cr->set_starttime(st);
               cr->set_endtime(et);
+              cr->set_sharpe(trd.tr.sharpe);
             }
           }
         }
