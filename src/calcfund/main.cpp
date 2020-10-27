@@ -269,8 +269,8 @@ void calcAllManagers(std::string fn, tr2::Config& cfg) {
               cr->set_annualizedreturns(trd.tr.annualizedReturns);
               cr->set_annualizedvolatility(trd.tr.annualizedVolatility);
               cr->set_totalreturns(trd.tr.totalReturn);
-              cr->set_starttime(st);
-              cr->set_endtime(et);
+              cr->set_starttime(candles.candles(0).ts());
+              cr->set_endtime(candles.candles(candles.candles_size() - 1).ts());
               cr->set_sharpe(trd.tr.sharpe);
             }
           }
