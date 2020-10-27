@@ -124,7 +124,7 @@ bool updSymbol(const char *host, const char *token,
   tradingdb2pb::ReplyUpdSymbol reply;
 
   req.set_token(token);
-  req.set_allocated_symbol(&si);
+  *req.mutable_symbol() = si;
 
   auto status = stub->updSymbol(&context, req, &reply);
   if (status.ok()) {
