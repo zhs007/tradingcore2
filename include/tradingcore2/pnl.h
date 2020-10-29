@@ -60,7 +60,15 @@ class PNL {
         m_maxMoneyUpMonth(0),
         m_maxMoneyDownMonth(0),
         m_maxMoneyUpYear(0),
-        m_maxMoneyDownYear(0) {}
+        m_maxMoneyDownYear(0),
+        m_offSDUpDay(0),
+        m_offSDDownDay(0),
+        m_offSDUpWeek(0),
+        m_offSDDownWeek(0),
+        m_offSDUpMonth(0),
+        m_offSDDownMonth(0),
+        m_offSDUpYear(0),
+        m_offSDDownYear(0) {}
   ~PNL() { this->release(); }
 
  public:
@@ -111,7 +119,11 @@ class PNL {
   TimeStamp getMaxDrawdownEndTime();
 
  protected:
+  float calcDaySD();
+
   void calcMaxDate_Day();
+
+  float calcWeekSD();
 
   void calcMaxDate_Week();
 
@@ -167,6 +179,14 @@ class PNL {
   float m_maxMoneyDownMonth;
   float m_maxMoneyUpYear;
   float m_maxMoneyDownYear;
+  float m_offSDUpDay;
+  float m_offSDDownDay;
+  float m_offSDUpWeek;
+  float m_offSDDownWeek;
+  float m_offSDUpMonth;
+  float m_offSDDownMonth;
+  float m_offSDUpYear;
+  float m_offSDDownYear;
 };
 
 CR2END

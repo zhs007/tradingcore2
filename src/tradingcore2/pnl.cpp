@@ -416,10 +416,14 @@ void PNL::calcMaxDate_Day() {
   this->m_maxDownDay = 0;
   this->m_maxMoneyUpDay = 0;
   this->m_maxMoneyDownDay = 0;
+  this->m_offSDUpDay = 0;
+  this->m_offSDDownDay = 0;
 
   if (this->m_lst.empty()) {
     return;
   }
+
+  float sd = this->calcDaySD();
 
   this->m_maxUpDay = this->m_lst[0].ts;
   this->m_maxDownDay = this->m_lst[0].ts;
@@ -434,11 +438,13 @@ void PNL::calcMaxDate_Day() {
     if (this->m_maxMoneyUpDay < co) {
       this->m_maxMoneyUpDay = co;
       this->m_maxUpDay = this->m_lst[i].ts;
+      this->m_offSDUpDay = (this->m_maxMoneyUpDay - sd) / sd;
     }
 
     if (this->m_maxMoneyDownDay > co) {
       this->m_maxMoneyDownDay = co;
       this->m_maxDownDay = this->m_lst[i].ts;
+      this->m_offSDDownDay = (this->m_maxMoneyDownDay - sd) / sd;
     }
   }
 }
@@ -594,6 +600,36 @@ TimeStamp PNL::getMaxDrawdownEndTime() {
   }
 
   return 0;
+}
+
+float PNL::calcDaySD() {
+  float* pU = new float[this->m_lst.size()];
+
+  float sm = this->m_lst[0].curMoney;
+  for (int i = 0; i < this->m_lst.size(); ++i) {
+    pU[i] = this->m_lst[i].curMoney / sm;
+  }
+
+  float sd = gsl_stats_float_sd(pU, 1, this->m_lst.size());
+
+  delete[] pU;
+
+  return sd;
+}
+
+float PNL::calcWeekSD() {
+  float* pU = new float[this->m_lst.size()];
+
+  float sm = this->m_lst[0].curMoney;
+  for (int i = 0; i < this->m_lst.size(); ++i) {
+    pU[i] = this->m_lst[i].curMoney / sm;
+  }
+
+  float sd = gsl_stats_float_sd(pU, 1, this->m_lst.size());
+
+  delete[] pU;
+
+  return sd;
 }
 
 CR2END
