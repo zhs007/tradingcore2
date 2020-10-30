@@ -418,12 +418,14 @@ void PNL::calcMaxDate_Day() {
   this->m_maxMoneyDownDay = 0;
   this->m_offSDUpDay = 0;
   this->m_offSDDownDay = 0;
+  this->m_sdDay = 0;
 
   if (this->m_lst.empty()) {
     return;
   }
 
   float sd = this->calcDaySD();
+  this->m_sdDay = sd;
 
   this->m_maxUpDay = this->m_lst[0].ts;
   this->m_maxDownDay = this->m_lst[0].ts;
@@ -607,7 +609,7 @@ float PNL::calcDaySD() {
 
   float sm = this->m_lst[0].curMoney;
   for (int i = 0; i < this->m_lst.size(); ++i) {
-    pU[i] = this->m_lst[i].curMoney / sm;
+    pU[i] = (this->m_lst[i].curMoney - sm) / sm;
   }
 
   float sd = gsl_stats_float_sd(pU, 1, this->m_lst.size());
