@@ -565,10 +565,16 @@ void PNL::calcMaxDate_Week() {
   this->m_maxDownWeek = 0;
   this->m_maxMoneyUpWeek = 0;
   this->m_maxMoneyDownWeek = 0;
+  this->m_offSDUpWeek = 0;
+  this->m_offSDDownWeek = 0;
+  this->m_sdWeek = 0;
 
   if (this->m_lst.empty()) {
     return;
   }
+
+  float sd = this->calcWeekSD();
+  this->m_sdWeek = sd;
 
   this->m_maxMoneyUpWeek = -999999;
   this->m_maxMoneyDownWeek = 999999;
@@ -588,11 +594,13 @@ void PNL::calcMaxDate_Week() {
       if (this->m_maxMoneyUpWeek < mo) {
         this->m_maxMoneyUpWeek = mo;
         this->m_maxUpWeek = sst;
+        this->m_offSDUpWeek = (this->m_maxMoneyUpWeek - sd) / sd;
       }
 
       if (this->m_maxMoneyDownWeek > mo) {
         this->m_maxMoneyDownWeek = mo;
         this->m_maxDownWeek = sst;
+        this->m_offSDDownWeek = (this->m_maxMoneyDownWeek - sd) / sd;
       }
 
       sst = this->m_lst[i].ts;
@@ -608,10 +616,16 @@ void PNL::calcMaxDate_Month() {
   this->m_maxDownMonth = 0;
   this->m_maxMoneyUpMonth = 0;
   this->m_maxMoneyDownMonth = 0;
+  this->m_offSDUpMonth = 0;
+  this->m_offSDDownMonth = 0;
+  this->m_sdMonth = 0;
 
   if (this->m_lst.empty()) {
     return;
   }
+
+  float sd = this->calcMonthSD();
+  this->m_sdMonth = sd;
 
   this->m_maxMoneyUpMonth = -999999;
   this->m_maxMoneyDownMonth = 999999;
@@ -631,11 +645,13 @@ void PNL::calcMaxDate_Month() {
       if (this->m_maxMoneyUpMonth < mo) {
         this->m_maxMoneyUpMonth = mo;
         this->m_maxUpMonth = sst;
+        this->m_offSDUpMonth = (this->m_maxMoneyUpMonth - sd) / sd;
       }
 
       if (this->m_maxMoneyDownMonth > mo) {
         this->m_maxMoneyDownMonth = mo;
         this->m_maxDownMonth = sst;
+        this->m_offSDDownMonth = (this->m_maxMoneyDownMonth - sd) / sd;
       }
 
       sst = this->m_lst[i].ts;
@@ -651,10 +667,16 @@ void PNL::calcMaxDate_Year() {
   this->m_maxDownYear = 0;
   this->m_maxMoneyUpYear = 0;
   this->m_maxMoneyDownYear = 0;
+  this->m_offSDUpYear = 0;
+  this->m_offSDDownYear = 0;
+  this->m_sdYear = 0;
 
   if (this->m_lst.empty()) {
     return;
   }
+
+  float sd = this->calcYearSD();
+  this->m_sdYear = sd;
 
   this->m_maxMoneyUpYear = -999999;
   this->m_maxMoneyDownYear = 999999;
@@ -674,11 +696,13 @@ void PNL::calcMaxDate_Year() {
       if (this->m_maxMoneyUpYear < mo) {
         this->m_maxMoneyUpYear = mo;
         this->m_maxUpYear = sst;
+        this->m_offSDUpYear = (this->m_maxMoneyUpYear - sd) / sd;
       }
 
       if (this->m_maxMoneyDownYear > mo) {
         this->m_maxMoneyDownYear = mo;
         this->m_maxDownYear = sst;
+        this->m_offSDDownYear = (this->m_maxMoneyDownYear - sd) / sd;
       }
 
       sst = this->m_lst[i].ts;
@@ -746,13 +770,82 @@ float PNL::calcDaySD() {
 
 float PNL::calcWeekSD() {
   float* pU = new float[this->m_lst.size()];
+  int weeks = 0;
 
+  auto yw = getYearWeekEx(this->m_lst[0].ts);
   float sm = this->m_lst[0].curMoney;
-  for (int i = 0; i < this->m_lst.size(); ++i) {
-    pU[i] = this->m_lst[i].curMoney / sm;
+  float em = this->m_lst[0].curMoney;
+  for (int i = 1; i < this->m_lst.size(); ++i) {
+    auto cyw = getYearWeekEx(this->m_lst[i].ts);
+    if (cyw != yw) {
+      pU[weeks] = (em - sm) / sm;
+      weeks++;
+
+      yw = cyw;
+      sm = this->m_lst[i].curMoney;
+      em = this->m_lst[i].curMoney;
+    } else {
+      em = this->m_lst[i].curMoney;
+    }
   }
 
-  float sd = gsl_stats_float_sd(pU, 1, this->m_lst.size());
+  float sd = gsl_stats_float_sd(pU, 1, weeks);
+
+  delete[] pU;
+
+  return sd;
+}
+
+float PNL::calcMonthSD() {
+  float* pU = new float[this->m_lst.size()];
+  int months = 0;
+
+  auto ym = getYearMonthEx(this->m_lst[0].ts);
+  float sm = this->m_lst[0].curMoney;
+  float em = this->m_lst[0].curMoney;
+  for (int i = 1; i < this->m_lst.size(); ++i) {
+    auto cym = getYearMonthEx(this->m_lst[i].ts);
+    if (cym != ym) {
+      pU[months] = (em - sm) / sm;
+      months++;
+
+      ym = cym;
+      sm = this->m_lst[i].curMoney;
+      em = this->m_lst[i].curMoney;
+    } else {
+      em = this->m_lst[i].curMoney;
+    }
+  }
+
+  float sd = gsl_stats_float_sd(pU, 1, months);
+
+  delete[] pU;
+
+  return sd;
+}
+
+float PNL::calcYearSD() {
+  float* pU = new float[this->m_lst.size()];
+  int years = 0;
+
+  auto y = getYear(this->m_lst[0].ts);
+  float sm = this->m_lst[0].curMoney;
+  float em = this->m_lst[0].curMoney;
+  for (int i = 1; i < this->m_lst.size(); ++i) {
+    auto cy = getYear(this->m_lst[i].ts);
+    if (cy != y) {
+      pU[years] = (em - sm) / sm;
+      years++;
+
+      y = cy;
+      sm = this->m_lst[i].curMoney;
+      em = this->m_lst[i].curMoney;
+    } else {
+      em = this->m_lst[i].curMoney;
+    }
+  }
+
+  float sd = gsl_stats_float_sd(pU, 1, years);
 
   delete[] pU;
 

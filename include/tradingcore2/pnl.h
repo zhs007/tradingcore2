@@ -140,7 +140,11 @@ class PNL {
 
   void calcMaxDate_Week();
 
+  float calcMonthSD();
+
   void calcMaxDate_Month();
+
+  float calcYearSD();
 
   void calcMaxDate_Year();
 
