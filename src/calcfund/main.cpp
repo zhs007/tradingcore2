@@ -26,6 +26,9 @@ struct trData {
   float sdDay;
   time_t startMaxDrawdown;
   time_t endMaxDrawdown;
+  float maxDrawup;
+  time_t startMaxDrawup;
+  time_t endMaxDrawup;
   std::string tags;
   time_t tsCreate;
   tr2::TrainResult tr;
@@ -107,6 +110,9 @@ void calcAllFunds(std::string fn, std::string strStart, std::string strEnd,
           trd.tr.name = si.fund().code().c_str();
           trd.startMaxDrawdown = pnl.getMaxDrawdownStartTime();
           trd.endMaxDrawdown = pnl.getMaxDrawdownEndTime();
+          trd.maxDrawup = pnl.m_maxDrawup;
+          trd.startMaxDrawup = pnl.getMaxDrawupStartTime();
+          trd.endMaxDrawup = pnl.getMaxDrawupEndTime();
 
           for (int i = 0; i < si.fund().tags_size(); ++i) {
             if (i > 0) {
@@ -133,15 +139,17 @@ void calcAllFunds(std::string fn, std::string strStart, std::string strEnd,
   printf("getSymbols %d\n", totalnums);
 
   auto onhead = [](FILE* fp) {
-    fprintf(fp,
-            "code,nums,totalReturn,maxDrawDown,sharpe,annualizedReturns,"
-            "annualizedVolatility,variance,perValidData,durationYear,sdday,"
-            "maxupday,"
-            "permaxupday,offsdupday,maxdownday,permaxdownday,offsddownday,"
-            "maxupweek,permaxupweek,maxdownweek,permaxdownweek,maxupmonth,"
-            "permaxupmonth,maxdownmonth,"
-            "permaxdownmonth,maxupyear,permaxupyear,maxdownyear,"
-            "permaxdownyear,tags,createtime,mddStart,mddEnd\r\n");
+    fprintf(
+        fp,
+        "code,nums,totalReturn,maxDrawDown,mddStart,mddEnd,maxDrawup,mduStart,"
+        "mduEnd,"
+        "sharpe,annualizedReturns,annualizedVolatility,variance,perValidData,"
+        "durationYear,sdday,maxupday,"
+        "permaxupday,offsdupday,maxdownday,permaxdownday,offsddownday,"
+        "maxupweek,permaxupweek,maxdownweek,permaxdownweek,maxupmonth,"
+        "permaxupmonth,maxdownmonth,"
+        "permaxdownmonth,maxupyear,permaxupyear,maxdownyear,"
+        "permaxdownyear,tags,createtime\r\n");
   };
 
   auto onrow = [&lst](FILE* fp, int row) {
@@ -150,15 +158,20 @@ void calcAllFunds(std::string fn, std::string strStart, std::string strEnd,
     }
 
     fprintf(fp,
-            "%s,%d,%f,%f,%f,%f,"
-            "%f,%f,%f,%f,%f,%d,"
+            "%s,%d,%f,%f,%d,%d,%f,%d,"
+            "%d,"
+            "%f,%f,%f,%f,%f,"
+            "%f,%f,%d,"
             "%f,%f,%d,%f,%f,"
             "%d,%f,%d,%f,%d,"
             "%f,%d,"
             "%f,%d,%f,%d,"
-            "%f,%s,%d,%d,%d\r\n",
+            "%f,%s,%d\r\n",
             lst[row].tr.name.c_str(), lst[row].nums, lst[row].tr.totalReturn,
-            lst[row].tr.maxDrawDown, lst[row].tr.sharpe,
+            lst[row].tr.maxDrawDown, tr2::getDate(lst[row].startMaxDrawdown),
+            tr2::getDate(lst[row].endMaxDrawdown), lst[row].maxDrawup,
+            tr2::getDate(lst[row].startMaxDrawup),
+            tr2::getDate(lst[row].endMaxDrawup), lst[row].tr.sharpe,
             lst[row].tr.annualizedReturns, lst[row].tr.annualizedVolatility,
             lst[row].tr.variance, lst[row].perValidData, lst[row].durationYear,
             lst[row].sdDay, tr2::getDate(lst[row].maxUpDay),
@@ -171,9 +184,7 @@ void calcAllFunds(std::string fn, std::string strStart, std::string strEnd,
             lst[row].maxMoneyDownMonth, tr2::getDate(lst[row].maxUpYear),
             lst[row].maxMoneyUpYear, tr2::getDate(lst[row].maxDownYear),
             lst[row].maxMoneyDownYear, lst[row].tags.c_str(),
-            tr2::getDate(lst[row].tsCreate),
-            tr2::getDate(lst[row].startMaxDrawdown),
-            tr2::getDate(lst[row].endMaxDrawdown));
+            tr2::getDate(lst[row].tsCreate));
     return true;
   };
 

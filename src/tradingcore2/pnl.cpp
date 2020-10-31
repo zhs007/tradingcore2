@@ -137,6 +137,8 @@ void PNL::onBuildEnd(const Exchange& exchange) {
 
   this->calcMaxDrawdown();
 
+  this->calcMaxDrawup();
+
   this->calcTotalReturns(exchange);
 
   this->calcAnnualizedReturns(exchange);
@@ -215,6 +217,49 @@ int PNL::findPreUpMin(int starti) {
   return 0;
 }
 
+// 找到 starti 前面的最低点
+int PNL::findPreMin(int starti) {
+  if (this->m_lst.empty()) {
+    return -1;
+  }
+
+  if (starti < 0 || starti >= this->m_lst.size()) {
+    starti = this->m_lst.size() - 1;
+  }
+
+  auto ci = starti;
+  auto mm = this->m_lst[starti].curMoney;
+  for (int i = starti - 1; i >= 0; --i) {
+    if (mm >= this->m_lst[i].curMoney) {
+      ci = i;
+      mm = this->m_lst[i].curMoney;
+    }
+  }
+
+  return ci;
+}
+
+// 找到starti前面第一个阶段性高点
+// 假设starti是一个低点，该函数返回这个低点前一个上涨的终点
+int PNL::findPreDownMax(int starti) {
+  if (this->m_lst.empty()) {
+    return -1;
+  }
+
+  if (starti < 0 || starti >= this->m_lst.size()) {
+    starti = this->m_lst.size() - 1;
+  }
+
+  auto mm = this->m_lst[starti].curMoney;
+  for (int i = starti - 1; i >= 0; --i) {
+    if (this->m_lst[i].curMoney < this->m_lst[i + 1].curMoney) {
+      return i + 1;
+    }
+  }
+
+  return 0;
+}
+
 void PNL::calcMaxDrawdown() {
   // 最大回撤算法，不应该取最低点来算
   // 从最尾部开始算，找到最尾部以前的最大值，再找到这个最大值以后的最小值，然后从最大值再向前重复计算
@@ -255,6 +300,70 @@ void PNL::calcMaxDrawdown() {
   this->m_maxDrawdown = mdd;
   this->m_maxDrawdownStartI = si;
   this->m_maxDrawdownEndI = ei;
+}
+
+// 找到 starti 后面的最高点
+int PNL::findNextMax(int starti) {
+  if (this->m_lst.empty()) {
+    return -1;
+  }
+
+  if (starti < 0 || starti >= this->m_lst.size()) {
+    starti = 0;
+  }
+
+  auto ci = starti;
+  auto mm = this->m_lst[starti].curMoney;
+  for (int i = starti + 1; i < this->m_lst.size(); ++i) {
+    if (mm <= this->m_lst[i].curMoney) {
+      ci = i;
+      mm = this->m_lst[i].curMoney;
+    }
+  }
+
+  return ci;
+}
+
+void PNL::calcMaxDrawup() {
+  // 最大回撤算法，不应该取最低点来算
+  // 从最尾部开始算，找到最尾部以前的最大值，再找到这个最大值以后的最小值，然后从最大值再向前重复计算
+
+  int si = -1, ei = -1;
+  float mdd = 0;
+  int ci = this->m_lst.size() - 1;
+
+  while (ci > 0) {
+    auto csi = this->findPreMin(ci);
+    if (csi < 0) {
+      break;
+    }
+
+    auto cei = this->findNextMax(csi);
+    if (cei < 0) {
+      break;
+    }
+
+    // auto cmdd = 0;
+    // if (this->m_lst[csi].profitRatio == 0) {
+    //   cmdd = fabs(this->m_lst[cei].profitRatio);
+    // } else {
+    auto cmdd =
+        fabs(this->m_lst[csi].profitRatio - this->m_lst[cei].profitRatio) *
+        1.0f / this->m_lst[csi].profitRatio;
+    // }
+
+    if (cmdd > mdd) {
+      si = csi;
+      ei = cei;
+      mdd = cmdd;
+    }
+
+    ci = this->findPreDownMax(csi);
+  }
+
+  this->m_maxDrawup = mdd;
+  this->m_maxDrawupStartI = si;
+  this->m_maxDrawupEndI = ei;
 }
 
 void PNL::calcSharpe(const Exchange& exchange) {
@@ -599,6 +708,22 @@ TimeStamp PNL::getMaxDrawdownStartTime() {
 TimeStamp PNL::getMaxDrawdownEndTime() {
   if (this->m_maxDrawdownEndI >= 0 && this->m_maxDrawdownEndI < m_lst.size()) {
     return this->m_lst[this->m_maxDrawdownEndI].ts;
+  }
+
+  return 0;
+}
+
+TimeStamp PNL::getMaxDrawupStartTime() {
+  if (this->m_maxDrawupStartI >= 0 && this->m_maxDrawupStartI < m_lst.size()) {
+    return this->m_lst[this->m_maxDrawupStartI].ts;
+  }
+
+  return 0;
+}
+
+TimeStamp PNL::getMaxDrawupEndTime() {
+  if (this->m_maxDrawupEndI >= 0 && this->m_maxDrawupEndI < m_lst.size()) {
+    return this->m_lst[this->m_maxDrawupEndI].ts;
   }
 
   return 0;

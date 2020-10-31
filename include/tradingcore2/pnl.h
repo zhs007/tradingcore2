@@ -43,6 +43,9 @@ class PNL {
         m_variance(0),
         m_maxDrawdownStartI(-1),
         m_maxDrawdownEndI(-1),
+        m_maxDrawup(0),
+        m_maxDrawupStartI(-1),
+        m_maxDrawupEndI(-1),
         m_perValidData(0),
         m_durationYear(0),
         m_maxUpDay(0),
@@ -111,6 +114,8 @@ class PNL {
  public:
   void calcMaxDrawdown();
 
+  void calcMaxDrawup();
+
   void calcValidDataPer(const tradingdb2pb::SymbolInfo& si,
                         const Exchange& exchange);
 
@@ -121,6 +126,10 @@ class PNL {
   TimeStamp getMaxDrawdownStartTime();
 
   TimeStamp getMaxDrawdownEndTime();
+
+  TimeStamp getMaxDrawupStartTime();
+
+  TimeStamp getMaxDrawupEndTime();
 
  protected:
   float calcDaySD();
@@ -151,12 +160,24 @@ class PNL {
   // 找到 starti 后面的最低点
   int findNextMin(int starti);
 
+  // 找到 starti 前面的最低点
+  int findPreMin(int starti);
+  // 找到starti前面第一个阶段性高点
+  // 假设starti是一个低点，该函数返回这个低点前一个上涨的终点
+  int findPreDownMax(int starti);
+  // 找到 starti 后面的最高点
+  int findNextMax(int starti);
+
  public:
   List m_lst;
 
   float m_maxDrawdown;
   int m_maxDrawdownStartI;
   int m_maxDrawdownEndI;
+
+  float m_maxDrawup;
+  int m_maxDrawupStartI;
+  int m_maxDrawupEndI;
 
   float m_sharpe;
   float m_annualizedReturns;
