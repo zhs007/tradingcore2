@@ -153,12 +153,17 @@ int getYearWeek(time_t ts) {
   timestamp2timeUTC(fts, fctm);
 
   return (ctm.tm_yday + fctm.tm_wday) / 7;
-  // // 如果元旦是周5，那么除元旦以外的周1-周5都+1
-  // if (ctm.tm_wday <= fctm.tm_wday) {
-  //   return cw + 1;
-  // }
+}
 
-  // return cw;
+// getYearWeekEx - it's like 202001
+int getYearWeekEx(time_t ts) {
+  tm ctm;
+
+  timestamp2timeUTC(ts, ctm);
+  auto year = ctm.tm_year + 1900;
+  int yw = getYearWeek(ts);
+
+  return year * 100 + yw;
 }
 
 // getYearMonth - get month of the year with ts
@@ -168,6 +173,17 @@ int getYearMonth(time_t ts) {
   timestamp2timeUTC(ts, ctm);
 
   return ctm.tm_mon;
+}
+
+// getYearMonthEx - it's like 202001
+int getYearMonthEx(time_t ts) {
+  tm ctm;
+
+  timestamp2timeUTC(ts, ctm);
+  auto year = ctm.tm_year + 1900;
+  int ym = getYearMonth(ts);
+
+  return year * 100 + ym;
 }
 
 // getYear - get year

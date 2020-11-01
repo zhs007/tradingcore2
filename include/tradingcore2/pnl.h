@@ -43,6 +43,9 @@ class PNL {
         m_variance(0),
         m_maxDrawdownStartI(-1),
         m_maxDrawdownEndI(-1),
+        m_maxDrawup(0),
+        m_maxDrawupStartI(-1),
+        m_maxDrawupEndI(-1),
         m_perValidData(0),
         m_durationYear(0),
         m_maxUpDay(0),
@@ -60,7 +63,19 @@ class PNL {
         m_maxMoneyUpMonth(0),
         m_maxMoneyDownMonth(0),
         m_maxMoneyUpYear(0),
-        m_maxMoneyDownYear(0) {}
+        m_maxMoneyDownYear(0),
+        m_offSDUpDay(0),
+        m_offSDDownDay(0),
+        m_offSDUpWeek(0),
+        m_offSDDownWeek(0),
+        m_offSDUpMonth(0),
+        m_offSDDownMonth(0),
+        m_offSDUpYear(0),
+        m_offSDDownYear(0),
+        m_sdDay(0),
+        m_sdWeek(0),
+        m_sdMonth(0),
+        m_sdYear(0) {}
   ~PNL() { this->release(); }
 
  public:
@@ -99,6 +114,8 @@ class PNL {
  public:
   void calcMaxDrawdown();
 
+  void calcMaxDrawup();
+
   void calcValidDataPer(const tradingdb2pb::SymbolInfo& si,
                         const Exchange& exchange);
 
@@ -110,12 +127,24 @@ class PNL {
 
   TimeStamp getMaxDrawdownEndTime();
 
+  TimeStamp getMaxDrawupStartTime();
+
+  TimeStamp getMaxDrawupEndTime();
+
  protected:
+  float calcDaySD();
+
   void calcMaxDate_Day();
+
+  float calcWeekSD();
 
   void calcMaxDate_Week();
 
+  float calcMonthSD();
+
   void calcMaxDate_Month();
+
+  float calcYearSD();
 
   void calcMaxDate_Year();
 
@@ -135,12 +164,24 @@ class PNL {
   // 找到 starti 后面的最低点
   int findNextMin(int starti);
 
+  // 找到 starti 前面的最低点
+  int findPreMin(int starti);
+  // 找到starti前面第一个阶段性高点
+  // 假设starti是一个低点，该函数返回这个低点前一个上涨的终点
+  int findPreDownMax(int starti);
+  // 找到 starti 后面的最高点
+  int findNextMax(int starti);
+
  public:
   List m_lst;
 
   float m_maxDrawdown;
   int m_maxDrawdownStartI;
   int m_maxDrawdownEndI;
+
+  float m_maxDrawup;
+  int m_maxDrawupStartI;
+  int m_maxDrawupEndI;
 
   float m_sharpe;
   float m_annualizedReturns;
@@ -167,6 +208,18 @@ class PNL {
   float m_maxMoneyDownMonth;
   float m_maxMoneyUpYear;
   float m_maxMoneyDownYear;
+  float m_offSDUpDay;
+  float m_offSDDownDay;
+  float m_offSDUpWeek;
+  float m_offSDDownWeek;
+  float m_offSDUpMonth;
+  float m_offSDDownMonth;
+  float m_offSDUpYear;
+  float m_offSDDownYear;
+  float m_sdDay;
+  float m_sdWeek;
+  float m_sdMonth;
+  float m_sdYear;
 };
 
 CR2END

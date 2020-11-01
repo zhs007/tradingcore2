@@ -20,8 +20,14 @@ void timestamp2timeUTC(time_t ts, tm& t);
 // getYearWeek - get week of the year with ts
 int getYearWeek(time_t ts);
 
+// getYearWeekEx - it's like 202001
+int getYearWeekEx(time_t ts);
+
 // getYearMonth - get month of the year with ts
 int getYearMonth(time_t ts);
+
+// getYearMonthEx - it's like 202001
+int getYearMonthEx(time_t ts);
 
 // getYear - get year
 int getYear(time_t ts);
