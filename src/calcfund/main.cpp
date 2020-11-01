@@ -24,6 +24,15 @@ struct trData {
   float offSDUpDay;
   float offSDDownDay;
   float sdDay;
+  float offSDUpWeek;
+  float offSDDownWeek;
+  float sdWeek;
+  float offSDUpMonth;
+  float offSDDownMonth;
+  float sdMonth;
+  float offSDUpYear;
+  float offSDDownYear;
+  float sdYear;
   time_t startMaxDrawdown;
   time_t endMaxDrawdown;
   float maxDrawup;
@@ -46,7 +55,7 @@ struct mgrData {
 void calcAllFunds(std::string fn, std::string strStart, std::string strEnd,
                   tr2::Config& cfg) {
   auto mgr = tr2::ExchangeMgr::getSingleton();
-  mgr->init(cfg);
+  // mgr->init(cfg);
   auto cnfund = mgr->getExchange("cnfund");
 
   std::vector<trData> lst;
@@ -105,6 +114,15 @@ void calcAllFunds(std::string fn, std::string strStart, std::string strEnd,
           trd.offSDUpDay = pnl.m_offSDUpDay;
           trd.offSDDownDay = pnl.m_offSDDownDay;
           trd.sdDay = pnl.m_sdDay;
+          trd.offSDUpWeek = pnl.m_offSDUpWeek;
+          trd.offSDDownWeek = pnl.m_offSDDownWeek;
+          trd.sdWeek = pnl.m_sdWeek;
+          trd.offSDUpMonth = pnl.m_offSDUpMonth;
+          trd.offSDDownMonth = pnl.m_offSDDownMonth;
+          trd.sdMonth = pnl.m_sdMonth;
+          trd.offSDUpYear = pnl.m_offSDUpYear;
+          trd.offSDDownYear = pnl.m_offSDDownYear;
+          trd.sdYear = pnl.m_sdYear;
           trd.tsCreate = si.fund().createtime();
           pnl.getTrainResult(trd.tr);
           trd.tr.name = si.fund().code().c_str();
@@ -146,10 +164,12 @@ void calcAllFunds(std::string fn, std::string strStart, std::string strEnd,
         "sharpe,annualizedReturns,annualizedVolatility,variance,perValidData,"
         "durationYear,sdday,maxupday,"
         "permaxupday,offsdupday,maxdownday,permaxdownday,offsddownday,"
-        "maxupweek,permaxupweek,maxdownweek,permaxdownweek,maxupmonth,"
-        "permaxupmonth,maxdownmonth,"
-        "permaxdownmonth,maxupyear,permaxupyear,maxdownyear,"
-        "permaxdownyear,tags,createtime\r\n");
+        "sdweek,maxupweek,permaxupweek,offsdupweek,maxdownweek,permaxdownweek,"
+        "offsddownweek,sdmonth,maxupmonth,"
+        "permaxupmonth,offsdupmonth,maxdownmonth,"
+        "permaxdownmonth,offsddownmonth,sdyear,maxupyear,permaxupyear,"
+        "offsdupyear,maxdownyear,"
+        "permaxdownyear,offsddownyear,tags,createtime\r\n");
   };
 
   auto onrow = [&lst](FILE* fp, int row) {
@@ -157,34 +177,39 @@ void calcAllFunds(std::string fn, std::string strStart, std::string strEnd,
       return false;
     }
 
-    fprintf(fp,
-            "%s,%d,%f,%f,%d,%d,%f,%d,"
-            "%d,"
-            "%f,%f,%f,%f,%f,"
-            "%f,%f,%d,"
-            "%f,%f,%d,%f,%f,"
-            "%d,%f,%d,%f,%d,"
-            "%f,%d,"
-            "%f,%d,%f,%d,"
-            "%f,%s,%d\r\n",
-            lst[row].tr.name.c_str(), lst[row].nums, lst[row].tr.totalReturn,
-            lst[row].tr.maxDrawDown, tr2::getDate(lst[row].startMaxDrawdown),
-            tr2::getDate(lst[row].endMaxDrawdown), lst[row].maxDrawup,
-            tr2::getDate(lst[row].startMaxDrawup),
-            tr2::getDate(lst[row].endMaxDrawup), lst[row].tr.sharpe,
-            lst[row].tr.annualizedReturns, lst[row].tr.annualizedVolatility,
-            lst[row].tr.variance, lst[row].perValidData, lst[row].durationYear,
-            lst[row].sdDay, tr2::getDate(lst[row].maxUpDay),
-            lst[row].maxMoneyUpDay, lst[row].offSDUpDay,
-            tr2::getDate(lst[row].maxDownDay), lst[row].maxMoneyDownDay,
-            lst[row].offSDDownDay, tr2::getDate(lst[row].maxUpWeek),
-            lst[row].maxMoneyUpWeek, tr2::getDate(lst[row].maxDownWeek),
-            lst[row].maxMoneyDownWeek, tr2::getDate(lst[row].maxUpMonth),
-            lst[row].maxMoneyUpMonth, tr2::getDate(lst[row].maxDownMonth),
-            lst[row].maxMoneyDownMonth, tr2::getDate(lst[row].maxUpYear),
-            lst[row].maxMoneyUpYear, tr2::getDate(lst[row].maxDownYear),
-            lst[row].maxMoneyDownYear, lst[row].tags.c_str(),
-            tr2::getDate(lst[row].tsCreate));
+    fprintf(
+        fp,
+        "%s,%d,%f,%f,%d,%d,%f,%d,"
+        "%d,"
+        "%f,%f,%f,%f,%f,"
+        "%f,%f,%d,"
+        "%f,%f,%d,%f,%f,"
+        "%f,%d,%f,%f,%d,%f,"
+        "%f,%f,%d,"
+        "%f,%f,%d,"
+        "%f,%f,%f,%d,%f,"
+        "%f,%d,"
+        "%f,%f,%s,%d\r\n",
+        lst[row].tr.name.c_str(), lst[row].nums, lst[row].tr.totalReturn,
+        lst[row].tr.maxDrawDown, tr2::getDate(lst[row].startMaxDrawdown),
+        tr2::getDate(lst[row].endMaxDrawdown), lst[row].maxDrawup,
+        tr2::getDate(lst[row].startMaxDrawup),
+        tr2::getDate(lst[row].endMaxDrawup), lst[row].tr.sharpe,
+        lst[row].tr.annualizedReturns, lst[row].tr.annualizedVolatility,
+        lst[row].tr.variance, lst[row].perValidData, lst[row].durationYear,
+        lst[row].sdDay, tr2::getDate(lst[row].maxUpDay), lst[row].maxMoneyUpDay,
+        lst[row].offSDUpDay, tr2::getDate(lst[row].maxDownDay),
+        lst[row].maxMoneyDownDay, lst[row].offSDDownDay, lst[row].sdWeek,
+        tr2::getDate(lst[row].maxUpWeek), lst[row].maxMoneyUpWeek,
+        lst[row].offSDUpWeek, tr2::getDate(lst[row].maxDownWeek),
+        lst[row].maxMoneyDownWeek, lst[row].offSDDownWeek, lst[row].sdMonth,
+        tr2::getDate(lst[row].maxUpMonth), lst[row].maxMoneyUpMonth,
+        lst[row].offSDUpMonth, tr2::getDate(lst[row].maxDownMonth),
+        lst[row].maxMoneyDownMonth, lst[row].offSDDownMonth, lst[row].sdYear,
+        tr2::getDate(lst[row].maxUpYear), lst[row].maxMoneyUpYear,
+        lst[row].offSDUpYear, tr2::getDate(lst[row].maxDownYear),
+        lst[row].maxMoneyDownYear, lst[row].offSDDownYear,
+        lst[row].tags.c_str(), tr2::getDate(lst[row].tsCreate));
     return true;
   };
 
@@ -200,7 +225,7 @@ void calcAllManagers(std::string fn, tr2::Config& cfg) {
       mgrData("off_3m", 3 * 30 * 24 * 60 * 60, -3 * 30 * 24 * 60 * 60));
 
   auto mgr = tr2::ExchangeMgr::getSingleton();
-  mgr->init(cfg);
+  // mgr->init(cfg);
   auto cnfund = mgr->getExchange("cnfund");
 
   std::vector<trData> lst;
@@ -365,7 +390,23 @@ int main(int argc, char* argv[]) {
   tr2::Config cfg;
   tr2::loadConfig(cfg, argv[1]);
 
-  calcAllFunds("../output/calcfund.csv", "", "", cfg);
+  auto mgr = tr2::ExchangeMgr::getSingleton();
+  mgr->init(cfg);
+
+  calcAllFunds("../output/calcfundfull.csv", "", "", cfg);
+  calcAllFunds("../output/calcfund2019.csv", "20190101", "", cfg);
+  calcAllFunds("../output/calcfund2018.csv", "20180101", "", cfg);
+  calcAllFunds("../output/calcfund2017.csv", "20170101", "", cfg);
+  calcAllFunds("../output/calcfund2016.csv", "20160101", "", cfg);
+  calcAllFunds("../output/calcfund2015.csv", "20150101", "", cfg);
+  calcAllFunds("../output/calcfund2014.csv", "20140101", "", cfg);
+  calcAllFunds("../output/calcfund2014y.csv", "20140101", "20150101", cfg);
+  calcAllFunds("../output/calcfund2015y.csv", "20150101", "20160101", cfg);
+  calcAllFunds("../output/calcfund2016y.csv", "20160101", "20170101", cfg);
+  calcAllFunds("../output/calcfund2017y.csv", "20170101", "20180101", cfg);
+  calcAllFunds("../output/calcfund2018y.csv", "20180101", "20190101", cfg);
+  calcAllFunds("../output/calcfund2019y.csv", "20190101", "20200101", cfg);
+
   // calcAllManagers("../output/calcfundmanagers.csv", cfg);
 
   return 0;
