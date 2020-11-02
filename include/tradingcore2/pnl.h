@@ -136,7 +136,7 @@ class PNL {
 
   void calcMaxDate_Day();
 
-  float calcWeekSD();
+  float calcWeekSD(time_t ts);
 
   void calcMaxDate_Week();
 

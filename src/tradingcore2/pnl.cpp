@@ -578,9 +578,6 @@ void PNL::calcMaxDate_Week() {
     return;
   }
 
-  float sd = this->calcWeekSD();
-  this->m_sdWeek = sd;
-
   this->m_maxMoneyUpWeek = -999999;
   this->m_maxMoneyDownWeek = 999999;
 
@@ -599,13 +596,13 @@ void PNL::calcMaxDate_Week() {
       if (this->m_maxMoneyUpWeek < mo) {
         this->m_maxMoneyUpWeek = mo;
         this->m_maxUpWeek = sst;
-        this->m_offSDUpWeek = (this->m_maxMoneyUpWeek - sd) / sd;
+        // this->m_offSDUpWeek = (this->m_maxMoneyUpWeek - sd) / sd;
       }
 
       if (this->m_maxMoneyDownWeek > mo) {
         this->m_maxMoneyDownWeek = mo;
         this->m_maxDownWeek = sst;
-        this->m_offSDDownWeek = (this->m_maxMoneyDownWeek - sd) / sd;
+        // this->m_offSDDownWeek = (this->m_maxMoneyDownWeek - sd) / sd;
       }
 
       sst = this->m_lst[i].ts;
@@ -614,6 +611,14 @@ void PNL::calcMaxDate_Week() {
       cm = ccm;
     }
   }
+
+  float sd = this->calcWeekSD(this->m_maxUpWeek);
+  this->m_sdWeek = sd;
+  this->m_offSDUpWeek = (this->m_maxMoneyUpWeek - sd) / sd;
+
+  sd = this->calcWeekSD(this->m_maxDownWeek);
+  // this->m_sdWeek = sd;
+  this->m_offSDDownWeek = (this->m_maxMoneyDownWeek - sd) / sd;
 }
 
 void PNL::calcMaxDate_Month() {
@@ -778,9 +783,10 @@ float PNL::calcDaySD(time_t ts) {
   return sd;
 }
 
-float PNL::calcWeekSD() {
+float PNL::calcWeekSD(time_t ts) {
   float* pU = new float[this->m_lst.size()];
   int weeks = 0;
+  auto myw = getYearWeekEx(ts);
 
   auto yw = getYearWeekEx(this->m_lst[0].ts);
   float sm = this->m_lst[0].curMoney;
@@ -788,8 +794,9 @@ float PNL::calcWeekSD() {
   for (int i = 1; i < this->m_lst.size(); ++i) {
     auto cyw = getYearWeekEx(this->m_lst[i].ts);
     if (cyw != yw) {
-      pU[weeks] = (em - sm) / sm;
-      weeks++;
+      if (cyw != myw) {
+        pU[weeks++] = (em - sm) / sm;
+      }
 
       yw = cyw;
       sm = this->m_lst[i].curMoney;
