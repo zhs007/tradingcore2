@@ -394,18 +394,18 @@ int main(int argc, char* argv[]) {
   mgr->init(cfg);
 
   calcAllFunds("../output/calcfundfull.csv", "", "", cfg);
-  calcAllFunds("../output/calcfund2019.csv", "20190101", "", cfg);
-  calcAllFunds("../output/calcfund2018.csv", "20180101", "", cfg);
-  calcAllFunds("../output/calcfund2017.csv", "20170101", "", cfg);
-  calcAllFunds("../output/calcfund2016.csv", "20160101", "", cfg);
-  calcAllFunds("../output/calcfund2015.csv", "20150101", "", cfg);
-  calcAllFunds("../output/calcfund2014.csv", "20140101", "", cfg);
-  calcAllFunds("../output/calcfund2014y.csv", "20140101", "20150101", cfg);
-  calcAllFunds("../output/calcfund2015y.csv", "20150101", "20160101", cfg);
-  calcAllFunds("../output/calcfund2016y.csv", "20160101", "20170101", cfg);
-  calcAllFunds("../output/calcfund2017y.csv", "20170101", "20180101", cfg);
-  calcAllFunds("../output/calcfund2018y.csv", "20180101", "20190101", cfg);
-  calcAllFunds("../output/calcfund2019y.csv", "20190101", "20200101", cfg);
+  // calcAllFunds("../output/calcfund2019.csv", "20190101", "", cfg);
+  // calcAllFunds("../output/calcfund2018.csv", "20180101", "", cfg);
+  // calcAllFunds("../output/calcfund2017.csv", "20170101", "", cfg);
+  // calcAllFunds("../output/calcfund2016.csv", "20160101", "", cfg);
+  // calcAllFunds("../output/calcfund2015.csv", "20150101", "", cfg);
+  // calcAllFunds("../output/calcfund2014.csv", "20140101", "", cfg);
+  // calcAllFunds("../output/calcfund2014y.csv", "20140101", "20150101", cfg);
+  // calcAllFunds("../output/calcfund2015y.csv", "20150101", "20160101", cfg);
+  // calcAllFunds("../output/calcfund2016y.csv", "20160101", "20170101", cfg);
+  // calcAllFunds("../output/calcfund2017y.csv", "20170101", "20180101", cfg);
+  // calcAllFunds("../output/calcfund2018y.csv", "20180101", "20190101", cfg);
+  // calcAllFunds("../output/calcfund2019y.csv", "20190101", "20200101", cfg);
 
   // calcAllManagers("../output/calcfundmanagers.csv", cfg);
 

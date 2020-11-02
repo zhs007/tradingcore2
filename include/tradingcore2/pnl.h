@@ -132,7 +132,7 @@ class PNL {
   TimeStamp getMaxDrawupEndTime();
 
  protected:
-  float calcDaySD();
+  float calcDaySD(time_t ts);
 
   void calcMaxDate_Day();
 
