@@ -75,7 +75,8 @@ class PNL {
         m_sdDay(0),
         m_sdWeek(0),
         m_sdMonth(0),
-        m_sdYear(0) {}
+        m_sdYear(0),
+        m_meanDay(0) {}
   ~PNL() { this->release(); }
 
  public:
@@ -132,11 +133,11 @@ class PNL {
   TimeStamp getMaxDrawupEndTime();
 
  protected:
-  float calcDaySD();
+  void calcDaySD(time_t ts, float& sd, float& mean, bool bUp);
 
   void calcMaxDate_Day();
 
-  float calcWeekSD();
+  float calcWeekSD(time_t ts);
 
   void calcMaxDate_Week();
 
@@ -217,6 +218,7 @@ class PNL {
   float m_offSDUpYear;
   float m_offSDDownYear;
   float m_sdDay;
+  float m_meanDay;
   float m_sdWeek;
   float m_sdMonth;
   float m_sdYear;
