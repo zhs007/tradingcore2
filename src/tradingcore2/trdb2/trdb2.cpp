@@ -2,7 +2,7 @@
 #include <grpcpp/grpcpp.h>
 #include <tradingcore2/client/train2.h>
 #include <tradingcore2/exchange.h>
-#include <tradingcore2/proto/tradingdb2.grpc.pb.h>
+#include <tradingcore2/protos/tradingdb2.grpc.pb.h>
 #include <tradingcore2/train.h>
 #include <tradingcore2/trdb2/client.h>
 #include <tradingcore2/utils.h>
@@ -15,7 +15,7 @@
 CR2BEGIN
 
 // getCandles - get candles
-bool getCandles(tradingdb2pb::Candles &candles, const char *host,
+bool getCandles(tradingpb::Candles &candles, const char *host,
                 const char *token, const char *market, const char *symbol,
                 std::vector<const char *> *pTags, int64_t tsStart,
                 int64_t tsEnd) {
@@ -23,12 +23,12 @@ bool getCandles(tradingdb2pb::Candles &candles, const char *host,
   candles.set_symbol(symbol);
   // candles.set_tag(tag);
 
-  auto stub = tradingdb2pb::TradingDB2Service::NewStub(
+  auto stub = tradingpb::TradingDB2::NewStub(
       grpc::CreateChannel(host, grpc::InsecureChannelCredentials()));
 
-  tradingdb2pb::RequestGetCandles req;
+  tradingpb::RequestGetCandles req;
   grpc::ClientContext context;
-  tradingdb2pb::ReplyGetCandles reply;
+  tradingpb::ReplyGetCandles reply;
 
   req.set_token(token);
   req.set_market(market);
@@ -42,7 +42,7 @@ bool getCandles(tradingdb2pb::Candles &candles, const char *host,
     }
   }
 
-  std::unique_ptr<grpc::ClientReader<tradingdb2pb::ReplyGetCandles>> reader(
+  std::unique_ptr<grpc::ClientReader<tradingpb::ReplyGetCandles>> reader(
       stub->getCandles(&context, req));
 
   while (reader->Read(&reply)) {
@@ -80,12 +80,12 @@ bool getCandles(tradingdb2pb::Candles &candles, const char *host,
 bool getSymbols(const char *host, const char *token, const char *market,
                 std::vector<const char *> *pSymbols,
                 FuncOnSymbol funcOnSymbol) {
-  auto stub = tradingdb2pb::TradingDB2Service::NewStub(
+  auto stub = tradingpb::TradingDB2::NewStub(
       grpc::CreateChannel(host, grpc::InsecureChannelCredentials()));
 
-  tradingdb2pb::RequestGetSymbols req;
+  tradingpb::RequestGetSymbols req;
   grpc::ClientContext context;
-  tradingdb2pb::ReplyGetSymbol reply;
+  tradingpb::ReplyGetSymbol reply;
 
   req.set_token(token);
   req.set_market(market);
@@ -96,7 +96,7 @@ bool getSymbols(const char *host, const char *token, const char *market,
     }
   }
 
-  std::unique_ptr<grpc::ClientReader<tradingdb2pb::ReplyGetSymbol>> reader(
+  std::unique_ptr<grpc::ClientReader<tradingpb::ReplyGetSymbol>> reader(
       stub->getSymbols(&context, req));
 
   while (reader->Read(&reply)) {
@@ -116,12 +116,12 @@ bool getSymbols(const char *host, const char *token, const char *market,
 
 // updSymbol - update symbol
 bool updSymbol(const char *host, const char *token,
-               tradingdb2pb::SymbolInfo &si) {
-  auto stub = tradingdb2pb::TradingDB2Service::NewStub(
+               tradingpb::SymbolInfo &si) {
+  auto stub = tradingpb::TradingDB2::NewStub(
       grpc::CreateChannel(host, grpc::InsecureChannelCredentials()));
   grpc::ClientContext context;
-  tradingdb2pb::RequestUpdSymbol req;
-  tradingdb2pb::ReplyUpdSymbol reply;
+  tradingpb::RequestUpdSymbol req;
+  tradingpb::ReplyUpdSymbol reply;
 
   req.set_token(token);
   *req.mutable_symbol() = si;

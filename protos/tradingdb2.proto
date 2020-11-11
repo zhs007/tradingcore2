@@ -1,6 +1,6 @@
 syntax = "proto3";
-package tradingdb2pb;
-option go_package = "github.com/zhs007/tradingdb2/tradingdb2pb";
+package tradingpb;
+option go_package = "github.com/zhs007/tradingdb2/tradingpb";
 
 // Candle - candle
 message Candle {
@@ -133,8 +133,8 @@ message RequestGetSymbols {
     repeated string symbols = 3;
 }
 
-// TradingDB2Service - TradingDB2 service
-service TradingDB2Service {
+// TradingDB2 - TradingDB2 service
+service TradingDB2 {
 	// updCandles - update candles
     rpc updCandles(stream RequestUpdCandles) returns (ReplyUpdCandles) {}
 	// getCandles - get candles

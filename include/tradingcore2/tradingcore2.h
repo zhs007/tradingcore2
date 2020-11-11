@@ -24,8 +24,8 @@
 #include <tradingcore2/indicatormgr.h>
 #include <tradingcore2/logs.h>
 #include <tradingcore2/pnl.h>
-#include <tradingcore2/proto/tradingcore2.grpc.pb.h>
-#include <tradingcore2/proto/tradingdb2.grpc.pb.h>
+#include <tradingcore2/protos/tradingcore2.grpc.pb.h>
+#include <tradingcore2/protos/tradingdb2.grpc.pb.h>
 #include <tradingcore2/server.h>
 #include <tradingcore2/server/train2.h>
 #include <tradingcore2/spinlock.h>

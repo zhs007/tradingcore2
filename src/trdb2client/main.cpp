@@ -16,7 +16,7 @@ int main(int argc, char *argv[]) {
   tr2::Config cfg;
   tr2::loadConfig(cfg, argv[1]);
 
-  tradingdb2pb::Candles candles;
+  tradingpb::Candles candles;
   auto ret =
       tr2::getCandles(candles, cfg.trdb2Serv.c_str(), cfg.trdb2Token.c_str(),
                       "cnfunds", "000001", NULL, 0, 0);

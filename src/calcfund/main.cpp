@@ -64,7 +64,7 @@ void calcAllFunds(std::string fn, std::string strStart, std::string strEnd,
   int totalnums = 0;
   auto ret = tr2::getSymbols(
       cfg.trdb2Serv.c_str(), cfg.trdb2Token.c_str(), "cnfunds", NULL,
-      [&](tradingdb2pb::SymbolInfo& si) {
+      [&](tradingpb::SymbolInfo& si) {
         printf("onSymbol %s\n", si.fund().code().c_str());
 
         time_t st = 0;
@@ -78,7 +78,7 @@ void calcAllFunds(std::string fn, std::string strStart, std::string strEnd,
           et = tr2::str2timestampUTC(strEnd.c_str(), "%Y%m%d");
         }
 
-        tradingdb2pb::Candles candles;
+        tradingpb::Candles candles;
         auto ret = tr2::getCandles(candles, cfg.trdb2Serv.c_str(),
                                    cfg.trdb2Token.c_str(), "cnfunds",
                                    si.fund().code().c_str(), NULL, st, et - 1);
@@ -236,9 +236,9 @@ void calcAllManagers(std::string fn, tr2::Config& cfg) {
   int totalnums = 0;
   auto ret = tr2::getSymbols(
       cfg.trdb2Serv.c_str(), cfg.trdb2Token.c_str(), "cnfunds", NULL,
-      [&](tradingdb2pb::SymbolInfo& si) {
+      [&](tradingpb::SymbolInfo& si) {
         printf("onSymbol %s\n", si.fund().code().c_str());
-        tradingdb2pb::SymbolInfo nsi(si);
+        tradingpb::SymbolInfo nsi(si);
         auto matfund = nsi.mutable_fund();
 
         for (int i = 0; i < si.fund().managers_size(); ++i) {
@@ -258,7 +258,7 @@ void calcAllManagers(std::string fn, tr2::Config& cfg) {
               st = cm.endtime() + it->etOff + 24 * 60 * 60 - 1;
             }
 
-            tradingdb2pb::Candles candles;
+            tradingpb::Candles candles;
             auto ret = tr2::getCandles(candles, cfg.trdb2Serv.c_str(),
                                        cfg.trdb2Token.c_str(), "cnfunds",
                                        si.fund().code().c_str(), NULL, st, et);

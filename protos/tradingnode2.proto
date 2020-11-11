@@ -1,0 +1,90 @@
+syntax = "proto3";
+package tradingpb;
+option go_package = "github.com/zhs007/tradingdb2/tradingpb";
+
+// Asset - asset
+message Asset {
+    string market = 1;
+    string code = 2;
+}
+
+// CtrlCondition - control condition
+message CtrlCondition {
+    string indicator = 1;
+    repeated float vals = 2;
+    repeated string operators = 3;  // 操作符，按道理应该和 vals 长度一样，大于小于等于
+    string combCondition = 4;       // 组合条件，如果有多个操作条件，这里是 与或非
+}
+
+// Strategy - strategy
+message Strategy {
+    string name = 1;
+    Asset asset = 2;
+    repeated CtrlCondition buy = 3;
+    repeated CtrlCondition sell = 4;
+    repeated CtrlCondition stoploss = 5;
+}
+
+// PNLDataValue - 
+message PNLDataValue {
+    int64 ts = 1;
+    float value = 2;
+}
+
+// PNLData - 
+message PNLData {
+    string name = 1;
+    Asset asset = 2;
+    repeated PNLDataValue values = 3;
+    float maxDrawdown = 4;
+    int64 maxDrawdownStartTs = 5;
+    int64 maxDrawdownEndTs = 6;
+    float maxDrawup = 7;
+    int64 maxDrawupStartTs = 8;
+    int64 maxDrawupEndTs = 9;
+    float sharpe = 10;
+    float annualizedReturns = 11;
+    float annualizedVolatility = 12;
+    float totalReturns = 13;
+    float variance = 14;
+    int32 buyTimes = 15;
+    int32 sellTimes = 16;
+    int32 stoplossTimes = 17;
+    int64 maxUpDayTs = 18;
+    float maxPerUpDay = 19;
+    int64 maxDownDayTs = 20;
+    float maxPerDownDay = 21;
+    int64 maxUpWeekTs = 22;
+    float maxPerUpWeek = 23;
+    int64 maxDownWeekTs = 24;
+    float maxPerDownWeek = 25;
+    int64 maxUpMonthTs = 26;
+    float maxPerUpMonth = 27;
+    int64 maxDownMonthTs = 28;
+    float maxPerDownMonth = 29;
+    int64 maxUpYearTs = 30;
+    float maxPerUpYear = 31;
+    int64 maxDownYearTs = 32;
+    float maxPerDownYear = 33;
+}
+
+// RequestCalcPNL - request calcPNL
+message RequestCalcPNL {
+    string token = 1;
+    repeated Asset assets = 2;
+    repeated Asset baselines = 3;
+    int64 startTs = 4;
+    int64 endTs = 5;
+    repeated Strategy strategies = 6;
+}
+
+// ReplyCalcPNL - reply calcPNL
+message ReplyCalcPNL{
+    repeated PNLData pnl = 1;
+}
+
+// TradingNode2 - TradingNode2 service
+service TradingNode2 {
+	// calcPNL - calc PNL
+    rpc calcPNL(RequestCalcPNL) returns (ReplyCalcPNL) {}
+}
