@@ -54,7 +54,7 @@ struct TableStruct_tradingdb2_2eproto {
   static const ::PROTOBUF_NAMESPACE_ID::uint32 offsets[];
 };
 extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_tradingdb2_2eproto;
-namespace tradingdb2pb {
+namespace tradingpb {
 class Candle;
 class CandleDefaultTypeInternal;
 extern CandleDefaultTypeInternal _Candle_default_instance_;
@@ -103,31 +103,31 @@ extern RequestUpdSymbolDefaultTypeInternal _RequestUpdSymbol_default_instance_;
 class SymbolInfo;
 class SymbolInfoDefaultTypeInternal;
 extern SymbolInfoDefaultTypeInternal _SymbolInfo_default_instance_;
-}  // namespace tradingdb2pb
+}  // namespace tradingpb
 PROTOBUF_NAMESPACE_OPEN
-template<> ::tradingdb2pb::Candle* Arena::CreateMaybeMessage<::tradingdb2pb::Candle>(Arena*);
-template<> ::tradingdb2pb::Candles* Arena::CreateMaybeMessage<::tradingdb2pb::Candles>(Arena*);
-template<> ::tradingdb2pb::Fund* Arena::CreateMaybeMessage<::tradingdb2pb::Fund>(Arena*);
-template<> ::tradingdb2pb::FundManager* Arena::CreateMaybeMessage<::tradingdb2pb::FundManager>(Arena*);
-template<> ::tradingdb2pb::FundResult* Arena::CreateMaybeMessage<::tradingdb2pb::FundResult>(Arena*);
-template<> ::tradingdb2pb::FundSize* Arena::CreateMaybeMessage<::tradingdb2pb::FundSize>(Arena*);
-template<> ::tradingdb2pb::ReplyGetCandles* Arena::CreateMaybeMessage<::tradingdb2pb::ReplyGetCandles>(Arena*);
-template<> ::tradingdb2pb::ReplyGetSymbol* Arena::CreateMaybeMessage<::tradingdb2pb::ReplyGetSymbol>(Arena*);
-template<> ::tradingdb2pb::ReplyUpdCandles* Arena::CreateMaybeMessage<::tradingdb2pb::ReplyUpdCandles>(Arena*);
-template<> ::tradingdb2pb::ReplyUpdSymbol* Arena::CreateMaybeMessage<::tradingdb2pb::ReplyUpdSymbol>(Arena*);
-template<> ::tradingdb2pb::RequestGetCandles* Arena::CreateMaybeMessage<::tradingdb2pb::RequestGetCandles>(Arena*);
-template<> ::tradingdb2pb::RequestGetSymbol* Arena::CreateMaybeMessage<::tradingdb2pb::RequestGetSymbol>(Arena*);
-template<> ::tradingdb2pb::RequestGetSymbols* Arena::CreateMaybeMessage<::tradingdb2pb::RequestGetSymbols>(Arena*);
-template<> ::tradingdb2pb::RequestUpdCandles* Arena::CreateMaybeMessage<::tradingdb2pb::RequestUpdCandles>(Arena*);
-template<> ::tradingdb2pb::RequestUpdSymbol* Arena::CreateMaybeMessage<::tradingdb2pb::RequestUpdSymbol>(Arena*);
-template<> ::tradingdb2pb::SymbolInfo* Arena::CreateMaybeMessage<::tradingdb2pb::SymbolInfo>(Arena*);
+template<> ::tradingpb::Candle* Arena::CreateMaybeMessage<::tradingpb::Candle>(Arena*);
+template<> ::tradingpb::Candles* Arena::CreateMaybeMessage<::tradingpb::Candles>(Arena*);
+template<> ::tradingpb::Fund* Arena::CreateMaybeMessage<::tradingpb::Fund>(Arena*);
+template<> ::tradingpb::FundManager* Arena::CreateMaybeMessage<::tradingpb::FundManager>(Arena*);
+template<> ::tradingpb::FundResult* Arena::CreateMaybeMessage<::tradingpb::FundResult>(Arena*);
+template<> ::tradingpb::FundSize* Arena::CreateMaybeMessage<::tradingpb::FundSize>(Arena*);
+template<> ::tradingpb::ReplyGetCandles* Arena::CreateMaybeMessage<::tradingpb::ReplyGetCandles>(Arena*);
+template<> ::tradingpb::ReplyGetSymbol* Arena::CreateMaybeMessage<::tradingpb::ReplyGetSymbol>(Arena*);
+template<> ::tradingpb::ReplyUpdCandles* Arena::CreateMaybeMessage<::tradingpb::ReplyUpdCandles>(Arena*);
+template<> ::tradingpb::ReplyUpdSymbol* Arena::CreateMaybeMessage<::tradingpb::ReplyUpdSymbol>(Arena*);
+template<> ::tradingpb::RequestGetCandles* Arena::CreateMaybeMessage<::tradingpb::RequestGetCandles>(Arena*);
+template<> ::tradingpb::RequestGetSymbol* Arena::CreateMaybeMessage<::tradingpb::RequestGetSymbol>(Arena*);
+template<> ::tradingpb::RequestGetSymbols* Arena::CreateMaybeMessage<::tradingpb::RequestGetSymbols>(Arena*);
+template<> ::tradingpb::RequestUpdCandles* Arena::CreateMaybeMessage<::tradingpb::RequestUpdCandles>(Arena*);
+template<> ::tradingpb::RequestUpdSymbol* Arena::CreateMaybeMessage<::tradingpb::RequestUpdSymbol>(Arena*);
+template<> ::tradingpb::SymbolInfo* Arena::CreateMaybeMessage<::tradingpb::SymbolInfo>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
-namespace tradingdb2pb {
+namespace tradingpb {
 
 // ===================================================================
 
 class Candle :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tradingdb2pb.Candle) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tradingpb.Candle) */ {
  public:
   Candle();
   virtual ~Candle();
@@ -207,7 +207,7 @@ class Candle :
   void InternalSwap(Candle* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "tradingdb2pb.Candle";
+    return "tradingpb.Candle";
   }
   private:
   inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
@@ -363,7 +363,7 @@ class Candle :
   void _internal_set_foreignnotional(double value);
   public:
 
-  // @@protoc_insertion_point(class_scope:tradingdb2pb.Candle)
+  // @@protoc_insertion_point(class_scope:tradingpb.Candle)
  private:
   class _Internal;
 
@@ -387,7 +387,7 @@ class Candle :
 // -------------------------------------------------------------------
 
 class Candles :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tradingdb2pb.Candles) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tradingpb.Candles) */ {
  public:
   Candles();
   virtual ~Candles();
@@ -467,7 +467,7 @@ class Candles :
   void InternalSwap(Candles* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "tradingdb2pb.Candles";
+    return "tradingpb.Candles";
   }
   private:
   inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
@@ -497,22 +497,22 @@ class Candles :
     kSymbolFieldNumber = 2,
     kTagFieldNumber = 3,
   };
-  // repeated .tradingdb2pb.Candle candles = 4;
+  // repeated .tradingpb.Candle candles = 4;
   int candles_size() const;
   private:
   int _internal_candles_size() const;
   public:
   void clear_candles();
-  ::tradingdb2pb::Candle* mutable_candles(int index);
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingdb2pb::Candle >*
+  ::tradingpb::Candle* mutable_candles(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingpb::Candle >*
       mutable_candles();
   private:
-  const ::tradingdb2pb::Candle& _internal_candles(int index) const;
-  ::tradingdb2pb::Candle* _internal_add_candles();
+  const ::tradingpb::Candle& _internal_candles(int index) const;
+  ::tradingpb::Candle* _internal_add_candles();
   public:
-  const ::tradingdb2pb::Candle& candles(int index) const;
-  ::tradingdb2pb::Candle* add_candles();
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingdb2pb::Candle >&
+  const ::tradingpb::Candle& candles(int index) const;
+  ::tradingpb::Candle* add_candles();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingpb::Candle >&
       candles() const;
 
   // string market = 1;
@@ -563,12 +563,12 @@ class Candles :
   std::string* _internal_mutable_tag();
   public:
 
-  // @@protoc_insertion_point(class_scope:tradingdb2pb.Candles)
+  // @@protoc_insertion_point(class_scope:tradingpb.Candles)
  private:
   class _Internal;
 
   ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingdb2pb::Candle > candles_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingpb::Candle > candles_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr market_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr symbol_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr tag_;
@@ -578,7 +578,7 @@ class Candles :
 // -------------------------------------------------------------------
 
 class FundSize :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tradingdb2pb.FundSize) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tradingpb.FundSize) */ {
  public:
   FundSize();
   virtual ~FundSize();
@@ -658,7 +658,7 @@ class FundSize :
   void InternalSwap(FundSize* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "tradingdb2pb.FundSize";
+    return "tradingpb.FundSize";
   }
   private:
   inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
@@ -704,7 +704,7 @@ class FundSize :
   void _internal_set_size(float value);
   public:
 
-  // @@protoc_insertion_point(class_scope:tradingdb2pb.FundSize)
+  // @@protoc_insertion_point(class_scope:tradingpb.FundSize)
  private:
   class _Internal;
 
@@ -717,7 +717,7 @@ class FundSize :
 // -------------------------------------------------------------------
 
 class FundManager :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tradingdb2pb.FundManager) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tradingpb.FundManager) */ {
  public:
   FundManager();
   virtual ~FundManager();
@@ -797,7 +797,7 @@ class FundManager :
   void InternalSwap(FundManager* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "tradingdb2pb.FundManager";
+    return "tradingpb.FundManager";
   }
   private:
   inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
@@ -832,22 +832,22 @@ class FundManager :
     kBirthYearFieldNumber = 4,
     kSexFieldNumber = 5,
   };
-  // repeated .tradingdb2pb.FundResult results = 9;
+  // repeated .tradingpb.FundResult results = 9;
   int results_size() const;
   private:
   int _internal_results_size() const;
   public:
   void clear_results();
-  ::tradingdb2pb::FundResult* mutable_results(int index);
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingdb2pb::FundResult >*
+  ::tradingpb::FundResult* mutable_results(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingpb::FundResult >*
       mutable_results();
   private:
-  const ::tradingdb2pb::FundResult& _internal_results(int index) const;
-  ::tradingdb2pb::FundResult* _internal_add_results();
+  const ::tradingpb::FundResult& _internal_results(int index) const;
+  ::tradingpb::FundResult* _internal_add_results();
   public:
-  const ::tradingdb2pb::FundResult& results(int index) const;
-  ::tradingdb2pb::FundResult* add_results();
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingdb2pb::FundResult >&
+  const ::tradingpb::FundResult& results(int index) const;
+  ::tradingpb::FundResult* add_results();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingpb::FundResult >&
       results() const;
 
   // string name = 1;
@@ -950,12 +950,12 @@ class FundManager :
   void _internal_set_sex(bool value);
   public:
 
-  // @@protoc_insertion_point(class_scope:tradingdb2pb.FundManager)
+  // @@protoc_insertion_point(class_scope:tradingpb.FundManager)
  private:
   class _Internal;
 
   ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingdb2pb::FundResult > results_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingpb::FundResult > results_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr education_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr country_;
@@ -970,7 +970,7 @@ class FundManager :
 // -------------------------------------------------------------------
 
 class FundResult :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tradingdb2pb.FundResult) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tradingpb.FundResult) */ {
  public:
   FundResult();
   virtual ~FundResult();
@@ -1050,7 +1050,7 @@ class FundResult :
   void InternalSwap(FundResult* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "tradingdb2pb.FundResult";
+    return "tradingpb.FundResult";
   }
   private:
   inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
@@ -1163,7 +1163,7 @@ class FundResult :
   void _internal_set_totalreturns(float value);
   public:
 
-  // @@protoc_insertion_point(class_scope:tradingdb2pb.FundResult)
+  // @@protoc_insertion_point(class_scope:tradingpb.FundResult)
  private:
   class _Internal;
 
@@ -1182,7 +1182,7 @@ class FundResult :
 // -------------------------------------------------------------------
 
 class Fund :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tradingdb2pb.Fund) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tradingpb.Fund) */ {
  public:
   Fund();
   virtual ~Fund();
@@ -1262,7 +1262,7 @@ class Fund :
   void InternalSwap(Fund* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "tradingdb2pb.Fund";
+    return "tradingpb.Fund";
   }
   private:
   inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
@@ -1320,58 +1320,58 @@ class Fund :
   std::string* _internal_add_tags();
   public:
 
-  // repeated .tradingdb2pb.FundSize size = 5;
+  // repeated .tradingpb.FundSize size = 5;
   int size_size() const;
   private:
   int _internal_size_size() const;
   public:
   void clear_size();
-  ::tradingdb2pb::FundSize* mutable_size(int index);
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingdb2pb::FundSize >*
+  ::tradingpb::FundSize* mutable_size(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingpb::FundSize >*
       mutable_size();
   private:
-  const ::tradingdb2pb::FundSize& _internal_size(int index) const;
-  ::tradingdb2pb::FundSize* _internal_add_size();
+  const ::tradingpb::FundSize& _internal_size(int index) const;
+  ::tradingpb::FundSize* _internal_add_size();
   public:
-  const ::tradingdb2pb::FundSize& size(int index) const;
-  ::tradingdb2pb::FundSize* add_size();
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingdb2pb::FundSize >&
+  const ::tradingpb::FundSize& size(int index) const;
+  ::tradingpb::FundSize* add_size();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingpb::FundSize >&
       size() const;
 
-  // repeated .tradingdb2pb.FundManager managers = 7;
+  // repeated .tradingpb.FundManager managers = 7;
   int managers_size() const;
   private:
   int _internal_managers_size() const;
   public:
   void clear_managers();
-  ::tradingdb2pb::FundManager* mutable_managers(int index);
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingdb2pb::FundManager >*
+  ::tradingpb::FundManager* mutable_managers(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingpb::FundManager >*
       mutable_managers();
   private:
-  const ::tradingdb2pb::FundManager& _internal_managers(int index) const;
-  ::tradingdb2pb::FundManager* _internal_add_managers();
+  const ::tradingpb::FundManager& _internal_managers(int index) const;
+  ::tradingpb::FundManager* _internal_add_managers();
   public:
-  const ::tradingdb2pb::FundManager& managers(int index) const;
-  ::tradingdb2pb::FundManager* add_managers();
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingdb2pb::FundManager >&
+  const ::tradingpb::FundManager& managers(int index) const;
+  ::tradingpb::FundManager* add_managers();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingpb::FundManager >&
       managers() const;
 
-  // repeated .tradingdb2pb.FundResult results = 8;
+  // repeated .tradingpb.FundResult results = 8;
   int results_size() const;
   private:
   int _internal_results_size() const;
   public:
   void clear_results();
-  ::tradingdb2pb::FundResult* mutable_results(int index);
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingdb2pb::FundResult >*
+  ::tradingpb::FundResult* mutable_results(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingpb::FundResult >*
       mutable_results();
   private:
-  const ::tradingdb2pb::FundResult& _internal_results(int index) const;
-  ::tradingdb2pb::FundResult* _internal_add_results();
+  const ::tradingpb::FundResult& _internal_results(int index) const;
+  ::tradingpb::FundResult* _internal_add_results();
   public:
-  const ::tradingdb2pb::FundResult& results(int index) const;
-  ::tradingdb2pb::FundResult* add_results();
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingdb2pb::FundResult >&
+  const ::tradingpb::FundResult& results(int index) const;
+  ::tradingpb::FundResult* add_results();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingpb::FundResult >&
       results() const;
 
   // string code = 1;
@@ -1431,15 +1431,15 @@ class Fund :
   void _internal_set_createtime(::PROTOBUF_NAMESPACE_ID::int64 value);
   public:
 
-  // @@protoc_insertion_point(class_scope:tradingdb2pb.Fund)
+  // @@protoc_insertion_point(class_scope:tradingpb.Fund)
  private:
   class _Internal;
 
   ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> tags_;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingdb2pb::FundSize > size_;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingdb2pb::FundManager > managers_;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingdb2pb::FundResult > results_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingpb::FundSize > size_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingpb::FundManager > managers_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingpb::FundResult > results_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr code_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr company_;
@@ -1450,7 +1450,7 @@ class Fund :
 // -------------------------------------------------------------------
 
 class SymbolInfo :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tradingdb2pb.SymbolInfo) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tradingpb.SymbolInfo) */ {
  public:
   SymbolInfo();
   virtual ~SymbolInfo();
@@ -1530,7 +1530,7 @@ class SymbolInfo :
   void InternalSwap(SymbolInfo* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "tradingdb2pb.SymbolInfo";
+    return "tradingpb.SymbolInfo";
   }
   private:
   inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
@@ -1591,36 +1591,36 @@ class SymbolInfo :
   std::string* _internal_mutable_symbol();
   public:
 
-  // .tradingdb2pb.Fund fund = 3;
+  // .tradingpb.Fund fund = 3;
   bool has_fund() const;
   private:
   bool _internal_has_fund() const;
   public:
   void clear_fund();
-  const ::tradingdb2pb::Fund& fund() const;
-  ::tradingdb2pb::Fund* release_fund();
-  ::tradingdb2pb::Fund* mutable_fund();
-  void set_allocated_fund(::tradingdb2pb::Fund* fund);
+  const ::tradingpb::Fund& fund() const;
+  ::tradingpb::Fund* release_fund();
+  ::tradingpb::Fund* mutable_fund();
+  void set_allocated_fund(::tradingpb::Fund* fund);
   private:
-  const ::tradingdb2pb::Fund& _internal_fund() const;
-  ::tradingdb2pb::Fund* _internal_mutable_fund();
+  const ::tradingpb::Fund& _internal_fund() const;
+  ::tradingpb::Fund* _internal_mutable_fund();
   public:
 
-  // @@protoc_insertion_point(class_scope:tradingdb2pb.SymbolInfo)
+  // @@protoc_insertion_point(class_scope:tradingpb.SymbolInfo)
  private:
   class _Internal;
 
   ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr market_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr symbol_;
-  ::tradingdb2pb::Fund* fund_;
+  ::tradingpb::Fund* fund_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_tradingdb2_2eproto;
 };
 // -------------------------------------------------------------------
 
 class RequestUpdCandles :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tradingdb2pb.RequestUpdCandles) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tradingpb.RequestUpdCandles) */ {
  public:
   RequestUpdCandles();
   virtual ~RequestUpdCandles();
@@ -1700,7 +1700,7 @@ class RequestUpdCandles :
   void InternalSwap(RequestUpdCandles* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "tradingdb2pb.RequestUpdCandles";
+    return "tradingpb.RequestUpdCandles";
   }
   private:
   inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
@@ -1744,35 +1744,35 @@ class RequestUpdCandles :
   std::string* _internal_mutable_token();
   public:
 
-  // .tradingdb2pb.Candles candles = 2;
+  // .tradingpb.Candles candles = 2;
   bool has_candles() const;
   private:
   bool _internal_has_candles() const;
   public:
   void clear_candles();
-  const ::tradingdb2pb::Candles& candles() const;
-  ::tradingdb2pb::Candles* release_candles();
-  ::tradingdb2pb::Candles* mutable_candles();
-  void set_allocated_candles(::tradingdb2pb::Candles* candles);
+  const ::tradingpb::Candles& candles() const;
+  ::tradingpb::Candles* release_candles();
+  ::tradingpb::Candles* mutable_candles();
+  void set_allocated_candles(::tradingpb::Candles* candles);
   private:
-  const ::tradingdb2pb::Candles& _internal_candles() const;
-  ::tradingdb2pb::Candles* _internal_mutable_candles();
+  const ::tradingpb::Candles& _internal_candles() const;
+  ::tradingpb::Candles* _internal_mutable_candles();
   public:
 
-  // @@protoc_insertion_point(class_scope:tradingdb2pb.RequestUpdCandles)
+  // @@protoc_insertion_point(class_scope:tradingpb.RequestUpdCandles)
  private:
   class _Internal;
 
   ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr token_;
-  ::tradingdb2pb::Candles* candles_;
+  ::tradingpb::Candles* candles_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_tradingdb2_2eproto;
 };
 // -------------------------------------------------------------------
 
 class ReplyUpdCandles :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tradingdb2pb.ReplyUpdCandles) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tradingpb.ReplyUpdCandles) */ {
  public:
   ReplyUpdCandles();
   virtual ~ReplyUpdCandles();
@@ -1852,7 +1852,7 @@ class ReplyUpdCandles :
   void InternalSwap(ReplyUpdCandles* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "tradingdb2pb.ReplyUpdCandles";
+    return "tradingpb.ReplyUpdCandles";
   }
   private:
   inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
@@ -1888,7 +1888,7 @@ class ReplyUpdCandles :
   void _internal_set_lengthok(::PROTOBUF_NAMESPACE_ID::int32 value);
   public:
 
-  // @@protoc_insertion_point(class_scope:tradingdb2pb.ReplyUpdCandles)
+  // @@protoc_insertion_point(class_scope:tradingpb.ReplyUpdCandles)
  private:
   class _Internal;
 
@@ -1900,7 +1900,7 @@ class ReplyUpdCandles :
 // -------------------------------------------------------------------
 
 class RequestGetCandles :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tradingdb2pb.RequestGetCandles) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tradingpb.RequestGetCandles) */ {
  public:
   RequestGetCandles();
   virtual ~RequestGetCandles();
@@ -1980,7 +1980,7 @@ class RequestGetCandles :
   void InternalSwap(RequestGetCandles* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "tradingdb2pb.RequestGetCandles";
+    return "tradingpb.RequestGetCandles";
   }
   private:
   inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
@@ -2119,7 +2119,7 @@ class RequestGetCandles :
   void _internal_set_tsend(::PROTOBUF_NAMESPACE_ID::int64 value);
   public:
 
-  // @@protoc_insertion_point(class_scope:tradingdb2pb.RequestGetCandles)
+  // @@protoc_insertion_point(class_scope:tradingpb.RequestGetCandles)
  private:
   class _Internal;
 
@@ -2137,7 +2137,7 @@ class RequestGetCandles :
 // -------------------------------------------------------------------
 
 class ReplyGetCandles :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tradingdb2pb.ReplyGetCandles) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tradingpb.ReplyGetCandles) */ {
  public:
   ReplyGetCandles();
   virtual ~ReplyGetCandles();
@@ -2217,7 +2217,7 @@ class ReplyGetCandles :
   void InternalSwap(ReplyGetCandles* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "tradingdb2pb.ReplyGetCandles";
+    return "tradingpb.ReplyGetCandles";
   }
   private:
   inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
@@ -2244,34 +2244,34 @@ class ReplyGetCandles :
   enum : int {
     kCandlesFieldNumber = 1,
   };
-  // .tradingdb2pb.Candles candles = 1;
+  // .tradingpb.Candles candles = 1;
   bool has_candles() const;
   private:
   bool _internal_has_candles() const;
   public:
   void clear_candles();
-  const ::tradingdb2pb::Candles& candles() const;
-  ::tradingdb2pb::Candles* release_candles();
-  ::tradingdb2pb::Candles* mutable_candles();
-  void set_allocated_candles(::tradingdb2pb::Candles* candles);
+  const ::tradingpb::Candles& candles() const;
+  ::tradingpb::Candles* release_candles();
+  ::tradingpb::Candles* mutable_candles();
+  void set_allocated_candles(::tradingpb::Candles* candles);
   private:
-  const ::tradingdb2pb::Candles& _internal_candles() const;
-  ::tradingdb2pb::Candles* _internal_mutable_candles();
+  const ::tradingpb::Candles& _internal_candles() const;
+  ::tradingpb::Candles* _internal_mutable_candles();
   public:
 
-  // @@protoc_insertion_point(class_scope:tradingdb2pb.ReplyGetCandles)
+  // @@protoc_insertion_point(class_scope:tradingpb.ReplyGetCandles)
  private:
   class _Internal;
 
   ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
-  ::tradingdb2pb::Candles* candles_;
+  ::tradingpb::Candles* candles_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_tradingdb2_2eproto;
 };
 // -------------------------------------------------------------------
 
 class RequestUpdSymbol :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tradingdb2pb.RequestUpdSymbol) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tradingpb.RequestUpdSymbol) */ {
  public:
   RequestUpdSymbol();
   virtual ~RequestUpdSymbol();
@@ -2351,7 +2351,7 @@ class RequestUpdSymbol :
   void InternalSwap(RequestUpdSymbol* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "tradingdb2pb.RequestUpdSymbol";
+    return "tradingpb.RequestUpdSymbol";
   }
   private:
   inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
@@ -2395,35 +2395,35 @@ class RequestUpdSymbol :
   std::string* _internal_mutable_token();
   public:
 
-  // .tradingdb2pb.SymbolInfo symbol = 2;
+  // .tradingpb.SymbolInfo symbol = 2;
   bool has_symbol() const;
   private:
   bool _internal_has_symbol() const;
   public:
   void clear_symbol();
-  const ::tradingdb2pb::SymbolInfo& symbol() const;
-  ::tradingdb2pb::SymbolInfo* release_symbol();
-  ::tradingdb2pb::SymbolInfo* mutable_symbol();
-  void set_allocated_symbol(::tradingdb2pb::SymbolInfo* symbol);
+  const ::tradingpb::SymbolInfo& symbol() const;
+  ::tradingpb::SymbolInfo* release_symbol();
+  ::tradingpb::SymbolInfo* mutable_symbol();
+  void set_allocated_symbol(::tradingpb::SymbolInfo* symbol);
   private:
-  const ::tradingdb2pb::SymbolInfo& _internal_symbol() const;
-  ::tradingdb2pb::SymbolInfo* _internal_mutable_symbol();
+  const ::tradingpb::SymbolInfo& _internal_symbol() const;
+  ::tradingpb::SymbolInfo* _internal_mutable_symbol();
   public:
 
-  // @@protoc_insertion_point(class_scope:tradingdb2pb.RequestUpdSymbol)
+  // @@protoc_insertion_point(class_scope:tradingpb.RequestUpdSymbol)
  private:
   class _Internal;
 
   ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr token_;
-  ::tradingdb2pb::SymbolInfo* symbol_;
+  ::tradingpb::SymbolInfo* symbol_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_tradingdb2_2eproto;
 };
 // -------------------------------------------------------------------
 
 class ReplyUpdSymbol :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tradingdb2pb.ReplyUpdSymbol) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tradingpb.ReplyUpdSymbol) */ {
  public:
   ReplyUpdSymbol();
   virtual ~ReplyUpdSymbol();
@@ -2503,7 +2503,7 @@ class ReplyUpdSymbol :
   void InternalSwap(ReplyUpdSymbol* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "tradingdb2pb.ReplyUpdSymbol";
+    return "tradingpb.ReplyUpdSymbol";
   }
   private:
   inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
@@ -2539,7 +2539,7 @@ class ReplyUpdSymbol :
   void _internal_set_isok(bool value);
   public:
 
-  // @@protoc_insertion_point(class_scope:tradingdb2pb.ReplyUpdSymbol)
+  // @@protoc_insertion_point(class_scope:tradingpb.ReplyUpdSymbol)
  private:
   class _Internal;
 
@@ -2551,7 +2551,7 @@ class ReplyUpdSymbol :
 // -------------------------------------------------------------------
 
 class RequestGetSymbol :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tradingdb2pb.RequestGetSymbol) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tradingpb.RequestGetSymbol) */ {
  public:
   RequestGetSymbol();
   virtual ~RequestGetSymbol();
@@ -2631,7 +2631,7 @@ class RequestGetSymbol :
   void InternalSwap(RequestGetSymbol* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "tradingdb2pb.RequestGetSymbol";
+    return "tradingpb.RequestGetSymbol";
   }
   private:
   inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
@@ -2708,7 +2708,7 @@ class RequestGetSymbol :
   std::string* _internal_mutable_symbol();
   public:
 
-  // @@protoc_insertion_point(class_scope:tradingdb2pb.RequestGetSymbol)
+  // @@protoc_insertion_point(class_scope:tradingpb.RequestGetSymbol)
  private:
   class _Internal;
 
@@ -2722,7 +2722,7 @@ class RequestGetSymbol :
 // -------------------------------------------------------------------
 
 class ReplyGetSymbol :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tradingdb2pb.ReplyGetSymbol) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tradingpb.ReplyGetSymbol) */ {
  public:
   ReplyGetSymbol();
   virtual ~ReplyGetSymbol();
@@ -2802,7 +2802,7 @@ class ReplyGetSymbol :
   void InternalSwap(ReplyGetSymbol* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "tradingdb2pb.ReplyGetSymbol";
+    return "tradingpb.ReplyGetSymbol";
   }
   private:
   inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
@@ -2829,34 +2829,34 @@ class ReplyGetSymbol :
   enum : int {
     kSymbolFieldNumber = 1,
   };
-  // .tradingdb2pb.SymbolInfo symbol = 1;
+  // .tradingpb.SymbolInfo symbol = 1;
   bool has_symbol() const;
   private:
   bool _internal_has_symbol() const;
   public:
   void clear_symbol();
-  const ::tradingdb2pb::SymbolInfo& symbol() const;
-  ::tradingdb2pb::SymbolInfo* release_symbol();
-  ::tradingdb2pb::SymbolInfo* mutable_symbol();
-  void set_allocated_symbol(::tradingdb2pb::SymbolInfo* symbol);
+  const ::tradingpb::SymbolInfo& symbol() const;
+  ::tradingpb::SymbolInfo* release_symbol();
+  ::tradingpb::SymbolInfo* mutable_symbol();
+  void set_allocated_symbol(::tradingpb::SymbolInfo* symbol);
   private:
-  const ::tradingdb2pb::SymbolInfo& _internal_symbol() const;
-  ::tradingdb2pb::SymbolInfo* _internal_mutable_symbol();
+  const ::tradingpb::SymbolInfo& _internal_symbol() const;
+  ::tradingpb::SymbolInfo* _internal_mutable_symbol();
   public:
 
-  // @@protoc_insertion_point(class_scope:tradingdb2pb.ReplyGetSymbol)
+  // @@protoc_insertion_point(class_scope:tradingpb.ReplyGetSymbol)
  private:
   class _Internal;
 
   ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
-  ::tradingdb2pb::SymbolInfo* symbol_;
+  ::tradingpb::SymbolInfo* symbol_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_tradingdb2_2eproto;
 };
 // -------------------------------------------------------------------
 
 class RequestGetSymbols :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tradingdb2pb.RequestGetSymbols) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tradingpb.RequestGetSymbols) */ {
  public:
   RequestGetSymbols();
   virtual ~RequestGetSymbols();
@@ -2936,7 +2936,7 @@ class RequestGetSymbols :
   void InternalSwap(RequestGetSymbols* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "tradingdb2pb.RequestGetSymbols";
+    return "tradingpb.RequestGetSymbols";
   }
   private:
   inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
@@ -3021,7 +3021,7 @@ class RequestGetSymbols :
   std::string* _internal_mutable_market();
   public:
 
-  // @@protoc_insertion_point(class_scope:tradingdb2pb.RequestGetSymbols)
+  // @@protoc_insertion_point(class_scope:tradingpb.RequestGetSymbols)
  private:
   class _Internal;
 
@@ -3051,7 +3051,7 @@ inline ::PROTOBUF_NAMESPACE_ID::int64 Candle::_internal_ts() const {
   return ts_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int64 Candle::ts() const {
-  // @@protoc_insertion_point(field_get:tradingdb2pb.Candle.ts)
+  // @@protoc_insertion_point(field_get:tradingpb.Candle.ts)
   return _internal_ts();
 }
 inline void Candle::_internal_set_ts(::PROTOBUF_NAMESPACE_ID::int64 value) {
@@ -3060,7 +3060,7 @@ inline void Candle::_internal_set_ts(::PROTOBUF_NAMESPACE_ID::int64 value) {
 }
 inline void Candle::set_ts(::PROTOBUF_NAMESPACE_ID::int64 value) {
   _internal_set_ts(value);
-  // @@protoc_insertion_point(field_set:tradingdb2pb.Candle.ts)
+  // @@protoc_insertion_point(field_set:tradingpb.Candle.ts)
 }
 
 // int64 open = 2;
@@ -3071,7 +3071,7 @@ inline ::PROTOBUF_NAMESPACE_ID::int64 Candle::_internal_open() const {
   return open_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int64 Candle::open() const {
-  // @@protoc_insertion_point(field_get:tradingdb2pb.Candle.open)
+  // @@protoc_insertion_point(field_get:tradingpb.Candle.open)
   return _internal_open();
 }
 inline void Candle::_internal_set_open(::PROTOBUF_NAMESPACE_ID::int64 value) {
@@ -3080,7 +3080,7 @@ inline void Candle::_internal_set_open(::PROTOBUF_NAMESPACE_ID::int64 value) {
 }
 inline void Candle::set_open(::PROTOBUF_NAMESPACE_ID::int64 value) {
   _internal_set_open(value);
-  // @@protoc_insertion_point(field_set:tradingdb2pb.Candle.open)
+  // @@protoc_insertion_point(field_set:tradingpb.Candle.open)
 }
 
 // int64 close = 3;
@@ -3091,7 +3091,7 @@ inline ::PROTOBUF_NAMESPACE_ID::int64 Candle::_internal_close() const {
   return close_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int64 Candle::close() const {
-  // @@protoc_insertion_point(field_get:tradingdb2pb.Candle.close)
+  // @@protoc_insertion_point(field_get:tradingpb.Candle.close)
   return _internal_close();
 }
 inline void Candle::_internal_set_close(::PROTOBUF_NAMESPACE_ID::int64 value) {
@@ -3100,7 +3100,7 @@ inline void Candle::_internal_set_close(::PROTOBUF_NAMESPACE_ID::int64 value) {
 }
 inline void Candle::set_close(::PROTOBUF_NAMESPACE_ID::int64 value) {
   _internal_set_close(value);
-  // @@protoc_insertion_point(field_set:tradingdb2pb.Candle.close)
+  // @@protoc_insertion_point(field_set:tradingpb.Candle.close)
 }
 
 // int64 high = 4;
@@ -3111,7 +3111,7 @@ inline ::PROTOBUF_NAMESPACE_ID::int64 Candle::_internal_high() const {
   return high_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int64 Candle::high() const {
-  // @@protoc_insertion_point(field_get:tradingdb2pb.Candle.high)
+  // @@protoc_insertion_point(field_get:tradingpb.Candle.high)
   return _internal_high();
 }
 inline void Candle::_internal_set_high(::PROTOBUF_NAMESPACE_ID::int64 value) {
@@ -3120,7 +3120,7 @@ inline void Candle::_internal_set_high(::PROTOBUF_NAMESPACE_ID::int64 value) {
 }
 inline void Candle::set_high(::PROTOBUF_NAMESPACE_ID::int64 value) {
   _internal_set_high(value);
-  // @@protoc_insertion_point(field_set:tradingdb2pb.Candle.high)
+  // @@protoc_insertion_point(field_set:tradingpb.Candle.high)
 }
 
 // int64 low = 5;
@@ -3131,7 +3131,7 @@ inline ::PROTOBUF_NAMESPACE_ID::int64 Candle::_internal_low() const {
   return low_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int64 Candle::low() const {
-  // @@protoc_insertion_point(field_get:tradingdb2pb.Candle.low)
+  // @@protoc_insertion_point(field_get:tradingpb.Candle.low)
   return _internal_low();
 }
 inline void Candle::_internal_set_low(::PROTOBUF_NAMESPACE_ID::int64 value) {
@@ -3140,7 +3140,7 @@ inline void Candle::_internal_set_low(::PROTOBUF_NAMESPACE_ID::int64 value) {
 }
 inline void Candle::set_low(::PROTOBUF_NAMESPACE_ID::int64 value) {
   _internal_set_low(value);
-  // @@protoc_insertion_point(field_set:tradingdb2pb.Candle.low)
+  // @@protoc_insertion_point(field_set:tradingpb.Candle.low)
 }
 
 // int64 volume = 6;
@@ -3151,7 +3151,7 @@ inline ::PROTOBUF_NAMESPACE_ID::int64 Candle::_internal_volume() const {
   return volume_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int64 Candle::volume() const {
-  // @@protoc_insertion_point(field_get:tradingdb2pb.Candle.volume)
+  // @@protoc_insertion_point(field_get:tradingpb.Candle.volume)
   return _internal_volume();
 }
 inline void Candle::_internal_set_volume(::PROTOBUF_NAMESPACE_ID::int64 value) {
@@ -3160,7 +3160,7 @@ inline void Candle::_internal_set_volume(::PROTOBUF_NAMESPACE_ID::int64 value) {
 }
 inline void Candle::set_volume(::PROTOBUF_NAMESPACE_ID::int64 value) {
   _internal_set_volume(value);
-  // @@protoc_insertion_point(field_set:tradingdb2pb.Candle.volume)
+  // @@protoc_insertion_point(field_set:tradingpb.Candle.volume)
 }
 
 // int64 openInterest = 7;
@@ -3171,7 +3171,7 @@ inline ::PROTOBUF_NAMESPACE_ID::int64 Candle::_internal_openinterest() const {
   return openinterest_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int64 Candle::openinterest() const {
-  // @@protoc_insertion_point(field_get:tradingdb2pb.Candle.openInterest)
+  // @@protoc_insertion_point(field_get:tradingpb.Candle.openInterest)
   return _internal_openinterest();
 }
 inline void Candle::_internal_set_openinterest(::PROTOBUF_NAMESPACE_ID::int64 value) {
@@ -3180,7 +3180,7 @@ inline void Candle::_internal_set_openinterest(::PROTOBUF_NAMESPACE_ID::int64 va
 }
 inline void Candle::set_openinterest(::PROTOBUF_NAMESPACE_ID::int64 value) {
   _internal_set_openinterest(value);
-  // @@protoc_insertion_point(field_set:tradingdb2pb.Candle.openInterest)
+  // @@protoc_insertion_point(field_set:tradingpb.Candle.openInterest)
 }
 
 // int64 trades = 8;
@@ -3191,7 +3191,7 @@ inline ::PROTOBUF_NAMESPACE_ID::int64 Candle::_internal_trades() const {
   return trades_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int64 Candle::trades() const {
-  // @@protoc_insertion_point(field_get:tradingdb2pb.Candle.trades)
+  // @@protoc_insertion_point(field_get:tradingpb.Candle.trades)
   return _internal_trades();
 }
 inline void Candle::_internal_set_trades(::PROTOBUF_NAMESPACE_ID::int64 value) {
@@ -3200,7 +3200,7 @@ inline void Candle::_internal_set_trades(::PROTOBUF_NAMESPACE_ID::int64 value) {
 }
 inline void Candle::set_trades(::PROTOBUF_NAMESPACE_ID::int64 value) {
   _internal_set_trades(value);
-  // @@protoc_insertion_point(field_set:tradingdb2pb.Candle.trades)
+  // @@protoc_insertion_point(field_set:tradingpb.Candle.trades)
 }
 
 // double vwap = 9;
@@ -3211,7 +3211,7 @@ inline double Candle::_internal_vwap() const {
   return vwap_;
 }
 inline double Candle::vwap() const {
-  // @@protoc_insertion_point(field_get:tradingdb2pb.Candle.vwap)
+  // @@protoc_insertion_point(field_get:tradingpb.Candle.vwap)
   return _internal_vwap();
 }
 inline void Candle::_internal_set_vwap(double value) {
@@ -3220,7 +3220,7 @@ inline void Candle::_internal_set_vwap(double value) {
 }
 inline void Candle::set_vwap(double value) {
   _internal_set_vwap(value);
-  // @@protoc_insertion_point(field_set:tradingdb2pb.Candle.vwap)
+  // @@protoc_insertion_point(field_set:tradingpb.Candle.vwap)
 }
 
 // int64 lastSize = 10;
@@ -3231,7 +3231,7 @@ inline ::PROTOBUF_NAMESPACE_ID::int64 Candle::_internal_lastsize() const {
   return lastsize_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int64 Candle::lastsize() const {
-  // @@protoc_insertion_point(field_get:tradingdb2pb.Candle.lastSize)
+  // @@protoc_insertion_point(field_get:tradingpb.Candle.lastSize)
   return _internal_lastsize();
 }
 inline void Candle::_internal_set_lastsize(::PROTOBUF_NAMESPACE_ID::int64 value) {
@@ -3240,7 +3240,7 @@ inline void Candle::_internal_set_lastsize(::PROTOBUF_NAMESPACE_ID::int64 value)
 }
 inline void Candle::set_lastsize(::PROTOBUF_NAMESPACE_ID::int64 value) {
   _internal_set_lastsize(value);
-  // @@protoc_insertion_point(field_set:tradingdb2pb.Candle.lastSize)
+  // @@protoc_insertion_point(field_set:tradingpb.Candle.lastSize)
 }
 
 // int64 turnover = 11;
@@ -3251,7 +3251,7 @@ inline ::PROTOBUF_NAMESPACE_ID::int64 Candle::_internal_turnover() const {
   return turnover_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int64 Candle::turnover() const {
-  // @@protoc_insertion_point(field_get:tradingdb2pb.Candle.turnover)
+  // @@protoc_insertion_point(field_get:tradingpb.Candle.turnover)
   return _internal_turnover();
 }
 inline void Candle::_internal_set_turnover(::PROTOBUF_NAMESPACE_ID::int64 value) {
@@ -3260,7 +3260,7 @@ inline void Candle::_internal_set_turnover(::PROTOBUF_NAMESPACE_ID::int64 value)
 }
 inline void Candle::set_turnover(::PROTOBUF_NAMESPACE_ID::int64 value) {
   _internal_set_turnover(value);
-  // @@protoc_insertion_point(field_set:tradingdb2pb.Candle.turnover)
+  // @@protoc_insertion_point(field_set:tradingpb.Candle.turnover)
 }
 
 // double homeNotional = 12;
@@ -3271,7 +3271,7 @@ inline double Candle::_internal_homenotional() const {
   return homenotional_;
 }
 inline double Candle::homenotional() const {
-  // @@protoc_insertion_point(field_get:tradingdb2pb.Candle.homeNotional)
+  // @@protoc_insertion_point(field_get:tradingpb.Candle.homeNotional)
   return _internal_homenotional();
 }
 inline void Candle::_internal_set_homenotional(double value) {
@@ -3280,7 +3280,7 @@ inline void Candle::_internal_set_homenotional(double value) {
 }
 inline void Candle::set_homenotional(double value) {
   _internal_set_homenotional(value);
-  // @@protoc_insertion_point(field_set:tradingdb2pb.Candle.homeNotional)
+  // @@protoc_insertion_point(field_set:tradingpb.Candle.homeNotional)
 }
 
 // double foreignNotional = 13;
@@ -3291,7 +3291,7 @@ inline double Candle::_internal_foreignnotional() const {
   return foreignnotional_;
 }
 inline double Candle::foreignnotional() const {
-  // @@protoc_insertion_point(field_get:tradingdb2pb.Candle.foreignNotional)
+  // @@protoc_insertion_point(field_get:tradingpb.Candle.foreignNotional)
   return _internal_foreignnotional();
 }
 inline void Candle::_internal_set_foreignnotional(double value) {
@@ -3300,7 +3300,7 @@ inline void Candle::_internal_set_foreignnotional(double value) {
 }
 inline void Candle::set_foreignnotional(double value) {
   _internal_set_foreignnotional(value);
-  // @@protoc_insertion_point(field_set:tradingdb2pb.Candle.foreignNotional)
+  // @@protoc_insertion_point(field_set:tradingpb.Candle.foreignNotional)
 }
 
 // -------------------------------------------------------------------
@@ -3312,15 +3312,15 @@ inline void Candles::clear_market() {
   market_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline const std::string& Candles::market() const {
-  // @@protoc_insertion_point(field_get:tradingdb2pb.Candles.market)
+  // @@protoc_insertion_point(field_get:tradingpb.Candles.market)
   return _internal_market();
 }
 inline void Candles::set_market(const std::string& value) {
   _internal_set_market(value);
-  // @@protoc_insertion_point(field_set:tradingdb2pb.Candles.market)
+  // @@protoc_insertion_point(field_set:tradingpb.Candles.market)
 }
 inline std::string* Candles::mutable_market() {
-  // @@protoc_insertion_point(field_mutable:tradingdb2pb.Candles.market)
+  // @@protoc_insertion_point(field_mutable:tradingpb.Candles.market)
   return _internal_mutable_market();
 }
 inline const std::string& Candles::_internal_market() const {
@@ -3334,26 +3334,26 @@ inline void Candles::set_market(std::string&& value) {
   
   market_.SetNoArena(
     &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:tradingdb2pb.Candles.market)
+  // @@protoc_insertion_point(field_set_rvalue:tradingpb.Candles.market)
 }
 inline void Candles::set_market(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   market_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:tradingdb2pb.Candles.market)
+  // @@protoc_insertion_point(field_set_char:tradingpb.Candles.market)
 }
 inline void Candles::set_market(const char* value, size_t size) {
   
   market_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:tradingdb2pb.Candles.market)
+  // @@protoc_insertion_point(field_set_pointer:tradingpb.Candles.market)
 }
 inline std::string* Candles::_internal_mutable_market() {
   
   return market_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline std::string* Candles::release_market() {
-  // @@protoc_insertion_point(field_release:tradingdb2pb.Candles.market)
+  // @@protoc_insertion_point(field_release:tradingpb.Candles.market)
   
   return market_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
@@ -3364,7 +3364,7 @@ inline void Candles::set_allocated_market(std::string* market) {
     
   }
   market_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), market);
-  // @@protoc_insertion_point(field_set_allocated:tradingdb2pb.Candles.market)
+  // @@protoc_insertion_point(field_set_allocated:tradingpb.Candles.market)
 }
 
 // string symbol = 2;
@@ -3372,15 +3372,15 @@ inline void Candles::clear_symbol() {
   symbol_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline const std::string& Candles::symbol() const {
-  // @@protoc_insertion_point(field_get:tradingdb2pb.Candles.symbol)
+  // @@protoc_insertion_point(field_get:tradingpb.Candles.symbol)
   return _internal_symbol();
 }
 inline void Candles::set_symbol(const std::string& value) {
   _internal_set_symbol(value);
-  // @@protoc_insertion_point(field_set:tradingdb2pb.Candles.symbol)
+  // @@protoc_insertion_point(field_set:tradingpb.Candles.symbol)
 }
 inline std::string* Candles::mutable_symbol() {
-  // @@protoc_insertion_point(field_mutable:tradingdb2pb.Candles.symbol)
+  // @@protoc_insertion_point(field_mutable:tradingpb.Candles.symbol)
   return _internal_mutable_symbol();
 }
 inline const std::string& Candles::_internal_symbol() const {
@@ -3394,26 +3394,26 @@ inline void Candles::set_symbol(std::string&& value) {
   
   symbol_.SetNoArena(
     &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:tradingdb2pb.Candles.symbol)
+  // @@protoc_insertion_point(field_set_rvalue:tradingpb.Candles.symbol)
 }
 inline void Candles::set_symbol(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   symbol_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:tradingdb2pb.Candles.symbol)
+  // @@protoc_insertion_point(field_set_char:tradingpb.Candles.symbol)
 }
 inline void Candles::set_symbol(const char* value, size_t size) {
   
   symbol_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:tradingdb2pb.Candles.symbol)
+  // @@protoc_insertion_point(field_set_pointer:tradingpb.Candles.symbol)
 }
 inline std::string* Candles::_internal_mutable_symbol() {
   
   return symbol_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline std::string* Candles::release_symbol() {
-  // @@protoc_insertion_point(field_release:tradingdb2pb.Candles.symbol)
+  // @@protoc_insertion_point(field_release:tradingpb.Candles.symbol)
   
   return symbol_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
@@ -3424,7 +3424,7 @@ inline void Candles::set_allocated_symbol(std::string* symbol) {
     
   }
   symbol_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), symbol);
-  // @@protoc_insertion_point(field_set_allocated:tradingdb2pb.Candles.symbol)
+  // @@protoc_insertion_point(field_set_allocated:tradingpb.Candles.symbol)
 }
 
 // string tag = 3;
@@ -3432,15 +3432,15 @@ inline void Candles::clear_tag() {
   tag_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline const std::string& Candles::tag() const {
-  // @@protoc_insertion_point(field_get:tradingdb2pb.Candles.tag)
+  // @@protoc_insertion_point(field_get:tradingpb.Candles.tag)
   return _internal_tag();
 }
 inline void Candles::set_tag(const std::string& value) {
   _internal_set_tag(value);
-  // @@protoc_insertion_point(field_set:tradingdb2pb.Candles.tag)
+  // @@protoc_insertion_point(field_set:tradingpb.Candles.tag)
 }
 inline std::string* Candles::mutable_tag() {
-  // @@protoc_insertion_point(field_mutable:tradingdb2pb.Candles.tag)
+  // @@protoc_insertion_point(field_mutable:tradingpb.Candles.tag)
   return _internal_mutable_tag();
 }
 inline const std::string& Candles::_internal_tag() const {
@@ -3454,26 +3454,26 @@ inline void Candles::set_tag(std::string&& value) {
   
   tag_.SetNoArena(
     &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:tradingdb2pb.Candles.tag)
+  // @@protoc_insertion_point(field_set_rvalue:tradingpb.Candles.tag)
 }
 inline void Candles::set_tag(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   tag_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:tradingdb2pb.Candles.tag)
+  // @@protoc_insertion_point(field_set_char:tradingpb.Candles.tag)
 }
 inline void Candles::set_tag(const char* value, size_t size) {
   
   tag_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:tradingdb2pb.Candles.tag)
+  // @@protoc_insertion_point(field_set_pointer:tradingpb.Candles.tag)
 }
 inline std::string* Candles::_internal_mutable_tag() {
   
   return tag_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline std::string* Candles::release_tag() {
-  // @@protoc_insertion_point(field_release:tradingdb2pb.Candles.tag)
+  // @@protoc_insertion_point(field_release:tradingpb.Candles.tag)
   
   return tag_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
@@ -3484,10 +3484,10 @@ inline void Candles::set_allocated_tag(std::string* tag) {
     
   }
   tag_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), tag);
-  // @@protoc_insertion_point(field_set_allocated:tradingdb2pb.Candles.tag)
+  // @@protoc_insertion_point(field_set_allocated:tradingpb.Candles.tag)
 }
 
-// repeated .tradingdb2pb.Candle candles = 4;
+// repeated .tradingpb.Candle candles = 4;
 inline int Candles::_internal_candles_size() const {
   return candles_.size();
 }
@@ -3497,32 +3497,32 @@ inline int Candles::candles_size() const {
 inline void Candles::clear_candles() {
   candles_.Clear();
 }
-inline ::tradingdb2pb::Candle* Candles::mutable_candles(int index) {
-  // @@protoc_insertion_point(field_mutable:tradingdb2pb.Candles.candles)
+inline ::tradingpb::Candle* Candles::mutable_candles(int index) {
+  // @@protoc_insertion_point(field_mutable:tradingpb.Candles.candles)
   return candles_.Mutable(index);
 }
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingdb2pb::Candle >*
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingpb::Candle >*
 Candles::mutable_candles() {
-  // @@protoc_insertion_point(field_mutable_list:tradingdb2pb.Candles.candles)
+  // @@protoc_insertion_point(field_mutable_list:tradingpb.Candles.candles)
   return &candles_;
 }
-inline const ::tradingdb2pb::Candle& Candles::_internal_candles(int index) const {
+inline const ::tradingpb::Candle& Candles::_internal_candles(int index) const {
   return candles_.Get(index);
 }
-inline const ::tradingdb2pb::Candle& Candles::candles(int index) const {
-  // @@protoc_insertion_point(field_get:tradingdb2pb.Candles.candles)
+inline const ::tradingpb::Candle& Candles::candles(int index) const {
+  // @@protoc_insertion_point(field_get:tradingpb.Candles.candles)
   return _internal_candles(index);
 }
-inline ::tradingdb2pb::Candle* Candles::_internal_add_candles() {
+inline ::tradingpb::Candle* Candles::_internal_add_candles() {
   return candles_.Add();
 }
-inline ::tradingdb2pb::Candle* Candles::add_candles() {
-  // @@protoc_insertion_point(field_add:tradingdb2pb.Candles.candles)
+inline ::tradingpb::Candle* Candles::add_candles() {
+  // @@protoc_insertion_point(field_add:tradingpb.Candles.candles)
   return _internal_add_candles();
 }
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingdb2pb::Candle >&
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingpb::Candle >&
 Candles::candles() const {
-  // @@protoc_insertion_point(field_list:tradingdb2pb.Candles.candles)
+  // @@protoc_insertion_point(field_list:tradingpb.Candles.candles)
   return candles_;
 }
 
@@ -3538,7 +3538,7 @@ inline float FundSize::_internal_size() const {
   return size_;
 }
 inline float FundSize::size() const {
-  // @@protoc_insertion_point(field_get:tradingdb2pb.FundSize.size)
+  // @@protoc_insertion_point(field_get:tradingpb.FundSize.size)
   return _internal_size();
 }
 inline void FundSize::_internal_set_size(float value) {
@@ -3547,7 +3547,7 @@ inline void FundSize::_internal_set_size(float value) {
 }
 inline void FundSize::set_size(float value) {
   _internal_set_size(value);
-  // @@protoc_insertion_point(field_set:tradingdb2pb.FundSize.size)
+  // @@protoc_insertion_point(field_set:tradingpb.FundSize.size)
 }
 
 // int64 time = 2;
@@ -3558,7 +3558,7 @@ inline ::PROTOBUF_NAMESPACE_ID::int64 FundSize::_internal_time() const {
   return time_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int64 FundSize::time() const {
-  // @@protoc_insertion_point(field_get:tradingdb2pb.FundSize.time)
+  // @@protoc_insertion_point(field_get:tradingpb.FundSize.time)
   return _internal_time();
 }
 inline void FundSize::_internal_set_time(::PROTOBUF_NAMESPACE_ID::int64 value) {
@@ -3567,7 +3567,7 @@ inline void FundSize::_internal_set_time(::PROTOBUF_NAMESPACE_ID::int64 value) {
 }
 inline void FundSize::set_time(::PROTOBUF_NAMESPACE_ID::int64 value) {
   _internal_set_time(value);
-  // @@protoc_insertion_point(field_set:tradingdb2pb.FundSize.time)
+  // @@protoc_insertion_point(field_set:tradingpb.FundSize.time)
 }
 
 // -------------------------------------------------------------------
@@ -3579,15 +3579,15 @@ inline void FundManager::clear_name() {
   name_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline const std::string& FundManager::name() const {
-  // @@protoc_insertion_point(field_get:tradingdb2pb.FundManager.name)
+  // @@protoc_insertion_point(field_get:tradingpb.FundManager.name)
   return _internal_name();
 }
 inline void FundManager::set_name(const std::string& value) {
   _internal_set_name(value);
-  // @@protoc_insertion_point(field_set:tradingdb2pb.FundManager.name)
+  // @@protoc_insertion_point(field_set:tradingpb.FundManager.name)
 }
 inline std::string* FundManager::mutable_name() {
-  // @@protoc_insertion_point(field_mutable:tradingdb2pb.FundManager.name)
+  // @@protoc_insertion_point(field_mutable:tradingpb.FundManager.name)
   return _internal_mutable_name();
 }
 inline const std::string& FundManager::_internal_name() const {
@@ -3601,26 +3601,26 @@ inline void FundManager::set_name(std::string&& value) {
   
   name_.SetNoArena(
     &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:tradingdb2pb.FundManager.name)
+  // @@protoc_insertion_point(field_set_rvalue:tradingpb.FundManager.name)
 }
 inline void FundManager::set_name(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   name_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:tradingdb2pb.FundManager.name)
+  // @@protoc_insertion_point(field_set_char:tradingpb.FundManager.name)
 }
 inline void FundManager::set_name(const char* value, size_t size) {
   
   name_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:tradingdb2pb.FundManager.name)
+  // @@protoc_insertion_point(field_set_pointer:tradingpb.FundManager.name)
 }
 inline std::string* FundManager::_internal_mutable_name() {
   
   return name_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline std::string* FundManager::release_name() {
-  // @@protoc_insertion_point(field_release:tradingdb2pb.FundManager.name)
+  // @@protoc_insertion_point(field_release:tradingpb.FundManager.name)
   
   return name_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
@@ -3631,7 +3631,7 @@ inline void FundManager::set_allocated_name(std::string* name) {
     
   }
   name_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), name);
-  // @@protoc_insertion_point(field_set_allocated:tradingdb2pb.FundManager.name)
+  // @@protoc_insertion_point(field_set_allocated:tradingpb.FundManager.name)
 }
 
 // int64 startTime = 2;
@@ -3642,7 +3642,7 @@ inline ::PROTOBUF_NAMESPACE_ID::int64 FundManager::_internal_starttime() const {
   return starttime_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int64 FundManager::starttime() const {
-  // @@protoc_insertion_point(field_get:tradingdb2pb.FundManager.startTime)
+  // @@protoc_insertion_point(field_get:tradingpb.FundManager.startTime)
   return _internal_starttime();
 }
 inline void FundManager::_internal_set_starttime(::PROTOBUF_NAMESPACE_ID::int64 value) {
@@ -3651,7 +3651,7 @@ inline void FundManager::_internal_set_starttime(::PROTOBUF_NAMESPACE_ID::int64 
 }
 inline void FundManager::set_starttime(::PROTOBUF_NAMESPACE_ID::int64 value) {
   _internal_set_starttime(value);
-  // @@protoc_insertion_point(field_set:tradingdb2pb.FundManager.startTime)
+  // @@protoc_insertion_point(field_set:tradingpb.FundManager.startTime)
 }
 
 // int64 endTime = 3;
@@ -3662,7 +3662,7 @@ inline ::PROTOBUF_NAMESPACE_ID::int64 FundManager::_internal_endtime() const {
   return endtime_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int64 FundManager::endtime() const {
-  // @@protoc_insertion_point(field_get:tradingdb2pb.FundManager.endTime)
+  // @@protoc_insertion_point(field_get:tradingpb.FundManager.endTime)
   return _internal_endtime();
 }
 inline void FundManager::_internal_set_endtime(::PROTOBUF_NAMESPACE_ID::int64 value) {
@@ -3671,7 +3671,7 @@ inline void FundManager::_internal_set_endtime(::PROTOBUF_NAMESPACE_ID::int64 va
 }
 inline void FundManager::set_endtime(::PROTOBUF_NAMESPACE_ID::int64 value) {
   _internal_set_endtime(value);
-  // @@protoc_insertion_point(field_set:tradingdb2pb.FundManager.endTime)
+  // @@protoc_insertion_point(field_set:tradingpb.FundManager.endTime)
 }
 
 // int64 birthYear = 4;
@@ -3682,7 +3682,7 @@ inline ::PROTOBUF_NAMESPACE_ID::int64 FundManager::_internal_birthyear() const {
   return birthyear_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int64 FundManager::birthyear() const {
-  // @@protoc_insertion_point(field_get:tradingdb2pb.FundManager.birthYear)
+  // @@protoc_insertion_point(field_get:tradingpb.FundManager.birthYear)
   return _internal_birthyear();
 }
 inline void FundManager::_internal_set_birthyear(::PROTOBUF_NAMESPACE_ID::int64 value) {
@@ -3691,7 +3691,7 @@ inline void FundManager::_internal_set_birthyear(::PROTOBUF_NAMESPACE_ID::int64 
 }
 inline void FundManager::set_birthyear(::PROTOBUF_NAMESPACE_ID::int64 value) {
   _internal_set_birthyear(value);
-  // @@protoc_insertion_point(field_set:tradingdb2pb.FundManager.birthYear)
+  // @@protoc_insertion_point(field_set:tradingpb.FundManager.birthYear)
 }
 
 // bool sex = 5;
@@ -3702,7 +3702,7 @@ inline bool FundManager::_internal_sex() const {
   return sex_;
 }
 inline bool FundManager::sex() const {
-  // @@protoc_insertion_point(field_get:tradingdb2pb.FundManager.sex)
+  // @@protoc_insertion_point(field_get:tradingpb.FundManager.sex)
   return _internal_sex();
 }
 inline void FundManager::_internal_set_sex(bool value) {
@@ -3711,7 +3711,7 @@ inline void FundManager::_internal_set_sex(bool value) {
 }
 inline void FundManager::set_sex(bool value) {
   _internal_set_sex(value);
-  // @@protoc_insertion_point(field_set:tradingdb2pb.FundManager.sex)
+  // @@protoc_insertion_point(field_set:tradingpb.FundManager.sex)
 }
 
 // string education = 6;
@@ -3719,15 +3719,15 @@ inline void FundManager::clear_education() {
   education_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline const std::string& FundManager::education() const {
-  // @@protoc_insertion_point(field_get:tradingdb2pb.FundManager.education)
+  // @@protoc_insertion_point(field_get:tradingpb.FundManager.education)
   return _internal_education();
 }
 inline void FundManager::set_education(const std::string& value) {
   _internal_set_education(value);
-  // @@protoc_insertion_point(field_set:tradingdb2pb.FundManager.education)
+  // @@protoc_insertion_point(field_set:tradingpb.FundManager.education)
 }
 inline std::string* FundManager::mutable_education() {
-  // @@protoc_insertion_point(field_mutable:tradingdb2pb.FundManager.education)
+  // @@protoc_insertion_point(field_mutable:tradingpb.FundManager.education)
   return _internal_mutable_education();
 }
 inline const std::string& FundManager::_internal_education() const {
@@ -3741,26 +3741,26 @@ inline void FundManager::set_education(std::string&& value) {
   
   education_.SetNoArena(
     &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:tradingdb2pb.FundManager.education)
+  // @@protoc_insertion_point(field_set_rvalue:tradingpb.FundManager.education)
 }
 inline void FundManager::set_education(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   education_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:tradingdb2pb.FundManager.education)
+  // @@protoc_insertion_point(field_set_char:tradingpb.FundManager.education)
 }
 inline void FundManager::set_education(const char* value, size_t size) {
   
   education_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:tradingdb2pb.FundManager.education)
+  // @@protoc_insertion_point(field_set_pointer:tradingpb.FundManager.education)
 }
 inline std::string* FundManager::_internal_mutable_education() {
   
   return education_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline std::string* FundManager::release_education() {
-  // @@protoc_insertion_point(field_release:tradingdb2pb.FundManager.education)
+  // @@protoc_insertion_point(field_release:tradingpb.FundManager.education)
   
   return education_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
@@ -3771,7 +3771,7 @@ inline void FundManager::set_allocated_education(std::string* education) {
     
   }
   education_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), education);
-  // @@protoc_insertion_point(field_set_allocated:tradingdb2pb.FundManager.education)
+  // @@protoc_insertion_point(field_set_allocated:tradingpb.FundManager.education)
 }
 
 // string country = 7;
@@ -3779,15 +3779,15 @@ inline void FundManager::clear_country() {
   country_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline const std::string& FundManager::country() const {
-  // @@protoc_insertion_point(field_get:tradingdb2pb.FundManager.country)
+  // @@protoc_insertion_point(field_get:tradingpb.FundManager.country)
   return _internal_country();
 }
 inline void FundManager::set_country(const std::string& value) {
   _internal_set_country(value);
-  // @@protoc_insertion_point(field_set:tradingdb2pb.FundManager.country)
+  // @@protoc_insertion_point(field_set:tradingpb.FundManager.country)
 }
 inline std::string* FundManager::mutable_country() {
-  // @@protoc_insertion_point(field_mutable:tradingdb2pb.FundManager.country)
+  // @@protoc_insertion_point(field_mutable:tradingpb.FundManager.country)
   return _internal_mutable_country();
 }
 inline const std::string& FundManager::_internal_country() const {
@@ -3801,26 +3801,26 @@ inline void FundManager::set_country(std::string&& value) {
   
   country_.SetNoArena(
     &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:tradingdb2pb.FundManager.country)
+  // @@protoc_insertion_point(field_set_rvalue:tradingpb.FundManager.country)
 }
 inline void FundManager::set_country(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   country_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:tradingdb2pb.FundManager.country)
+  // @@protoc_insertion_point(field_set_char:tradingpb.FundManager.country)
 }
 inline void FundManager::set_country(const char* value, size_t size) {
   
   country_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:tradingdb2pb.FundManager.country)
+  // @@protoc_insertion_point(field_set_pointer:tradingpb.FundManager.country)
 }
 inline std::string* FundManager::_internal_mutable_country() {
   
   return country_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline std::string* FundManager::release_country() {
-  // @@protoc_insertion_point(field_release:tradingdb2pb.FundManager.country)
+  // @@protoc_insertion_point(field_release:tradingpb.FundManager.country)
   
   return country_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
@@ -3831,7 +3831,7 @@ inline void FundManager::set_allocated_country(std::string* country) {
     
   }
   country_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), country);
-  // @@protoc_insertion_point(field_set_allocated:tradingdb2pb.FundManager.country)
+  // @@protoc_insertion_point(field_set_allocated:tradingpb.FundManager.country)
 }
 
 // string resume = 8;
@@ -3839,15 +3839,15 @@ inline void FundManager::clear_resume() {
   resume_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline const std::string& FundManager::resume() const {
-  // @@protoc_insertion_point(field_get:tradingdb2pb.FundManager.resume)
+  // @@protoc_insertion_point(field_get:tradingpb.FundManager.resume)
   return _internal_resume();
 }
 inline void FundManager::set_resume(const std::string& value) {
   _internal_set_resume(value);
-  // @@protoc_insertion_point(field_set:tradingdb2pb.FundManager.resume)
+  // @@protoc_insertion_point(field_set:tradingpb.FundManager.resume)
 }
 inline std::string* FundManager::mutable_resume() {
-  // @@protoc_insertion_point(field_mutable:tradingdb2pb.FundManager.resume)
+  // @@protoc_insertion_point(field_mutable:tradingpb.FundManager.resume)
   return _internal_mutable_resume();
 }
 inline const std::string& FundManager::_internal_resume() const {
@@ -3861,26 +3861,26 @@ inline void FundManager::set_resume(std::string&& value) {
   
   resume_.SetNoArena(
     &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:tradingdb2pb.FundManager.resume)
+  // @@protoc_insertion_point(field_set_rvalue:tradingpb.FundManager.resume)
 }
 inline void FundManager::set_resume(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   resume_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:tradingdb2pb.FundManager.resume)
+  // @@protoc_insertion_point(field_set_char:tradingpb.FundManager.resume)
 }
 inline void FundManager::set_resume(const char* value, size_t size) {
   
   resume_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:tradingdb2pb.FundManager.resume)
+  // @@protoc_insertion_point(field_set_pointer:tradingpb.FundManager.resume)
 }
 inline std::string* FundManager::_internal_mutable_resume() {
   
   return resume_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline std::string* FundManager::release_resume() {
-  // @@protoc_insertion_point(field_release:tradingdb2pb.FundManager.resume)
+  // @@protoc_insertion_point(field_release:tradingpb.FundManager.resume)
   
   return resume_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
@@ -3891,10 +3891,10 @@ inline void FundManager::set_allocated_resume(std::string* resume) {
     
   }
   resume_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), resume);
-  // @@protoc_insertion_point(field_set_allocated:tradingdb2pb.FundManager.resume)
+  // @@protoc_insertion_point(field_set_allocated:tradingpb.FundManager.resume)
 }
 
-// repeated .tradingdb2pb.FundResult results = 9;
+// repeated .tradingpb.FundResult results = 9;
 inline int FundManager::_internal_results_size() const {
   return results_.size();
 }
@@ -3904,32 +3904,32 @@ inline int FundManager::results_size() const {
 inline void FundManager::clear_results() {
   results_.Clear();
 }
-inline ::tradingdb2pb::FundResult* FundManager::mutable_results(int index) {
-  // @@protoc_insertion_point(field_mutable:tradingdb2pb.FundManager.results)
+inline ::tradingpb::FundResult* FundManager::mutable_results(int index) {
+  // @@protoc_insertion_point(field_mutable:tradingpb.FundManager.results)
   return results_.Mutable(index);
 }
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingdb2pb::FundResult >*
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingpb::FundResult >*
 FundManager::mutable_results() {
-  // @@protoc_insertion_point(field_mutable_list:tradingdb2pb.FundManager.results)
+  // @@protoc_insertion_point(field_mutable_list:tradingpb.FundManager.results)
   return &results_;
 }
-inline const ::tradingdb2pb::FundResult& FundManager::_internal_results(int index) const {
+inline const ::tradingpb::FundResult& FundManager::_internal_results(int index) const {
   return results_.Get(index);
 }
-inline const ::tradingdb2pb::FundResult& FundManager::results(int index) const {
-  // @@protoc_insertion_point(field_get:tradingdb2pb.FundManager.results)
+inline const ::tradingpb::FundResult& FundManager::results(int index) const {
+  // @@protoc_insertion_point(field_get:tradingpb.FundManager.results)
   return _internal_results(index);
 }
-inline ::tradingdb2pb::FundResult* FundManager::_internal_add_results() {
+inline ::tradingpb::FundResult* FundManager::_internal_add_results() {
   return results_.Add();
 }
-inline ::tradingdb2pb::FundResult* FundManager::add_results() {
-  // @@protoc_insertion_point(field_add:tradingdb2pb.FundManager.results)
+inline ::tradingpb::FundResult* FundManager::add_results() {
+  // @@protoc_insertion_point(field_add:tradingpb.FundManager.results)
   return _internal_add_results();
 }
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingdb2pb::FundResult >&
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingpb::FundResult >&
 FundManager::results() const {
-  // @@protoc_insertion_point(field_list:tradingdb2pb.FundManager.results)
+  // @@protoc_insertion_point(field_list:tradingpb.FundManager.results)
   return results_;
 }
 
@@ -3945,7 +3945,7 @@ inline float FundResult::_internal_maxdrawdown() const {
   return maxdrawdown_;
 }
 inline float FundResult::maxdrawdown() const {
-  // @@protoc_insertion_point(field_get:tradingdb2pb.FundResult.maxDrawdown)
+  // @@protoc_insertion_point(field_get:tradingpb.FundResult.maxDrawdown)
   return _internal_maxdrawdown();
 }
 inline void FundResult::_internal_set_maxdrawdown(float value) {
@@ -3954,7 +3954,7 @@ inline void FundResult::_internal_set_maxdrawdown(float value) {
 }
 inline void FundResult::set_maxdrawdown(float value) {
   _internal_set_maxdrawdown(value);
-  // @@protoc_insertion_point(field_set:tradingdb2pb.FundResult.maxDrawdown)
+  // @@protoc_insertion_point(field_set:tradingpb.FundResult.maxDrawdown)
 }
 
 // float sharpe = 2;
@@ -3965,7 +3965,7 @@ inline float FundResult::_internal_sharpe() const {
   return sharpe_;
 }
 inline float FundResult::sharpe() const {
-  // @@protoc_insertion_point(field_get:tradingdb2pb.FundResult.sharpe)
+  // @@protoc_insertion_point(field_get:tradingpb.FundResult.sharpe)
   return _internal_sharpe();
 }
 inline void FundResult::_internal_set_sharpe(float value) {
@@ -3974,7 +3974,7 @@ inline void FundResult::_internal_set_sharpe(float value) {
 }
 inline void FundResult::set_sharpe(float value) {
   _internal_set_sharpe(value);
-  // @@protoc_insertion_point(field_set:tradingdb2pb.FundResult.sharpe)
+  // @@protoc_insertion_point(field_set:tradingpb.FundResult.sharpe)
 }
 
 // float annualizedReturns = 3;
@@ -3985,7 +3985,7 @@ inline float FundResult::_internal_annualizedreturns() const {
   return annualizedreturns_;
 }
 inline float FundResult::annualizedreturns() const {
-  // @@protoc_insertion_point(field_get:tradingdb2pb.FundResult.annualizedReturns)
+  // @@protoc_insertion_point(field_get:tradingpb.FundResult.annualizedReturns)
   return _internal_annualizedreturns();
 }
 inline void FundResult::_internal_set_annualizedreturns(float value) {
@@ -3994,7 +3994,7 @@ inline void FundResult::_internal_set_annualizedreturns(float value) {
 }
 inline void FundResult::set_annualizedreturns(float value) {
   _internal_set_annualizedreturns(value);
-  // @@protoc_insertion_point(field_set:tradingdb2pb.FundResult.annualizedReturns)
+  // @@protoc_insertion_point(field_set:tradingpb.FundResult.annualizedReturns)
 }
 
 // float annualizedVolatility = 4;
@@ -4005,7 +4005,7 @@ inline float FundResult::_internal_annualizedvolatility() const {
   return annualizedvolatility_;
 }
 inline float FundResult::annualizedvolatility() const {
-  // @@protoc_insertion_point(field_get:tradingdb2pb.FundResult.annualizedVolatility)
+  // @@protoc_insertion_point(field_get:tradingpb.FundResult.annualizedVolatility)
   return _internal_annualizedvolatility();
 }
 inline void FundResult::_internal_set_annualizedvolatility(float value) {
@@ -4014,7 +4014,7 @@ inline void FundResult::_internal_set_annualizedvolatility(float value) {
 }
 inline void FundResult::set_annualizedvolatility(float value) {
   _internal_set_annualizedvolatility(value);
-  // @@protoc_insertion_point(field_set:tradingdb2pb.FundResult.annualizedVolatility)
+  // @@protoc_insertion_point(field_set:tradingpb.FundResult.annualizedVolatility)
 }
 
 // float totalReturns = 5;
@@ -4025,7 +4025,7 @@ inline float FundResult::_internal_totalreturns() const {
   return totalreturns_;
 }
 inline float FundResult::totalreturns() const {
-  // @@protoc_insertion_point(field_get:tradingdb2pb.FundResult.totalReturns)
+  // @@protoc_insertion_point(field_get:tradingpb.FundResult.totalReturns)
   return _internal_totalreturns();
 }
 inline void FundResult::_internal_set_totalreturns(float value) {
@@ -4034,7 +4034,7 @@ inline void FundResult::_internal_set_totalreturns(float value) {
 }
 inline void FundResult::set_totalreturns(float value) {
   _internal_set_totalreturns(value);
-  // @@protoc_insertion_point(field_set:tradingdb2pb.FundResult.totalReturns)
+  // @@protoc_insertion_point(field_set:tradingpb.FundResult.totalReturns)
 }
 
 // int64 startTime = 6;
@@ -4045,7 +4045,7 @@ inline ::PROTOBUF_NAMESPACE_ID::int64 FundResult::_internal_starttime() const {
   return starttime_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int64 FundResult::starttime() const {
-  // @@protoc_insertion_point(field_get:tradingdb2pb.FundResult.startTime)
+  // @@protoc_insertion_point(field_get:tradingpb.FundResult.startTime)
   return _internal_starttime();
 }
 inline void FundResult::_internal_set_starttime(::PROTOBUF_NAMESPACE_ID::int64 value) {
@@ -4054,7 +4054,7 @@ inline void FundResult::_internal_set_starttime(::PROTOBUF_NAMESPACE_ID::int64 v
 }
 inline void FundResult::set_starttime(::PROTOBUF_NAMESPACE_ID::int64 value) {
   _internal_set_starttime(value);
-  // @@protoc_insertion_point(field_set:tradingdb2pb.FundResult.startTime)
+  // @@protoc_insertion_point(field_set:tradingpb.FundResult.startTime)
 }
 
 // int64 endTime = 7;
@@ -4065,7 +4065,7 @@ inline ::PROTOBUF_NAMESPACE_ID::int64 FundResult::_internal_endtime() const {
   return endtime_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int64 FundResult::endtime() const {
-  // @@protoc_insertion_point(field_get:tradingdb2pb.FundResult.endTime)
+  // @@protoc_insertion_point(field_get:tradingpb.FundResult.endTime)
   return _internal_endtime();
 }
 inline void FundResult::_internal_set_endtime(::PROTOBUF_NAMESPACE_ID::int64 value) {
@@ -4074,7 +4074,7 @@ inline void FundResult::_internal_set_endtime(::PROTOBUF_NAMESPACE_ID::int64 val
 }
 inline void FundResult::set_endtime(::PROTOBUF_NAMESPACE_ID::int64 value) {
   _internal_set_endtime(value);
-  // @@protoc_insertion_point(field_set:tradingdb2pb.FundResult.endTime)
+  // @@protoc_insertion_point(field_set:tradingpb.FundResult.endTime)
 }
 
 // string name = 8;
@@ -4082,15 +4082,15 @@ inline void FundResult::clear_name() {
   name_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline const std::string& FundResult::name() const {
-  // @@protoc_insertion_point(field_get:tradingdb2pb.FundResult.name)
+  // @@protoc_insertion_point(field_get:tradingpb.FundResult.name)
   return _internal_name();
 }
 inline void FundResult::set_name(const std::string& value) {
   _internal_set_name(value);
-  // @@protoc_insertion_point(field_set:tradingdb2pb.FundResult.name)
+  // @@protoc_insertion_point(field_set:tradingpb.FundResult.name)
 }
 inline std::string* FundResult::mutable_name() {
-  // @@protoc_insertion_point(field_mutable:tradingdb2pb.FundResult.name)
+  // @@protoc_insertion_point(field_mutable:tradingpb.FundResult.name)
   return _internal_mutable_name();
 }
 inline const std::string& FundResult::_internal_name() const {
@@ -4104,26 +4104,26 @@ inline void FundResult::set_name(std::string&& value) {
   
   name_.SetNoArena(
     &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:tradingdb2pb.FundResult.name)
+  // @@protoc_insertion_point(field_set_rvalue:tradingpb.FundResult.name)
 }
 inline void FundResult::set_name(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   name_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:tradingdb2pb.FundResult.name)
+  // @@protoc_insertion_point(field_set_char:tradingpb.FundResult.name)
 }
 inline void FundResult::set_name(const char* value, size_t size) {
   
   name_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:tradingdb2pb.FundResult.name)
+  // @@protoc_insertion_point(field_set_pointer:tradingpb.FundResult.name)
 }
 inline std::string* FundResult::_internal_mutable_name() {
   
   return name_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline std::string* FundResult::release_name() {
-  // @@protoc_insertion_point(field_release:tradingdb2pb.FundResult.name)
+  // @@protoc_insertion_point(field_release:tradingpb.FundResult.name)
   
   return name_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
@@ -4134,7 +4134,7 @@ inline void FundResult::set_allocated_name(std::string* name) {
     
   }
   name_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), name);
-  // @@protoc_insertion_point(field_set_allocated:tradingdb2pb.FundResult.name)
+  // @@protoc_insertion_point(field_set_allocated:tradingpb.FundResult.name)
 }
 
 // -------------------------------------------------------------------
@@ -4146,15 +4146,15 @@ inline void Fund::clear_code() {
   code_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline const std::string& Fund::code() const {
-  // @@protoc_insertion_point(field_get:tradingdb2pb.Fund.code)
+  // @@protoc_insertion_point(field_get:tradingpb.Fund.code)
   return _internal_code();
 }
 inline void Fund::set_code(const std::string& value) {
   _internal_set_code(value);
-  // @@protoc_insertion_point(field_set:tradingdb2pb.Fund.code)
+  // @@protoc_insertion_point(field_set:tradingpb.Fund.code)
 }
 inline std::string* Fund::mutable_code() {
-  // @@protoc_insertion_point(field_mutable:tradingdb2pb.Fund.code)
+  // @@protoc_insertion_point(field_mutable:tradingpb.Fund.code)
   return _internal_mutable_code();
 }
 inline const std::string& Fund::_internal_code() const {
@@ -4168,26 +4168,26 @@ inline void Fund::set_code(std::string&& value) {
   
   code_.SetNoArena(
     &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:tradingdb2pb.Fund.code)
+  // @@protoc_insertion_point(field_set_rvalue:tradingpb.Fund.code)
 }
 inline void Fund::set_code(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   code_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:tradingdb2pb.Fund.code)
+  // @@protoc_insertion_point(field_set_char:tradingpb.Fund.code)
 }
 inline void Fund::set_code(const char* value, size_t size) {
   
   code_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:tradingdb2pb.Fund.code)
+  // @@protoc_insertion_point(field_set_pointer:tradingpb.Fund.code)
 }
 inline std::string* Fund::_internal_mutable_code() {
   
   return code_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline std::string* Fund::release_code() {
-  // @@protoc_insertion_point(field_release:tradingdb2pb.Fund.code)
+  // @@protoc_insertion_point(field_release:tradingpb.Fund.code)
   
   return code_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
@@ -4198,7 +4198,7 @@ inline void Fund::set_allocated_code(std::string* code) {
     
   }
   code_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), code);
-  // @@protoc_insertion_point(field_set_allocated:tradingdb2pb.Fund.code)
+  // @@protoc_insertion_point(field_set_allocated:tradingpb.Fund.code)
 }
 
 // string name = 2;
@@ -4206,15 +4206,15 @@ inline void Fund::clear_name() {
   name_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline const std::string& Fund::name() const {
-  // @@protoc_insertion_point(field_get:tradingdb2pb.Fund.name)
+  // @@protoc_insertion_point(field_get:tradingpb.Fund.name)
   return _internal_name();
 }
 inline void Fund::set_name(const std::string& value) {
   _internal_set_name(value);
-  // @@protoc_insertion_point(field_set:tradingdb2pb.Fund.name)
+  // @@protoc_insertion_point(field_set:tradingpb.Fund.name)
 }
 inline std::string* Fund::mutable_name() {
-  // @@protoc_insertion_point(field_mutable:tradingdb2pb.Fund.name)
+  // @@protoc_insertion_point(field_mutable:tradingpb.Fund.name)
   return _internal_mutable_name();
 }
 inline const std::string& Fund::_internal_name() const {
@@ -4228,26 +4228,26 @@ inline void Fund::set_name(std::string&& value) {
   
   name_.SetNoArena(
     &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:tradingdb2pb.Fund.name)
+  // @@protoc_insertion_point(field_set_rvalue:tradingpb.Fund.name)
 }
 inline void Fund::set_name(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   name_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:tradingdb2pb.Fund.name)
+  // @@protoc_insertion_point(field_set_char:tradingpb.Fund.name)
 }
 inline void Fund::set_name(const char* value, size_t size) {
   
   name_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:tradingdb2pb.Fund.name)
+  // @@protoc_insertion_point(field_set_pointer:tradingpb.Fund.name)
 }
 inline std::string* Fund::_internal_mutable_name() {
   
   return name_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline std::string* Fund::release_name() {
-  // @@protoc_insertion_point(field_release:tradingdb2pb.Fund.name)
+  // @@protoc_insertion_point(field_release:tradingpb.Fund.name)
   
   return name_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
@@ -4258,7 +4258,7 @@ inline void Fund::set_allocated_name(std::string* name) {
     
   }
   name_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), name);
-  // @@protoc_insertion_point(field_set_allocated:tradingdb2pb.Fund.name)
+  // @@protoc_insertion_point(field_set_allocated:tradingpb.Fund.name)
 }
 
 // repeated string tags = 3;
@@ -4272,66 +4272,66 @@ inline void Fund::clear_tags() {
   tags_.Clear();
 }
 inline std::string* Fund::add_tags() {
-  // @@protoc_insertion_point(field_add_mutable:tradingdb2pb.Fund.tags)
+  // @@protoc_insertion_point(field_add_mutable:tradingpb.Fund.tags)
   return _internal_add_tags();
 }
 inline const std::string& Fund::_internal_tags(int index) const {
   return tags_.Get(index);
 }
 inline const std::string& Fund::tags(int index) const {
-  // @@protoc_insertion_point(field_get:tradingdb2pb.Fund.tags)
+  // @@protoc_insertion_point(field_get:tradingpb.Fund.tags)
   return _internal_tags(index);
 }
 inline std::string* Fund::mutable_tags(int index) {
-  // @@protoc_insertion_point(field_mutable:tradingdb2pb.Fund.tags)
+  // @@protoc_insertion_point(field_mutable:tradingpb.Fund.tags)
   return tags_.Mutable(index);
 }
 inline void Fund::set_tags(int index, const std::string& value) {
-  // @@protoc_insertion_point(field_set:tradingdb2pb.Fund.tags)
+  // @@protoc_insertion_point(field_set:tradingpb.Fund.tags)
   tags_.Mutable(index)->assign(value);
 }
 inline void Fund::set_tags(int index, std::string&& value) {
-  // @@protoc_insertion_point(field_set:tradingdb2pb.Fund.tags)
+  // @@protoc_insertion_point(field_set:tradingpb.Fund.tags)
   tags_.Mutable(index)->assign(std::move(value));
 }
 inline void Fund::set_tags(int index, const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   tags_.Mutable(index)->assign(value);
-  // @@protoc_insertion_point(field_set_char:tradingdb2pb.Fund.tags)
+  // @@protoc_insertion_point(field_set_char:tradingpb.Fund.tags)
 }
 inline void Fund::set_tags(int index, const char* value, size_t size) {
   tags_.Mutable(index)->assign(
     reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_set_pointer:tradingdb2pb.Fund.tags)
+  // @@protoc_insertion_point(field_set_pointer:tradingpb.Fund.tags)
 }
 inline std::string* Fund::_internal_add_tags() {
   return tags_.Add();
 }
 inline void Fund::add_tags(const std::string& value) {
   tags_.Add()->assign(value);
-  // @@protoc_insertion_point(field_add:tradingdb2pb.Fund.tags)
+  // @@protoc_insertion_point(field_add:tradingpb.Fund.tags)
 }
 inline void Fund::add_tags(std::string&& value) {
   tags_.Add(std::move(value));
-  // @@protoc_insertion_point(field_add:tradingdb2pb.Fund.tags)
+  // @@protoc_insertion_point(field_add:tradingpb.Fund.tags)
 }
 inline void Fund::add_tags(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   tags_.Add()->assign(value);
-  // @@protoc_insertion_point(field_add_char:tradingdb2pb.Fund.tags)
+  // @@protoc_insertion_point(field_add_char:tradingpb.Fund.tags)
 }
 inline void Fund::add_tags(const char* value, size_t size) {
   tags_.Add()->assign(reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_add_pointer:tradingdb2pb.Fund.tags)
+  // @@protoc_insertion_point(field_add_pointer:tradingpb.Fund.tags)
 }
 inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
 Fund::tags() const {
-  // @@protoc_insertion_point(field_list:tradingdb2pb.Fund.tags)
+  // @@protoc_insertion_point(field_list:tradingpb.Fund.tags)
   return tags_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
 Fund::mutable_tags() {
-  // @@protoc_insertion_point(field_mutable_list:tradingdb2pb.Fund.tags)
+  // @@protoc_insertion_point(field_mutable_list:tradingpb.Fund.tags)
   return &tags_;
 }
 
@@ -4343,7 +4343,7 @@ inline ::PROTOBUF_NAMESPACE_ID::int64 Fund::_internal_createtime() const {
   return createtime_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int64 Fund::createtime() const {
-  // @@protoc_insertion_point(field_get:tradingdb2pb.Fund.createTime)
+  // @@protoc_insertion_point(field_get:tradingpb.Fund.createTime)
   return _internal_createtime();
 }
 inline void Fund::_internal_set_createtime(::PROTOBUF_NAMESPACE_ID::int64 value) {
@@ -4352,10 +4352,10 @@ inline void Fund::_internal_set_createtime(::PROTOBUF_NAMESPACE_ID::int64 value)
 }
 inline void Fund::set_createtime(::PROTOBUF_NAMESPACE_ID::int64 value) {
   _internal_set_createtime(value);
-  // @@protoc_insertion_point(field_set:tradingdb2pb.Fund.createTime)
+  // @@protoc_insertion_point(field_set:tradingpb.Fund.createTime)
 }
 
-// repeated .tradingdb2pb.FundSize size = 5;
+// repeated .tradingpb.FundSize size = 5;
 inline int Fund::_internal_size_size() const {
   return size_.size();
 }
@@ -4365,32 +4365,32 @@ inline int Fund::size_size() const {
 inline void Fund::clear_size() {
   size_.Clear();
 }
-inline ::tradingdb2pb::FundSize* Fund::mutable_size(int index) {
-  // @@protoc_insertion_point(field_mutable:tradingdb2pb.Fund.size)
+inline ::tradingpb::FundSize* Fund::mutable_size(int index) {
+  // @@protoc_insertion_point(field_mutable:tradingpb.Fund.size)
   return size_.Mutable(index);
 }
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingdb2pb::FundSize >*
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingpb::FundSize >*
 Fund::mutable_size() {
-  // @@protoc_insertion_point(field_mutable_list:tradingdb2pb.Fund.size)
+  // @@protoc_insertion_point(field_mutable_list:tradingpb.Fund.size)
   return &size_;
 }
-inline const ::tradingdb2pb::FundSize& Fund::_internal_size(int index) const {
+inline const ::tradingpb::FundSize& Fund::_internal_size(int index) const {
   return size_.Get(index);
 }
-inline const ::tradingdb2pb::FundSize& Fund::size(int index) const {
-  // @@protoc_insertion_point(field_get:tradingdb2pb.Fund.size)
+inline const ::tradingpb::FundSize& Fund::size(int index) const {
+  // @@protoc_insertion_point(field_get:tradingpb.Fund.size)
   return _internal_size(index);
 }
-inline ::tradingdb2pb::FundSize* Fund::_internal_add_size() {
+inline ::tradingpb::FundSize* Fund::_internal_add_size() {
   return size_.Add();
 }
-inline ::tradingdb2pb::FundSize* Fund::add_size() {
-  // @@protoc_insertion_point(field_add:tradingdb2pb.Fund.size)
+inline ::tradingpb::FundSize* Fund::add_size() {
+  // @@protoc_insertion_point(field_add:tradingpb.Fund.size)
   return _internal_add_size();
 }
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingdb2pb::FundSize >&
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingpb::FundSize >&
 Fund::size() const {
-  // @@protoc_insertion_point(field_list:tradingdb2pb.Fund.size)
+  // @@protoc_insertion_point(field_list:tradingpb.Fund.size)
   return size_;
 }
 
@@ -4399,15 +4399,15 @@ inline void Fund::clear_company() {
   company_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline const std::string& Fund::company() const {
-  // @@protoc_insertion_point(field_get:tradingdb2pb.Fund.company)
+  // @@protoc_insertion_point(field_get:tradingpb.Fund.company)
   return _internal_company();
 }
 inline void Fund::set_company(const std::string& value) {
   _internal_set_company(value);
-  // @@protoc_insertion_point(field_set:tradingdb2pb.Fund.company)
+  // @@protoc_insertion_point(field_set:tradingpb.Fund.company)
 }
 inline std::string* Fund::mutable_company() {
-  // @@protoc_insertion_point(field_mutable:tradingdb2pb.Fund.company)
+  // @@protoc_insertion_point(field_mutable:tradingpb.Fund.company)
   return _internal_mutable_company();
 }
 inline const std::string& Fund::_internal_company() const {
@@ -4421,26 +4421,26 @@ inline void Fund::set_company(std::string&& value) {
   
   company_.SetNoArena(
     &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:tradingdb2pb.Fund.company)
+  // @@protoc_insertion_point(field_set_rvalue:tradingpb.Fund.company)
 }
 inline void Fund::set_company(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   company_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:tradingdb2pb.Fund.company)
+  // @@protoc_insertion_point(field_set_char:tradingpb.Fund.company)
 }
 inline void Fund::set_company(const char* value, size_t size) {
   
   company_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:tradingdb2pb.Fund.company)
+  // @@protoc_insertion_point(field_set_pointer:tradingpb.Fund.company)
 }
 inline std::string* Fund::_internal_mutable_company() {
   
   return company_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline std::string* Fund::release_company() {
-  // @@protoc_insertion_point(field_release:tradingdb2pb.Fund.company)
+  // @@protoc_insertion_point(field_release:tradingpb.Fund.company)
   
   return company_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
@@ -4451,10 +4451,10 @@ inline void Fund::set_allocated_company(std::string* company) {
     
   }
   company_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), company);
-  // @@protoc_insertion_point(field_set_allocated:tradingdb2pb.Fund.company)
+  // @@protoc_insertion_point(field_set_allocated:tradingpb.Fund.company)
 }
 
-// repeated .tradingdb2pb.FundManager managers = 7;
+// repeated .tradingpb.FundManager managers = 7;
 inline int Fund::_internal_managers_size() const {
   return managers_.size();
 }
@@ -4464,36 +4464,36 @@ inline int Fund::managers_size() const {
 inline void Fund::clear_managers() {
   managers_.Clear();
 }
-inline ::tradingdb2pb::FundManager* Fund::mutable_managers(int index) {
-  // @@protoc_insertion_point(field_mutable:tradingdb2pb.Fund.managers)
+inline ::tradingpb::FundManager* Fund::mutable_managers(int index) {
+  // @@protoc_insertion_point(field_mutable:tradingpb.Fund.managers)
   return managers_.Mutable(index);
 }
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingdb2pb::FundManager >*
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingpb::FundManager >*
 Fund::mutable_managers() {
-  // @@protoc_insertion_point(field_mutable_list:tradingdb2pb.Fund.managers)
+  // @@protoc_insertion_point(field_mutable_list:tradingpb.Fund.managers)
   return &managers_;
 }
-inline const ::tradingdb2pb::FundManager& Fund::_internal_managers(int index) const {
+inline const ::tradingpb::FundManager& Fund::_internal_managers(int index) const {
   return managers_.Get(index);
 }
-inline const ::tradingdb2pb::FundManager& Fund::managers(int index) const {
-  // @@protoc_insertion_point(field_get:tradingdb2pb.Fund.managers)
+inline const ::tradingpb::FundManager& Fund::managers(int index) const {
+  // @@protoc_insertion_point(field_get:tradingpb.Fund.managers)
   return _internal_managers(index);
 }
-inline ::tradingdb2pb::FundManager* Fund::_internal_add_managers() {
+inline ::tradingpb::FundManager* Fund::_internal_add_managers() {
   return managers_.Add();
 }
-inline ::tradingdb2pb::FundManager* Fund::add_managers() {
-  // @@protoc_insertion_point(field_add:tradingdb2pb.Fund.managers)
+inline ::tradingpb::FundManager* Fund::add_managers() {
+  // @@protoc_insertion_point(field_add:tradingpb.Fund.managers)
   return _internal_add_managers();
 }
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingdb2pb::FundManager >&
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingpb::FundManager >&
 Fund::managers() const {
-  // @@protoc_insertion_point(field_list:tradingdb2pb.Fund.managers)
+  // @@protoc_insertion_point(field_list:tradingpb.Fund.managers)
   return managers_;
 }
 
-// repeated .tradingdb2pb.FundResult results = 8;
+// repeated .tradingpb.FundResult results = 8;
 inline int Fund::_internal_results_size() const {
   return results_.size();
 }
@@ -4503,32 +4503,32 @@ inline int Fund::results_size() const {
 inline void Fund::clear_results() {
   results_.Clear();
 }
-inline ::tradingdb2pb::FundResult* Fund::mutable_results(int index) {
-  // @@protoc_insertion_point(field_mutable:tradingdb2pb.Fund.results)
+inline ::tradingpb::FundResult* Fund::mutable_results(int index) {
+  // @@protoc_insertion_point(field_mutable:tradingpb.Fund.results)
   return results_.Mutable(index);
 }
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingdb2pb::FundResult >*
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingpb::FundResult >*
 Fund::mutable_results() {
-  // @@protoc_insertion_point(field_mutable_list:tradingdb2pb.Fund.results)
+  // @@protoc_insertion_point(field_mutable_list:tradingpb.Fund.results)
   return &results_;
 }
-inline const ::tradingdb2pb::FundResult& Fund::_internal_results(int index) const {
+inline const ::tradingpb::FundResult& Fund::_internal_results(int index) const {
   return results_.Get(index);
 }
-inline const ::tradingdb2pb::FundResult& Fund::results(int index) const {
-  // @@protoc_insertion_point(field_get:tradingdb2pb.Fund.results)
+inline const ::tradingpb::FundResult& Fund::results(int index) const {
+  // @@protoc_insertion_point(field_get:tradingpb.Fund.results)
   return _internal_results(index);
 }
-inline ::tradingdb2pb::FundResult* Fund::_internal_add_results() {
+inline ::tradingpb::FundResult* Fund::_internal_add_results() {
   return results_.Add();
 }
-inline ::tradingdb2pb::FundResult* Fund::add_results() {
-  // @@protoc_insertion_point(field_add:tradingdb2pb.Fund.results)
+inline ::tradingpb::FundResult* Fund::add_results() {
+  // @@protoc_insertion_point(field_add:tradingpb.Fund.results)
   return _internal_add_results();
 }
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingdb2pb::FundResult >&
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingpb::FundResult >&
 Fund::results() const {
-  // @@protoc_insertion_point(field_list:tradingdb2pb.Fund.results)
+  // @@protoc_insertion_point(field_list:tradingpb.Fund.results)
   return results_;
 }
 
@@ -4541,15 +4541,15 @@ inline void SymbolInfo::clear_market() {
   market_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline const std::string& SymbolInfo::market() const {
-  // @@protoc_insertion_point(field_get:tradingdb2pb.SymbolInfo.market)
+  // @@protoc_insertion_point(field_get:tradingpb.SymbolInfo.market)
   return _internal_market();
 }
 inline void SymbolInfo::set_market(const std::string& value) {
   _internal_set_market(value);
-  // @@protoc_insertion_point(field_set:tradingdb2pb.SymbolInfo.market)
+  // @@protoc_insertion_point(field_set:tradingpb.SymbolInfo.market)
 }
 inline std::string* SymbolInfo::mutable_market() {
-  // @@protoc_insertion_point(field_mutable:tradingdb2pb.SymbolInfo.market)
+  // @@protoc_insertion_point(field_mutable:tradingpb.SymbolInfo.market)
   return _internal_mutable_market();
 }
 inline const std::string& SymbolInfo::_internal_market() const {
@@ -4563,26 +4563,26 @@ inline void SymbolInfo::set_market(std::string&& value) {
   
   market_.SetNoArena(
     &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:tradingdb2pb.SymbolInfo.market)
+  // @@protoc_insertion_point(field_set_rvalue:tradingpb.SymbolInfo.market)
 }
 inline void SymbolInfo::set_market(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   market_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:tradingdb2pb.SymbolInfo.market)
+  // @@protoc_insertion_point(field_set_char:tradingpb.SymbolInfo.market)
 }
 inline void SymbolInfo::set_market(const char* value, size_t size) {
   
   market_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:tradingdb2pb.SymbolInfo.market)
+  // @@protoc_insertion_point(field_set_pointer:tradingpb.SymbolInfo.market)
 }
 inline std::string* SymbolInfo::_internal_mutable_market() {
   
   return market_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline std::string* SymbolInfo::release_market() {
-  // @@protoc_insertion_point(field_release:tradingdb2pb.SymbolInfo.market)
+  // @@protoc_insertion_point(field_release:tradingpb.SymbolInfo.market)
   
   return market_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
@@ -4593,7 +4593,7 @@ inline void SymbolInfo::set_allocated_market(std::string* market) {
     
   }
   market_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), market);
-  // @@protoc_insertion_point(field_set_allocated:tradingdb2pb.SymbolInfo.market)
+  // @@protoc_insertion_point(field_set_allocated:tradingpb.SymbolInfo.market)
 }
 
 // string symbol = 2;
@@ -4601,15 +4601,15 @@ inline void SymbolInfo::clear_symbol() {
   symbol_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline const std::string& SymbolInfo::symbol() const {
-  // @@protoc_insertion_point(field_get:tradingdb2pb.SymbolInfo.symbol)
+  // @@protoc_insertion_point(field_get:tradingpb.SymbolInfo.symbol)
   return _internal_symbol();
 }
 inline void SymbolInfo::set_symbol(const std::string& value) {
   _internal_set_symbol(value);
-  // @@protoc_insertion_point(field_set:tradingdb2pb.SymbolInfo.symbol)
+  // @@protoc_insertion_point(field_set:tradingpb.SymbolInfo.symbol)
 }
 inline std::string* SymbolInfo::mutable_symbol() {
-  // @@protoc_insertion_point(field_mutable:tradingdb2pb.SymbolInfo.symbol)
+  // @@protoc_insertion_point(field_mutable:tradingpb.SymbolInfo.symbol)
   return _internal_mutable_symbol();
 }
 inline const std::string& SymbolInfo::_internal_symbol() const {
@@ -4623,26 +4623,26 @@ inline void SymbolInfo::set_symbol(std::string&& value) {
   
   symbol_.SetNoArena(
     &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:tradingdb2pb.SymbolInfo.symbol)
+  // @@protoc_insertion_point(field_set_rvalue:tradingpb.SymbolInfo.symbol)
 }
 inline void SymbolInfo::set_symbol(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   symbol_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:tradingdb2pb.SymbolInfo.symbol)
+  // @@protoc_insertion_point(field_set_char:tradingpb.SymbolInfo.symbol)
 }
 inline void SymbolInfo::set_symbol(const char* value, size_t size) {
   
   symbol_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:tradingdb2pb.SymbolInfo.symbol)
+  // @@protoc_insertion_point(field_set_pointer:tradingpb.SymbolInfo.symbol)
 }
 inline std::string* SymbolInfo::_internal_mutable_symbol() {
   
   return symbol_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline std::string* SymbolInfo::release_symbol() {
-  // @@protoc_insertion_point(field_release:tradingdb2pb.SymbolInfo.symbol)
+  // @@protoc_insertion_point(field_release:tradingpb.SymbolInfo.symbol)
   
   return symbol_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
@@ -4653,10 +4653,10 @@ inline void SymbolInfo::set_allocated_symbol(std::string* symbol) {
     
   }
   symbol_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), symbol);
-  // @@protoc_insertion_point(field_set_allocated:tradingdb2pb.SymbolInfo.symbol)
+  // @@protoc_insertion_point(field_set_allocated:tradingpb.SymbolInfo.symbol)
 }
 
-// .tradingdb2pb.Fund fund = 3;
+// .tradingpb.Fund fund = 3;
 inline bool SymbolInfo::_internal_has_fund() const {
   return this != internal_default_instance() && fund_ != nullptr;
 }
@@ -4669,35 +4669,35 @@ inline void SymbolInfo::clear_fund() {
   }
   fund_ = nullptr;
 }
-inline const ::tradingdb2pb::Fund& SymbolInfo::_internal_fund() const {
-  const ::tradingdb2pb::Fund* p = fund_;
-  return p != nullptr ? *p : *reinterpret_cast<const ::tradingdb2pb::Fund*>(
-      &::tradingdb2pb::_Fund_default_instance_);
+inline const ::tradingpb::Fund& SymbolInfo::_internal_fund() const {
+  const ::tradingpb::Fund* p = fund_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::tradingpb::Fund*>(
+      &::tradingpb::_Fund_default_instance_);
 }
-inline const ::tradingdb2pb::Fund& SymbolInfo::fund() const {
-  // @@protoc_insertion_point(field_get:tradingdb2pb.SymbolInfo.fund)
+inline const ::tradingpb::Fund& SymbolInfo::fund() const {
+  // @@protoc_insertion_point(field_get:tradingpb.SymbolInfo.fund)
   return _internal_fund();
 }
-inline ::tradingdb2pb::Fund* SymbolInfo::release_fund() {
-  // @@protoc_insertion_point(field_release:tradingdb2pb.SymbolInfo.fund)
+inline ::tradingpb::Fund* SymbolInfo::release_fund() {
+  // @@protoc_insertion_point(field_release:tradingpb.SymbolInfo.fund)
   
-  ::tradingdb2pb::Fund* temp = fund_;
+  ::tradingpb::Fund* temp = fund_;
   fund_ = nullptr;
   return temp;
 }
-inline ::tradingdb2pb::Fund* SymbolInfo::_internal_mutable_fund() {
+inline ::tradingpb::Fund* SymbolInfo::_internal_mutable_fund() {
   
   if (fund_ == nullptr) {
-    auto* p = CreateMaybeMessage<::tradingdb2pb::Fund>(GetArenaNoVirtual());
+    auto* p = CreateMaybeMessage<::tradingpb::Fund>(GetArenaNoVirtual());
     fund_ = p;
   }
   return fund_;
 }
-inline ::tradingdb2pb::Fund* SymbolInfo::mutable_fund() {
-  // @@protoc_insertion_point(field_mutable:tradingdb2pb.SymbolInfo.fund)
+inline ::tradingpb::Fund* SymbolInfo::mutable_fund() {
+  // @@protoc_insertion_point(field_mutable:tradingpb.SymbolInfo.fund)
   return _internal_mutable_fund();
 }
-inline void SymbolInfo::set_allocated_fund(::tradingdb2pb::Fund* fund) {
+inline void SymbolInfo::set_allocated_fund(::tradingpb::Fund* fund) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
   if (message_arena == nullptr) {
     delete fund_;
@@ -4713,7 +4713,7 @@ inline void SymbolInfo::set_allocated_fund(::tradingdb2pb::Fund* fund) {
     
   }
   fund_ = fund;
-  // @@protoc_insertion_point(field_set_allocated:tradingdb2pb.SymbolInfo.fund)
+  // @@protoc_insertion_point(field_set_allocated:tradingpb.SymbolInfo.fund)
 }
 
 // -------------------------------------------------------------------
@@ -4725,15 +4725,15 @@ inline void RequestUpdCandles::clear_token() {
   token_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline const std::string& RequestUpdCandles::token() const {
-  // @@protoc_insertion_point(field_get:tradingdb2pb.RequestUpdCandles.token)
+  // @@protoc_insertion_point(field_get:tradingpb.RequestUpdCandles.token)
   return _internal_token();
 }
 inline void RequestUpdCandles::set_token(const std::string& value) {
   _internal_set_token(value);
-  // @@protoc_insertion_point(field_set:tradingdb2pb.RequestUpdCandles.token)
+  // @@protoc_insertion_point(field_set:tradingpb.RequestUpdCandles.token)
 }
 inline std::string* RequestUpdCandles::mutable_token() {
-  // @@protoc_insertion_point(field_mutable:tradingdb2pb.RequestUpdCandles.token)
+  // @@protoc_insertion_point(field_mutable:tradingpb.RequestUpdCandles.token)
   return _internal_mutable_token();
 }
 inline const std::string& RequestUpdCandles::_internal_token() const {
@@ -4747,26 +4747,26 @@ inline void RequestUpdCandles::set_token(std::string&& value) {
   
   token_.SetNoArena(
     &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:tradingdb2pb.RequestUpdCandles.token)
+  // @@protoc_insertion_point(field_set_rvalue:tradingpb.RequestUpdCandles.token)
 }
 inline void RequestUpdCandles::set_token(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   token_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:tradingdb2pb.RequestUpdCandles.token)
+  // @@protoc_insertion_point(field_set_char:tradingpb.RequestUpdCandles.token)
 }
 inline void RequestUpdCandles::set_token(const char* value, size_t size) {
   
   token_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:tradingdb2pb.RequestUpdCandles.token)
+  // @@protoc_insertion_point(field_set_pointer:tradingpb.RequestUpdCandles.token)
 }
 inline std::string* RequestUpdCandles::_internal_mutable_token() {
   
   return token_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline std::string* RequestUpdCandles::release_token() {
-  // @@protoc_insertion_point(field_release:tradingdb2pb.RequestUpdCandles.token)
+  // @@protoc_insertion_point(field_release:tradingpb.RequestUpdCandles.token)
   
   return token_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
@@ -4777,10 +4777,10 @@ inline void RequestUpdCandles::set_allocated_token(std::string* token) {
     
   }
   token_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), token);
-  // @@protoc_insertion_point(field_set_allocated:tradingdb2pb.RequestUpdCandles.token)
+  // @@protoc_insertion_point(field_set_allocated:tradingpb.RequestUpdCandles.token)
 }
 
-// .tradingdb2pb.Candles candles = 2;
+// .tradingpb.Candles candles = 2;
 inline bool RequestUpdCandles::_internal_has_candles() const {
   return this != internal_default_instance() && candles_ != nullptr;
 }
@@ -4793,35 +4793,35 @@ inline void RequestUpdCandles::clear_candles() {
   }
   candles_ = nullptr;
 }
-inline const ::tradingdb2pb::Candles& RequestUpdCandles::_internal_candles() const {
-  const ::tradingdb2pb::Candles* p = candles_;
-  return p != nullptr ? *p : *reinterpret_cast<const ::tradingdb2pb::Candles*>(
-      &::tradingdb2pb::_Candles_default_instance_);
+inline const ::tradingpb::Candles& RequestUpdCandles::_internal_candles() const {
+  const ::tradingpb::Candles* p = candles_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::tradingpb::Candles*>(
+      &::tradingpb::_Candles_default_instance_);
 }
-inline const ::tradingdb2pb::Candles& RequestUpdCandles::candles() const {
-  // @@protoc_insertion_point(field_get:tradingdb2pb.RequestUpdCandles.candles)
+inline const ::tradingpb::Candles& RequestUpdCandles::candles() const {
+  // @@protoc_insertion_point(field_get:tradingpb.RequestUpdCandles.candles)
   return _internal_candles();
 }
-inline ::tradingdb2pb::Candles* RequestUpdCandles::release_candles() {
-  // @@protoc_insertion_point(field_release:tradingdb2pb.RequestUpdCandles.candles)
+inline ::tradingpb::Candles* RequestUpdCandles::release_candles() {
+  // @@protoc_insertion_point(field_release:tradingpb.RequestUpdCandles.candles)
   
-  ::tradingdb2pb::Candles* temp = candles_;
+  ::tradingpb::Candles* temp = candles_;
   candles_ = nullptr;
   return temp;
 }
-inline ::tradingdb2pb::Candles* RequestUpdCandles::_internal_mutable_candles() {
+inline ::tradingpb::Candles* RequestUpdCandles::_internal_mutable_candles() {
   
   if (candles_ == nullptr) {
-    auto* p = CreateMaybeMessage<::tradingdb2pb::Candles>(GetArenaNoVirtual());
+    auto* p = CreateMaybeMessage<::tradingpb::Candles>(GetArenaNoVirtual());
     candles_ = p;
   }
   return candles_;
 }
-inline ::tradingdb2pb::Candles* RequestUpdCandles::mutable_candles() {
-  // @@protoc_insertion_point(field_mutable:tradingdb2pb.RequestUpdCandles.candles)
+inline ::tradingpb::Candles* RequestUpdCandles::mutable_candles() {
+  // @@protoc_insertion_point(field_mutable:tradingpb.RequestUpdCandles.candles)
   return _internal_mutable_candles();
 }
-inline void RequestUpdCandles::set_allocated_candles(::tradingdb2pb::Candles* candles) {
+inline void RequestUpdCandles::set_allocated_candles(::tradingpb::Candles* candles) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
   if (message_arena == nullptr) {
     delete candles_;
@@ -4837,7 +4837,7 @@ inline void RequestUpdCandles::set_allocated_candles(::tradingdb2pb::Candles* ca
     
   }
   candles_ = candles;
-  // @@protoc_insertion_point(field_set_allocated:tradingdb2pb.RequestUpdCandles.candles)
+  // @@protoc_insertion_point(field_set_allocated:tradingpb.RequestUpdCandles.candles)
 }
 
 // -------------------------------------------------------------------
@@ -4852,7 +4852,7 @@ inline ::PROTOBUF_NAMESPACE_ID::int32 ReplyUpdCandles::_internal_lengthok() cons
   return lengthok_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int32 ReplyUpdCandles::lengthok() const {
-  // @@protoc_insertion_point(field_get:tradingdb2pb.ReplyUpdCandles.lengthOK)
+  // @@protoc_insertion_point(field_get:tradingpb.ReplyUpdCandles.lengthOK)
   return _internal_lengthok();
 }
 inline void ReplyUpdCandles::_internal_set_lengthok(::PROTOBUF_NAMESPACE_ID::int32 value) {
@@ -4861,7 +4861,7 @@ inline void ReplyUpdCandles::_internal_set_lengthok(::PROTOBUF_NAMESPACE_ID::int
 }
 inline void ReplyUpdCandles::set_lengthok(::PROTOBUF_NAMESPACE_ID::int32 value) {
   _internal_set_lengthok(value);
-  // @@protoc_insertion_point(field_set:tradingdb2pb.ReplyUpdCandles.lengthOK)
+  // @@protoc_insertion_point(field_set:tradingpb.ReplyUpdCandles.lengthOK)
 }
 
 // -------------------------------------------------------------------
@@ -4873,15 +4873,15 @@ inline void RequestGetCandles::clear_token() {
   token_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline const std::string& RequestGetCandles::token() const {
-  // @@protoc_insertion_point(field_get:tradingdb2pb.RequestGetCandles.token)
+  // @@protoc_insertion_point(field_get:tradingpb.RequestGetCandles.token)
   return _internal_token();
 }
 inline void RequestGetCandles::set_token(const std::string& value) {
   _internal_set_token(value);
-  // @@protoc_insertion_point(field_set:tradingdb2pb.RequestGetCandles.token)
+  // @@protoc_insertion_point(field_set:tradingpb.RequestGetCandles.token)
 }
 inline std::string* RequestGetCandles::mutable_token() {
-  // @@protoc_insertion_point(field_mutable:tradingdb2pb.RequestGetCandles.token)
+  // @@protoc_insertion_point(field_mutable:tradingpb.RequestGetCandles.token)
   return _internal_mutable_token();
 }
 inline const std::string& RequestGetCandles::_internal_token() const {
@@ -4895,26 +4895,26 @@ inline void RequestGetCandles::set_token(std::string&& value) {
   
   token_.SetNoArena(
     &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:tradingdb2pb.RequestGetCandles.token)
+  // @@protoc_insertion_point(field_set_rvalue:tradingpb.RequestGetCandles.token)
 }
 inline void RequestGetCandles::set_token(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   token_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:tradingdb2pb.RequestGetCandles.token)
+  // @@protoc_insertion_point(field_set_char:tradingpb.RequestGetCandles.token)
 }
 inline void RequestGetCandles::set_token(const char* value, size_t size) {
   
   token_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:tradingdb2pb.RequestGetCandles.token)
+  // @@protoc_insertion_point(field_set_pointer:tradingpb.RequestGetCandles.token)
 }
 inline std::string* RequestGetCandles::_internal_mutable_token() {
   
   return token_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline std::string* RequestGetCandles::release_token() {
-  // @@protoc_insertion_point(field_release:tradingdb2pb.RequestGetCandles.token)
+  // @@protoc_insertion_point(field_release:tradingpb.RequestGetCandles.token)
   
   return token_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
@@ -4925,7 +4925,7 @@ inline void RequestGetCandles::set_allocated_token(std::string* token) {
     
   }
   token_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), token);
-  // @@protoc_insertion_point(field_set_allocated:tradingdb2pb.RequestGetCandles.token)
+  // @@protoc_insertion_point(field_set_allocated:tradingpb.RequestGetCandles.token)
 }
 
 // string market = 2;
@@ -4933,15 +4933,15 @@ inline void RequestGetCandles::clear_market() {
   market_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline const std::string& RequestGetCandles::market() const {
-  // @@protoc_insertion_point(field_get:tradingdb2pb.RequestGetCandles.market)
+  // @@protoc_insertion_point(field_get:tradingpb.RequestGetCandles.market)
   return _internal_market();
 }
 inline void RequestGetCandles::set_market(const std::string& value) {
   _internal_set_market(value);
-  // @@protoc_insertion_point(field_set:tradingdb2pb.RequestGetCandles.market)
+  // @@protoc_insertion_point(field_set:tradingpb.RequestGetCandles.market)
 }
 inline std::string* RequestGetCandles::mutable_market() {
-  // @@protoc_insertion_point(field_mutable:tradingdb2pb.RequestGetCandles.market)
+  // @@protoc_insertion_point(field_mutable:tradingpb.RequestGetCandles.market)
   return _internal_mutable_market();
 }
 inline const std::string& RequestGetCandles::_internal_market() const {
@@ -4955,26 +4955,26 @@ inline void RequestGetCandles::set_market(std::string&& value) {
   
   market_.SetNoArena(
     &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:tradingdb2pb.RequestGetCandles.market)
+  // @@protoc_insertion_point(field_set_rvalue:tradingpb.RequestGetCandles.market)
 }
 inline void RequestGetCandles::set_market(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   market_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:tradingdb2pb.RequestGetCandles.market)
+  // @@protoc_insertion_point(field_set_char:tradingpb.RequestGetCandles.market)
 }
 inline void RequestGetCandles::set_market(const char* value, size_t size) {
   
   market_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:tradingdb2pb.RequestGetCandles.market)
+  // @@protoc_insertion_point(field_set_pointer:tradingpb.RequestGetCandles.market)
 }
 inline std::string* RequestGetCandles::_internal_mutable_market() {
   
   return market_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline std::string* RequestGetCandles::release_market() {
-  // @@protoc_insertion_point(field_release:tradingdb2pb.RequestGetCandles.market)
+  // @@protoc_insertion_point(field_release:tradingpb.RequestGetCandles.market)
   
   return market_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
@@ -4985,7 +4985,7 @@ inline void RequestGetCandles::set_allocated_market(std::string* market) {
     
   }
   market_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), market);
-  // @@protoc_insertion_point(field_set_allocated:tradingdb2pb.RequestGetCandles.market)
+  // @@protoc_insertion_point(field_set_allocated:tradingpb.RequestGetCandles.market)
 }
 
 // string symbol = 3;
@@ -4993,15 +4993,15 @@ inline void RequestGetCandles::clear_symbol() {
   symbol_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline const std::string& RequestGetCandles::symbol() const {
-  // @@protoc_insertion_point(field_get:tradingdb2pb.RequestGetCandles.symbol)
+  // @@protoc_insertion_point(field_get:tradingpb.RequestGetCandles.symbol)
   return _internal_symbol();
 }
 inline void RequestGetCandles::set_symbol(const std::string& value) {
   _internal_set_symbol(value);
-  // @@protoc_insertion_point(field_set:tradingdb2pb.RequestGetCandles.symbol)
+  // @@protoc_insertion_point(field_set:tradingpb.RequestGetCandles.symbol)
 }
 inline std::string* RequestGetCandles::mutable_symbol() {
-  // @@protoc_insertion_point(field_mutable:tradingdb2pb.RequestGetCandles.symbol)
+  // @@protoc_insertion_point(field_mutable:tradingpb.RequestGetCandles.symbol)
   return _internal_mutable_symbol();
 }
 inline const std::string& RequestGetCandles::_internal_symbol() const {
@@ -5015,26 +5015,26 @@ inline void RequestGetCandles::set_symbol(std::string&& value) {
   
   symbol_.SetNoArena(
     &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:tradingdb2pb.RequestGetCandles.symbol)
+  // @@protoc_insertion_point(field_set_rvalue:tradingpb.RequestGetCandles.symbol)
 }
 inline void RequestGetCandles::set_symbol(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   symbol_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:tradingdb2pb.RequestGetCandles.symbol)
+  // @@protoc_insertion_point(field_set_char:tradingpb.RequestGetCandles.symbol)
 }
 inline void RequestGetCandles::set_symbol(const char* value, size_t size) {
   
   symbol_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:tradingdb2pb.RequestGetCandles.symbol)
+  // @@protoc_insertion_point(field_set_pointer:tradingpb.RequestGetCandles.symbol)
 }
 inline std::string* RequestGetCandles::_internal_mutable_symbol() {
   
   return symbol_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline std::string* RequestGetCandles::release_symbol() {
-  // @@protoc_insertion_point(field_release:tradingdb2pb.RequestGetCandles.symbol)
+  // @@protoc_insertion_point(field_release:tradingpb.RequestGetCandles.symbol)
   
   return symbol_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
@@ -5045,7 +5045,7 @@ inline void RequestGetCandles::set_allocated_symbol(std::string* symbol) {
     
   }
   symbol_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), symbol);
-  // @@protoc_insertion_point(field_set_allocated:tradingdb2pb.RequestGetCandles.symbol)
+  // @@protoc_insertion_point(field_set_allocated:tradingpb.RequestGetCandles.symbol)
 }
 
 // string tag = 4 [deprecated = true];
@@ -5053,15 +5053,15 @@ inline void RequestGetCandles::clear_tag() {
   tag_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline const std::string& RequestGetCandles::tag() const {
-  // @@protoc_insertion_point(field_get:tradingdb2pb.RequestGetCandles.tag)
+  // @@protoc_insertion_point(field_get:tradingpb.RequestGetCandles.tag)
   return _internal_tag();
 }
 inline void RequestGetCandles::set_tag(const std::string& value) {
   _internal_set_tag(value);
-  // @@protoc_insertion_point(field_set:tradingdb2pb.RequestGetCandles.tag)
+  // @@protoc_insertion_point(field_set:tradingpb.RequestGetCandles.tag)
 }
 inline std::string* RequestGetCandles::mutable_tag() {
-  // @@protoc_insertion_point(field_mutable:tradingdb2pb.RequestGetCandles.tag)
+  // @@protoc_insertion_point(field_mutable:tradingpb.RequestGetCandles.tag)
   return _internal_mutable_tag();
 }
 inline const std::string& RequestGetCandles::_internal_tag() const {
@@ -5075,26 +5075,26 @@ inline void RequestGetCandles::set_tag(std::string&& value) {
   
   tag_.SetNoArena(
     &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:tradingdb2pb.RequestGetCandles.tag)
+  // @@protoc_insertion_point(field_set_rvalue:tradingpb.RequestGetCandles.tag)
 }
 inline void RequestGetCandles::set_tag(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   tag_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:tradingdb2pb.RequestGetCandles.tag)
+  // @@protoc_insertion_point(field_set_char:tradingpb.RequestGetCandles.tag)
 }
 inline void RequestGetCandles::set_tag(const char* value, size_t size) {
   
   tag_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:tradingdb2pb.RequestGetCandles.tag)
+  // @@protoc_insertion_point(field_set_pointer:tradingpb.RequestGetCandles.tag)
 }
 inline std::string* RequestGetCandles::_internal_mutable_tag() {
   
   return tag_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline std::string* RequestGetCandles::release_tag() {
-  // @@protoc_insertion_point(field_release:tradingdb2pb.RequestGetCandles.tag)
+  // @@protoc_insertion_point(field_release:tradingpb.RequestGetCandles.tag)
   
   return tag_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
@@ -5105,7 +5105,7 @@ inline void RequestGetCandles::set_allocated_tag(std::string* tag) {
     
   }
   tag_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), tag);
-  // @@protoc_insertion_point(field_set_allocated:tradingdb2pb.RequestGetCandles.tag)
+  // @@protoc_insertion_point(field_set_allocated:tradingpb.RequestGetCandles.tag)
 }
 
 // int64 tsStart = 5;
@@ -5116,7 +5116,7 @@ inline ::PROTOBUF_NAMESPACE_ID::int64 RequestGetCandles::_internal_tsstart() con
   return tsstart_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int64 RequestGetCandles::tsstart() const {
-  // @@protoc_insertion_point(field_get:tradingdb2pb.RequestGetCandles.tsStart)
+  // @@protoc_insertion_point(field_get:tradingpb.RequestGetCandles.tsStart)
   return _internal_tsstart();
 }
 inline void RequestGetCandles::_internal_set_tsstart(::PROTOBUF_NAMESPACE_ID::int64 value) {
@@ -5125,7 +5125,7 @@ inline void RequestGetCandles::_internal_set_tsstart(::PROTOBUF_NAMESPACE_ID::in
 }
 inline void RequestGetCandles::set_tsstart(::PROTOBUF_NAMESPACE_ID::int64 value) {
   _internal_set_tsstart(value);
-  // @@protoc_insertion_point(field_set:tradingdb2pb.RequestGetCandles.tsStart)
+  // @@protoc_insertion_point(field_set:tradingpb.RequestGetCandles.tsStart)
 }
 
 // int64 tsEnd = 6;
@@ -5136,7 +5136,7 @@ inline ::PROTOBUF_NAMESPACE_ID::int64 RequestGetCandles::_internal_tsend() const
   return tsend_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::int64 RequestGetCandles::tsend() const {
-  // @@protoc_insertion_point(field_get:tradingdb2pb.RequestGetCandles.tsEnd)
+  // @@protoc_insertion_point(field_get:tradingpb.RequestGetCandles.tsEnd)
   return _internal_tsend();
 }
 inline void RequestGetCandles::_internal_set_tsend(::PROTOBUF_NAMESPACE_ID::int64 value) {
@@ -5145,7 +5145,7 @@ inline void RequestGetCandles::_internal_set_tsend(::PROTOBUF_NAMESPACE_ID::int6
 }
 inline void RequestGetCandles::set_tsend(::PROTOBUF_NAMESPACE_ID::int64 value) {
   _internal_set_tsend(value);
-  // @@protoc_insertion_point(field_set:tradingdb2pb.RequestGetCandles.tsEnd)
+  // @@protoc_insertion_point(field_set:tradingpb.RequestGetCandles.tsEnd)
 }
 
 // repeated string tags = 7;
@@ -5159,66 +5159,66 @@ inline void RequestGetCandles::clear_tags() {
   tags_.Clear();
 }
 inline std::string* RequestGetCandles::add_tags() {
-  // @@protoc_insertion_point(field_add_mutable:tradingdb2pb.RequestGetCandles.tags)
+  // @@protoc_insertion_point(field_add_mutable:tradingpb.RequestGetCandles.tags)
   return _internal_add_tags();
 }
 inline const std::string& RequestGetCandles::_internal_tags(int index) const {
   return tags_.Get(index);
 }
 inline const std::string& RequestGetCandles::tags(int index) const {
-  // @@protoc_insertion_point(field_get:tradingdb2pb.RequestGetCandles.tags)
+  // @@protoc_insertion_point(field_get:tradingpb.RequestGetCandles.tags)
   return _internal_tags(index);
 }
 inline std::string* RequestGetCandles::mutable_tags(int index) {
-  // @@protoc_insertion_point(field_mutable:tradingdb2pb.RequestGetCandles.tags)
+  // @@protoc_insertion_point(field_mutable:tradingpb.RequestGetCandles.tags)
   return tags_.Mutable(index);
 }
 inline void RequestGetCandles::set_tags(int index, const std::string& value) {
-  // @@protoc_insertion_point(field_set:tradingdb2pb.RequestGetCandles.tags)
+  // @@protoc_insertion_point(field_set:tradingpb.RequestGetCandles.tags)
   tags_.Mutable(index)->assign(value);
 }
 inline void RequestGetCandles::set_tags(int index, std::string&& value) {
-  // @@protoc_insertion_point(field_set:tradingdb2pb.RequestGetCandles.tags)
+  // @@protoc_insertion_point(field_set:tradingpb.RequestGetCandles.tags)
   tags_.Mutable(index)->assign(std::move(value));
 }
 inline void RequestGetCandles::set_tags(int index, const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   tags_.Mutable(index)->assign(value);
-  // @@protoc_insertion_point(field_set_char:tradingdb2pb.RequestGetCandles.tags)
+  // @@protoc_insertion_point(field_set_char:tradingpb.RequestGetCandles.tags)
 }
 inline void RequestGetCandles::set_tags(int index, const char* value, size_t size) {
   tags_.Mutable(index)->assign(
     reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_set_pointer:tradingdb2pb.RequestGetCandles.tags)
+  // @@protoc_insertion_point(field_set_pointer:tradingpb.RequestGetCandles.tags)
 }
 inline std::string* RequestGetCandles::_internal_add_tags() {
   return tags_.Add();
 }
 inline void RequestGetCandles::add_tags(const std::string& value) {
   tags_.Add()->assign(value);
-  // @@protoc_insertion_point(field_add:tradingdb2pb.RequestGetCandles.tags)
+  // @@protoc_insertion_point(field_add:tradingpb.RequestGetCandles.tags)
 }
 inline void RequestGetCandles::add_tags(std::string&& value) {
   tags_.Add(std::move(value));
-  // @@protoc_insertion_point(field_add:tradingdb2pb.RequestGetCandles.tags)
+  // @@protoc_insertion_point(field_add:tradingpb.RequestGetCandles.tags)
 }
 inline void RequestGetCandles::add_tags(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   tags_.Add()->assign(value);
-  // @@protoc_insertion_point(field_add_char:tradingdb2pb.RequestGetCandles.tags)
+  // @@protoc_insertion_point(field_add_char:tradingpb.RequestGetCandles.tags)
 }
 inline void RequestGetCandles::add_tags(const char* value, size_t size) {
   tags_.Add()->assign(reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_add_pointer:tradingdb2pb.RequestGetCandles.tags)
+  // @@protoc_insertion_point(field_add_pointer:tradingpb.RequestGetCandles.tags)
 }
 inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
 RequestGetCandles::tags() const {
-  // @@protoc_insertion_point(field_list:tradingdb2pb.RequestGetCandles.tags)
+  // @@protoc_insertion_point(field_list:tradingpb.RequestGetCandles.tags)
   return tags_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
 RequestGetCandles::mutable_tags() {
-  // @@protoc_insertion_point(field_mutable_list:tradingdb2pb.RequestGetCandles.tags)
+  // @@protoc_insertion_point(field_mutable_list:tradingpb.RequestGetCandles.tags)
   return &tags_;
 }
 
@@ -5226,7 +5226,7 @@ RequestGetCandles::mutable_tags() {
 
 // ReplyGetCandles
 
-// .tradingdb2pb.Candles candles = 1;
+// .tradingpb.Candles candles = 1;
 inline bool ReplyGetCandles::_internal_has_candles() const {
   return this != internal_default_instance() && candles_ != nullptr;
 }
@@ -5239,35 +5239,35 @@ inline void ReplyGetCandles::clear_candles() {
   }
   candles_ = nullptr;
 }
-inline const ::tradingdb2pb::Candles& ReplyGetCandles::_internal_candles() const {
-  const ::tradingdb2pb::Candles* p = candles_;
-  return p != nullptr ? *p : *reinterpret_cast<const ::tradingdb2pb::Candles*>(
-      &::tradingdb2pb::_Candles_default_instance_);
+inline const ::tradingpb::Candles& ReplyGetCandles::_internal_candles() const {
+  const ::tradingpb::Candles* p = candles_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::tradingpb::Candles*>(
+      &::tradingpb::_Candles_default_instance_);
 }
-inline const ::tradingdb2pb::Candles& ReplyGetCandles::candles() const {
-  // @@protoc_insertion_point(field_get:tradingdb2pb.ReplyGetCandles.candles)
+inline const ::tradingpb::Candles& ReplyGetCandles::candles() const {
+  // @@protoc_insertion_point(field_get:tradingpb.ReplyGetCandles.candles)
   return _internal_candles();
 }
-inline ::tradingdb2pb::Candles* ReplyGetCandles::release_candles() {
-  // @@protoc_insertion_point(field_release:tradingdb2pb.ReplyGetCandles.candles)
+inline ::tradingpb::Candles* ReplyGetCandles::release_candles() {
+  // @@protoc_insertion_point(field_release:tradingpb.ReplyGetCandles.candles)
   
-  ::tradingdb2pb::Candles* temp = candles_;
+  ::tradingpb::Candles* temp = candles_;
   candles_ = nullptr;
   return temp;
 }
-inline ::tradingdb2pb::Candles* ReplyGetCandles::_internal_mutable_candles() {
+inline ::tradingpb::Candles* ReplyGetCandles::_internal_mutable_candles() {
   
   if (candles_ == nullptr) {
-    auto* p = CreateMaybeMessage<::tradingdb2pb::Candles>(GetArenaNoVirtual());
+    auto* p = CreateMaybeMessage<::tradingpb::Candles>(GetArenaNoVirtual());
     candles_ = p;
   }
   return candles_;
 }
-inline ::tradingdb2pb::Candles* ReplyGetCandles::mutable_candles() {
-  // @@protoc_insertion_point(field_mutable:tradingdb2pb.ReplyGetCandles.candles)
+inline ::tradingpb::Candles* ReplyGetCandles::mutable_candles() {
+  // @@protoc_insertion_point(field_mutable:tradingpb.ReplyGetCandles.candles)
   return _internal_mutable_candles();
 }
-inline void ReplyGetCandles::set_allocated_candles(::tradingdb2pb::Candles* candles) {
+inline void ReplyGetCandles::set_allocated_candles(::tradingpb::Candles* candles) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
   if (message_arena == nullptr) {
     delete candles_;
@@ -5283,7 +5283,7 @@ inline void ReplyGetCandles::set_allocated_candles(::tradingdb2pb::Candles* cand
     
   }
   candles_ = candles;
-  // @@protoc_insertion_point(field_set_allocated:tradingdb2pb.ReplyGetCandles.candles)
+  // @@protoc_insertion_point(field_set_allocated:tradingpb.ReplyGetCandles.candles)
 }
 
 // -------------------------------------------------------------------
@@ -5295,15 +5295,15 @@ inline void RequestUpdSymbol::clear_token() {
   token_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline const std::string& RequestUpdSymbol::token() const {
-  // @@protoc_insertion_point(field_get:tradingdb2pb.RequestUpdSymbol.token)
+  // @@protoc_insertion_point(field_get:tradingpb.RequestUpdSymbol.token)
   return _internal_token();
 }
 inline void RequestUpdSymbol::set_token(const std::string& value) {
   _internal_set_token(value);
-  // @@protoc_insertion_point(field_set:tradingdb2pb.RequestUpdSymbol.token)
+  // @@protoc_insertion_point(field_set:tradingpb.RequestUpdSymbol.token)
 }
 inline std::string* RequestUpdSymbol::mutable_token() {
-  // @@protoc_insertion_point(field_mutable:tradingdb2pb.RequestUpdSymbol.token)
+  // @@protoc_insertion_point(field_mutable:tradingpb.RequestUpdSymbol.token)
   return _internal_mutable_token();
 }
 inline const std::string& RequestUpdSymbol::_internal_token() const {
@@ -5317,26 +5317,26 @@ inline void RequestUpdSymbol::set_token(std::string&& value) {
   
   token_.SetNoArena(
     &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:tradingdb2pb.RequestUpdSymbol.token)
+  // @@protoc_insertion_point(field_set_rvalue:tradingpb.RequestUpdSymbol.token)
 }
 inline void RequestUpdSymbol::set_token(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   token_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:tradingdb2pb.RequestUpdSymbol.token)
+  // @@protoc_insertion_point(field_set_char:tradingpb.RequestUpdSymbol.token)
 }
 inline void RequestUpdSymbol::set_token(const char* value, size_t size) {
   
   token_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:tradingdb2pb.RequestUpdSymbol.token)
+  // @@protoc_insertion_point(field_set_pointer:tradingpb.RequestUpdSymbol.token)
 }
 inline std::string* RequestUpdSymbol::_internal_mutable_token() {
   
   return token_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline std::string* RequestUpdSymbol::release_token() {
-  // @@protoc_insertion_point(field_release:tradingdb2pb.RequestUpdSymbol.token)
+  // @@protoc_insertion_point(field_release:tradingpb.RequestUpdSymbol.token)
   
   return token_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
@@ -5347,10 +5347,10 @@ inline void RequestUpdSymbol::set_allocated_token(std::string* token) {
     
   }
   token_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), token);
-  // @@protoc_insertion_point(field_set_allocated:tradingdb2pb.RequestUpdSymbol.token)
+  // @@protoc_insertion_point(field_set_allocated:tradingpb.RequestUpdSymbol.token)
 }
 
-// .tradingdb2pb.SymbolInfo symbol = 2;
+// .tradingpb.SymbolInfo symbol = 2;
 inline bool RequestUpdSymbol::_internal_has_symbol() const {
   return this != internal_default_instance() && symbol_ != nullptr;
 }
@@ -5363,35 +5363,35 @@ inline void RequestUpdSymbol::clear_symbol() {
   }
   symbol_ = nullptr;
 }
-inline const ::tradingdb2pb::SymbolInfo& RequestUpdSymbol::_internal_symbol() const {
-  const ::tradingdb2pb::SymbolInfo* p = symbol_;
-  return p != nullptr ? *p : *reinterpret_cast<const ::tradingdb2pb::SymbolInfo*>(
-      &::tradingdb2pb::_SymbolInfo_default_instance_);
+inline const ::tradingpb::SymbolInfo& RequestUpdSymbol::_internal_symbol() const {
+  const ::tradingpb::SymbolInfo* p = symbol_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::tradingpb::SymbolInfo*>(
+      &::tradingpb::_SymbolInfo_default_instance_);
 }
-inline const ::tradingdb2pb::SymbolInfo& RequestUpdSymbol::symbol() const {
-  // @@protoc_insertion_point(field_get:tradingdb2pb.RequestUpdSymbol.symbol)
+inline const ::tradingpb::SymbolInfo& RequestUpdSymbol::symbol() const {
+  // @@protoc_insertion_point(field_get:tradingpb.RequestUpdSymbol.symbol)
   return _internal_symbol();
 }
-inline ::tradingdb2pb::SymbolInfo* RequestUpdSymbol::release_symbol() {
-  // @@protoc_insertion_point(field_release:tradingdb2pb.RequestUpdSymbol.symbol)
+inline ::tradingpb::SymbolInfo* RequestUpdSymbol::release_symbol() {
+  // @@protoc_insertion_point(field_release:tradingpb.RequestUpdSymbol.symbol)
   
-  ::tradingdb2pb::SymbolInfo* temp = symbol_;
+  ::tradingpb::SymbolInfo* temp = symbol_;
   symbol_ = nullptr;
   return temp;
 }
-inline ::tradingdb2pb::SymbolInfo* RequestUpdSymbol::_internal_mutable_symbol() {
+inline ::tradingpb::SymbolInfo* RequestUpdSymbol::_internal_mutable_symbol() {
   
   if (symbol_ == nullptr) {
-    auto* p = CreateMaybeMessage<::tradingdb2pb::SymbolInfo>(GetArenaNoVirtual());
+    auto* p = CreateMaybeMessage<::tradingpb::SymbolInfo>(GetArenaNoVirtual());
     symbol_ = p;
   }
   return symbol_;
 }
-inline ::tradingdb2pb::SymbolInfo* RequestUpdSymbol::mutable_symbol() {
-  // @@protoc_insertion_point(field_mutable:tradingdb2pb.RequestUpdSymbol.symbol)
+inline ::tradingpb::SymbolInfo* RequestUpdSymbol::mutable_symbol() {
+  // @@protoc_insertion_point(field_mutable:tradingpb.RequestUpdSymbol.symbol)
   return _internal_mutable_symbol();
 }
-inline void RequestUpdSymbol::set_allocated_symbol(::tradingdb2pb::SymbolInfo* symbol) {
+inline void RequestUpdSymbol::set_allocated_symbol(::tradingpb::SymbolInfo* symbol) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
   if (message_arena == nullptr) {
     delete symbol_;
@@ -5407,7 +5407,7 @@ inline void RequestUpdSymbol::set_allocated_symbol(::tradingdb2pb::SymbolInfo* s
     
   }
   symbol_ = symbol;
-  // @@protoc_insertion_point(field_set_allocated:tradingdb2pb.RequestUpdSymbol.symbol)
+  // @@protoc_insertion_point(field_set_allocated:tradingpb.RequestUpdSymbol.symbol)
 }
 
 // -------------------------------------------------------------------
@@ -5422,7 +5422,7 @@ inline bool ReplyUpdSymbol::_internal_isok() const {
   return isok_;
 }
 inline bool ReplyUpdSymbol::isok() const {
-  // @@protoc_insertion_point(field_get:tradingdb2pb.ReplyUpdSymbol.isOK)
+  // @@protoc_insertion_point(field_get:tradingpb.ReplyUpdSymbol.isOK)
   return _internal_isok();
 }
 inline void ReplyUpdSymbol::_internal_set_isok(bool value) {
@@ -5431,7 +5431,7 @@ inline void ReplyUpdSymbol::_internal_set_isok(bool value) {
 }
 inline void ReplyUpdSymbol::set_isok(bool value) {
   _internal_set_isok(value);
-  // @@protoc_insertion_point(field_set:tradingdb2pb.ReplyUpdSymbol.isOK)
+  // @@protoc_insertion_point(field_set:tradingpb.ReplyUpdSymbol.isOK)
 }
 
 // -------------------------------------------------------------------
@@ -5443,15 +5443,15 @@ inline void RequestGetSymbol::clear_token() {
   token_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline const std::string& RequestGetSymbol::token() const {
-  // @@protoc_insertion_point(field_get:tradingdb2pb.RequestGetSymbol.token)
+  // @@protoc_insertion_point(field_get:tradingpb.RequestGetSymbol.token)
   return _internal_token();
 }
 inline void RequestGetSymbol::set_token(const std::string& value) {
   _internal_set_token(value);
-  // @@protoc_insertion_point(field_set:tradingdb2pb.RequestGetSymbol.token)
+  // @@protoc_insertion_point(field_set:tradingpb.RequestGetSymbol.token)
 }
 inline std::string* RequestGetSymbol::mutable_token() {
-  // @@protoc_insertion_point(field_mutable:tradingdb2pb.RequestGetSymbol.token)
+  // @@protoc_insertion_point(field_mutable:tradingpb.RequestGetSymbol.token)
   return _internal_mutable_token();
 }
 inline const std::string& RequestGetSymbol::_internal_token() const {
@@ -5465,26 +5465,26 @@ inline void RequestGetSymbol::set_token(std::string&& value) {
   
   token_.SetNoArena(
     &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:tradingdb2pb.RequestGetSymbol.token)
+  // @@protoc_insertion_point(field_set_rvalue:tradingpb.RequestGetSymbol.token)
 }
 inline void RequestGetSymbol::set_token(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   token_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:tradingdb2pb.RequestGetSymbol.token)
+  // @@protoc_insertion_point(field_set_char:tradingpb.RequestGetSymbol.token)
 }
 inline void RequestGetSymbol::set_token(const char* value, size_t size) {
   
   token_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:tradingdb2pb.RequestGetSymbol.token)
+  // @@protoc_insertion_point(field_set_pointer:tradingpb.RequestGetSymbol.token)
 }
 inline std::string* RequestGetSymbol::_internal_mutable_token() {
   
   return token_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline std::string* RequestGetSymbol::release_token() {
-  // @@protoc_insertion_point(field_release:tradingdb2pb.RequestGetSymbol.token)
+  // @@protoc_insertion_point(field_release:tradingpb.RequestGetSymbol.token)
   
   return token_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
@@ -5495,7 +5495,7 @@ inline void RequestGetSymbol::set_allocated_token(std::string* token) {
     
   }
   token_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), token);
-  // @@protoc_insertion_point(field_set_allocated:tradingdb2pb.RequestGetSymbol.token)
+  // @@protoc_insertion_point(field_set_allocated:tradingpb.RequestGetSymbol.token)
 }
 
 // string market = 2;
@@ -5503,15 +5503,15 @@ inline void RequestGetSymbol::clear_market() {
   market_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline const std::string& RequestGetSymbol::market() const {
-  // @@protoc_insertion_point(field_get:tradingdb2pb.RequestGetSymbol.market)
+  // @@protoc_insertion_point(field_get:tradingpb.RequestGetSymbol.market)
   return _internal_market();
 }
 inline void RequestGetSymbol::set_market(const std::string& value) {
   _internal_set_market(value);
-  // @@protoc_insertion_point(field_set:tradingdb2pb.RequestGetSymbol.market)
+  // @@protoc_insertion_point(field_set:tradingpb.RequestGetSymbol.market)
 }
 inline std::string* RequestGetSymbol::mutable_market() {
-  // @@protoc_insertion_point(field_mutable:tradingdb2pb.RequestGetSymbol.market)
+  // @@protoc_insertion_point(field_mutable:tradingpb.RequestGetSymbol.market)
   return _internal_mutable_market();
 }
 inline const std::string& RequestGetSymbol::_internal_market() const {
@@ -5525,26 +5525,26 @@ inline void RequestGetSymbol::set_market(std::string&& value) {
   
   market_.SetNoArena(
     &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:tradingdb2pb.RequestGetSymbol.market)
+  // @@protoc_insertion_point(field_set_rvalue:tradingpb.RequestGetSymbol.market)
 }
 inline void RequestGetSymbol::set_market(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   market_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:tradingdb2pb.RequestGetSymbol.market)
+  // @@protoc_insertion_point(field_set_char:tradingpb.RequestGetSymbol.market)
 }
 inline void RequestGetSymbol::set_market(const char* value, size_t size) {
   
   market_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:tradingdb2pb.RequestGetSymbol.market)
+  // @@protoc_insertion_point(field_set_pointer:tradingpb.RequestGetSymbol.market)
 }
 inline std::string* RequestGetSymbol::_internal_mutable_market() {
   
   return market_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline std::string* RequestGetSymbol::release_market() {
-  // @@protoc_insertion_point(field_release:tradingdb2pb.RequestGetSymbol.market)
+  // @@protoc_insertion_point(field_release:tradingpb.RequestGetSymbol.market)
   
   return market_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
@@ -5555,7 +5555,7 @@ inline void RequestGetSymbol::set_allocated_market(std::string* market) {
     
   }
   market_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), market);
-  // @@protoc_insertion_point(field_set_allocated:tradingdb2pb.RequestGetSymbol.market)
+  // @@protoc_insertion_point(field_set_allocated:tradingpb.RequestGetSymbol.market)
 }
 
 // string symbol = 3;
@@ -5563,15 +5563,15 @@ inline void RequestGetSymbol::clear_symbol() {
   symbol_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline const std::string& RequestGetSymbol::symbol() const {
-  // @@protoc_insertion_point(field_get:tradingdb2pb.RequestGetSymbol.symbol)
+  // @@protoc_insertion_point(field_get:tradingpb.RequestGetSymbol.symbol)
   return _internal_symbol();
 }
 inline void RequestGetSymbol::set_symbol(const std::string& value) {
   _internal_set_symbol(value);
-  // @@protoc_insertion_point(field_set:tradingdb2pb.RequestGetSymbol.symbol)
+  // @@protoc_insertion_point(field_set:tradingpb.RequestGetSymbol.symbol)
 }
 inline std::string* RequestGetSymbol::mutable_symbol() {
-  // @@protoc_insertion_point(field_mutable:tradingdb2pb.RequestGetSymbol.symbol)
+  // @@protoc_insertion_point(field_mutable:tradingpb.RequestGetSymbol.symbol)
   return _internal_mutable_symbol();
 }
 inline const std::string& RequestGetSymbol::_internal_symbol() const {
@@ -5585,26 +5585,26 @@ inline void RequestGetSymbol::set_symbol(std::string&& value) {
   
   symbol_.SetNoArena(
     &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:tradingdb2pb.RequestGetSymbol.symbol)
+  // @@protoc_insertion_point(field_set_rvalue:tradingpb.RequestGetSymbol.symbol)
 }
 inline void RequestGetSymbol::set_symbol(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   symbol_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:tradingdb2pb.RequestGetSymbol.symbol)
+  // @@protoc_insertion_point(field_set_char:tradingpb.RequestGetSymbol.symbol)
 }
 inline void RequestGetSymbol::set_symbol(const char* value, size_t size) {
   
   symbol_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:tradingdb2pb.RequestGetSymbol.symbol)
+  // @@protoc_insertion_point(field_set_pointer:tradingpb.RequestGetSymbol.symbol)
 }
 inline std::string* RequestGetSymbol::_internal_mutable_symbol() {
   
   return symbol_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline std::string* RequestGetSymbol::release_symbol() {
-  // @@protoc_insertion_point(field_release:tradingdb2pb.RequestGetSymbol.symbol)
+  // @@protoc_insertion_point(field_release:tradingpb.RequestGetSymbol.symbol)
   
   return symbol_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
@@ -5615,14 +5615,14 @@ inline void RequestGetSymbol::set_allocated_symbol(std::string* symbol) {
     
   }
   symbol_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), symbol);
-  // @@protoc_insertion_point(field_set_allocated:tradingdb2pb.RequestGetSymbol.symbol)
+  // @@protoc_insertion_point(field_set_allocated:tradingpb.RequestGetSymbol.symbol)
 }
 
 // -------------------------------------------------------------------
 
 // ReplyGetSymbol
 
-// .tradingdb2pb.SymbolInfo symbol = 1;
+// .tradingpb.SymbolInfo symbol = 1;
 inline bool ReplyGetSymbol::_internal_has_symbol() const {
   return this != internal_default_instance() && symbol_ != nullptr;
 }
@@ -5635,35 +5635,35 @@ inline void ReplyGetSymbol::clear_symbol() {
   }
   symbol_ = nullptr;
 }
-inline const ::tradingdb2pb::SymbolInfo& ReplyGetSymbol::_internal_symbol() const {
-  const ::tradingdb2pb::SymbolInfo* p = symbol_;
-  return p != nullptr ? *p : *reinterpret_cast<const ::tradingdb2pb::SymbolInfo*>(
-      &::tradingdb2pb::_SymbolInfo_default_instance_);
+inline const ::tradingpb::SymbolInfo& ReplyGetSymbol::_internal_symbol() const {
+  const ::tradingpb::SymbolInfo* p = symbol_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::tradingpb::SymbolInfo*>(
+      &::tradingpb::_SymbolInfo_default_instance_);
 }
-inline const ::tradingdb2pb::SymbolInfo& ReplyGetSymbol::symbol() const {
-  // @@protoc_insertion_point(field_get:tradingdb2pb.ReplyGetSymbol.symbol)
+inline const ::tradingpb::SymbolInfo& ReplyGetSymbol::symbol() const {
+  // @@protoc_insertion_point(field_get:tradingpb.ReplyGetSymbol.symbol)
   return _internal_symbol();
 }
-inline ::tradingdb2pb::SymbolInfo* ReplyGetSymbol::release_symbol() {
-  // @@protoc_insertion_point(field_release:tradingdb2pb.ReplyGetSymbol.symbol)
+inline ::tradingpb::SymbolInfo* ReplyGetSymbol::release_symbol() {
+  // @@protoc_insertion_point(field_release:tradingpb.ReplyGetSymbol.symbol)
   
-  ::tradingdb2pb::SymbolInfo* temp = symbol_;
+  ::tradingpb::SymbolInfo* temp = symbol_;
   symbol_ = nullptr;
   return temp;
 }
-inline ::tradingdb2pb::SymbolInfo* ReplyGetSymbol::_internal_mutable_symbol() {
+inline ::tradingpb::SymbolInfo* ReplyGetSymbol::_internal_mutable_symbol() {
   
   if (symbol_ == nullptr) {
-    auto* p = CreateMaybeMessage<::tradingdb2pb::SymbolInfo>(GetArenaNoVirtual());
+    auto* p = CreateMaybeMessage<::tradingpb::SymbolInfo>(GetArenaNoVirtual());
     symbol_ = p;
   }
   return symbol_;
 }
-inline ::tradingdb2pb::SymbolInfo* ReplyGetSymbol::mutable_symbol() {
-  // @@protoc_insertion_point(field_mutable:tradingdb2pb.ReplyGetSymbol.symbol)
+inline ::tradingpb::SymbolInfo* ReplyGetSymbol::mutable_symbol() {
+  // @@protoc_insertion_point(field_mutable:tradingpb.ReplyGetSymbol.symbol)
   return _internal_mutable_symbol();
 }
-inline void ReplyGetSymbol::set_allocated_symbol(::tradingdb2pb::SymbolInfo* symbol) {
+inline void ReplyGetSymbol::set_allocated_symbol(::tradingpb::SymbolInfo* symbol) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
   if (message_arena == nullptr) {
     delete symbol_;
@@ -5679,7 +5679,7 @@ inline void ReplyGetSymbol::set_allocated_symbol(::tradingdb2pb::SymbolInfo* sym
     
   }
   symbol_ = symbol;
-  // @@protoc_insertion_point(field_set_allocated:tradingdb2pb.ReplyGetSymbol.symbol)
+  // @@protoc_insertion_point(field_set_allocated:tradingpb.ReplyGetSymbol.symbol)
 }
 
 // -------------------------------------------------------------------
@@ -5691,15 +5691,15 @@ inline void RequestGetSymbols::clear_token() {
   token_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline const std::string& RequestGetSymbols::token() const {
-  // @@protoc_insertion_point(field_get:tradingdb2pb.RequestGetSymbols.token)
+  // @@protoc_insertion_point(field_get:tradingpb.RequestGetSymbols.token)
   return _internal_token();
 }
 inline void RequestGetSymbols::set_token(const std::string& value) {
   _internal_set_token(value);
-  // @@protoc_insertion_point(field_set:tradingdb2pb.RequestGetSymbols.token)
+  // @@protoc_insertion_point(field_set:tradingpb.RequestGetSymbols.token)
 }
 inline std::string* RequestGetSymbols::mutable_token() {
-  // @@protoc_insertion_point(field_mutable:tradingdb2pb.RequestGetSymbols.token)
+  // @@protoc_insertion_point(field_mutable:tradingpb.RequestGetSymbols.token)
   return _internal_mutable_token();
 }
 inline const std::string& RequestGetSymbols::_internal_token() const {
@@ -5713,26 +5713,26 @@ inline void RequestGetSymbols::set_token(std::string&& value) {
   
   token_.SetNoArena(
     &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:tradingdb2pb.RequestGetSymbols.token)
+  // @@protoc_insertion_point(field_set_rvalue:tradingpb.RequestGetSymbols.token)
 }
 inline void RequestGetSymbols::set_token(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   token_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:tradingdb2pb.RequestGetSymbols.token)
+  // @@protoc_insertion_point(field_set_char:tradingpb.RequestGetSymbols.token)
 }
 inline void RequestGetSymbols::set_token(const char* value, size_t size) {
   
   token_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:tradingdb2pb.RequestGetSymbols.token)
+  // @@protoc_insertion_point(field_set_pointer:tradingpb.RequestGetSymbols.token)
 }
 inline std::string* RequestGetSymbols::_internal_mutable_token() {
   
   return token_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline std::string* RequestGetSymbols::release_token() {
-  // @@protoc_insertion_point(field_release:tradingdb2pb.RequestGetSymbols.token)
+  // @@protoc_insertion_point(field_release:tradingpb.RequestGetSymbols.token)
   
   return token_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
@@ -5743,7 +5743,7 @@ inline void RequestGetSymbols::set_allocated_token(std::string* token) {
     
   }
   token_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), token);
-  // @@protoc_insertion_point(field_set_allocated:tradingdb2pb.RequestGetSymbols.token)
+  // @@protoc_insertion_point(field_set_allocated:tradingpb.RequestGetSymbols.token)
 }
 
 // string market = 2;
@@ -5751,15 +5751,15 @@ inline void RequestGetSymbols::clear_market() {
   market_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline const std::string& RequestGetSymbols::market() const {
-  // @@protoc_insertion_point(field_get:tradingdb2pb.RequestGetSymbols.market)
+  // @@protoc_insertion_point(field_get:tradingpb.RequestGetSymbols.market)
   return _internal_market();
 }
 inline void RequestGetSymbols::set_market(const std::string& value) {
   _internal_set_market(value);
-  // @@protoc_insertion_point(field_set:tradingdb2pb.RequestGetSymbols.market)
+  // @@protoc_insertion_point(field_set:tradingpb.RequestGetSymbols.market)
 }
 inline std::string* RequestGetSymbols::mutable_market() {
-  // @@protoc_insertion_point(field_mutable:tradingdb2pb.RequestGetSymbols.market)
+  // @@protoc_insertion_point(field_mutable:tradingpb.RequestGetSymbols.market)
   return _internal_mutable_market();
 }
 inline const std::string& RequestGetSymbols::_internal_market() const {
@@ -5773,26 +5773,26 @@ inline void RequestGetSymbols::set_market(std::string&& value) {
   
   market_.SetNoArena(
     &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:tradingdb2pb.RequestGetSymbols.market)
+  // @@protoc_insertion_point(field_set_rvalue:tradingpb.RequestGetSymbols.market)
 }
 inline void RequestGetSymbols::set_market(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   
   market_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:tradingdb2pb.RequestGetSymbols.market)
+  // @@protoc_insertion_point(field_set_char:tradingpb.RequestGetSymbols.market)
 }
 inline void RequestGetSymbols::set_market(const char* value, size_t size) {
   
   market_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
       ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:tradingdb2pb.RequestGetSymbols.market)
+  // @@protoc_insertion_point(field_set_pointer:tradingpb.RequestGetSymbols.market)
 }
 inline std::string* RequestGetSymbols::_internal_mutable_market() {
   
   return market_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
 inline std::string* RequestGetSymbols::release_market() {
-  // @@protoc_insertion_point(field_release:tradingdb2pb.RequestGetSymbols.market)
+  // @@protoc_insertion_point(field_release:tradingpb.RequestGetSymbols.market)
   
   return market_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
@@ -5803,7 +5803,7 @@ inline void RequestGetSymbols::set_allocated_market(std::string* market) {
     
   }
   market_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), market);
-  // @@protoc_insertion_point(field_set_allocated:tradingdb2pb.RequestGetSymbols.market)
+  // @@protoc_insertion_point(field_set_allocated:tradingpb.RequestGetSymbols.market)
 }
 
 // repeated string symbols = 3;
@@ -5817,66 +5817,66 @@ inline void RequestGetSymbols::clear_symbols() {
   symbols_.Clear();
 }
 inline std::string* RequestGetSymbols::add_symbols() {
-  // @@protoc_insertion_point(field_add_mutable:tradingdb2pb.RequestGetSymbols.symbols)
+  // @@protoc_insertion_point(field_add_mutable:tradingpb.RequestGetSymbols.symbols)
   return _internal_add_symbols();
 }
 inline const std::string& RequestGetSymbols::_internal_symbols(int index) const {
   return symbols_.Get(index);
 }
 inline const std::string& RequestGetSymbols::symbols(int index) const {
-  // @@protoc_insertion_point(field_get:tradingdb2pb.RequestGetSymbols.symbols)
+  // @@protoc_insertion_point(field_get:tradingpb.RequestGetSymbols.symbols)
   return _internal_symbols(index);
 }
 inline std::string* RequestGetSymbols::mutable_symbols(int index) {
-  // @@protoc_insertion_point(field_mutable:tradingdb2pb.RequestGetSymbols.symbols)
+  // @@protoc_insertion_point(field_mutable:tradingpb.RequestGetSymbols.symbols)
   return symbols_.Mutable(index);
 }
 inline void RequestGetSymbols::set_symbols(int index, const std::string& value) {
-  // @@protoc_insertion_point(field_set:tradingdb2pb.RequestGetSymbols.symbols)
+  // @@protoc_insertion_point(field_set:tradingpb.RequestGetSymbols.symbols)
   symbols_.Mutable(index)->assign(value);
 }
 inline void RequestGetSymbols::set_symbols(int index, std::string&& value) {
-  // @@protoc_insertion_point(field_set:tradingdb2pb.RequestGetSymbols.symbols)
+  // @@protoc_insertion_point(field_set:tradingpb.RequestGetSymbols.symbols)
   symbols_.Mutable(index)->assign(std::move(value));
 }
 inline void RequestGetSymbols::set_symbols(int index, const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   symbols_.Mutable(index)->assign(value);
-  // @@protoc_insertion_point(field_set_char:tradingdb2pb.RequestGetSymbols.symbols)
+  // @@protoc_insertion_point(field_set_char:tradingpb.RequestGetSymbols.symbols)
 }
 inline void RequestGetSymbols::set_symbols(int index, const char* value, size_t size) {
   symbols_.Mutable(index)->assign(
     reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_set_pointer:tradingdb2pb.RequestGetSymbols.symbols)
+  // @@protoc_insertion_point(field_set_pointer:tradingpb.RequestGetSymbols.symbols)
 }
 inline std::string* RequestGetSymbols::_internal_add_symbols() {
   return symbols_.Add();
 }
 inline void RequestGetSymbols::add_symbols(const std::string& value) {
   symbols_.Add()->assign(value);
-  // @@protoc_insertion_point(field_add:tradingdb2pb.RequestGetSymbols.symbols)
+  // @@protoc_insertion_point(field_add:tradingpb.RequestGetSymbols.symbols)
 }
 inline void RequestGetSymbols::add_symbols(std::string&& value) {
   symbols_.Add(std::move(value));
-  // @@protoc_insertion_point(field_add:tradingdb2pb.RequestGetSymbols.symbols)
+  // @@protoc_insertion_point(field_add:tradingpb.RequestGetSymbols.symbols)
 }
 inline void RequestGetSymbols::add_symbols(const char* value) {
   GOOGLE_DCHECK(value != nullptr);
   symbols_.Add()->assign(value);
-  // @@protoc_insertion_point(field_add_char:tradingdb2pb.RequestGetSymbols.symbols)
+  // @@protoc_insertion_point(field_add_char:tradingpb.RequestGetSymbols.symbols)
 }
 inline void RequestGetSymbols::add_symbols(const char* value, size_t size) {
   symbols_.Add()->assign(reinterpret_cast<const char*>(value), size);
-  // @@protoc_insertion_point(field_add_pointer:tradingdb2pb.RequestGetSymbols.symbols)
+  // @@protoc_insertion_point(field_add_pointer:tradingpb.RequestGetSymbols.symbols)
 }
 inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
 RequestGetSymbols::symbols() const {
-  // @@protoc_insertion_point(field_list:tradingdb2pb.RequestGetSymbols.symbols)
+  // @@protoc_insertion_point(field_list:tradingpb.RequestGetSymbols.symbols)
   return symbols_;
 }
 inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
 RequestGetSymbols::mutable_symbols() {
-  // @@protoc_insertion_point(field_mutable_list:tradingdb2pb.RequestGetSymbols.symbols)
+  // @@protoc_insertion_point(field_mutable_list:tradingpb.RequestGetSymbols.symbols)
   return &symbols_;
 }
 
@@ -5916,7 +5916,7 @@ RequestGetSymbols::mutable_symbols() {
 
 // @@protoc_insertion_point(namespace_scope)
 
-}  // namespace tradingdb2pb
+}  // namespace tradingpb
 
 // @@protoc_insertion_point(global_scope)
 

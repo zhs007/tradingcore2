@@ -2,7 +2,7 @@
 #include <grpcpp/grpcpp.h>
 #include <tradingcore2/client/train2.h>
 #include <tradingcore2/exchange.h>
-#include <tradingcore2/proto/tradingcore2.grpc.pb.h>
+#include <tradingcore2/protos/tradingcore2.grpc.pb.h>
 #include <tradingcore2/train.h>
 #include <tradingcore2/utils.h>
 

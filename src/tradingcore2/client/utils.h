@@ -1,7 +1,7 @@
 #ifndef __TRADINGCORE2_SRC_CLIENT_UTILS_H__
 #define __TRADINGCORE2_SRC_CLIENT_UTILS_H__
 
-#include <tradingcore2/proto/tradingcore2.grpc.pb.h>
+#include <tradingcore2/protos/tradingcore2.grpc.pb.h>
 #include <tradingcore2/tradingcore2.h>
 
 CR2BEGIN

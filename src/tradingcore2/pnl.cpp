@@ -11,7 +11,7 @@
 
 CR2BEGIN
 
-void PNL::initWithCandles(const tradingdb2pb::Candles& candles) {
+void PNL::initWithCandles(const tradingpb::Candles& candles) {
   for (auto i = 0; i < candles.candles_size(); ++i) {
     auto cc = candles.candles(i);
 
@@ -493,7 +493,7 @@ void PNL::getTrainResult(TrainResult& tr) {
   tr.variance = this->m_variance;
 }
 
-void PNL::calcValidDataPer(const tradingdb2pb::SymbolInfo& si,
+void PNL::calcValidDataPer(const tradingpb::SymbolInfo& si,
                            const Exchange& exchange) {
   this->m_perValidData = 0;
   this->m_durationYear = 0;

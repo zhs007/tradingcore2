@@ -2,7 +2,7 @@
 #define __TRADINGCORE2_PNL_H__
 
 #include <tradingcore2/basedef.h>
-#include <tradingcore2/proto/tradingdb2.grpc.pb.h>
+#include <tradingcore2/protos/tradingdb2.grpc.pb.h>
 
 #include <map>
 #include <string>
@@ -82,7 +82,7 @@ class PNL {
  public:
   void release() { m_lst.clear(); }
 
-  void initWithCandles(const tradingdb2pb::Candles& candles);
+  void initWithCandles(const tradingpb::Candles& candles);
 
   void initInvest(const Exchange& exchange, Money invest, Money handMoney,
                   TimeStamp tsStart, TimeStamp tsEnd);
@@ -117,7 +117,7 @@ class PNL {
 
   void calcMaxDrawup();
 
-  void calcValidDataPer(const tradingdb2pb::SymbolInfo& si,
+  void calcValidDataPer(const tradingpb::SymbolInfo& si,
                         const Exchange& exchange);
 
   void calcVariance();

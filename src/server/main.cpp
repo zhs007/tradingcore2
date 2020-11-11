@@ -2,7 +2,7 @@
 #include <tradingcore2/tradingcore2.h>
 
 void startServ(const tr2::Config& cfg) {
-  auto pServ = tr2::newTrainServer2(cfg);
+  auto pServ = tr2::newNodeServer2(cfg);
   //   pServ->init(cfg);
   pServ->run();
 }
