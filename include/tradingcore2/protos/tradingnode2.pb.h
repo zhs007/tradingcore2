@@ -47,7 +47,7 @@ struct TableStruct_tradingnode2_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxillaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[7]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[10]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -58,6 +58,9 @@ namespace tradingpb {
 class Asset;
 class AssetDefaultTypeInternal;
 extern AssetDefaultTypeInternal _Asset_default_instance_;
+class BasicRequestData;
+class BasicRequestDataDefaultTypeInternal;
+extern BasicRequestDataDefaultTypeInternal _BasicRequestData_default_instance_;
 class CtrlCondition;
 class CtrlConditionDefaultTypeInternal;
 extern CtrlConditionDefaultTypeInternal _CtrlCondition_default_instance_;
@@ -70,25 +73,169 @@ extern PNLDataValueDefaultTypeInternal _PNLDataValue_default_instance_;
 class ReplyCalcPNL;
 class ReplyCalcPNLDefaultTypeInternal;
 extern ReplyCalcPNLDefaultTypeInternal _ReplyCalcPNL_default_instance_;
+class ReplyServerInfo;
+class ReplyServerInfoDefaultTypeInternal;
+extern ReplyServerInfoDefaultTypeInternal _ReplyServerInfo_default_instance_;
 class RequestCalcPNL;
 class RequestCalcPNLDefaultTypeInternal;
 extern RequestCalcPNLDefaultTypeInternal _RequestCalcPNL_default_instance_;
+class RequestServerInfo;
+class RequestServerInfoDefaultTypeInternal;
+extern RequestServerInfoDefaultTypeInternal _RequestServerInfo_default_instance_;
 class Strategy;
 class StrategyDefaultTypeInternal;
 extern StrategyDefaultTypeInternal _Strategy_default_instance_;
 }  // namespace tradingpb
 PROTOBUF_NAMESPACE_OPEN
 template<> ::tradingpb::Asset* Arena::CreateMaybeMessage<::tradingpb::Asset>(Arena*);
+template<> ::tradingpb::BasicRequestData* Arena::CreateMaybeMessage<::tradingpb::BasicRequestData>(Arena*);
 template<> ::tradingpb::CtrlCondition* Arena::CreateMaybeMessage<::tradingpb::CtrlCondition>(Arena*);
 template<> ::tradingpb::PNLData* Arena::CreateMaybeMessage<::tradingpb::PNLData>(Arena*);
 template<> ::tradingpb::PNLDataValue* Arena::CreateMaybeMessage<::tradingpb::PNLDataValue>(Arena*);
 template<> ::tradingpb::ReplyCalcPNL* Arena::CreateMaybeMessage<::tradingpb::ReplyCalcPNL>(Arena*);
+template<> ::tradingpb::ReplyServerInfo* Arena::CreateMaybeMessage<::tradingpb::ReplyServerInfo>(Arena*);
 template<> ::tradingpb::RequestCalcPNL* Arena::CreateMaybeMessage<::tradingpb::RequestCalcPNL>(Arena*);
+template<> ::tradingpb::RequestServerInfo* Arena::CreateMaybeMessage<::tradingpb::RequestServerInfo>(Arena*);
 template<> ::tradingpb::Strategy* Arena::CreateMaybeMessage<::tradingpb::Strategy>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace tradingpb {
 
 // ===================================================================
+
+class BasicRequestData :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tradingpb.BasicRequestData) */ {
+ public:
+  BasicRequestData();
+  virtual ~BasicRequestData();
+
+  BasicRequestData(const BasicRequestData& from);
+  BasicRequestData(BasicRequestData&& from) noexcept
+    : BasicRequestData() {
+    *this = ::std::move(from);
+  }
+
+  inline BasicRequestData& operator=(const BasicRequestData& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline BasicRequestData& operator=(BasicRequestData&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const BasicRequestData& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const BasicRequestData* internal_default_instance() {
+    return reinterpret_cast<const BasicRequestData*>(
+               &_BasicRequestData_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    0;
+
+  friend void swap(BasicRequestData& a, BasicRequestData& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(BasicRequestData* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline BasicRequestData* New() const final {
+    return CreateMaybeMessage<BasicRequestData>(nullptr);
+  }
+
+  BasicRequestData* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<BasicRequestData>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const BasicRequestData& from);
+  void MergeFrom(const BasicRequestData& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(BasicRequestData* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "tradingpb.BasicRequestData";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_tradingnode2_2eproto);
+    return ::descriptor_table_tradingnode2_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kTokenFieldNumber = 1,
+  };
+  // string token = 1;
+  void clear_token();
+  const std::string& token() const;
+  void set_token(const std::string& value);
+  void set_token(std::string&& value);
+  void set_token(const char* value);
+  void set_token(const char* value, size_t size);
+  std::string* mutable_token();
+  std::string* release_token();
+  void set_allocated_token(std::string* token);
+  private:
+  const std::string& _internal_token() const;
+  void _internal_set_token(const std::string& value);
+  std::string* _internal_mutable_token();
+  public:
+
+  // @@protoc_insertion_point(class_scope:tradingpb.BasicRequestData)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr token_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_tradingnode2_2eproto;
+};
+// -------------------------------------------------------------------
 
 class Asset :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tradingpb.Asset) */ {
@@ -132,7 +279,7 @@ class Asset :
                &_Asset_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    0;
+    1;
 
   friend void swap(Asset& a, Asset& b) {
     a.Swap(&b);
@@ -285,7 +432,7 @@ class CtrlCondition :
                &_CtrlCondition_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    1;
+    2;
 
   friend void swap(CtrlCondition& a, CtrlCondition& b) {
     a.Swap(&b);
@@ -489,7 +636,7 @@ class Strategy :
                &_Strategy_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    2;
+    3;
 
   friend void swap(Strategy& a, Strategy& b) {
     a.Swap(&b);
@@ -701,7 +848,7 @@ class PNLDataValue :
                &_PNLDataValue_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    3;
+    4;
 
   friend void swap(PNLDataValue& a, PNLDataValue& b) {
     a.Swap(&b);
@@ -840,7 +987,7 @@ class PNLData :
                &_PNLData_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    4;
+    5;
 
   friend void swap(PNLData& a, PNLData& b) {
     a.Swap(&b);
@@ -1300,6 +1447,279 @@ class PNLData :
 };
 // -------------------------------------------------------------------
 
+class RequestServerInfo :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tradingpb.RequestServerInfo) */ {
+ public:
+  RequestServerInfo();
+  virtual ~RequestServerInfo();
+
+  RequestServerInfo(const RequestServerInfo& from);
+  RequestServerInfo(RequestServerInfo&& from) noexcept
+    : RequestServerInfo() {
+    *this = ::std::move(from);
+  }
+
+  inline RequestServerInfo& operator=(const RequestServerInfo& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline RequestServerInfo& operator=(RequestServerInfo&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const RequestServerInfo& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const RequestServerInfo* internal_default_instance() {
+    return reinterpret_cast<const RequestServerInfo*>(
+               &_RequestServerInfo_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    6;
+
+  friend void swap(RequestServerInfo& a, RequestServerInfo& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(RequestServerInfo* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline RequestServerInfo* New() const final {
+    return CreateMaybeMessage<RequestServerInfo>(nullptr);
+  }
+
+  RequestServerInfo* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<RequestServerInfo>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const RequestServerInfo& from);
+  void MergeFrom(const RequestServerInfo& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(RequestServerInfo* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "tradingpb.RequestServerInfo";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_tradingnode2_2eproto);
+    return ::descriptor_table_tradingnode2_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kBasicRequestFieldNumber = 1,
+  };
+  // .tradingpb.BasicRequestData basicRequest = 1;
+  bool has_basicrequest() const;
+  private:
+  bool _internal_has_basicrequest() const;
+  public:
+  void clear_basicrequest();
+  const ::tradingpb::BasicRequestData& basicrequest() const;
+  ::tradingpb::BasicRequestData* release_basicrequest();
+  ::tradingpb::BasicRequestData* mutable_basicrequest();
+  void set_allocated_basicrequest(::tradingpb::BasicRequestData* basicrequest);
+  private:
+  const ::tradingpb::BasicRequestData& _internal_basicrequest() const;
+  ::tradingpb::BasicRequestData* _internal_mutable_basicrequest();
+  public:
+
+  // @@protoc_insertion_point(class_scope:tradingpb.RequestServerInfo)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::tradingpb::BasicRequestData* basicrequest_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_tradingnode2_2eproto;
+};
+// -------------------------------------------------------------------
+
+class ReplyServerInfo :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tradingpb.ReplyServerInfo) */ {
+ public:
+  ReplyServerInfo();
+  virtual ~ReplyServerInfo();
+
+  ReplyServerInfo(const ReplyServerInfo& from);
+  ReplyServerInfo(ReplyServerInfo&& from) noexcept
+    : ReplyServerInfo() {
+    *this = ::std::move(from);
+  }
+
+  inline ReplyServerInfo& operator=(const ReplyServerInfo& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ReplyServerInfo& operator=(ReplyServerInfo&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const ReplyServerInfo& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const ReplyServerInfo* internal_default_instance() {
+    return reinterpret_cast<const ReplyServerInfo*>(
+               &_ReplyServerInfo_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    7;
+
+  friend void swap(ReplyServerInfo& a, ReplyServerInfo& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ReplyServerInfo* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline ReplyServerInfo* New() const final {
+    return CreateMaybeMessage<ReplyServerInfo>(nullptr);
+  }
+
+  ReplyServerInfo* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<ReplyServerInfo>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const ReplyServerInfo& from);
+  void MergeFrom(const ReplyServerInfo& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ReplyServerInfo* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "tradingpb.ReplyServerInfo";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_tradingnode2_2eproto);
+    return ::descriptor_table_tradingnode2_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kMaxTasksFieldNumber = 1,
+    kCurTasksFieldNumber = 2,
+  };
+  // int32 maxTasks = 1;
+  void clear_maxtasks();
+  ::PROTOBUF_NAMESPACE_ID::int32 maxtasks() const;
+  void set_maxtasks(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_maxtasks() const;
+  void _internal_set_maxtasks(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // int32 curTasks = 2;
+  void clear_curtasks();
+  ::PROTOBUF_NAMESPACE_ID::int32 curtasks() const;
+  void set_curtasks(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_curtasks() const;
+  void _internal_set_curtasks(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:tradingpb.ReplyServerInfo)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::PROTOBUF_NAMESPACE_ID::int32 maxtasks_;
+  ::PROTOBUF_NAMESPACE_ID::int32 curtasks_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_tradingnode2_2eproto;
+};
+// -------------------------------------------------------------------
+
 class RequestCalcPNL :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tradingpb.RequestCalcPNL) */ {
  public:
@@ -1342,7 +1762,7 @@ class RequestCalcPNL :
                &_RequestCalcPNL_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    5;
+    8;
 
   friend void swap(RequestCalcPNL& a, RequestCalcPNL& b) {
     a.Swap(&b);
@@ -1409,7 +1829,7 @@ class RequestCalcPNL :
     kAssetsFieldNumber = 2,
     kBaselinesFieldNumber = 3,
     kStrategiesFieldNumber = 6,
-    kTokenFieldNumber = 1,
+    kBasicRequestFieldNumber = 1,
     kStartTsFieldNumber = 4,
     kEndTsFieldNumber = 5,
   };
@@ -1467,20 +1887,19 @@ class RequestCalcPNL :
   const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingpb::Strategy >&
       strategies() const;
 
-  // string token = 1;
-  void clear_token();
-  const std::string& token() const;
-  void set_token(const std::string& value);
-  void set_token(std::string&& value);
-  void set_token(const char* value);
-  void set_token(const char* value, size_t size);
-  std::string* mutable_token();
-  std::string* release_token();
-  void set_allocated_token(std::string* token);
+  // .tradingpb.BasicRequestData basicRequest = 1;
+  bool has_basicrequest() const;
   private:
-  const std::string& _internal_token() const;
-  void _internal_set_token(const std::string& value);
-  std::string* _internal_mutable_token();
+  bool _internal_has_basicrequest() const;
+  public:
+  void clear_basicrequest();
+  const ::tradingpb::BasicRequestData& basicrequest() const;
+  ::tradingpb::BasicRequestData* release_basicrequest();
+  ::tradingpb::BasicRequestData* mutable_basicrequest();
+  void set_allocated_basicrequest(::tradingpb::BasicRequestData* basicrequest);
+  private:
+  const ::tradingpb::BasicRequestData& _internal_basicrequest() const;
+  ::tradingpb::BasicRequestData* _internal_mutable_basicrequest();
   public:
 
   // int64 startTs = 4;
@@ -1509,7 +1928,7 @@ class RequestCalcPNL :
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingpb::Asset > assets_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingpb::Asset > baselines_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingpb::Strategy > strategies_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr token_;
+  ::tradingpb::BasicRequestData* basicrequest_;
   ::PROTOBUF_NAMESPACE_ID::int64 startts_;
   ::PROTOBUF_NAMESPACE_ID::int64 endts_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
@@ -1559,7 +1978,7 @@ class ReplyCalcPNL :
                &_ReplyCalcPNL_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    6;
+    9;
 
   friend void swap(ReplyCalcPNL& a, ReplyCalcPNL& b) {
     a.Swap(&b);
@@ -1661,6 +2080,70 @@ class ReplyCalcPNL :
   #pragma GCC diagnostic push
   #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
+// BasicRequestData
+
+// string token = 1;
+inline void BasicRequestData::clear_token() {
+  token_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline const std::string& BasicRequestData::token() const {
+  // @@protoc_insertion_point(field_get:tradingpb.BasicRequestData.token)
+  return _internal_token();
+}
+inline void BasicRequestData::set_token(const std::string& value) {
+  _internal_set_token(value);
+  // @@protoc_insertion_point(field_set:tradingpb.BasicRequestData.token)
+}
+inline std::string* BasicRequestData::mutable_token() {
+  // @@protoc_insertion_point(field_mutable:tradingpb.BasicRequestData.token)
+  return _internal_mutable_token();
+}
+inline const std::string& BasicRequestData::_internal_token() const {
+  return token_.GetNoArena();
+}
+inline void BasicRequestData::_internal_set_token(const std::string& value) {
+  
+  token_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+}
+inline void BasicRequestData::set_token(std::string&& value) {
+  
+  token_.SetNoArena(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:tradingpb.BasicRequestData.token)
+}
+inline void BasicRequestData::set_token(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  token_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:tradingpb.BasicRequestData.token)
+}
+inline void BasicRequestData::set_token(const char* value, size_t size) {
+  
+  token_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:tradingpb.BasicRequestData.token)
+}
+inline std::string* BasicRequestData::_internal_mutable_token() {
+  
+  return token_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline std::string* BasicRequestData::release_token() {
+  // @@protoc_insertion_point(field_release:tradingpb.BasicRequestData.token)
+  
+  return token_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline void BasicRequestData::set_allocated_token(std::string* token) {
+  if (token != nullptr) {
+    
+  } else {
+    
+  }
+  token_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), token);
+  // @@protoc_insertion_point(field_set_allocated:tradingpb.BasicRequestData.token)
+}
+
+// -------------------------------------------------------------------
+
 // Asset
 
 // string market = 1;
@@ -3078,66 +3561,174 @@ inline void PNLData::set_maxperdownyear(float value) {
 
 // -------------------------------------------------------------------
 
-// RequestCalcPNL
+// RequestServerInfo
 
-// string token = 1;
-inline void RequestCalcPNL::clear_token() {
-  token_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+// .tradingpb.BasicRequestData basicRequest = 1;
+inline bool RequestServerInfo::_internal_has_basicrequest() const {
+  return this != internal_default_instance() && basicrequest_ != nullptr;
 }
-inline const std::string& RequestCalcPNL::token() const {
-  // @@protoc_insertion_point(field_get:tradingpb.RequestCalcPNL.token)
-  return _internal_token();
+inline bool RequestServerInfo::has_basicrequest() const {
+  return _internal_has_basicrequest();
 }
-inline void RequestCalcPNL::set_token(const std::string& value) {
-  _internal_set_token(value);
-  // @@protoc_insertion_point(field_set:tradingpb.RequestCalcPNL.token)
+inline void RequestServerInfo::clear_basicrequest() {
+  if (GetArenaNoVirtual() == nullptr && basicrequest_ != nullptr) {
+    delete basicrequest_;
+  }
+  basicrequest_ = nullptr;
 }
-inline std::string* RequestCalcPNL::mutable_token() {
-  // @@protoc_insertion_point(field_mutable:tradingpb.RequestCalcPNL.token)
-  return _internal_mutable_token();
+inline const ::tradingpb::BasicRequestData& RequestServerInfo::_internal_basicrequest() const {
+  const ::tradingpb::BasicRequestData* p = basicrequest_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::tradingpb::BasicRequestData*>(
+      &::tradingpb::_BasicRequestData_default_instance_);
 }
-inline const std::string& RequestCalcPNL::_internal_token() const {
-  return token_.GetNoArena();
+inline const ::tradingpb::BasicRequestData& RequestServerInfo::basicrequest() const {
+  // @@protoc_insertion_point(field_get:tradingpb.RequestServerInfo.basicRequest)
+  return _internal_basicrequest();
 }
-inline void RequestCalcPNL::_internal_set_token(const std::string& value) {
+inline ::tradingpb::BasicRequestData* RequestServerInfo::release_basicrequest() {
+  // @@protoc_insertion_point(field_release:tradingpb.RequestServerInfo.basicRequest)
   
-  token_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+  ::tradingpb::BasicRequestData* temp = basicrequest_;
+  basicrequest_ = nullptr;
+  return temp;
 }
-inline void RequestCalcPNL::set_token(std::string&& value) {
+inline ::tradingpb::BasicRequestData* RequestServerInfo::_internal_mutable_basicrequest() {
   
-  token_.SetNoArena(
-    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:tradingpb.RequestCalcPNL.token)
+  if (basicrequest_ == nullptr) {
+    auto* p = CreateMaybeMessage<::tradingpb::BasicRequestData>(GetArenaNoVirtual());
+    basicrequest_ = p;
+  }
+  return basicrequest_;
 }
-inline void RequestCalcPNL::set_token(const char* value) {
-  GOOGLE_DCHECK(value != nullptr);
-  
-  token_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:tradingpb.RequestCalcPNL.token)
+inline ::tradingpb::BasicRequestData* RequestServerInfo::mutable_basicrequest() {
+  // @@protoc_insertion_point(field_mutable:tradingpb.RequestServerInfo.basicRequest)
+  return _internal_mutable_basicrequest();
 }
-inline void RequestCalcPNL::set_token(const char* value, size_t size) {
-  
-  token_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:tradingpb.RequestCalcPNL.token)
-}
-inline std::string* RequestCalcPNL::_internal_mutable_token() {
-  
-  return token_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-}
-inline std::string* RequestCalcPNL::release_token() {
-  // @@protoc_insertion_point(field_release:tradingpb.RequestCalcPNL.token)
-  
-  return token_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-}
-inline void RequestCalcPNL::set_allocated_token(std::string* token) {
-  if (token != nullptr) {
+inline void RequestServerInfo::set_allocated_basicrequest(::tradingpb::BasicRequestData* basicrequest) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == nullptr) {
+    delete basicrequest_;
+  }
+  if (basicrequest) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    if (message_arena != submessage_arena) {
+      basicrequest = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, basicrequest, submessage_arena);
+    }
     
   } else {
     
   }
-  token_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), token);
-  // @@protoc_insertion_point(field_set_allocated:tradingpb.RequestCalcPNL.token)
+  basicrequest_ = basicrequest;
+  // @@protoc_insertion_point(field_set_allocated:tradingpb.RequestServerInfo.basicRequest)
+}
+
+// -------------------------------------------------------------------
+
+// ReplyServerInfo
+
+// int32 maxTasks = 1;
+inline void ReplyServerInfo::clear_maxtasks() {
+  maxtasks_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 ReplyServerInfo::_internal_maxtasks() const {
+  return maxtasks_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 ReplyServerInfo::maxtasks() const {
+  // @@protoc_insertion_point(field_get:tradingpb.ReplyServerInfo.maxTasks)
+  return _internal_maxtasks();
+}
+inline void ReplyServerInfo::_internal_set_maxtasks(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  maxtasks_ = value;
+}
+inline void ReplyServerInfo::set_maxtasks(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_maxtasks(value);
+  // @@protoc_insertion_point(field_set:tradingpb.ReplyServerInfo.maxTasks)
+}
+
+// int32 curTasks = 2;
+inline void ReplyServerInfo::clear_curtasks() {
+  curtasks_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 ReplyServerInfo::_internal_curtasks() const {
+  return curtasks_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 ReplyServerInfo::curtasks() const {
+  // @@protoc_insertion_point(field_get:tradingpb.ReplyServerInfo.curTasks)
+  return _internal_curtasks();
+}
+inline void ReplyServerInfo::_internal_set_curtasks(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  curtasks_ = value;
+}
+inline void ReplyServerInfo::set_curtasks(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_curtasks(value);
+  // @@protoc_insertion_point(field_set:tradingpb.ReplyServerInfo.curTasks)
+}
+
+// -------------------------------------------------------------------
+
+// RequestCalcPNL
+
+// .tradingpb.BasicRequestData basicRequest = 1;
+inline bool RequestCalcPNL::_internal_has_basicrequest() const {
+  return this != internal_default_instance() && basicrequest_ != nullptr;
+}
+inline bool RequestCalcPNL::has_basicrequest() const {
+  return _internal_has_basicrequest();
+}
+inline void RequestCalcPNL::clear_basicrequest() {
+  if (GetArenaNoVirtual() == nullptr && basicrequest_ != nullptr) {
+    delete basicrequest_;
+  }
+  basicrequest_ = nullptr;
+}
+inline const ::tradingpb::BasicRequestData& RequestCalcPNL::_internal_basicrequest() const {
+  const ::tradingpb::BasicRequestData* p = basicrequest_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::tradingpb::BasicRequestData*>(
+      &::tradingpb::_BasicRequestData_default_instance_);
+}
+inline const ::tradingpb::BasicRequestData& RequestCalcPNL::basicrequest() const {
+  // @@protoc_insertion_point(field_get:tradingpb.RequestCalcPNL.basicRequest)
+  return _internal_basicrequest();
+}
+inline ::tradingpb::BasicRequestData* RequestCalcPNL::release_basicrequest() {
+  // @@protoc_insertion_point(field_release:tradingpb.RequestCalcPNL.basicRequest)
+  
+  ::tradingpb::BasicRequestData* temp = basicrequest_;
+  basicrequest_ = nullptr;
+  return temp;
+}
+inline ::tradingpb::BasicRequestData* RequestCalcPNL::_internal_mutable_basicrequest() {
+  
+  if (basicrequest_ == nullptr) {
+    auto* p = CreateMaybeMessage<::tradingpb::BasicRequestData>(GetArenaNoVirtual());
+    basicrequest_ = p;
+  }
+  return basicrequest_;
+}
+inline ::tradingpb::BasicRequestData* RequestCalcPNL::mutable_basicrequest() {
+  // @@protoc_insertion_point(field_mutable:tradingpb.RequestCalcPNL.basicRequest)
+  return _internal_mutable_basicrequest();
+}
+inline void RequestCalcPNL::set_allocated_basicrequest(::tradingpb::BasicRequestData* basicrequest) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == nullptr) {
+    delete basicrequest_;
+  }
+  if (basicrequest) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    if (message_arena != submessage_arena) {
+      basicrequest = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, basicrequest, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  basicrequest_ = basicrequest;
+  // @@protoc_insertion_point(field_set_allocated:tradingpb.RequestCalcPNL.basicRequest)
 }
 
 // repeated .tradingpb.Asset assets = 2;
@@ -3343,6 +3934,12 @@ ReplyCalcPNL::pnl() const {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

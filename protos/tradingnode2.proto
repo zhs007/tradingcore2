@@ -2,6 +2,10 @@ syntax = "proto3";
 package tradingpb;
 option go_package = "github.com/zhs007/tradingdb2/tradingpb";
 
+message BasicRequestData {
+    string token = 1;
+}
+
 // Asset - asset
 message Asset {
     string market = 1;
@@ -68,9 +72,19 @@ message PNLData {
     float maxPerDownYear = 33;
 }
 
+// RequestServerInfo - request server info
+message RequestServerInfo {
+    BasicRequestData basicRequest = 1;
+}
+
+message ReplyServerInfo {
+    int32 maxTasks = 1;
+    int32 curTasks = 2;
+}
+
 // RequestCalcPNL - request calcPNL
 message RequestCalcPNL {
-    string token = 1;
+    BasicRequestData basicRequest = 1;
     repeated Asset assets = 2;
     repeated Asset baselines = 3;
     int64 startTs = 4;
@@ -85,6 +99,8 @@ message ReplyCalcPNL{
 
 // TradingNode2 - TradingNode2 service
 service TradingNode2 {
+    // getServerInfo - get server infomation
+    rpc getServerInfo(RequestServerInfo) returns (ReplyServerInfo) {}
 	// calcPNL - calc PNL
     rpc calcPNL(RequestCalcPNL) returns (ReplyCalcPNL) {}
 }

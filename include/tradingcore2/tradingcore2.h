@@ -28,6 +28,7 @@
 #include <tradingcore2/protos/tradingdb2.grpc.pb.h>
 #include <tradingcore2/server.h>
 #include <tradingcore2/server/train2.h>
+#include <tradingcore2/trnode2/serv.h>
 #include <tradingcore2/spinlock.h>
 #include <tradingcore2/strategy.h>
 #include <tradingcore2/strategy/buyandhold.h>

@@ -22,6 +22,7 @@
 namespace tradingpb {
 
 static const char* TradingNode2_method_names[] = {
+  "/tradingpb.TradingNode2/getServerInfo",
   "/tradingpb.TradingNode2/calcPNL",
 };
 
@@ -32,8 +33,37 @@ std::unique_ptr< TradingNode2::Stub> TradingNode2::NewStub(const std::shared_ptr
 }
 
 TradingNode2::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel)
-  : channel_(channel), rpcmethod_calcPNL_(TradingNode2_method_names[0], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  : channel_(channel), rpcmethod_getServerInfo_(TradingNode2_method_names[0], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_calcPNL_(TradingNode2_method_names[1], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
+
+::grpc::Status TradingNode2::Stub::getServerInfo(::grpc::ClientContext* context, const ::tradingpb::RequestServerInfo& request, ::tradingpb::ReplyServerInfo* response) {
+  return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_getServerInfo_, context, request, response);
+}
+
+void TradingNode2::Stub::experimental_async::getServerInfo(::grpc::ClientContext* context, const ::tradingpb::RequestServerInfo* request, ::tradingpb::ReplyServerInfo* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_getServerInfo_, context, request, response, std::move(f));
+}
+
+void TradingNode2::Stub::experimental_async::getServerInfo(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::tradingpb::ReplyServerInfo* response, std::function<void(::grpc::Status)> f) {
+  ::grpc_impl::internal::CallbackUnaryCall(stub_->channel_.get(), stub_->rpcmethod_getServerInfo_, context, request, response, std::move(f));
+}
+
+void TradingNode2::Stub::experimental_async::getServerInfo(::grpc::ClientContext* context, const ::tradingpb::RequestServerInfo* request, ::tradingpb::ReplyServerInfo* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_getServerInfo_, context, request, response, reactor);
+}
+
+void TradingNode2::Stub::experimental_async::getServerInfo(::grpc::ClientContext* context, const ::grpc::ByteBuffer* request, ::tradingpb::ReplyServerInfo* response, ::grpc::experimental::ClientUnaryReactor* reactor) {
+  ::grpc_impl::internal::ClientCallbackUnaryFactory::Create(stub_->channel_.get(), stub_->rpcmethod_getServerInfo_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::tradingpb::ReplyServerInfo>* TradingNode2::Stub::AsyncgetServerInfoRaw(::grpc::ClientContext* context, const ::tradingpb::RequestServerInfo& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::tradingpb::ReplyServerInfo>::Create(channel_.get(), cq, rpcmethod_getServerInfo_, context, request, true);
+}
+
+::grpc::ClientAsyncResponseReader< ::tradingpb::ReplyServerInfo>* TradingNode2::Stub::PrepareAsyncgetServerInfoRaw(::grpc::ClientContext* context, const ::tradingpb::RequestServerInfo& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::tradingpb::ReplyServerInfo>::Create(channel_.get(), cq, rpcmethod_getServerInfo_, context, request, false);
+}
 
 ::grpc::Status TradingNode2::Stub::calcPNL(::grpc::ClientContext* context, const ::tradingpb::RequestCalcPNL& request, ::tradingpb::ReplyCalcPNL* response) {
   return ::grpc::internal::BlockingUnaryCall(channel_.get(), rpcmethod_calcPNL_, context, request, response);
@@ -67,6 +97,16 @@ TradingNode2::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       TradingNode2_method_names[0],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< TradingNode2::Service, ::tradingpb::RequestServerInfo, ::tradingpb::ReplyServerInfo>(
+          [](TradingNode2::Service* service,
+             ::grpc_impl::ServerContext* ctx,
+             const ::tradingpb::RequestServerInfo* req,
+             ::tradingpb::ReplyServerInfo* resp) {
+               return service->getServerInfo(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      TradingNode2_method_names[1],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
       new ::grpc::internal::RpcMethodHandler< TradingNode2::Service, ::tradingpb::RequestCalcPNL, ::tradingpb::ReplyCalcPNL>(
           [](TradingNode2::Service* service,
              ::grpc_impl::ServerContext* ctx,
@@ -77,6 +117,13 @@ TradingNode2::Service::Service() {
 }
 
 TradingNode2::Service::~Service() {
+}
+
+::grpc::Status TradingNode2::Service::getServerInfo(::grpc::ServerContext* context, const ::tradingpb::RequestServerInfo* request, ::tradingpb::ReplyServerInfo* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
 ::grpc::Status TradingNode2::Service::calcPNL(::grpc::ServerContext* context, const ::tradingpb::RequestCalcPNL* request, ::tradingpb::ReplyCalcPNL* response) {
