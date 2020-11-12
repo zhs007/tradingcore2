@@ -3,6 +3,35 @@ package tradingpb;
 option go_package = "github.com/zhs007/tradingdb2/tradingpb";
 import "trading2.proto";
 
+enum CtrlType {
+    CTRL_INIT = 0;
+    CTRL_BUY = 1;
+    CTRL_SELL = 2;
+    CTRL_STOPLOSS = 3;
+    CTRL_TAKEPROFIT = 4;
+}
+
+// CtrlNode - ctrl node
+message CtrlNode {
+    int64 ts = 1;
+    Asset src = 2;
+    Asset dst = 3;
+    double volumeSrc = 4;
+    double volumeDst = 5;
+    CtrlType type = 6;
+}
+
+// WalletAsset - wallet asset
+message WalletAsset {
+    Asset asset = 1;
+    double value = 2;
+}
+
+// Wallet - wallet
+message Wallet {
+    repeated WalletAsset assets = 1;
+}
+
 // CtrlCondition - control condition
 message CtrlCondition {
     string indicator = 1;
@@ -24,6 +53,7 @@ message Strategy {
 message PNLDataValue {
     int64 ts = 1;
     float value = 2;
+    repeated string tags = 3;
 }
 
 // PNLData - 
@@ -61,6 +91,7 @@ message PNLData {
     float maxPerUpYear = 31;
     int64 maxDownYearTs = 32;
     float maxPerDownYear = 33;
+    repeated CtrlNode lstCtrl = 34;
 }
 
 // RequestServerInfo - request server info
@@ -81,6 +112,7 @@ message RequestCalcPNL {
     int64 startTs = 4;
     int64 endTs = 5;
     repeated Strategy strategies = 6;
+    Wallet wallet = 7;
 }
 
 // ReplyCalcPNL - reply calcPNL

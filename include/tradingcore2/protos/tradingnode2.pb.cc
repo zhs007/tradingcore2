@@ -17,10 +17,25 @@
 extern PROTOBUF_INTERNAL_EXPORT_trading2_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Asset_trading2_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_trading2_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_BasicRequestData_trading2_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_tradingnode2_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_CtrlCondition_tradingnode2_2eproto;
-extern PROTOBUF_INTERNAL_EXPORT_tradingnode2_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<2> scc_info_PNLData_tradingnode2_2eproto;
+extern PROTOBUF_INTERNAL_EXPORT_tradingnode2_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_CtrlNode_tradingnode2_2eproto;
+extern PROTOBUF_INTERNAL_EXPORT_tradingnode2_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<3> scc_info_PNLData_tradingnode2_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_tradingnode2_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_PNLDataValue_tradingnode2_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_tradingnode2_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<2> scc_info_Strategy_tradingnode2_2eproto;
+extern PROTOBUF_INTERNAL_EXPORT_tradingnode2_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_Wallet_tradingnode2_2eproto;
+extern PROTOBUF_INTERNAL_EXPORT_tradingnode2_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_WalletAsset_tradingnode2_2eproto;
 namespace tradingpb {
+class CtrlNodeDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<CtrlNode> _instance;
+} _CtrlNode_default_instance_;
+class WalletAssetDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<WalletAsset> _instance;
+} _WalletAsset_default_instance_;
+class WalletDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<Wallet> _instance;
+} _Wallet_default_instance_;
 class CtrlConditionDefaultTypeInternal {
  public:
   ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<CtrlCondition> _instance;
@@ -68,6 +83,21 @@ static void InitDefaultsscc_info_CtrlCondition_tradingnode2_2eproto() {
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_CtrlCondition_tradingnode2_2eproto =
     {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_CtrlCondition_tradingnode2_2eproto}, {}};
 
+static void InitDefaultsscc_info_CtrlNode_tradingnode2_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::tradingpb::_CtrlNode_default_instance_;
+    new (ptr) ::tradingpb::CtrlNode();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::tradingpb::CtrlNode::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_CtrlNode_tradingnode2_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_CtrlNode_tradingnode2_2eproto}, {
+      &scc_info_Asset_trading2_2eproto.base,}};
+
 static void InitDefaultsscc_info_PNLData_tradingnode2_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
@@ -79,10 +109,11 @@ static void InitDefaultsscc_info_PNLData_tradingnode2_2eproto() {
   ::tradingpb::PNLData::InitAsDefaultInstance();
 }
 
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<2> scc_info_PNLData_tradingnode2_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 2, 0, InitDefaultsscc_info_PNLData_tradingnode2_2eproto}, {
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<3> scc_info_PNLData_tradingnode2_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 3, 0, InitDefaultsscc_info_PNLData_tradingnode2_2eproto}, {
       &scc_info_Asset_trading2_2eproto.base,
-      &scc_info_PNLDataValue_tradingnode2_2eproto.base,}};
+      &scc_info_PNLDataValue_tradingnode2_2eproto.base,
+      &scc_info_CtrlNode_tradingnode2_2eproto.base,}};
 
 static void InitDefaultsscc_info_PNLDataValue_tradingnode2_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
@@ -138,11 +169,12 @@ static void InitDefaultsscc_info_RequestCalcPNL_tradingnode2_2eproto() {
   ::tradingpb::RequestCalcPNL::InitAsDefaultInstance();
 }
 
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<3> scc_info_RequestCalcPNL_tradingnode2_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 3, 0, InitDefaultsscc_info_RequestCalcPNL_tradingnode2_2eproto}, {
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<4> scc_info_RequestCalcPNL_tradingnode2_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 4, 0, InitDefaultsscc_info_RequestCalcPNL_tradingnode2_2eproto}, {
       &scc_info_BasicRequestData_trading2_2eproto.base,
       &scc_info_Asset_trading2_2eproto.base,
-      &scc_info_Strategy_tradingnode2_2eproto.base,}};
+      &scc_info_Strategy_tradingnode2_2eproto.base,
+      &scc_info_Wallet_tradingnode2_2eproto.base,}};
 
 static void InitDefaultsscc_info_RequestServerInfo_tradingnode2_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
@@ -175,11 +207,65 @@ static void InitDefaultsscc_info_Strategy_tradingnode2_2eproto() {
       &scc_info_Asset_trading2_2eproto.base,
       &scc_info_CtrlCondition_tradingnode2_2eproto.base,}};
 
-static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_tradingnode2_2eproto[8];
-static constexpr ::PROTOBUF_NAMESPACE_ID::EnumDescriptor const** file_level_enum_descriptors_tradingnode2_2eproto = nullptr;
+static void InitDefaultsscc_info_Wallet_tradingnode2_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::tradingpb::_Wallet_default_instance_;
+    new (ptr) ::tradingpb::Wallet();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::tradingpb::Wallet::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_Wallet_tradingnode2_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_Wallet_tradingnode2_2eproto}, {
+      &scc_info_WalletAsset_tradingnode2_2eproto.base,}};
+
+static void InitDefaultsscc_info_WalletAsset_tradingnode2_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::tradingpb::_WalletAsset_default_instance_;
+    new (ptr) ::tradingpb::WalletAsset();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::tradingpb::WalletAsset::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_WalletAsset_tradingnode2_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_WalletAsset_tradingnode2_2eproto}, {
+      &scc_info_Asset_trading2_2eproto.base,}};
+
+static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_tradingnode2_2eproto[11];
+static const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* file_level_enum_descriptors_tradingnode2_2eproto[1];
 static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_tradingnode2_2eproto = nullptr;
 
 const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_tradingnode2_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::tradingpb::CtrlNode, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::tradingpb::CtrlNode, ts_),
+  PROTOBUF_FIELD_OFFSET(::tradingpb::CtrlNode, src_),
+  PROTOBUF_FIELD_OFFSET(::tradingpb::CtrlNode, dst_),
+  PROTOBUF_FIELD_OFFSET(::tradingpb::CtrlNode, volumesrc_),
+  PROTOBUF_FIELD_OFFSET(::tradingpb::CtrlNode, volumedst_),
+  PROTOBUF_FIELD_OFFSET(::tradingpb::CtrlNode, type_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::tradingpb::WalletAsset, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::tradingpb::WalletAsset, asset_),
+  PROTOBUF_FIELD_OFFSET(::tradingpb::WalletAsset, value_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::tradingpb::Wallet, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::tradingpb::Wallet, assets_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::tradingpb::CtrlCondition, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -206,6 +292,7 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_tradingnode2_2eproto::offsets[
   ~0u,  // no _weak_field_map_
   PROTOBUF_FIELD_OFFSET(::tradingpb::PNLDataValue, ts_),
   PROTOBUF_FIELD_OFFSET(::tradingpb::PNLDataValue, value_),
+  PROTOBUF_FIELD_OFFSET(::tradingpb::PNLDataValue, tags_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::tradingpb::PNLData, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -244,6 +331,7 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_tradingnode2_2eproto::offsets[
   PROTOBUF_FIELD_OFFSET(::tradingpb::PNLData, maxperupyear_),
   PROTOBUF_FIELD_OFFSET(::tradingpb::PNLData, maxdownyearts_),
   PROTOBUF_FIELD_OFFSET(::tradingpb::PNLData, maxperdownyear_),
+  PROTOBUF_FIELD_OFFSET(::tradingpb::PNLData, lstctrl_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::tradingpb::RequestServerInfo, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -268,6 +356,7 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_tradingnode2_2eproto::offsets[
   PROTOBUF_FIELD_OFFSET(::tradingpb::RequestCalcPNL, startts_),
   PROTOBUF_FIELD_OFFSET(::tradingpb::RequestCalcPNL, endts_),
   PROTOBUF_FIELD_OFFSET(::tradingpb::RequestCalcPNL, strategies_),
+  PROTOBUF_FIELD_OFFSET(::tradingpb::RequestCalcPNL, wallet_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::tradingpb::ReplyCalcPNL, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -276,17 +365,23 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_tradingnode2_2eproto::offsets[
   PROTOBUF_FIELD_OFFSET(::tradingpb::ReplyCalcPNL, pnl_),
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-  { 0, -1, sizeof(::tradingpb::CtrlCondition)},
-  { 9, -1, sizeof(::tradingpb::Strategy)},
-  { 19, -1, sizeof(::tradingpb::PNLDataValue)},
-  { 26, -1, sizeof(::tradingpb::PNLData)},
-  { 64, -1, sizeof(::tradingpb::RequestServerInfo)},
-  { 70, -1, sizeof(::tradingpb::ReplyServerInfo)},
-  { 77, -1, sizeof(::tradingpb::RequestCalcPNL)},
-  { 88, -1, sizeof(::tradingpb::ReplyCalcPNL)},
+  { 0, -1, sizeof(::tradingpb::CtrlNode)},
+  { 11, -1, sizeof(::tradingpb::WalletAsset)},
+  { 18, -1, sizeof(::tradingpb::Wallet)},
+  { 24, -1, sizeof(::tradingpb::CtrlCondition)},
+  { 33, -1, sizeof(::tradingpb::Strategy)},
+  { 43, -1, sizeof(::tradingpb::PNLDataValue)},
+  { 51, -1, sizeof(::tradingpb::PNLData)},
+  { 90, -1, sizeof(::tradingpb::RequestServerInfo)},
+  { 96, -1, sizeof(::tradingpb::ReplyServerInfo)},
+  { 103, -1, sizeof(::tradingpb::RequestCalcPNL)},
+  { 115, -1, sizeof(::tradingpb::ReplyCalcPNL)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::tradingpb::_CtrlNode_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::tradingpb::_WalletAsset_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::tradingpb::_Wallet_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::tradingpb::_CtrlCondition_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::tradingpb::_Strategy_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::tradingpb::_PNLDataValue_default_instance_),
@@ -299,55 +394,67 @@ static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] =
 
 const char descriptor_table_protodef_tradingnode2_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n\022tradingnode2.proto\022\ttradingpb\032\016trading"
-  "2.proto\"Z\n\rCtrlCondition\022\021\n\tindicator\030\001 "
-  "\001(\t\022\014\n\004vals\030\002 \003(\002\022\021\n\toperators\030\003 \003(\t\022\025\n\r"
-  "combCondition\030\004 \001(\t\"\264\001\n\010Strategy\022\014\n\004name"
-  "\030\001 \001(\t\022\037\n\005asset\030\002 \001(\0132\020.tradingpb.Asset\022"
-  "%\n\003buy\030\003 \003(\0132\030.tradingpb.CtrlCondition\022&"
-  "\n\004sell\030\004 \003(\0132\030.tradingpb.CtrlCondition\022*"
-  "\n\010stoploss\030\005 \003(\0132\030.tradingpb.CtrlConditi"
-  "on\")\n\014PNLDataValue\022\n\n\002ts\030\001 \001(\003\022\r\n\005value\030"
-  "\002 \001(\002\"\206\006\n\007PNLData\022\014\n\004name\030\001 \001(\t\022\037\n\005asset"
-  "\030\002 \001(\0132\020.tradingpb.Asset\022\'\n\006values\030\003 \003(\013"
-  "2\027.tradingpb.PNLDataValue\022\023\n\013maxDrawdown"
-  "\030\004 \001(\002\022\032\n\022maxDrawdownStartTs\030\005 \001(\003\022\030\n\020ma"
-  "xDrawdownEndTs\030\006 \001(\003\022\021\n\tmaxDrawup\030\007 \001(\002\022"
-  "\030\n\020maxDrawupStartTs\030\010 \001(\003\022\026\n\016maxDrawupEn"
-  "dTs\030\t \001(\003\022\016\n\006sharpe\030\n \001(\002\022\031\n\021annualizedR"
-  "eturns\030\013 \001(\002\022\034\n\024annualizedVolatility\030\014 \001"
-  "(\002\022\024\n\014totalReturns\030\r \001(\002\022\020\n\010variance\030\016 \001"
-  "(\002\022\020\n\010buyTimes\030\017 \001(\005\022\021\n\tsellTimes\030\020 \001(\005\022"
-  "\025\n\rstoplossTimes\030\021 \001(\005\022\022\n\nmaxUpDayTs\030\022 \001"
-  "(\003\022\023\n\013maxPerUpDay\030\023 \001(\002\022\024\n\014maxDownDayTs\030"
-  "\024 \001(\003\022\025\n\rmaxPerDownDay\030\025 \001(\002\022\023\n\013maxUpWee"
-  "kTs\030\026 \001(\003\022\024\n\014maxPerUpWeek\030\027 \001(\002\022\025\n\rmaxDo"
-  "wnWeekTs\030\030 \001(\003\022\026\n\016maxPerDownWeek\030\031 \001(\002\022\024"
-  "\n\014maxUpMonthTs\030\032 \001(\003\022\025\n\rmaxPerUpMonth\030\033 "
-  "\001(\002\022\026\n\016maxDownMonthTs\030\034 \001(\003\022\027\n\017maxPerDow"
-  "nMonth\030\035 \001(\002\022\023\n\013maxUpYearTs\030\036 \001(\003\022\024\n\014max"
-  "PerUpYear\030\037 \001(\002\022\025\n\rmaxDownYearTs\030  \001(\003\022\026"
-  "\n\016maxPerDownYear\030! \001(\002\"F\n\021RequestServerI"
-  "nfo\0221\n\014basicRequest\030\001 \001(\0132\033.tradingpb.Ba"
-  "sicRequestData\"5\n\017ReplyServerInfo\022\020\n\010max"
-  "Tasks\030\001 \001(\005\022\020\n\010curTasks\030\002 \001(\005\"\323\001\n\016Reques"
-  "tCalcPNL\0221\n\014basicRequest\030\001 \001(\0132\033.trading"
-  "pb.BasicRequestData\022 \n\006assets\030\002 \003(\0132\020.tr"
-  "adingpb.Asset\022#\n\tbaselines\030\003 \003(\0132\020.tradi"
-  "ngpb.Asset\022\017\n\007startTs\030\004 \001(\003\022\r\n\005endTs\030\005 \001"
-  "(\003\022\'\n\nstrategies\030\006 \003(\0132\023.tradingpb.Strat"
-  "egy\"/\n\014ReplyCalcPNL\022\037\n\003pnl\030\001 \003(\0132\022.tradi"
-  "ngpb.PNLData2\234\001\n\014TradingNode2\022K\n\rgetServ"
-  "erInfo\022\034.tradingpb.RequestServerInfo\032\032.t"
-  "radingpb.ReplyServerInfo\"\000\022\?\n\007calcPNL\022\031."
-  "tradingpb.RequestCalcPNL\032\027.tradingpb.Rep"
-  "lyCalcPNL\"\000B(Z&github.com/zhs007/trading"
-  "db2/tradingpbb\006proto3"
+  "2.proto\"\235\001\n\010CtrlNode\022\n\n\002ts\030\001 \001(\003\022\035\n\003src\030"
+  "\002 \001(\0132\020.tradingpb.Asset\022\035\n\003dst\030\003 \001(\0132\020.t"
+  "radingpb.Asset\022\021\n\tvolumeSrc\030\004 \001(\001\022\021\n\tvol"
+  "umeDst\030\005 \001(\001\022!\n\004type\030\006 \001(\0162\023.tradingpb.C"
+  "trlType\"=\n\013WalletAsset\022\037\n\005asset\030\001 \001(\0132\020."
+  "tradingpb.Asset\022\r\n\005value\030\002 \001(\001\"0\n\006Wallet"
+  "\022&\n\006assets\030\001 \003(\0132\026.tradingpb.WalletAsset"
+  "\"Z\n\rCtrlCondition\022\021\n\tindicator\030\001 \001(\t\022\014\n\004"
+  "vals\030\002 \003(\002\022\021\n\toperators\030\003 \003(\t\022\025\n\rcombCon"
+  "dition\030\004 \001(\t\"\264\001\n\010Strategy\022\014\n\004name\030\001 \001(\t\022"
+  "\037\n\005asset\030\002 \001(\0132\020.tradingpb.Asset\022%\n\003buy\030"
+  "\003 \003(\0132\030.tradingpb.CtrlCondition\022&\n\004sell\030"
+  "\004 \003(\0132\030.tradingpb.CtrlCondition\022*\n\010stopl"
+  "oss\030\005 \003(\0132\030.tradingpb.CtrlCondition\"7\n\014P"
+  "NLDataValue\022\n\n\002ts\030\001 \001(\003\022\r\n\005value\030\002 \001(\002\022\014"
+  "\n\004tags\030\003 \003(\t\"\254\006\n\007PNLData\022\014\n\004name\030\001 \001(\t\022\037"
+  "\n\005asset\030\002 \001(\0132\020.tradingpb.Asset\022\'\n\006value"
+  "s\030\003 \003(\0132\027.tradingpb.PNLDataValue\022\023\n\013maxD"
+  "rawdown\030\004 \001(\002\022\032\n\022maxDrawdownStartTs\030\005 \001("
+  "\003\022\030\n\020maxDrawdownEndTs\030\006 \001(\003\022\021\n\tmaxDrawup"
+  "\030\007 \001(\002\022\030\n\020maxDrawupStartTs\030\010 \001(\003\022\026\n\016maxD"
+  "rawupEndTs\030\t \001(\003\022\016\n\006sharpe\030\n \001(\002\022\031\n\021annu"
+  "alizedReturns\030\013 \001(\002\022\034\n\024annualizedVolatil"
+  "ity\030\014 \001(\002\022\024\n\014totalReturns\030\r \001(\002\022\020\n\010varia"
+  "nce\030\016 \001(\002\022\020\n\010buyTimes\030\017 \001(\005\022\021\n\tsellTimes"
+  "\030\020 \001(\005\022\025\n\rstoplossTimes\030\021 \001(\005\022\022\n\nmaxUpDa"
+  "yTs\030\022 \001(\003\022\023\n\013maxPerUpDay\030\023 \001(\002\022\024\n\014maxDow"
+  "nDayTs\030\024 \001(\003\022\025\n\rmaxPerDownDay\030\025 \001(\002\022\023\n\013m"
+  "axUpWeekTs\030\026 \001(\003\022\024\n\014maxPerUpWeek\030\027 \001(\002\022\025"
+  "\n\rmaxDownWeekTs\030\030 \001(\003\022\026\n\016maxPerDownWeek\030"
+  "\031 \001(\002\022\024\n\014maxUpMonthTs\030\032 \001(\003\022\025\n\rmaxPerUpM"
+  "onth\030\033 \001(\002\022\026\n\016maxDownMonthTs\030\034 \001(\003\022\027\n\017ma"
+  "xPerDownMonth\030\035 \001(\002\022\023\n\013maxUpYearTs\030\036 \001(\003"
+  "\022\024\n\014maxPerUpYear\030\037 \001(\002\022\025\n\rmaxDownYearTs\030"
+  "  \001(\003\022\026\n\016maxPerDownYear\030! \001(\002\022$\n\007lstCtrl"
+  "\030\" \003(\0132\023.tradingpb.CtrlNode\"F\n\021RequestSe"
+  "rverInfo\0221\n\014basicRequest\030\001 \001(\0132\033.trading"
+  "pb.BasicRequestData\"5\n\017ReplyServerInfo\022\020"
+  "\n\010maxTasks\030\001 \001(\005\022\020\n\010curTasks\030\002 \001(\005\"\366\001\n\016R"
+  "equestCalcPNL\0221\n\014basicRequest\030\001 \001(\0132\033.tr"
+  "adingpb.BasicRequestData\022 \n\006assets\030\002 \003(\013"
+  "2\020.tradingpb.Asset\022#\n\tbaselines\030\003 \003(\0132\020."
+  "tradingpb.Asset\022\017\n\007startTs\030\004 \001(\003\022\r\n\005endT"
+  "s\030\005 \001(\003\022\'\n\nstrategies\030\006 \003(\0132\023.tradingpb."
+  "Strategy\022!\n\006wallet\030\007 \001(\0132\021.tradingpb.Wal"
+  "let\"/\n\014ReplyCalcPNL\022\037\n\003pnl\030\001 \003(\0132\022.tradi"
+  "ngpb.PNLData*^\n\010CtrlType\022\r\n\tCTRL_INIT\020\000\022"
+  "\014\n\010CTRL_BUY\020\001\022\r\n\tCTRL_SELL\020\002\022\021\n\rCTRL_STO"
+  "PLOSS\020\003\022\023\n\017CTRL_TAKEPROFIT\020\0042\234\001\n\014Trading"
+  "Node2\022K\n\rgetServerInfo\022\034.tradingpb.Reque"
+  "stServerInfo\032\032.tradingpb.ReplyServerInfo"
+  "\"\000\022\?\n\007calcPNL\022\031.tradingpb.RequestCalcPNL"
+  "\032\027.tradingpb.ReplyCalcPNL\"\000B(Z&github.co"
+  "m/zhs007/tradingdb2/tradingpbb\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_tradingnode2_2eproto_deps[1] = {
   &::descriptor_table_trading2_2eproto,
 };
-static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_tradingnode2_2eproto_sccs[8] = {
+static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_tradingnode2_2eproto_sccs[11] = {
   &scc_info_CtrlCondition_tradingnode2_2eproto.base,
+  &scc_info_CtrlNode_tradingnode2_2eproto.base,
   &scc_info_PNLData_tradingnode2_2eproto.base,
   &scc_info_PNLDataValue_tradingnode2_2eproto.base,
   &scc_info_ReplyCalcPNL_tradingnode2_2eproto.base,
@@ -355,19 +462,825 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_tra
   &scc_info_RequestCalcPNL_tradingnode2_2eproto.base,
   &scc_info_RequestServerInfo_tradingnode2_2eproto.base,
   &scc_info_Strategy_tradingnode2_2eproto.base,
+  &scc_info_Wallet_tradingnode2_2eproto.base,
+  &scc_info_WalletAsset_tradingnode2_2eproto.base,
 };
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_tradingnode2_2eproto_once;
 static bool descriptor_table_tradingnode2_2eproto_initialized = false;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_tradingnode2_2eproto = {
-  &descriptor_table_tradingnode2_2eproto_initialized, descriptor_table_protodef_tradingnode2_2eproto, "tradingnode2.proto", 1741,
-  &descriptor_table_tradingnode2_2eproto_once, descriptor_table_tradingnode2_2eproto_sccs, descriptor_table_tradingnode2_2eproto_deps, 8, 1,
+  &descriptor_table_tradingnode2_2eproto_initialized, descriptor_table_protodef_tradingnode2_2eproto, "tradingnode2.proto", 2197,
+  &descriptor_table_tradingnode2_2eproto_once, descriptor_table_tradingnode2_2eproto_sccs, descriptor_table_tradingnode2_2eproto_deps, 11, 1,
   schemas, file_default_instances, TableStruct_tradingnode2_2eproto::offsets,
-  file_level_metadata_tradingnode2_2eproto, 8, file_level_enum_descriptors_tradingnode2_2eproto, file_level_service_descriptors_tradingnode2_2eproto,
+  file_level_metadata_tradingnode2_2eproto, 11, file_level_enum_descriptors_tradingnode2_2eproto, file_level_service_descriptors_tradingnode2_2eproto,
 };
 
 // Force running AddDescriptors() at dynamic initialization time.
 static bool dynamic_init_dummy_tradingnode2_2eproto = (  ::PROTOBUF_NAMESPACE_ID::internal::AddDescriptors(&descriptor_table_tradingnode2_2eproto), true);
 namespace tradingpb {
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* CtrlType_descriptor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&descriptor_table_tradingnode2_2eproto);
+  return file_level_enum_descriptors_tradingnode2_2eproto[0];
+}
+bool CtrlType_IsValid(int value) {
+  switch (value) {
+    case 0:
+    case 1:
+    case 2:
+    case 3:
+    case 4:
+      return true;
+    default:
+      return false;
+  }
+}
+
+
+// ===================================================================
+
+void CtrlNode::InitAsDefaultInstance() {
+  ::tradingpb::_CtrlNode_default_instance_._instance.get_mutable()->src_ = const_cast< ::tradingpb::Asset*>(
+      ::tradingpb::Asset::internal_default_instance());
+  ::tradingpb::_CtrlNode_default_instance_._instance.get_mutable()->dst_ = const_cast< ::tradingpb::Asset*>(
+      ::tradingpb::Asset::internal_default_instance());
+}
+class CtrlNode::_Internal {
+ public:
+  static const ::tradingpb::Asset& src(const CtrlNode* msg);
+  static const ::tradingpb::Asset& dst(const CtrlNode* msg);
+};
+
+const ::tradingpb::Asset&
+CtrlNode::_Internal::src(const CtrlNode* msg) {
+  return *msg->src_;
+}
+const ::tradingpb::Asset&
+CtrlNode::_Internal::dst(const CtrlNode* msg) {
+  return *msg->dst_;
+}
+void CtrlNode::clear_src() {
+  if (GetArenaNoVirtual() == nullptr && src_ != nullptr) {
+    delete src_;
+  }
+  src_ = nullptr;
+}
+void CtrlNode::clear_dst() {
+  if (GetArenaNoVirtual() == nullptr && dst_ != nullptr) {
+    delete dst_;
+  }
+  dst_ = nullptr;
+}
+CtrlNode::CtrlNode()
+  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:tradingpb.CtrlNode)
+}
+CtrlNode::CtrlNode(const CtrlNode& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _internal_metadata_(nullptr) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  if (from._internal_has_src()) {
+    src_ = new ::tradingpb::Asset(*from.src_);
+  } else {
+    src_ = nullptr;
+  }
+  if (from._internal_has_dst()) {
+    dst_ = new ::tradingpb::Asset(*from.dst_);
+  } else {
+    dst_ = nullptr;
+  }
+  ::memcpy(&ts_, &from.ts_,
+    static_cast<size_t>(reinterpret_cast<char*>(&type_) -
+    reinterpret_cast<char*>(&ts_)) + sizeof(type_));
+  // @@protoc_insertion_point(copy_constructor:tradingpb.CtrlNode)
+}
+
+void CtrlNode::SharedCtor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_CtrlNode_tradingnode2_2eproto.base);
+  ::memset(&src_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&type_) -
+      reinterpret_cast<char*>(&src_)) + sizeof(type_));
+}
+
+CtrlNode::~CtrlNode() {
+  // @@protoc_insertion_point(destructor:tradingpb.CtrlNode)
+  SharedDtor();
+}
+
+void CtrlNode::SharedDtor() {
+  if (this != internal_default_instance()) delete src_;
+  if (this != internal_default_instance()) delete dst_;
+}
+
+void CtrlNode::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const CtrlNode& CtrlNode::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_CtrlNode_tradingnode2_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void CtrlNode::Clear() {
+// @@protoc_insertion_point(message_clear_start:tradingpb.CtrlNode)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  if (GetArenaNoVirtual() == nullptr && src_ != nullptr) {
+    delete src_;
+  }
+  src_ = nullptr;
+  if (GetArenaNoVirtual() == nullptr && dst_ != nullptr) {
+    delete dst_;
+  }
+  dst_ = nullptr;
+  ::memset(&ts_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&type_) -
+      reinterpret_cast<char*>(&ts_)) + sizeof(type_));
+  _internal_metadata_.Clear();
+}
+
+const char* CtrlNode::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // int64 ts = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
+          ts_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .tradingpb.Asset src = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          ptr = ctx->ParseMessage(_internal_mutable_src(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .tradingpb.Asset dst = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
+          ptr = ctx->ParseMessage(_internal_mutable_dst(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // double volumeSrc = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 33)) {
+          volumesrc_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          ptr += sizeof(double);
+        } else goto handle_unusual;
+        continue;
+      // double volumeDst = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 41)) {
+          volumedst_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          ptr += sizeof(double);
+        } else goto handle_unusual;
+        continue;
+      // .tradingpb.CtrlType type = 6;
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 48)) {
+          ::PROTOBUF_NAMESPACE_ID::uint64 val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+          _internal_set_type(static_cast<::tradingpb::CtrlType>(val));
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* CtrlNode::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:tradingpb.CtrlNode)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // int64 ts = 1;
+  if (this->ts() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt64ToArray(1, this->_internal_ts(), target);
+  }
+
+  // .tradingpb.Asset src = 2;
+  if (this->has_src()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        2, _Internal::src(this), target, stream);
+  }
+
+  // .tradingpb.Asset dst = 3;
+  if (this->has_dst()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        3, _Internal::dst(this), target, stream);
+  }
+
+  // double volumeSrc = 4;
+  if (!(this->volumesrc() <= 0 && this->volumesrc() >= 0)) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteDoubleToArray(4, this->_internal_volumesrc(), target);
+  }
+
+  // double volumeDst = 5;
+  if (!(this->volumedst() <= 0 && this->volumedst() >= 0)) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteDoubleToArray(5, this->_internal_volumedst(), target);
+  }
+
+  // .tradingpb.CtrlType type = 6;
+  if (this->type() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteEnumToArray(
+      6, this->_internal_type(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields(), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:tradingpb.CtrlNode)
+  return target;
+}
+
+size_t CtrlNode::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:tradingpb.CtrlNode)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // .tradingpb.Asset src = 2;
+  if (this->has_src()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *src_);
+  }
+
+  // .tradingpb.Asset dst = 3;
+  if (this->has_dst()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *dst_);
+  }
+
+  // int64 ts = 1;
+  if (this->ts() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int64Size(
+        this->_internal_ts());
+  }
+
+  // double volumeSrc = 4;
+  if (!(this->volumesrc() <= 0 && this->volumesrc() >= 0)) {
+    total_size += 1 + 8;
+  }
+
+  // double volumeDst = 5;
+  if (!(this->volumedst() <= 0 && this->volumedst() >= 0)) {
+    total_size += 1 + 8;
+  }
+
+  // .tradingpb.CtrlType type = 6;
+  if (this->type() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::EnumSize(this->_internal_type());
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void CtrlNode::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:tradingpb.CtrlNode)
+  GOOGLE_DCHECK_NE(&from, this);
+  const CtrlNode* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<CtrlNode>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:tradingpb.CtrlNode)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:tradingpb.CtrlNode)
+    MergeFrom(*source);
+  }
+}
+
+void CtrlNode::MergeFrom(const CtrlNode& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:tradingpb.CtrlNode)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.has_src()) {
+    _internal_mutable_src()->::tradingpb::Asset::MergeFrom(from._internal_src());
+  }
+  if (from.has_dst()) {
+    _internal_mutable_dst()->::tradingpb::Asset::MergeFrom(from._internal_dst());
+  }
+  if (from.ts() != 0) {
+    _internal_set_ts(from._internal_ts());
+  }
+  if (!(from.volumesrc() <= 0 && from.volumesrc() >= 0)) {
+    _internal_set_volumesrc(from._internal_volumesrc());
+  }
+  if (!(from.volumedst() <= 0 && from.volumedst() >= 0)) {
+    _internal_set_volumedst(from._internal_volumedst());
+  }
+  if (from.type() != 0) {
+    _internal_set_type(from._internal_type());
+  }
+}
+
+void CtrlNode::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:tradingpb.CtrlNode)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void CtrlNode::CopyFrom(const CtrlNode& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:tradingpb.CtrlNode)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool CtrlNode::IsInitialized() const {
+  return true;
+}
+
+void CtrlNode::InternalSwap(CtrlNode* other) {
+  using std::swap;
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  swap(src_, other->src_);
+  swap(dst_, other->dst_);
+  swap(ts_, other->ts_);
+  swap(volumesrc_, other->volumesrc_);
+  swap(volumedst_, other->volumedst_);
+  swap(type_, other->type_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata CtrlNode::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
+
+// ===================================================================
+
+void WalletAsset::InitAsDefaultInstance() {
+  ::tradingpb::_WalletAsset_default_instance_._instance.get_mutable()->asset_ = const_cast< ::tradingpb::Asset*>(
+      ::tradingpb::Asset::internal_default_instance());
+}
+class WalletAsset::_Internal {
+ public:
+  static const ::tradingpb::Asset& asset(const WalletAsset* msg);
+};
+
+const ::tradingpb::Asset&
+WalletAsset::_Internal::asset(const WalletAsset* msg) {
+  return *msg->asset_;
+}
+void WalletAsset::clear_asset() {
+  if (GetArenaNoVirtual() == nullptr && asset_ != nullptr) {
+    delete asset_;
+  }
+  asset_ = nullptr;
+}
+WalletAsset::WalletAsset()
+  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:tradingpb.WalletAsset)
+}
+WalletAsset::WalletAsset(const WalletAsset& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _internal_metadata_(nullptr) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  if (from._internal_has_asset()) {
+    asset_ = new ::tradingpb::Asset(*from.asset_);
+  } else {
+    asset_ = nullptr;
+  }
+  value_ = from.value_;
+  // @@protoc_insertion_point(copy_constructor:tradingpb.WalletAsset)
+}
+
+void WalletAsset::SharedCtor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_WalletAsset_tradingnode2_2eproto.base);
+  ::memset(&asset_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&value_) -
+      reinterpret_cast<char*>(&asset_)) + sizeof(value_));
+}
+
+WalletAsset::~WalletAsset() {
+  // @@protoc_insertion_point(destructor:tradingpb.WalletAsset)
+  SharedDtor();
+}
+
+void WalletAsset::SharedDtor() {
+  if (this != internal_default_instance()) delete asset_;
+}
+
+void WalletAsset::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const WalletAsset& WalletAsset::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_WalletAsset_tradingnode2_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void WalletAsset::Clear() {
+// @@protoc_insertion_point(message_clear_start:tradingpb.WalletAsset)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  if (GetArenaNoVirtual() == nullptr && asset_ != nullptr) {
+    delete asset_;
+  }
+  asset_ = nullptr;
+  value_ = 0;
+  _internal_metadata_.Clear();
+}
+
+const char* WalletAsset::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // .tradingpb.Asset asset = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          ptr = ctx->ParseMessage(_internal_mutable_asset(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // double value = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 17)) {
+          value_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          ptr += sizeof(double);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* WalletAsset::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:tradingpb.WalletAsset)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .tradingpb.Asset asset = 1;
+  if (this->has_asset()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        1, _Internal::asset(this), target, stream);
+  }
+
+  // double value = 2;
+  if (!(this->value() <= 0 && this->value() >= 0)) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteDoubleToArray(2, this->_internal_value(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields(), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:tradingpb.WalletAsset)
+  return target;
+}
+
+size_t WalletAsset::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:tradingpb.WalletAsset)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // .tradingpb.Asset asset = 1;
+  if (this->has_asset()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *asset_);
+  }
+
+  // double value = 2;
+  if (!(this->value() <= 0 && this->value() >= 0)) {
+    total_size += 1 + 8;
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void WalletAsset::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:tradingpb.WalletAsset)
+  GOOGLE_DCHECK_NE(&from, this);
+  const WalletAsset* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<WalletAsset>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:tradingpb.WalletAsset)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:tradingpb.WalletAsset)
+    MergeFrom(*source);
+  }
+}
+
+void WalletAsset::MergeFrom(const WalletAsset& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:tradingpb.WalletAsset)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.has_asset()) {
+    _internal_mutable_asset()->::tradingpb::Asset::MergeFrom(from._internal_asset());
+  }
+  if (!(from.value() <= 0 && from.value() >= 0)) {
+    _internal_set_value(from._internal_value());
+  }
+}
+
+void WalletAsset::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:tradingpb.WalletAsset)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void WalletAsset::CopyFrom(const WalletAsset& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:tradingpb.WalletAsset)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool WalletAsset::IsInitialized() const {
+  return true;
+}
+
+void WalletAsset::InternalSwap(WalletAsset* other) {
+  using std::swap;
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  swap(asset_, other->asset_);
+  swap(value_, other->value_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata WalletAsset::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
+
+// ===================================================================
+
+void Wallet::InitAsDefaultInstance() {
+}
+class Wallet::_Internal {
+ public:
+};
+
+Wallet::Wallet()
+  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:tradingpb.Wallet)
+}
+Wallet::Wallet(const Wallet& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _internal_metadata_(nullptr),
+      assets_(from.assets_) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:tradingpb.Wallet)
+}
+
+void Wallet::SharedCtor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_Wallet_tradingnode2_2eproto.base);
+}
+
+Wallet::~Wallet() {
+  // @@protoc_insertion_point(destructor:tradingpb.Wallet)
+  SharedDtor();
+}
+
+void Wallet::SharedDtor() {
+}
+
+void Wallet::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const Wallet& Wallet::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_Wallet_tradingnode2_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void Wallet::Clear() {
+// @@protoc_insertion_point(message_clear_start:tradingpb.Wallet)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  assets_.Clear();
+  _internal_metadata_.Clear();
+}
+
+const char* Wallet::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // repeated .tradingpb.WalletAsset assets = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(_internal_add_assets(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<10>(ptr));
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* Wallet::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:tradingpb.Wallet)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // repeated .tradingpb.WalletAsset assets = 1;
+  for (unsigned int i = 0,
+      n = static_cast<unsigned int>(this->_internal_assets_size()); i < n; i++) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(1, this->_internal_assets(i), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields(), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:tradingpb.Wallet)
+  return target;
+}
+
+size_t Wallet::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:tradingpb.Wallet)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // repeated .tradingpb.WalletAsset assets = 1;
+  total_size += 1UL * this->_internal_assets_size();
+  for (const auto& msg : this->assets_) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void Wallet::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:tradingpb.Wallet)
+  GOOGLE_DCHECK_NE(&from, this);
+  const Wallet* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<Wallet>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:tradingpb.Wallet)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:tradingpb.Wallet)
+    MergeFrom(*source);
+  }
+}
+
+void Wallet::MergeFrom(const Wallet& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:tradingpb.Wallet)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  assets_.MergeFrom(from.assets_);
+}
+
+void Wallet::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:tradingpb.Wallet)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void Wallet::CopyFrom(const Wallet& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:tradingpb.Wallet)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool Wallet::IsInitialized() const {
+  return true;
+}
+
+void Wallet::InternalSwap(Wallet* other) {
+  using std::swap;
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  assets_.InternalSwap(&other->assets_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata Wallet::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
 
 // ===================================================================
 
@@ -1034,7 +1947,8 @@ PNLDataValue::PNLDataValue()
 }
 PNLDataValue::PNLDataValue(const PNLDataValue& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
-      _internal_metadata_(nullptr) {
+      _internal_metadata_(nullptr),
+      tags_(from.tags_) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   ::memcpy(&ts_, &from.ts_,
     static_cast<size_t>(reinterpret_cast<char*>(&value_) -
@@ -1043,6 +1957,7 @@ PNLDataValue::PNLDataValue(const PNLDataValue& from)
 }
 
 void PNLDataValue::SharedCtor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_PNLDataValue_tradingnode2_2eproto.base);
   ::memset(&ts_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&value_) -
       reinterpret_cast<char*>(&ts_)) + sizeof(value_));
@@ -1071,6 +1986,7 @@ void PNLDataValue::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  tags_.Clear();
   ::memset(&ts_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&value_) -
       reinterpret_cast<char*>(&ts_)) + sizeof(value_));
@@ -1096,6 +2012,20 @@ const char* PNLDataValue::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_I
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 21)) {
           value_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
+        } else goto handle_unusual;
+        continue;
+      // repeated string tags = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            auto str = _internal_add_tags();
+            ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+            CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "tradingpb.PNLDataValue.tags"));
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<26>(ptr));
         } else goto handle_unusual;
         continue;
       default: {
@@ -1136,6 +2066,16 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(2, this->_internal_value(), target);
   }
 
+  // repeated string tags = 3;
+  for (int i = 0, n = this->_internal_tags_size(); i < n; i++) {
+    const auto& s = this->_internal_tags(i);
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      s.data(), static_cast<int>(s.length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "tradingpb.PNLDataValue.tags");
+    target = stream->WriteString(3, s, target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields(), target, stream);
@@ -1151,6 +2091,14 @@ size_t PNLDataValue::ByteSizeLong() const {
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
+
+  // repeated string tags = 3;
+  total_size += 1 *
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(tags_.size());
+  for (int i = 0, n = tags_.size(); i < n; i++) {
+    total_size += ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+      tags_.Get(i));
+  }
 
   // int64 ts = 1;
   if (this->ts() != 0) {
@@ -1195,6 +2143,7 @@ void PNLDataValue::MergeFrom(const PNLDataValue& from) {
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
+  tags_.MergeFrom(from.tags_);
   if (from.ts() != 0) {
     _internal_set_ts(from._internal_ts());
   }
@@ -1224,6 +2173,7 @@ bool PNLDataValue::IsInitialized() const {
 void PNLDataValue::InternalSwap(PNLDataValue* other) {
   using std::swap;
   _internal_metadata_.Swap(&other->_internal_metadata_);
+  tags_.InternalSwap(&other->tags_);
   swap(ts_, other->ts_);
   swap(value_, other->value_);
 }
@@ -1262,7 +2212,8 @@ PNLData::PNLData()
 PNLData::PNLData(const PNLData& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
       _internal_metadata_(nullptr),
-      values_(from.values_) {
+      values_(from.values_),
+      lstctrl_(from.lstctrl_) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (!from._internal_name().empty()) {
@@ -1313,6 +2264,7 @@ void PNLData::Clear() {
   (void) cached_has_bits;
 
   values_.Clear();
+  lstctrl_.Clear();
   name_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (GetArenaNoVirtual() == nullptr && asset_ != nullptr) {
     delete asset_;
@@ -1569,6 +2521,18 @@ const char* PNLData::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::in
           ptr += sizeof(float);
         } else goto handle_unusual;
         continue;
+      // repeated .tradingpb.CtrlNode lstCtrl = 34;
+      case 34:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          ptr -= 2;
+          do {
+            ptr += 2;
+            ptr = ctx->ParseMessage(_internal_add_lstctrl(), ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<274>(ptr));
+        } else goto handle_unusual;
+        continue;
       default: {
       handle_unusual:
         if ((tag & 7) == 4 || tag == 0) {
@@ -1801,6 +2765,14 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(33, this->_internal_maxperdownyear(), target);
   }
 
+  // repeated .tradingpb.CtrlNode lstCtrl = 34;
+  for (unsigned int i = 0,
+      n = static_cast<unsigned int>(this->_internal_lstctrl_size()); i < n; i++) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(34, this->_internal_lstctrl(i), target, stream);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields(), target, stream);
@@ -1820,6 +2792,13 @@ size_t PNLData::ByteSizeLong() const {
   // repeated .tradingpb.PNLDataValue values = 3;
   total_size += 1UL * this->_internal_values_size();
   for (const auto& msg : this->values_) {
+    total_size +=
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+  }
+
+  // repeated .tradingpb.CtrlNode lstCtrl = 34;
+  total_size += 2UL * this->_internal_lstctrl_size();
+  for (const auto& msg : this->lstctrl_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
   }
@@ -2050,6 +3029,7 @@ void PNLData::MergeFrom(const PNLData& from) {
   (void) cached_has_bits;
 
   values_.MergeFrom(from.values_);
+  lstctrl_.MergeFrom(from.lstctrl_);
   if (from.name().size() > 0) {
 
     name_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.name_);
@@ -2171,6 +3151,7 @@ void PNLData::InternalSwap(PNLData* other) {
   using std::swap;
   _internal_metadata_.Swap(&other->_internal_metadata_);
   values_.InternalSwap(&other->values_);
+  lstctrl_.InternalSwap(&other->lstctrl_);
   name_.Swap(&other->name_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
     GetArenaNoVirtual());
   swap(asset_, other->asset_);
@@ -2642,15 +3623,22 @@ void ReplyServerInfo::InternalSwap(ReplyServerInfo* other) {
 void RequestCalcPNL::InitAsDefaultInstance() {
   ::tradingpb::_RequestCalcPNL_default_instance_._instance.get_mutable()->basicrequest_ = const_cast< ::tradingpb::BasicRequestData*>(
       ::tradingpb::BasicRequestData::internal_default_instance());
+  ::tradingpb::_RequestCalcPNL_default_instance_._instance.get_mutable()->wallet_ = const_cast< ::tradingpb::Wallet*>(
+      ::tradingpb::Wallet::internal_default_instance());
 }
 class RequestCalcPNL::_Internal {
  public:
   static const ::tradingpb::BasicRequestData& basicrequest(const RequestCalcPNL* msg);
+  static const ::tradingpb::Wallet& wallet(const RequestCalcPNL* msg);
 };
 
 const ::tradingpb::BasicRequestData&
 RequestCalcPNL::_Internal::basicrequest(const RequestCalcPNL* msg) {
   return *msg->basicrequest_;
+}
+const ::tradingpb::Wallet&
+RequestCalcPNL::_Internal::wallet(const RequestCalcPNL* msg) {
+  return *msg->wallet_;
 }
 void RequestCalcPNL::clear_basicrequest() {
   if (GetArenaNoVirtual() == nullptr && basicrequest_ != nullptr) {
@@ -2681,6 +3669,11 @@ RequestCalcPNL::RequestCalcPNL(const RequestCalcPNL& from)
   } else {
     basicrequest_ = nullptr;
   }
+  if (from._internal_has_wallet()) {
+    wallet_ = new ::tradingpb::Wallet(*from.wallet_);
+  } else {
+    wallet_ = nullptr;
+  }
   ::memcpy(&startts_, &from.startts_,
     static_cast<size_t>(reinterpret_cast<char*>(&endts_) -
     reinterpret_cast<char*>(&startts_)) + sizeof(endts_));
@@ -2701,6 +3694,7 @@ RequestCalcPNL::~RequestCalcPNL() {
 
 void RequestCalcPNL::SharedDtor() {
   if (this != internal_default_instance()) delete basicrequest_;
+  if (this != internal_default_instance()) delete wallet_;
 }
 
 void RequestCalcPNL::SetCachedSize(int size) const {
@@ -2725,6 +3719,10 @@ void RequestCalcPNL::Clear() {
     delete basicrequest_;
   }
   basicrequest_ = nullptr;
+  if (GetArenaNoVirtual() == nullptr && wallet_ != nullptr) {
+    delete wallet_;
+  }
+  wallet_ = nullptr;
   ::memset(&startts_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&endts_) -
       reinterpret_cast<char*>(&startts_)) + sizeof(endts_));
@@ -2793,6 +3791,13 @@ const char* RequestCalcPNL::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<50>(ptr));
+        } else goto handle_unusual;
+        continue;
+      // .tradingpb.Wallet wallet = 7;
+      case 7:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 58)) {
+          ptr = ctx->ParseMessage(_internal_mutable_wallet(), ptr);
+          CHK_(ptr);
         } else goto handle_unusual;
         continue;
       default: {
@@ -2865,6 +3870,14 @@ failure:
       InternalWriteMessage(6, this->_internal_strategies(i), target, stream);
   }
 
+  // .tradingpb.Wallet wallet = 7;
+  if (this->has_wallet()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        7, _Internal::wallet(this), target, stream);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields(), target, stream);
@@ -2907,6 +3920,13 @@ size_t RequestCalcPNL::ByteSizeLong() const {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *basicrequest_);
+  }
+
+  // .tradingpb.Wallet wallet = 7;
+  if (this->has_wallet()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *wallet_);
   }
 
   // int64 startTs = 4;
@@ -2960,6 +3980,9 @@ void RequestCalcPNL::MergeFrom(const RequestCalcPNL& from) {
   if (from.has_basicrequest()) {
     _internal_mutable_basicrequest()->::tradingpb::BasicRequestData::MergeFrom(from._internal_basicrequest());
   }
+  if (from.has_wallet()) {
+    _internal_mutable_wallet()->::tradingpb::Wallet::MergeFrom(from._internal_wallet());
+  }
   if (from.startts() != 0) {
     _internal_set_startts(from._internal_startts());
   }
@@ -2993,6 +4016,7 @@ void RequestCalcPNL::InternalSwap(RequestCalcPNL* other) {
   baselines_.InternalSwap(&other->baselines_);
   strategies_.InternalSwap(&other->strategies_);
   swap(basicrequest_, other->basicrequest_);
+  swap(wallet_, other->wallet_);
   swap(startts_, other->startts_);
   swap(endts_, other->endts_);
 }
@@ -3196,6 +4220,15 @@ void ReplyCalcPNL::InternalSwap(ReplyCalcPNL* other) {
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace tradingpb
 PROTOBUF_NAMESPACE_OPEN
+template<> PROTOBUF_NOINLINE ::tradingpb::CtrlNode* Arena::CreateMaybeMessage< ::tradingpb::CtrlNode >(Arena* arena) {
+  return Arena::CreateInternal< ::tradingpb::CtrlNode >(arena);
+}
+template<> PROTOBUF_NOINLINE ::tradingpb::WalletAsset* Arena::CreateMaybeMessage< ::tradingpb::WalletAsset >(Arena* arena) {
+  return Arena::CreateInternal< ::tradingpb::WalletAsset >(arena);
+}
+template<> PROTOBUF_NOINLINE ::tradingpb::Wallet* Arena::CreateMaybeMessage< ::tradingpb::Wallet >(Arena* arena) {
+  return Arena::CreateInternal< ::tradingpb::Wallet >(arena);
+}
 template<> PROTOBUF_NOINLINE ::tradingpb::CtrlCondition* Arena::CreateMaybeMessage< ::tradingpb::CtrlCondition >(Arena* arena) {
   return Arena::CreateInternal< ::tradingpb::CtrlCondition >(arena);
 }
