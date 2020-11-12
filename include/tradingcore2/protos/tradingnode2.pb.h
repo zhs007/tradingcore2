@@ -32,6 +32,7 @@
 #include <google/protobuf/repeated_field.h>  // IWYU pragma: export
 #include <google/protobuf/extension_set.h>  // IWYU pragma: export
 #include <google/protobuf/unknown_field_set.h>
+#include "trading2.pb.h"
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
 #define PROTOBUF_INTERNAL_EXPORT_tradingnode2_2eproto
@@ -47,7 +48,7 @@ struct TableStruct_tradingnode2_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxillaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[10]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[8]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -55,12 +56,6 @@ struct TableStruct_tradingnode2_2eproto {
 };
 extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_tradingnode2_2eproto;
 namespace tradingpb {
-class Asset;
-class AssetDefaultTypeInternal;
-extern AssetDefaultTypeInternal _Asset_default_instance_;
-class BasicRequestData;
-class BasicRequestDataDefaultTypeInternal;
-extern BasicRequestDataDefaultTypeInternal _BasicRequestData_default_instance_;
 class CtrlCondition;
 class CtrlConditionDefaultTypeInternal;
 extern CtrlConditionDefaultTypeInternal _CtrlCondition_default_instance_;
@@ -87,8 +82,6 @@ class StrategyDefaultTypeInternal;
 extern StrategyDefaultTypeInternal _Strategy_default_instance_;
 }  // namespace tradingpb
 PROTOBUF_NAMESPACE_OPEN
-template<> ::tradingpb::Asset* Arena::CreateMaybeMessage<::tradingpb::Asset>(Arena*);
-template<> ::tradingpb::BasicRequestData* Arena::CreateMaybeMessage<::tradingpb::BasicRequestData>(Arena*);
 template<> ::tradingpb::CtrlCondition* Arena::CreateMaybeMessage<::tradingpb::CtrlCondition>(Arena*);
 template<> ::tradingpb::PNLData* Arena::CreateMaybeMessage<::tradingpb::PNLData>(Arena*);
 template<> ::tradingpb::PNLDataValue* Arena::CreateMaybeMessage<::tradingpb::PNLDataValue>(Arena*);
@@ -101,294 +94,6 @@ PROTOBUF_NAMESPACE_CLOSE
 namespace tradingpb {
 
 // ===================================================================
-
-class BasicRequestData :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tradingpb.BasicRequestData) */ {
- public:
-  BasicRequestData();
-  virtual ~BasicRequestData();
-
-  BasicRequestData(const BasicRequestData& from);
-  BasicRequestData(BasicRequestData&& from) noexcept
-    : BasicRequestData() {
-    *this = ::std::move(from);
-  }
-
-  inline BasicRequestData& operator=(const BasicRequestData& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline BasicRequestData& operator=(BasicRequestData&& from) noexcept {
-    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
-      if (this != &from) InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return GetMetadataStatic().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return GetMetadataStatic().reflection;
-  }
-  static const BasicRequestData& default_instance();
-
-  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
-  static inline const BasicRequestData* internal_default_instance() {
-    return reinterpret_cast<const BasicRequestData*>(
-               &_BasicRequestData_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    0;
-
-  friend void swap(BasicRequestData& a, BasicRequestData& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(BasicRequestData* other) {
-    if (other == this) return;
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  inline BasicRequestData* New() const final {
-    return CreateMaybeMessage<BasicRequestData>(nullptr);
-  }
-
-  BasicRequestData* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
-    return CreateMaybeMessage<BasicRequestData>(arena);
-  }
-  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void CopyFrom(const BasicRequestData& from);
-  void MergeFrom(const BasicRequestData& from);
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
-      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _cached_size_.Get(); }
-
-  private:
-  inline void SharedCtor();
-  inline void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(BasicRequestData* other);
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "tradingpb.BasicRequestData";
-  }
-  private:
-  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
-    return nullptr;
-  }
-  inline void* MaybeArenaPtr() const {
-    return nullptr;
-  }
-  public:
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-  private:
-  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
-    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_tradingnode2_2eproto);
-    return ::descriptor_table_tradingnode2_2eproto.file_level_metadata[kIndexInFileMessages];
-  }
-
-  public:
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kTokenFieldNumber = 1,
-  };
-  // string token = 1;
-  void clear_token();
-  const std::string& token() const;
-  void set_token(const std::string& value);
-  void set_token(std::string&& value);
-  void set_token(const char* value);
-  void set_token(const char* value, size_t size);
-  std::string* mutable_token();
-  std::string* release_token();
-  void set_allocated_token(std::string* token);
-  private:
-  const std::string& _internal_token() const;
-  void _internal_set_token(const std::string& value);
-  std::string* _internal_mutable_token();
-  public:
-
-  // @@protoc_insertion_point(class_scope:tradingpb.BasicRequestData)
- private:
-  class _Internal;
-
-  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr token_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  friend struct ::TableStruct_tradingnode2_2eproto;
-};
-// -------------------------------------------------------------------
-
-class Asset :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tradingpb.Asset) */ {
- public:
-  Asset();
-  virtual ~Asset();
-
-  Asset(const Asset& from);
-  Asset(Asset&& from) noexcept
-    : Asset() {
-    *this = ::std::move(from);
-  }
-
-  inline Asset& operator=(const Asset& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline Asset& operator=(Asset&& from) noexcept {
-    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
-      if (this != &from) InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return GetMetadataStatic().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return GetMetadataStatic().reflection;
-  }
-  static const Asset& default_instance();
-
-  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
-  static inline const Asset* internal_default_instance() {
-    return reinterpret_cast<const Asset*>(
-               &_Asset_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    1;
-
-  friend void swap(Asset& a, Asset& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(Asset* other) {
-    if (other == this) return;
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  inline Asset* New() const final {
-    return CreateMaybeMessage<Asset>(nullptr);
-  }
-
-  Asset* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
-    return CreateMaybeMessage<Asset>(arena);
-  }
-  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
-  void CopyFrom(const Asset& from);
-  void MergeFrom(const Asset& from);
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
-      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _cached_size_.Get(); }
-
-  private:
-  inline void SharedCtor();
-  inline void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(Asset* other);
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "tradingpb.Asset";
-  }
-  private:
-  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
-    return nullptr;
-  }
-  inline void* MaybeArenaPtr() const {
-    return nullptr;
-  }
-  public:
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-  private:
-  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
-    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_tradingnode2_2eproto);
-    return ::descriptor_table_tradingnode2_2eproto.file_level_metadata[kIndexInFileMessages];
-  }
-
-  public:
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kMarketFieldNumber = 1,
-    kCodeFieldNumber = 2,
-  };
-  // string market = 1;
-  void clear_market();
-  const std::string& market() const;
-  void set_market(const std::string& value);
-  void set_market(std::string&& value);
-  void set_market(const char* value);
-  void set_market(const char* value, size_t size);
-  std::string* mutable_market();
-  std::string* release_market();
-  void set_allocated_market(std::string* market);
-  private:
-  const std::string& _internal_market() const;
-  void _internal_set_market(const std::string& value);
-  std::string* _internal_mutable_market();
-  public:
-
-  // string code = 2;
-  void clear_code();
-  const std::string& code() const;
-  void set_code(const std::string& value);
-  void set_code(std::string&& value);
-  void set_code(const char* value);
-  void set_code(const char* value, size_t size);
-  std::string* mutable_code();
-  std::string* release_code();
-  void set_allocated_code(std::string* code);
-  private:
-  const std::string& _internal_code() const;
-  void _internal_set_code(const std::string& value);
-  std::string* _internal_mutable_code();
-  public:
-
-  // @@protoc_insertion_point(class_scope:tradingpb.Asset)
- private:
-  class _Internal;
-
-  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr market_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr code_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  friend struct ::TableStruct_tradingnode2_2eproto;
-};
-// -------------------------------------------------------------------
 
 class CtrlCondition :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tradingpb.CtrlCondition) */ {
@@ -432,7 +137,7 @@ class CtrlCondition :
                &_CtrlCondition_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    2;
+    0;
 
   friend void swap(CtrlCondition& a, CtrlCondition& b) {
     a.Swap(&b);
@@ -636,7 +341,7 @@ class Strategy :
                &_Strategy_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    3;
+    1;
 
   friend void swap(Strategy& a, Strategy& b) {
     a.Swap(&b);
@@ -848,7 +553,7 @@ class PNLDataValue :
                &_PNLDataValue_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    4;
+    2;
 
   friend void swap(PNLDataValue& a, PNLDataValue& b) {
     a.Swap(&b);
@@ -987,7 +692,7 @@ class PNLData :
                &_PNLData_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    5;
+    3;
 
   friend void swap(PNLData& a, PNLData& b) {
     a.Swap(&b);
@@ -1489,7 +1194,7 @@ class RequestServerInfo :
                &_RequestServerInfo_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    6;
+    4;
 
   friend void swap(RequestServerInfo& a, RequestServerInfo& b) {
     a.Swap(&b);
@@ -1623,7 +1328,7 @@ class ReplyServerInfo :
                &_ReplyServerInfo_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    7;
+    5;
 
   friend void swap(ReplyServerInfo& a, ReplyServerInfo& b) {
     a.Swap(&b);
@@ -1762,7 +1467,7 @@ class RequestCalcPNL :
                &_RequestCalcPNL_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    8;
+    6;
 
   friend void swap(RequestCalcPNL& a, RequestCalcPNL& b) {
     a.Swap(&b);
@@ -1978,7 +1683,7 @@ class ReplyCalcPNL :
                &_ReplyCalcPNL_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    9;
+    7;
 
   friend void swap(ReplyCalcPNL& a, ReplyCalcPNL& b) {
     a.Swap(&b);
@@ -2080,194 +1785,6 @@ class ReplyCalcPNL :
   #pragma GCC diagnostic push
   #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
-// BasicRequestData
-
-// string token = 1;
-inline void BasicRequestData::clear_token() {
-  token_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-}
-inline const std::string& BasicRequestData::token() const {
-  // @@protoc_insertion_point(field_get:tradingpb.BasicRequestData.token)
-  return _internal_token();
-}
-inline void BasicRequestData::set_token(const std::string& value) {
-  _internal_set_token(value);
-  // @@protoc_insertion_point(field_set:tradingpb.BasicRequestData.token)
-}
-inline std::string* BasicRequestData::mutable_token() {
-  // @@protoc_insertion_point(field_mutable:tradingpb.BasicRequestData.token)
-  return _internal_mutable_token();
-}
-inline const std::string& BasicRequestData::_internal_token() const {
-  return token_.GetNoArena();
-}
-inline void BasicRequestData::_internal_set_token(const std::string& value) {
-  
-  token_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
-}
-inline void BasicRequestData::set_token(std::string&& value) {
-  
-  token_.SetNoArena(
-    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:tradingpb.BasicRequestData.token)
-}
-inline void BasicRequestData::set_token(const char* value) {
-  GOOGLE_DCHECK(value != nullptr);
-  
-  token_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:tradingpb.BasicRequestData.token)
-}
-inline void BasicRequestData::set_token(const char* value, size_t size) {
-  
-  token_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:tradingpb.BasicRequestData.token)
-}
-inline std::string* BasicRequestData::_internal_mutable_token() {
-  
-  return token_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-}
-inline std::string* BasicRequestData::release_token() {
-  // @@protoc_insertion_point(field_release:tradingpb.BasicRequestData.token)
-  
-  return token_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-}
-inline void BasicRequestData::set_allocated_token(std::string* token) {
-  if (token != nullptr) {
-    
-  } else {
-    
-  }
-  token_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), token);
-  // @@protoc_insertion_point(field_set_allocated:tradingpb.BasicRequestData.token)
-}
-
-// -------------------------------------------------------------------
-
-// Asset
-
-// string market = 1;
-inline void Asset::clear_market() {
-  market_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-}
-inline const std::string& Asset::market() const {
-  // @@protoc_insertion_point(field_get:tradingpb.Asset.market)
-  return _internal_market();
-}
-inline void Asset::set_market(const std::string& value) {
-  _internal_set_market(value);
-  // @@protoc_insertion_point(field_set:tradingpb.Asset.market)
-}
-inline std::string* Asset::mutable_market() {
-  // @@protoc_insertion_point(field_mutable:tradingpb.Asset.market)
-  return _internal_mutable_market();
-}
-inline const std::string& Asset::_internal_market() const {
-  return market_.GetNoArena();
-}
-inline void Asset::_internal_set_market(const std::string& value) {
-  
-  market_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
-}
-inline void Asset::set_market(std::string&& value) {
-  
-  market_.SetNoArena(
-    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:tradingpb.Asset.market)
-}
-inline void Asset::set_market(const char* value) {
-  GOOGLE_DCHECK(value != nullptr);
-  
-  market_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:tradingpb.Asset.market)
-}
-inline void Asset::set_market(const char* value, size_t size) {
-  
-  market_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:tradingpb.Asset.market)
-}
-inline std::string* Asset::_internal_mutable_market() {
-  
-  return market_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-}
-inline std::string* Asset::release_market() {
-  // @@protoc_insertion_point(field_release:tradingpb.Asset.market)
-  
-  return market_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-}
-inline void Asset::set_allocated_market(std::string* market) {
-  if (market != nullptr) {
-    
-  } else {
-    
-  }
-  market_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), market);
-  // @@protoc_insertion_point(field_set_allocated:tradingpb.Asset.market)
-}
-
-// string code = 2;
-inline void Asset::clear_code() {
-  code_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-}
-inline const std::string& Asset::code() const {
-  // @@protoc_insertion_point(field_get:tradingpb.Asset.code)
-  return _internal_code();
-}
-inline void Asset::set_code(const std::string& value) {
-  _internal_set_code(value);
-  // @@protoc_insertion_point(field_set:tradingpb.Asset.code)
-}
-inline std::string* Asset::mutable_code() {
-  // @@protoc_insertion_point(field_mutable:tradingpb.Asset.code)
-  return _internal_mutable_code();
-}
-inline const std::string& Asset::_internal_code() const {
-  return code_.GetNoArena();
-}
-inline void Asset::_internal_set_code(const std::string& value) {
-  
-  code_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
-}
-inline void Asset::set_code(std::string&& value) {
-  
-  code_.SetNoArena(
-    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
-  // @@protoc_insertion_point(field_set_rvalue:tradingpb.Asset.code)
-}
-inline void Asset::set_code(const char* value) {
-  GOOGLE_DCHECK(value != nullptr);
-  
-  code_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
-  // @@protoc_insertion_point(field_set_char:tradingpb.Asset.code)
-}
-inline void Asset::set_code(const char* value, size_t size) {
-  
-  code_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-      ::std::string(reinterpret_cast<const char*>(value), size));
-  // @@protoc_insertion_point(field_set_pointer:tradingpb.Asset.code)
-}
-inline std::string* Asset::_internal_mutable_code() {
-  
-  return code_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-}
-inline std::string* Asset::release_code() {
-  // @@protoc_insertion_point(field_release:tradingpb.Asset.code)
-  
-  return code_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-}
-inline void Asset::set_allocated_code(std::string* code) {
-  if (code != nullptr) {
-    
-  } else {
-    
-  }
-  code_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), code);
-  // @@protoc_insertion_point(field_set_allocated:tradingpb.Asset.code)
-}
-
-// -------------------------------------------------------------------
-
 // CtrlCondition
 
 // string indicator = 1;
@@ -2582,12 +2099,6 @@ inline bool Strategy::_internal_has_asset() const {
 inline bool Strategy::has_asset() const {
   return _internal_has_asset();
 }
-inline void Strategy::clear_asset() {
-  if (GetArenaNoVirtual() == nullptr && asset_ != nullptr) {
-    delete asset_;
-  }
-  asset_ = nullptr;
-}
 inline const ::tradingpb::Asset& Strategy::_internal_asset() const {
   const ::tradingpb::Asset* p = asset_;
   return p != nullptr ? *p : *reinterpret_cast<const ::tradingpb::Asset*>(
@@ -2619,7 +2130,7 @@ inline ::tradingpb::Asset* Strategy::mutable_asset() {
 inline void Strategy::set_allocated_asset(::tradingpb::Asset* asset) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
   if (message_arena == nullptr) {
-    delete asset_;
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(asset_);
   }
   if (asset) {
     ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
@@ -2867,12 +2378,6 @@ inline bool PNLData::_internal_has_asset() const {
 inline bool PNLData::has_asset() const {
   return _internal_has_asset();
 }
-inline void PNLData::clear_asset() {
-  if (GetArenaNoVirtual() == nullptr && asset_ != nullptr) {
-    delete asset_;
-  }
-  asset_ = nullptr;
-}
 inline const ::tradingpb::Asset& PNLData::_internal_asset() const {
   const ::tradingpb::Asset* p = asset_;
   return p != nullptr ? *p : *reinterpret_cast<const ::tradingpb::Asset*>(
@@ -2904,7 +2409,7 @@ inline ::tradingpb::Asset* PNLData::mutable_asset() {
 inline void PNLData::set_allocated_asset(::tradingpb::Asset* asset) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
   if (message_arena == nullptr) {
-    delete asset_;
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(asset_);
   }
   if (asset) {
     ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
@@ -3570,12 +3075,6 @@ inline bool RequestServerInfo::_internal_has_basicrequest() const {
 inline bool RequestServerInfo::has_basicrequest() const {
   return _internal_has_basicrequest();
 }
-inline void RequestServerInfo::clear_basicrequest() {
-  if (GetArenaNoVirtual() == nullptr && basicrequest_ != nullptr) {
-    delete basicrequest_;
-  }
-  basicrequest_ = nullptr;
-}
 inline const ::tradingpb::BasicRequestData& RequestServerInfo::_internal_basicrequest() const {
   const ::tradingpb::BasicRequestData* p = basicrequest_;
   return p != nullptr ? *p : *reinterpret_cast<const ::tradingpb::BasicRequestData*>(
@@ -3607,7 +3106,7 @@ inline ::tradingpb::BasicRequestData* RequestServerInfo::mutable_basicrequest() 
 inline void RequestServerInfo::set_allocated_basicrequest(::tradingpb::BasicRequestData* basicrequest) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
   if (message_arena == nullptr) {
-    delete basicrequest_;
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(basicrequest_);
   }
   if (basicrequest) {
     ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
@@ -3678,12 +3177,6 @@ inline bool RequestCalcPNL::_internal_has_basicrequest() const {
 inline bool RequestCalcPNL::has_basicrequest() const {
   return _internal_has_basicrequest();
 }
-inline void RequestCalcPNL::clear_basicrequest() {
-  if (GetArenaNoVirtual() == nullptr && basicrequest_ != nullptr) {
-    delete basicrequest_;
-  }
-  basicrequest_ = nullptr;
-}
 inline const ::tradingpb::BasicRequestData& RequestCalcPNL::_internal_basicrequest() const {
   const ::tradingpb::BasicRequestData* p = basicrequest_;
   return p != nullptr ? *p : *reinterpret_cast<const ::tradingpb::BasicRequestData*>(
@@ -3715,7 +3208,7 @@ inline ::tradingpb::BasicRequestData* RequestCalcPNL::mutable_basicrequest() {
 inline void RequestCalcPNL::set_allocated_basicrequest(::tradingpb::BasicRequestData* basicrequest) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
   if (message_arena == nullptr) {
-    delete basicrequest_;
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(basicrequest_);
   }
   if (basicrequest) {
     ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
@@ -3737,9 +3230,6 @@ inline int RequestCalcPNL::_internal_assets_size() const {
 }
 inline int RequestCalcPNL::assets_size() const {
   return _internal_assets_size();
-}
-inline void RequestCalcPNL::clear_assets() {
-  assets_.Clear();
 }
 inline ::tradingpb::Asset* RequestCalcPNL::mutable_assets(int index) {
   // @@protoc_insertion_point(field_mutable:tradingpb.RequestCalcPNL.assets)
@@ -3776,9 +3266,6 @@ inline int RequestCalcPNL::_internal_baselines_size() const {
 }
 inline int RequestCalcPNL::baselines_size() const {
   return _internal_baselines_size();
-}
-inline void RequestCalcPNL::clear_baselines() {
-  baselines_.Clear();
 }
 inline ::tradingpb::Asset* RequestCalcPNL::mutable_baselines(int index) {
   // @@protoc_insertion_point(field_mutable:tradingpb.RequestCalcPNL.baselines)
@@ -3934,10 +3421,6 @@ ReplyCalcPNL::pnl() const {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
-// -------------------------------------------------------------------
-
-// -------------------------------------------------------------------
-
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

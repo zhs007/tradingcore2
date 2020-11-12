@@ -1,0 +1,15 @@
+syntax = "proto3";
+package tradingpb;
+option go_package = "github.com/zhs007/tradingdb2/tradingpb";
+
+// BasicRequestData - basic request data
+message BasicRequestData {
+    string token = 1;
+}
+
+// Asset - asset
+message Asset {
+    string market = 1;
+    string code = 2;
+    repeated string tags = 3;
+}

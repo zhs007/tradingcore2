@@ -1,6 +1,7 @@
 syntax = "proto3";
 package tradingpb;
 option go_package = "github.com/zhs007/tradingdb2/tradingpb";
+import "trading2.proto";
 
 // Candle - candle
 message Candle {
@@ -78,8 +79,9 @@ message SymbolInfo {
 
 // RequestUpdCandles - request UpdCandles
 message RequestUpdCandles {
-    string token = 1;
+    string token = 1 [deprecated = true];
     Candles candles = 2;
+    BasicRequestData basicRequest = 3;
 }
 
 // ReplyUpdCandles - reply UpdCandles
@@ -89,13 +91,14 @@ message ReplyUpdCandles{
 
 // RequestGetCandles - request GetCandles
 message RequestGetCandles {
-    string token = 1;
+    string token = 1 [deprecated = true];
     string market = 2;
     string symbol = 3;
     string tag = 4 [deprecated = true];
     int64 tsStart = 5;
     int64 tsEnd = 6;
     repeated string tags = 7;
+    BasicRequestData basicRequest = 8;
 }
 
 // ReplyGetCandles - reply GetCandles
@@ -105,8 +108,9 @@ message ReplyGetCandles{
 
 // RequestUpdSymbol - request UpdSymbol
 message RequestUpdSymbol {
-    string token = 1;
+    string token = 1 [deprecated = true];
     SymbolInfo symbol = 2;
+    BasicRequestData basicRequest = 3;
 }
 
 // ReplyUpdSymbol - reply UpdSymbol
@@ -116,9 +120,10 @@ message ReplyUpdSymbol{
 
 // RequestGetSymbol - request GetSymbol
 message RequestGetSymbol {
-    string token = 1;
+    string token = 1 [deprecated = true];
     string market = 2;
     string symbol = 3;
+    BasicRequestData basicRequest = 4;
 }
 
 // ReplyGetSymbol - reply GetSymbol
@@ -128,9 +133,10 @@ message ReplyGetSymbol{
 
 // RequestGetSymbols - request GetSymbols
 message RequestGetSymbols {
-    string token = 1;
+    string token = 1 [deprecated = true];
     string market = 2;
     repeated string symbols = 3;
+    BasicRequestData basicRequest = 4;
 }
 
 // TradingDB2 - TradingDB2 service

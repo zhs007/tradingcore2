@@ -30,7 +30,9 @@ bool getCandles(tradingpb::Candles &candles, const char *host,
   grpc::ClientContext context;
   tradingpb::ReplyGetCandles reply;
 
-  req.set_token(token);
+  auto brd = req.mutable_basicrequest();
+  brd->set_token(token);
+
   req.set_market(market);
   req.set_symbol(symbol);
   req.set_tsstart(tsStart);
@@ -87,7 +89,9 @@ bool getSymbols(const char *host, const char *token, const char *market,
   grpc::ClientContext context;
   tradingpb::ReplyGetSymbol reply;
 
-  req.set_token(token);
+  auto brd = req.mutable_basicrequest();
+  brd->set_token(token);
+
   req.set_market(market);
 
   if (pSymbols != NULL) {
@@ -115,15 +119,16 @@ bool getSymbols(const char *host, const char *token, const char *market,
 }
 
 // updSymbol - update symbol
-bool updSymbol(const char *host, const char *token,
-               tradingpb::SymbolInfo &si) {
+bool updSymbol(const char *host, const char *token, tradingpb::SymbolInfo &si) {
   auto stub = tradingpb::TradingDB2::NewStub(
       grpc::CreateChannel(host, grpc::InsecureChannelCredentials()));
   grpc::ClientContext context;
   tradingpb::RequestUpdSymbol req;
   tradingpb::ReplyUpdSymbol reply;
 
-  req.set_token(token);
+  auto brd = req.mutable_basicrequest();
+  brd->set_token(token);
+
   *req.mutable_symbol() = si;
 
   auto status = stub->updSymbol(&context, req, &reply);
