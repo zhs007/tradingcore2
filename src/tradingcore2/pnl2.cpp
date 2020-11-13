@@ -11,4 +11,38 @@
 
 CR2BEGIN
 
+void PNL2::release() {
+}
+
+void PNL2::initInvest(const Exchange& exchange, Money invest, Money handMoney,
+                     TimeStamp tsStart, TimeStamp tsEnd) {
+//   auto f = std::bind(&PNL2::onInitInvestTimeStamp, this, std::placeholders::_1,
+//                      std::placeholders::_2, invest, handMoney);
+//   exchange.forEachTimeStamp(f, tsStart, tsEnd);
+}
+
+void PNL2::onInitInvestTimeStamp(const Exchange& exchange, TimeStamp ts,
+                                Money invest, Money handMoney) {
+//   for (auto it = this->m_lst.begin(); it != this->m_lst.end(); ++it) {
+//     if (ts == it->ts) {
+//       it->invest = invest;
+//       it->curMoney = handMoney;
+
+//       return;
+//     } else if (ts < it->ts) {
+//       Node n;
+
+//       n.ts = ts;
+//       n.invest = invest;
+//       n.curMoney = handMoney;
+
+//       this->m_lst.insert(it, n);
+
+//       return;
+//     }
+//   }
+
+//   this->pushData(ts, invest, handMoney);
+}
+
 CR2END

@@ -50,6 +50,9 @@ class AssetsMap {
   void makePNL(PNL& pnl, const Exchange& exchange, Money invest,
                Money handMoney, TimeStamp tsStart, TimeStamp tsEnd);
 
+  void makePNL2(PNL2& pnl2, const Exchange& exchange, Money invest,
+               Money handMoney, TimeStamp tsStart, TimeStamp tsEnd);
+
  protected:
   Assets* _getAssets(const char* assetsName);
 

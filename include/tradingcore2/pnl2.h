@@ -12,33 +12,19 @@ CR2BEGIN
 
 class PNL2 {
  public:
-  struct Node {
-    TimeStamp ts;
-    Money invest;
-    Money curMoney;
-    float percentage;
-    float profitRatio;
-    Money buy;
-    Money sell;
-
-    Node()
-        : ts(0),
-          invest(0),
-          curMoney(0),
-          percentage(0),
-          buy(0),
-          sell(0),
-          profitRatio(0) {}
-  };
-
-  typedef std::vector<Node> List;
-
- public:
   PNL2() {}
   ~PNL2() { this->release(); }
 
  public:
-  void release() {}
+  void release();
+
+ public:
+  void initInvest(const Exchange& exchange, Money invest, Money handMoney,
+                  TimeStamp tsStart, TimeStamp tsEnd);
+
+  void onInitInvestTimeStamp(const Exchange& exchange, TimeStamp ts,
+                             Money invest, Money handMoney);
+
  public:
   tradingpb::PNLData m_data;
 };
