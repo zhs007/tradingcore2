@@ -9,6 +9,8 @@ enum CtrlType {
     CTRL_SELL = 2;
     CTRL_STOPLOSS = 3;
     CTRL_TAKEPROFIT = 4;
+    CTRL_WITHDRAW = 5;
+    CTRL_DEPOSIT = 6;
 }
 
 // CtrlNode - ctrl node
@@ -47,13 +49,16 @@ message Strategy {
     repeated CtrlCondition buy = 3;
     repeated CtrlCondition sell = 4;
     repeated CtrlCondition stoploss = 5;
+    repeated CtrlCondition takeprofit = 6;
 }
 
 // PNLDataValue - 
 message PNLDataValue {
-    int64 ts = 1;
-    float value = 2;
-    repeated string tags = 3;
+    int64 ts = 1;               // 时间戳
+    float perValue = 2;         // 盈亏比，应该等于 value / cost
+    repeated string tags = 3;   // 标记，用来标记当前时间点下做了哪些操作，譬如 buy、sell 等，一个时间点可能做多个操作
+    float cost = 4;             // 总成本
+    float value = 5;            // 总价值
 }
 
 // PNLData - 
