@@ -8,6 +8,8 @@
 
 CR2BEGIN
 
+typedef std::function<void(const tradingpb::Candles *)> FuncOnCandles;
+
 class TrDB2DataMgr {
  public:
   typedef std::map<std::string, tradingpb::Candles *> _Map;
@@ -29,6 +31,11 @@ class TrDB2DataMgr {
 
   const tradingpb::Candles *getData(const char *market,
                                     const char *symbol) const;
+
+  const tradingpb::Candle *getCandle(const char *market, const char *symbol,
+                                     int64_t ts) const;
+
+  void foreachCandles(FuncOnCandles onCandles);
 
  private:
   _Map m_map;

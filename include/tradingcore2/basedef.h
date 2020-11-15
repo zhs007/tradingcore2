@@ -28,6 +28,7 @@ class Exchange;
 class Indicator;
 class PNL;
 class PNL2;
+class TrDB2DataMgr;
 
 struct WalletHistoryNode;
 struct Config;

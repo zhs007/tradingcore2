@@ -1,8 +1,9 @@
-#ifndef __TRADINGCORE2_EXCHANGE_CNFUND_H__
-#define __TRADINGCORE2_EXCHANGE_CNFUND_H__
+#ifndef __TRADINGCORE2_EXCHANGE_TRDB2CNFUNDS_H__
+#define __TRADINGCORE2_EXCHANGE_TRDB2CNFUNDS_H__
 
 #include <tradingcore2/basedef.h>
 #include <tradingcore2/exchange.h>
+#include <tradingcore2/trdb2/datamgr.h>
 
 #include <map>
 #include <string>
@@ -10,34 +11,20 @@
 
 CR2BEGIN
 
-struct CNFundValueNode {
-  Money value;
-  Money totalValue;
-  TimeStamp ts;
-};
+static const char* TrDB2CNFundsTypeName = "trdb2cnfunds";
 
-struct CNFundValue {
-  std::string code;
-  std::vector<CNFundValueNode> data;
+Exchange* newTrDB2CNFunds(const Config& cfg);
 
-  const CNFundValueNode* getNode(TimeStamp ts) const;
-};
-
-static const char* CNFundTypeName = "cnfund";
-
-Exchange* newCNFund(const Config& cfg);
-
-class CNFundExchange final : public Exchange {
-  friend Exchange* newCNFund(const Config& cfg);
+class TrDB2CNFundsExchange final : public Exchange {
+  friend Exchange* newTrDB2CNFunds(const Config& cfg);
 
  public:
-  typedef std::map<std::string, CNFundValue*> Map;
-  typedef std::pair<std::string, CNFundValue*> Pair;
   typedef std::vector<TimeStamp> TimeStampList;
 
  private:
-  CNFundExchange() {}
-  virtual ~CNFundExchange() { this->release(); }
+  TrDB2CNFundsExchange(const char* host, const char* token)
+      : m_mgrData(host, token) {}
+  virtual ~TrDB2CNFundsExchange() { this->release(); }
 
  public:
   virtual bool init(const Config& cfg) override;
@@ -83,25 +70,27 @@ class CNFundExchange final : public Exchange {
   virtual float getRiskFreeInterestRate() const override { return 0.03; }
 
  public:
-  const CNFundValue* getFundValue(const char* assetsName) const;
+  //   const CNFundValue* getFundValue(const char* assetsName) const;
 
-  void loadFundValue(const char* fn);
+  //   void loadFundValue(const char* fn);
 
-  void releaseFundValue(const char* assetsName);
+  // void releaseFundValue(const char* assetsName);
 
-  void setFundValue(const char* assetsName, CNFundValue* fv);
+  //   void setFundValue(const char* assetsName, CNFundValue* fv);
 
   void buildTimeStampList();
+
+  void foreachCandlesTimeStamp(const tradingpb::Candles* candles);
 
   void insertTimeStamp(TimeStamp ts);
 
   void release();
 
  protected:
-  Map m_map;
+  TrDB2DataMgr m_mgrData;
   TimeStampList m_lstTimeStamp;
 };
 
 CR2END
 
-#endif  // __TRADINGCORE2_EXCHANGE_CNFUND_H__
+#endif  // __TRADINGCORE2_EXCHANGE_TRDB2CNFUNDS_H__

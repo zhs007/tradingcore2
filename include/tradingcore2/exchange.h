@@ -28,6 +28,10 @@ class Exchange {
 
   virtual const char* getTypeName() const = 0;
 
+  // loadDat - [tsStart, tsEnd]
+  virtual void loadData(const char* assetName, TimeStamp tsStart,
+                        TimeStamp tsEnd) = 0;
+
  public:
   virtual bool calculateVolume(const char* assetsName, TimeStamp ts,
                                Money money, Volume& volume, Money& price,

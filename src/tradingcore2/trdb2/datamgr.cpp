@@ -6,6 +6,7 @@
 #include <tradingcore2/train.h>
 #include <tradingcore2/trdb2/client.h>
 #include <tradingcore2/trdb2/datamgr.h>
+#include <tradingcore2/trdb2/utils.h>
 #include <tradingcore2/utils.h>
 
 #include <iostream>
@@ -58,6 +59,29 @@ const tradingpb::Candles *TrDB2DataMgr::getData(const char *market,
   }
 
   return NULL;
+}
+
+const tradingpb::Candle *TrDB2DataMgr::getCandle(const char *market,
+                                                 const char *symbol,
+                                                 int64_t ts) const {
+  std::string code = market;
+  code += ".";
+  code += symbol;
+
+  auto it = this->m_map.find(code);
+  if (it != this->m_map.end()) {
+    auto candles = it->second;
+
+    return tr2::getCandle(candles, ts);
+  }
+
+  return NULL;
+}
+
+void TrDB2DataMgr::foreachCandles(FuncOnCandles onCandles) {
+  for (auto it = this->m_map.begin(); it != this->m_map.end(); ++it) {
+    onCandles(it->second);
+  }
 }
 
 CR2END
