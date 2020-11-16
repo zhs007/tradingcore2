@@ -72,6 +72,12 @@ void TradingNode2Impl::init(const Config& cfg) {
   assert(request != NULL);
   assert(response != NULL);
 
+  LOG(INFO) << "_calcPNL...";
+
+  if (!isValidTokens(request, response, *m_pCfg)) {
+    return grpc::Status(grpc::StatusCode::INVALID_ARGUMENT, "invalid token");
+  }
+
   return grpc::Status::OK;
 }
 
@@ -83,6 +89,8 @@ void TradingNode2Impl::init(const Config& cfg) {
   assert(request != NULL);
   assert(response != NULL);
 
+  LOG(INFO) << "calcPNL...";
+
   if (m_pCfg->isLimitTasks) {
     SpinLockMaxVal<int> lock(&m_curTaskNums, m_maxTaskNums);
 
@@ -92,13 +100,6 @@ void TradingNode2Impl::init(const Config& cfg) {
   AutoIncDec<std::atomic<int>> aid(&m_curTaskNums);
 
   return _calcPNL(context, request, response);
-}
-
-// calcPNL - calcPNL
-::grpc::Status _calcPNL(::grpc::ServerContext* context,
-                        const ::tradingpb::RequestCalcPNL* request,
-                        ::tradingpb::ReplyCalcPNL* response) {
-  return grpc::Status::OK;
 }
 
 void NodeServer2::run() {

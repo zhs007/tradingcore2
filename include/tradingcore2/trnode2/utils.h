@@ -6,12 +6,27 @@
 
 CR2BEGIN
 
+// isValidTokens - check token
 template <typename REQUEST, typename RESPONSE>
 bool isValidTokens(const REQUEST* request, RESPONSE* response,
                    const Config& cfg) {
   auto token = request->basicrequest().token();
   return cfg.hasToken(token.c_str());
 }
+
+// findAssetData - find PNLAssetData
+::tradingpb::PNLAssetData* findAssetData(::tradingpb::PNLData* pPNLData,
+                                         const char* market,
+                                         const char* symbol);
+
+// findAssetDataEx - find PNLAssetData
+//      if can't find it, it will new a PNLAssetData
+::tradingpb::PNLAssetData* findAssetDataEx(::tradingpb::PNLData* pPNLData,
+                                           const char* market,
+                                           const char* symbol);
+
+// insTimestamp - insert a timestamp
+void insTimestamp(::tradingpb::PNLAssetData* pAssetData, time_t ts);
 
 CR2END
 

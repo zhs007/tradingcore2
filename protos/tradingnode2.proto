@@ -1,15 +1,37 @@
 syntax = "proto3";
 package tradingpb;
 option go_package = "github.com/zhs007/tradingdb2/tradingpb";
+import "trading2.proto";
 
-message BasicRequestData {
-    string token = 1;
+enum CtrlType {
+    CTRL_INIT = 0;
+    CTRL_BUY = 1;
+    CTRL_SELL = 2;
+    CTRL_STOPLOSS = 3;
+    CTRL_TAKEPROFIT = 4;
+    CTRL_WITHDRAW = 5;
+    CTRL_DEPOSIT = 6;
 }
 
-// Asset - asset
-message Asset {
-    string market = 1;
-    string code = 2;
+// CtrlNode - ctrl node
+message CtrlNode {
+    int64 ts = 1;
+    Asset src = 2;
+    Asset dst = 3;
+    double volumeSrc = 4;
+    double volumeDst = 5;
+    CtrlType type = 6;
+}
+
+// WalletAsset - wallet asset
+message WalletAsset {
+    Asset asset = 1;
+    double value = 2;
+}
+
+// Wallet - wallet
+message Wallet {
+    repeated WalletAsset assets = 1;
 }
 
 // CtrlCondition - control condition
@@ -27,49 +49,60 @@ message Strategy {
     repeated CtrlCondition buy = 3;
     repeated CtrlCondition sell = 4;
     repeated CtrlCondition stoploss = 5;
+    repeated CtrlCondition takeprofit = 6;
 }
 
 // PNLDataValue - 
 message PNLDataValue {
-    int64 ts = 1;
-    float value = 2;
+    int64 ts = 1;               // 时间戳
+    float perValue = 2;         // 盈亏比，应该等于 value / cost
+    repeated string tags = 3;   // 标记，用来标记当前时间点下做了哪些操作，譬如 buy、sell 等，一个时间点可能做多个操作
+    float cost = 4;             // 总成本
+    float value = 5;            // 总价值
+}
+
+// PNLAssetData - asset data in PNL
+message PNLAssetData {
+    Asset asset = 1;
+    repeated PNLDataValue values = 2;
+    float maxDrawdown = 3;
+    int64 maxDrawdownStartTs = 4;
+    int64 maxDrawdownEndTs = 5;
+    float maxDrawup = 6;
+    int64 maxDrawupStartTs = 7;
+    int64 maxDrawupEndTs = 8;
+    float sharpe = 9;
+    float annualizedReturns = 10;
+    float annualizedVolatility = 11;
+    float totalReturns = 12;
+    float variance = 13;
+    int32 buyTimes = 14;
+    int32 sellTimes = 15;
+    int32 stoplossTimes = 16;
+    int64 maxUpDayTs = 17;
+    float maxPerUpDay = 18;
+    int64 maxDownDayTs = 19;
+    float maxPerDownDay = 20;
+    int64 maxUpWeekTs = 21;
+    float maxPerUpWeek = 22;
+    int64 maxDownWeekTs = 23;
+    float maxPerDownWeek = 24;
+    int64 maxUpMonthTs = 25;
+    float maxPerUpMonth = 26;
+    int64 maxDownMonthTs = 27;
+    float maxPerDownMonth = 28;
+    int64 maxUpYearTs = 29;
+    float maxPerUpYear = 30;
+    int64 maxDownYearTs = 31;
+    float maxPerDownYear = 32;
+    repeated CtrlNode lstCtrl = 33;
 }
 
 // PNLData - 
 message PNLData {
     string name = 1;
-    Asset asset = 2;
-    repeated PNLDataValue values = 3;
-    float maxDrawdown = 4;
-    int64 maxDrawdownStartTs = 5;
-    int64 maxDrawdownEndTs = 6;
-    float maxDrawup = 7;
-    int64 maxDrawupStartTs = 8;
-    int64 maxDrawupEndTs = 9;
-    float sharpe = 10;
-    float annualizedReturns = 11;
-    float annualizedVolatility = 12;
-    float totalReturns = 13;
-    float variance = 14;
-    int32 buyTimes = 15;
-    int32 sellTimes = 16;
-    int32 stoplossTimes = 17;
-    int64 maxUpDayTs = 18;
-    float maxPerUpDay = 19;
-    int64 maxDownDayTs = 20;
-    float maxPerDownDay = 21;
-    int64 maxUpWeekTs = 22;
-    float maxPerUpWeek = 23;
-    int64 maxDownWeekTs = 24;
-    float maxPerDownWeek = 25;
-    int64 maxUpMonthTs = 26;
-    float maxPerUpMonth = 27;
-    int64 maxDownMonthTs = 28;
-    float maxPerDownMonth = 29;
-    int64 maxUpYearTs = 30;
-    float maxPerUpYear = 31;
-    int64 maxDownYearTs = 32;
-    float maxPerDownYear = 33;
+    PNLAssetData total = 2;
+    repeated PNLAssetData assets = 3;
 }
 
 // RequestServerInfo - request server info
@@ -90,6 +123,7 @@ message RequestCalcPNL {
     int64 startTs = 4;
     int64 endTs = 5;
     repeated Strategy strategies = 6;
+    Wallet wallet = 7;
 }
 
 // ReplyCalcPNL - reply calcPNL

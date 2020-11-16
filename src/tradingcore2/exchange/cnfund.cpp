@@ -35,6 +35,10 @@ bool CNFundExchange::init(const Config& cfg) {
 
 const char* CNFundExchange::getTypeName() const { return CNFundTypeName; }
 
+// loadDat - [tsStart, tsEnd]
+void CNFundExchange::loadData(const char* assetName, TimeStamp tsStart,
+                              TimeStamp tsEnd) {}
+
 void CNFundExchange::setFundValue(const char* assetsName, CNFundValue* fv) {
   this->releaseFundValue(assetsName);
 

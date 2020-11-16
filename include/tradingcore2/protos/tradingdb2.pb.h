@@ -32,6 +32,7 @@
 #include <google/protobuf/repeated_field.h>  // IWYU pragma: export
 #include <google/protobuf/extension_set.h>  // IWYU pragma: export
 #include <google/protobuf/unknown_field_set.h>
+#include "trading2.pb.h"
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
 #define PROTOBUF_INTERNAL_EXPORT_tradingdb2_2eproto
@@ -1727,17 +1728,18 @@ class RequestUpdCandles :
   enum : int {
     kTokenFieldNumber = 1,
     kCandlesFieldNumber = 2,
+    kBasicRequestFieldNumber = 3,
   };
-  // string token = 1;
-  void clear_token();
-  const std::string& token() const;
-  void set_token(const std::string& value);
-  void set_token(std::string&& value);
-  void set_token(const char* value);
-  void set_token(const char* value, size_t size);
-  std::string* mutable_token();
-  std::string* release_token();
-  void set_allocated_token(std::string* token);
+  // string token = 1 [deprecated = true];
+  PROTOBUF_DEPRECATED void clear_token();
+  PROTOBUF_DEPRECATED const std::string& token() const;
+  PROTOBUF_DEPRECATED void set_token(const std::string& value);
+  PROTOBUF_DEPRECATED void set_token(std::string&& value);
+  PROTOBUF_DEPRECATED void set_token(const char* value);
+  PROTOBUF_DEPRECATED void set_token(const char* value, size_t size);
+  PROTOBUF_DEPRECATED std::string* mutable_token();
+  PROTOBUF_DEPRECATED std::string* release_token();
+  PROTOBUF_DEPRECATED void set_allocated_token(std::string* token);
   private:
   const std::string& _internal_token() const;
   void _internal_set_token(const std::string& value);
@@ -1759,6 +1761,21 @@ class RequestUpdCandles :
   ::tradingpb::Candles* _internal_mutable_candles();
   public:
 
+  // .tradingpb.BasicRequestData basicRequest = 3;
+  bool has_basicrequest() const;
+  private:
+  bool _internal_has_basicrequest() const;
+  public:
+  void clear_basicrequest();
+  const ::tradingpb::BasicRequestData& basicrequest() const;
+  ::tradingpb::BasicRequestData* release_basicrequest();
+  ::tradingpb::BasicRequestData* mutable_basicrequest();
+  void set_allocated_basicrequest(::tradingpb::BasicRequestData* basicrequest);
+  private:
+  const ::tradingpb::BasicRequestData& _internal_basicrequest() const;
+  ::tradingpb::BasicRequestData* _internal_mutable_basicrequest();
+  public:
+
   // @@protoc_insertion_point(class_scope:tradingpb.RequestUpdCandles)
  private:
   class _Internal;
@@ -1766,6 +1783,7 @@ class RequestUpdCandles :
   ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr token_;
   ::tradingpb::Candles* candles_;
+  ::tradingpb::BasicRequestData* basicrequest_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_tradingdb2_2eproto;
 };
@@ -2010,6 +2028,7 @@ class RequestGetCandles :
     kMarketFieldNumber = 2,
     kSymbolFieldNumber = 3,
     kTagFieldNumber = 4,
+    kBasicRequestFieldNumber = 8,
     kTsStartFieldNumber = 5,
     kTsEndFieldNumber = 6,
   };
@@ -2037,16 +2056,16 @@ class RequestGetCandles :
   std::string* _internal_add_tags();
   public:
 
-  // string token = 1;
-  void clear_token();
-  const std::string& token() const;
-  void set_token(const std::string& value);
-  void set_token(std::string&& value);
-  void set_token(const char* value);
-  void set_token(const char* value, size_t size);
-  std::string* mutable_token();
-  std::string* release_token();
-  void set_allocated_token(std::string* token);
+  // string token = 1 [deprecated = true];
+  PROTOBUF_DEPRECATED void clear_token();
+  PROTOBUF_DEPRECATED const std::string& token() const;
+  PROTOBUF_DEPRECATED void set_token(const std::string& value);
+  PROTOBUF_DEPRECATED void set_token(std::string&& value);
+  PROTOBUF_DEPRECATED void set_token(const char* value);
+  PROTOBUF_DEPRECATED void set_token(const char* value, size_t size);
+  PROTOBUF_DEPRECATED std::string* mutable_token();
+  PROTOBUF_DEPRECATED std::string* release_token();
+  PROTOBUF_DEPRECATED void set_allocated_token(std::string* token);
   private:
   const std::string& _internal_token() const;
   void _internal_set_token(const std::string& value);
@@ -2101,6 +2120,21 @@ class RequestGetCandles :
   std::string* _internal_mutable_tag();
   public:
 
+  // .tradingpb.BasicRequestData basicRequest = 8;
+  bool has_basicrequest() const;
+  private:
+  bool _internal_has_basicrequest() const;
+  public:
+  void clear_basicrequest();
+  const ::tradingpb::BasicRequestData& basicrequest() const;
+  ::tradingpb::BasicRequestData* release_basicrequest();
+  ::tradingpb::BasicRequestData* mutable_basicrequest();
+  void set_allocated_basicrequest(::tradingpb::BasicRequestData* basicrequest);
+  private:
+  const ::tradingpb::BasicRequestData& _internal_basicrequest() const;
+  ::tradingpb::BasicRequestData* _internal_mutable_basicrequest();
+  public:
+
   // int64 tsStart = 5;
   void clear_tsstart();
   ::PROTOBUF_NAMESPACE_ID::int64 tsstart() const;
@@ -2129,6 +2163,7 @@ class RequestGetCandles :
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr market_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr symbol_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr tag_;
+  ::tradingpb::BasicRequestData* basicrequest_;
   ::PROTOBUF_NAMESPACE_ID::int64 tsstart_;
   ::PROTOBUF_NAMESPACE_ID::int64 tsend_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
@@ -2378,17 +2413,18 @@ class RequestUpdSymbol :
   enum : int {
     kTokenFieldNumber = 1,
     kSymbolFieldNumber = 2,
+    kBasicRequestFieldNumber = 3,
   };
-  // string token = 1;
-  void clear_token();
-  const std::string& token() const;
-  void set_token(const std::string& value);
-  void set_token(std::string&& value);
-  void set_token(const char* value);
-  void set_token(const char* value, size_t size);
-  std::string* mutable_token();
-  std::string* release_token();
-  void set_allocated_token(std::string* token);
+  // string token = 1 [deprecated = true];
+  PROTOBUF_DEPRECATED void clear_token();
+  PROTOBUF_DEPRECATED const std::string& token() const;
+  PROTOBUF_DEPRECATED void set_token(const std::string& value);
+  PROTOBUF_DEPRECATED void set_token(std::string&& value);
+  PROTOBUF_DEPRECATED void set_token(const char* value);
+  PROTOBUF_DEPRECATED void set_token(const char* value, size_t size);
+  PROTOBUF_DEPRECATED std::string* mutable_token();
+  PROTOBUF_DEPRECATED std::string* release_token();
+  PROTOBUF_DEPRECATED void set_allocated_token(std::string* token);
   private:
   const std::string& _internal_token() const;
   void _internal_set_token(const std::string& value);
@@ -2410,6 +2446,21 @@ class RequestUpdSymbol :
   ::tradingpb::SymbolInfo* _internal_mutable_symbol();
   public:
 
+  // .tradingpb.BasicRequestData basicRequest = 3;
+  bool has_basicrequest() const;
+  private:
+  bool _internal_has_basicrequest() const;
+  public:
+  void clear_basicrequest();
+  const ::tradingpb::BasicRequestData& basicrequest() const;
+  ::tradingpb::BasicRequestData* release_basicrequest();
+  ::tradingpb::BasicRequestData* mutable_basicrequest();
+  void set_allocated_basicrequest(::tradingpb::BasicRequestData* basicrequest);
+  private:
+  const ::tradingpb::BasicRequestData& _internal_basicrequest() const;
+  ::tradingpb::BasicRequestData* _internal_mutable_basicrequest();
+  public:
+
   // @@protoc_insertion_point(class_scope:tradingpb.RequestUpdSymbol)
  private:
   class _Internal;
@@ -2417,6 +2468,7 @@ class RequestUpdSymbol :
   ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr token_;
   ::tradingpb::SymbolInfo* symbol_;
+  ::tradingpb::BasicRequestData* basicrequest_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_tradingdb2_2eproto;
 };
@@ -2659,17 +2711,18 @@ class RequestGetSymbol :
     kTokenFieldNumber = 1,
     kMarketFieldNumber = 2,
     kSymbolFieldNumber = 3,
+    kBasicRequestFieldNumber = 4,
   };
-  // string token = 1;
-  void clear_token();
-  const std::string& token() const;
-  void set_token(const std::string& value);
-  void set_token(std::string&& value);
-  void set_token(const char* value);
-  void set_token(const char* value, size_t size);
-  std::string* mutable_token();
-  std::string* release_token();
-  void set_allocated_token(std::string* token);
+  // string token = 1 [deprecated = true];
+  PROTOBUF_DEPRECATED void clear_token();
+  PROTOBUF_DEPRECATED const std::string& token() const;
+  PROTOBUF_DEPRECATED void set_token(const std::string& value);
+  PROTOBUF_DEPRECATED void set_token(std::string&& value);
+  PROTOBUF_DEPRECATED void set_token(const char* value);
+  PROTOBUF_DEPRECATED void set_token(const char* value, size_t size);
+  PROTOBUF_DEPRECATED std::string* mutable_token();
+  PROTOBUF_DEPRECATED std::string* release_token();
+  PROTOBUF_DEPRECATED void set_allocated_token(std::string* token);
   private:
   const std::string& _internal_token() const;
   void _internal_set_token(const std::string& value);
@@ -2708,6 +2761,21 @@ class RequestGetSymbol :
   std::string* _internal_mutable_symbol();
   public:
 
+  // .tradingpb.BasicRequestData basicRequest = 4;
+  bool has_basicrequest() const;
+  private:
+  bool _internal_has_basicrequest() const;
+  public:
+  void clear_basicrequest();
+  const ::tradingpb::BasicRequestData& basicrequest() const;
+  ::tradingpb::BasicRequestData* release_basicrequest();
+  ::tradingpb::BasicRequestData* mutable_basicrequest();
+  void set_allocated_basicrequest(::tradingpb::BasicRequestData* basicrequest);
+  private:
+  const ::tradingpb::BasicRequestData& _internal_basicrequest() const;
+  ::tradingpb::BasicRequestData* _internal_mutable_basicrequest();
+  public:
+
   // @@protoc_insertion_point(class_scope:tradingpb.RequestGetSymbol)
  private:
   class _Internal;
@@ -2716,6 +2784,7 @@ class RequestGetSymbol :
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr token_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr market_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr symbol_;
+  ::tradingpb::BasicRequestData* basicrequest_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_tradingdb2_2eproto;
 };
@@ -2964,6 +3033,7 @@ class RequestGetSymbols :
     kSymbolsFieldNumber = 3,
     kTokenFieldNumber = 1,
     kMarketFieldNumber = 2,
+    kBasicRequestFieldNumber = 4,
   };
   // repeated string symbols = 3;
   int symbols_size() const;
@@ -2989,16 +3059,16 @@ class RequestGetSymbols :
   std::string* _internal_add_symbols();
   public:
 
-  // string token = 1;
-  void clear_token();
-  const std::string& token() const;
-  void set_token(const std::string& value);
-  void set_token(std::string&& value);
-  void set_token(const char* value);
-  void set_token(const char* value, size_t size);
-  std::string* mutable_token();
-  std::string* release_token();
-  void set_allocated_token(std::string* token);
+  // string token = 1 [deprecated = true];
+  PROTOBUF_DEPRECATED void clear_token();
+  PROTOBUF_DEPRECATED const std::string& token() const;
+  PROTOBUF_DEPRECATED void set_token(const std::string& value);
+  PROTOBUF_DEPRECATED void set_token(std::string&& value);
+  PROTOBUF_DEPRECATED void set_token(const char* value);
+  PROTOBUF_DEPRECATED void set_token(const char* value, size_t size);
+  PROTOBUF_DEPRECATED std::string* mutable_token();
+  PROTOBUF_DEPRECATED std::string* release_token();
+  PROTOBUF_DEPRECATED void set_allocated_token(std::string* token);
   private:
   const std::string& _internal_token() const;
   void _internal_set_token(const std::string& value);
@@ -3021,6 +3091,21 @@ class RequestGetSymbols :
   std::string* _internal_mutable_market();
   public:
 
+  // .tradingpb.BasicRequestData basicRequest = 4;
+  bool has_basicrequest() const;
+  private:
+  bool _internal_has_basicrequest() const;
+  public:
+  void clear_basicrequest();
+  const ::tradingpb::BasicRequestData& basicrequest() const;
+  ::tradingpb::BasicRequestData* release_basicrequest();
+  ::tradingpb::BasicRequestData* mutable_basicrequest();
+  void set_allocated_basicrequest(::tradingpb::BasicRequestData* basicrequest);
+  private:
+  const ::tradingpb::BasicRequestData& _internal_basicrequest() const;
+  ::tradingpb::BasicRequestData* _internal_mutable_basicrequest();
+  public:
+
   // @@protoc_insertion_point(class_scope:tradingpb.RequestGetSymbols)
  private:
   class _Internal;
@@ -3029,6 +3114,7 @@ class RequestGetSymbols :
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> symbols_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr token_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr market_;
+  ::tradingpb::BasicRequestData* basicrequest_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_tradingdb2_2eproto;
 };
@@ -4720,7 +4806,7 @@ inline void SymbolInfo::set_allocated_fund(::tradingpb::Fund* fund) {
 
 // RequestUpdCandles
 
-// string token = 1;
+// string token = 1 [deprecated = true];
 inline void RequestUpdCandles::clear_token() {
   token_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
@@ -4840,6 +4926,60 @@ inline void RequestUpdCandles::set_allocated_candles(::tradingpb::Candles* candl
   // @@protoc_insertion_point(field_set_allocated:tradingpb.RequestUpdCandles.candles)
 }
 
+// .tradingpb.BasicRequestData basicRequest = 3;
+inline bool RequestUpdCandles::_internal_has_basicrequest() const {
+  return this != internal_default_instance() && basicrequest_ != nullptr;
+}
+inline bool RequestUpdCandles::has_basicrequest() const {
+  return _internal_has_basicrequest();
+}
+inline const ::tradingpb::BasicRequestData& RequestUpdCandles::_internal_basicrequest() const {
+  const ::tradingpb::BasicRequestData* p = basicrequest_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::tradingpb::BasicRequestData*>(
+      &::tradingpb::_BasicRequestData_default_instance_);
+}
+inline const ::tradingpb::BasicRequestData& RequestUpdCandles::basicrequest() const {
+  // @@protoc_insertion_point(field_get:tradingpb.RequestUpdCandles.basicRequest)
+  return _internal_basicrequest();
+}
+inline ::tradingpb::BasicRequestData* RequestUpdCandles::release_basicrequest() {
+  // @@protoc_insertion_point(field_release:tradingpb.RequestUpdCandles.basicRequest)
+  
+  ::tradingpb::BasicRequestData* temp = basicrequest_;
+  basicrequest_ = nullptr;
+  return temp;
+}
+inline ::tradingpb::BasicRequestData* RequestUpdCandles::_internal_mutable_basicrequest() {
+  
+  if (basicrequest_ == nullptr) {
+    auto* p = CreateMaybeMessage<::tradingpb::BasicRequestData>(GetArenaNoVirtual());
+    basicrequest_ = p;
+  }
+  return basicrequest_;
+}
+inline ::tradingpb::BasicRequestData* RequestUpdCandles::mutable_basicrequest() {
+  // @@protoc_insertion_point(field_mutable:tradingpb.RequestUpdCandles.basicRequest)
+  return _internal_mutable_basicrequest();
+}
+inline void RequestUpdCandles::set_allocated_basicrequest(::tradingpb::BasicRequestData* basicrequest) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(basicrequest_);
+  }
+  if (basicrequest) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    if (message_arena != submessage_arena) {
+      basicrequest = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, basicrequest, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  basicrequest_ = basicrequest;
+  // @@protoc_insertion_point(field_set_allocated:tradingpb.RequestUpdCandles.basicRequest)
+}
+
 // -------------------------------------------------------------------
 
 // ReplyUpdCandles
@@ -4868,7 +5008,7 @@ inline void ReplyUpdCandles::set_lengthok(::PROTOBUF_NAMESPACE_ID::int32 value) 
 
 // RequestGetCandles
 
-// string token = 1;
+// string token = 1 [deprecated = true];
 inline void RequestGetCandles::clear_token() {
   token_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
@@ -5222,6 +5362,60 @@ RequestGetCandles::mutable_tags() {
   return &tags_;
 }
 
+// .tradingpb.BasicRequestData basicRequest = 8;
+inline bool RequestGetCandles::_internal_has_basicrequest() const {
+  return this != internal_default_instance() && basicrequest_ != nullptr;
+}
+inline bool RequestGetCandles::has_basicrequest() const {
+  return _internal_has_basicrequest();
+}
+inline const ::tradingpb::BasicRequestData& RequestGetCandles::_internal_basicrequest() const {
+  const ::tradingpb::BasicRequestData* p = basicrequest_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::tradingpb::BasicRequestData*>(
+      &::tradingpb::_BasicRequestData_default_instance_);
+}
+inline const ::tradingpb::BasicRequestData& RequestGetCandles::basicrequest() const {
+  // @@protoc_insertion_point(field_get:tradingpb.RequestGetCandles.basicRequest)
+  return _internal_basicrequest();
+}
+inline ::tradingpb::BasicRequestData* RequestGetCandles::release_basicrequest() {
+  // @@protoc_insertion_point(field_release:tradingpb.RequestGetCandles.basicRequest)
+  
+  ::tradingpb::BasicRequestData* temp = basicrequest_;
+  basicrequest_ = nullptr;
+  return temp;
+}
+inline ::tradingpb::BasicRequestData* RequestGetCandles::_internal_mutable_basicrequest() {
+  
+  if (basicrequest_ == nullptr) {
+    auto* p = CreateMaybeMessage<::tradingpb::BasicRequestData>(GetArenaNoVirtual());
+    basicrequest_ = p;
+  }
+  return basicrequest_;
+}
+inline ::tradingpb::BasicRequestData* RequestGetCandles::mutable_basicrequest() {
+  // @@protoc_insertion_point(field_mutable:tradingpb.RequestGetCandles.basicRequest)
+  return _internal_mutable_basicrequest();
+}
+inline void RequestGetCandles::set_allocated_basicrequest(::tradingpb::BasicRequestData* basicrequest) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(basicrequest_);
+  }
+  if (basicrequest) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    if (message_arena != submessage_arena) {
+      basicrequest = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, basicrequest, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  basicrequest_ = basicrequest;
+  // @@protoc_insertion_point(field_set_allocated:tradingpb.RequestGetCandles.basicRequest)
+}
+
 // -------------------------------------------------------------------
 
 // ReplyGetCandles
@@ -5290,7 +5484,7 @@ inline void ReplyGetCandles::set_allocated_candles(::tradingpb::Candles* candles
 
 // RequestUpdSymbol
 
-// string token = 1;
+// string token = 1 [deprecated = true];
 inline void RequestUpdSymbol::clear_token() {
   token_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
@@ -5410,6 +5604,60 @@ inline void RequestUpdSymbol::set_allocated_symbol(::tradingpb::SymbolInfo* symb
   // @@protoc_insertion_point(field_set_allocated:tradingpb.RequestUpdSymbol.symbol)
 }
 
+// .tradingpb.BasicRequestData basicRequest = 3;
+inline bool RequestUpdSymbol::_internal_has_basicrequest() const {
+  return this != internal_default_instance() && basicrequest_ != nullptr;
+}
+inline bool RequestUpdSymbol::has_basicrequest() const {
+  return _internal_has_basicrequest();
+}
+inline const ::tradingpb::BasicRequestData& RequestUpdSymbol::_internal_basicrequest() const {
+  const ::tradingpb::BasicRequestData* p = basicrequest_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::tradingpb::BasicRequestData*>(
+      &::tradingpb::_BasicRequestData_default_instance_);
+}
+inline const ::tradingpb::BasicRequestData& RequestUpdSymbol::basicrequest() const {
+  // @@protoc_insertion_point(field_get:tradingpb.RequestUpdSymbol.basicRequest)
+  return _internal_basicrequest();
+}
+inline ::tradingpb::BasicRequestData* RequestUpdSymbol::release_basicrequest() {
+  // @@protoc_insertion_point(field_release:tradingpb.RequestUpdSymbol.basicRequest)
+  
+  ::tradingpb::BasicRequestData* temp = basicrequest_;
+  basicrequest_ = nullptr;
+  return temp;
+}
+inline ::tradingpb::BasicRequestData* RequestUpdSymbol::_internal_mutable_basicrequest() {
+  
+  if (basicrequest_ == nullptr) {
+    auto* p = CreateMaybeMessage<::tradingpb::BasicRequestData>(GetArenaNoVirtual());
+    basicrequest_ = p;
+  }
+  return basicrequest_;
+}
+inline ::tradingpb::BasicRequestData* RequestUpdSymbol::mutable_basicrequest() {
+  // @@protoc_insertion_point(field_mutable:tradingpb.RequestUpdSymbol.basicRequest)
+  return _internal_mutable_basicrequest();
+}
+inline void RequestUpdSymbol::set_allocated_basicrequest(::tradingpb::BasicRequestData* basicrequest) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(basicrequest_);
+  }
+  if (basicrequest) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    if (message_arena != submessage_arena) {
+      basicrequest = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, basicrequest, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  basicrequest_ = basicrequest;
+  // @@protoc_insertion_point(field_set_allocated:tradingpb.RequestUpdSymbol.basicRequest)
+}
+
 // -------------------------------------------------------------------
 
 // ReplyUpdSymbol
@@ -5438,7 +5686,7 @@ inline void ReplyUpdSymbol::set_isok(bool value) {
 
 // RequestGetSymbol
 
-// string token = 1;
+// string token = 1 [deprecated = true];
 inline void RequestGetSymbol::clear_token() {
   token_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
@@ -5618,6 +5866,60 @@ inline void RequestGetSymbol::set_allocated_symbol(std::string* symbol) {
   // @@protoc_insertion_point(field_set_allocated:tradingpb.RequestGetSymbol.symbol)
 }
 
+// .tradingpb.BasicRequestData basicRequest = 4;
+inline bool RequestGetSymbol::_internal_has_basicrequest() const {
+  return this != internal_default_instance() && basicrequest_ != nullptr;
+}
+inline bool RequestGetSymbol::has_basicrequest() const {
+  return _internal_has_basicrequest();
+}
+inline const ::tradingpb::BasicRequestData& RequestGetSymbol::_internal_basicrequest() const {
+  const ::tradingpb::BasicRequestData* p = basicrequest_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::tradingpb::BasicRequestData*>(
+      &::tradingpb::_BasicRequestData_default_instance_);
+}
+inline const ::tradingpb::BasicRequestData& RequestGetSymbol::basicrequest() const {
+  // @@protoc_insertion_point(field_get:tradingpb.RequestGetSymbol.basicRequest)
+  return _internal_basicrequest();
+}
+inline ::tradingpb::BasicRequestData* RequestGetSymbol::release_basicrequest() {
+  // @@protoc_insertion_point(field_release:tradingpb.RequestGetSymbol.basicRequest)
+  
+  ::tradingpb::BasicRequestData* temp = basicrequest_;
+  basicrequest_ = nullptr;
+  return temp;
+}
+inline ::tradingpb::BasicRequestData* RequestGetSymbol::_internal_mutable_basicrequest() {
+  
+  if (basicrequest_ == nullptr) {
+    auto* p = CreateMaybeMessage<::tradingpb::BasicRequestData>(GetArenaNoVirtual());
+    basicrequest_ = p;
+  }
+  return basicrequest_;
+}
+inline ::tradingpb::BasicRequestData* RequestGetSymbol::mutable_basicrequest() {
+  // @@protoc_insertion_point(field_mutable:tradingpb.RequestGetSymbol.basicRequest)
+  return _internal_mutable_basicrequest();
+}
+inline void RequestGetSymbol::set_allocated_basicrequest(::tradingpb::BasicRequestData* basicrequest) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(basicrequest_);
+  }
+  if (basicrequest) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    if (message_arena != submessage_arena) {
+      basicrequest = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, basicrequest, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  basicrequest_ = basicrequest;
+  // @@protoc_insertion_point(field_set_allocated:tradingpb.RequestGetSymbol.basicRequest)
+}
+
 // -------------------------------------------------------------------
 
 // ReplyGetSymbol
@@ -5686,7 +5988,7 @@ inline void ReplyGetSymbol::set_allocated_symbol(::tradingpb::SymbolInfo* symbol
 
 // RequestGetSymbols
 
-// string token = 1;
+// string token = 1 [deprecated = true];
 inline void RequestGetSymbols::clear_token() {
   token_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
@@ -5878,6 +6180,60 @@ inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
 RequestGetSymbols::mutable_symbols() {
   // @@protoc_insertion_point(field_mutable_list:tradingpb.RequestGetSymbols.symbols)
   return &symbols_;
+}
+
+// .tradingpb.BasicRequestData basicRequest = 4;
+inline bool RequestGetSymbols::_internal_has_basicrequest() const {
+  return this != internal_default_instance() && basicrequest_ != nullptr;
+}
+inline bool RequestGetSymbols::has_basicrequest() const {
+  return _internal_has_basicrequest();
+}
+inline const ::tradingpb::BasicRequestData& RequestGetSymbols::_internal_basicrequest() const {
+  const ::tradingpb::BasicRequestData* p = basicrequest_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::tradingpb::BasicRequestData*>(
+      &::tradingpb::_BasicRequestData_default_instance_);
+}
+inline const ::tradingpb::BasicRequestData& RequestGetSymbols::basicrequest() const {
+  // @@protoc_insertion_point(field_get:tradingpb.RequestGetSymbols.basicRequest)
+  return _internal_basicrequest();
+}
+inline ::tradingpb::BasicRequestData* RequestGetSymbols::release_basicrequest() {
+  // @@protoc_insertion_point(field_release:tradingpb.RequestGetSymbols.basicRequest)
+  
+  ::tradingpb::BasicRequestData* temp = basicrequest_;
+  basicrequest_ = nullptr;
+  return temp;
+}
+inline ::tradingpb::BasicRequestData* RequestGetSymbols::_internal_mutable_basicrequest() {
+  
+  if (basicrequest_ == nullptr) {
+    auto* p = CreateMaybeMessage<::tradingpb::BasicRequestData>(GetArenaNoVirtual());
+    basicrequest_ = p;
+  }
+  return basicrequest_;
+}
+inline ::tradingpb::BasicRequestData* RequestGetSymbols::mutable_basicrequest() {
+  // @@protoc_insertion_point(field_mutable:tradingpb.RequestGetSymbols.basicRequest)
+  return _internal_mutable_basicrequest();
+}
+inline void RequestGetSymbols::set_allocated_basicrequest(::tradingpb::BasicRequestData* basicrequest) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(basicrequest_);
+  }
+  if (basicrequest) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    if (message_arena != submessage_arena) {
+      basicrequest = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, basicrequest, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  basicrequest_ = basicrequest;
+  // @@protoc_insertion_point(field_set_allocated:tradingpb.RequestGetSymbols.basicRequest)
 }
 
 #ifdef __GNUC__
