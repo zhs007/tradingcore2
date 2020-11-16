@@ -61,42 +61,48 @@ message PNLDataValue {
     float value = 5;            // 总价值
 }
 
+// PNLAssetData - asset data in PNL
+message PNLAssetData {
+    Asset asset = 1;
+    repeated PNLDataValue values = 2;
+    float maxDrawdown = 3;
+    int64 maxDrawdownStartTs = 4;
+    int64 maxDrawdownEndTs = 5;
+    float maxDrawup = 6;
+    int64 maxDrawupStartTs = 7;
+    int64 maxDrawupEndTs = 8;
+    float sharpe = 9;
+    float annualizedReturns = 10;
+    float annualizedVolatility = 11;
+    float totalReturns = 12;
+    float variance = 13;
+    int32 buyTimes = 14;
+    int32 sellTimes = 15;
+    int32 stoplossTimes = 16;
+    int64 maxUpDayTs = 17;
+    float maxPerUpDay = 18;
+    int64 maxDownDayTs = 19;
+    float maxPerDownDay = 20;
+    int64 maxUpWeekTs = 21;
+    float maxPerUpWeek = 22;
+    int64 maxDownWeekTs = 23;
+    float maxPerDownWeek = 24;
+    int64 maxUpMonthTs = 25;
+    float maxPerUpMonth = 26;
+    int64 maxDownMonthTs = 27;
+    float maxPerDownMonth = 28;
+    int64 maxUpYearTs = 29;
+    float maxPerUpYear = 30;
+    int64 maxDownYearTs = 31;
+    float maxPerDownYear = 32;
+    repeated CtrlNode lstCtrl = 33;
+}
+
 // PNLData - 
 message PNLData {
     string name = 1;
-    Asset asset = 2;
-    repeated PNLDataValue values = 3;
-    float maxDrawdown = 4;
-    int64 maxDrawdownStartTs = 5;
-    int64 maxDrawdownEndTs = 6;
-    float maxDrawup = 7;
-    int64 maxDrawupStartTs = 8;
-    int64 maxDrawupEndTs = 9;
-    float sharpe = 10;
-    float annualizedReturns = 11;
-    float annualizedVolatility = 12;
-    float totalReturns = 13;
-    float variance = 14;
-    int32 buyTimes = 15;
-    int32 sellTimes = 16;
-    int32 stoplossTimes = 17;
-    int64 maxUpDayTs = 18;
-    float maxPerUpDay = 19;
-    int64 maxDownDayTs = 20;
-    float maxPerDownDay = 21;
-    int64 maxUpWeekTs = 22;
-    float maxPerUpWeek = 23;
-    int64 maxDownWeekTs = 24;
-    float maxPerDownWeek = 25;
-    int64 maxUpMonthTs = 26;
-    float maxPerUpMonth = 27;
-    int64 maxDownMonthTs = 28;
-    float maxPerDownMonth = 29;
-    int64 maxUpYearTs = 30;
-    float maxPerUpYear = 31;
-    int64 maxDownYearTs = 32;
-    float maxPerDownYear = 33;
-    repeated CtrlNode lstCtrl = 34;
+    PNLAssetData total = 2;
+    repeated PNLAssetData assets = 3;
 }
 
 // RequestServerInfo - request server info

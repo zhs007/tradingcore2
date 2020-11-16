@@ -26,6 +26,19 @@ class PNL2 {
                              Money invest, Money handMoney);
 
  public:
+  void buyAsset(const char* market0, const char* symbol0, time_t ts,
+                Money money, Money volume);
+
+  void sellAsset(const char* market0, const char* symbol0, time_t ts,
+                 Money money, Money volume);
+
+  void withdraw(Money money, time_t ts);
+
+  void deposit(Money money, time_t ts);
+
+  void addTimestamp(time_t ts);
+
+ public:
   tradingpb::PNLData m_data;
 };
 
