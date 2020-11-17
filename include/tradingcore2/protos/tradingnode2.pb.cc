@@ -273,6 +273,7 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_tradingnode2_2eproto::offsets[
   PROTOBUF_FIELD_OFFSET(::tradingpb::CtrlNode, volumesrc_),
   PROTOBUF_FIELD_OFFSET(::tradingpb::CtrlNode, volumedst_),
   PROTOBUF_FIELD_OFFSET(::tradingpb::CtrlNode, type_),
+  PROTOBUF_FIELD_OFFSET(::tradingpb::CtrlNode, fee_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::tradingpb::WalletAsset, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -396,17 +397,17 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_tradingnode2_2eproto::offsets[
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, sizeof(::tradingpb::CtrlNode)},
-  { 11, -1, sizeof(::tradingpb::WalletAsset)},
-  { 18, -1, sizeof(::tradingpb::Wallet)},
-  { 24, -1, sizeof(::tradingpb::CtrlCondition)},
-  { 33, -1, sizeof(::tradingpb::Strategy)},
-  { 44, -1, sizeof(::tradingpb::PNLDataValue)},
-  { 54, -1, sizeof(::tradingpb::PNLAssetData)},
-  { 92, -1, sizeof(::tradingpb::PNLData)},
-  { 100, -1, sizeof(::tradingpb::RequestServerInfo)},
-  { 106, -1, sizeof(::tradingpb::ReplyServerInfo)},
-  { 113, -1, sizeof(::tradingpb::RequestCalcPNL)},
-  { 125, -1, sizeof(::tradingpb::ReplyCalcPNL)},
+  { 12, -1, sizeof(::tradingpb::WalletAsset)},
+  { 19, -1, sizeof(::tradingpb::Wallet)},
+  { 25, -1, sizeof(::tradingpb::CtrlCondition)},
+  { 34, -1, sizeof(::tradingpb::Strategy)},
+  { 45, -1, sizeof(::tradingpb::PNLDataValue)},
+  { 55, -1, sizeof(::tradingpb::PNLAssetData)},
+  { 93, -1, sizeof(::tradingpb::PNLData)},
+  { 101, -1, sizeof(::tradingpb::RequestServerInfo)},
+  { 107, -1, sizeof(::tradingpb::ReplyServerInfo)},
+  { 114, -1, sizeof(::tradingpb::RequestCalcPNL)},
+  { 126, -1, sizeof(::tradingpb::ReplyCalcPNL)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
@@ -426,66 +427,66 @@ static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] =
 
 const char descriptor_table_protodef_tradingnode2_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n\022tradingnode2.proto\022\ttradingpb\032\016trading"
-  "2.proto\"\235\001\n\010CtrlNode\022\n\n\002ts\030\001 \001(\003\022\035\n\003src\030"
+  "2.proto\"\252\001\n\010CtrlNode\022\n\n\002ts\030\001 \001(\003\022\035\n\003src\030"
   "\002 \001(\0132\020.tradingpb.Asset\022\035\n\003dst\030\003 \001(\0132\020.t"
   "radingpb.Asset\022\021\n\tvolumeSrc\030\004 \001(\001\022\021\n\tvol"
   "umeDst\030\005 \001(\001\022!\n\004type\030\006 \001(\0162\023.tradingpb.C"
-  "trlType\"=\n\013WalletAsset\022\037\n\005asset\030\001 \001(\0132\020."
-  "tradingpb.Asset\022\r\n\005value\030\002 \001(\001\"0\n\006Wallet"
-  "\022&\n\006assets\030\001 \003(\0132\026.tradingpb.WalletAsset"
-  "\"Z\n\rCtrlCondition\022\021\n\tindicator\030\001 \001(\t\022\014\n\004"
-  "vals\030\002 \003(\002\022\021\n\toperators\030\003 \003(\t\022\025\n\rcombCon"
-  "dition\030\004 \001(\t\"\342\001\n\010Strategy\022\014\n\004name\030\001 \001(\t\022"
-  "\037\n\005asset\030\002 \001(\0132\020.tradingpb.Asset\022%\n\003buy\030"
-  "\003 \003(\0132\030.tradingpb.CtrlCondition\022&\n\004sell\030"
-  "\004 \003(\0132\030.tradingpb.CtrlCondition\022*\n\010stopl"
-  "oss\030\005 \003(\0132\030.tradingpb.CtrlCondition\022,\n\nt"
-  "akeprofit\030\006 \003(\0132\030.tradingpb.CtrlConditio"
-  "n\"W\n\014PNLDataValue\022\n\n\002ts\030\001 \001(\003\022\020\n\010perValu"
-  "e\030\002 \001(\002\022\014\n\004tags\030\003 \003(\t\022\014\n\004cost\030\004 \001(\002\022\r\n\005v"
-  "alue\030\005 \001(\002\"\243\006\n\014PNLAssetData\022\037\n\005asset\030\001 \001"
-  "(\0132\020.tradingpb.Asset\022\'\n\006values\030\002 \003(\0132\027.t"
-  "radingpb.PNLDataValue\022\023\n\013maxDrawdown\030\003 \001"
-  "(\002\022\032\n\022maxDrawdownStartTs\030\004 \001(\003\022\030\n\020maxDra"
-  "wdownEndTs\030\005 \001(\003\022\021\n\tmaxDrawup\030\006 \001(\002\022\030\n\020m"
-  "axDrawupStartTs\030\007 \001(\003\022\026\n\016maxDrawupEndTs\030"
-  "\010 \001(\003\022\016\n\006sharpe\030\t \001(\002\022\031\n\021annualizedRetur"
-  "ns\030\n \001(\002\022\034\n\024annualizedVolatility\030\013 \001(\002\022\024"
-  "\n\014totalReturns\030\014 \001(\002\022\020\n\010variance\030\r \001(\002\022\020"
-  "\n\010buyTimes\030\016 \001(\005\022\021\n\tsellTimes\030\017 \001(\005\022\025\n\rs"
-  "toplossTimes\030\020 \001(\005\022\022\n\nmaxUpDayTs\030\021 \001(\003\022\023"
-  "\n\013maxPerUpDay\030\022 \001(\002\022\024\n\014maxDownDayTs\030\023 \001("
-  "\003\022\025\n\rmaxPerDownDay\030\024 \001(\002\022\023\n\013maxUpWeekTs\030"
-  "\025 \001(\003\022\024\n\014maxPerUpWeek\030\026 \001(\002\022\025\n\rmaxDownWe"
-  "ekTs\030\027 \001(\003\022\026\n\016maxPerDownWeek\030\030 \001(\002\022\024\n\014ma"
-  "xUpMonthTs\030\031 \001(\003\022\025\n\rmaxPerUpMonth\030\032 \001(\002\022"
-  "\026\n\016maxDownMonthTs\030\033 \001(\003\022\027\n\017maxPerDownMon"
-  "th\030\034 \001(\002\022\023\n\013maxUpYearTs\030\035 \001(\003\022\024\n\014maxPerU"
-  "pYear\030\036 \001(\002\022\025\n\rmaxDownYearTs\030\037 \001(\003\022\026\n\016ma"
-  "xPerDownYear\030  \001(\002\022$\n\007lstCtrl\030! \003(\0132\023.tr"
-  "adingpb.CtrlNode\"h\n\007PNLData\022\014\n\004name\030\001 \001("
-  "\t\022&\n\005total\030\002 \001(\0132\027.tradingpb.PNLAssetDat"
-  "a\022\'\n\006assets\030\003 \003(\0132\027.tradingpb.PNLAssetDa"
-  "ta\"F\n\021RequestServerInfo\0221\n\014basicRequest\030"
-  "\001 \001(\0132\033.tradingpb.BasicRequestData\"5\n\017Re"
-  "plyServerInfo\022\020\n\010maxTasks\030\001 \001(\005\022\020\n\010curTa"
-  "sks\030\002 \001(\005\"\366\001\n\016RequestCalcPNL\0221\n\014basicReq"
-  "uest\030\001 \001(\0132\033.tradingpb.BasicRequestData\022"
-  " \n\006assets\030\002 \003(\0132\020.tradingpb.Asset\022#\n\tbas"
-  "elines\030\003 \003(\0132\020.tradingpb.Asset\022\017\n\007startT"
-  "s\030\004 \001(\003\022\r\n\005endTs\030\005 \001(\003\022\'\n\nstrategies\030\006 \003"
-  "(\0132\023.tradingpb.Strategy\022!\n\006wallet\030\007 \001(\0132"
-  "\021.tradingpb.Wallet\"/\n\014ReplyCalcPNL\022\037\n\003pn"
-  "l\030\001 \003(\0132\022.tradingpb.PNLData*\203\001\n\010CtrlType"
-  "\022\r\n\tCTRL_INIT\020\000\022\014\n\010CTRL_BUY\020\001\022\r\n\tCTRL_SE"
-  "LL\020\002\022\021\n\rCTRL_STOPLOSS\020\003\022\023\n\017CTRL_TAKEPROF"
-  "IT\020\004\022\021\n\rCTRL_WITHDRAW\020\005\022\020\n\014CTRL_DEPOSIT\020"
-  "\0062\234\001\n\014TradingNode2\022K\n\rgetServerInfo\022\034.tr"
-  "adingpb.RequestServerInfo\032\032.tradingpb.Re"
-  "plyServerInfo\"\000\022\?\n\007calcPNL\022\031.tradingpb.R"
-  "equestCalcPNL\032\027.tradingpb.ReplyCalcPNL\"\000"
-  "B(Z&github.com/zhs007/tradingdb2/trading"
-  "pbb\006proto3"
+  "trlType\022\013\n\003fee\030\007 \001(\001\"=\n\013WalletAsset\022\037\n\005a"
+  "sset\030\001 \001(\0132\020.tradingpb.Asset\022\r\n\005value\030\002 "
+  "\001(\001\"0\n\006Wallet\022&\n\006assets\030\001 \003(\0132\026.tradingp"
+  "b.WalletAsset\"Z\n\rCtrlCondition\022\021\n\tindica"
+  "tor\030\001 \001(\t\022\014\n\004vals\030\002 \003(\002\022\021\n\toperators\030\003 \003"
+  "(\t\022\025\n\rcombCondition\030\004 \001(\t\"\342\001\n\010Strategy\022\014"
+  "\n\004name\030\001 \001(\t\022\037\n\005asset\030\002 \001(\0132\020.tradingpb."
+  "Asset\022%\n\003buy\030\003 \003(\0132\030.tradingpb.CtrlCondi"
+  "tion\022&\n\004sell\030\004 \003(\0132\030.tradingpb.CtrlCondi"
+  "tion\022*\n\010stoploss\030\005 \003(\0132\030.tradingpb.CtrlC"
+  "ondition\022,\n\ntakeprofit\030\006 \003(\0132\030.tradingpb"
+  ".CtrlCondition\"W\n\014PNLDataValue\022\n\n\002ts\030\001 \001"
+  "(\003\022\020\n\010perValue\030\002 \001(\002\022\014\n\004tags\030\003 \003(\t\022\014\n\004co"
+  "st\030\004 \001(\002\022\r\n\005value\030\005 \001(\002\"\243\006\n\014PNLAssetData"
+  "\022\037\n\005asset\030\001 \001(\0132\020.tradingpb.Asset\022\'\n\006val"
+  "ues\030\002 \003(\0132\027.tradingpb.PNLDataValue\022\023\n\013ma"
+  "xDrawdown\030\003 \001(\002\022\032\n\022maxDrawdownStartTs\030\004 "
+  "\001(\003\022\030\n\020maxDrawdownEndTs\030\005 \001(\003\022\021\n\tmaxDraw"
+  "up\030\006 \001(\002\022\030\n\020maxDrawupStartTs\030\007 \001(\003\022\026\n\016ma"
+  "xDrawupEndTs\030\010 \001(\003\022\016\n\006sharpe\030\t \001(\002\022\031\n\021an"
+  "nualizedReturns\030\n \001(\002\022\034\n\024annualizedVolat"
+  "ility\030\013 \001(\002\022\024\n\014totalReturns\030\014 \001(\002\022\020\n\010var"
+  "iance\030\r \001(\002\022\020\n\010buyTimes\030\016 \001(\005\022\021\n\tsellTim"
+  "es\030\017 \001(\005\022\025\n\rstoplossTimes\030\020 \001(\005\022\022\n\nmaxUp"
+  "DayTs\030\021 \001(\003\022\023\n\013maxPerUpDay\030\022 \001(\002\022\024\n\014maxD"
+  "ownDayTs\030\023 \001(\003\022\025\n\rmaxPerDownDay\030\024 \001(\002\022\023\n"
+  "\013maxUpWeekTs\030\025 \001(\003\022\024\n\014maxPerUpWeek\030\026 \001(\002"
+  "\022\025\n\rmaxDownWeekTs\030\027 \001(\003\022\026\n\016maxPerDownWee"
+  "k\030\030 \001(\002\022\024\n\014maxUpMonthTs\030\031 \001(\003\022\025\n\rmaxPerU"
+  "pMonth\030\032 \001(\002\022\026\n\016maxDownMonthTs\030\033 \001(\003\022\027\n\017"
+  "maxPerDownMonth\030\034 \001(\002\022\023\n\013maxUpYearTs\030\035 \001"
+  "(\003\022\024\n\014maxPerUpYear\030\036 \001(\002\022\025\n\rmaxDownYearT"
+  "s\030\037 \001(\003\022\026\n\016maxPerDownYear\030  \001(\002\022$\n\007lstCt"
+  "rl\030! \003(\0132\023.tradingpb.CtrlNode\"h\n\007PNLData"
+  "\022\014\n\004name\030\001 \001(\t\022&\n\005total\030\002 \001(\0132\027.tradingp"
+  "b.PNLAssetData\022\'\n\006assets\030\003 \003(\0132\027.trading"
+  "pb.PNLAssetData\"F\n\021RequestServerInfo\0221\n\014"
+  "basicRequest\030\001 \001(\0132\033.tradingpb.BasicRequ"
+  "estData\"5\n\017ReplyServerInfo\022\020\n\010maxTasks\030\001"
+  " \001(\005\022\020\n\010curTasks\030\002 \001(\005\"\366\001\n\016RequestCalcPN"
+  "L\0221\n\014basicRequest\030\001 \001(\0132\033.tradingpb.Basi"
+  "cRequestData\022 \n\006assets\030\002 \003(\0132\020.tradingpb"
+  ".Asset\022#\n\tbaselines\030\003 \003(\0132\020.tradingpb.As"
+  "set\022\017\n\007startTs\030\004 \001(\003\022\r\n\005endTs\030\005 \001(\003\022\'\n\ns"
+  "trategies\030\006 \003(\0132\023.tradingpb.Strategy\022!\n\006"
+  "wallet\030\007 \001(\0132\021.tradingpb.Wallet\"/\n\014Reply"
+  "CalcPNL\022\037\n\003pnl\030\001 \003(\0132\022.tradingpb.PNLData"
+  "*\203\001\n\010CtrlType\022\r\n\tCTRL_INIT\020\000\022\014\n\010CTRL_BUY"
+  "\020\001\022\r\n\tCTRL_SELL\020\002\022\021\n\rCTRL_STOPLOSS\020\003\022\023\n\017"
+  "CTRL_TAKEPROFIT\020\004\022\021\n\rCTRL_WITHDRAW\020\005\022\020\n\014"
+  "CTRL_DEPOSIT\020\0062\234\001\n\014TradingNode2\022K\n\rgetSe"
+  "rverInfo\022\034.tradingpb.RequestServerInfo\032\032"
+  ".tradingpb.ReplyServerInfo\"\000\022\?\n\007calcPNL\022"
+  "\031.tradingpb.RequestCalcPNL\032\027.tradingpb.R"
+  "eplyCalcPNL\"\000B(Z&github.com/zhs007/tradi"
+  "ngdb2/tradingpbb\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_tradingnode2_2eproto_deps[1] = {
   &::descriptor_table_trading2_2eproto,
@@ -507,7 +508,7 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_tra
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_tradingnode2_2eproto_once;
 static bool descriptor_table_tradingnode2_2eproto_initialized = false;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_tradingnode2_2eproto = {
-  &descriptor_table_tradingnode2_2eproto_initialized, descriptor_table_protodef_tradingnode2_2eproto, "tradingnode2.proto", 2410,
+  &descriptor_table_tradingnode2_2eproto_initialized, descriptor_table_protodef_tradingnode2_2eproto, "tradingnode2.proto", 2423,
   &descriptor_table_tradingnode2_2eproto_once, descriptor_table_tradingnode2_2eproto_sccs, descriptor_table_tradingnode2_2eproto_deps, 12, 1,
   schemas, file_default_instances, TableStruct_tradingnode2_2eproto::offsets,
   file_level_metadata_tradingnode2_2eproto, 12, file_level_enum_descriptors_tradingnode2_2eproto, file_level_service_descriptors_tradingnode2_2eproto,
@@ -691,6 +692,13 @@ const char* CtrlNode::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::i
           _internal_set_type(static_cast<::tradingpb::CtrlType>(val));
         } else goto handle_unusual;
         continue;
+      // double fee = 7;
+      case 7:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 57)) {
+          fee_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
+          ptr += sizeof(double);
+        } else goto handle_unusual;
+        continue;
       default: {
       handle_unusual:
         if ((tag & 7) == 4 || tag == 0) {
@@ -758,6 +766,12 @@ failure:
       6, this->_internal_type(), target);
   }
 
+  // double fee = 7;
+  if (!(this->fee() <= 0 && this->fee() >= 0)) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteDoubleToArray(7, this->_internal_fee(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields(), target, stream);
@@ -802,6 +816,11 @@ size_t CtrlNode::ByteSizeLong() const {
 
   // double volumeDst = 5;
   if (!(this->volumedst() <= 0 && this->volumedst() >= 0)) {
+    total_size += 1 + 8;
+  }
+
+  // double fee = 7;
+  if (!(this->fee() <= 0 && this->fee() >= 0)) {
     total_size += 1 + 8;
   }
 
@@ -857,6 +876,9 @@ void CtrlNode::MergeFrom(const CtrlNode& from) {
   if (!(from.volumedst() <= 0 && from.volumedst() >= 0)) {
     _internal_set_volumedst(from._internal_volumedst());
   }
+  if (!(from.fee() <= 0 && from.fee() >= 0)) {
+    _internal_set_fee(from._internal_fee());
+  }
   if (from.type() != 0) {
     _internal_set_type(from._internal_type());
   }
@@ -888,6 +910,7 @@ void CtrlNode::InternalSwap(CtrlNode* other) {
   swap(ts_, other->ts_);
   swap(volumesrc_, other->volumesrc_);
   swap(volumedst_, other->volumedst_);
+  swap(fee_, other->fee_);
   swap(type_, other->type_);
 }
 

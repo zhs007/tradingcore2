@@ -28,6 +28,9 @@ bool isValidTokens(const REQUEST* request, RESPONSE* response,
 // insTimestamp - insert a timestamp
 void insTimestamp(::tradingpb::PNLAssetData* pAssetData, time_t ts);
 
+// insTimestamp - insert a timestamp
+void insTimestamp(::tradingpb::PNLAssetData* pAssetData, time_t ts);
+
 CR2END
 
 #endif  // __TRADINGCORE2_TRNODE2_UTILS_H__

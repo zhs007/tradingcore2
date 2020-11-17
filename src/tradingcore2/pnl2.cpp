@@ -4,6 +4,7 @@
 #include <tradingcore2/csv.h>
 #include <tradingcore2/exchange.h>
 #include <tradingcore2/pnl2.h>
+#include <tradingcore2/trnode2/utils.h>
 #include <tradingcore2/utils.h>
 #include <tradingcore2/wallet.h>
 
@@ -14,7 +15,7 @@ CR2BEGIN
 void PNL2::release() { this->m_data.Clear(); }
 
 void PNL2::buyAsset(const char* market0, const char* symbol0, time_t ts,
-                    Money money, Money volume) {
+                    Money money, Money volume, Money fee) {
   auto objTotal = this->m_data.mutable_total();
   auto ctrl = objTotal->add_lstctrl();
 
@@ -30,10 +31,13 @@ void PNL2::buyAsset(const char* market0, const char* symbol0, time_t ts,
 
   ctrl->set_ts(ts);
   ctrl->set_type(::tradingpb::CTRL_BUY);
+  ctrl->set_fee(fee);
+
+  this->addAsset(symbol0);
 }
 
 void PNL2::sellAsset(const char* market0, const char* symbol0, time_t ts,
-                     Money money, Money volume) {
+                     Money money, Money volume, Money fee) {
   auto objTotal = this->m_data.mutable_total();
   auto ctrl = objTotal->add_lstctrl();
 
@@ -49,6 +53,9 @@ void PNL2::sellAsset(const char* market0, const char* symbol0, time_t ts,
 
   ctrl->set_ts(ts);
   ctrl->set_type(::tradingpb::CTRL_SELL);
+  ctrl->set_fee(fee);
+
+  this->addAsset(symbol0);
 }
 
 void PNL2::withdraw(Money money, time_t ts) {
@@ -77,39 +84,93 @@ void PNL2::deposit(Money money, time_t ts) {
   ctrl->set_type(::tradingpb::CTRL_DEPOSIT);
 }
 
-void PNL2::addTimestamp(time_t ts) {
-  
+// void PNL2::addTimestamp(time_t ts) {}
+
+// void PNL2::initInvest(const Exchange& exchange, Money invest, Money
+// handMoney,
+//                       TimeStamp tsStart, TimeStamp tsEnd) {
+//   auto f = std::bind(&PNL2::onInitInvestTimeStamp, this,
+//   std::placeholders::_1,
+//                      std::placeholders::_2, invest, handMoney);
+//   exchange.forEachTimeStamp(f, tsStart, tsEnd);
+// }
+
+// void PNL2::onInitInvestTimeStamp(const Exchange& exchange, TimeStamp ts,
+//                                  Money invest, Money handMoney) {
+//   // for (auto it = this->m_lst.begin(); it != this->m_lst.end(); ++it) {
+//   //   if (ts == it->ts) {
+//   //     it->invest = invest;
+//   //     it->curMoney = handMoney;
+
+//   //     return;
+//   //   } else if (ts < it->ts) {
+//   //     Node n;
+
+//   //     n.ts = ts;
+//   //     n.invest = invest;
+//   //     n.curMoney = handMoney;
+
+//   //     this->m_lst.insert(it, n);
+
+//   //     return;
+//   //   }
+//   // }
+
+//   // this->pushData(ts, invest, handMoney);
+// }
+
+void PNL2::onInitTimeStamp(const Exchange& exchange, TimeStamp ts, int index) {
+  insTimestamp(this->m_data.mutable_total(), ts);
 }
 
-void PNL2::initInvest(const Exchange& exchange, Money invest, Money handMoney,
-                      TimeStamp tsStart, TimeStamp tsEnd) {
-  auto f = std::bind(&PNL2::onInitInvestTimeStamp, this, std::placeholders::_1,
-                     std::placeholders::_2, invest, handMoney);
-  exchange.forEachTimeStamp(f, tsStart, tsEnd);
+void PNL2::initTimestamp(const Exchange& exchange) {
+  // void(const Exchange&, TimeStamp, int)
+  auto f = std::bind(&PNL2::onInitTimeStamp, this, std::placeholders::_1,
+                     std::placeholders::_2, std::placeholders::_3);
+  exchange.forEachTimeStamp(f, 0, -1);
 }
 
-void PNL2::onInitInvestTimeStamp(const Exchange& exchange, TimeStamp ts,
-                                 Money invest, Money handMoney) {
-  // for (auto it = this->m_lst.begin(); it != this->m_lst.end(); ++it) {
-  //   if (ts == it->ts) {
-  //     it->invest = invest;
-  //     it->curMoney = handMoney;
+void PNL2::procTimestamp(const Exchange& exchange, TimeStamp ts) {
+  for (auto it = this->m_mapAssets.begin(); it != this->m_mapAssets.end();
+       ++it) {
+    CandleData cd;
+    if (exchange.getDataWithTimestamp(it->c_str(), ts, cd)) {
+      auto cv = this->getAssetVolume(exchange, it->c_str(), ts);
+      // cd.close
+    }
+  }
+}
 
-  //     return;
-  //   } else if (ts < it->ts) {
-  //     Node n;
+void PNL2::addAsset(const char* asset) {
+  auto it = this->m_mapAssets.find(asset);
+  if (it == this->m_mapAssets.end()) {
+    this->m_mapAssets.insert(asset);
+  }
+}
 
-  //     n.ts = ts;
-  //     n.invest = invest;
-  //     n.curMoney = handMoney;
+Volume PNL2::getAssetVolume(const Exchange& exchange, const char* asset,
+                            TimeStamp ts) {
+  auto t = this->m_data.total();
+  if (t.lstctrl_size() > 0) {
+    Volume cv = 0;
 
-  //     this->m_lst.insert(it, n);
+    for (auto i = 0; i < t.lstctrl_size(); ++i) {
+      auto cc = t.lstctrl(i);
+      if (cc.ts() > ts) {
+        break;
+      }
 
-  //     return;
-  //   }
-  // }
+      if (cc.dst().code() == asset) {
+        cv += cc.volumedst();
+      } else if (cc.src().code() == asset) {
+        cv -= cc.volumedst();
+      }
+    }
 
-  // this->pushData(ts, invest, handMoney);
+    return cv;
+  }
+
+  return 0;
 }
 
 CR2END

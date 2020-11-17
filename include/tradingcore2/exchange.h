@@ -42,7 +42,7 @@ class Exchange {
                               Money& fee) = 0;
 
   virtual bool getDataWithTimestamp(const char* assetsName, TimeStamp ts,
-                                    CandleData& data) = 0;
+                                    CandleData& data) const = 0;
 
   virtual bool getData(const char* assetsName, int index, CandleData& data) = 0;
 
@@ -62,6 +62,8 @@ class Exchange {
   virtual int getTradingDays4Year() const = 0;
 
   virtual float getRiskFreeInterestRate() const = 0;
+
+  virtual const char* getMarketName() const = 0;
 
  protected:
 };
