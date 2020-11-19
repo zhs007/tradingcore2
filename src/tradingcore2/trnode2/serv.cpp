@@ -57,8 +57,9 @@ void TradingNode2Impl::init(const Config& cfg) {
     return grpc::Status(grpc::StatusCode::INVALID_ARGUMENT, "invalid token");
   }
 
-  response->set_curtasks(this->m_curTaskNums);
-  response->set_maxtasks(this->m_maxTaskNums);
+  auto ni = response->mutable_nodeinfo();
+  ni->set_curtasks(this->m_curTaskNums);
+  ni->set_maxtasks(this->m_maxTaskNums);
 
   LOG(INFO) << "current tasks num :" << (int)m_curTaskNums;
   LOG(INFO) << "max tasks num :" << m_maxTaskNums;
@@ -87,7 +88,7 @@ void TradingNode2Impl::init(const Config& cfg) {
 
   auto pWallet = new tr2::Wallet(*exchange);
 
-  auto sts = request->startts();
+  auto sts = request->params().startts();
   if (sts <= 0) {
     sts = exchange->getFirstTimeStamp();
   }
@@ -119,9 +120,14 @@ void TradingNode2Impl::init(const Config& cfg) {
   LOG(INFO) << "calcPNL...";
 
   if (m_pCfg->isLimitTasks) {
-    SpinLockMaxVal<int> lock(&m_curTaskNums, m_maxTaskNums);
+    if (m_curTaskNums >= m_maxTaskNums) {
+      auto ni = response->mutable_nodeinfo();
 
-    return _calcPNL(context, request, response);
+      ni->set_curtasks(this->m_curTaskNums);
+      ni->set_maxtasks(this->m_maxTaskNums);
+
+      return grpc::Status::OK;
+    }
   }
 
   AutoIncDec<std::atomic<int>> aid(&m_curTaskNums);

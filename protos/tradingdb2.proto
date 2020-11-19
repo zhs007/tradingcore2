@@ -139,6 +139,17 @@ message RequestGetSymbols {
     BasicRequestData basicRequest = 4;
 }
 
+// RequestSimTrading - request simTrading
+message RequestSimTrading {
+    BasicRequestData basicRequest = 1;
+    SimTradingParams params = 2;
+}
+
+// ReplySimTrading - reply simTrading
+message ReplySimTrading {
+    repeated PNLData pnl = 1;
+}
+
 // TradingDB2 - TradingDB2 service
 service TradingDB2 {
 	// updCandles - update candles
@@ -148,7 +159,9 @@ service TradingDB2 {
 	// updSymbol - update symbol
     rpc updSymbol(RequestUpdSymbol) returns (ReplyUpdSymbol) {}
 	// getSymbol - get symbol
-    rpc getSymbol(RequestGetSymbol) returns (ReplyGetSymbol) {}    
+    rpc getSymbol(RequestGetSymbol) returns (ReplyGetSymbol) {}
 	// getSymbols - get symbols
-	rpc getSymbols(RequestGetSymbols) returns (stream ReplyGetSymbol) {}        
+    rpc getSymbols(RequestGetSymbols) returns (stream ReplyGetSymbol) {}
+    // simTrading - simulation trading
+    rpc simTrading(RequestSimTrading) returns (ReplySimTrading) {}
 }

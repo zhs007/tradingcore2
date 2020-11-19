@@ -3,133 +3,25 @@ package tradingpb;
 option go_package = "github.com/zhs007/tradingdb2/tradingpb";
 import "trading2.proto";
 
-enum CtrlType {
-    CTRL_INIT = 0;
-    CTRL_BUY = 1;
-    CTRL_SELL = 2;
-    CTRL_STOPLOSS = 3;
-    CTRL_TAKEPROFIT = 4;
-    CTRL_WITHDRAW = 5;
-    CTRL_DEPOSIT = 6;
-}
-
-// CtrlNode - ctrl node
-message CtrlNode {
-    int64 ts = 1;
-    Asset src = 2;
-    Asset dst = 3;
-    double volumeSrc = 4;
-    double volumeDst = 5;
-    CtrlType type = 6;
-    double fee = 7;
-}
-
-// WalletAsset - wallet asset
-message WalletAsset {
-    Asset asset = 1;
-    double value = 2;
-}
-
-// Wallet - wallet
-message Wallet {
-    repeated WalletAsset assets = 1;
-}
-
-// CtrlCondition - control condition
-message CtrlCondition {
-    string indicator = 1;
-    repeated float vals = 2;
-    repeated string operators = 3;  // 操作符，按道理应该和 vals 长度一样，大于小于等于
-    string combCondition = 4;       // 组合条件，如果有多个操作条件，这里是 与或非
-}
-
-// Strategy - strategy
-message Strategy {
-    string name = 1;
-    Asset asset = 2;
-    repeated CtrlCondition buy = 3;
-    repeated CtrlCondition sell = 4;
-    repeated CtrlCondition stoploss = 5;
-    repeated CtrlCondition takeprofit = 6;
-}
-
-// PNLDataValue - 
-message PNLDataValue {
-    int64 ts = 1;               // 时间戳
-    float perValue = 2;         // 盈亏比，应该等于 value / cost
-    repeated string tags = 3;   // 标记，用来标记当前时间点下做了哪些操作，譬如 buy、sell 等，一个时间点可能做多个操作
-    float cost = 4;             // 总成本
-    float value = 5;            // 总价值
-}
-
-// PNLAssetData - asset data in PNL
-message PNLAssetData {
-    Asset asset = 1;
-    repeated PNLDataValue values = 2;
-    float maxDrawdown = 3;
-    int64 maxDrawdownStartTs = 4;
-    int64 maxDrawdownEndTs = 5;
-    float maxDrawup = 6;
-    int64 maxDrawupStartTs = 7;
-    int64 maxDrawupEndTs = 8;
-    float sharpe = 9;
-    float annualizedReturns = 10;
-    float annualizedVolatility = 11;
-    float totalReturns = 12;
-    float variance = 13;
-    int32 buyTimes = 14;
-    int32 sellTimes = 15;
-    int32 stoplossTimes = 16;
-    int64 maxUpDayTs = 17;
-    float maxPerUpDay = 18;
-    int64 maxDownDayTs = 19;
-    float maxPerDownDay = 20;
-    int64 maxUpWeekTs = 21;
-    float maxPerUpWeek = 22;
-    int64 maxDownWeekTs = 23;
-    float maxPerDownWeek = 24;
-    int64 maxUpMonthTs = 25;
-    float maxPerUpMonth = 26;
-    int64 maxDownMonthTs = 27;
-    float maxPerDownMonth = 28;
-    int64 maxUpYearTs = 29;
-    float maxPerUpYear = 30;
-    int64 maxDownYearTs = 31;
-    float maxPerDownYear = 32;
-    repeated CtrlNode lstCtrl = 33;
-}
-
-// PNLData - 
-message PNLData {
-    string name = 1;
-    PNLAssetData total = 2;
-    repeated PNLAssetData assets = 3;
-}
-
 // RequestServerInfo - request server info
 message RequestServerInfo {
     BasicRequestData basicRequest = 1;
 }
 
 message ReplyServerInfo {
-    int32 maxTasks = 1;
-    int32 curTasks = 2;
+    TradingNodeInfo nodeInfo = 1;
 }
 
 // RequestCalcPNL - request calcPNL
 message RequestCalcPNL {
     BasicRequestData basicRequest = 1;
-    repeated Asset assets = 2;
-    repeated Asset baselines = 3;
-    int64 startTs = 4;
-    int64 endTs = 5;
-    repeated Strategy strategies = 6;
-    Wallet wallet = 7;
+    SimTradingParams params = 2;
 }
 
 // ReplyCalcPNL - reply calcPNL
 message ReplyCalcPNL{
-    repeated PNLData pnl = 1;
+    TradingNodeInfo nodeInfo = 1;
+    repeated PNLData pnl = 2;
 }
 
 // TradingNode2 - TradingNode2 service
