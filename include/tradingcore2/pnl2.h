@@ -44,6 +44,13 @@ class PNL2 {
   Volume getAssetVolume(const Exchange& exchange, const char* asset,
                         TimeStamp ts);
 
+  Money getAssetCost(const Exchange& exchange, const char* asset, TimeStamp ts);
+
+  void setTotalPNLAssetData(const Exchange* pExchange,
+                            ::tradingpb::PNLDataValue* pVal);
+
+  void procTotalPNLAssetData(const Exchange& exchange);
+
  public:
   tradingpb::PNLData m_data;
   std::set<std::string> m_mapAssets;

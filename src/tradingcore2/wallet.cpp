@@ -188,6 +188,8 @@ void Wallet::buildPNL2(PNL2& pnl2) const {
     }
   }
 
+  pnl2.procTotalPNLAssetData(this->m_exchange);
+
   // AssetsMap map;
   // Money invest = ZEROMONEY;
   // Money handMoney = ZEROMONEY;

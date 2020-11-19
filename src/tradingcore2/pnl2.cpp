@@ -163,7 +163,7 @@ Volume PNL2::getAssetVolume(const Exchange& exchange, const char* asset,
       if (cc.dst().code() == asset) {
         cv += cc.volumedst();
       } else if (cc.src().code() == asset) {
-        cv -= cc.volumedst();
+        cv -= cc.volumesrc();
       }
     }
 
@@ -171,6 +171,72 @@ Volume PNL2::getAssetVolume(const Exchange& exchange, const char* asset,
   }
 
   return 0;
+}
+
+Money PNL2::getAssetCost(const Exchange& exchange, const char* asset,
+                         TimeStamp ts) {
+  auto t = this->m_data.total();
+  if (t.lstctrl_size() > 0) {
+    Money cost = 0;
+
+    for (auto i = 0; i < t.lstctrl_size(); ++i) {
+      auto cc = t.lstctrl(i);
+      if (cc.ts() > ts) {
+        break;
+      }
+
+      if (cc.dst().code() == asset) {
+        CandleData cd;
+        if (exchange.getDataWithTimestamp(asset, cc.ts(), cd)) {
+          cost += cd.close * cc.volumedst();
+        }
+      } else if (cc.src().code() == asset) {
+        CandleData cd;
+        if (exchange.getDataWithTimestamp(asset, cc.ts(), cd)) {
+          cost -= cd.close * cc.volumesrc();
+        }
+      }
+    }
+
+    return cost;
+  }
+
+  return 0;
+}
+
+void PNL2::setTotalPNLAssetData(const Exchange* pExchange,
+                                ::tradingpb::PNLDataValue* pVal) {
+  assert(pVal != NULL);
+
+  pVal->set_cost(0);
+  pVal->set_value(0);
+
+  for (auto it = this->m_mapAssets.begin(); it != this->m_mapAssets.end();
+       ++it) {
+    auto v = this->getAssetVolume(*pExchange, it->c_str(), pVal->ts());
+    auto c = this->getAssetCost(*pExchange, it->c_str(), pVal->ts());
+    pVal->set_cost(c + pVal->cost());
+
+    CandleData cd;
+    if (v > 0 && pExchange->getDataWithTimestamp(it->c_str(), pVal->ts(), cd)) {
+      pVal->set_value(cd.close * v + pVal->value());
+    }
+  }
+
+  if (pVal->cost() < 0) {
+    pVal->set_value(pVal->value() - pVal->cost());
+    pVal->set_cost(0);
+  }
+
+  if (pVal->cost() != 0) {
+    pVal->set_pervalue(pVal->value() / pVal->cost());
+  }
+}
+
+void PNL2::procTotalPNLAssetData(const Exchange& exchange) {
+  auto f = std::bind(&PNL2::setTotalPNLAssetData, this, &exchange,
+                     std::placeholders::_1);
+  foreachPNLDataValue(this->m_data.mutable_total(), f);
 }
 
 CR2END
