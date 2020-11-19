@@ -138,7 +138,7 @@ bool CNFundExchange::calculatePrice(const char* assetsName, TimeStamp ts,
 }
 
 bool CNFundExchange::getDataWithTimestamp(const char* assetsName, TimeStamp ts,
-                                          CandleData& data) {
+                                          CandleData& data) const {
   auto fv = this->getFundValue(assetsName);
   assert(fv != NULL);
 

@@ -253,6 +253,7 @@ class CtrlNode :
     kTsFieldNumber = 1,
     kVolumeSrcFieldNumber = 4,
     kVolumeDstFieldNumber = 5,
+    kFeeFieldNumber = 7,
     kTypeFieldNumber = 6,
   };
   // .tradingpb.Asset src = 2;
@@ -312,6 +313,15 @@ class CtrlNode :
   void _internal_set_volumedst(double value);
   public:
 
+  // double fee = 7;
+  void clear_fee();
+  double fee() const;
+  void set_fee(double value);
+  private:
+  double _internal_fee() const;
+  void _internal_set_fee(double value);
+  public:
+
   // .tradingpb.CtrlType type = 6;
   void clear_type();
   ::tradingpb::CtrlType type() const;
@@ -331,6 +341,7 @@ class CtrlNode :
   ::PROTOBUF_NAMESPACE_ID::int64 ts_;
   double volumesrc_;
   double volumedst_;
+  double fee_;
   int type_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_tradingnode2_2eproto;
@@ -2756,6 +2767,26 @@ inline void CtrlNode::_internal_set_type(::tradingpb::CtrlType value) {
 inline void CtrlNode::set_type(::tradingpb::CtrlType value) {
   _internal_set_type(value);
   // @@protoc_insertion_point(field_set:tradingpb.CtrlNode.type)
+}
+
+// double fee = 7;
+inline void CtrlNode::clear_fee() {
+  fee_ = 0;
+}
+inline double CtrlNode::_internal_fee() const {
+  return fee_;
+}
+inline double CtrlNode::fee() const {
+  // @@protoc_insertion_point(field_get:tradingpb.CtrlNode.fee)
+  return _internal_fee();
+}
+inline void CtrlNode::_internal_set_fee(double value) {
+  
+  fee_ = value;
+}
+inline void CtrlNode::set_fee(double value) {
+  _internal_set_fee(value);
+  // @@protoc_insertion_point(field_set:tradingpb.CtrlNode.fee)
 }
 
 // -------------------------------------------------------------------

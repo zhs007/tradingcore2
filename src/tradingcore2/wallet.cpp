@@ -166,55 +166,81 @@ void Wallet::buildPNL(PNL& pnl) const {
 }
 
 void Wallet::buildPNL2(PNL2& pnl2) const {
-  AssetsMap map;
-  Money invest = ZEROMONEY;
-  Money handMoney = ZEROMONEY;
+  pnl2.initTimestamp(this->m_exchange);
 
-  auto preit = this->m_history.end();
   for (auto it = this->m_history.begin(); it != this->m_history.end(); ++it) {
-    if (preit != this->m_history.end() && preit->ts < it->ts) {
-      map.makePNL2(pnl2, this->m_exchange, invest, handMoney, preit->ts,
-                   it->ts);
-    }
-
     if (it->nodeType == WHNT_DEPOSIT) {
-      invest += it->offMoney;
+      pnl2.deposit(it->offMoney, it->ts);
     } else if (it->nodeType == WHNT_WITHDRAW) {
-      invest += it->offMoney;
+      pnl2.withdraw(it->offMoney, it->ts);
     } else if (it->nodeType == WHNT_TRADE) {
       if (it->trade.tradeType == TT_BUY) {
-        map.buyAssets(it->trade.assetsName.c_str(), it->ts, it->trade.price,
-                      it->trade.volume, it->trade.fee);
+        pnl2.buyAsset(this->m_exchange.getMarketName(),
+                      it->trade.assetsName.c_str(), it->ts,
+                      it->trade.price * it->trade.volume, it->trade.volume,
+                      it->trade.fee);
       } else {
-        map.sellAssets(it->trade.assetsName.c_str(), it->ts, it->trade.price,
-                       it->trade.volume, it->trade.fee);
-      }
-    } else {
-      assert(false && "Wallet::buildPNL invalid nodeType");
-    }
-
-    handMoney += it->offMoney;
-
-    preit = it;
-  }
-
-  //! 这里之所以 getLastTimeStamp() + 1
-  //! 是因为makePNL不计算终点，这里要多算一步，才能吧终点也算进去
-  map.makePNL2(pnl2, this->m_exchange, invest, handMoney, preit->ts,
-               this->m_exchange.getLastTimeStamp() + 1);
-
-  //! 最后还要处理买卖信息，需要重新遍历一次
-  for (auto it = this->m_history.begin(); it != this->m_history.end(); ++it) {
-    if (it->nodeType == WHNT_TRADE) {
-      if (it->trade.tradeType == TT_BUY) {
-        // pnl2.setBuy(it->ts, it->trade.money);
-      } else {
-        // pnl2.setSell(it->ts, it->trade.money);
+        pnl2.sellAsset(this->m_exchange.getMarketName(),
+                       it->trade.assetsName.c_str(), it->ts,
+                       it->trade.price * it->trade.volume, it->trade.volume,
+                       it->trade.fee);
       }
     }
   }
 
-  // pnl2.onBuildEnd(this->m_exchange);
+  pnl2.procTotalPNLAssetData(this->m_exchange);
+
+  // AssetsMap map;
+  // Money invest = ZEROMONEY;
+  // Money handMoney = ZEROMONEY;
+
+  // auto preit = this->m_history.end();
+  // for (auto it = this->m_history.begin(); it != this->m_history.end(); ++it)
+  // {
+  //   if (preit != this->m_history.end() && preit->ts < it->ts) {
+  //     map.makePNL2(pnl2, this->m_exchange, invest, handMoney, preit->ts,
+  //                  it->ts);
+  //   }
+
+  //   if (it->nodeType == WHNT_DEPOSIT) {
+  //     invest += it->offMoney;
+  //   } else if (it->nodeType == WHNT_WITHDRAW) {
+  //     invest += it->offMoney;
+  //   } else if (it->nodeType == WHNT_TRADE) {
+  //     if (it->trade.tradeType == TT_BUY) {
+  //       map.buyAssets(it->trade.assetsName.c_str(), it->ts, it->trade.price,
+  //                     it->trade.volume, it->trade.fee);
+  //     } else {
+  //       map.sellAssets(it->trade.assetsName.c_str(), it->ts, it->trade.price,
+  //                      it->trade.volume, it->trade.fee);
+  //     }
+  //   } else {
+  //     assert(false && "Wallet::buildPNL invalid nodeType");
+  //   }
+
+  //   handMoney += it->offMoney;
+
+  //   preit = it;
+  // }
+
+  // //! 这里之所以 getLastTimeStamp() + 1
+  // //! 是因为makePNL不计算终点，这里要多算一步，才能吧终点也算进去
+  // map.makePNL2(pnl2, this->m_exchange, invest, handMoney, preit->ts,
+  //              this->m_exchange.getLastTimeStamp() + 1);
+
+  // //! 最后还要处理买卖信息，需要重新遍历一次
+  // for (auto it = this->m_history.begin(); it != this->m_history.end(); ++it)
+  // {
+  //   if (it->nodeType == WHNT_TRADE) {
+  //     if (it->trade.tradeType == TT_BUY) {
+  //       // pnl2.setBuy(it->ts, it->trade.money);
+  //     } else {
+  //       // pnl2.setSell(it->ts, it->trade.money);
+  //     }
+  //   }
+  // }
+
+  // // pnl2.onBuildEnd(this->m_exchange);
 }
 
 // void Wallet::buildTimeLine(Wallet::FuncOnTimeLine func) const {

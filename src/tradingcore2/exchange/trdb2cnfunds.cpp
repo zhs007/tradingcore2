@@ -156,7 +156,7 @@ bool TrDB2CNFundsExchange::calculatePrice(const char* assetsName, TimeStamp ts,
 
 bool TrDB2CNFundsExchange::getDataWithTimestamp(const char* assetsName,
                                                 TimeStamp ts,
-                                                CandleData& data) {
+                                                CandleData& data) const {
   // auto fv = this->getFundValue(assetsName);
   // assert(fv != NULL);
 

@@ -58,7 +58,7 @@ class CNFundExchange final : public Exchange {
                               Money& fee) override;
 
   virtual bool getDataWithTimestamp(const char* assetsName, TimeStamp ts,
-                                    CandleData& data) override;
+                                    CandleData& data) const override;
 
   virtual bool getData(const char* assetsName, int index,
                        CandleData& data) override;
@@ -81,6 +81,8 @@ class CNFundExchange final : public Exchange {
   virtual int getTradingDays4Year() const override { return 250; }
 
   virtual float getRiskFreeInterestRate() const override { return 0.03; }
+
+  virtual const char* getMarketName() const override { return "cnfund"; }
 
  public:
   const CNFundValue* getFundValue(const char* assetsName) const;

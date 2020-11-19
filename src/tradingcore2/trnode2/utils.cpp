@@ -55,6 +55,45 @@ CR2BEGIN
 // insTimestamp - insert a timestamp
 void insTimestamp(::tradingpb::PNLAssetData* pAssetData, time_t ts) {
   assert(pAssetData != NULL);
+
+  for (auto i = 0; i < pAssetData->values_size(); ++i) {
+    auto cv = pAssetData->values(i);
+    if (cv.ts() == ts) {
+      return;
+    }
+
+    assert(cv.ts() < ts);
+  }
+
+  auto ncv = pAssetData->add_values();
+  ncv->set_ts(ts);
+}
+
+// getPNLDataValue - get PNLDataValue
+::tradingpb::PNLDataValue* getPNLDataValue(
+    ::tradingpb::PNLAssetData* pAssetData, time_t ts) {
+  assert(pAssetData != NULL);
+
+  for (auto i = 0; i < pAssetData->values_size(); ++i) {
+    auto cv = pAssetData->mutable_values(i);
+    if (cv->ts() == ts) {
+      return cv;
+    }
+  }
+
+  return NULL;
+}
+
+// foreachPNLDataValue - foreach PNLDataValue
+void foreachPNLDataValue(::tradingpb::PNLAssetData* pAssetData,
+                         FuncOnPNLDataValueTs onPNLDataValueTs) {
+  assert(pAssetData != NULL);
+  assert(onPNLDataValueTs != NULL);
+
+  for (auto i = 0; i < pAssetData->values_size(); ++i) {
+    auto cv = pAssetData->mutable_values(i);
+    onPNLDataValueTs(cv);
+  }
 }
 
 CR2END

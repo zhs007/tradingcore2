@@ -21,6 +21,7 @@ message CtrlNode {
     double volumeSrc = 4;
     double volumeDst = 5;
     CtrlType type = 6;
+    double fee = 7;
 }
 
 // WalletAsset - wallet asset
