@@ -2,7 +2,9 @@
 #include <grpcpp/grpcpp.h>
 #include <grpcpp/health_check_service_interface.h>
 #include <tradingcore2/autorun.h>
+#include <tradingcore2/exchange/trdb2cnfunds.h>
 #include <tradingcore2/exchangemgr.h>
+#include <tradingcore2/pnl2.h>
 #include <tradingcore2/protos/tradingnode2.grpc.pb.h>
 #include <tradingcore2/spinlock.h>
 #include <tradingcore2/train.h>
@@ -77,6 +79,31 @@ void TradingNode2Impl::init(const Config& cfg) {
   if (!isValidTokens(request, response, *m_pCfg)) {
     return grpc::Status(grpc::StatusCode::INVALID_ARGUMENT, "invalid token");
   }
+
+  auto exchange =
+      tr2::ExchangeMgr::getSingleton()->getExchange(TrDB2CNFundsTypeName);
+
+  exchange->loadData("260104", 0, -1);
+
+  auto pWallet = new tr2::Wallet(*exchange);
+
+  auto sts = request->startts();
+  if (sts <= 0) {
+    sts = exchange->getFirstTimeStamp();
+  }
+
+  pWallet->deposit(10000, sts);
+
+  tr2::StrategyBAH* bah = new tr2::StrategyBAH(*pWallet, *exchange);
+  bah->init("260104", 10000);
+
+  bah->simulateTrading();
+
+  tr2::PNL2 pnl2;
+  pWallet->buildPNL2(pnl2);
+
+  auto pPNLData = response->add_pnl();
+  pPNLData->CopyFrom(pnl2.m_data);
 
   return grpc::Status::OK;
 }
