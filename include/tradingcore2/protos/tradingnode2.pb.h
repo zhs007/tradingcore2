@@ -319,25 +319,21 @@ class ReplyServerInfo :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kMaxTasksFieldNumber = 1,
-    kCurTasksFieldNumber = 2,
+    kNodeInfoFieldNumber = 1,
   };
-  // int32 maxTasks = 1;
-  void clear_maxtasks();
-  ::PROTOBUF_NAMESPACE_ID::int32 maxtasks() const;
-  void set_maxtasks(::PROTOBUF_NAMESPACE_ID::int32 value);
+  // .tradingpb.TradingNodeInfo nodeInfo = 1;
+  bool has_nodeinfo() const;
   private:
-  ::PROTOBUF_NAMESPACE_ID::int32 _internal_maxtasks() const;
-  void _internal_set_maxtasks(::PROTOBUF_NAMESPACE_ID::int32 value);
+  bool _internal_has_nodeinfo() const;
   public:
-
-  // int32 curTasks = 2;
-  void clear_curtasks();
-  ::PROTOBUF_NAMESPACE_ID::int32 curtasks() const;
-  void set_curtasks(::PROTOBUF_NAMESPACE_ID::int32 value);
+  void clear_nodeinfo();
+  const ::tradingpb::TradingNodeInfo& nodeinfo() const;
+  ::tradingpb::TradingNodeInfo* release_nodeinfo();
+  ::tradingpb::TradingNodeInfo* mutable_nodeinfo();
+  void set_allocated_nodeinfo(::tradingpb::TradingNodeInfo* nodeinfo);
   private:
-  ::PROTOBUF_NAMESPACE_ID::int32 _internal_curtasks() const;
-  void _internal_set_curtasks(::PROTOBUF_NAMESPACE_ID::int32 value);
+  const ::tradingpb::TradingNodeInfo& _internal_nodeinfo() const;
+  ::tradingpb::TradingNodeInfo* _internal_mutable_nodeinfo();
   public:
 
   // @@protoc_insertion_point(class_scope:tradingpb.ReplyServerInfo)
@@ -345,8 +341,7 @@ class ReplyServerInfo :
   class _Internal;
 
   ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
-  ::PROTOBUF_NAMESPACE_ID::int32 maxtasks_;
-  ::PROTOBUF_NAMESPACE_ID::int32 curtasks_;
+  ::tradingpb::TradingNodeInfo* nodeinfo_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_tradingnode2_2eproto;
 };
@@ -609,9 +604,10 @@ class ReplyCalcPNL :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kPnlFieldNumber = 1,
+    kPnlFieldNumber = 2,
+    kNodeInfoFieldNumber = 1,
   };
-  // repeated .tradingpb.PNLData pnl = 1;
+  // repeated .tradingpb.PNLData pnl = 2;
   int pnl_size() const;
   private:
   int _internal_pnl_size() const;
@@ -629,12 +625,28 @@ class ReplyCalcPNL :
   const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingpb::PNLData >&
       pnl() const;
 
+  // .tradingpb.TradingNodeInfo nodeInfo = 1;
+  bool has_nodeinfo() const;
+  private:
+  bool _internal_has_nodeinfo() const;
+  public:
+  void clear_nodeinfo();
+  const ::tradingpb::TradingNodeInfo& nodeinfo() const;
+  ::tradingpb::TradingNodeInfo* release_nodeinfo();
+  ::tradingpb::TradingNodeInfo* mutable_nodeinfo();
+  void set_allocated_nodeinfo(::tradingpb::TradingNodeInfo* nodeinfo);
+  private:
+  const ::tradingpb::TradingNodeInfo& _internal_nodeinfo() const;
+  ::tradingpb::TradingNodeInfo* _internal_mutable_nodeinfo();
+  public:
+
   // @@protoc_insertion_point(class_scope:tradingpb.ReplyCalcPNL)
  private:
   class _Internal;
 
   ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingpb::PNLData > pnl_;
+  ::tradingpb::TradingNodeInfo* nodeinfo_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_tradingnode2_2eproto;
 };
@@ -707,44 +719,58 @@ inline void RequestServerInfo::set_allocated_basicrequest(::tradingpb::BasicRequ
 
 // ReplyServerInfo
 
-// int32 maxTasks = 1;
-inline void ReplyServerInfo::clear_maxtasks() {
-  maxtasks_ = 0;
+// .tradingpb.TradingNodeInfo nodeInfo = 1;
+inline bool ReplyServerInfo::_internal_has_nodeinfo() const {
+  return this != internal_default_instance() && nodeinfo_ != nullptr;
 }
-inline ::PROTOBUF_NAMESPACE_ID::int32 ReplyServerInfo::_internal_maxtasks() const {
-  return maxtasks_;
+inline bool ReplyServerInfo::has_nodeinfo() const {
+  return _internal_has_nodeinfo();
 }
-inline ::PROTOBUF_NAMESPACE_ID::int32 ReplyServerInfo::maxtasks() const {
-  // @@protoc_insertion_point(field_get:tradingpb.ReplyServerInfo.maxTasks)
-  return _internal_maxtasks();
+inline const ::tradingpb::TradingNodeInfo& ReplyServerInfo::_internal_nodeinfo() const {
+  const ::tradingpb::TradingNodeInfo* p = nodeinfo_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::tradingpb::TradingNodeInfo*>(
+      &::tradingpb::_TradingNodeInfo_default_instance_);
 }
-inline void ReplyServerInfo::_internal_set_maxtasks(::PROTOBUF_NAMESPACE_ID::int32 value) {
+inline const ::tradingpb::TradingNodeInfo& ReplyServerInfo::nodeinfo() const {
+  // @@protoc_insertion_point(field_get:tradingpb.ReplyServerInfo.nodeInfo)
+  return _internal_nodeinfo();
+}
+inline ::tradingpb::TradingNodeInfo* ReplyServerInfo::release_nodeinfo() {
+  // @@protoc_insertion_point(field_release:tradingpb.ReplyServerInfo.nodeInfo)
   
-  maxtasks_ = value;
+  ::tradingpb::TradingNodeInfo* temp = nodeinfo_;
+  nodeinfo_ = nullptr;
+  return temp;
 }
-inline void ReplyServerInfo::set_maxtasks(::PROTOBUF_NAMESPACE_ID::int32 value) {
-  _internal_set_maxtasks(value);
-  // @@protoc_insertion_point(field_set:tradingpb.ReplyServerInfo.maxTasks)
-}
-
-// int32 curTasks = 2;
-inline void ReplyServerInfo::clear_curtasks() {
-  curtasks_ = 0;
-}
-inline ::PROTOBUF_NAMESPACE_ID::int32 ReplyServerInfo::_internal_curtasks() const {
-  return curtasks_;
-}
-inline ::PROTOBUF_NAMESPACE_ID::int32 ReplyServerInfo::curtasks() const {
-  // @@protoc_insertion_point(field_get:tradingpb.ReplyServerInfo.curTasks)
-  return _internal_curtasks();
-}
-inline void ReplyServerInfo::_internal_set_curtasks(::PROTOBUF_NAMESPACE_ID::int32 value) {
+inline ::tradingpb::TradingNodeInfo* ReplyServerInfo::_internal_mutable_nodeinfo() {
   
-  curtasks_ = value;
+  if (nodeinfo_ == nullptr) {
+    auto* p = CreateMaybeMessage<::tradingpb::TradingNodeInfo>(GetArenaNoVirtual());
+    nodeinfo_ = p;
+  }
+  return nodeinfo_;
 }
-inline void ReplyServerInfo::set_curtasks(::PROTOBUF_NAMESPACE_ID::int32 value) {
-  _internal_set_curtasks(value);
-  // @@protoc_insertion_point(field_set:tradingpb.ReplyServerInfo.curTasks)
+inline ::tradingpb::TradingNodeInfo* ReplyServerInfo::mutable_nodeinfo() {
+  // @@protoc_insertion_point(field_mutable:tradingpb.ReplyServerInfo.nodeInfo)
+  return _internal_mutable_nodeinfo();
+}
+inline void ReplyServerInfo::set_allocated_nodeinfo(::tradingpb::TradingNodeInfo* nodeinfo) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(nodeinfo_);
+  }
+  if (nodeinfo) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    if (message_arena != submessage_arena) {
+      nodeinfo = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, nodeinfo, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  nodeinfo_ = nodeinfo;
+  // @@protoc_insertion_point(field_set_allocated:tradingpb.ReplyServerInfo.nodeInfo)
 }
 
 // -------------------------------------------------------------------
@@ -863,7 +889,61 @@ inline void RequestCalcPNL::set_allocated_params(::tradingpb::SimTradingParams* 
 
 // ReplyCalcPNL
 
-// repeated .tradingpb.PNLData pnl = 1;
+// .tradingpb.TradingNodeInfo nodeInfo = 1;
+inline bool ReplyCalcPNL::_internal_has_nodeinfo() const {
+  return this != internal_default_instance() && nodeinfo_ != nullptr;
+}
+inline bool ReplyCalcPNL::has_nodeinfo() const {
+  return _internal_has_nodeinfo();
+}
+inline const ::tradingpb::TradingNodeInfo& ReplyCalcPNL::_internal_nodeinfo() const {
+  const ::tradingpb::TradingNodeInfo* p = nodeinfo_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::tradingpb::TradingNodeInfo*>(
+      &::tradingpb::_TradingNodeInfo_default_instance_);
+}
+inline const ::tradingpb::TradingNodeInfo& ReplyCalcPNL::nodeinfo() const {
+  // @@protoc_insertion_point(field_get:tradingpb.ReplyCalcPNL.nodeInfo)
+  return _internal_nodeinfo();
+}
+inline ::tradingpb::TradingNodeInfo* ReplyCalcPNL::release_nodeinfo() {
+  // @@protoc_insertion_point(field_release:tradingpb.ReplyCalcPNL.nodeInfo)
+  
+  ::tradingpb::TradingNodeInfo* temp = nodeinfo_;
+  nodeinfo_ = nullptr;
+  return temp;
+}
+inline ::tradingpb::TradingNodeInfo* ReplyCalcPNL::_internal_mutable_nodeinfo() {
+  
+  if (nodeinfo_ == nullptr) {
+    auto* p = CreateMaybeMessage<::tradingpb::TradingNodeInfo>(GetArenaNoVirtual());
+    nodeinfo_ = p;
+  }
+  return nodeinfo_;
+}
+inline ::tradingpb::TradingNodeInfo* ReplyCalcPNL::mutable_nodeinfo() {
+  // @@protoc_insertion_point(field_mutable:tradingpb.ReplyCalcPNL.nodeInfo)
+  return _internal_mutable_nodeinfo();
+}
+inline void ReplyCalcPNL::set_allocated_nodeinfo(::tradingpb::TradingNodeInfo* nodeinfo) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(nodeinfo_);
+  }
+  if (nodeinfo) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    if (message_arena != submessage_arena) {
+      nodeinfo = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, nodeinfo, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  nodeinfo_ = nodeinfo;
+  // @@protoc_insertion_point(field_set_allocated:tradingpb.ReplyCalcPNL.nodeInfo)
+}
+
+// repeated .tradingpb.PNLData pnl = 2;
 inline int ReplyCalcPNL::_internal_pnl_size() const {
   return pnl_.size();
 }

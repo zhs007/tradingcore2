@@ -129,3 +129,9 @@ message SimTradingParams {
     repeated Strategy strategies = 5;
     Wallet wallet = 6;
 }
+
+// TradingNodeInfo - trading node2 infomation
+message TradingNodeInfo {
+    int32 maxTasks = 1;
+    int32 curTasks = 2;
+}

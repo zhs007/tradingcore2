@@ -48,7 +48,7 @@ struct TableStruct_trading2_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxillaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[11]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[12]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -83,6 +83,9 @@ extern SimTradingParamsDefaultTypeInternal _SimTradingParams_default_instance_;
 class Strategy;
 class StrategyDefaultTypeInternal;
 extern StrategyDefaultTypeInternal _Strategy_default_instance_;
+class TradingNodeInfo;
+class TradingNodeInfoDefaultTypeInternal;
+extern TradingNodeInfoDefaultTypeInternal _TradingNodeInfo_default_instance_;
 class Wallet;
 class WalletDefaultTypeInternal;
 extern WalletDefaultTypeInternal _Wallet_default_instance_;
@@ -100,6 +103,7 @@ template<> ::tradingpb::PNLData* Arena::CreateMaybeMessage<::tradingpb::PNLData>
 template<> ::tradingpb::PNLDataValue* Arena::CreateMaybeMessage<::tradingpb::PNLDataValue>(Arena*);
 template<> ::tradingpb::SimTradingParams* Arena::CreateMaybeMessage<::tradingpb::SimTradingParams>(Arena*);
 template<> ::tradingpb::Strategy* Arena::CreateMaybeMessage<::tradingpb::Strategy>(Arena*);
+template<> ::tradingpb::TradingNodeInfo* Arena::CreateMaybeMessage<::tradingpb::TradingNodeInfo>(Arena*);
 template<> ::tradingpb::Wallet* Arena::CreateMaybeMessage<::tradingpb::Wallet>(Arena*);
 template<> ::tradingpb::WalletAsset* Arena::CreateMaybeMessage<::tradingpb::WalletAsset>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
@@ -2524,6 +2528,145 @@ class SimTradingParams :
   ::tradingpb::Wallet* wallet_;
   ::PROTOBUF_NAMESPACE_ID::int64 startts_;
   ::PROTOBUF_NAMESPACE_ID::int64 endts_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_trading2_2eproto;
+};
+// -------------------------------------------------------------------
+
+class TradingNodeInfo :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tradingpb.TradingNodeInfo) */ {
+ public:
+  TradingNodeInfo();
+  virtual ~TradingNodeInfo();
+
+  TradingNodeInfo(const TradingNodeInfo& from);
+  TradingNodeInfo(TradingNodeInfo&& from) noexcept
+    : TradingNodeInfo() {
+    *this = ::std::move(from);
+  }
+
+  inline TradingNodeInfo& operator=(const TradingNodeInfo& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline TradingNodeInfo& operator=(TradingNodeInfo&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const TradingNodeInfo& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const TradingNodeInfo* internal_default_instance() {
+    return reinterpret_cast<const TradingNodeInfo*>(
+               &_TradingNodeInfo_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    11;
+
+  friend void swap(TradingNodeInfo& a, TradingNodeInfo& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(TradingNodeInfo* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline TradingNodeInfo* New() const final {
+    return CreateMaybeMessage<TradingNodeInfo>(nullptr);
+  }
+
+  TradingNodeInfo* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<TradingNodeInfo>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const TradingNodeInfo& from);
+  void MergeFrom(const TradingNodeInfo& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(TradingNodeInfo* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "tradingpb.TradingNodeInfo";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_trading2_2eproto);
+    return ::descriptor_table_trading2_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kMaxTasksFieldNumber = 1,
+    kCurTasksFieldNumber = 2,
+  };
+  // int32 maxTasks = 1;
+  void clear_maxtasks();
+  ::PROTOBUF_NAMESPACE_ID::int32 maxtasks() const;
+  void set_maxtasks(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_maxtasks() const;
+  void _internal_set_maxtasks(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // int32 curTasks = 2;
+  void clear_curtasks();
+  ::PROTOBUF_NAMESPACE_ID::int32 curtasks() const;
+  void set_curtasks(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_curtasks() const;
+  void _internal_set_curtasks(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:tradingpb.TradingNodeInfo)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::PROTOBUF_NAMESPACE_ID::int32 maxtasks_;
+  ::PROTOBUF_NAMESPACE_ID::int32 curtasks_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_trading2_2eproto;
 };
@@ -5097,9 +5240,55 @@ inline void SimTradingParams::set_allocated_wallet(::tradingpb::Wallet* wallet) 
   // @@protoc_insertion_point(field_set_allocated:tradingpb.SimTradingParams.wallet)
 }
 
+// -------------------------------------------------------------------
+
+// TradingNodeInfo
+
+// int32 maxTasks = 1;
+inline void TradingNodeInfo::clear_maxtasks() {
+  maxtasks_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 TradingNodeInfo::_internal_maxtasks() const {
+  return maxtasks_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 TradingNodeInfo::maxtasks() const {
+  // @@protoc_insertion_point(field_get:tradingpb.TradingNodeInfo.maxTasks)
+  return _internal_maxtasks();
+}
+inline void TradingNodeInfo::_internal_set_maxtasks(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  maxtasks_ = value;
+}
+inline void TradingNodeInfo::set_maxtasks(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_maxtasks(value);
+  // @@protoc_insertion_point(field_set:tradingpb.TradingNodeInfo.maxTasks)
+}
+
+// int32 curTasks = 2;
+inline void TradingNodeInfo::clear_curtasks() {
+  curtasks_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 TradingNodeInfo::_internal_curtasks() const {
+  return curtasks_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 TradingNodeInfo::curtasks() const {
+  // @@protoc_insertion_point(field_get:tradingpb.TradingNodeInfo.curTasks)
+  return _internal_curtasks();
+}
+inline void TradingNodeInfo::_internal_set_curtasks(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  curtasks_ = value;
+}
+inline void TradingNodeInfo::set_curtasks(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_curtasks(value);
+  // @@protoc_insertion_point(field_set:tradingpb.TradingNodeInfo.curTasks)
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

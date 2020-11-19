@@ -9,8 +9,7 @@ message RequestServerInfo {
 }
 
 message ReplyServerInfo {
-    int32 maxTasks = 1;
-    int32 curTasks = 2;
+    TradingNodeInfo nodeInfo = 1;
 }
 
 // RequestCalcPNL - request calcPNL
@@ -21,7 +20,8 @@ message RequestCalcPNL {
 
 // ReplyCalcPNL - reply calcPNL
 message ReplyCalcPNL{
-    repeated PNLData pnl = 1;
+    TradingNodeInfo nodeInfo = 1;
+    repeated PNLData pnl = 2;
 }
 
 // TradingNode2 - TradingNode2 service
