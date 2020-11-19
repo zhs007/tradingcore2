@@ -48,7 +48,7 @@ struct TableStruct_tradingdb2_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxillaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[16]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[18]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -80,6 +80,9 @@ extern ReplyGetCandlesDefaultTypeInternal _ReplyGetCandles_default_instance_;
 class ReplyGetSymbol;
 class ReplyGetSymbolDefaultTypeInternal;
 extern ReplyGetSymbolDefaultTypeInternal _ReplyGetSymbol_default_instance_;
+class ReplySimTrading;
+class ReplySimTradingDefaultTypeInternal;
+extern ReplySimTradingDefaultTypeInternal _ReplySimTrading_default_instance_;
 class ReplyUpdCandles;
 class ReplyUpdCandlesDefaultTypeInternal;
 extern ReplyUpdCandlesDefaultTypeInternal _ReplyUpdCandles_default_instance_;
@@ -95,6 +98,9 @@ extern RequestGetSymbolDefaultTypeInternal _RequestGetSymbol_default_instance_;
 class RequestGetSymbols;
 class RequestGetSymbolsDefaultTypeInternal;
 extern RequestGetSymbolsDefaultTypeInternal _RequestGetSymbols_default_instance_;
+class RequestSimTrading;
+class RequestSimTradingDefaultTypeInternal;
+extern RequestSimTradingDefaultTypeInternal _RequestSimTrading_default_instance_;
 class RequestUpdCandles;
 class RequestUpdCandlesDefaultTypeInternal;
 extern RequestUpdCandlesDefaultTypeInternal _RequestUpdCandles_default_instance_;
@@ -114,11 +120,13 @@ template<> ::tradingpb::FundResult* Arena::CreateMaybeMessage<::tradingpb::FundR
 template<> ::tradingpb::FundSize* Arena::CreateMaybeMessage<::tradingpb::FundSize>(Arena*);
 template<> ::tradingpb::ReplyGetCandles* Arena::CreateMaybeMessage<::tradingpb::ReplyGetCandles>(Arena*);
 template<> ::tradingpb::ReplyGetSymbol* Arena::CreateMaybeMessage<::tradingpb::ReplyGetSymbol>(Arena*);
+template<> ::tradingpb::ReplySimTrading* Arena::CreateMaybeMessage<::tradingpb::ReplySimTrading>(Arena*);
 template<> ::tradingpb::ReplyUpdCandles* Arena::CreateMaybeMessage<::tradingpb::ReplyUpdCandles>(Arena*);
 template<> ::tradingpb::ReplyUpdSymbol* Arena::CreateMaybeMessage<::tradingpb::ReplyUpdSymbol>(Arena*);
 template<> ::tradingpb::RequestGetCandles* Arena::CreateMaybeMessage<::tradingpb::RequestGetCandles>(Arena*);
 template<> ::tradingpb::RequestGetSymbol* Arena::CreateMaybeMessage<::tradingpb::RequestGetSymbol>(Arena*);
 template<> ::tradingpb::RequestGetSymbols* Arena::CreateMaybeMessage<::tradingpb::RequestGetSymbols>(Arena*);
+template<> ::tradingpb::RequestSimTrading* Arena::CreateMaybeMessage<::tradingpb::RequestSimTrading>(Arena*);
 template<> ::tradingpb::RequestUpdCandles* Arena::CreateMaybeMessage<::tradingpb::RequestUpdCandles>(Arena*);
 template<> ::tradingpb::RequestUpdSymbol* Arena::CreateMaybeMessage<::tradingpb::RequestUpdSymbol>(Arena*);
 template<> ::tradingpb::SymbolInfo* Arena::CreateMaybeMessage<::tradingpb::SymbolInfo>(Arena*);
@@ -3115,6 +3123,294 @@ class RequestGetSymbols :
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr token_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr market_;
   ::tradingpb::BasicRequestData* basicrequest_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_tradingdb2_2eproto;
+};
+// -------------------------------------------------------------------
+
+class RequestSimTrading :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tradingpb.RequestSimTrading) */ {
+ public:
+  RequestSimTrading();
+  virtual ~RequestSimTrading();
+
+  RequestSimTrading(const RequestSimTrading& from);
+  RequestSimTrading(RequestSimTrading&& from) noexcept
+    : RequestSimTrading() {
+    *this = ::std::move(from);
+  }
+
+  inline RequestSimTrading& operator=(const RequestSimTrading& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline RequestSimTrading& operator=(RequestSimTrading&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const RequestSimTrading& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const RequestSimTrading* internal_default_instance() {
+    return reinterpret_cast<const RequestSimTrading*>(
+               &_RequestSimTrading_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    16;
+
+  friend void swap(RequestSimTrading& a, RequestSimTrading& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(RequestSimTrading* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline RequestSimTrading* New() const final {
+    return CreateMaybeMessage<RequestSimTrading>(nullptr);
+  }
+
+  RequestSimTrading* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<RequestSimTrading>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const RequestSimTrading& from);
+  void MergeFrom(const RequestSimTrading& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(RequestSimTrading* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "tradingpb.RequestSimTrading";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_tradingdb2_2eproto);
+    return ::descriptor_table_tradingdb2_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kBasicRequestFieldNumber = 1,
+    kParamsFieldNumber = 2,
+  };
+  // .tradingpb.BasicRequestData basicRequest = 1;
+  bool has_basicrequest() const;
+  private:
+  bool _internal_has_basicrequest() const;
+  public:
+  void clear_basicrequest();
+  const ::tradingpb::BasicRequestData& basicrequest() const;
+  ::tradingpb::BasicRequestData* release_basicrequest();
+  ::tradingpb::BasicRequestData* mutable_basicrequest();
+  void set_allocated_basicrequest(::tradingpb::BasicRequestData* basicrequest);
+  private:
+  const ::tradingpb::BasicRequestData& _internal_basicrequest() const;
+  ::tradingpb::BasicRequestData* _internal_mutable_basicrequest();
+  public:
+
+  // .tradingpb.SimTradingParams params = 2;
+  bool has_params() const;
+  private:
+  bool _internal_has_params() const;
+  public:
+  void clear_params();
+  const ::tradingpb::SimTradingParams& params() const;
+  ::tradingpb::SimTradingParams* release_params();
+  ::tradingpb::SimTradingParams* mutable_params();
+  void set_allocated_params(::tradingpb::SimTradingParams* params);
+  private:
+  const ::tradingpb::SimTradingParams& _internal_params() const;
+  ::tradingpb::SimTradingParams* _internal_mutable_params();
+  public:
+
+  // @@protoc_insertion_point(class_scope:tradingpb.RequestSimTrading)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::tradingpb::BasicRequestData* basicrequest_;
+  ::tradingpb::SimTradingParams* params_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_tradingdb2_2eproto;
+};
+// -------------------------------------------------------------------
+
+class ReplySimTrading :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tradingpb.ReplySimTrading) */ {
+ public:
+  ReplySimTrading();
+  virtual ~ReplySimTrading();
+
+  ReplySimTrading(const ReplySimTrading& from);
+  ReplySimTrading(ReplySimTrading&& from) noexcept
+    : ReplySimTrading() {
+    *this = ::std::move(from);
+  }
+
+  inline ReplySimTrading& operator=(const ReplySimTrading& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline ReplySimTrading& operator=(ReplySimTrading&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const ReplySimTrading& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const ReplySimTrading* internal_default_instance() {
+    return reinterpret_cast<const ReplySimTrading*>(
+               &_ReplySimTrading_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    17;
+
+  friend void swap(ReplySimTrading& a, ReplySimTrading& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(ReplySimTrading* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline ReplySimTrading* New() const final {
+    return CreateMaybeMessage<ReplySimTrading>(nullptr);
+  }
+
+  ReplySimTrading* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<ReplySimTrading>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const ReplySimTrading& from);
+  void MergeFrom(const ReplySimTrading& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(ReplySimTrading* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "tradingpb.ReplySimTrading";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_tradingdb2_2eproto);
+    return ::descriptor_table_tradingdb2_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kPnlFieldNumber = 1,
+  };
+  // repeated .tradingpb.PNLData pnl = 1;
+  int pnl_size() const;
+  private:
+  int _internal_pnl_size() const;
+  public:
+  void clear_pnl();
+  ::tradingpb::PNLData* mutable_pnl(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingpb::PNLData >*
+      mutable_pnl();
+  private:
+  const ::tradingpb::PNLData& _internal_pnl(int index) const;
+  ::tradingpb::PNLData* _internal_add_pnl();
+  public:
+  const ::tradingpb::PNLData& pnl(int index) const;
+  ::tradingpb::PNLData* add_pnl();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingpb::PNLData >&
+      pnl() const;
+
+  // @@protoc_insertion_point(class_scope:tradingpb.ReplySimTrading)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingpb::PNLData > pnl_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_tradingdb2_2eproto;
 };
@@ -6236,9 +6532,165 @@ inline void RequestGetSymbols::set_allocated_basicrequest(::tradingpb::BasicRequ
   // @@protoc_insertion_point(field_set_allocated:tradingpb.RequestGetSymbols.basicRequest)
 }
 
+// -------------------------------------------------------------------
+
+// RequestSimTrading
+
+// .tradingpb.BasicRequestData basicRequest = 1;
+inline bool RequestSimTrading::_internal_has_basicrequest() const {
+  return this != internal_default_instance() && basicrequest_ != nullptr;
+}
+inline bool RequestSimTrading::has_basicrequest() const {
+  return _internal_has_basicrequest();
+}
+inline const ::tradingpb::BasicRequestData& RequestSimTrading::_internal_basicrequest() const {
+  const ::tradingpb::BasicRequestData* p = basicrequest_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::tradingpb::BasicRequestData*>(
+      &::tradingpb::_BasicRequestData_default_instance_);
+}
+inline const ::tradingpb::BasicRequestData& RequestSimTrading::basicrequest() const {
+  // @@protoc_insertion_point(field_get:tradingpb.RequestSimTrading.basicRequest)
+  return _internal_basicrequest();
+}
+inline ::tradingpb::BasicRequestData* RequestSimTrading::release_basicrequest() {
+  // @@protoc_insertion_point(field_release:tradingpb.RequestSimTrading.basicRequest)
+  
+  ::tradingpb::BasicRequestData* temp = basicrequest_;
+  basicrequest_ = nullptr;
+  return temp;
+}
+inline ::tradingpb::BasicRequestData* RequestSimTrading::_internal_mutable_basicrequest() {
+  
+  if (basicrequest_ == nullptr) {
+    auto* p = CreateMaybeMessage<::tradingpb::BasicRequestData>(GetArenaNoVirtual());
+    basicrequest_ = p;
+  }
+  return basicrequest_;
+}
+inline ::tradingpb::BasicRequestData* RequestSimTrading::mutable_basicrequest() {
+  // @@protoc_insertion_point(field_mutable:tradingpb.RequestSimTrading.basicRequest)
+  return _internal_mutable_basicrequest();
+}
+inline void RequestSimTrading::set_allocated_basicrequest(::tradingpb::BasicRequestData* basicrequest) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(basicrequest_);
+  }
+  if (basicrequest) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    if (message_arena != submessage_arena) {
+      basicrequest = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, basicrequest, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  basicrequest_ = basicrequest;
+  // @@protoc_insertion_point(field_set_allocated:tradingpb.RequestSimTrading.basicRequest)
+}
+
+// .tradingpb.SimTradingParams params = 2;
+inline bool RequestSimTrading::_internal_has_params() const {
+  return this != internal_default_instance() && params_ != nullptr;
+}
+inline bool RequestSimTrading::has_params() const {
+  return _internal_has_params();
+}
+inline const ::tradingpb::SimTradingParams& RequestSimTrading::_internal_params() const {
+  const ::tradingpb::SimTradingParams* p = params_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::tradingpb::SimTradingParams*>(
+      &::tradingpb::_SimTradingParams_default_instance_);
+}
+inline const ::tradingpb::SimTradingParams& RequestSimTrading::params() const {
+  // @@protoc_insertion_point(field_get:tradingpb.RequestSimTrading.params)
+  return _internal_params();
+}
+inline ::tradingpb::SimTradingParams* RequestSimTrading::release_params() {
+  // @@protoc_insertion_point(field_release:tradingpb.RequestSimTrading.params)
+  
+  ::tradingpb::SimTradingParams* temp = params_;
+  params_ = nullptr;
+  return temp;
+}
+inline ::tradingpb::SimTradingParams* RequestSimTrading::_internal_mutable_params() {
+  
+  if (params_ == nullptr) {
+    auto* p = CreateMaybeMessage<::tradingpb::SimTradingParams>(GetArenaNoVirtual());
+    params_ = p;
+  }
+  return params_;
+}
+inline ::tradingpb::SimTradingParams* RequestSimTrading::mutable_params() {
+  // @@protoc_insertion_point(field_mutable:tradingpb.RequestSimTrading.params)
+  return _internal_mutable_params();
+}
+inline void RequestSimTrading::set_allocated_params(::tradingpb::SimTradingParams* params) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(params_);
+  }
+  if (params) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    if (message_arena != submessage_arena) {
+      params = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, params, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  params_ = params;
+  // @@protoc_insertion_point(field_set_allocated:tradingpb.RequestSimTrading.params)
+}
+
+// -------------------------------------------------------------------
+
+// ReplySimTrading
+
+// repeated .tradingpb.PNLData pnl = 1;
+inline int ReplySimTrading::_internal_pnl_size() const {
+  return pnl_.size();
+}
+inline int ReplySimTrading::pnl_size() const {
+  return _internal_pnl_size();
+}
+inline ::tradingpb::PNLData* ReplySimTrading::mutable_pnl(int index) {
+  // @@protoc_insertion_point(field_mutable:tradingpb.ReplySimTrading.pnl)
+  return pnl_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingpb::PNLData >*
+ReplySimTrading::mutable_pnl() {
+  // @@protoc_insertion_point(field_mutable_list:tradingpb.ReplySimTrading.pnl)
+  return &pnl_;
+}
+inline const ::tradingpb::PNLData& ReplySimTrading::_internal_pnl(int index) const {
+  return pnl_.Get(index);
+}
+inline const ::tradingpb::PNLData& ReplySimTrading::pnl(int index) const {
+  // @@protoc_insertion_point(field_get:tradingpb.ReplySimTrading.pnl)
+  return _internal_pnl(index);
+}
+inline ::tradingpb::PNLData* ReplySimTrading::_internal_add_pnl() {
+  return pnl_.Add();
+}
+inline ::tradingpb::PNLData* ReplySimTrading::add_pnl() {
+  // @@protoc_insertion_point(field_add:tradingpb.ReplySimTrading.pnl)
+  return _internal_add_pnl();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingpb::PNLData >&
+ReplySimTrading::pnl() const {
+  // @@protoc_insertion_point(field_list:tradingpb.ReplySimTrading.pnl)
+  return pnl_;
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

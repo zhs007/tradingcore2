@@ -87,7 +87,7 @@ void TradingNode2Impl::init(const Config& cfg) {
 
   auto pWallet = new tr2::Wallet(*exchange);
 
-  auto sts = request->startts();
+  auto sts = request->params().startts();
   if (sts <= 0) {
     sts = exchange->getFirstTimeStamp();
   }
