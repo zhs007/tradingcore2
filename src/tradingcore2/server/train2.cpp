@@ -110,7 +110,7 @@ class TrainService2Impl final
     auto res = response->mutable_train();
 
     auto mgr = ExchangeMgr::getSingleton();
-    auto exchange = mgr->getExchange(req.exchangename().c_str());
+    auto exchange = mgr->newExchange(req.exchangename().c_str());
     if (exchange == NULL) {
       setResponse_ErrorCode(response, tradingcore2pb::ERR_NOEXCHANGE);
 
@@ -119,6 +119,8 @@ class TrainService2Impl final
 
     auto datasize = exchange->getDataLength(req.assetsname().c_str());
     if (datasize <= 0) {
+      mgr->deleteExchange(exchange);
+
       setResponse_ErrorCode(response, tradingcore2pb::ERR_NOASSETS);
 
       return grpc::Status::OK;
@@ -154,10 +156,14 @@ class TrainService2Impl final
           si2.minval(), si2.maxval(), si2.cv0(), si2.cv0off(), onend);
 
     } else {
+      mgr->deleteExchange(exchange);
+
       setResponse_ErrorCode(response, tradingcore2pb::ERR_NOTRAINPARAM);
 
       return grpc::Status::OK;
     }
+
+    mgr->deleteExchange(exchange);
 
     return grpc::Status::OK;
   }

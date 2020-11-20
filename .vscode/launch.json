@@ -32,7 +32,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/build/src/server/tc2serv",
-            "args": ["../cfg/config.yaml.default"],
+            "args": ["../cfg/config.yaml"],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}/build",
             "environment": [],

@@ -32,9 +32,9 @@ typedef std::function<void(::grpc::Status, const ::tradingpb::RequestCalcPNL&,
 
 class NodeClient2 {
  public:
-  explicit NodeClient2(std::shared_ptr<grpc::Channel> channel,
-                       const char* token)
-      : m_stub(::tradingpb::TradingNode2::NewStub(channel)),
+  explicit NodeClient2(const char* host, const char* token)
+      : m_stub(::tradingpb::TradingNode2::NewStub(
+            grpc::CreateChannel(host, grpc::InsecureChannelCredentials()))),
         m_token(token),
         m_pAsyncThread(NULL),
         m_lastTasks(0) {}

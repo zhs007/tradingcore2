@@ -5,12 +5,14 @@
 class WalletTest : public testing::Test {
  protected:
   virtual void SetUp() override {
-    cnfund = tr2::ExchangeMgr::getSingleton()->getExchange("cnfund");
+    cnfund = tr2::ExchangeMgr::getSingleton()->newExchange("cnfund");
     // cnfund.loadFundValue("../data/cnfund/110022.csv");
     // cnfund.buildTimeStampList();
   }
 
-  virtual void TearDown() override {}
+  virtual void TearDown() override {
+    tr2::ExchangeMgr::getSingleton()->deleteExchange(cnfund);
+  }
 
   tr2::Exchange* cnfund;
 };

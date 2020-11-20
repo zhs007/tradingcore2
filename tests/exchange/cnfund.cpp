@@ -6,12 +6,14 @@ class CNFundTest : public testing::Test {
  protected:
   virtual void SetUp() override {
     cnfund =
-        (tr2::CNFundExchange*)tr2::ExchangeMgr::getSingleton()->getExchange(
+        (tr2::CNFundExchange*)tr2::ExchangeMgr::getSingleton()->newExchange(
             "cnfund");
     // cnfund.loadFundValue("../data/cnfund/110022.csv");
   }
 
-  virtual void TearDown() override {}
+  virtual void TearDown() override {
+    tr2::ExchangeMgr::getSingleton()->deleteExchange(cnfund);
+  }
 
   tr2::CNFundExchange* cnfund;
 };

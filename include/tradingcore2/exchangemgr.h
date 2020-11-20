@@ -6,6 +6,8 @@
 
 #include <functional>
 #include <map>
+#include <mutex>
+#include <set>
 #include <string>
 
 CR2BEGIN
@@ -17,15 +19,14 @@ class ExchangeMgr {
  public:
   typedef std::pair<std::string, FuncNewExchange> PairFuncNewExchange;
   typedef std::map<std::string, FuncNewExchange> MapFuncNewExchange;
-  typedef std::pair<std::string, Exchange*> PairExchange;
-  typedef std::map<std::string, Exchange*> MapExchange;
+  typedef std::set<Exchange*> SetExchange;
 
  public:
   static ExchangeMgr* getSingleton();
 
  protected:
-  ExchangeMgr() {}
-  ~ExchangeMgr() {}
+  ExchangeMgr() : m_pCfg(NULL) {}
+  ~ExchangeMgr() { this->releaseAllExchanges(); }
 
  public:
   void init(const Config& cfg);
@@ -33,16 +34,20 @@ class ExchangeMgr {
   void regNewExchange(const char* name, FuncNewExchange func);
 
  public:
-  Exchange* getExchange(const char* name);
+  Exchange* newExchange(const char* name);
+
+  void deleteExchange(Exchange* pExchange);
+
+  void releaseAllExchanges();
 
  protected:
   Exchange* newExchange(const char* name, const Config& cfg);
 
-  void addExchange(Exchange* pExchange);
-
  protected:
+  std::mutex m_mtx;
   MapFuncNewExchange m_mapNewFunc;
-  MapExchange m_mapExchange;
+  const Config* m_pCfg;
+  SetExchange m_exchanges;
 };
 
 CR2END

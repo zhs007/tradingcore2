@@ -78,11 +78,19 @@ void TradingNode2Impl::init(const Config& cfg) {
   LOG(INFO) << "_calcPNL...";
 
   if (!isValidTokens(request, response, *m_pCfg)) {
+    LOG(ERROR) << "_calcPNL:isValidTokens " << request->basicrequest().token();
+
     return grpc::Status(grpc::StatusCode::INVALID_ARGUMENT, "invalid token");
   }
 
   auto exchange =
-      tr2::ExchangeMgr::getSingleton()->getExchange(TrDB2CNFundsTypeName);
+      tr2::ExchangeMgr::getSingleton()->newExchange(TrDB2CNFundsTypeName);
+  if (exchange == NULL) {
+    LOG(ERROR) << "_calcPNL:getExchange " << TrDB2CNFundsTypeName;
+
+    return grpc::Status(grpc::StatusCode::UNKNOWN,
+                        "don't get exchange for TrDB2CNFundsTypeName");
+  }
 
   exchange->loadData("260104", 0, -1);
 
@@ -105,6 +113,8 @@ void TradingNode2Impl::init(const Config& cfg) {
 
   auto pPNLData = response->add_pnl();
   pPNLData->CopyFrom(pnl2.m_data);
+
+  tr2::ExchangeMgr::getSingleton()->deleteExchange(exchange);
 
   return grpc::Status::OK;
 }
