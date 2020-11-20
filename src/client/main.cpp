@@ -16,9 +16,18 @@ void calcPNL(const tr2::Config& cfg) {
   asset0->set_market("cnfunds");
   asset0->set_code("001631");
 
-  client.clacPNL(params, onCalcPNL);
+  ::tradingpb::ReplyCalcPNL res;
+  auto status = client.clacPNL(params, res);
 
-  client.waitStop();
+  // client.waitStop();
+
+  // ::tradingpb::ReplyServerInfo res;
+  // auto status = client.getServerInfo(res);
+  LOG(INFO) << "calcPNL " << status.error_code();
+
+  if (status.ok()) {
+    LOG(INFO) << res.DebugString();
+  }
 
   // auto cnfund = tr2::ExchangeMgr::getSingleton()->getExchange("cnfund");
   // tr2::startTrainSingleIndicator2ExPool(cfg, *cnfund, "110022", "rsi",

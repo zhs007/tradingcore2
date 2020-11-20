@@ -92,7 +92,12 @@ void TradingNode2Impl::init(const Config& cfg) {
                         "don't get exchange for TrDB2CNFundsTypeName");
   }
 
-  exchange->loadData("260104", 0, -1);
+  for (auto i = 0; i < request->params().assets_size(); ++i) {
+    auto ca = request->params().assets(i);
+    exchange->loadData(ca.code().c_str(), 0, -1);
+  }
+
+  exchange->rebuildTimeStampList();
 
   auto pWallet = new tr2::Wallet(*exchange);
 
@@ -104,7 +109,11 @@ void TradingNode2Impl::init(const Config& cfg) {
   pWallet->deposit(10000, sts);
 
   tr2::StrategyBAH* bah = new tr2::StrategyBAH(*pWallet, *exchange);
-  bah->init("260104", 10000);
+  for (auto i = 0; i < request->params().assets_size(); ++i) {
+    auto ca = request->params().assets(i);
+    bah->init(ca.code().c_str(), 10000);
+    // exchange->loadData(ca.code().c_str(), 0, -1);
+  }
 
   bah->simulateTrading();
 
@@ -114,7 +123,10 @@ void TradingNode2Impl::init(const Config& cfg) {
   auto pPNLData = response->add_pnl();
   pPNLData->CopyFrom(pnl2.m_data);
 
+  delete pWallet;
   tr2::ExchangeMgr::getSingleton()->deleteExchange(exchange);
+
+  LOG(INFO) << "TradingNode2Impl::_calcPNL end.";
 
   return grpc::Status::OK;
 }

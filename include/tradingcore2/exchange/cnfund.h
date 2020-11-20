@@ -84,6 +84,8 @@ class CNFundExchange final : public Exchange {
 
   virtual const char* getMarketName() const override { return "cnfund"; }
 
+  virtual void rebuildTimeStampList() override;
+
  public:
   const CNFundValue* getFundValue(const char* assetsName) const;
 
@@ -92,8 +94,6 @@ class CNFundExchange final : public Exchange {
   void releaseFundValue(const char* assetsName);
 
   void setFundValue(const char* assetsName, CNFundValue* fv);
-
-  void buildTimeStampList();
 
   void insertTimeStamp(TimeStamp ts);
 

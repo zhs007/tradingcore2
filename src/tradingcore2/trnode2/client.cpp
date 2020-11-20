@@ -65,6 +65,8 @@ void NodeClient2::_clacPNL(const ::tradingpb::SimTradingParams* pParams,
   ::tradingpb::ReplyCalcPNL res;
   auto reply = this->m_stub->calcPNL(&ctx, req, &res);
   if (onCalcPNL != NULL) {
+    LOG(INFO) << "NodeClient2::_clacPNL " << reply.error_code();
+
     onCalcPNL(reply, req, res);
   }
 
@@ -77,6 +79,32 @@ void NodeClient2::waitStop() {
   while (this->m_lastTasks > 0) {
     sleep(1);
   }
+}
+
+// getServerInfo
+::grpc::Status NodeClient2::getServerInfo(::tradingpb::ReplyServerInfo& res) {
+  ::tradingpb::RequestServerInfo req;
+
+  auto basicReq = req.mutable_basicrequest();
+  basicReq->set_token(this->m_token.c_str());
+
+  grpc::ClientContext ctx;
+  return this->m_stub->getServerInfo(&ctx, req, &res);
+}
+
+// calcPNL
+::grpc::Status NodeClient2::clacPNL(const ::tradingpb::SimTradingParams& params,
+                                    ::tradingpb::ReplyCalcPNL& res) {
+  ::tradingpb::RequestCalcPNL req;
+
+  auto basicReq = req.mutable_basicrequest();
+  basicReq->set_token(this->m_token.c_str());
+
+  auto p = req.mutable_params();
+  p->CopyFrom(params);
+
+  grpc::ClientContext ctx;
+  return this->m_stub->calcPNL(&ctx, req, &res);
 }
 
 CR2END

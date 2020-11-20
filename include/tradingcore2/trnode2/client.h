@@ -42,9 +42,16 @@ class NodeClient2 {
  public:
   // getServerInfo
   void getServerInfo(FuncOnGetServerInfo onGetServerInfo);
+  // getServerInfo
+  ::grpc::Status getServerInfo(::tradingpb::ReplyServerInfo& res);
+
   // calcPNL
   void clacPNL(const ::tradingpb::SimTradingParams& params,
                FuncOnCalcPNL onCalcPNL);
+
+  // calcPNL
+  ::grpc::Status clacPNL(const ::tradingpb::SimTradingParams& params,
+                         ::tradingpb::ReplyCalcPNL& res);
 
  public:
   void start();
