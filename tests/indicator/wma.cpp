@@ -5,7 +5,7 @@
 class WMATest : public testing::Test {
  protected:
   virtual void SetUp() override {
-    cnfund = tr2::ExchangeMgr::getSingleton()->getExchange("cnfund");
+    cnfund = tr2::ExchangeMgr::getSingleton()->newExchange("cnfund");
   }
 
   virtual void TearDown() override {}

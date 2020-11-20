@@ -71,17 +71,9 @@ class TrDB2CNFundsExchange final : public Exchange {
 
   virtual const char* getMarketName() const override { return "cnfunds"; }
 
+  virtual void rebuildTimeStampList() override;
+
  public:
-  //   const CNFundValue* getFundValue(const char* assetsName) const;
-
-  //   void loadFundValue(const char* fn);
-
-  // void releaseFundValue(const char* assetsName);
-
-  //   void setFundValue(const char* assetsName, CNFundValue* fv);
-
-  void buildTimeStampList();
-
   void foreachCandlesTimeStamp(const tradingpb::Candles* candles);
 
   void insertTimeStamp(TimeStamp ts);

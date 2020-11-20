@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
-#include <stdio.h>
 #include <math.h>
+#include <stdio.h>
 #include <tradingcore2/exchangemgr.h>
 #include <tradingcore2/pnl.h>
 #include <tradingcore2/utils.h>
@@ -67,7 +67,7 @@ TEST(PNL, pnl_maxdrawdown3) {
 
 TEST(PNL, pnl_maxupdown) {
   tr2::PNL pnl;
-  auto cnfund = tr2::ExchangeMgr::getSingleton()->getExchange("cnfund");
+  auto cnfund = tr2::ExchangeMgr::getSingleton()->newExchange("cnfund");
 
   for (auto i = 0; i < cnfund->getDataLength("110022"); i++) {
     tr2::CandleData cd;
@@ -100,7 +100,7 @@ TEST(PNL, pnl_maxupdown) {
 
 TEST(PNL, pnl_variance) {
   tr2::PNL pnl;
-  auto cnfund = tr2::ExchangeMgr::getSingleton()->getExchange("cnfund");
+  auto cnfund = tr2::ExchangeMgr::getSingleton()->newExchange("cnfund");
 
   for (auto i = 0; i < cnfund->getDataLength("110022"); i++) {
     tr2::CandleData cd;

@@ -57,7 +57,7 @@ void calcAllFunds(std::string fn, std::string strStart, std::string strEnd,
                   tr2::Config& cfg) {
   auto mgr = tr2::ExchangeMgr::getSingleton();
   // mgr->init(cfg);
-  auto cnfund = mgr->getExchange("cnfund");
+  auto cnfund = mgr->newExchange("cnfund");
 
   std::vector<trData> lst;
 
@@ -229,7 +229,7 @@ void calcAllManagers(std::string fn, tr2::Config& cfg) {
 
   auto mgr = tr2::ExchangeMgr::getSingleton();
   // mgr->init(cfg);
-  auto cnfund = mgr->getExchange("cnfund");
+  auto cnfund = mgr->newExchange("cnfund");
 
   std::vector<trData> lst;
 
@@ -376,6 +376,7 @@ void calcAllManagers(std::string fn, tr2::Config& cfg) {
 }
 
 int main(int argc, char* argv[]) {
+  putenv("TZ=UTC");
   tr2::LogHelper log(argv[0]);
 
   printf("trdb2client starting...\n");

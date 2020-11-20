@@ -72,8 +72,14 @@ bool getCandles(tradingpb::Candles &candles, const char *host,
   grpc::Status status = reader->Finish();
 
   if (status.ok()) {
+    LOG(INFO) << "getCandles " << market << "." << symbol << " ok. "
+              << candles.candles_size();
+
     return true;
   }
+
+  LOG(ERROR) << "getCandles " << market << "." << symbol << " failed. "
+             << status.error_message();
 
   return false;
 }

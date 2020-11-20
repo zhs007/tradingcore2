@@ -37,6 +37,7 @@
 #include <tradingcore2/trdb2/client.h>
 #include <tradingcore2/trdb2/datamgr.h>
 #include <tradingcore2/trnode2/serv.h>
+#include <tradingcore2/trnode2/client.h>
 #include <tradingcore2/utils.h>
 #include <tradingcore2/wallet.h>
 

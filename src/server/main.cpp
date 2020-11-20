@@ -8,6 +8,7 @@ void startServ(const tr2::Config& cfg) {
 }
 
 int main(int argc, char* argv[]) {
+  putenv("TZ=UTC");
   tr2::LogHelper log(argv[0]);
 
   LOG(INFO) << "tr2serv (" << tr2::getVersion() << ") starting...";

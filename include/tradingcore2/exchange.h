@@ -65,6 +65,8 @@ class Exchange {
 
   virtual const char* getMarketName() const = 0;
 
+  virtual void rebuildTimeStampList() = 0;
+
  protected:
 };
 
