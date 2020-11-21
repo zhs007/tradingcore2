@@ -123,6 +123,10 @@ void TradingNode2Impl::init(const Config& cfg) {
   auto pPNLData = response->add_pnl();
   pPNLData->CopyFrom(pnl2.m_data);
 
+  auto ni = response->mutable_nodeinfo();
+  ni->set_curtasks(this->m_curTaskNums - 1);
+  ni->set_maxtasks(this->m_maxTaskNums);
+
   delete pWallet;
   tr2::ExchangeMgr::getSingleton()->deleteExchange(exchange);
 
