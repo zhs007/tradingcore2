@@ -70,8 +70,8 @@ bool TrDB2CNFundsExchange::getDataWithTimestamp(const char* assetsName,
                                                 CandleData& data) const {
   auto c = this->m_mgrData.getCandle("cnfunds", assetsName, ts);
   if (c == NULL) {
-    LOG(INFO) << "TrDB2CNFundsExchange:getDataWithTimestamp " << assetsName
-              << " " << ts;
+    // LOG(INFO) << "TrDB2CNFundsExchange:getDataWithTimestamp " << assetsName
+    //           << " " << ts;
 
     return false;
   }

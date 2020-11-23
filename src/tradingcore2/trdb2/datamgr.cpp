@@ -80,6 +80,8 @@ const tradingpb::Candle *TrDB2DataMgr::getCandle(const char *market,
 
 void TrDB2DataMgr::foreachCandles(FuncOnCandles onCandles) {
   for (auto it = this->m_map.begin(); it != this->m_map.end(); ++it) {
+    LOG(INFO) << "TrDB2DataMgr::foreachCandles " << it->first;
+
     onCandles(it->second);
   }
 }

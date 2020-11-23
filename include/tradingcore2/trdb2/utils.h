@@ -8,8 +8,7 @@
 
 CR2BEGIN
 
-const tradingpb::Candle *getCandle(const tradingpb::Candles *candles,
-                                   int64_t ts);
+const tradingpb::Candle *getCandle(tradingpb::Candles *candles, int64_t ts);
 
 CR2END
 
