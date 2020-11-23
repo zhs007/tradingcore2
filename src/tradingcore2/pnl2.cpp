@@ -84,41 +84,6 @@ void PNL2::deposit(Money money, time_t ts) {
   ctrl->set_type(::tradingpb::CTRL_DEPOSIT);
 }
 
-// void PNL2::addTimestamp(time_t ts) {}
-
-// void PNL2::initInvest(const Exchange& exchange, Money invest, Money
-// handMoney,
-//                       TimeStamp tsStart, TimeStamp tsEnd) {
-//   auto f = std::bind(&PNL2::onInitInvestTimeStamp, this,
-//   std::placeholders::_1,
-//                      std::placeholders::_2, invest, handMoney);
-//   exchange.forEachTimeStamp(f, tsStart, tsEnd);
-// }
-
-// void PNL2::onInitInvestTimeStamp(const Exchange& exchange, TimeStamp ts,
-//                                  Money invest, Money handMoney) {
-//   // for (auto it = this->m_lst.begin(); it != this->m_lst.end(); ++it) {
-//   //   if (ts == it->ts) {
-//   //     it->invest = invest;
-//   //     it->curMoney = handMoney;
-
-//   //     return;
-//   //   } else if (ts < it->ts) {
-//   //     Node n;
-
-//   //     n.ts = ts;
-//   //     n.invest = invest;
-//   //     n.curMoney = handMoney;
-
-//   //     this->m_lst.insert(it, n);
-
-//   //     return;
-//   //   }
-//   // }
-
-//   // this->pushData(ts, invest, handMoney);
-// }
-
 void PNL2::onInitTimeStamp(const Exchange& exchange, TimeStamp ts, int index) {
   insTimestamp(this->m_data.mutable_total(), ts);
 }
@@ -217,8 +182,12 @@ void PNL2::setTotalPNLAssetData(const Exchange* pExchange,
     auto c = this->getAssetCost(*pExchange, it->c_str(), pVal->ts());
     pVal->set_cost(c + pVal->cost());
 
+    LOG(INFO) << "volume " << v;
+
     CandleData cd;
     if (v > 0 && pExchange->getDataWithTimestamp(it->c_str(), pVal->ts(), cd)) {
+      LOG(INFO) << "close " << cd.close;
+
       pVal->set_value(cd.close * v + pVal->value());
     }
   }
