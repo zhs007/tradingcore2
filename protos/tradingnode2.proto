@@ -22,6 +22,7 @@ message RequestCalcPNL {
 message ReplyCalcPNL{
     TradingNodeInfo nodeInfo = 1;
     repeated PNLData pnl = 2;
+    int64 runSeconds = 3;
 }
 
 // TradingNode2 - TradingNode2 service

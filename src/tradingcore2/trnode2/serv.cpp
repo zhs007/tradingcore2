@@ -70,7 +70,7 @@ void TradingNode2Impl::init(const Config& cfg) {
 // calcPNL - calcPNL
 ::grpc::Status TradingNode2Impl::_calcPNL(
     ::grpc::ServerContext* context, const ::tradingpb::RequestCalcPNL* request,
-    ::tradingpb::ReplyCalcPNL* response) {
+    ::tradingpb::ReplyCalcPNL* response, time_t ct) {
   assert(context != NULL);
   assert(request != NULL);
   assert(response != NULL);
@@ -132,6 +132,10 @@ void TradingNode2Impl::init(const Config& cfg) {
 
   LOG(INFO) << "TradingNode2Impl::_calcPNL end.";
 
+  auto et = std::time(0);
+
+  response->set_runseconds(et - ct);
+
   return grpc::Status::OK;
 }
 
@@ -142,6 +146,8 @@ void TradingNode2Impl::init(const Config& cfg) {
   assert(context != NULL);
   assert(request != NULL);
   assert(response != NULL);
+
+  auto ct = std::time(0);
 
   LOG(INFO) << "calcPNL...";
 
@@ -158,7 +164,7 @@ void TradingNode2Impl::init(const Config& cfg) {
 
   AutoIncDec<std::atomic<int>> aid(&m_curTaskNums);
 
-  return _calcPNL(context, request, response);
+  return _calcPNL(context, request, response, ct);
 }
 
 void NodeServer2::run() {

@@ -43,7 +43,7 @@ class TradingNode2Impl final : public tradingpb::TradingNode2::Service {
   // calcPNL - calcPNL
   ::grpc::Status _calcPNL(::grpc::ServerContext* context,
                           const ::tradingpb::RequestCalcPNL* request,
-                          ::tradingpb::ReplyCalcPNL* response);
+                          ::tradingpb::ReplyCalcPNL* response, time_t ct);
 
  private:
   int m_maxTaskNums;
