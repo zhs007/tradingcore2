@@ -182,11 +182,11 @@ void PNL2::setTotalPNLAssetData(const Exchange* pExchange,
     auto c = this->getAssetCost(*pExchange, it->c_str(), pVal->ts());
     pVal->set_cost(c + pVal->cost());
 
-    LOG(INFO) << "volume " << v;
+    // LOG(INFO) << "volume " << v;
 
     CandleData cd;
     if (v > 0 && pExchange->getDataWithTimestamp(it->c_str(), pVal->ts(), cd)) {
-      LOG(INFO) << "close " << cd.close;
+      // LOG(INFO) << "close " << cd.close;
 
       pVal->set_value(cd.close * v + pVal->value());
     }

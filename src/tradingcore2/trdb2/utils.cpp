@@ -14,8 +14,7 @@
 
 CR2BEGIN
 
-const tradingpb::Candle *getCandle(const tradingpb::Candles *candles,
-                                   int64_t ts) {
+const tradingpb::Candle *getCandle(tradingpb::Candles *candles, int64_t ts) {
   if (candles->candles_size() <= 0) {
     return NULL;
   }
@@ -27,16 +26,16 @@ const tradingpb::Candle *getCandle(const tradingpb::Candles *candles,
   }
 
   for (auto i = 1; i < candles->candles_size(); ++i) {
-    auto cc = candles->candles(i);
-    if (ts == cc.ts()) {
-      return &cc;
+    auto cc = candles->mutable_candles(i);
+    if (ts == cc->ts()) {
+      return cc;
     }
 
-    if (ts < cc.ts()) {
+    if (ts < cc->ts()) {
       return pCandle;
     }
 
-    pCandle = &cc;
+    pCandle = cc;
   }
 
   return pCandle;
