@@ -606,6 +606,7 @@ class ReplyCalcPNL :
   enum : int {
     kPnlFieldNumber = 2,
     kNodeInfoFieldNumber = 1,
+    kRunSecondsFieldNumber = 3,
   };
   // repeated .tradingpb.PNLData pnl = 2;
   int pnl_size() const;
@@ -640,6 +641,15 @@ class ReplyCalcPNL :
   ::tradingpb::TradingNodeInfo* _internal_mutable_nodeinfo();
   public:
 
+  // int64 runSeconds = 3;
+  void clear_runseconds();
+  ::PROTOBUF_NAMESPACE_ID::int64 runseconds() const;
+  void set_runseconds(::PROTOBUF_NAMESPACE_ID::int64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int64 _internal_runseconds() const;
+  void _internal_set_runseconds(::PROTOBUF_NAMESPACE_ID::int64 value);
+  public:
+
   // @@protoc_insertion_point(class_scope:tradingpb.ReplyCalcPNL)
  private:
   class _Internal;
@@ -647,6 +657,7 @@ class ReplyCalcPNL :
   ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingpb::PNLData > pnl_;
   ::tradingpb::TradingNodeInfo* nodeinfo_;
+  ::PROTOBUF_NAMESPACE_ID::int64 runseconds_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_tradingnode2_2eproto;
 };
@@ -977,6 +988,26 @@ inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingpb::PNLData >&
 ReplyCalcPNL::pnl() const {
   // @@protoc_insertion_point(field_list:tradingpb.ReplyCalcPNL.pnl)
   return pnl_;
+}
+
+// int64 runSeconds = 3;
+inline void ReplyCalcPNL::clear_runseconds() {
+  runseconds_ = PROTOBUF_LONGLONG(0);
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 ReplyCalcPNL::_internal_runseconds() const {
+  return runseconds_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 ReplyCalcPNL::runseconds() const {
+  // @@protoc_insertion_point(field_get:tradingpb.ReplyCalcPNL.runSeconds)
+  return _internal_runseconds();
+}
+inline void ReplyCalcPNL::_internal_set_runseconds(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  
+  runseconds_ = value;
+}
+inline void ReplyCalcPNL::set_runseconds(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  _internal_set_runseconds(value);
+  // @@protoc_insertion_point(field_set:tradingpb.ReplyCalcPNL.runSeconds)
 }
 
 #ifdef __GNUC__

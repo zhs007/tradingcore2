@@ -129,6 +129,7 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_tradingnode2_2eproto::offsets[
   ~0u,  // no _weak_field_map_
   PROTOBUF_FIELD_OFFSET(::tradingpb::ReplyCalcPNL, nodeinfo_),
   PROTOBUF_FIELD_OFFSET(::tradingpb::ReplyCalcPNL, pnl_),
+  PROTOBUF_FIELD_OFFSET(::tradingpb::ReplyCalcPNL, runseconds_),
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, sizeof(::tradingpb::RequestServerInfo)},
@@ -152,15 +153,15 @@ const char descriptor_table_protodef_tradingnode2_2eproto[] PROTOBUF_SECTION_VAR
   "radingpb.TradingNodeInfo\"p\n\016RequestCalcP"
   "NL\0221\n\014basicRequest\030\001 \001(\0132\033.tradingpb.Bas"
   "icRequestData\022+\n\006params\030\002 \001(\0132\033.tradingp"
-  "b.SimTradingParams\"]\n\014ReplyCalcPNL\022,\n\010no"
+  "b.SimTradingParams\"q\n\014ReplyCalcPNL\022,\n\010no"
   "deInfo\030\001 \001(\0132\032.tradingpb.TradingNodeInfo"
-  "\022\037\n\003pnl\030\002 \003(\0132\022.tradingpb.PNLData2\234\001\n\014Tr"
-  "adingNode2\022K\n\rgetServerInfo\022\034.tradingpb."
-  "RequestServerInfo\032\032.tradingpb.ReplyServe"
-  "rInfo\"\000\022\?\n\007calcPNL\022\031.tradingpb.RequestCa"
-  "lcPNL\032\027.tradingpb.ReplyCalcPNL\"\000B(Z&gith"
-  "ub.com/zhs007/tradingdb2/tradingpbb\006prot"
-  "o3"
+  "\022\037\n\003pnl\030\002 \003(\0132\022.tradingpb.PNLData\022\022\n\nrun"
+  "Seconds\030\003 \001(\0032\234\001\n\014TradingNode2\022K\n\rgetSer"
+  "verInfo\022\034.tradingpb.RequestServerInfo\032\032."
+  "tradingpb.ReplyServerInfo\"\000\022\?\n\007calcPNL\022\031"
+  ".tradingpb.RequestCalcPNL\032\027.tradingpb.Re"
+  "plyCalcPNL\"\000B(Z&github.com/zhs007/tradin"
+  "gdb2/tradingpbb\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_tradingnode2_2eproto_deps[1] = {
   &::descriptor_table_trading2_2eproto,
@@ -174,7 +175,7 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_tra
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_tradingnode2_2eproto_once;
 static bool descriptor_table_tradingnode2_2eproto_initialized = false;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_tradingnode2_2eproto = {
-  &descriptor_table_tradingnode2_2eproto_initialized, descriptor_table_protodef_tradingnode2_2eproto, "tradingnode2.proto", 602,
+  &descriptor_table_tradingnode2_2eproto_initialized, descriptor_table_protodef_tradingnode2_2eproto, "tradingnode2.proto", 622,
   &descriptor_table_tradingnode2_2eproto_once, descriptor_table_tradingnode2_2eproto_sccs, descriptor_table_tradingnode2_2eproto_deps, 4, 1,
   schemas, file_default_instances, TableStruct_tradingnode2_2eproto::offsets,
   file_level_metadata_tradingnode2_2eproto, 4, file_level_enum_descriptors_tradingnode2_2eproto, file_level_service_descriptors_tradingnode2_2eproto,
@@ -904,12 +905,15 @@ ReplyCalcPNL::ReplyCalcPNL(const ReplyCalcPNL& from)
   } else {
     nodeinfo_ = nullptr;
   }
+  runseconds_ = from.runseconds_;
   // @@protoc_insertion_point(copy_constructor:tradingpb.ReplyCalcPNL)
 }
 
 void ReplyCalcPNL::SharedCtor() {
   ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_ReplyCalcPNL_tradingnode2_2eproto.base);
-  nodeinfo_ = nullptr;
+  ::memset(&nodeinfo_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&runseconds_) -
+      reinterpret_cast<char*>(&nodeinfo_)) + sizeof(runseconds_));
 }
 
 ReplyCalcPNL::~ReplyCalcPNL() {
@@ -941,6 +945,7 @@ void ReplyCalcPNL::Clear() {
     delete nodeinfo_;
   }
   nodeinfo_ = nullptr;
+  runseconds_ = PROTOBUF_LONGLONG(0);
   _internal_metadata_.Clear();
 }
 
@@ -968,6 +973,13 @@ const char* ReplyCalcPNL::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_I
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<18>(ptr));
+        } else goto handle_unusual;
+        continue;
+      // int64 runSeconds = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 24)) {
+          runseconds_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
         } else goto handle_unusual;
         continue;
       default: {
@@ -1012,6 +1024,12 @@ failure:
       InternalWriteMessage(2, this->_internal_pnl(i), target, stream);
   }
 
+  // int64 runSeconds = 3;
+  if (this->runseconds() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt64ToArray(3, this->_internal_runseconds(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields(), target, stream);
@@ -1040,6 +1058,13 @@ size_t ReplyCalcPNL::ByteSizeLong() const {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
         *nodeinfo_);
+  }
+
+  // int64 runSeconds = 3;
+  if (this->runseconds() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int64Size(
+        this->_internal_runseconds());
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -1077,6 +1102,9 @@ void ReplyCalcPNL::MergeFrom(const ReplyCalcPNL& from) {
   if (from.has_nodeinfo()) {
     _internal_mutable_nodeinfo()->::tradingpb::TradingNodeInfo::MergeFrom(from._internal_nodeinfo());
   }
+  if (from.runseconds() != 0) {
+    _internal_set_runseconds(from._internal_runseconds());
+  }
 }
 
 void ReplyCalcPNL::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
@@ -1102,6 +1130,7 @@ void ReplyCalcPNL::InternalSwap(ReplyCalcPNL* other) {
   _internal_metadata_.Swap(&other->_internal_metadata_);
   pnl_.InternalSwap(&other->pnl_);
   swap(nodeinfo_, other->nodeinfo_);
+  swap(runseconds_, other->runseconds_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata ReplyCalcPNL::GetMetadata() const {
