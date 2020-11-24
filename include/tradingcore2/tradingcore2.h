@@ -30,14 +30,15 @@
 #include <tradingcore2/server/train2.h>
 #include <tradingcore2/spinlock.h>
 #include <tradingcore2/strategy.h>
+#include <tradingcore2/strategy/aip.h>
 #include <tradingcore2/strategy/buyandhold.h>
 #include <tradingcore2/strategy/singleindicator.h>
 #include <tradingcore2/trade.h>
 #include <tradingcore2/train.h>
 #include <tradingcore2/trdb2/client.h>
 #include <tradingcore2/trdb2/datamgr.h>
-#include <tradingcore2/trnode2/serv.h>
 #include <tradingcore2/trnode2/client.h>
+#include <tradingcore2/trnode2/serv.h>
 #include <tradingcore2/utils.h>
 #include <tradingcore2/wallet.h>
 

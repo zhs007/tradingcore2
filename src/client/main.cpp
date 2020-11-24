@@ -16,6 +16,15 @@ void calcPNL(const tr2::Config& cfg) {
   asset0->set_market("cnfunds");
   asset0->set_code("001631");
 
+  auto strategy0 = params.add_strategies();
+  strategy0->set_name("aip");
+  auto asset1 = strategy0->mutable_asset();
+  asset1->set_market("cnfunds");
+  asset1->set_code("001631");
+  auto buy0 = strategy0->add_buy();
+  buy0->set_indicator("weekday");
+  buy0->add_vals(3);
+
   ::tradingpb::ReplyCalcPNL res;
   auto status = client.clacPNL(params, res);
 
