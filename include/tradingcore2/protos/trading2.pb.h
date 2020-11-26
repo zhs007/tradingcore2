@@ -48,7 +48,7 @@ struct TableStruct_trading2_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxillaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[12]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[16]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -62,6 +62,9 @@ extern AssetDefaultTypeInternal _Asset_default_instance_;
 class BasicRequestData;
 class BasicRequestDataDefaultTypeInternal;
 extern BasicRequestDataDefaultTypeInternal _BasicRequestData_default_instance_;
+class BuyParams;
+class BuyParamsDefaultTypeInternal;
+extern BuyParamsDefaultTypeInternal _BuyParams_default_instance_;
 class CtrlCondition;
 class CtrlConditionDefaultTypeInternal;
 extern CtrlConditionDefaultTypeInternal _CtrlCondition_default_instance_;
@@ -77,12 +80,21 @@ extern PNLDataDefaultTypeInternal _PNLData_default_instance_;
 class PNLDataValue;
 class PNLDataValueDefaultTypeInternal;
 extern PNLDataValueDefaultTypeInternal _PNLDataValue_default_instance_;
+class SellParams;
+class SellParamsDefaultTypeInternal;
+extern SellParamsDefaultTypeInternal _SellParams_default_instance_;
 class SimTradingParams;
 class SimTradingParamsDefaultTypeInternal;
 extern SimTradingParamsDefaultTypeInternal _SimTradingParams_default_instance_;
+class StopLossParams;
+class StopLossParamsDefaultTypeInternal;
+extern StopLossParamsDefaultTypeInternal _StopLossParams_default_instance_;
 class Strategy;
 class StrategyDefaultTypeInternal;
 extern StrategyDefaultTypeInternal _Strategy_default_instance_;
+class TakeProfitParams;
+class TakeProfitParamsDefaultTypeInternal;
+extern TakeProfitParamsDefaultTypeInternal _TakeProfitParams_default_instance_;
 class TradingNodeInfo;
 class TradingNodeInfoDefaultTypeInternal;
 extern TradingNodeInfoDefaultTypeInternal _TradingNodeInfo_default_instance_;
@@ -96,13 +108,17 @@ extern WalletAssetDefaultTypeInternal _WalletAsset_default_instance_;
 PROTOBUF_NAMESPACE_OPEN
 template<> ::tradingpb::Asset* Arena::CreateMaybeMessage<::tradingpb::Asset>(Arena*);
 template<> ::tradingpb::BasicRequestData* Arena::CreateMaybeMessage<::tradingpb::BasicRequestData>(Arena*);
+template<> ::tradingpb::BuyParams* Arena::CreateMaybeMessage<::tradingpb::BuyParams>(Arena*);
 template<> ::tradingpb::CtrlCondition* Arena::CreateMaybeMessage<::tradingpb::CtrlCondition>(Arena*);
 template<> ::tradingpb::CtrlNode* Arena::CreateMaybeMessage<::tradingpb::CtrlNode>(Arena*);
 template<> ::tradingpb::PNLAssetData* Arena::CreateMaybeMessage<::tradingpb::PNLAssetData>(Arena*);
 template<> ::tradingpb::PNLData* Arena::CreateMaybeMessage<::tradingpb::PNLData>(Arena*);
 template<> ::tradingpb::PNLDataValue* Arena::CreateMaybeMessage<::tradingpb::PNLDataValue>(Arena*);
+template<> ::tradingpb::SellParams* Arena::CreateMaybeMessage<::tradingpb::SellParams>(Arena*);
 template<> ::tradingpb::SimTradingParams* Arena::CreateMaybeMessage<::tradingpb::SimTradingParams>(Arena*);
+template<> ::tradingpb::StopLossParams* Arena::CreateMaybeMessage<::tradingpb::StopLossParams>(Arena*);
 template<> ::tradingpb::Strategy* Arena::CreateMaybeMessage<::tradingpb::Strategy>(Arena*);
+template<> ::tradingpb::TakeProfitParams* Arena::CreateMaybeMessage<::tradingpb::TakeProfitParams>(Arena*);
 template<> ::tradingpb::TradingNodeInfo* Arena::CreateMaybeMessage<::tradingpb::TradingNodeInfo>(Arena*);
 template<> ::tradingpb::Wallet* Arena::CreateMaybeMessage<::tradingpb::Wallet>(Arena*);
 template<> ::tradingpb::WalletAsset* Arena::CreateMaybeMessage<::tradingpb::WalletAsset>(Arena*);
@@ -1222,6 +1238,562 @@ class CtrlCondition :
 };
 // -------------------------------------------------------------------
 
+class BuyParams :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tradingpb.BuyParams) */ {
+ public:
+  BuyParams();
+  virtual ~BuyParams();
+
+  BuyParams(const BuyParams& from);
+  BuyParams(BuyParams&& from) noexcept
+    : BuyParams() {
+    *this = ::std::move(from);
+  }
+
+  inline BuyParams& operator=(const BuyParams& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline BuyParams& operator=(BuyParams&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const BuyParams& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const BuyParams* internal_default_instance() {
+    return reinterpret_cast<const BuyParams*>(
+               &_BuyParams_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    6;
+
+  friend void swap(BuyParams& a, BuyParams& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(BuyParams* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline BuyParams* New() const final {
+    return CreateMaybeMessage<BuyParams>(nullptr);
+  }
+
+  BuyParams* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<BuyParams>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const BuyParams& from);
+  void MergeFrom(const BuyParams& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(BuyParams* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "tradingpb.BuyParams";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_trading2_2eproto);
+    return ::descriptor_table_trading2_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kInitMoneyFieldNumber = 1,
+    kPerMoneyFieldNumber = 2,
+    kVolumeFieldNumber = 3,
+  };
+  // float initMoney = 1;
+  void clear_initmoney();
+  float initmoney() const;
+  void set_initmoney(float value);
+  private:
+  float _internal_initmoney() const;
+  void _internal_set_initmoney(float value);
+  public:
+
+  // float perMoney = 2;
+  void clear_permoney();
+  float permoney() const;
+  void set_permoney(float value);
+  private:
+  float _internal_permoney() const;
+  void _internal_set_permoney(float value);
+  public:
+
+  // float volume = 3;
+  void clear_volume();
+  float volume() const;
+  void set_volume(float value);
+  private:
+  float _internal_volume() const;
+  void _internal_set_volume(float value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:tradingpb.BuyParams)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  float initmoney_;
+  float permoney_;
+  float volume_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_trading2_2eproto;
+};
+// -------------------------------------------------------------------
+
+class SellParams :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tradingpb.SellParams) */ {
+ public:
+  SellParams();
+  virtual ~SellParams();
+
+  SellParams(const SellParams& from);
+  SellParams(SellParams&& from) noexcept
+    : SellParams() {
+    *this = ::std::move(from);
+  }
+
+  inline SellParams& operator=(const SellParams& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline SellParams& operator=(SellParams&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const SellParams& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const SellParams* internal_default_instance() {
+    return reinterpret_cast<const SellParams*>(
+               &_SellParams_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    7;
+
+  friend void swap(SellParams& a, SellParams& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(SellParams* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline SellParams* New() const final {
+    return CreateMaybeMessage<SellParams>(nullptr);
+  }
+
+  SellParams* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<SellParams>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const SellParams& from);
+  void MergeFrom(const SellParams& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(SellParams* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "tradingpb.SellParams";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_trading2_2eproto);
+    return ::descriptor_table_trading2_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kVolumeFieldNumber = 1,
+    kPerVolumeFieldNumber = 2,
+    kMoneyFieldNumber = 3,
+  };
+  // float volume = 1;
+  void clear_volume();
+  float volume() const;
+  void set_volume(float value);
+  private:
+  float _internal_volume() const;
+  void _internal_set_volume(float value);
+  public:
+
+  // float perVolume = 2;
+  void clear_pervolume();
+  float pervolume() const;
+  void set_pervolume(float value);
+  private:
+  float _internal_pervolume() const;
+  void _internal_set_pervolume(float value);
+  public:
+
+  // float money = 3;
+  void clear_money();
+  float money() const;
+  void set_money(float value);
+  private:
+  float _internal_money() const;
+  void _internal_set_money(float value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:tradingpb.SellParams)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  float volume_;
+  float pervolume_;
+  float money_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_trading2_2eproto;
+};
+// -------------------------------------------------------------------
+
+class StopLossParams :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tradingpb.StopLossParams) */ {
+ public:
+  StopLossParams();
+  virtual ~StopLossParams();
+
+  StopLossParams(const StopLossParams& from);
+  StopLossParams(StopLossParams&& from) noexcept
+    : StopLossParams() {
+    *this = ::std::move(from);
+  }
+
+  inline StopLossParams& operator=(const StopLossParams& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline StopLossParams& operator=(StopLossParams&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const StopLossParams& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const StopLossParams* internal_default_instance() {
+    return reinterpret_cast<const StopLossParams*>(
+               &_StopLossParams_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    8;
+
+  friend void swap(StopLossParams& a, StopLossParams& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(StopLossParams* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline StopLossParams* New() const final {
+    return CreateMaybeMessage<StopLossParams>(nullptr);
+  }
+
+  StopLossParams* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<StopLossParams>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const StopLossParams& from);
+  void MergeFrom(const StopLossParams& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(StopLossParams* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "tradingpb.StopLossParams";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_trading2_2eproto);
+    return ::descriptor_table_trading2_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kDrawdownFieldNumber = 1,
+  };
+  // float drawdown = 1;
+  void clear_drawdown();
+  float drawdown() const;
+  void set_drawdown(float value);
+  private:
+  float _internal_drawdown() const;
+  void _internal_set_drawdown(float value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:tradingpb.StopLossParams)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  float drawdown_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_trading2_2eproto;
+};
+// -------------------------------------------------------------------
+
+class TakeProfitParams :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tradingpb.TakeProfitParams) */ {
+ public:
+  TakeProfitParams();
+  virtual ~TakeProfitParams();
+
+  TakeProfitParams(const TakeProfitParams& from);
+  TakeProfitParams(TakeProfitParams&& from) noexcept
+    : TakeProfitParams() {
+    *this = ::std::move(from);
+  }
+
+  inline TakeProfitParams& operator=(const TakeProfitParams& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline TakeProfitParams& operator=(TakeProfitParams&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const TakeProfitParams& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const TakeProfitParams* internal_default_instance() {
+    return reinterpret_cast<const TakeProfitParams*>(
+               &_TakeProfitParams_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    9;
+
+  friend void swap(TakeProfitParams& a, TakeProfitParams& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(TakeProfitParams* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline TakeProfitParams* New() const final {
+    return CreateMaybeMessage<TakeProfitParams>(nullptr);
+  }
+
+  TakeProfitParams* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<TakeProfitParams>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const TakeProfitParams& from);
+  void MergeFrom(const TakeProfitParams& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(TakeProfitParams* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "tradingpb.TakeProfitParams";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_trading2_2eproto);
+    return ::descriptor_table_trading2_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kProfitFieldNumber = 1,
+  };
+  // float profit = 1;
+  void clear_profit();
+  float profit() const;
+  void set_profit(float value);
+  private:
+  float _internal_profit() const;
+  void _internal_set_profit(float value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:tradingpb.TakeProfitParams)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  float profit_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_trading2_2eproto;
+};
+// -------------------------------------------------------------------
+
 class Strategy :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tradingpb.Strategy) */ {
  public:
@@ -1264,7 +1836,7 @@ class Strategy :
                &_Strategy_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    6;
+    10;
 
   friend void swap(Strategy& a, Strategy& b) {
     a.Swap(&b);
@@ -1334,6 +1906,10 @@ class Strategy :
     kTakeprofitFieldNumber = 6,
     kNameFieldNumber = 1,
     kAssetFieldNumber = 2,
+    kParamsBuyFieldNumber = 7,
+    kParamsSellFieldNumber = 8,
+    kParamsStopLossFieldNumber = 9,
+    kParamsTakeProfitFieldNumber = 10,
   };
   // repeated .tradingpb.CtrlCondition buy = 3;
   int buy_size() const;
@@ -1438,6 +2014,66 @@ class Strategy :
   ::tradingpb::Asset* _internal_mutable_asset();
   public:
 
+  // .tradingpb.BuyParams paramsBuy = 7;
+  bool has_paramsbuy() const;
+  private:
+  bool _internal_has_paramsbuy() const;
+  public:
+  void clear_paramsbuy();
+  const ::tradingpb::BuyParams& paramsbuy() const;
+  ::tradingpb::BuyParams* release_paramsbuy();
+  ::tradingpb::BuyParams* mutable_paramsbuy();
+  void set_allocated_paramsbuy(::tradingpb::BuyParams* paramsbuy);
+  private:
+  const ::tradingpb::BuyParams& _internal_paramsbuy() const;
+  ::tradingpb::BuyParams* _internal_mutable_paramsbuy();
+  public:
+
+  // .tradingpb.SellParams paramsSell = 8;
+  bool has_paramssell() const;
+  private:
+  bool _internal_has_paramssell() const;
+  public:
+  void clear_paramssell();
+  const ::tradingpb::SellParams& paramssell() const;
+  ::tradingpb::SellParams* release_paramssell();
+  ::tradingpb::SellParams* mutable_paramssell();
+  void set_allocated_paramssell(::tradingpb::SellParams* paramssell);
+  private:
+  const ::tradingpb::SellParams& _internal_paramssell() const;
+  ::tradingpb::SellParams* _internal_mutable_paramssell();
+  public:
+
+  // .tradingpb.StopLossParams paramsStopLoss = 9;
+  bool has_paramsstoploss() const;
+  private:
+  bool _internal_has_paramsstoploss() const;
+  public:
+  void clear_paramsstoploss();
+  const ::tradingpb::StopLossParams& paramsstoploss() const;
+  ::tradingpb::StopLossParams* release_paramsstoploss();
+  ::tradingpb::StopLossParams* mutable_paramsstoploss();
+  void set_allocated_paramsstoploss(::tradingpb::StopLossParams* paramsstoploss);
+  private:
+  const ::tradingpb::StopLossParams& _internal_paramsstoploss() const;
+  ::tradingpb::StopLossParams* _internal_mutable_paramsstoploss();
+  public:
+
+  // .tradingpb.TakeProfitParams paramsTakeProfit = 10;
+  bool has_paramstakeprofit() const;
+  private:
+  bool _internal_has_paramstakeprofit() const;
+  public:
+  void clear_paramstakeprofit();
+  const ::tradingpb::TakeProfitParams& paramstakeprofit() const;
+  ::tradingpb::TakeProfitParams* release_paramstakeprofit();
+  ::tradingpb::TakeProfitParams* mutable_paramstakeprofit();
+  void set_allocated_paramstakeprofit(::tradingpb::TakeProfitParams* paramstakeprofit);
+  private:
+  const ::tradingpb::TakeProfitParams& _internal_paramstakeprofit() const;
+  ::tradingpb::TakeProfitParams* _internal_mutable_paramstakeprofit();
+  public:
+
   // @@protoc_insertion_point(class_scope:tradingpb.Strategy)
  private:
   class _Internal;
@@ -1449,6 +2085,10 @@ class Strategy :
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingpb::CtrlCondition > takeprofit_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
   ::tradingpb::Asset* asset_;
+  ::tradingpb::BuyParams* paramsbuy_;
+  ::tradingpb::SellParams* paramssell_;
+  ::tradingpb::StopLossParams* paramsstoploss_;
+  ::tradingpb::TakeProfitParams* paramstakeprofit_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_trading2_2eproto;
 };
@@ -1496,7 +2136,7 @@ class PNLDataValue :
                &_PNLDataValue_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    7;
+    11;
 
   friend void swap(PNLDataValue& a, PNLDataValue& b) {
     a.Swap(&b);
@@ -1683,7 +2323,7 @@ class PNLAssetData :
                &_PNLAssetData_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    8;
+    12;
 
   friend void swap(PNLAssetData& a, PNLAssetData& b) {
     a.Swap(&b);
@@ -2187,7 +2827,7 @@ class PNLData :
                &_PNLData_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    9;
+    13;
 
   friend void swap(PNLData& a, PNLData& b) {
     a.Swap(&b);
@@ -2359,7 +2999,7 @@ class SimTradingParams :
                &_SimTradingParams_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    10;
+    14;
 
   friend void swap(SimTradingParams& a, SimTradingParams& b) {
     a.Swap(&b);
@@ -2575,7 +3215,7 @@ class TradingNodeInfo :
                &_TradingNodeInfo_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    11;
+    15;
 
   friend void swap(TradingNodeInfo& a, TradingNodeInfo& b) {
     a.Swap(&b);
@@ -3678,6 +4318,182 @@ CtrlCondition::mutable_offvals() {
 
 // -------------------------------------------------------------------
 
+// BuyParams
+
+// float initMoney = 1;
+inline void BuyParams::clear_initmoney() {
+  initmoney_ = 0;
+}
+inline float BuyParams::_internal_initmoney() const {
+  return initmoney_;
+}
+inline float BuyParams::initmoney() const {
+  // @@protoc_insertion_point(field_get:tradingpb.BuyParams.initMoney)
+  return _internal_initmoney();
+}
+inline void BuyParams::_internal_set_initmoney(float value) {
+  
+  initmoney_ = value;
+}
+inline void BuyParams::set_initmoney(float value) {
+  _internal_set_initmoney(value);
+  // @@protoc_insertion_point(field_set:tradingpb.BuyParams.initMoney)
+}
+
+// float perMoney = 2;
+inline void BuyParams::clear_permoney() {
+  permoney_ = 0;
+}
+inline float BuyParams::_internal_permoney() const {
+  return permoney_;
+}
+inline float BuyParams::permoney() const {
+  // @@protoc_insertion_point(field_get:tradingpb.BuyParams.perMoney)
+  return _internal_permoney();
+}
+inline void BuyParams::_internal_set_permoney(float value) {
+  
+  permoney_ = value;
+}
+inline void BuyParams::set_permoney(float value) {
+  _internal_set_permoney(value);
+  // @@protoc_insertion_point(field_set:tradingpb.BuyParams.perMoney)
+}
+
+// float volume = 3;
+inline void BuyParams::clear_volume() {
+  volume_ = 0;
+}
+inline float BuyParams::_internal_volume() const {
+  return volume_;
+}
+inline float BuyParams::volume() const {
+  // @@protoc_insertion_point(field_get:tradingpb.BuyParams.volume)
+  return _internal_volume();
+}
+inline void BuyParams::_internal_set_volume(float value) {
+  
+  volume_ = value;
+}
+inline void BuyParams::set_volume(float value) {
+  _internal_set_volume(value);
+  // @@protoc_insertion_point(field_set:tradingpb.BuyParams.volume)
+}
+
+// -------------------------------------------------------------------
+
+// SellParams
+
+// float volume = 1;
+inline void SellParams::clear_volume() {
+  volume_ = 0;
+}
+inline float SellParams::_internal_volume() const {
+  return volume_;
+}
+inline float SellParams::volume() const {
+  // @@protoc_insertion_point(field_get:tradingpb.SellParams.volume)
+  return _internal_volume();
+}
+inline void SellParams::_internal_set_volume(float value) {
+  
+  volume_ = value;
+}
+inline void SellParams::set_volume(float value) {
+  _internal_set_volume(value);
+  // @@protoc_insertion_point(field_set:tradingpb.SellParams.volume)
+}
+
+// float perVolume = 2;
+inline void SellParams::clear_pervolume() {
+  pervolume_ = 0;
+}
+inline float SellParams::_internal_pervolume() const {
+  return pervolume_;
+}
+inline float SellParams::pervolume() const {
+  // @@protoc_insertion_point(field_get:tradingpb.SellParams.perVolume)
+  return _internal_pervolume();
+}
+inline void SellParams::_internal_set_pervolume(float value) {
+  
+  pervolume_ = value;
+}
+inline void SellParams::set_pervolume(float value) {
+  _internal_set_pervolume(value);
+  // @@protoc_insertion_point(field_set:tradingpb.SellParams.perVolume)
+}
+
+// float money = 3;
+inline void SellParams::clear_money() {
+  money_ = 0;
+}
+inline float SellParams::_internal_money() const {
+  return money_;
+}
+inline float SellParams::money() const {
+  // @@protoc_insertion_point(field_get:tradingpb.SellParams.money)
+  return _internal_money();
+}
+inline void SellParams::_internal_set_money(float value) {
+  
+  money_ = value;
+}
+inline void SellParams::set_money(float value) {
+  _internal_set_money(value);
+  // @@protoc_insertion_point(field_set:tradingpb.SellParams.money)
+}
+
+// -------------------------------------------------------------------
+
+// StopLossParams
+
+// float drawdown = 1;
+inline void StopLossParams::clear_drawdown() {
+  drawdown_ = 0;
+}
+inline float StopLossParams::_internal_drawdown() const {
+  return drawdown_;
+}
+inline float StopLossParams::drawdown() const {
+  // @@protoc_insertion_point(field_get:tradingpb.StopLossParams.drawdown)
+  return _internal_drawdown();
+}
+inline void StopLossParams::_internal_set_drawdown(float value) {
+  
+  drawdown_ = value;
+}
+inline void StopLossParams::set_drawdown(float value) {
+  _internal_set_drawdown(value);
+  // @@protoc_insertion_point(field_set:tradingpb.StopLossParams.drawdown)
+}
+
+// -------------------------------------------------------------------
+
+// TakeProfitParams
+
+// float profit = 1;
+inline void TakeProfitParams::clear_profit() {
+  profit_ = 0;
+}
+inline float TakeProfitParams::_internal_profit() const {
+  return profit_;
+}
+inline float TakeProfitParams::profit() const {
+  // @@protoc_insertion_point(field_get:tradingpb.TakeProfitParams.profit)
+  return _internal_profit();
+}
+inline void TakeProfitParams::_internal_set_profit(float value) {
+  
+  profit_ = value;
+}
+inline void TakeProfitParams::set_profit(float value) {
+  _internal_set_profit(value);
+  // @@protoc_insertion_point(field_set:tradingpb.TakeProfitParams.profit)
+}
+
+// -------------------------------------------------------------------
+
 // Strategy
 
 // string name = 1;
@@ -3954,6 +4770,246 @@ inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingpb::CtrlConditi
 Strategy::takeprofit() const {
   // @@protoc_insertion_point(field_list:tradingpb.Strategy.takeprofit)
   return takeprofit_;
+}
+
+// .tradingpb.BuyParams paramsBuy = 7;
+inline bool Strategy::_internal_has_paramsbuy() const {
+  return this != internal_default_instance() && paramsbuy_ != nullptr;
+}
+inline bool Strategy::has_paramsbuy() const {
+  return _internal_has_paramsbuy();
+}
+inline void Strategy::clear_paramsbuy() {
+  if (GetArenaNoVirtual() == nullptr && paramsbuy_ != nullptr) {
+    delete paramsbuy_;
+  }
+  paramsbuy_ = nullptr;
+}
+inline const ::tradingpb::BuyParams& Strategy::_internal_paramsbuy() const {
+  const ::tradingpb::BuyParams* p = paramsbuy_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::tradingpb::BuyParams*>(
+      &::tradingpb::_BuyParams_default_instance_);
+}
+inline const ::tradingpb::BuyParams& Strategy::paramsbuy() const {
+  // @@protoc_insertion_point(field_get:tradingpb.Strategy.paramsBuy)
+  return _internal_paramsbuy();
+}
+inline ::tradingpb::BuyParams* Strategy::release_paramsbuy() {
+  // @@protoc_insertion_point(field_release:tradingpb.Strategy.paramsBuy)
+  
+  ::tradingpb::BuyParams* temp = paramsbuy_;
+  paramsbuy_ = nullptr;
+  return temp;
+}
+inline ::tradingpb::BuyParams* Strategy::_internal_mutable_paramsbuy() {
+  
+  if (paramsbuy_ == nullptr) {
+    auto* p = CreateMaybeMessage<::tradingpb::BuyParams>(GetArenaNoVirtual());
+    paramsbuy_ = p;
+  }
+  return paramsbuy_;
+}
+inline ::tradingpb::BuyParams* Strategy::mutable_paramsbuy() {
+  // @@protoc_insertion_point(field_mutable:tradingpb.Strategy.paramsBuy)
+  return _internal_mutable_paramsbuy();
+}
+inline void Strategy::set_allocated_paramsbuy(::tradingpb::BuyParams* paramsbuy) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == nullptr) {
+    delete paramsbuy_;
+  }
+  if (paramsbuy) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    if (message_arena != submessage_arena) {
+      paramsbuy = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, paramsbuy, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  paramsbuy_ = paramsbuy;
+  // @@protoc_insertion_point(field_set_allocated:tradingpb.Strategy.paramsBuy)
+}
+
+// .tradingpb.SellParams paramsSell = 8;
+inline bool Strategy::_internal_has_paramssell() const {
+  return this != internal_default_instance() && paramssell_ != nullptr;
+}
+inline bool Strategy::has_paramssell() const {
+  return _internal_has_paramssell();
+}
+inline void Strategy::clear_paramssell() {
+  if (GetArenaNoVirtual() == nullptr && paramssell_ != nullptr) {
+    delete paramssell_;
+  }
+  paramssell_ = nullptr;
+}
+inline const ::tradingpb::SellParams& Strategy::_internal_paramssell() const {
+  const ::tradingpb::SellParams* p = paramssell_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::tradingpb::SellParams*>(
+      &::tradingpb::_SellParams_default_instance_);
+}
+inline const ::tradingpb::SellParams& Strategy::paramssell() const {
+  // @@protoc_insertion_point(field_get:tradingpb.Strategy.paramsSell)
+  return _internal_paramssell();
+}
+inline ::tradingpb::SellParams* Strategy::release_paramssell() {
+  // @@protoc_insertion_point(field_release:tradingpb.Strategy.paramsSell)
+  
+  ::tradingpb::SellParams* temp = paramssell_;
+  paramssell_ = nullptr;
+  return temp;
+}
+inline ::tradingpb::SellParams* Strategy::_internal_mutable_paramssell() {
+  
+  if (paramssell_ == nullptr) {
+    auto* p = CreateMaybeMessage<::tradingpb::SellParams>(GetArenaNoVirtual());
+    paramssell_ = p;
+  }
+  return paramssell_;
+}
+inline ::tradingpb::SellParams* Strategy::mutable_paramssell() {
+  // @@protoc_insertion_point(field_mutable:tradingpb.Strategy.paramsSell)
+  return _internal_mutable_paramssell();
+}
+inline void Strategy::set_allocated_paramssell(::tradingpb::SellParams* paramssell) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == nullptr) {
+    delete paramssell_;
+  }
+  if (paramssell) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    if (message_arena != submessage_arena) {
+      paramssell = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, paramssell, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  paramssell_ = paramssell;
+  // @@protoc_insertion_point(field_set_allocated:tradingpb.Strategy.paramsSell)
+}
+
+// .tradingpb.StopLossParams paramsStopLoss = 9;
+inline bool Strategy::_internal_has_paramsstoploss() const {
+  return this != internal_default_instance() && paramsstoploss_ != nullptr;
+}
+inline bool Strategy::has_paramsstoploss() const {
+  return _internal_has_paramsstoploss();
+}
+inline void Strategy::clear_paramsstoploss() {
+  if (GetArenaNoVirtual() == nullptr && paramsstoploss_ != nullptr) {
+    delete paramsstoploss_;
+  }
+  paramsstoploss_ = nullptr;
+}
+inline const ::tradingpb::StopLossParams& Strategy::_internal_paramsstoploss() const {
+  const ::tradingpb::StopLossParams* p = paramsstoploss_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::tradingpb::StopLossParams*>(
+      &::tradingpb::_StopLossParams_default_instance_);
+}
+inline const ::tradingpb::StopLossParams& Strategy::paramsstoploss() const {
+  // @@protoc_insertion_point(field_get:tradingpb.Strategy.paramsStopLoss)
+  return _internal_paramsstoploss();
+}
+inline ::tradingpb::StopLossParams* Strategy::release_paramsstoploss() {
+  // @@protoc_insertion_point(field_release:tradingpb.Strategy.paramsStopLoss)
+  
+  ::tradingpb::StopLossParams* temp = paramsstoploss_;
+  paramsstoploss_ = nullptr;
+  return temp;
+}
+inline ::tradingpb::StopLossParams* Strategy::_internal_mutable_paramsstoploss() {
+  
+  if (paramsstoploss_ == nullptr) {
+    auto* p = CreateMaybeMessage<::tradingpb::StopLossParams>(GetArenaNoVirtual());
+    paramsstoploss_ = p;
+  }
+  return paramsstoploss_;
+}
+inline ::tradingpb::StopLossParams* Strategy::mutable_paramsstoploss() {
+  // @@protoc_insertion_point(field_mutable:tradingpb.Strategy.paramsStopLoss)
+  return _internal_mutable_paramsstoploss();
+}
+inline void Strategy::set_allocated_paramsstoploss(::tradingpb::StopLossParams* paramsstoploss) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == nullptr) {
+    delete paramsstoploss_;
+  }
+  if (paramsstoploss) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    if (message_arena != submessage_arena) {
+      paramsstoploss = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, paramsstoploss, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  paramsstoploss_ = paramsstoploss;
+  // @@protoc_insertion_point(field_set_allocated:tradingpb.Strategy.paramsStopLoss)
+}
+
+// .tradingpb.TakeProfitParams paramsTakeProfit = 10;
+inline bool Strategy::_internal_has_paramstakeprofit() const {
+  return this != internal_default_instance() && paramstakeprofit_ != nullptr;
+}
+inline bool Strategy::has_paramstakeprofit() const {
+  return _internal_has_paramstakeprofit();
+}
+inline void Strategy::clear_paramstakeprofit() {
+  if (GetArenaNoVirtual() == nullptr && paramstakeprofit_ != nullptr) {
+    delete paramstakeprofit_;
+  }
+  paramstakeprofit_ = nullptr;
+}
+inline const ::tradingpb::TakeProfitParams& Strategy::_internal_paramstakeprofit() const {
+  const ::tradingpb::TakeProfitParams* p = paramstakeprofit_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::tradingpb::TakeProfitParams*>(
+      &::tradingpb::_TakeProfitParams_default_instance_);
+}
+inline const ::tradingpb::TakeProfitParams& Strategy::paramstakeprofit() const {
+  // @@protoc_insertion_point(field_get:tradingpb.Strategy.paramsTakeProfit)
+  return _internal_paramstakeprofit();
+}
+inline ::tradingpb::TakeProfitParams* Strategy::release_paramstakeprofit() {
+  // @@protoc_insertion_point(field_release:tradingpb.Strategy.paramsTakeProfit)
+  
+  ::tradingpb::TakeProfitParams* temp = paramstakeprofit_;
+  paramstakeprofit_ = nullptr;
+  return temp;
+}
+inline ::tradingpb::TakeProfitParams* Strategy::_internal_mutable_paramstakeprofit() {
+  
+  if (paramstakeprofit_ == nullptr) {
+    auto* p = CreateMaybeMessage<::tradingpb::TakeProfitParams>(GetArenaNoVirtual());
+    paramstakeprofit_ = p;
+  }
+  return paramstakeprofit_;
+}
+inline ::tradingpb::TakeProfitParams* Strategy::mutable_paramstakeprofit() {
+  // @@protoc_insertion_point(field_mutable:tradingpb.Strategy.paramsTakeProfit)
+  return _internal_mutable_paramstakeprofit();
+}
+inline void Strategy::set_allocated_paramstakeprofit(::tradingpb::TakeProfitParams* paramstakeprofit) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == nullptr) {
+    delete paramstakeprofit_;
+  }
+  if (paramstakeprofit) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    if (message_arena != submessage_arena) {
+      paramstakeprofit = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, paramstakeprofit, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  paramstakeprofit_ = paramstakeprofit;
+  // @@protoc_insertion_point(field_set_allocated:tradingpb.Strategy.paramsTakeProfit)
 }
 
 // -------------------------------------------------------------------
@@ -5287,6 +6343,14 @@ inline void TradingNodeInfo::set_curtasks(::PROTOBUF_NAMESPACE_ID::int32 value) 
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------
