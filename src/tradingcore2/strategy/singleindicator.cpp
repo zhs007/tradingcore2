@@ -28,7 +28,7 @@ void StrategySI::init(const char* assetsName, const char* nameIndicator,
   m_volume = 0;
 }
 
-void StrategySI::onTimeStamp(TimeStamp ts, int index) {
+void StrategySI::onTimeStamp(bool issim, TimeStamp ts, int index) {
   assert(this->m_pIndicator != NULL);
 
   auto cv = this->m_pIndicator->getSingleValue(index);
@@ -76,6 +76,14 @@ void StrategySI::release() {
 
     this->m_pIndicator = NULL;
   }
+}
+
+void StrategySI::onBuy(bool issim, TimeStamp ts, int index,
+                       const tradingpb::Asset* pAsset, Money money) {
+  // this->m_wallet.deposit(this->m_money, ts);
+  // this->m_volume +=
+  //     this->m_wallet.buyAssets(this->m_assetsName.c_str(), this->m_money,
+  //     ts);
 }
 
 CR2END

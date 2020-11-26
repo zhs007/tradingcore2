@@ -5,12 +5,19 @@
 
 CR2BEGIN
 
-void StrategyBAH::onTimeStamp(TimeStamp ts, int index) {
-  if (index == 0) {
-    this->m_wallet.deposit(this->m_money, ts);
-    this->m_volume =
-        this->m_wallet.buyAssets(this->m_assetsName.c_str(), this->m_money, ts);
-  }
+// void StrategyBAH::onTimeStamp(bool issim, TimeStamp ts, int index) {
+//   if (index == 0) {
+//     this->m_wallet.deposit(this->m_money, ts);
+//     this->m_volume =
+//         this->m_wallet.buyAssets(this->m_assetsName.c_str(), this->m_money,
+//         ts);
+//   }
+// }
+
+void StrategyBAH::onBuy(bool issim, TimeStamp ts, int index,
+                        const tradingpb::Asset* pAsset, Money money) {
+  this->m_wallet.deposit(money, ts);
+  this->m_wallet.buyAssets(pAsset->code().c_str(), money, ts);
 }
 
 CR2END

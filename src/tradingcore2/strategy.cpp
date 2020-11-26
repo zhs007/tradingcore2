@@ -1,6 +1,7 @@
 
 #include <tradingcore2/exchange.h>
 #include <tradingcore2/strategy.h>
+#include <tradingcore2/utils.h>
 #include <tradingcore2/wallet.h>
 
 #include <functional>
@@ -15,7 +16,7 @@ void Strategy::simulateTrading() {
 }
 
 void Strategy::onSimulateTradingTimeStamp(TimeStamp ts, int index) {
-  this->onTimeStamp(ts, index);
+  this->onTimeStamp(true, ts, index);
 }
 
 Money Strategy::onProcStopLoss(const char* assetsName, Money curPrice,
@@ -44,6 +45,61 @@ void Strategy::getTrainResult(TrainResult& tr) {
   tr.winRate = 1 - (float)this->m_stoplossNums / this->m_tradingNums;
 }
 
-bool Strategy::onCtrlConditionBuy(TimeStamp ts, int index) { return false; }
+void Strategy::onTimeStamp(bool issim, TimeStamp ts, int index) {
+  this->onCtrlConditionBuy(issim, ts, index);
+}
+
+void Strategy::onCtrlConditionBuy(bool issim, TimeStamp ts, int index) {
+  auto asset = this->m_strategy.asset();
+
+  auto f = std::bind(&Strategy::onBuy, this, std::placeholders::_1,
+                     std::placeholders::_2, std::placeholders::_3,
+                     std::placeholders::_4, std::placeholders::_5);
+
+  for (auto i = 0; i < this->m_strategy.buy_size(); ++i) {
+    const tradingpb::CtrlCondition& cc = this->m_strategy.buy(i);
+
+    if (cc.indicator() == "weekday") {
+      this->onWeekDay(cc, issim, ts, index, &asset, f);
+    } else if (cc.indicator() == "monthday") {
+      this->onWeekDay(cc, issim, ts, index, &asset, f);
+    } else if (cc.indicator() == "buyandhold") {
+      this->onBuyAndHold(cc, issim, ts, index, &asset, f);
+    }
+  }
+}
+
+void Strategy::onWeekDay(const tradingpb::CtrlCondition& cc, bool issim,
+                         TimeStamp ts, int index,
+                         const tradingpb::Asset* pAsset,
+                         Strategy::FuncOnCtrl onctrl) {
+  tm ctm;
+  timestamp2timeUTC(ts, ctm);
+
+  if (ctm.tm_wday == cc.vals(0)) {
+    onctrl(issim, ts, index, pAsset, cc.vals(1), cc.vals(2));
+  }
+}
+
+void Strategy::onMonthDay(const tradingpb::CtrlCondition& cc, bool issim,
+                          TimeStamp ts, int index,
+                          const tradingpb::Asset* pAsset,
+                          Strategy::FuncOnCtrl onctrl) {
+  tm ctm;
+  timestamp2timeUTC(ts, ctm);
+
+  if (ctm.tm_mday == cc.vals(0)) {
+    onctrl(issim, ts, index, pAsset, cc.vals(1), cc.vals(2));
+  }
+}
+
+void Strategy::onBuyAndHold(const tradingpb::CtrlCondition& cc, bool issim,
+                            TimeStamp ts, int index,
+                            const tradingpb::Asset* pAsset,
+                            Strategy::FuncOnCtrl onctrl) {
+  if (index == 0) {
+    onctrl(issim, ts, index, pAsset, cc.vals(0), 0);
+  }
+}
 
 CR2END

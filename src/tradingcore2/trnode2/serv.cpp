@@ -113,28 +113,30 @@ void TradingNode2Impl::init(const Config& cfg) {
     if (cs.name() == "bah") {
       tr2::StrategyBAH* bah = new tr2::StrategyBAH(*pWallet, *exchange);
 
-      auto ca = cs.asset();
-      bah->init(ca.code().c_str(), 10000);
+      // auto ca = cs.asset();
+      bah->init(cs);
       bah->simulateTrading();
     } else if (cs.name() == "aip") {
       StrategyAIP* aip = new tr2::StrategyAIP(*pWallet, *exchange);
 
-      if (cs.buy_size() >= 1) {
-        auto cb = cs.buy(0);
+      aip->init(cs);
+      aip->simulateTrading();
+      // if (cs.buy_size() >= 1) {
+      //   auto cb = cs.buy(0);
 
-        StrategyAIP::TimeType tt = StrategyAIP::TT_NONE;
-        if (cb.indicator() == "monthday") {
-          tt = StrategyAIP::TT_MONTH;
-        } else if (cb.indicator() == "weekday") {
-          tt = StrategyAIP::TT_WEEK;
-        }
+      //   StrategyAIP::TimeType tt = StrategyAIP::TT_NONE;
+      //   if (cb.indicator() == "monthday") {
+      //     tt = StrategyAIP::TT_MONTH;
+      //   } else if (cb.indicator() == "weekday") {
+      //     tt = StrategyAIP::TT_WEEK;
+      //   }
 
-        if (tt != StrategyAIP::TT_NONE && cb.vals_size() > 0) {
-          auto ca = cs.asset();
-          aip->init(ca.code().c_str(), tt, cb.vals(0), 10000);
-          aip->simulateTrading();
-        }
-      }
+      //   if (tt != StrategyAIP::TT_NONE && cb.vals_size() > 0) {
+      //     auto ca = cs.asset();
+      //     aip->init(ca.code().c_str(), tt, cb.vals(0), 10000);
+      //     aip->simulateTrading();
+      //   }
+      // }
     }
   }
 

@@ -11,24 +11,27 @@ CR2BEGIN
 class StrategyBAH final : public Strategy {
  public:
   StrategyBAH(Wallet& wallet, Exchange& exchange)
-      : Strategy(wallet, exchange), m_money(0), m_volume(0) {}
+      : Strategy(wallet, exchange) {}
   virtual ~StrategyBAH() {}
 
  public:
-  virtual void onTimeStamp(TimeStamp ts, int index) override;
+  // virtual void onTimeStamp(bool issim, TimeStamp ts, int index) override;
+
+  virtual void onBuy(bool issim, TimeStamp ts, int index,
+                     const tradingpb::Asset* pAsset, Money money) override;
 
  public:
-  void init(const char* assetsName, Money money) {
-    m_money = money;
-    m_volume = 0;
-    m_assetsName = assetsName;
-  }
+  // void init(const char* assetsName, Money money) {
+  //   m_money = money;
+  //   m_volume = 0;
+  //   m_assetsName = assetsName;
+  // }
 
  protected:
-  std::string m_assetsName;
+  // std::string m_assetsName;
 
-  Money m_money;
-  Volume m_volume;
+  // Money m_money;
+  // Volume m_volume;
 };
 
 CR2END

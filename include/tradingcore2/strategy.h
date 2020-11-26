@@ -13,6 +13,11 @@ CR2BEGIN
 
 class Strategy {
  public:
+  typedef std::function<void(bool, TimeStamp, int, const tradingpb::Asset*,
+                             Money, Volume)>
+      FuncOnCtrl;
+
+ public:
   Strategy(Wallet& wallet, Exchange& exchange)
       : m_wallet(wallet),
         m_exchange(exchange),
@@ -24,7 +29,10 @@ class Strategy {
   virtual ~Strategy() {}
 
  public:
-  virtual void onTimeStamp(TimeStamp ts, int index) = 0;
+  virtual void onTimeStamp(bool issim, TimeStamp ts, int index);
+
+  virtual void onBuy(bool issim, TimeStamp ts, int index,
+                     const tradingpb::Asset* pAsset, Money money) = 0;
 
  public:
   void init(const tradingpb::Strategy& strategy) {
@@ -54,7 +62,19 @@ class Strategy {
   void onTrading() { m_tradingNums++; }
 
  protected:
-  bool onCtrlConditionBuy(TimeStamp ts, int index);
+  void onCtrlConditionBuy(bool issim, TimeStamp ts, int index);
+
+  void onWeekDay(const tradingpb::CtrlCondition& cc, bool issim, TimeStamp ts,
+                 int index, const tradingpb::Asset* pAsset,
+                 Strategy::FuncOnCtrl onctrl);
+
+  void onMonthDay(const tradingpb::CtrlCondition& cc, bool issim, TimeStamp ts,
+                  int index, const tradingpb::Asset* pAsset,
+                  Strategy::FuncOnCtrl onctrl);
+
+  void onBuyAndHold(const tradingpb::CtrlCondition& cc, bool issim,
+                    TimeStamp ts, int index, const tradingpb::Asset* pAsset,
+                    Strategy::FuncOnCtrl onctrl);
 
  protected:
   Wallet& m_wallet;
