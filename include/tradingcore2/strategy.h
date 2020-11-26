@@ -3,6 +3,7 @@
 
 #include <tradingcore2/basedef.h>
 #include <tradingcore2/pnl.h>
+#include <tradingcore2/protos/trading2.pb.h>
 
 #include <map>
 #include <string>
@@ -24,6 +25,11 @@ class Strategy {
 
  public:
   virtual void onTimeStamp(TimeStamp ts, int index) = 0;
+
+ public:
+  void init(const tradingpb::Strategy& strategy) {
+    m_strategy.CopyFrom(strategy);
+  }
 
  public:
   void setStopLess(float stoploss) { m_stoploss = stoploss; }
@@ -48,6 +54,9 @@ class Strategy {
   void onTrading() { m_tradingNums++; }
 
  protected:
+  bool onCtrlConditionBuy(TimeStamp ts, int index);
+
+ protected:
   Wallet& m_wallet;
   Exchange& m_exchange;
   PNL m_pnl;
@@ -58,6 +67,8 @@ class Strategy {
   int m_tradingNums;
   int m_stoplossNums;
   int m_failNums;
+
+  tradingpb::Strategy m_strategy;
 };
 
 CR2END
