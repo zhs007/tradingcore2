@@ -54,6 +54,9 @@ class Strategy {
   void onTrading() { m_tradingNums++; }
 
  protected:
+  bool onCtrlConditionBuy(TimeStamp ts, int index);
+
+ protected:
   Wallet& m_wallet;
   Exchange& m_exchange;
   PNL m_pnl;

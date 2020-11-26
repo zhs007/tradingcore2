@@ -199,6 +199,8 @@ void PNL2::setTotalPNLAssetData(const Exchange* pExchange,
 
   if (pVal->cost() != 0) {
     pVal->set_pervalue(pVal->value() / pVal->cost());
+  } else {
+    pVal->set_pervalue(1);
   }
 }
 

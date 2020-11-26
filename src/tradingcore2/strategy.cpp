@@ -44,4 +44,6 @@ void Strategy::getTrainResult(TrainResult& tr) {
   tr.winRate = 1 - (float)this->m_stoplossNums / this->m_tradingNums;
 }
 
+bool Strategy::onCtrlConditionBuy(TimeStamp ts, int index) { return false; }
+
 CR2END
