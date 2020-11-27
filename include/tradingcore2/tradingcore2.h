@@ -1,6 +1,7 @@
 #ifndef __TRADINGCORE2_TRADINGCORE2_H__
 #define __TRADINGCORE2_TRADINGCORE2_H__
 
+#include <tradingcore2/allctrlcondition.h>
 #include <tradingcore2/allexchanges.h>
 #include <tradingcore2/allindicators.h>
 #include <tradingcore2/assets.h>
@@ -10,6 +11,8 @@
 #include <tradingcore2/client/train2.h>
 #include <tradingcore2/client/train2p.h>
 #include <tradingcore2/csv.h>
+#include <tradingcore2/ctrlcondition.h>
+#include <tradingcore2/ctrlconditionmgr.h>
 #include <tradingcore2/exchange.h>
 #include <tradingcore2/exchange/cnfund.h>
 #include <tradingcore2/exchangemgr.h>
