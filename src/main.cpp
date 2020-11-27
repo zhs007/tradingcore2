@@ -77,6 +77,7 @@ int main(int argc, char* argv[]) {
   tr2::regAllIndicators();
   tr2::regAllExchanges();
   tr2::regAllCtrlConditionHelper();
+  tr2::regAllStrategy();
 
   tr2::Config cfg;
   tr2::loadConfig(cfg, "../cfg/config.yaml.default");

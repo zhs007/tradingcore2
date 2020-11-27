@@ -1,4 +1,5 @@
 #include <math.h>
+#include <tradingcore2/strategy.h>
 #include <tradingcore2/strategymgr.h>
 
 #include <functional>

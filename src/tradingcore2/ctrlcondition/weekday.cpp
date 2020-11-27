@@ -22,7 +22,7 @@ void CCWeekDay::procCtrl(const tradingpb::CtrlCondition& cc, bool issim,
   tm ctm;
   timestamp2timeUTC(ts, ctm);
 
-  if (ctm.tm_wday == cc.vals(0) && onctrl == NULL) {
+  if (ctm.tm_wday == cc.vals(0) && onctrl != NULL) {
     onctrl(issim, ct, ts);
   }
 }
