@@ -78,12 +78,12 @@ void StrategySI::release() {
   }
 }
 
-void StrategySI::onBuy(bool issim, TimeStamp ts, int index,
-                       const tradingpb::Asset* pAsset, Money money) {
-  // this->m_wallet.deposit(this->m_money, ts);
-  // this->m_volume +=
-  //     this->m_wallet.buyAssets(this->m_assetsName.c_str(), this->m_money,
-  //     ts);
-}
+// void StrategySI::onBuy(bool issim, TimeStamp ts, int index,
+//                        const tradingpb::Asset* pAsset, Money money) {
+//   // this->m_wallet.deposit(this->m_money, ts);
+//   // this->m_volume +=
+//   //     this->m_wallet.buyAssets(this->m_assetsName.c_str(), this->m_money,
+//   //     ts);
+// }
 
 CR2END

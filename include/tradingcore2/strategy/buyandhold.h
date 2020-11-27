@@ -17,8 +17,8 @@ class StrategyBAH final : public Strategy {
  public:
   // virtual void onTimeStamp(bool issim, TimeStamp ts, int index) override;
 
-  virtual void onBuy(bool issim, TimeStamp ts, int index,
-                     const tradingpb::Asset* pAsset, Money money) override;
+  virtual void onBuy(bool issim, TimeStamp ts, Money money, Volume volume,
+                     Money fee) override;
 
  public:
   // void init(const char* assetsName, Money money) {

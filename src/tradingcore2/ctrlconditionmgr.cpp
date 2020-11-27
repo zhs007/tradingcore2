@@ -1,6 +1,7 @@
 #include <math.h>
 #include <tradingcore2/ctrlcondition.h>
 #include <tradingcore2/ctrlconditionmgr.h>
+#include <tradingcore2/strategy.h>
 
 #include <functional>
 
@@ -67,6 +68,36 @@ int CtrlConditionMgr::isValidStrategy(const tradingpb::Strategy& strategy) {
 
   if (hasnocc) {
     return 1;
+  }
+
+  return 0;
+}
+
+void CtrlConditionMgr::procCtrl(const tradingpb::CtrlCondition& cc, bool issim,
+                                CtrlType ct, TimeStamp ts, int index,
+                                CtrlConditionHelper::FuncOnCtrl onctrl) {
+  auto name = cc.indicator();
+  auto it = this->m_mapCtrlCondition.find(name);
+  if (it != this->m_mapCtrlCondition.end()) {
+    it->second->procCtrl(cc, issim, ct, ts, index, onctrl);
+
+    return;
+  }
+}
+
+// procStrategy -
+int CtrlConditionMgr::procStrategy(Strategy& strategy, bool issim, TimeStamp ts,
+                                   int index) {
+  auto pbStrategy = strategy.getStrategy();
+
+  {
+    auto f = std::bind(&Strategy::buy, &strategy, std::placeholders::_1,
+                       std::placeholders::_3);
+
+    for (auto i = 0; i < pbStrategy.buy_size(); i++) {
+      auto cc = pbStrategy.buy(i);
+      this->procCtrl(cc, issim, CT_BUY, ts, index, f);
+    }
   }
 
   return 0;

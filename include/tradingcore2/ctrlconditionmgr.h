@@ -4,6 +4,7 @@
 #include <tradingcore2/basedef.h>
 #include <tradingcore2/candle.h>
 #include <tradingcore2/config.h>
+#include <tradingcore2/ctrlcondition.h>
 #include <tradingcore2/protos/trading2.pb.h>
 
 #include <functional>
@@ -12,7 +13,7 @@
 
 CR2BEGIN
 
-class CtrlConditionHelper;
+class Strategy;
 
 class CtrlConditionMgr {
  public:
@@ -34,6 +35,13 @@ class CtrlConditionMgr {
   // isValidStrategy - 检查 strategy 协议的完整性，返回 0 表示有效，返回 1
   // 表示没有有未支持的 CtrlCondition，返回 -1 表示有错误
   int isValidStrategy(const tradingpb::Strategy& strategy);
+
+ public:
+  void procCtrl(const tradingpb::CtrlCondition& cc, bool issim, CtrlType ct,
+                TimeStamp ts, int index,
+                CtrlConditionHelper::FuncOnCtrl onctrl);
+  // procStrategy -
+  int procStrategy(Strategy& strategy, bool issim, TimeStamp ts, int index);
 
  protected:
   CtrlConditionMgr() {}

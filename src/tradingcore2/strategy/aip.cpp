@@ -28,10 +28,11 @@ CR2BEGIN
 //   }
 // }
 
-void StrategyAIP::onBuy(bool issim, TimeStamp ts, int index,
-                        const tradingpb::Asset* pAsset, Money money) {
+void StrategyAIP::onBuy(bool issim, TimeStamp ts, Money money, Volume volume,
+                        Money fee) {
+  Strategy::onBuy(issim, ts, money, volume, fee);
+
   this->m_wallet.deposit(money, ts);
-  this->m_wallet.buyAssets(pAsset->code().c_str(), money, ts);
 }
 
 CR2END

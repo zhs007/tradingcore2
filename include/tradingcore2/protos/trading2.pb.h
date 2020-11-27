@@ -1347,6 +1347,7 @@ class BuyParams :
     kInitMoneyFieldNumber = 1,
     kPerMoneyFieldNumber = 2,
     kVolumeFieldNumber = 3,
+    kAipMoneyFieldNumber = 4,
   };
   // float initMoney = 1;
   void clear_initmoney();
@@ -1375,6 +1376,15 @@ class BuyParams :
   void _internal_set_volume(float value);
   public:
 
+  // float aipMoney = 4;
+  void clear_aipmoney();
+  float aipmoney() const;
+  void set_aipmoney(float value);
+  private:
+  float _internal_aipmoney() const;
+  void _internal_set_aipmoney(float value);
+  public:
+
   // @@protoc_insertion_point(class_scope:tradingpb.BuyParams)
  private:
   class _Internal;
@@ -1383,6 +1393,7 @@ class BuyParams :
   float initmoney_;
   float permoney_;
   float volume_;
+  float aipmoney_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_trading2_2eproto;
 };
@@ -4378,6 +4389,26 @@ inline void BuyParams::_internal_set_volume(float value) {
 inline void BuyParams::set_volume(float value) {
   _internal_set_volume(value);
   // @@protoc_insertion_point(field_set:tradingpb.BuyParams.volume)
+}
+
+// float aipMoney = 4;
+inline void BuyParams::clear_aipmoney() {
+  aipmoney_ = 0;
+}
+inline float BuyParams::_internal_aipmoney() const {
+  return aipmoney_;
+}
+inline float BuyParams::aipmoney() const {
+  // @@protoc_insertion_point(field_get:tradingpb.BuyParams.aipMoney)
+  return _internal_aipmoney();
+}
+inline void BuyParams::_internal_set_aipmoney(float value) {
+  
+  aipmoney_ = value;
+}
+inline void BuyParams::set_aipmoney(float value) {
+  _internal_set_aipmoney(value);
+  // @@protoc_insertion_point(field_set:tradingpb.BuyParams.aipMoney)
 }
 
 // -------------------------------------------------------------------

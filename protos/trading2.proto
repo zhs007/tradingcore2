@@ -59,9 +59,10 @@ message CtrlCondition {
 
 // BuyParams - buy parameters
 message BuyParams {
-    float initMoney = 1;
-    float perMoney = 2;
-    float volume = 3;
+    float initMoney = 1;        // 初始资金池
+    float perMoney = 2;         // 每次用初始资金池的百分比来购买
+    float volume = 3;           // 每次买特定数量
+    float aipMoney = 4;         // 每次买特定金额，这个一般用于定投
 }
 
 // SellParams - sell parameters

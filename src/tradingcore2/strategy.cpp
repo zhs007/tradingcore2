@@ -1,4 +1,5 @@
 
+#include <tradingcore2/ctrlconditionmgr.h>
 #include <tradingcore2/exchange.h>
 #include <tradingcore2/strategy.h>
 #include <tradingcore2/utils.h>
@@ -46,60 +47,106 @@ void Strategy::getTrainResult(TrainResult& tr) {
 }
 
 void Strategy::onTimeStamp(bool issim, TimeStamp ts, int index) {
-  this->onCtrlConditionBuy(issim, ts, index);
+  CtrlConditionMgr::getSingleton()->procStrategy(*this, issim, ts, index);
+  // this->onCtrlConditionBuy(issim, ts, index);
 }
 
-void Strategy::onCtrlConditionBuy(bool issim, TimeStamp ts, int index) {
-  auto asset = this->m_strategy.asset();
+// void Strategy::onCtrlConditionBuy(bool issim, TimeStamp ts, int index) {
+//   auto asset = this->m_strategy.asset();
 
-  auto f = std::bind(&Strategy::onBuy, this, std::placeholders::_1,
-                     std::placeholders::_2, std::placeholders::_3,
-                     std::placeholders::_4, std::placeholders::_5);
+//   auto f = std::bind(&Strategy::onBuy, this, std::placeholders::_1,
+//                      std::placeholders::_2, std::placeholders::_3,
+//                      std::placeholders::_4, std::placeholders::_5);
 
-  for (auto i = 0; i < this->m_strategy.buy_size(); ++i) {
-    const tradingpb::CtrlCondition& cc = this->m_strategy.buy(i);
+//   for (auto i = 0; i < this->m_strategy.buy_size(); ++i) {
+//     const tradingpb::CtrlCondition& cc = this->m_strategy.buy(i);
 
-    if (cc.indicator() == "weekday") {
-      this->onWeekDay(cc, issim, ts, index, &asset, f);
-    } else if (cc.indicator() == "monthday") {
-      this->onWeekDay(cc, issim, ts, index, &asset, f);
-    } else if (cc.indicator() == "buyandhold") {
-      this->onBuyAndHold(cc, issim, ts, index, &asset, f);
-    }
+//     if (cc.indicator() == "weekday") {
+//       this->onWeekDay(cc, issim, ts, index, &asset, f);
+//     } else if (cc.indicator() == "monthday") {
+//       this->onWeekDay(cc, issim, ts, index, &asset, f);
+//     } else if (cc.indicator() == "buyandhold") {
+//       this->onBuyAndHold(cc, issim, ts, index, &asset, f);
+//     }
+//   }
+// }
+
+// void Strategy::onWeekDay(const tradingpb::CtrlCondition& cc, bool issim,
+//                          TimeStamp ts, int index,
+//                          const tradingpb::Asset* pAsset,
+//                          Strategy::FuncOnCtrl onctrl) {
+//   tm ctm;
+//   timestamp2timeUTC(ts, ctm);
+
+//   if (ctm.tm_wday == cc.vals(0)) {
+//     onctrl(issim, ts, index, pAsset, cc.vals(1), cc.vals(2));
+//   }
+// }
+
+// void Strategy::onMonthDay(const tradingpb::CtrlCondition& cc, bool issim,
+//                           TimeStamp ts, int index,
+//                           const tradingpb::Asset* pAsset,
+//                           Strategy::FuncOnCtrl onctrl) {
+//   tm ctm;
+//   timestamp2timeUTC(ts, ctm);
+
+//   if (ctm.tm_mday == cc.vals(0)) {
+//     onctrl(issim, ts, index, pAsset, cc.vals(1), cc.vals(2));
+//   }
+// }
+
+// void Strategy::onBuyAndHold(const tradingpb::CtrlCondition& cc, bool issim,
+//                             TimeStamp ts, int index,
+//                             const tradingpb::Asset* pAsset,
+//                             Strategy::FuncOnCtrl onctrl) {
+//   if (index == 0) {
+//     onctrl(issim, ts, index, pAsset, cc.vals(0), 0);
+//   }
+// }
+
+void Strategy::buy(bool issim, TimeStamp ts) {
+  auto buy = this->m_strategy.paramsbuy();
+
+  if (buy.initmoney() > 0 && buy.permoney() > 0) {
+    auto m = buy.initmoney() * buy.permoney();
+
+    Volume volume = ZEROVOLUME;
+    Money price = ZEROMONEY;
+    Money fee = ZEROMONEY;
+
+    bool isok = m_exchange.calculateVolume(
+        this->m_strategy.asset().code().c_str(), ts, m, volume, price, fee);
+    assert(isok);
+    assert(price > ZEROMONEY);
+
+    this->onBuy(issim, ts, m, volume, fee);
+
+    this->m_wallet.buyAssets(this->m_strategy.asset().code().c_str(), m, ts);
+  } else if (buy.volume() > 0) {
+  } else if (buy.aipmoney() > 0) {
+    auto m = buy.aipmoney();
+
+    Volume volume = ZEROVOLUME;
+    Money price = ZEROMONEY;
+    Money fee = ZEROMONEY;
+
+    bool isok = m_exchange.calculateVolume(
+        this->m_strategy.asset().code().c_str(), ts, m, volume, price, fee);
+    assert(isok);
+    assert(price > ZEROMONEY);
+
+    this->onBuy(issim, ts, m, volume, fee);
+
+    this->m_wallet.buyAssets(this->m_strategy.asset().code().c_str(), m, ts);
   }
 }
 
-void Strategy::onWeekDay(const tradingpb::CtrlCondition& cc, bool issim,
-                         TimeStamp ts, int index,
-                         const tradingpb::Asset* pAsset,
-                         Strategy::FuncOnCtrl onctrl) {
-  tm ctm;
-  timestamp2timeUTC(ts, ctm);
-
-  if (ctm.tm_wday == cc.vals(0)) {
-    onctrl(issim, ts, index, pAsset, cc.vals(1), cc.vals(2));
-  }
-}
-
-void Strategy::onMonthDay(const tradingpb::CtrlCondition& cc, bool issim,
-                          TimeStamp ts, int index,
-                          const tradingpb::Asset* pAsset,
-                          Strategy::FuncOnCtrl onctrl) {
-  tm ctm;
-  timestamp2timeUTC(ts, ctm);
-
-  if (ctm.tm_mday == cc.vals(0)) {
-    onctrl(issim, ts, index, pAsset, cc.vals(1), cc.vals(2));
-  }
-}
-
-void Strategy::onBuyAndHold(const tradingpb::CtrlCondition& cc, bool issim,
-                            TimeStamp ts, int index,
-                            const tradingpb::Asset* pAsset,
-                            Strategy::FuncOnCtrl onctrl) {
-  if (index == 0) {
-    onctrl(issim, ts, index, pAsset, cc.vals(0), 0);
-  }
+void Strategy::onBuy(bool issim, TimeStamp ts, Money money, Volume volume,
+                     Money fee) {
+  this->m_money += money;
+  this->m_fee += fee;
+  this->m_volume += volume;
+  this->m_price = this->m_money / this->m_volume;
 }
 
 CR2END
