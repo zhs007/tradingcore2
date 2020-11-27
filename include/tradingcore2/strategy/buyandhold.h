@@ -10,6 +10,9 @@ CR2BEGIN
 
 class StrategyBAH final : public Strategy {
  public:
+  static void regStrategy();
+
+ protected:
   StrategyBAH(Wallet& wallet, Exchange& exchange)
       : Strategy(wallet, exchange) {}
   virtual ~StrategyBAH() {}

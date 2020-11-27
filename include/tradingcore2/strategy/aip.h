@@ -18,6 +18,9 @@ class StrategyAIP final : public Strategy {
   };
 
  public:
+  static void regStrategy();
+
+ protected:
   StrategyAIP(Wallet& wallet, Exchange& exchange)
       : Strategy(wallet, exchange) {}
   virtual ~StrategyAIP() {}
