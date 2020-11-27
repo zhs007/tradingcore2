@@ -50,6 +50,13 @@ struct TrainResult {
 
 typedef std::vector<TrainResult> TrainResultList;
 
+enum CtrlType {
+  CT_BUY = 1,
+  CT_SELL = 2,
+  CT_STOPLOSS = 3,
+  CT_TAKEPROFIT = 4,
+};
+
 CR2END
 
 #endif  // __TRADINGCORE2_BASEDEF_H__

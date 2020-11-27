@@ -11,6 +11,7 @@
 
 CR2BEGIN
 
+// Strategy - 仅处理单个资产，可以有多个条件，如果要处理多个资产，在外部处理
 class Strategy {
  public:
   typedef std::function<void(bool, TimeStamp, int, const tradingpb::Asset*,

@@ -110,6 +110,11 @@ void TradingNode2Impl::init(const Config& cfg) {
 
   for (auto i = 0; i < request->params().strategies_size(); ++i) {
     auto cs = request->params().strategies(i);
+    auto ret = CtrlConditionMgr::getSingleton()->isValidStrategy(cs);
+    if (ret == -1) {
+      return grpc::Status(grpc::StatusCode::UNKNOWN, "isValidStrategy");
+    }
+
     if (cs.name() == "bah") {
       tr2::StrategyBAH* bah = new tr2::StrategyBAH(*pWallet, *exchange);
 

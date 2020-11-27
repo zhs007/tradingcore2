@@ -27,6 +27,14 @@ class CtrlConditionMgr {
 
   CtrlConditionHelper* getCtrlCondition(const char* name);
 
+ public:
+  // isValid - 检查 cc 协议的完整性，返回 0 表示有效，返回 1 表示没有支持这个
+  // cc，返回 -1 表示错误
+  int isValid(const tradingpb::CtrlCondition& cc, CtrlType ct);
+  // isValidStrategy - 检查 strategy 协议的完整性，返回 0 表示有效，返回 1
+  // 表示没有有未支持的 CtrlCondition，返回 -1 表示有错误
+  int isValidStrategy(const tradingpb::Strategy& strategy);
+
  protected:
   CtrlConditionMgr() {}
   ~CtrlConditionMgr() { this->release(); }

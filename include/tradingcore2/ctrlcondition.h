@@ -14,17 +14,17 @@ CR2BEGIN
 
 class CtrlConditionHelper {
  public:
-  typedef std::function<void(bool, const tradingpb::Asset*, TimeStamp)>
-      FuncOnCtrl;
+  typedef std::function<void(bool, CtrlType, TimeStamp)> FuncOnCtrl;
 
  public:
   CtrlConditionHelper() {}
   virtual ~CtrlConditionHelper() {}
 
  public:
-  virtual bool isValid(const tradingpb::CtrlCondition& cc) = 0;
+  virtual bool isValid(const tradingpb::CtrlCondition& cc, CtrlType ct) = 0;
 
-  virtual void procCtrl(const tradingpb::CtrlCondition& cc,
+  virtual void procCtrl(const tradingpb::CtrlCondition& cc, bool issim,
+                        CtrlType ct, TimeStamp ts, int index,
                         FuncOnCtrl onctrl) = 0;
 };
 

@@ -22,9 +22,11 @@ class CCBuyAndHold final : public CtrlConditionHelper {
   virtual ~CCBuyAndHold() {}
 
  public:
-  virtual bool isValid(const tradingpb::CtrlCondition& cc) override;
+  virtual bool isValid(const tradingpb::CtrlCondition& cc,
+                       CtrlType ct) override;
 
-  virtual void procCtrl(const tradingpb::CtrlCondition& cc,
+  virtual void procCtrl(const tradingpb::CtrlCondition& cc, bool issim,
+                        CtrlType ct, TimeStamp ts, int index,
                         FuncOnCtrl onctrl) override;
 };
 

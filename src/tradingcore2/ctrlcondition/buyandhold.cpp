@@ -11,9 +11,20 @@ void CCBuyAndHold::regCtrlConditionHelper() {
                                                      new CCBuyAndHold());
 }
 
-bool CCBuyAndHold::isValid(const tradingpb::CtrlCondition& cc) { return false; }
+bool CCBuyAndHold::isValid(const tradingpb::CtrlCondition& cc, CtrlType ct) {
+  if (ct == CT_BUY) {
+    return true;
+  }
 
-void CCBuyAndHold::procCtrl(const tradingpb::CtrlCondition& cc,
-                            FuncOnCtrl onctrl) {}
+  return false;
+}
+
+void CCBuyAndHold::procCtrl(const tradingpb::CtrlCondition& cc, bool issim,
+                            CtrlType ct, TimeStamp ts, int index,
+                            FuncOnCtrl onctrl) {
+  if (ct == CT_BUY && index == 0 && onctrl != NULL) {
+    onctrl(issim, ct, ts);
+  }
+}
 
 CR2END
