@@ -30,6 +30,7 @@ aux_source_directory(./server DIR_LIB_SERVER_SRCS)
 aux_source_directory(./client DIR_LIB_CLIENT_SRCS)
 aux_source_directory(./trdb2 DIR_LIB_TRDB2_SRCS)
 aux_source_directory(./trnode2 DIR_LIB_TRNODE2_SRCS)
+aux_source_directory(./ctrlcondition DIR_LIB_CTRLCONDITION_SRCS)
 
 add_library(libtradingcore2 
     ${DIR_LIB_SRCS} 
@@ -40,4 +41,5 @@ add_library(libtradingcore2
     ${DIR_LIB_SERVER_SRCS}
     ${DIR_LIB_CLIENT_SRCS}
     ${DIR_LIB_TRDB2_SRCS}
-    ${DIR_LIB_TRNODE2_SRCS})
+    ${DIR_LIB_TRNODE2_SRCS}
+    ${DIR_LIB_CTRLCONDITION_SRCS})

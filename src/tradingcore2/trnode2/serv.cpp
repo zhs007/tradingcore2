@@ -7,6 +7,7 @@
 #include <tradingcore2/pnl2.h>
 #include <tradingcore2/protos/tradingnode2.grpc.pb.h>
 #include <tradingcore2/spinlock.h>
+#include <tradingcore2/strategymgr.h>
 #include <tradingcore2/train.h>
 #include <tradingcore2/trnode2/serv.h>
 #include <tradingcore2/trnode2/utils.h>
@@ -110,32 +111,48 @@ void TradingNode2Impl::init(const Config& cfg) {
 
   for (auto i = 0; i < request->params().strategies_size(); ++i) {
     auto cs = request->params().strategies(i);
-    if (cs.name() == "bah") {
-      tr2::StrategyBAH* bah = new tr2::StrategyBAH(*pWallet, *exchange);
-
-      auto ca = cs.asset();
-      bah->init(ca.code().c_str(), 10000);
-      bah->simulateTrading();
-    } else if (cs.name() == "aip") {
-      StrategyAIP* aip = new tr2::StrategyAIP(*pWallet, *exchange);
-
-      if (cs.buy_size() >= 1) {
-        auto cb = cs.buy(0);
-
-        StrategyAIP::TimeType tt = StrategyAIP::TT_NONE;
-        if (cb.indicator() == "monthday") {
-          tt = StrategyAIP::TT_MONTH;
-        } else if (cb.indicator() == "weekday") {
-          tt = StrategyAIP::TT_WEEK;
-        }
-
-        if (tt != StrategyAIP::TT_NONE && cb.vals_size() > 0) {
-          auto ca = cs.asset();
-          aip->init(ca.code().c_str(), tt, cb.vals(0), 10000);
-          aip->simulateTrading();
-        }
-      }
+    auto ret = CtrlConditionMgr::getSingleton()->isValidStrategy(cs);
+    if (ret == -1) {
+      return grpc::Status(grpc::StatusCode::UNKNOWN, "isValidStrategy");
     }
+
+    auto strategy = tr2::StrategyMgr::getSingleton()->newStrategy(
+        cs.name().c_str(), *pWallet, *exchange);
+    if (strategy == NULL) {
+      return grpc::Status(grpc::StatusCode::UNKNOWN, "non strategy");
+    }
+
+    strategy->init(cs);
+    strategy->simulateTrading();
+
+    // if (cs.name() == "bah") {
+    //   tr2::StrategyBAH* bah = new tr2::StrategyBAH(*pWallet, *exchange);
+
+    //   // auto ca = cs.asset();
+    //   bah->init(cs);
+    //   bah->simulateTrading();
+    // } else if (cs.name() == "aip") {
+    //   StrategyAIP* aip = new tr2::StrategyAIP(*pWallet, *exchange);
+
+    //   aip->init(cs);
+    //   aip->simulateTrading();
+    //   // if (cs.buy_size() >= 1) {
+    //   //   auto cb = cs.buy(0);
+
+    //   //   StrategyAIP::TimeType tt = StrategyAIP::TT_NONE;
+    //   //   if (cb.indicator() == "monthday") {
+    //   //     tt = StrategyAIP::TT_MONTH;
+    //   //   } else if (cb.indicator() == "weekday") {
+    //   //     tt = StrategyAIP::TT_WEEK;
+    //   //   }
+
+    //   //   if (tt != StrategyAIP::TT_NONE && cb.vals_size() > 0) {
+    //   //     auto ca = cs.asset();
+    //   //     aip->init(ca.code().c_str(), tt, cb.vals(0), 10000);
+    //   //     aip->simulateTrading();
+    //   //   }
+    //   // }
+    // }
   }
 
   tr2::PNL2 pnl2;

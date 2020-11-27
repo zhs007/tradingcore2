@@ -22,7 +22,10 @@ class StrategySI final : public Strategy {
   virtual ~StrategySI() { this->release(); }
 
  public:
-  virtual void onTimeStamp(TimeStamp ts, int index) override;
+  virtual void onTimeStamp(bool issim, TimeStamp ts, int index) override;
+
+  // virtual void onBuy(bool issim, TimeStamp ts, Money money, Volume volume,
+  //                    Money fee) override;
 
  public:
   void init(const char* assetsName, const char* nameIndicator, int avgtimes,
