@@ -75,19 +75,21 @@ int CtrlConditionMgr::isValidStrategy(const tradingpb::Strategy& strategy) {
 
 void CtrlConditionMgr::procCtrl(const tradingpb::CtrlCondition& cc, bool issim,
                                 CtrlType ct, TimeStamp ts, int index,
+                                void* pData,
                                 CtrlConditionHelper::FuncOnCtrl onctrl) {
   auto name = cc.indicator();
   auto it = this->m_mapCtrlCondition.find(name);
   if (it != this->m_mapCtrlCondition.end()) {
-    it->second->procCtrl(cc, issim, ct, ts, index, onctrl);
+    it->second->procCtrl(cc, issim, ct, ts, index, pData, onctrl);
 
     return;
   }
 }
 
 // procStrategy -
-int CtrlConditionMgr::procStrategy(Strategy& strategy, bool issim, TimeStamp ts,
-                                   int index) {
+int CtrlConditionMgr::procStrategy(Strategy& strategy,
+                                   CtrlConditionMgr::CtrlConditionData* pData,
+                                   bool issim, TimeStamp ts, int index) {
   auto pbStrategy = strategy.getStrategy();
 
   {
@@ -96,11 +98,71 @@ int CtrlConditionMgr::procStrategy(Strategy& strategy, bool issim, TimeStamp ts,
 
     for (auto i = 0; i < pbStrategy.buy_size(); i++) {
       auto cc = pbStrategy.buy(i);
-      this->procCtrl(cc, issim, CT_BUY, ts, index, f);
+      auto pD = pData->lstBuy[i];
+
+      this->procCtrl(cc, issim, CT_BUY, ts, index, pD, f);
     }
   }
 
   return 0;
+}
+
+void* CtrlConditionMgr::newCtrlConditionData(
+    const tradingpb::CtrlCondition& cc) {
+  auto name = cc.indicator();
+  auto it = this->m_mapCtrlCondition.find(name);
+  if (it != this->m_mapCtrlCondition.end()) {
+    return it->second->newCtrlConditionData();
+  }
+
+  return NULL;
+}
+
+void CtrlConditionMgr::deleteCtrlConditionData(
+    const tradingpb::CtrlCondition& cc, void* pData) {
+  if (pData == NULL) {
+    return;
+  }
+
+  auto name = cc.indicator();
+  auto it = this->m_mapCtrlCondition.find(name);
+  if (it != this->m_mapCtrlCondition.end()) {
+    it->second->deleteCtrlConditionData(pData);
+  }
+}
+
+CtrlConditionMgr::CtrlConditionData* CtrlConditionMgr::newCtrlConditionData(
+    Strategy& strategy) {
+  auto pData = new CtrlConditionMgr::CtrlConditionData();
+
+  auto pbStrategy = strategy.getStrategy();
+
+  for (auto i = 0; i < pbStrategy.buy_size(); i++) {
+    auto cc = pbStrategy.buy(i);
+    auto pD = this->newCtrlConditionData(cc);
+    pData->lstBuy.push_back(pD);
+  }
+
+  return pData;
+}
+
+void CtrlConditionMgr::deleteCtrlConditionData(
+    Strategy& strategy, CtrlConditionMgr::CtrlConditionData* pData) {
+  if (pData == NULL) {
+    return;
+  }
+
+  auto pbStrategy = strategy.getStrategy();
+
+  for (auto i = 0; i < pbStrategy.buy_size(); i++) {
+    auto cc = pbStrategy.buy(i);
+    auto pD = pData->lstBuy[i];
+    this->deleteCtrlConditionData(cc, pD);
+  }
+
+  pData->lstBuy.clear();
+
+  delete pData;
 }
 
 CR2END

@@ -59,10 +59,13 @@ message CtrlCondition {
 
 // BuyParams - buy parameters
 message BuyParams {
-    float initMoney = 1;        // 初始资金池
-    float perMoney = 2;         // 每次用初始资金池的百分比来购买
-    float volume = 3;           // 每次买特定数量
-    float aipMoney = 4;         // 每次买特定金额，这个一般用于定投
+    float initMoney = 1 [deprecated = true];    // 初始资金池
+    float perMoney = 2 [deprecated = true];     // 每次用初始资金池的百分比来购买
+    float volume = 3;                           // 每次买特定数量
+    float aipMoney = 4;                         // 每次买特定金额，这个一般用于定投
+    float perInitMoney = 5;                     // 使用初始资金池的一定比例购买
+    float perHandMoney = 6;                     // 使用余额的一定比例购买
+    float perTotalMoney = 7;                    // 使用总资金的一定比例购买
 }
 
 // SellParams - sell parameters
@@ -82,6 +85,12 @@ message TakeProfitParams {
     float profit = 1;
 }
 
+// InitParams - initial parameters
+message InitParams {
+    float money = 1;
+    float vomume = 2;
+}
+
 // Strategy - strategy
 message Strategy {
     string name = 1;
@@ -94,6 +103,7 @@ message Strategy {
     SellParams paramsSell = 8;
     StopLossParams paramsStopLoss = 9;
     TakeProfitParams paramsTakeProfit = 10;
+    InitParams paramsInit = 11;
 }
 
 // PNLDataValue - 

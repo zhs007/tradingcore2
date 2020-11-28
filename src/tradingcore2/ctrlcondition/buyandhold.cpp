@@ -20,7 +20,7 @@ bool CCBuyAndHold::isValid(const tradingpb::CtrlCondition& cc, CtrlType ct) {
 }
 
 void CCBuyAndHold::procCtrl(const tradingpb::CtrlCondition& cc, bool issim,
-                            CtrlType ct, TimeStamp ts, int index,
+                            CtrlType ct, TimeStamp ts, int index, void* pData,
                             FuncOnCtrl onctrl) {
   if (ct == CT_BUY && index == 0 && onctrl != NULL) {
     onctrl(issim, ct, ts);
