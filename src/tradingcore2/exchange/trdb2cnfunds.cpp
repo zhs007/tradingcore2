@@ -116,6 +116,10 @@ int TrDB2CNFundsExchange::getDataLength(const char* assetsName) {
 void TrDB2CNFundsExchange::forEachTimeStamp(Exchange::FuncOnTimeStamp func,
                                             TimeStamp tsStart,
                                             TimeStamp tsEnd) const {
+  if (this->m_lstTimeStamp.empty()) {
+    return;
+  }
+
   if (tsEnd <= 0) {
     tsEnd = this->m_lstTimeStamp.back();
   }

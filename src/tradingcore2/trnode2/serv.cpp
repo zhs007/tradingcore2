@@ -95,7 +95,8 @@ void TradingNode2Impl::init(const Config& cfg) {
 
   for (auto i = 0; i < request->params().assets_size(); ++i) {
     auto ca = request->params().assets(i);
-    exchange->loadData(ca.code().c_str(), 0, -1);
+    exchange->loadData(ca.code().c_str(), request->params().startts(),
+                       request->params().endts());
   }
 
   exchange->rebuildTimeStampList();
