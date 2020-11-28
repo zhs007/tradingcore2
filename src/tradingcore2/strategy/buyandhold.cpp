@@ -22,12 +22,12 @@ void StrategyBAH::regStrategy() {
       });
 }
 
-void StrategyBAH::onBuy(bool issim, TimeStamp ts, Money money, Volume volume,
-                        Money fee) {
-  this->m_wallet.deposit(money, ts);
-  this->m_handMoney += money;
+// void StrategyBAH::onBuy(bool issim, TimeStamp ts, Money money, Volume volume,
+//                         Money fee) {
+//   this->m_wallet.deposit(money, ts);
+//   this->m_handMoney += money;
 
-  Strategy::onBuy(issim, ts, money, volume, fee);
-}
+//   Strategy::onBuy(issim, ts, money, volume, fee);
+// }
 
 CR2END

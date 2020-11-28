@@ -30,6 +30,7 @@ class Strategy {
         m_failNums(0),
         m_handMoney(0),
         m_costMoney(0),
+        m_initMoney(0),
         m_volume(0),
         m_price(0),
         m_fee(0),
@@ -65,6 +66,8 @@ class Strategy {
   void buy(bool issim, TimeStamp ts);
 
   void sell(bool issim, TimeStamp ts);
+
+  void initMoney(bool issim, TimeStamp ts);
 
  protected:
   void onSimulateTradingTimeStamp(TimeStamp ts, int index);
@@ -110,6 +113,7 @@ class Strategy {
   tradingpb::Strategy m_strategy;
   Money m_handMoney;
   Money m_costMoney;
+  Money m_initMoney;
   Volume m_volume;
   Money m_price;
   Money m_fee;

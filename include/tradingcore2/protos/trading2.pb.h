@@ -1352,20 +1352,23 @@ class BuyParams :
     kPerMoneyFieldNumber = 2,
     kVolumeFieldNumber = 3,
     kAipMoneyFieldNumber = 4,
+    kPerInitMoneyFieldNumber = 5,
+    kPerHandMoneyFieldNumber = 6,
+    kPerTotalMoneyFieldNumber = 7,
   };
-  // float initMoney = 1;
-  void clear_initmoney();
-  float initmoney() const;
-  void set_initmoney(float value);
+  // float initMoney = 1 [deprecated = true];
+  PROTOBUF_DEPRECATED void clear_initmoney();
+  PROTOBUF_DEPRECATED float initmoney() const;
+  PROTOBUF_DEPRECATED void set_initmoney(float value);
   private:
   float _internal_initmoney() const;
   void _internal_set_initmoney(float value);
   public:
 
-  // float perMoney = 2;
-  void clear_permoney();
-  float permoney() const;
-  void set_permoney(float value);
+  // float perMoney = 2 [deprecated = true];
+  PROTOBUF_DEPRECATED void clear_permoney();
+  PROTOBUF_DEPRECATED float permoney() const;
+  PROTOBUF_DEPRECATED void set_permoney(float value);
   private:
   float _internal_permoney() const;
   void _internal_set_permoney(float value);
@@ -1389,6 +1392,33 @@ class BuyParams :
   void _internal_set_aipmoney(float value);
   public:
 
+  // float perInitMoney = 5;
+  void clear_perinitmoney();
+  float perinitmoney() const;
+  void set_perinitmoney(float value);
+  private:
+  float _internal_perinitmoney() const;
+  void _internal_set_perinitmoney(float value);
+  public:
+
+  // float perHandMoney = 6;
+  void clear_perhandmoney();
+  float perhandmoney() const;
+  void set_perhandmoney(float value);
+  private:
+  float _internal_perhandmoney() const;
+  void _internal_set_perhandmoney(float value);
+  public:
+
+  // float perTotalMoney = 7;
+  void clear_pertotalmoney();
+  float pertotalmoney() const;
+  void set_pertotalmoney(float value);
+  private:
+  float _internal_pertotalmoney() const;
+  void _internal_set_pertotalmoney(float value);
+  public:
+
   // @@protoc_insertion_point(class_scope:tradingpb.BuyParams)
  private:
   class _Internal;
@@ -1398,6 +1428,9 @@ class BuyParams :
   float permoney_;
   float volume_;
   float aipmoney_;
+  float perinitmoney_;
+  float perhandmoney_;
+  float pertotalmoney_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_trading2_2eproto;
 };
@@ -4491,7 +4524,7 @@ CtrlCondition::mutable_offvals() {
 
 // BuyParams
 
-// float initMoney = 1;
+// float initMoney = 1 [deprecated = true];
 inline void BuyParams::clear_initmoney() {
   initmoney_ = 0;
 }
@@ -4511,7 +4544,7 @@ inline void BuyParams::set_initmoney(float value) {
   // @@protoc_insertion_point(field_set:tradingpb.BuyParams.initMoney)
 }
 
-// float perMoney = 2;
+// float perMoney = 2 [deprecated = true];
 inline void BuyParams::clear_permoney() {
   permoney_ = 0;
 }
@@ -4569,6 +4602,66 @@ inline void BuyParams::_internal_set_aipmoney(float value) {
 inline void BuyParams::set_aipmoney(float value) {
   _internal_set_aipmoney(value);
   // @@protoc_insertion_point(field_set:tradingpb.BuyParams.aipMoney)
+}
+
+// float perInitMoney = 5;
+inline void BuyParams::clear_perinitmoney() {
+  perinitmoney_ = 0;
+}
+inline float BuyParams::_internal_perinitmoney() const {
+  return perinitmoney_;
+}
+inline float BuyParams::perinitmoney() const {
+  // @@protoc_insertion_point(field_get:tradingpb.BuyParams.perInitMoney)
+  return _internal_perinitmoney();
+}
+inline void BuyParams::_internal_set_perinitmoney(float value) {
+  
+  perinitmoney_ = value;
+}
+inline void BuyParams::set_perinitmoney(float value) {
+  _internal_set_perinitmoney(value);
+  // @@protoc_insertion_point(field_set:tradingpb.BuyParams.perInitMoney)
+}
+
+// float perHandMoney = 6;
+inline void BuyParams::clear_perhandmoney() {
+  perhandmoney_ = 0;
+}
+inline float BuyParams::_internal_perhandmoney() const {
+  return perhandmoney_;
+}
+inline float BuyParams::perhandmoney() const {
+  // @@protoc_insertion_point(field_get:tradingpb.BuyParams.perHandMoney)
+  return _internal_perhandmoney();
+}
+inline void BuyParams::_internal_set_perhandmoney(float value) {
+  
+  perhandmoney_ = value;
+}
+inline void BuyParams::set_perhandmoney(float value) {
+  _internal_set_perhandmoney(value);
+  // @@protoc_insertion_point(field_set:tradingpb.BuyParams.perHandMoney)
+}
+
+// float perTotalMoney = 7;
+inline void BuyParams::clear_pertotalmoney() {
+  pertotalmoney_ = 0;
+}
+inline float BuyParams::_internal_pertotalmoney() const {
+  return pertotalmoney_;
+}
+inline float BuyParams::pertotalmoney() const {
+  // @@protoc_insertion_point(field_get:tradingpb.BuyParams.perTotalMoney)
+  return _internal_pertotalmoney();
+}
+inline void BuyParams::_internal_set_pertotalmoney(float value) {
+  
+  pertotalmoney_ = value;
+}
+inline void BuyParams::set_pertotalmoney(float value) {
+  _internal_set_pertotalmoney(value);
+  // @@protoc_insertion_point(field_set:tradingpb.BuyParams.perTotalMoney)
 }
 
 // -------------------------------------------------------------------

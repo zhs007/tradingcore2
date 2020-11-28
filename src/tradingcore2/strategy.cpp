@@ -55,6 +55,10 @@ void Strategy::getTrainResult(TrainResult& tr) {
 }
 
 void Strategy::onTimeStamp(bool issim, TimeStamp ts, int index) {
+  if (index == 0) {
+    this->initMoney(issim, ts);
+  }
+
   CtrlConditionMgr::getSingleton()->procStrategy(*this, this->m_pCCData, issim,
                                                  ts, index);
 }
@@ -62,8 +66,31 @@ void Strategy::onTimeStamp(bool issim, TimeStamp ts, int index) {
 void Strategy::buy(bool issim, TimeStamp ts) {
   auto buy = this->m_strategy.paramsbuy();
 
-  if (buy.initmoney() > 0 && buy.permoney() > 0) {
-    auto m = buy.initmoney() * buy.permoney();
+  if (buy.perinitmoney() > 0) {
+    auto m = this->m_initMoney * buy.perinitmoney();
+
+    if (m <= 0) {
+      return;
+    }
+
+    Volume volume = ZEROVOLUME;
+    Money price = ZEROMONEY;
+    Money fee = ZEROMONEY;
+
+    bool isok = m_exchange.calculateVolume(
+        this->m_strategy.asset().code().c_str(), ts, m, volume, price, fee);
+    assert(isok);
+    assert(price > ZEROMONEY);
+
+    this->onBuy(issim, ts, m, volume, fee);
+
+    this->m_wallet.buyAssets(this->m_strategy.asset().code().c_str(), m, ts);
+  } else if (buy.perhandmoney() > 0) {
+    auto m = this->m_handMoney * buy.perhandmoney();
+
+    if (m <= 0) {
+      return;
+    }
 
     Volume volume = ZEROVOLUME;
     Money price = ZEROMONEY;
@@ -80,6 +107,10 @@ void Strategy::buy(bool issim, TimeStamp ts) {
   } else if (buy.volume() > 0) {
   } else if (buy.aipmoney() > 0) {
     auto m = buy.aipmoney();
+
+    if (m <= 0) {
+      return;
+    }
 
     Volume volume = ZEROVOLUME;
     Money price = ZEROMONEY;
@@ -161,6 +192,16 @@ void Strategy::onSell(bool issim, TimeStamp ts, Money money, Volume volume,
     this->m_costMoney = this->m_price * this->m_volume;
   } else {
     this->m_costMoney = 0;
+  }
+}
+
+void Strategy::initMoney(bool issim, TimeStamp ts) {
+  auto init = this->m_strategy.paramsinit();
+
+  this->m_initMoney = init.money();
+  if (this->m_initMoney > 0) {
+    this->m_wallet.deposit(this->m_initMoney, ts);
+    this->m_handMoney = this->m_initMoney;
   }
 }
 
