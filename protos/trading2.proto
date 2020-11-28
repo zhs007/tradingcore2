@@ -82,6 +82,12 @@ message TakeProfitParams {
     float profit = 1;
 }
 
+// InitParams - initial parameters
+message InitParams {
+    float money = 1;
+    float vomume = 2;
+}
+
 // Strategy - strategy
 message Strategy {
     string name = 1;
@@ -94,6 +100,7 @@ message Strategy {
     SellParams paramsSell = 8;
     StopLossParams paramsStopLoss = 9;
     TakeProfitParams paramsTakeProfit = 10;
+    InitParams paramsInit = 11;
 }
 
 // PNLDataValue - 

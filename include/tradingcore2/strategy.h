@@ -28,7 +28,8 @@ class Strategy {
         m_tradingNums(0),
         m_stoplossNums(0),
         m_failNums(0),
-        m_money(0),
+        m_handMoney(0),
+        m_costMoney(0),
         m_volume(0),
         m_price(0),
         m_fee(0),
@@ -40,6 +41,9 @@ class Strategy {
 
   virtual void onBuy(bool issim, TimeStamp ts, Money money, Volume volume,
                      Money fee);
+
+  virtual void onSell(bool issim, TimeStamp ts, Money money, Volume volume,
+                      Money fee);
 
  public:
   void init(const tradingpb::Strategy& strategy) {
@@ -59,6 +63,8 @@ class Strategy {
   const tradingpb::Strategy& getStrategy() const { return m_strategy; }
 
   void buy(bool issim, TimeStamp ts);
+
+  void sell(bool issim, TimeStamp ts);
 
  protected:
   void onSimulateTradingTimeStamp(TimeStamp ts, int index);
@@ -102,7 +108,8 @@ class Strategy {
   int m_failNums;
 
   tradingpb::Strategy m_strategy;
-  Money m_money;
+  Money m_handMoney;
+  Money m_costMoney;
   Volume m_volume;
   Money m_price;
   Money m_fee;
