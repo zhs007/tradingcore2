@@ -2,6 +2,7 @@
 #define __TRADINGCORE2_STRATEGY_H__
 
 #include <tradingcore2/basedef.h>
+#include <tradingcore2/ctrlconditionmgr.h>
 #include <tradingcore2/pnl.h>
 #include <tradingcore2/protos/trading2.pb.h>
 
@@ -30,7 +31,8 @@ class Strategy {
         m_money(0),
         m_volume(0),
         m_price(0),
-        m_fee(0) {}
+        m_fee(0),
+        m_pCCData(NULL) {}
   virtual ~Strategy() {}
 
  public:
@@ -104,6 +106,7 @@ class Strategy {
   Volume m_volume;
   Money m_price;
   Money m_fee;
+  CtrlConditionMgr::CtrlConditionData* m_pCCData;
 };
 
 CR2END

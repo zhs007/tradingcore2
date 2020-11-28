@@ -20,6 +20,11 @@ class CtrlConditionMgr {
   typedef std::pair<std::string, CtrlConditionHelper*> PairCtrlCondition;
   typedef std::map<std::string, CtrlConditionHelper*> MapCtrlCondition;
 
+  struct CtrlConditionData {
+    std::vector<void*> lstBuy;
+    std::vector<void*> lstSell;
+  };
+
  public:
   static CtrlConditionMgr* getSingleton();
 
@@ -37,11 +42,24 @@ class CtrlConditionMgr {
   int isValidStrategy(const tradingpb::Strategy& strategy);
 
  public:
+  void* newCtrlConditionData(const tradingpb::CtrlCondition& cc);
+
+  void deleteCtrlConditionData(const tradingpb::CtrlCondition& cc, void* pData);
+
   void procCtrl(const tradingpb::CtrlCondition& cc, bool issim, CtrlType ct,
-                TimeStamp ts, int index,
+                TimeStamp ts, int index, void* pData,
                 CtrlConditionHelper::FuncOnCtrl onctrl);
+
+ public:
+  CtrlConditionMgr::CtrlConditionData* newCtrlConditionData(Strategy& strategy);
+
+  void deleteCtrlConditionData(Strategy& strategy,
+                               CtrlConditionMgr::CtrlConditionData* pData);
+
   // procStrategy -
-  int procStrategy(Strategy& strategy, bool issim, TimeStamp ts, int index);
+  int procStrategy(Strategy& strategy,
+                   CtrlConditionMgr::CtrlConditionData* pData, bool issim,
+                   TimeStamp ts, int index);
 
  protected:
   CtrlConditionMgr() {}

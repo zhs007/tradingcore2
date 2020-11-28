@@ -3386,6 +3386,7 @@ class ReplySimTrading :
 
   enum : int {
     kPnlFieldNumber = 1,
+    kBaselineFieldNumber = 2,
   };
   // repeated .tradingpb.PNLData pnl = 1;
   int pnl_size() const;
@@ -3405,12 +3406,31 @@ class ReplySimTrading :
   const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingpb::PNLData >&
       pnl() const;
 
+  // repeated .tradingpb.PNLData baseline = 2;
+  int baseline_size() const;
+  private:
+  int _internal_baseline_size() const;
+  public:
+  void clear_baseline();
+  ::tradingpb::PNLData* mutable_baseline(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingpb::PNLData >*
+      mutable_baseline();
+  private:
+  const ::tradingpb::PNLData& _internal_baseline(int index) const;
+  ::tradingpb::PNLData* _internal_add_baseline();
+  public:
+  const ::tradingpb::PNLData& baseline(int index) const;
+  ::tradingpb::PNLData* add_baseline();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingpb::PNLData >&
+      baseline() const;
+
   // @@protoc_insertion_point(class_scope:tradingpb.ReplySimTrading)
  private:
   class _Internal;
 
   ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingpb::PNLData > pnl_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingpb::PNLData > baseline_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_tradingdb2_2eproto;
 };
@@ -6682,6 +6702,42 @@ inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingpb::PNLData >&
 ReplySimTrading::pnl() const {
   // @@protoc_insertion_point(field_list:tradingpb.ReplySimTrading.pnl)
   return pnl_;
+}
+
+// repeated .tradingpb.PNLData baseline = 2;
+inline int ReplySimTrading::_internal_baseline_size() const {
+  return baseline_.size();
+}
+inline int ReplySimTrading::baseline_size() const {
+  return _internal_baseline_size();
+}
+inline ::tradingpb::PNLData* ReplySimTrading::mutable_baseline(int index) {
+  // @@protoc_insertion_point(field_mutable:tradingpb.ReplySimTrading.baseline)
+  return baseline_.Mutable(index);
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingpb::PNLData >*
+ReplySimTrading::mutable_baseline() {
+  // @@protoc_insertion_point(field_mutable_list:tradingpb.ReplySimTrading.baseline)
+  return &baseline_;
+}
+inline const ::tradingpb::PNLData& ReplySimTrading::_internal_baseline(int index) const {
+  return baseline_.Get(index);
+}
+inline const ::tradingpb::PNLData& ReplySimTrading::baseline(int index) const {
+  // @@protoc_insertion_point(field_get:tradingpb.ReplySimTrading.baseline)
+  return _internal_baseline(index);
+}
+inline ::tradingpb::PNLData* ReplySimTrading::_internal_add_baseline() {
+  return baseline_.Add();
+}
+inline ::tradingpb::PNLData* ReplySimTrading::add_baseline() {
+  // @@protoc_insertion_point(field_add:tradingpb.ReplySimTrading.baseline)
+  return _internal_add_baseline();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingpb::PNLData >&
+ReplySimTrading::baseline() const {
+  // @@protoc_insertion_point(field_list:tradingpb.ReplySimTrading.baseline)
+  return baseline_;
 }
 
 #ifdef __GNUC__

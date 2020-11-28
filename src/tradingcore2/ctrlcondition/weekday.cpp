@@ -17,7 +17,7 @@ bool CCWeekDay::isValid(const tradingpb::CtrlCondition& cc, CtrlType ct) {
 }
 
 void CCWeekDay::procCtrl(const tradingpb::CtrlCondition& cc, bool issim,
-                         CtrlType ct, TimeStamp ts, int index,
+                         CtrlType ct, TimeStamp ts, int index, void* pData,
                          FuncOnCtrl onctrl) {
   tm ctm;
   timestamp2timeUTC(ts, ctm);

@@ -10,10 +10,18 @@
 CR2BEGIN
 
 void Strategy::simulateTrading() {
+  this->m_pCCData =
+      CtrlConditionMgr::getSingleton()->newCtrlConditionData(*this);
+
   auto f = std::bind(&Strategy::onSimulateTradingTimeStamp, this,
                      std::placeholders::_2, std::placeholders::_3);
 
   this->m_exchange.forEachTimeStamp(f, 0, 0);
+
+  CtrlConditionMgr::getSingleton()->deleteCtrlConditionData(*this,
+                                                            this->m_pCCData);
+
+  this->m_pCCData = NULL;
 }
 
 void Strategy::onSimulateTradingTimeStamp(TimeStamp ts, int index) {
@@ -47,7 +55,8 @@ void Strategy::getTrainResult(TrainResult& tr) {
 }
 
 void Strategy::onTimeStamp(bool issim, TimeStamp ts, int index) {
-  CtrlConditionMgr::getSingleton()->procStrategy(*this, issim, ts, index);
+  CtrlConditionMgr::getSingleton()->procStrategy(*this, this->m_pCCData, issim,
+                                                 ts, index);
   // this->onCtrlConditionBuy(issim, ts, index);
 }
 

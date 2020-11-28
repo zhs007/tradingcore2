@@ -21,10 +21,14 @@ class CtrlConditionHelper {
   virtual ~CtrlConditionHelper() {}
 
  public:
+  virtual void* newCtrlConditionData() = 0;
+
+  virtual void deleteCtrlConditionData(void* pData) = 0;
+
   virtual bool isValid(const tradingpb::CtrlCondition& cc, CtrlType ct) = 0;
 
   virtual void procCtrl(const tradingpb::CtrlCondition& cc, bool issim,
-                        CtrlType ct, TimeStamp ts, int index,
+                        CtrlType ct, TimeStamp ts, int index, void* pData,
                         FuncOnCtrl onctrl) = 0;
 };
 

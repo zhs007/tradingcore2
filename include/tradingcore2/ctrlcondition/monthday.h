@@ -22,11 +22,15 @@ class CCMonthDay final : public CtrlConditionHelper {
   virtual ~CCMonthDay() {}
 
  public:
+  virtual void* newCtrlConditionData() override { return NULL; }
+
+  virtual void deleteCtrlConditionData(void* pData) override {}
+
   virtual bool isValid(const tradingpb::CtrlCondition& cc,
                        CtrlType ct) override;
 
   virtual void procCtrl(const tradingpb::CtrlCondition& cc, bool issim,
-                        CtrlType ct, TimeStamp ts, int index,
+                        CtrlType ct, TimeStamp ts, int index, void* pData,
                         FuncOnCtrl onctrl) override;
 };
 
