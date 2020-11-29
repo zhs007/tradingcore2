@@ -46,6 +46,14 @@ class PNL2 {
 
   Money getAssetCost(const Exchange& exchange, const char* asset, TimeStamp ts);
 
+  void getAssetInfo(const Exchange& exchange, const char* asset, TimeStamp ts,
+                    Money& profit, Volume& volume);
+
+  Money getHandMoney(const Exchange& exchange, TimeStamp ts);
+
+  void getHandMoneyEx(const Exchange& exchange, TimeStamp ts, Money& total,
+                      Money& last);
+
   void setTotalPNLAssetData(const Exchange* pExchange,
                             ::tradingpb::PNLDataValue* pVal);
 

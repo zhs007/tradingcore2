@@ -2409,6 +2409,8 @@ class PNLDataValue :
     kPerValueFieldNumber = 2,
     kCostFieldNumber = 4,
     kValueFieldNumber = 5,
+    kVolumeFieldNumber = 6,
+    kPriceFieldNumber = 7,
   };
   // repeated string tags = 3;
   int tags_size() const;
@@ -2470,6 +2472,24 @@ class PNLDataValue :
   void _internal_set_value(float value);
   public:
 
+  // float volume = 6;
+  void clear_volume();
+  float volume() const;
+  void set_volume(float value);
+  private:
+  float _internal_volume() const;
+  void _internal_set_volume(float value);
+  public:
+
+  // float price = 7;
+  void clear_price();
+  float price() const;
+  void set_price(float value);
+  private:
+  float _internal_price() const;
+  void _internal_set_price(float value);
+  public:
+
   // @@protoc_insertion_point(class_scope:tradingpb.PNLDataValue)
  private:
   class _Internal;
@@ -2480,6 +2500,8 @@ class PNLDataValue :
   float pervalue_;
   float cost_;
   float value_;
+  float volume_;
+  float price_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_trading2_2eproto;
 };
@@ -5556,6 +5578,46 @@ inline void PNLDataValue::_internal_set_value(float value) {
 inline void PNLDataValue::set_value(float value) {
   _internal_set_value(value);
   // @@protoc_insertion_point(field_set:tradingpb.PNLDataValue.value)
+}
+
+// float volume = 6;
+inline void PNLDataValue::clear_volume() {
+  volume_ = 0;
+}
+inline float PNLDataValue::_internal_volume() const {
+  return volume_;
+}
+inline float PNLDataValue::volume() const {
+  // @@protoc_insertion_point(field_get:tradingpb.PNLDataValue.volume)
+  return _internal_volume();
+}
+inline void PNLDataValue::_internal_set_volume(float value) {
+  
+  volume_ = value;
+}
+inline void PNLDataValue::set_volume(float value) {
+  _internal_set_volume(value);
+  // @@protoc_insertion_point(field_set:tradingpb.PNLDataValue.volume)
+}
+
+// float price = 7;
+inline void PNLDataValue::clear_price() {
+  price_ = 0;
+}
+inline float PNLDataValue::_internal_price() const {
+  return price_;
+}
+inline float PNLDataValue::price() const {
+  // @@protoc_insertion_point(field_get:tradingpb.PNLDataValue.price)
+  return _internal_price();
+}
+inline void PNLDataValue::_internal_set_price(float value) {
+  
+  price_ = value;
+}
+inline void PNLDataValue::set_price(float value) {
+  _internal_set_price(value);
+  // @@protoc_insertion_point(field_set:tradingpb.PNLDataValue.price)
 }
 
 // -------------------------------------------------------------------

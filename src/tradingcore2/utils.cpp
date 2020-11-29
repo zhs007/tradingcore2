@@ -206,4 +206,29 @@ int getDate(time_t ts) {
 
 const char* getVersion() { return TC2_VERSION; }
 
+void logProtobuf(const char* title, const google::protobuf::Message& message) {
+  std::string str;
+  google::protobuf::util::MessageToJsonString(message, &str);
+
+  LOG(INFO) << title << str;
+}
+
+void saveProtobuf(const char* fn, const google::protobuf::Message& message) {
+  assert(fn != NULL);
+
+  std::string str;
+  google::protobuf::util::MessageToJsonString(message, &str);
+
+  FILE* fp;
+
+  fp = fopen(fn, "w");
+  if (fp == NULL) {
+    return;
+  }
+
+  fwrite(str.c_str(), str.size(), 1, fp);
+
+  fclose(fp);
+}
+
 CR2END
