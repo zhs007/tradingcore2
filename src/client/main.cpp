@@ -159,6 +159,9 @@ void normalWeekDay(const tr2::Config& cfg) {
   auto ip = strategy0->mutable_paramsinit();
   ip->set_money(10000);
 
+  params.set_startts(tr2::str2timestampUTC("20200101", "%Y%m%d"));
+  params.set_endts(tr2::str2timestampUTC("20200201", "%Y%m%d"));
+
   ::tradingpb::ReplyCalcPNL res;
   auto status = client.clacPNL(params, res);
 
@@ -169,7 +172,8 @@ void normalWeekDay(const tr2::Config& cfg) {
   LOG(INFO) << "calcPNL " << status.error_code();
 
   if (status.ok()) {
-    LOG(INFO) << res.DebugString();
+    tr2::logProtobuf("reply ", res);
+    // LOG(INFO) << res.DebugString();
   }
 
   // auto cnfund = tr2::ExchangeMgr::getSingleton()->getExchange("cnfund");

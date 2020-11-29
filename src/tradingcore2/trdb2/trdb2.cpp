@@ -44,6 +44,8 @@ bool getCandles(tradingpb::Candles &candles, const char *host,
     }
   }
 
+  LOG(INFO) << "getCandles " << req.DebugString();
+
   std::unique_ptr<grpc::ClientReader<tradingpb::ReplyGetCandles>> reader(
       stub->getCandles(&context, req));
 

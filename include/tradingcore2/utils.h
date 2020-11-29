@@ -1,6 +1,7 @@
 #ifndef __TRADINGCORE2_UTILS_H__
 #define __TRADINGCORE2_UTILS_H__
 
+#include <google/protobuf/util/json_util.h>
 #include <tradingcore2/basedef.h>
 
 #include <ctime>
@@ -8,6 +9,9 @@
 #include <string>
 
 CR2BEGIN
+
+// -------------------------------------------------------------------------------------
+// time
 
 TimeStamp str2timestampUTC(const char* str, const char* format);
 
@@ -35,9 +39,22 @@ int getYear(time_t ts);
 // getDate - get date, it's like 20201001
 int getDate(time_t ts);
 
+// -------------------------------------------------------------------------------------
+// math
+
 // calcQuartile - sortedArr is a sorted array
 void calcQuartile(float* sortedArr, size_t stride, size_t n, float& q1,
                   float& q2, float& q3);
+
+// -------------------------------------------------------------------------------------
+// protobuf
+
+void logProtobuf(const char* title, const google::protobuf::Message& message);
+
+void saveProtobuf(const char* fn, const google::protobuf::Message& message);
+
+// -------------------------------------------------------------------------------------
+// file system
 
 // joinPath - "/dir1", "f0.txt" => "/dir1/f0.txt"
 //            "/dir1/", "f0.txt" => "/dir1/f0.txt"
@@ -53,6 +70,9 @@ typedef std::function<void(const char* dir, const char* fn)> FuncOnForEachFile;
 // foreachPathWithExt - for each path with ext filename
 void foreachPathWithExt(const char* dir, const char* extfn,
                         FuncOnForEachFile func);
+
+// -------------------------------------------------------------------------------------
+// version
 
 // getVersion - get version from ./VERSION
 const char* getVersion();

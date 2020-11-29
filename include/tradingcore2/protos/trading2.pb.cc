@@ -473,6 +473,8 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_trading2_2eproto::offsets[] PR
   PROTOBUF_FIELD_OFFSET(::tradingpb::PNLDataValue, tags_),
   PROTOBUF_FIELD_OFFSET(::tradingpb::PNLDataValue, cost_),
   PROTOBUF_FIELD_OFFSET(::tradingpb::PNLDataValue, value_),
+  PROTOBUF_FIELD_OFFSET(::tradingpb::PNLDataValue, volume_),
+  PROTOBUF_FIELD_OFFSET(::tradingpb::PNLDataValue, price_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::tradingpb::PNLAssetData, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -552,10 +554,10 @@ static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOB
   { 83, -1, sizeof(::tradingpb::InitParams)},
   { 90, -1, sizeof(::tradingpb::Strategy)},
   { 106, -1, sizeof(::tradingpb::PNLDataValue)},
-  { 116, -1, sizeof(::tradingpb::PNLAssetData)},
-  { 154, -1, sizeof(::tradingpb::PNLData)},
-  { 162, -1, sizeof(::tradingpb::SimTradingParams)},
-  { 173, -1, sizeof(::tradingpb::TradingNodeInfo)},
+  { 118, -1, sizeof(::tradingpb::PNLAssetData)},
+  { 156, -1, sizeof(::tradingpb::PNLData)},
+  { 164, -1, sizeof(::tradingpb::SimTradingParams)},
+  { 175, -1, sizeof(::tradingpb::TradingNodeInfo)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
@@ -612,43 +614,44 @@ const char descriptor_table_protodef_trading2_2eproto[] PROTOBUF_SECTION_VARIABL
   "1\n\016paramsStopLoss\030\t \001(\0132\031.tradingpb.Stop"
   "LossParams\0225\n\020paramsTakeProfit\030\n \001(\0132\033.t"
   "radingpb.TakeProfitParams\022)\n\nparamsInit\030"
-  "\013 \001(\0132\025.tradingpb.InitParams\"W\n\014PNLDataV"
+  "\013 \001(\0132\025.tradingpb.InitParams\"v\n\014PNLDataV"
   "alue\022\n\n\002ts\030\001 \001(\003\022\020\n\010perValue\030\002 \001(\002\022\014\n\004ta"
-  "gs\030\003 \003(\t\022\014\n\004cost\030\004 \001(\002\022\r\n\005value\030\005 \001(\002\"\243\006"
-  "\n\014PNLAssetData\022\037\n\005asset\030\001 \001(\0132\020.tradingp"
-  "b.Asset\022\'\n\006values\030\002 \003(\0132\027.tradingpb.PNLD"
-  "ataValue\022\023\n\013maxDrawdown\030\003 \001(\002\022\032\n\022maxDraw"
-  "downStartTs\030\004 \001(\003\022\030\n\020maxDrawdownEndTs\030\005 "
-  "\001(\003\022\021\n\tmaxDrawup\030\006 \001(\002\022\030\n\020maxDrawupStart"
-  "Ts\030\007 \001(\003\022\026\n\016maxDrawupEndTs\030\010 \001(\003\022\016\n\006shar"
-  "pe\030\t \001(\002\022\031\n\021annualizedReturns\030\n \001(\002\022\034\n\024a"
-  "nnualizedVolatility\030\013 \001(\002\022\024\n\014totalReturn"
-  "s\030\014 \001(\002\022\020\n\010variance\030\r \001(\002\022\020\n\010buyTimes\030\016 "
-  "\001(\005\022\021\n\tsellTimes\030\017 \001(\005\022\025\n\rstoplossTimes\030"
-  "\020 \001(\005\022\022\n\nmaxUpDayTs\030\021 \001(\003\022\023\n\013maxPerUpDay"
-  "\030\022 \001(\002\022\024\n\014maxDownDayTs\030\023 \001(\003\022\025\n\rmaxPerDo"
-  "wnDay\030\024 \001(\002\022\023\n\013maxUpWeekTs\030\025 \001(\003\022\024\n\014maxP"
-  "erUpWeek\030\026 \001(\002\022\025\n\rmaxDownWeekTs\030\027 \001(\003\022\026\n"
-  "\016maxPerDownWeek\030\030 \001(\002\022\024\n\014maxUpMonthTs\030\031 "
-  "\001(\003\022\025\n\rmaxPerUpMonth\030\032 \001(\002\022\026\n\016maxDownMon"
-  "thTs\030\033 \001(\003\022\027\n\017maxPerDownMonth\030\034 \001(\002\022\023\n\013m"
-  "axUpYearTs\030\035 \001(\003\022\024\n\014maxPerUpYear\030\036 \001(\002\022\025"
-  "\n\rmaxDownYearTs\030\037 \001(\003\022\026\n\016maxPerDownYear\030"
-  "  \001(\002\022$\n\007lstCtrl\030! \003(\0132\023.tradingpb.CtrlN"
-  "ode\"h\n\007PNLData\022\014\n\004name\030\001 \001(\t\022&\n\005total\030\002 "
-  "\001(\0132\027.tradingpb.PNLAssetData\022\'\n\006assets\030\003"
-  " \003(\0132\027.tradingpb.PNLAssetData\"\305\001\n\020SimTra"
-  "dingParams\022 \n\006assets\030\001 \003(\0132\020.tradingpb.A"
-  "sset\022#\n\tbaselines\030\002 \003(\0132\020.tradingpb.Asse"
-  "t\022\017\n\007startTs\030\003 \001(\003\022\r\n\005endTs\030\004 \001(\003\022\'\n\nstr"
-  "ategies\030\005 \003(\0132\023.tradingpb.Strategy\022!\n\006wa"
-  "llet\030\006 \001(\0132\021.tradingpb.Wallet\"5\n\017Trading"
-  "NodeInfo\022\020\n\010maxTasks\030\001 \001(\005\022\020\n\010curTasks\030\002"
-  " \001(\005*\203\001\n\010CtrlType\022\r\n\tCTRL_INIT\020\000\022\014\n\010CTRL"
-  "_BUY\020\001\022\r\n\tCTRL_SELL\020\002\022\021\n\rCTRL_STOPLOSS\020\003"
-  "\022\023\n\017CTRL_TAKEPROFIT\020\004\022\021\n\rCTRL_WITHDRAW\020\005"
-  "\022\020\n\014CTRL_DEPOSIT\020\006B(Z&github.com/zhs007/"
-  "tradingdb2/tradingpbb\006proto3"
+  "gs\030\003 \003(\t\022\014\n\004cost\030\004 \001(\002\022\r\n\005value\030\005 \001(\002\022\016\n"
+  "\006volume\030\006 \001(\002\022\r\n\005price\030\007 \001(\002\"\243\006\n\014PNLAsse"
+  "tData\022\037\n\005asset\030\001 \001(\0132\020.tradingpb.Asset\022\'"
+  "\n\006values\030\002 \003(\0132\027.tradingpb.PNLDataValue\022"
+  "\023\n\013maxDrawdown\030\003 \001(\002\022\032\n\022maxDrawdownStart"
+  "Ts\030\004 \001(\003\022\030\n\020maxDrawdownEndTs\030\005 \001(\003\022\021\n\tma"
+  "xDrawup\030\006 \001(\002\022\030\n\020maxDrawupStartTs\030\007 \001(\003\022"
+  "\026\n\016maxDrawupEndTs\030\010 \001(\003\022\016\n\006sharpe\030\t \001(\002\022"
+  "\031\n\021annualizedReturns\030\n \001(\002\022\034\n\024annualized"
+  "Volatility\030\013 \001(\002\022\024\n\014totalReturns\030\014 \001(\002\022\020"
+  "\n\010variance\030\r \001(\002\022\020\n\010buyTimes\030\016 \001(\005\022\021\n\tse"
+  "llTimes\030\017 \001(\005\022\025\n\rstoplossTimes\030\020 \001(\005\022\022\n\n"
+  "maxUpDayTs\030\021 \001(\003\022\023\n\013maxPerUpDay\030\022 \001(\002\022\024\n"
+  "\014maxDownDayTs\030\023 \001(\003\022\025\n\rmaxPerDownDay\030\024 \001"
+  "(\002\022\023\n\013maxUpWeekTs\030\025 \001(\003\022\024\n\014maxPerUpWeek\030"
+  "\026 \001(\002\022\025\n\rmaxDownWeekTs\030\027 \001(\003\022\026\n\016maxPerDo"
+  "wnWeek\030\030 \001(\002\022\024\n\014maxUpMonthTs\030\031 \001(\003\022\025\n\rma"
+  "xPerUpMonth\030\032 \001(\002\022\026\n\016maxDownMonthTs\030\033 \001("
+  "\003\022\027\n\017maxPerDownMonth\030\034 \001(\002\022\023\n\013maxUpYearT"
+  "s\030\035 \001(\003\022\024\n\014maxPerUpYear\030\036 \001(\002\022\025\n\rmaxDown"
+  "YearTs\030\037 \001(\003\022\026\n\016maxPerDownYear\030  \001(\002\022$\n\007"
+  "lstCtrl\030! \003(\0132\023.tradingpb.CtrlNode\"h\n\007PN"
+  "LData\022\014\n\004name\030\001 \001(\t\022&\n\005total\030\002 \001(\0132\027.tra"
+  "dingpb.PNLAssetData\022\'\n\006assets\030\003 \003(\0132\027.tr"
+  "adingpb.PNLAssetData\"\305\001\n\020SimTradingParam"
+  "s\022 \n\006assets\030\001 \003(\0132\020.tradingpb.Asset\022#\n\tb"
+  "aselines\030\002 \003(\0132\020.tradingpb.Asset\022\017\n\007star"
+  "tTs\030\003 \001(\003\022\r\n\005endTs\030\004 \001(\003\022\'\n\nstrategies\030\005"
+  " \003(\0132\023.tradingpb.Strategy\022!\n\006wallet\030\006 \001("
+  "\0132\021.tradingpb.Wallet\"5\n\017TradingNodeInfo\022"
+  "\020\n\010maxTasks\030\001 \001(\005\022\020\n\010curTasks\030\002 \001(\005*\203\001\n\010"
+  "CtrlType\022\r\n\tCTRL_INIT\020\000\022\014\n\010CTRL_BUY\020\001\022\r\n"
+  "\tCTRL_SELL\020\002\022\021\n\rCTRL_STOPLOSS\020\003\022\023\n\017CTRL_"
+  "TAKEPROFIT\020\004\022\021\n\rCTRL_WITHDRAW\020\005\022\020\n\014CTRL_"
+  "DEPOSIT\020\006B(Z&github.com/zhs007/tradingdb"
+  "2/tradingpbb\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_trading2_2eproto_deps[1] = {
 };
@@ -674,7 +677,7 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_tra
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_trading2_2eproto_once;
 static bool descriptor_table_trading2_2eproto_initialized = false;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_trading2_2eproto = {
-  &descriptor_table_trading2_2eproto_initialized, descriptor_table_protodef_trading2_2eproto, "trading2.proto", 2788,
+  &descriptor_table_trading2_2eproto_initialized, descriptor_table_protodef_trading2_2eproto, "trading2.proto", 2819,
   &descriptor_table_trading2_2eproto_once, descriptor_table_trading2_2eproto_sccs, descriptor_table_trading2_2eproto_deps, 17, 0,
   schemas, file_default_instances, TableStruct_trading2_2eproto::offsets,
   file_level_metadata_trading2_2eproto, 17, file_level_enum_descriptors_trading2_2eproto, file_level_service_descriptors_trading2_2eproto,
@@ -4116,16 +4119,16 @@ PNLDataValue::PNLDataValue(const PNLDataValue& from)
       tags_(from.tags_) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   ::memcpy(&ts_, &from.ts_,
-    static_cast<size_t>(reinterpret_cast<char*>(&value_) -
-    reinterpret_cast<char*>(&ts_)) + sizeof(value_));
+    static_cast<size_t>(reinterpret_cast<char*>(&price_) -
+    reinterpret_cast<char*>(&ts_)) + sizeof(price_));
   // @@protoc_insertion_point(copy_constructor:tradingpb.PNLDataValue)
 }
 
 void PNLDataValue::SharedCtor() {
   ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_PNLDataValue_trading2_2eproto.base);
   ::memset(&ts_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&value_) -
-      reinterpret_cast<char*>(&ts_)) + sizeof(value_));
+      reinterpret_cast<char*>(&price_) -
+      reinterpret_cast<char*>(&ts_)) + sizeof(price_));
 }
 
 PNLDataValue::~PNLDataValue() {
@@ -4153,8 +4156,8 @@ void PNLDataValue::Clear() {
 
   tags_.Clear();
   ::memset(&ts_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&value_) -
-      reinterpret_cast<char*>(&ts_)) + sizeof(value_));
+      reinterpret_cast<char*>(&price_) -
+      reinterpret_cast<char*>(&ts_)) + sizeof(price_));
   _internal_metadata_.Clear();
 }
 
@@ -4204,6 +4207,20 @@ const char* PNLDataValue::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_I
       case 5:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 45)) {
           value_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else goto handle_unusual;
+        continue;
+      // float volume = 6;
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 53)) {
+          volume_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else goto handle_unusual;
+        continue;
+      // float price = 7;
+      case 7:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 61)) {
+          price_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else goto handle_unusual;
         continue;
@@ -4267,6 +4284,18 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(5, this->_internal_value(), target);
   }
 
+  // float volume = 6;
+  if (!(this->volume() <= 0 && this->volume() >= 0)) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(6, this->_internal_volume(), target);
+  }
+
+  // float price = 7;
+  if (!(this->price() <= 0 && this->price() >= 0)) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(7, this->_internal_price(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields(), target, stream);
@@ -4310,6 +4339,16 @@ size_t PNLDataValue::ByteSizeLong() const {
 
   // float value = 5;
   if (!(this->value() <= 0 && this->value() >= 0)) {
+    total_size += 1 + 4;
+  }
+
+  // float volume = 6;
+  if (!(this->volume() <= 0 && this->volume() >= 0)) {
+    total_size += 1 + 4;
+  }
+
+  // float price = 7;
+  if (!(this->price() <= 0 && this->price() >= 0)) {
     total_size += 1 + 4;
   }
 
@@ -4357,6 +4396,12 @@ void PNLDataValue::MergeFrom(const PNLDataValue& from) {
   if (!(from.value() <= 0 && from.value() >= 0)) {
     _internal_set_value(from._internal_value());
   }
+  if (!(from.volume() <= 0 && from.volume() >= 0)) {
+    _internal_set_volume(from._internal_volume());
+  }
+  if (!(from.price() <= 0 && from.price() >= 0)) {
+    _internal_set_price(from._internal_price());
+  }
 }
 
 void PNLDataValue::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
@@ -4385,6 +4430,8 @@ void PNLDataValue::InternalSwap(PNLDataValue* other) {
   swap(pervalue_, other->pervalue_);
   swap(cost_, other->cost_);
   swap(value_, other->value_);
+  swap(volume_, other->volume_);
+  swap(price_, other->price_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata PNLDataValue::GetMetadata() const {

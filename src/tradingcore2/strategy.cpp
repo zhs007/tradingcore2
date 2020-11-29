@@ -163,20 +163,6 @@ void Strategy::sell(bool issim, TimeStamp ts) {
       this->onSell(issim, ts, m, v, 0);
     }
   } else if (sell.money() > 0) {
-    // auto m = buy.aipmoney();
-
-    // Volume volume = ZEROVOLUME;
-    // Money price = ZEROMONEY;
-    // Money fee = ZEROMONEY;
-
-    // bool isok = m_exchange.calculateVolume(
-    //     this->m_strategy.asset().code().c_str(), ts, m, volume, price, fee);
-    // assert(isok);
-    // assert(price > ZEROMONEY);
-
-    // this->onBuy(issim, ts, m, volume, fee);
-
-    // this->m_wallet.buyAssets(this->m_strategy.asset().code().c_str(), m, ts);
   }
 }
 

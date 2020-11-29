@@ -17,12 +17,6 @@ class StrategyNormal final : public Strategy {
       : Strategy(wallet, exchange) {}
   virtual ~StrategyNormal() {}
 
- public:
-  //   virtual void onBuy(bool issim, TimeStamp ts, Money money, Volume volume,
-  //                      Money fee) override;
-
- public:
- protected:
 };
 
 CR2END

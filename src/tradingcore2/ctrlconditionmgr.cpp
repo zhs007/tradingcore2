@@ -104,6 +104,18 @@ int CtrlConditionMgr::procStrategy(Strategy& strategy,
     }
   }
 
+  {
+    auto f = std::bind(&Strategy::sell, &strategy, std::placeholders::_1,
+                       std::placeholders::_3);
+
+    for (auto i = 0; i < pbStrategy.sell_size(); i++) {
+      auto cc = pbStrategy.sell(i);
+      auto pD = pData->lstSell[i];
+
+      this->procCtrl(cc, issim, CT_SELL, ts, index, pD, f);
+    }
+  }
+
   return 0;
 }
 
@@ -143,6 +155,12 @@ CtrlConditionMgr::CtrlConditionData* CtrlConditionMgr::newCtrlConditionData(
     pData->lstBuy.push_back(pD);
   }
 
+  for (auto i = 0; i < pbStrategy.sell_size(); i++) {
+    auto cc = pbStrategy.sell(i);
+    auto pD = this->newCtrlConditionData(cc);
+    pData->lstSell.push_back(pD);
+  }
+
   return pData;
 }
 
@@ -161,6 +179,14 @@ void CtrlConditionMgr::deleteCtrlConditionData(
   }
 
   pData->lstBuy.clear();
+
+  for (auto i = 0; i < pbStrategy.sell_size(); i++) {
+    auto cc = pbStrategy.sell(i);
+    auto pD = pData->lstSell[i];
+    this->deleteCtrlConditionData(cc, pD);
+  }
+
+  pData->lstSell.clear();
 
   delete pData;
 }
