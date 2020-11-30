@@ -26,6 +26,101 @@ TEST(Utils, str2timestampUTC) {
   EXPECT_EQ(ts, 1484611200);
 }
 
+TEST(Utils, getNextSunday) {
+  auto ts = tr2::getNextSunday(1606521600);
+  EXPECT_EQ(ts, 1606608000);
+
+  ts = tr2::getNextSunday(1606521601);
+  EXPECT_EQ(ts, 1606608000);
+
+  ts = tr2::getNextSunday(1606608000);
+  EXPECT_EQ(ts, 1607212800);
+
+  ts = tr2::getNextSunday(1606608001);
+  EXPECT_EQ(ts, 1607212800);
+}
+
+TEST(Utils, getNextMonth) {
+  auto ts = tr2::getNextMonth(1606521600);
+  EXPECT_EQ(ts, 1606780800);
+
+  ts = tr2::getNextMonth(1606780800);
+  EXPECT_EQ(ts, 1609459200);
+}
+
+TEST(Utils, calcWeekOffWithWeekDay) {
+  auto woff = tr2::calcWeekOffWithWeekDay(
+      0, tr2::str2timestampUTC("20201123", "%Y%m%d"), 2);
+  EXPECT_EQ(woff, 0);
+
+  woff = tr2::calcWeekOffWithWeekDay(
+      0, tr2::str2timestampUTC("20201123", "%Y%m%d"), 1);
+  EXPECT_EQ(woff, 1);
+
+  woff = tr2::calcWeekOffWithWeekDay(
+      tr2::str2timestampUTC("20201116", "%Y%m%d"),
+      tr2::str2timestampUTC("20201120", "%Y%m%d"), 2);
+  EXPECT_EQ(woff, 1);
+
+  woff = tr2::calcWeekOffWithWeekDay(
+      tr2::str2timestampUTC("20201116", "%Y%m%d"),
+      tr2::str2timestampUTC("20201117", "%Y%m%d"), 2);
+  EXPECT_EQ(woff, 1);
+
+  woff = tr2::calcWeekOffWithWeekDay(
+      tr2::str2timestampUTC("20201116", "%Y%m%d"),
+      tr2::str2timestampUTC("20201123", "%Y%m%d"), 2);
+  EXPECT_EQ(woff, 1);
+
+  woff = tr2::calcWeekOffWithWeekDay(
+      tr2::str2timestampUTC("20201116", "%Y%m%d"),
+      tr2::str2timestampUTC("20201124", "%Y%m%d"), 2);
+  EXPECT_EQ(woff, 2);
+
+  woff = tr2::calcWeekOffWithWeekDay(
+      tr2::str2timestampUTC("20201116", "%Y%m%d"),
+      tr2::str2timestampUTC("20201202", "%Y%m%d"), 2);
+  EXPECT_EQ(woff, 3);
+}
+
+TEST(Utils, calcMonthOffWithMonthDay) {
+  auto woff = tr2::calcMonthOffWithMonthDay(
+      0, tr2::str2timestampUTC("20201123", "%Y%m%d"), 2);
+  EXPECT_EQ(woff, 0);
+
+  woff = tr2::calcMonthOffWithMonthDay(
+      0, tr2::str2timestampUTC("20201123", "%Y%m%d"), 23);
+  EXPECT_EQ(woff, 1);
+
+  woff = tr2::calcMonthOffWithMonthDay(
+      tr2::str2timestampUTC("20201116", "%Y%m%d"),
+      tr2::str2timestampUTC("20201215", "%Y%m%d"), 16);
+  EXPECT_EQ(woff, 0);
+
+  woff = tr2::calcMonthOffWithMonthDay(
+      tr2::str2timestampUTC("20201116", "%Y%m%d"),
+      tr2::str2timestampUTC("20201217", "%Y%m%d"), 16);
+  EXPECT_EQ(woff, 1);
+
+  woff = tr2::calcMonthOffWithMonthDay(
+      tr2::str2timestampUTC("20201115", "%Y%m%d"),
+      tr2::str2timestampUTC("20201223", "%Y%m%d"), 16);
+  EXPECT_EQ(woff, 2);
+
+  woff = tr2::calcMonthOffWithMonthDay(
+      tr2::str2timestampUTC("20201116", "%Y%m%d"),
+      tr2::str2timestampUTC("20210324", "%Y%m%d"), 30);
+  EXPECT_EQ(woff, 4);
+}
+
+TEST(Utils, calcMonthOff) {
+  auto ts = tr2::calcMonthOff(1606521600, 1606780800);
+  EXPECT_EQ(ts, 1);
+
+  ts = tr2::calcMonthOff(1606521600, 1609459200);
+  EXPECT_EQ(ts, 2);
+}
+
 TEST(Utils, time2timestampUTC) {
   tm t;
   memset(&t, 0, sizeof(tm));
@@ -117,8 +212,26 @@ TEST(Utils, timestamp2timeUTC) {
 }
 
 TEST(Utils, getYearWeek) {
-  auto yw = tr2::getYearWeek(1484611200);
+  auto yw = tr2::getYearWeek(1484611200);  // 2017-01-17
   EXPECT_EQ(yw, 2);
+
+  yw = tr2::getYearWeek(1483718400);  // 2017-01-07
+  EXPECT_EQ(yw, 0);
+
+  yw = tr2::getYearWeek(1483804800);  // 2017-01-08
+  EXPECT_EQ(yw, 1);
+
+  yw = tr2::getYearWeek(1483891200);  // 2017-01-09
+  EXPECT_EQ(yw, 1);
+
+  yw = tr2::getYearWeek(1609462800);  // 2021-01-01
+  EXPECT_EQ(yw, 0);
+
+  yw = tr2::getYearWeek(1609516800);  // 2021-01-02
+  EXPECT_EQ(yw, 0);
+
+  yw = tr2::getYearWeek(1609603200);  // 2021-01-03
+  EXPECT_EQ(yw, 1);
 
   yw = tr2::getYearWeek(1602827513);
   EXPECT_EQ(yw, 41);

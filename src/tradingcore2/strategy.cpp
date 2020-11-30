@@ -59,6 +59,8 @@ void Strategy::onTimeStamp(bool issim, TimeStamp ts, int index) {
     this->initMoney(issim, ts);
   }
 
+  this->onAIP(issim, ts);
+
   CtrlConditionMgr::getSingleton()->procStrategy(*this, this->m_pCCData, issim,
                                                  ts, index);
 }
@@ -188,6 +190,18 @@ void Strategy::initMoney(bool issim, TimeStamp ts) {
   if (this->m_initMoney > 0) {
     this->m_wallet.deposit(this->m_initMoney, ts);
     this->m_handMoney = this->m_initMoney;
+  }
+}
+
+void Strategy::onAIP(bool issim, TimeStamp ts) {
+  if (this->m_strategy.has_paramsaip()) {
+    auto aip = this->m_strategy.paramsaip();
+    if (aip.type() == tradingpb::AIPTT_WEEKDAY) {
+      if (this->m_lastAIPTs != 0) {
+        // timestamp2timeUTC
+      }
+    } else if (aip.type() == tradingpb::AIPTT_MONTHDAY) {
+    }
   }
 }
 

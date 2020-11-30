@@ -152,7 +152,7 @@ int getYearWeek(time_t ts) {
 
   timestamp2timeUTC(fts, fctm);
 
-  return (ctm.tm_yday + fctm.tm_wday) / 7;
+  return (ctm.tm_yday + 1 + fctm.tm_wday) / 7;
 }
 
 // getYearWeekEx - it's like 202001
@@ -202,6 +202,198 @@ int getDate(time_t ts) {
   timestamp2timeUTC(ts, ctm);
 
   return (ctm.tm_year + 1900) * 10000 + (ctm.tm_mon + 1) * 100 + ctm.tm_mday;
+}
+
+// calcWeekOffWithWeekDay -
+// 主要用于定投，计算2个时间点之间的周差，以特定周几为基准
+// 譬如以周三为基准，这周二相对上周五其实不足一周
+// 譬如以周三为基准，这周三相对上周五是一周
+int calcWeekOffWithWeekDay(time_t lastts, time_t ts, int weekday) {
+  tm t;
+  timestamp2timeUTC(ts, t);
+
+  // 如果第一次，只有明确是周几，才返回
+  if (lastts == 0) {
+    if (t.tm_wday == weekday) {
+      return 1;
+    }
+  } else {
+    tm lt;
+    timestamp2timeUTC(lastts, lt);
+
+    // 如果是一天，返回false
+    if (lt.tm_year == t.tm_year && lt.tm_yday == t.tm_yday) {
+      return 0;
+    }
+
+    // 如果上一次就没到
+    if (lt.tm_wday < weekday) {
+      auto nextweekts = getNextSunday(lastts);
+      // 如果还在这一周，只有当前时间过了，才返回1，否则返回0
+      if (ts < nextweekts) {
+        if (t.tm_wday >= weekday) {
+          return 1;
+        }
+
+        return 0;
+      } else {
+        auto cnextweekts = getNextSunday(ts);
+        auto wd = (cnextweekts - nextweekts) / (7 * 24 * 60 * 60);
+        // 如果过了至少一周，如果当前时间过了，返回周差+1
+        // 如果刚好，返回周差+1
+        // 如果不到，返回周差
+        if (t.tm_wday >= weekday) {
+          return wd + 1;
+        }
+
+        return wd;
+      }
+    } else if (lt.tm_wday >= weekday) {
+      auto nextweekts = getNextSunday(lastts);
+      // 如果还在这一周，返回0
+      if (ts < nextweekts) {
+        return 0;
+      } else {
+        auto cnextweekts = getNextSunday(ts);
+        auto wd = (cnextweekts - nextweekts) / (7 * 24 * 60 * 60);
+
+        // 如果过了至少一周，如果当前时间过了，返回周差
+        // 如果刚好，返回周差
+        // 如果不到，返回周差-1
+        if (t.tm_wday >= weekday) {
+          return wd;
+        }
+
+        return wd - 1;
+      }
+    }
+  }
+
+  return 0;
+}
+
+// calcMonthOffWithMonthDay -
+// 主要用于定投，计算2个时间点之间的月差，以特定几号为基准
+// 譬如以30号为基准，3月31号相对1月30号是2个月
+int calcMonthOffWithMonthDay(time_t lastts, time_t ts, int monthday) {
+  tm t;
+  timestamp2timeUTC(ts, t);
+
+  // 如果第一次，只有明确是几号，才返回
+  if (lastts == 0) {
+    if (t.tm_mday == monthday) {
+      return 1;
+    }
+  } else {
+    tm lt;
+    timestamp2timeUTC(lastts, lt);
+
+    // 如果是一天，返回0
+    if (lt.tm_year == t.tm_year && lt.tm_yday == t.tm_yday) {
+      return 0;
+    }
+
+    // 如果上一次就没到
+    if (lt.tm_mday < monthday) {
+      auto nextmonthts = getNextMonth(lastts);
+      // 如果还在这一个月，只有当前时间过了，才返回1，否则返回0
+      if (ts < nextmonthts) {
+        if (t.tm_mday >= monthday) {
+          return 1;
+        }
+
+        return 0;
+      } else {
+        auto cnextmonthts = getNextMonth(ts);
+        auto md = calcMonthOff(cnextmonthts, nextmonthts);
+        // 如果过了至少一月，如果当前时间过了，返回月差+1
+        // 如果刚好，返回月差+1
+        // 如果不到，返回月差
+        if (t.tm_mday >= monthday) {
+          return md + 1;
+        }
+
+        return md;
+      }
+    } else if (lt.tm_mday >= monthday) {
+      auto nextmonthts = getNextMonth(lastts);
+      // 如果还在这一个月，返回0
+      if (ts < nextmonthts) {
+        return 0;
+      } else {
+        auto cnextmonthts = getNextMonth(ts);
+        auto md = calcMonthOff(cnextmonthts, nextmonthts);
+
+        // 如果过了至少一个月，如果当前时间过了，返回月差
+        // 如果刚好，返回月差
+        // 如果不到，返回月差-1
+        if (t.tm_mday >= monthday) {
+          return md;
+        }
+
+        return md - 1;
+      }
+    }
+  }
+
+  return 0;
+}
+
+// getNextSunday - 返回下一个周日的0点0分0秒
+time_t getNextSunday(time_t ts) {
+  tm ctm;
+  timestamp2timeUTC(ts, ctm);
+
+  auto cts = ts - ctm.tm_hour * 60 * 60 - ctm.tm_min * 60 - ctm.tm_sec;
+  auto dayoff = 6 - ctm.tm_wday;
+
+  return cts + (dayoff + 1) * 24 * 60 * 60;
+}
+
+// getNextMonth - 返回下一个月1号的0点0分0秒
+time_t getNextMonth(time_t ts) {
+  tm ctm;
+  timestamp2timeUTC(ts, ctm);
+
+  ctm.tm_hour = 0;
+  ctm.tm_min = 0;
+  ctm.tm_sec = 0;
+
+  if (ctm.tm_mon == 11) {
+    ctm.tm_year++;
+    ctm.tm_mon = 0;
+  } else {
+    ctm.tm_mon++;
+  }
+
+  ctm.tm_mday = 1;
+
+  ctm.tm_wday = 0;
+  ctm.tm_yday = 0;
+  ctm.tm_gmtoff = 0;
+
+  return timegm(&ctm) - timezone;
+}
+
+// calcMonthOff - 计算月差，仅考虑月差，12月1号和11月31号，相差1个月
+int calcMonthOff(time_t ts0, time_t ts1) {
+  if (ts1 == ts0) {
+    return 0;
+  } else if (ts1 < ts0) {
+    std::swap(ts0, ts1);
+  }
+
+  tm ctm0;
+  timestamp2timeUTC(ts0, ctm0);
+  tm ctm1;
+  timestamp2timeUTC(ts1, ctm1);
+
+  auto yoff = ctm1.tm_year - ctm0.tm_year;
+  if (yoff == 0) {
+    return ctm1.tm_mon - ctm0.tm_mon;
+  }
+
+  return yoff * 12 + ctm1.tm_mon - ctm0.tm_mon;
 }
 
 const char* getVersion() { return TC2_VERSION; }
