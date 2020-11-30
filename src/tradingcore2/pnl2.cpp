@@ -95,16 +95,16 @@ void PNL2::initTimestamp(const Exchange& exchange) {
   exchange.forEachTimeStamp(f, 0, -1);
 }
 
-void PNL2::procTimestamp(const Exchange& exchange, TimeStamp ts) {
-  for (auto it = this->m_mapAssets.begin(); it != this->m_mapAssets.end();
-       ++it) {
-    CandleData cd;
-    if (exchange.getDataWithTimestamp(it->c_str(), ts, cd)) {
-      auto cv = this->getAssetVolume(exchange, it->c_str(), ts);
-      // cd.close
-    }
-  }
-}
+// void PNL2::procTimestamp(const Exchange& exchange, TimeStamp ts) {
+//   for (auto it = this->m_mapAssets.begin(); it != this->m_mapAssets.end();
+//        ++it) {
+//     CandleData cd;
+//     if (exchange.getDataWithTimestamp(it->c_str(), ts, cd)) {
+//       auto cv = this->getAssetVolume(exchange, it->c_str(), ts);
+//       // cd.close
+//     }
+//   }
+// }
 
 void PNL2::addAsset(const char* asset) {
   auto it = this->m_mapAssets.find(asset);
@@ -113,66 +113,66 @@ void PNL2::addAsset(const char* asset) {
   }
 }
 
-Volume PNL2::getAssetVolume(const Exchange& exchange, const char* asset,
-                            TimeStamp ts) {
-  auto t = this->m_data.total();
-  if (t.lstctrl_size() > 0) {
-    Volume cv = 0;
+// Volume PNL2::getAssetVolume(const Exchange& exchange, const char* asset,
+//                             TimeStamp ts) {
+//   auto t = this->m_data.total();
+//   if (t.lstctrl_size() > 0) {
+//     Volume cv = 0;
 
-    for (auto i = 0; i < t.lstctrl_size(); ++i) {
-      auto cc = t.lstctrl(i);
-      if (cc.ts() > ts) {
-        break;
-      }
+//     for (auto i = 0; i < t.lstctrl_size(); ++i) {
+//       auto cc = t.lstctrl(i);
+//       if (cc.ts() > ts) {
+//         break;
+//       }
 
-      if (cc.dst().code() == asset) {
-        cv += cc.volumedst();
-      } else if (cc.src().code() == asset) {
-        cv -= cc.volumesrc();
-      }
-    }
+//       if (cc.dst().code() == asset) {
+//         cv += cc.volumedst();
+//       } else if (cc.src().code() == asset) {
+//         cv -= cc.volumesrc();
+//       }
+//     }
 
-    return cv;
-  }
+//     return cv;
+//   }
 
-  return 0;
-}
+//   return 0;
+// }
 
-Money PNL2::getAssetCost(const Exchange& exchange, const char* asset,
-                         TimeStamp ts) {
-  auto t = this->m_data.total();
-  if (t.lstctrl_size() > 0) {
-    Money cost = 0;
+// Money PNL2::getAssetCost(const Exchange& exchange, const char* asset,
+//                          TimeStamp ts) {
+//   auto t = this->m_data.total();
+//   if (t.lstctrl_size() > 0) {
+//     Money cost = 0;
 
-    for (auto i = 0; i < t.lstctrl_size(); ++i) {
-      auto cc = t.lstctrl(i);
-      if (cc.ts() > ts) {
-        break;
-      }
+//     for (auto i = 0; i < t.lstctrl_size(); ++i) {
+//       auto cc = t.lstctrl(i);
+//       if (cc.ts() > ts) {
+//         break;
+//       }
 
-      if (cc.dst().code() == asset) {
-        CandleData cd;
-        if (exchange.getDataWithTimestamp(asset, cc.ts(), cd)) {
-          cost += cd.close * cc.volumedst();
-        }
-      } else if (cc.src().code() == asset) {
-        CandleData cd;
-        if (exchange.getDataWithTimestamp(asset, cc.ts(), cd)) {
-          cost -= cd.close * cc.volumesrc();
-        }
-      }
-    }
+//       if (cc.dst().code() == asset) {
+//         CandleData cd;
+//         if (exchange.getDataWithTimestamp(asset, cc.ts(), cd)) {
+//           cost += cd.close * cc.volumedst();
+//         }
+//       } else if (cc.src().code() == asset) {
+//         CandleData cd;
+//         if (exchange.getDataWithTimestamp(asset, cc.ts(), cd)) {
+//           cost -= cd.close * cc.volumesrc();
+//         }
+//       }
+//     }
 
-    return cost;
-  }
+//     return cost;
+//   }
 
-  return 0;
-}
+//   return 0;
+// }
 
 void PNL2::getAssetInfo(const Exchange& exchange, const char* asset,
-                        TimeStamp ts, Money& profit, Volume& volume) {
-  profit = 0;
-  Money cost = 0;
+                        TimeStamp ts, Money& cost, Volume& volume) {
+  // profit = 0;
+  cost = 0;
   volume = 0;
 
   auto t = this->m_data.total();
@@ -197,38 +197,39 @@ void PNL2::getAssetInfo(const Exchange& exchange, const char* asset,
 
         CandleData cd;
         if (exchange.getDataWithTimestamp(asset, cc.ts(), cd)) {
-          cost -= cd.close * cc.volumesrc();
+          cost = volume * price;
+          // cost -= cd.close * cc.volumesrc();
 
-          profit += (cd.close - price) * cc.volumesrc();
+          // profit += (cd.close - price) * cc.volumesrc();
         }
       }
     }
   }
 }
 
-Money PNL2::getHandMoney(const Exchange& exchange, TimeStamp ts) {
-  auto t = this->m_data.total();
-  if (t.lstctrl_size() > 0) {
-    Money cost = 0;
+// Money PNL2::getHandMoney(const Exchange& exchange, TimeStamp ts) {
+//   auto t = this->m_data.total();
+//   if (t.lstctrl_size() > 0) {
+//     Money cost = 0;
 
-    for (auto i = 0; i < t.lstctrl_size(); ++i) {
-      auto cc = t.lstctrl(i);
-      if (cc.ts() > ts) {
-        break;
-      }
+//     for (auto i = 0; i < t.lstctrl_size(); ++i) {
+//       auto cc = t.lstctrl(i);
+//       if (cc.ts() > ts) {
+//         break;
+//       }
 
-      if (cc.type() == tradingpb::CTRL_DEPOSIT) {
-        cost += cc.volumedst();
-      } else if (cc.type() == tradingpb::CTRL_WITHDRAW) {
-        cost -= cc.volumedst();
-      }
-    }
+//       if (cc.type() == tradingpb::CTRL_DEPOSIT) {
+//         cost += cc.volumedst();
+//       } else if (cc.type() == tradingpb::CTRL_WITHDRAW) {
+//         cost -= cc.volumedst();
+//       }
+//     }
 
-    return cost;
-  }
+//     return cost;
+//   }
 
-  return 0;
-}
+//   return 0;
+// }
 
 void PNL2::getHandMoneyEx(const Exchange& exchange, TimeStamp ts, Money& total,
                           Money& last) {
@@ -269,9 +270,9 @@ void PNL2::setTotalPNLAssetData(const Exchange* pExchange,
 
   for (auto it = this->m_mapAssets.begin(); it != this->m_mapAssets.end();
        ++it) {
-    Money profit;
+    Money cost;
     Volume volume;
-    this->getAssetInfo(*pExchange, it->c_str(), pVal->ts(), profit, volume);
+    this->getAssetInfo(*pExchange, it->c_str(), pVal->ts(), cost, volume);
 
     // pVal->set_cost(cost + pVal->cost());
 
@@ -314,6 +315,39 @@ void PNL2::procTotalPNLAssetData(const Exchange& exchange) {
   auto f = std::bind(&PNL2::setTotalPNLAssetData, this, &exchange,
                      std::placeholders::_1);
   foreachPNLDataValue(this->m_data.mutable_total(), f);
+}
+
+// 处理ctrlnode里的统计数据
+void PNL2::procCtrlNodeData(const Exchange& exchange) {
+  //!!! 这样写法效率不高，asset多个的时候会遍历多次
+  //!!! 还有个可能的问题，就是如果初始资金池就有一部分asset，价格可能会不准
+  for (auto it = this->m_mapAssets.begin(); it != this->m_mapAssets.end();
+       ++it) {
+    auto t = this->m_data.mutable_total();
+    double lastprice = 0;
+    for (auto i = 0; i < t->lstctrl_size(); ++i) {
+      auto cc = t->mutable_lstctrl(i);
+
+      if (cc->type() == tradingpb::CTRL_BUY && cc->dst().code() == *it) {
+        Money cost;
+        Volume volume;
+        this->getAssetInfo(exchange, cc->dst().code().c_str(), cc->ts(), cost,
+                           volume);
+
+        if (volume > 0) {
+          lastprice = cost / volume;
+          cc->set_averageholdingprice(lastprice);
+        }
+      } else if (cc->type() == tradingpb::CTRL_SELL) {
+        CandleData cd;
+        if (exchange.getDataWithTimestamp(it->c_str(), cc->ts(), cd)) {
+          cc->set_sellprice(cd.close);
+        }
+
+        cc->set_averageholdingprice(lastprice);
+      }
+    }
+  }
 }
 
 CR2END

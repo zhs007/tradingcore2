@@ -33,6 +33,8 @@ message CtrlNode {
     double volumeDst = 5;
     CtrlType type = 6;
     double fee = 7;
+    double averageHoldingPrice = 8;
+    double sellPrice = 9;
 }
 
 // WalletAsset - wallet asset
@@ -91,6 +93,19 @@ message InitParams {
     float vomume = 2;
 }
 
+// AIPTimeType - time type for automatic investment plan 
+enum AIPTimeType {
+    AIPTT_WEEKDAY = 0;
+    AIPTT_MONTHDAY = 1;
+}
+
+// AIPParams - parameters for automatic investment plan
+message AIPParams {
+    float money = 1;
+    AIPTimeType type = 2;
+    int32 day = 3;
+}
+
 // Strategy - strategy
 message Strategy {
     string name = 1;
@@ -104,6 +119,8 @@ message Strategy {
     StopLossParams paramsStopLoss = 9;
     TakeProfitParams paramsTakeProfit = 10;
     InitParams paramsInit = 11;
+    AIPParams paramsAIP = 12;
+    string title = 13;
 }
 
 // PNLDataValue - 

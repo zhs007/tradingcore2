@@ -15,11 +15,6 @@ CR2BEGIN
 // Strategy - 仅处理单个资产，可以有多个条件，如果要处理多个资产，在外部处理
 class Strategy {
  public:
-  // typedef std::function<void(bool, TimeStamp, int, const tradingpb::Asset*,
-  //                            Money, Volume)>
-  //     FuncOnCtrl;
-
- public:
   Strategy(Wallet& wallet, Exchange& exchange)
       : m_wallet(wallet),
         m_exchange(exchange),
@@ -34,7 +29,8 @@ class Strategy {
         m_volume(0),
         m_price(0),
         m_fee(0),
-        m_pCCData(NULL) {}
+        m_pCCData(NULL),
+        m_lastAIPTs(0) {}
   virtual ~Strategy() {}
 
  public:
@@ -69,6 +65,8 @@ class Strategy {
 
   void initMoney(bool issim, TimeStamp ts);
 
+  void onAIP(bool issim, TimeStamp ts);
+
  protected:
   void onSimulateTradingTimeStamp(TimeStamp ts, int index);
 
@@ -80,23 +78,6 @@ class Strategy {
   void onTradingFail() { m_failNums++; }
 
   void onTrading() { m_tradingNums++; }
-
- protected:
-  // void onCtrlConditionBuy(bool issim, TimeStamp ts, int index);
-
-  // void onWeekDay(const tradingpb::CtrlCondition& cc, bool issim, TimeStamp
-  // ts,
-  //                int index, const tradingpb::Asset* pAsset,
-  //                Strategy::FuncOnCtrl onctrl);
-
-  // void onMonthDay(const tradingpb::CtrlCondition& cc, bool issim, TimeStamp
-  // ts,
-  //                 int index, const tradingpb::Asset* pAsset,
-  //                 Strategy::FuncOnCtrl onctrl);
-
-  // void onBuyAndHold(const tradingpb::CtrlCondition& cc, bool issim,
-  //                   TimeStamp ts, int index, const tradingpb::Asset* pAsset,
-  //                   Strategy::FuncOnCtrl onctrl);
 
  protected:
   Wallet& m_wallet;
@@ -118,6 +99,7 @@ class Strategy {
   Money m_price;
   Money m_fee;
   CtrlConditionMgr::CtrlConditionData* m_pCCData;
+  time_t m_lastAIPTs;
 };
 
 CR2END
