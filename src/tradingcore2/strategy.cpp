@@ -197,10 +197,20 @@ void Strategy::onAIP(bool issim, TimeStamp ts) {
   if (this->m_strategy.has_paramsaip()) {
     auto aip = this->m_strategy.paramsaip();
     if (aip.type() == tradingpb::AIPTT_WEEKDAY) {
-      if (this->m_lastAIPTs != 0) {
-        // timestamp2timeUTC
+      auto weekoff = calcWeekOffWithWeekDay(this->m_lastAIPTs, ts, aip.day());
+      if (weekoff > 0) {
+        this->m_wallet.deposit(aip.money() * weekoff, ts);
+        this->m_handMoney += aip.money();
+        this->m_lastAIPTs = ts;
       }
     } else if (aip.type() == tradingpb::AIPTT_MONTHDAY) {
+      auto monthoff =
+          calcMonthOffWithMonthDay(this->m_lastAIPTs, ts, aip.day());
+      if (monthoff > 0) {
+        this->m_wallet.deposit(aip.money() * monthoff, ts);
+        this->m_handMoney += aip.money() * monthoff;
+        this->m_lastAIPTs = ts;
+      }
     }
   }
 }
