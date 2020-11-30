@@ -36,20 +36,21 @@ class PNL2 {
   void onInitTimeStamp(const Exchange& exchange, TimeStamp ts, int index);
 
  public:
-  void procTimestamp(const Exchange& exchange, TimeStamp ts);
+  // void procTimestamp(const Exchange& exchange, TimeStamp ts);
 
  public:
   void addAsset(const char* asset);
 
-  Volume getAssetVolume(const Exchange& exchange, const char* asset,
-                        TimeStamp ts);
+  // Volume getAssetVolume(const Exchange& exchange, const char* asset,
+  //                       TimeStamp ts);
 
-  Money getAssetCost(const Exchange& exchange, const char* asset, TimeStamp ts);
+  // Money getAssetCost(const Exchange& exchange, const char* asset, TimeStamp
+  // ts);
 
   void getAssetInfo(const Exchange& exchange, const char* asset, TimeStamp ts,
-                    Money& profit, Volume& volume);
+                    Money& cost, Volume& volume);
 
-  Money getHandMoney(const Exchange& exchange, TimeStamp ts);
+  // Money getHandMoney(const Exchange& exchange, TimeStamp ts);
 
   void getHandMoneyEx(const Exchange& exchange, TimeStamp ts, Money& total,
                       Money& last);
@@ -58,6 +59,8 @@ class PNL2 {
                             ::tradingpb::PNLDataValue* pVal);
 
   void procTotalPNLAssetData(const Exchange& exchange);
+  // 处理ctrlnode里的统计数据
+  void procCtrlNodeData(const Exchange& exchange);
 
  public:
   tradingpb::PNLData m_data;

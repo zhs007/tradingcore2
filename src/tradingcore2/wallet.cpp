@@ -188,6 +188,7 @@ void Wallet::buildPNL2(PNL2& pnl2) const {
     }
   }
 
+  pnl2.procCtrlNodeData(this->m_exchange);
   pnl2.procTotalPNLAssetData(this->m_exchange);
 }
 
