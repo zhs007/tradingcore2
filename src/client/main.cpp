@@ -198,11 +198,11 @@ void normalWeekDay2(const tr2::Config& cfg) {
   asset1->set_market("cnfunds");
   asset1->set_code("001631");
   auto buy0 = strategy0->add_buy();
-  buy0->set_indicator("weekday");
-  buy0->add_vals(3);
+  buy0->set_indicator("weekdayex");
+  buy0->add_vals(5);
   auto sell0 = strategy0->add_sell();
-  sell0->set_indicator("weekday");
-  sell0->add_vals(4);
+  sell0->set_indicator("weekdayex");
+  sell0->add_vals(1);
   auto bp = strategy0->mutable_paramsbuy();
   bp->set_perhandmoney(1);
   auto sp = strategy0->mutable_paramssell();
@@ -215,7 +215,7 @@ void normalWeekDay2(const tr2::Config& cfg) {
   aip->set_day(3);
 
   params.set_startts(tr2::str2timestampUTC("20200101", "%Y%m%d"));
-  params.set_endts(tr2::str2timestampUTC("20200201", "%Y%m%d"));
+  params.set_endts(tr2::str2timestampUTC("20200301", "%Y%m%d"));
 
   ::tradingpb::ReplyCalcPNL res;
   auto status = client.clacPNL(params, res);
