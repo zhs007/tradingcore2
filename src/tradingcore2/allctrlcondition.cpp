@@ -1,5 +1,6 @@
 #include <tradingcore2/allctrlcondition.h>
 #include <tradingcore2/ctrlcondition/buyandhold.h>
+#include <tradingcore2/ctrlcondition/indicator.h>
 #include <tradingcore2/ctrlcondition/monthday.h>
 #include <tradingcore2/ctrlcondition/monthdayex.h>
 #include <tradingcore2/ctrlcondition/weekday.h>
@@ -14,6 +15,7 @@ void regAllCtrlConditionHelper() {
   CCMonthDay::regCtrlConditionHelper();
   CCWeekDayEx::regCtrlConditionHelper();
   CCMonthDayEx::regCtrlConditionHelper();
+  CCIndicator::regCtrlConditionHelper();
 }
 
 CR2END

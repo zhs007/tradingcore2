@@ -10,6 +10,16 @@
 CR2BEGIN
 
 void Strategy::simulateTrading() {
+  std::set<std::string> indicators;
+  CtrlConditionMgr::getSingleton()->getIndicators(indicators, *this);
+
+  for (auto it = indicators.begin(); it != indicators.end(); ++it) {
+    this->m_mapIndicators.addIndicator(it->c_str());
+  }
+
+  this->m_mapIndicators.build(this->m_exchange,
+                              this->m_strategy.asset().code().c_str());
+
   this->m_pCCData =
       CtrlConditionMgr::getSingleton()->newCtrlConditionData(*this);
 
@@ -214,5 +224,7 @@ void Strategy::onAIP(bool issim, TimeStamp ts) {
     }
   }
 }
+
+void Strategy::release() { this->m_mapIndicators.release(); }
 
 CR2END

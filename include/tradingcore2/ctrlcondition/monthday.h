@@ -22,6 +22,9 @@ class CCMonthDay final : public CtrlConditionHelper {
   virtual ~CCMonthDay() {}
 
  public:
+  virtual void getIndicators(std::set<std::string>& indicators,
+                             const tradingpb::CtrlCondition& cc) override {}
+
   virtual void* newCtrlConditionData() override { return NULL; }
 
   virtual void deleteCtrlConditionData(void* pData) override {}
@@ -29,7 +32,8 @@ class CCMonthDay final : public CtrlConditionHelper {
   virtual bool isValid(const tradingpb::CtrlCondition& cc,
                        CtrlType ct) override;
 
-  virtual void procCtrl(const tradingpb::CtrlCondition& cc, bool issim,
+  virtual void procCtrl(const IndicatorMap& mapIndicators,
+                        const tradingpb::CtrlCondition& cc, bool issim,
                         CtrlType ct, TimeStamp ts, int index, void* pData,
                         FuncOnCtrl onctrl) override;
 };

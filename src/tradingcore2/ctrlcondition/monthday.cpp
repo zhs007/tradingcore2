@@ -16,7 +16,8 @@ bool CCMonthDay::isValid(const tradingpb::CtrlCondition& cc, CtrlType ct) {
   return cc.vals_size() == 1;
 }
 
-void CCMonthDay::procCtrl(const tradingpb::CtrlCondition& cc, bool issim,
+void CCMonthDay::procCtrl(const IndicatorMap& mapIndicators,
+                          const tradingpb::CtrlCondition& cc, bool issim,
                           CtrlType ct, TimeStamp ts, int index, void* pData,
                           FuncOnCtrl onctrl) {
   tm ctm;

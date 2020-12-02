@@ -1,5 +1,5 @@
-#ifndef __TRADINGCORE2_CTRLCONDITION_WEEKDAYEX_H__
-#define __TRADINGCORE2_CTRLCONDITION_WEEKDAYEX_H__
+#ifndef __TRADINGCORE2_CTRLCONDITION_INDICATOR_H__
+#define __TRADINGCORE2_CTRLCONDITION_INDICATOR_H__
 
 #include <tradingcore2/basedef.h>
 #include <tradingcore2/candle.h>
@@ -13,32 +13,21 @@
 
 CR2BEGIN
 
-class CCWeekDayEx final : public CtrlConditionHelper {
+class CCIndicator final : public CtrlConditionHelper {
  public:
   static void regCtrlConditionHelper();
 
- public:
-  struct _Data {
-    time_t lastTs;
-
-    _Data() : lastTs(0) {}
-  };
-
  protected:
-  CCWeekDayEx() {}
-  virtual ~CCWeekDayEx() {}
+  CCIndicator() {}
+  virtual ~CCIndicator() {}
 
  public:
   virtual void getIndicators(std::set<std::string>& indicators,
-                             const tradingpb::CtrlCondition& cc) override {}
+                             const tradingpb::CtrlCondition& cc) override;
 
-  virtual void* newCtrlConditionData() override { return new _Data(); }
+  virtual void* newCtrlConditionData() override { return NULL; }
 
-  virtual void deleteCtrlConditionData(void* pData) override {
-    assert(pData != NULL);
-    auto pMyData = static_cast<_Data*>(pData);
-    delete pMyData;
-  }
+  virtual void deleteCtrlConditionData(void* pData) override {}
 
   virtual bool isValid(const tradingpb::CtrlCondition& cc,
                        CtrlType ct) override;
@@ -51,4 +40,4 @@ class CCWeekDayEx final : public CtrlConditionHelper {
 
 CR2END
 
-#endif  // __TRADINGCORE2_CTRLCONDITION_WEEKDAYEX_H__
+#endif  // __TRADINGCORE2_CTRLCONDITION_INDICATOR_H__

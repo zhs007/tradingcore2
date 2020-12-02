@@ -7,6 +7,7 @@
 #include <ctime>
 #include <functional>
 #include <string>
+#include <vector>
 
 CR2BEGIN
 
@@ -65,6 +66,13 @@ int calcMonthOff(time_t ts0, time_t ts1);
 // calcQuartile - sortedArr is a sorted array
 void calcQuartile(float* sortedArr, size_t stride, size_t n, float& q1,
                   float& q2, float& q3);
+
+// -------------------------------------------------------------------------------------
+// string
+
+// splitStr - split a string
+bool splitStr(std::vector<std::string>& arr, const char* str,
+              const char* pattern);
 
 // -------------------------------------------------------------------------------------
 // protobuf
