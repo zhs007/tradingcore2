@@ -12,6 +12,8 @@
 
 CR2BEGIN
 
+class IndicatorMap;
+
 class CtrlConditionHelper {
  public:
   typedef std::function<void(bool, CtrlType, TimeStamp)> FuncOnCtrl;
@@ -21,13 +23,17 @@ class CtrlConditionHelper {
   virtual ~CtrlConditionHelper() {}
 
  public:
+  virtual void getIndicators(std::set<std::string>& indicators,
+                             const tradingpb::CtrlCondition& cc) = 0;
+
   virtual void* newCtrlConditionData() = 0;
 
   virtual void deleteCtrlConditionData(void* pData) = 0;
 
   virtual bool isValid(const tradingpb::CtrlCondition& cc, CtrlType ct) = 0;
 
-  virtual void procCtrl(const tradingpb::CtrlCondition& cc, bool issim,
+  virtual void procCtrl(const IndicatorMap& mapIndicators,
+                        const tradingpb::CtrlCondition& cc, bool issim,
                         CtrlType ct, TimeStamp ts, int index, void* pData,
                         FuncOnCtrl onctrl) = 0;
 };

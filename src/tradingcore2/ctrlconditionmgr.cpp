@@ -73,14 +73,16 @@ int CtrlConditionMgr::isValidStrategy(const tradingpb::Strategy& strategy) {
   return 0;
 }
 
-void CtrlConditionMgr::procCtrl(const tradingpb::CtrlCondition& cc, bool issim,
+void CtrlConditionMgr::procCtrl(const IndicatorMap& mapIndicators,
+                                const tradingpb::CtrlCondition& cc, bool issim,
                                 CtrlType ct, TimeStamp ts, int index,
                                 void* pData,
                                 CtrlConditionHelper::FuncOnCtrl onctrl) {
   auto name = cc.indicator();
   auto it = this->m_mapCtrlCondition.find(name);
   if (it != this->m_mapCtrlCondition.end()) {
-    it->second->procCtrl(cc, issim, ct, ts, index, pData, onctrl);
+    it->second->procCtrl(mapIndicators, cc, issim, ct, ts, index, pData,
+                         onctrl);
 
     return;
   }
@@ -100,7 +102,8 @@ int CtrlConditionMgr::procStrategy(Strategy& strategy,
       auto cc = pbStrategy.buy(i);
       auto pD = pData->lstBuy[i];
 
-      this->procCtrl(cc, issim, CT_BUY, ts, index, pD, f);
+      this->procCtrl(strategy.getMapIndicators(), cc, issim, CT_BUY, ts, index,
+                     pD, f);
     }
   }
 
@@ -112,11 +115,41 @@ int CtrlConditionMgr::procStrategy(Strategy& strategy,
       auto cc = pbStrategy.sell(i);
       auto pD = pData->lstSell[i];
 
-      this->procCtrl(cc, issim, CT_SELL, ts, index, pD, f);
+      this->procCtrl(strategy.getMapIndicators(), cc, issim, CT_SELL, ts, index,
+                     pD, f);
     }
   }
 
   return 0;
+}
+
+void CtrlConditionMgr::getIndicators(std::set<std::string>& indicators,
+                                     Strategy& strategy) {
+  auto pbStrategy = strategy.getStrategy();
+
+  {
+    for (auto i = 0; i < pbStrategy.buy_size(); i++) {
+      auto cc = pbStrategy.buy(i);
+
+      auto name = cc.indicator();
+      auto it = this->m_mapCtrlCondition.find(name);
+      if (it != this->m_mapCtrlCondition.end()) {
+        it->second->getIndicators(indicators, cc);
+      }
+    }
+  }
+
+  {
+    for (auto i = 0; i < pbStrategy.sell_size(); i++) {
+      auto cc = pbStrategy.sell(i);
+
+      auto name = cc.indicator();
+      auto it = this->m_mapCtrlCondition.find(name);
+      if (it != this->m_mapCtrlCondition.end()) {
+        it->second->getIndicators(indicators, cc);
+      }
+    }
+  }
 }
 
 void* CtrlConditionMgr::newCtrlConditionData(

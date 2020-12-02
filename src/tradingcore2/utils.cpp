@@ -423,4 +423,22 @@ void saveProtobuf(const char* fn, const google::protobuf::Message& message) {
   fclose(fp);
 }
 
+// splitStr - split a string
+bool splitStr(std::vector<std::string>& arr, const char* str,
+              const char* pattern) {
+  arr.clear();
+
+  char* strc = new char[strlen(str) + 1];
+  strcpy(strc, str);
+
+  char* tmp = strtok(strc, pattern);
+  while (tmp != NULL) {
+    arr.push_back(tmp);
+    tmp = strtok(NULL, pattern);
+  }
+  delete[] strc;
+
+  return true;
+}
+
 CR2END

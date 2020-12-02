@@ -16,7 +16,8 @@ bool CCWeekDayEx::isValid(const tradingpb::CtrlCondition& cc, CtrlType ct) {
   return cc.vals_size() == 1;
 }
 
-void CCWeekDayEx::procCtrl(const tradingpb::CtrlCondition& cc, bool issim,
+void CCWeekDayEx::procCtrl(const IndicatorMap& mapIndicators,
+                           const tradingpb::CtrlCondition& cc, bool issim,
                            CtrlType ct, TimeStamp ts, int index, void* pData,
                            FuncOnCtrl onctrl) {
   assert(pData != NULL);

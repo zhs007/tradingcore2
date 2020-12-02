@@ -3,6 +3,7 @@
 
 #include <tradingcore2/basedef.h>
 #include <tradingcore2/ctrlconditionmgr.h>
+#include <tradingcore2/indicatormap.h>
 #include <tradingcore2/pnl.h>
 #include <tradingcore2/protos/trading2.pb.h>
 
@@ -31,7 +32,7 @@ class Strategy {
         m_fee(0),
         m_pCCData(NULL),
         m_lastAIPTs(0) {}
-  virtual ~Strategy() {}
+  virtual ~Strategy() { this->release(); }
 
  public:
   virtual void onTimeStamp(bool issim, TimeStamp ts, int index);
@@ -67,6 +68,11 @@ class Strategy {
 
   void onAIP(bool issim, TimeStamp ts);
 
+  const IndicatorMap& getMapIndicators() const { return this->m_mapIndicators; }
+
+ protected:
+  void release();
+
  protected:
   void onSimulateTradingTimeStamp(TimeStamp ts, int index);
 
@@ -100,6 +106,7 @@ class Strategy {
   Money m_fee;
   CtrlConditionMgr::CtrlConditionData* m_pCCData;
   time_t m_lastAIPTs;
+  IndicatorMap m_mapIndicators;
 };
 
 CR2END
