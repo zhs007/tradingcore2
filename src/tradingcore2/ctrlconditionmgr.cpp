@@ -1,6 +1,7 @@
 #include <math.h>
 #include <tradingcore2/ctrlcondition.h>
 #include <tradingcore2/ctrlconditionmgr.h>
+#include <tradingcore2/exchange.h>
 #include <tradingcore2/strategy.h>
 
 #include <functional>
@@ -43,7 +44,7 @@ void CtrlConditionMgr::release() {
 // isValid - 检查 cc 协议的完整性，返回 0 表示有效，返回 1 表示没有支持这个
 // cc，返回 -1 表示错误
 int CtrlConditionMgr::isValid(const tradingpb::CtrlCondition& cc, CtrlType ct) {
-  auto name = cc.indicator();
+  auto name = cc.name();
   auto it = this->m_mapCtrlCondition.find(name);
   if (it != this->m_mapCtrlCondition.end()) {
     return it->second->isValid(cc, ct) ? 0 : -1;
@@ -76,12 +77,12 @@ int CtrlConditionMgr::isValidStrategy(const tradingpb::Strategy& strategy) {
 void CtrlConditionMgr::procCtrl(const IndicatorMap& mapIndicators,
                                 const tradingpb::CtrlCondition& cc, bool issim,
                                 CtrlType ct, TimeStamp ts, int index,
-                                void* pData,
+                                CandleData& cd, void* pData,
                                 CtrlConditionHelper::FuncOnCtrl onctrl) {
-  auto name = cc.indicator();
+  auto name = cc.name();
   auto it = this->m_mapCtrlCondition.find(name);
   if (it != this->m_mapCtrlCondition.end()) {
-    it->second->procCtrl(mapIndicators, cc, issim, ct, ts, index, pData,
+    it->second->procCtrl(mapIndicators, cc, issim, ct, ts, index, cd, pData,
                          onctrl);
 
     return;
@@ -93,6 +94,9 @@ int CtrlConditionMgr::procStrategy(Strategy& strategy,
                                    CtrlConditionMgr::CtrlConditionData* pData,
                                    bool issim, TimeStamp ts, int index) {
   auto pbStrategy = strategy.getStrategy();
+  Exchange& exchange = strategy.getExchange();
+  CandleData cd;
+  exchange.getData(pbStrategy.asset().code().c_str(), index, cd);
 
   {
     auto f = std::bind(&Strategy::buy, &strategy, std::placeholders::_1,
@@ -103,7 +107,7 @@ int CtrlConditionMgr::procStrategy(Strategy& strategy,
       auto pD = pData->lstBuy[i];
 
       this->procCtrl(strategy.getMapIndicators(), cc, issim, CT_BUY, ts, index,
-                     pD, f);
+                     cd, pD, f);
     }
   }
 
@@ -116,7 +120,7 @@ int CtrlConditionMgr::procStrategy(Strategy& strategy,
       auto pD = pData->lstSell[i];
 
       this->procCtrl(strategy.getMapIndicators(), cc, issim, CT_SELL, ts, index,
-                     pD, f);
+                     cd, pD, f);
     }
   }
 
@@ -131,7 +135,7 @@ void CtrlConditionMgr::getIndicators(std::set<std::string>& indicators,
     for (auto i = 0; i < pbStrategy.buy_size(); i++) {
       auto cc = pbStrategy.buy(i);
 
-      auto name = cc.indicator();
+      auto name = cc.name();
       auto it = this->m_mapCtrlCondition.find(name);
       if (it != this->m_mapCtrlCondition.end()) {
         it->second->getIndicators(indicators, cc);
@@ -143,7 +147,7 @@ void CtrlConditionMgr::getIndicators(std::set<std::string>& indicators,
     for (auto i = 0; i < pbStrategy.sell_size(); i++) {
       auto cc = pbStrategy.sell(i);
 
-      auto name = cc.indicator();
+      auto name = cc.name();
       auto it = this->m_mapCtrlCondition.find(name);
       if (it != this->m_mapCtrlCondition.end()) {
         it->second->getIndicators(indicators, cc);
@@ -154,7 +158,7 @@ void CtrlConditionMgr::getIndicators(std::set<std::string>& indicators,
 
 void* CtrlConditionMgr::newCtrlConditionData(
     const tradingpb::CtrlCondition& cc) {
-  auto name = cc.indicator();
+  auto name = cc.name();
   auto it = this->m_mapCtrlCondition.find(name);
   if (it != this->m_mapCtrlCondition.end()) {
     return it->second->newCtrlConditionData();
@@ -169,7 +173,7 @@ void CtrlConditionMgr::deleteCtrlConditionData(
     return;
   }
 
-  auto name = cc.indicator();
+  auto name = cc.name();
   auto it = this->m_mapCtrlCondition.find(name);
   if (it != this->m_mapCtrlCondition.end()) {
     it->second->deleteCtrlConditionData(pData);

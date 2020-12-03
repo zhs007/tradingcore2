@@ -18,8 +18,8 @@ bool CCMonthDay::isValid(const tradingpb::CtrlCondition& cc, CtrlType ct) {
 
 void CCMonthDay::procCtrl(const IndicatorMap& mapIndicators,
                           const tradingpb::CtrlCondition& cc, bool issim,
-                          CtrlType ct, TimeStamp ts, int index, void* pData,
-                          FuncOnCtrl onctrl) {
+                          CtrlType ct, TimeStamp ts, int index, CandleData& cd,
+                          void* pData, FuncOnCtrl onctrl) {
   tm ctm;
   timestamp2timeUTC(ts, ctm);
 

@@ -50,14 +50,33 @@ message Wallet {
 
 // CtrlCondition - control condition
 message CtrlCondition {
-    string indicator = 1;
-    repeated float vals = 2;
-    repeated string operators = 3;  // 操作符，按道理应该和 vals 长度一样，大于小于等于
-    string combCondition = 4;       // 组合条件，如果有多个操作条件，这里是 与或非
-    repeated float minvals = 5;
-    repeated float maxvals = 6;
+    string indicator = 1 [deprecated = true];   // 弃用，因为control condition不仅仅只有indicator，还有别的condition，所以换个名不至于引起歧义
+    repeated float vals = 2;                    // 浮点数参数
+    repeated string operators = 3;              // 操作符，按道理应该和 vals 长度一样，大于小于等于
+    string combCondition = 4;                   // 组合条件，如果有多个操作条件，这里是 与或非
+    repeated float minvals = 5;                 // 区间参数
+    repeated float maxvals = 6;                 // 区间参数
     repeated float offvals = 7;
-    repeated string strVals = 8;    // 字符串参数
+    repeated string strVals = 8;                // 字符串参数
+    string name = 9;
+}
+
+// IndicatorType - indicator类型
+enum IndicatorType {
+    IT_SINGLEVALUE = 0;
+    IT_SINGLEPRICE = 1;
+}
+
+// IndicatorData - indicator data
+message IndicatorData {
+    repeated float vals = 1;
+    int64 ts = 2;
+}
+
+message Indicator {
+    string fullname = 1;                // It's like ema.5
+    IndicatorType type = 2;
+    repeated IndicatorData data = 3;
 }
 
 // BuyParams - buy parameters
@@ -109,19 +128,20 @@ message AIPParams {
 
 // Strategy - strategy
 message Strategy {
-    string name = 1;
-    Asset asset = 2;
-    repeated CtrlCondition buy = 3;
-    repeated CtrlCondition sell = 4;
-    repeated CtrlCondition stoploss = 5;
-    repeated CtrlCondition takeprofit = 6;
-    BuyParams paramsBuy = 7;
-    SellParams paramsSell = 8;
-    StopLossParams paramsStopLoss = 9;
-    TakeProfitParams paramsTakeProfit = 10;
-    InitParams paramsInit = 11;
-    AIPParams paramsAIP = 12;
-    string title = 13;
+    string name = 1;                            // strategy名，需要是服务器已经有实现的
+    Asset asset = 2;                            // 针对的asset
+    repeated CtrlCondition buy = 3;             // buy的条件
+    repeated CtrlCondition sell = 4;            // sell的条件
+    repeated CtrlCondition stoploss = 5;        // 止损的条件
+    repeated CtrlCondition takeprofit = 6;      // 止盈的条件
+    BuyParams paramsBuy = 7;                    // 买的参数
+    SellParams paramsSell = 8;                  // 卖的参数
+    StopLossParams paramsStopLoss = 9;          // 止损的参数
+    TakeProfitParams paramsTakeProfit = 10;     // 止盈的参数
+    InitParams paramsInit = 11;                 // 初始化的参数
+    AIPParams paramsAIP = 12;                   // 定投参数
+    string title = 13;                          // 标题，这个可以任意起名
+    repeated string indicators = 14;            // 需要得到的indicators数据
 }
 
 // PNLDataValue - 
@@ -137,39 +157,40 @@ message PNLDataValue {
 
 // PNLAssetData - asset data in PNL
 message PNLAssetData {
-    Asset asset = 1;
-    repeated PNLDataValue values = 2;
-    float maxDrawdown = 3;
-    int64 maxDrawdownStartTs = 4;
-    int64 maxDrawdownEndTs = 5;
-    float maxDrawup = 6;
-    int64 maxDrawupStartTs = 7;
-    int64 maxDrawupEndTs = 8;
-    float sharpe = 9;
-    float annualizedReturns = 10;
-    float annualizedVolatility = 11;
-    float totalReturns = 12;
-    float variance = 13;
-    int32 buyTimes = 14;
-    int32 sellTimes = 15;
-    int32 stoplossTimes = 16;
-    int64 maxUpDayTs = 17;
-    float maxPerUpDay = 18;
-    int64 maxDownDayTs = 19;
-    float maxPerDownDay = 20;
-    int64 maxUpWeekTs = 21;
-    float maxPerUpWeek = 22;
-    int64 maxDownWeekTs = 23;
-    float maxPerDownWeek = 24;
-    int64 maxUpMonthTs = 25;
-    float maxPerUpMonth = 26;
-    int64 maxDownMonthTs = 27;
-    float maxPerDownMonth = 28;
-    int64 maxUpYearTs = 29;
-    float maxPerUpYear = 30;
-    int64 maxDownYearTs = 31;
-    float maxPerDownYear = 32;
-    repeated CtrlNode lstCtrl = 33;
+    Asset asset = 1;                        // 资产，如果汇总策略应该有多个才对，待修改
+    repeated PNLDataValue values = 2;       // 具体值
+    float maxDrawdown = 3;                  // 最大回撤
+    int64 maxDrawdownStartTs = 4;           // 最大回撤起点
+    int64 maxDrawdownEndTs = 5;             // 最大回撤终点
+    float maxDrawup = 6;                    // 最大盈余
+    int64 maxDrawupStartTs = 7;             // 最大盈余起点
+    int64 maxDrawupEndTs = 8;               // 最大盈余终点
+    float sharpe = 9;                       // 夏普
+    float annualizedReturns = 10;           // 年化
+    float annualizedVolatility = 11;        // 年化波动率
+    float totalReturns = 12;                // 总回报率
+    float variance = 13;                    // 方差
+    int32 buyTimes = 14;                    // 购买次数
+    int32 sellTimes = 15;                   // 卖出次数
+    int32 stoplossTimes = 16;               // 止损次数
+    int64 maxUpDayTs = 17;                  // 最大单日涨幅时间
+    float maxPerUpDay = 18;                 // 最大单日涨幅
+    int64 maxDownDayTs = 19;                // 最大单日亏损时间
+    float maxPerDownDay = 20;               // 最大单日亏损
+    int64 maxUpWeekTs = 21;                 // 最大单周涨幅时间
+    float maxPerUpWeek = 22;                // 最大单周涨幅
+    int64 maxDownWeekTs = 23;               // 最大单周跌幅时间
+    float maxPerDownWeek = 24;              // 最大单周跌幅
+    int64 maxUpMonthTs = 25;                // 最大单月涨幅时间
+    float maxPerUpMonth = 26;               // 最大单月涨幅
+    int64 maxDownMonthTs = 27;              // 最大单月跌幅时间
+    float maxPerDownMonth = 28;             // 最大单月跌幅
+    int64 maxUpYearTs = 29;                 // 最大单年涨幅时间
+    float maxPerUpYear = 30;                // 最大单年涨幅
+    int64 maxDownYearTs = 31;               // 最大单年跌幅时间
+    float maxPerDownYear = 32;              // 最大单年跌幅
+    repeated CtrlNode lstCtrl = 33;         // 操作队列
+    repeated Indicator indicators = 34;     // 请求的indicators
 }
 
 // PNLData - 

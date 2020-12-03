@@ -70,6 +70,8 @@ class Strategy {
 
   const IndicatorMap& getMapIndicators() const { return this->m_mapIndicators; }
 
+  Exchange& getExchange() { return this->m_exchange; }
+
  protected:
   void release();
 

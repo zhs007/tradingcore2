@@ -1,5 +1,5 @@
 #include <math.h>
-#include <tradingcore2/ctrlcondition/indicator.h>
+#include <tradingcore2/ctrlcondition/indicatorsv.h>
 #include <tradingcore2/ctrlconditionmgr.h>
 #include <tradingcore2/indicatormap.h>
 
@@ -7,25 +7,27 @@
 
 CR2BEGIN
 
-void CCIndicator::regCtrlConditionHelper() {
-  CtrlConditionMgr::getSingleton()->regCtrlCondition("indicator",
-                                                     new CCIndicator());
+// 因为是单值模式，需要判断当前值和配置值之间的关系
+
+void CCIndicatorSV::regCtrlConditionHelper() {
+  CtrlConditionMgr::getSingleton()->regCtrlCondition("indicatorsv",
+                                                     new CCIndicatorSV());
 }
 
-void CCIndicator::getIndicators(std::set<std::string>& indicators,
-                                const tradingpb::CtrlCondition& cc) {
+void CCIndicatorSV::getIndicators(std::set<std::string>& indicators,
+                                  const tradingpb::CtrlCondition& cc) {
   indicators.insert(cc.strvals(0));
 }
 
-bool CCIndicator::isValid(const tradingpb::CtrlCondition& cc, CtrlType ct) {
+bool CCIndicatorSV::isValid(const tradingpb::CtrlCondition& cc, CtrlType ct) {
   return cc.vals_size() == 1 && cc.strvals_size() == 1 &&
          cc.operators_size() == 1;
 }
 
-void CCIndicator::procCtrl(const IndicatorMap& mapIndicators,
-                           const tradingpb::CtrlCondition& cc, bool issim,
-                           CtrlType ct, TimeStamp ts, int index, void* pData,
-                           FuncOnCtrl onctrl) {
+void CCIndicatorSV::procCtrl(const IndicatorMap& mapIndicators,
+                             const tradingpb::CtrlCondition& cc, bool issim,
+                             CtrlType ct, TimeStamp ts, int index,
+                             CandleData& cd, void* pData, FuncOnCtrl onctrl) {
   auto pIndicator = mapIndicators.getIndicator(cc.strvals(0).c_str());
   if (pIndicator != NULL) {
     auto cv = pIndicator->getSingleValue(index);

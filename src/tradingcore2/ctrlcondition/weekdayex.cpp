@@ -18,8 +18,8 @@ bool CCWeekDayEx::isValid(const tradingpb::CtrlCondition& cc, CtrlType ct) {
 
 void CCWeekDayEx::procCtrl(const IndicatorMap& mapIndicators,
                            const tradingpb::CtrlCondition& cc, bool issim,
-                           CtrlType ct, TimeStamp ts, int index, void* pData,
-                           FuncOnCtrl onctrl) {
+                           CtrlType ct, TimeStamp ts, int index, CandleData& cd,
+                           void* pData, FuncOnCtrl onctrl) {
   assert(pData != NULL);
   auto pMyData = static_cast<_Data*>(pData);
 
