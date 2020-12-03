@@ -253,12 +253,12 @@ void normalROC1(const tr2::Config& cfg) {
   asset1->set_market("cnfunds");
   asset1->set_code("001631");
   auto buy0 = strategy0->add_buy();
-  buy0->set_name("indicator");
+  buy0->set_name("indicatorsv");
   buy0->add_vals(-0.015);
   buy0->add_operators("<=");
   buy0->add_strvals("roc.1");
   auto sell0 = strategy0->add_sell();
-  sell0->set_name("indicator");
+  sell0->set_name("indicatorsv");
   sell0->add_vals(0.02);
   sell0->add_operators(">=");
   sell0->add_strvals("roc.1");

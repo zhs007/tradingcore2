@@ -13,13 +13,13 @@
 
 CR2BEGIN
 
-class CCIndicator final : public CtrlConditionHelper {
+class CCIndicatorSV final : public CtrlConditionHelper {
  public:
   static void regCtrlConditionHelper();
 
  protected:
-  CCIndicator() {}
-  virtual ~CCIndicator() {}
+  CCIndicatorSV() {}
+  virtual ~CCIndicatorSV() {}
 
  public:
   virtual void getIndicators(std::set<std::string>& indicators,
