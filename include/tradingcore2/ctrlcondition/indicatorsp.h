@@ -1,5 +1,5 @@
-#ifndef __TRADINGCORE2_CTRLCONDITION_MONTHDAYEX_H__
-#define __TRADINGCORE2_CTRLCONDITION_MONTHDAYEX_H__
+#ifndef __TRADINGCORE2_CTRLCONDITION_INDICATORSP_H__
+#define __TRADINGCORE2_CTRLCONDITION_INDICATORSP_H__
 
 #include <tradingcore2/basedef.h>
 #include <tradingcore2/candle.h>
@@ -13,24 +13,24 @@
 
 CR2BEGIN
 
-class CCMonthDayEx final : public CtrlConditionHelper {
+class CCIndicatorSP final : public CtrlConditionHelper {
  public:
   static void regCtrlConditionHelper();
 
  protected:
   struct _Data {
-    time_t lastTs;
+    int lastState;
 
-    _Data() : lastTs(0) {}
+    _Data() : lastState(0) {}
   };
 
  protected:
-  CCMonthDayEx() {}
-  virtual ~CCMonthDayEx() {}
+  CCIndicatorSP() {}
+  virtual ~CCIndicatorSP() {}
 
  public:
   virtual void getIndicators(std::set<std::string>& indicators,
-                             const tradingpb::CtrlCondition& cc) override {}
+                             const tradingpb::CtrlCondition& cc) override;
 
   virtual void* newCtrlConditionData() override { return new _Data(); }
 
@@ -51,4 +51,4 @@ class CCMonthDayEx final : public CtrlConditionHelper {
 
 CR2END
 
-#endif  // __TRADINGCORE2_CTRLCONDITION_MONTHDAYEX_H__
+#endif  // __TRADINGCORE2_CTRLCONDITION_INDICATORSP_H__

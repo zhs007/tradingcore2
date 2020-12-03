@@ -296,6 +296,65 @@ void normalROC1(const tr2::Config& cfg) {
   //                                       5, 5 /* off2 */, 10, 2);
 }
 
+void normalEMA5(const tr2::Config& cfg) {
+  tr2::NodeClient2 client(cfg.servs[0].host.c_str(),
+                          cfg.servs[0].token.c_str());
+
+  ::tradingpb::SimTradingParams params;
+
+  auto asset0 = params.add_assets();
+  asset0->set_market("cnfunds");
+  asset0->set_code("001631");
+
+  auto strategy0 = params.add_strategies();
+  strategy0->set_name("normal");
+  auto asset1 = strategy0->mutable_asset();
+  asset1->set_market("cnfunds");
+  asset1->set_code("001631");
+  auto buy0 = strategy0->add_buy();
+  buy0->set_name("indicatorsp");
+  // buy0->add_vals(-0.015);
+  buy0->add_operators("upcross");
+  buy0->add_strvals("ema.5");
+  auto sell0 = strategy0->add_sell();
+  sell0->set_name("indicatorsp");
+  // sell0->add_vals(0.02);
+  sell0->add_operators("downcross");
+  sell0->add_strvals("ema.5");
+  auto bp = strategy0->mutable_paramsbuy();
+  bp->set_perhandmoney(1);
+  auto sp = strategy0->mutable_paramssell();
+  sp->set_pervolume(1);
+  auto ip = strategy0->mutable_paramsinit();
+  ip->set_money(10000);
+  // auto aip = strategy0->mutable_paramsaip();
+  // aip->set_money(10000);
+  // aip->set_type(tradingpb::AIPTT_WEEKDAY);
+  // aip->set_day(3);
+
+  params.set_startts(tr2::str2timestampUTC("20200101", "%Y%m%d"));
+  params.set_endts(tr2::str2timestampUTC("20200301", "%Y%m%d"));
+
+  ::tradingpb::ReplyCalcPNL res;
+  auto status = client.clacPNL(params, res);
+
+  // client.waitStop();
+
+  // ::tradingpb::ReplyServerInfo res;
+  // auto status = client.getServerInfo(res);
+  LOG(INFO) << "calcPNL " << status.error_code();
+
+  if (status.ok()) {
+    tr2::logProtobuf("reply ", res);
+    // LOG(INFO) << res.DebugString();
+  }
+
+  // auto cnfund = tr2::ExchangeMgr::getSingleton()->getExchange("cnfund");
+  // tr2::startTrainSingleIndicator2ExPool(cfg, *cnfund, "110022", "rsi",
+  //                                       "../output", 10000, 5, 5 /* off0 */,
+  //                                       5, 5 /* off2 */, 10, 2);
+}
+
 int main(int argc, char* argv[]) {
   putenv("TZ=UTC");
   tr2::LogHelper log(argv[0]);
@@ -325,7 +384,8 @@ int main(int argc, char* argv[]) {
   // aipMonthDay(cfg);
   // normalWeekDay(cfg);
   // normalWeekDay2(cfg);
-  normalROC1(cfg);
+  // normalROC1(cfg);
+  normalEMA5(cfg);
 
   return 0;
 }

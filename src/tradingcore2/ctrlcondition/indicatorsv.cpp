@@ -7,13 +7,15 @@
 
 CR2BEGIN
 
+// 因为是单值模式，需要判断当前值和配置值之间的关系
+
 void CCIndicatorSV::regCtrlConditionHelper() {
   CtrlConditionMgr::getSingleton()->regCtrlCondition("indicatorsv",
                                                      new CCIndicatorSV());
 }
 
 void CCIndicatorSV::getIndicators(std::set<std::string>& indicators,
-                                const tradingpb::CtrlCondition& cc) {
+                                  const tradingpb::CtrlCondition& cc) {
   indicators.insert(cc.strvals(0));
 }
 
@@ -23,9 +25,9 @@ bool CCIndicatorSV::isValid(const tradingpb::CtrlCondition& cc, CtrlType ct) {
 }
 
 void CCIndicatorSV::procCtrl(const IndicatorMap& mapIndicators,
-                           const tradingpb::CtrlCondition& cc, bool issim,
-                           CtrlType ct, TimeStamp ts, int index, void* pData,
-                           FuncOnCtrl onctrl) {
+                             const tradingpb::CtrlCondition& cc, bool issim,
+                             CtrlType ct, TimeStamp ts, int index,
+                             CandleData& cd, void* pData, FuncOnCtrl onctrl) {
   auto pIndicator = mapIndicators.getIndicator(cc.strvals(0).c_str());
   if (pIndicator != NULL) {
     auto cv = pIndicator->getSingleValue(index);

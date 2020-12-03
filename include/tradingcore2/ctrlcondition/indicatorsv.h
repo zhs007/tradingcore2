@@ -1,5 +1,5 @@
-#ifndef __TRADINGCORE2_CTRLCONDITION_INDICATOR_H__
-#define __TRADINGCORE2_CTRLCONDITION_INDICATOR_H__
+#ifndef __TRADINGCORE2_CTRLCONDITION_INDICATORSV_H__
+#define __TRADINGCORE2_CTRLCONDITION_INDICATORSV_H__
 
 #include <tradingcore2/basedef.h>
 #include <tradingcore2/candle.h>
@@ -34,10 +34,10 @@ class CCIndicatorSV final : public CtrlConditionHelper {
 
   virtual void procCtrl(const IndicatorMap& mapIndicators,
                         const tradingpb::CtrlCondition& cc, bool issim,
-                        CtrlType ct, TimeStamp ts, int index, void* pData,
-                        FuncOnCtrl onctrl) override;
+                        CtrlType ct, TimeStamp ts, int index, CandleData& cd,
+                        void* pData, FuncOnCtrl onctrl) override;
 };
 
 CR2END
 
-#endif  // __TRADINGCORE2_CTRLCONDITION_INDICATOR_H__
+#endif  // __TRADINGCORE2_CTRLCONDITION_INDICATORSV_H__

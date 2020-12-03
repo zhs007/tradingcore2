@@ -17,7 +17,7 @@ class CCWeekDayEx final : public CtrlConditionHelper {
  public:
   static void regCtrlConditionHelper();
 
- public:
+ protected:
   struct _Data {
     time_t lastTs;
 
@@ -45,8 +45,8 @@ class CCWeekDayEx final : public CtrlConditionHelper {
 
   virtual void procCtrl(const IndicatorMap& mapIndicators,
                         const tradingpb::CtrlCondition& cc, bool issim,
-                        CtrlType ct, TimeStamp ts, int index, void* pData,
-                        FuncOnCtrl onctrl) override;
+                        CtrlType ct, TimeStamp ts, int index, CandleData& cd,
+                        void* pData, FuncOnCtrl onctrl) override;
 };
 
 CR2END
