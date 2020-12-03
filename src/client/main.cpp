@@ -22,7 +22,7 @@ void buyandhold(const tr2::Config& cfg) {
   asset1->set_market("cnfunds");
   asset1->set_code("001631");
   auto buy0 = strategy0->add_buy();
-  buy0->set_indicator("buyandhold");
+  buy0->set_name("buyandhold");
   buy0->add_vals(3);
   auto bp = strategy0->mutable_paramsbuy();
   // bp->set_initmoney(10000);
@@ -65,7 +65,7 @@ void aipWeekDay(const tr2::Config& cfg) {
   asset1->set_market("cnfunds");
   asset1->set_code("001631");
   auto buy0 = strategy0->add_buy();
-  buy0->set_indicator("weekday");
+  buy0->set_name("weekday");
   buy0->add_vals(3);
   auto bp = strategy0->mutable_paramsbuy();
   bp->set_aipmoney(10000);
@@ -106,7 +106,7 @@ void aipMonthDay(const tr2::Config& cfg) {
   asset1->set_market("cnfunds");
   asset1->set_code("001631");
   auto buy0 = strategy0->add_buy();
-  buy0->set_indicator("monthday");
+  buy0->set_name("monthday");
   buy0->add_vals(3);
   auto bp = strategy0->mutable_paramsbuy();
   bp->set_aipmoney(10000);
@@ -147,10 +147,10 @@ void normalWeekDay(const tr2::Config& cfg) {
   asset1->set_market("cnfunds");
   asset1->set_code("001631");
   auto buy0 = strategy0->add_buy();
-  buy0->set_indicator("weekday");
+  buy0->set_name("weekday");
   buy0->add_vals(3);
   auto sell0 = strategy0->add_sell();
-  sell0->set_indicator("weekday");
+  sell0->set_name("weekday");
   sell0->add_vals(4);
   auto bp = strategy0->mutable_paramsbuy();
   bp->set_perhandmoney(1);
@@ -198,10 +198,10 @@ void normalWeekDay2(const tr2::Config& cfg) {
   asset1->set_market("cnfunds");
   asset1->set_code("001631");
   auto buy0 = strategy0->add_buy();
-  buy0->set_indicator("weekdayex");
+  buy0->set_name("weekdayex");
   buy0->add_vals(5);
   auto sell0 = strategy0->add_sell();
-  sell0->set_indicator("weekdayex");
+  sell0->set_name("weekdayex");
   sell0->add_vals(1);
   auto bp = strategy0->mutable_paramsbuy();
   bp->set_perhandmoney(1);
@@ -253,12 +253,12 @@ void normalROC1(const tr2::Config& cfg) {
   asset1->set_market("cnfunds");
   asset1->set_code("001631");
   auto buy0 = strategy0->add_buy();
-  buy0->set_indicator("indicator");
+  buy0->set_name("indicator");
   buy0->add_vals(-0.015);
   buy0->add_operators("<=");
   buy0->add_strvals("roc.1");
   auto sell0 = strategy0->add_sell();
-  sell0->set_indicator("indicator");
+  sell0->set_name("indicator");
   sell0->add_vals(0.02);
   sell0->add_operators(">=");
   sell0->add_strvals("roc.1");

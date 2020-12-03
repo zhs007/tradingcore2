@@ -43,7 +43,7 @@ void CtrlConditionMgr::release() {
 // isValid - 检查 cc 协议的完整性，返回 0 表示有效，返回 1 表示没有支持这个
 // cc，返回 -1 表示错误
 int CtrlConditionMgr::isValid(const tradingpb::CtrlCondition& cc, CtrlType ct) {
-  auto name = cc.indicator();
+  auto name = cc.name();
   auto it = this->m_mapCtrlCondition.find(name);
   if (it != this->m_mapCtrlCondition.end()) {
     return it->second->isValid(cc, ct) ? 0 : -1;
@@ -78,7 +78,7 @@ void CtrlConditionMgr::procCtrl(const IndicatorMap& mapIndicators,
                                 CtrlType ct, TimeStamp ts, int index,
                                 void* pData,
                                 CtrlConditionHelper::FuncOnCtrl onctrl) {
-  auto name = cc.indicator();
+  auto name = cc.name();
   auto it = this->m_mapCtrlCondition.find(name);
   if (it != this->m_mapCtrlCondition.end()) {
     it->second->procCtrl(mapIndicators, cc, issim, ct, ts, index, pData,
@@ -131,7 +131,7 @@ void CtrlConditionMgr::getIndicators(std::set<std::string>& indicators,
     for (auto i = 0; i < pbStrategy.buy_size(); i++) {
       auto cc = pbStrategy.buy(i);
 
-      auto name = cc.indicator();
+      auto name = cc.name();
       auto it = this->m_mapCtrlCondition.find(name);
       if (it != this->m_mapCtrlCondition.end()) {
         it->second->getIndicators(indicators, cc);
@@ -143,7 +143,7 @@ void CtrlConditionMgr::getIndicators(std::set<std::string>& indicators,
     for (auto i = 0; i < pbStrategy.sell_size(); i++) {
       auto cc = pbStrategy.sell(i);
 
-      auto name = cc.indicator();
+      auto name = cc.name();
       auto it = this->m_mapCtrlCondition.find(name);
       if (it != this->m_mapCtrlCondition.end()) {
         it->second->getIndicators(indicators, cc);
@@ -154,7 +154,7 @@ void CtrlConditionMgr::getIndicators(std::set<std::string>& indicators,
 
 void* CtrlConditionMgr::newCtrlConditionData(
     const tradingpb::CtrlCondition& cc) {
-  auto name = cc.indicator();
+  auto name = cc.name();
   auto it = this->m_mapCtrlCondition.find(name);
   if (it != this->m_mapCtrlCondition.end()) {
     return it->second->newCtrlConditionData();
@@ -169,7 +169,7 @@ void CtrlConditionMgr::deleteCtrlConditionData(
     return;
   }
 
-  auto name = cc.indicator();
+  auto name = cc.name();
   auto it = this->m_mapCtrlCondition.find(name);
   if (it != this->m_mapCtrlCondition.end()) {
     it->second->deleteCtrlConditionData(pData);
