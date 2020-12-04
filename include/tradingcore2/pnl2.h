@@ -36,21 +36,44 @@ class PNL2 {
   void onInitTimeStamp(const Exchange& exchange, TimeStamp ts, int index);
 
  public:
-  // void procTimestamp(const Exchange& exchange, TimeStamp ts);
+  void onBuildEnd(const Exchange& exchange);
+
+ protected:
+  void calcMaxDrawdown();
+
+  void calcMaxDrawup();
+
+  void calcTotalReturns();
+
+  void calcSharpe(const Exchange& exchange);
+
+  void calcAnnualizedReturns(const Exchange& exchange);
+
+  void calcAnnualizedVolatility(const Exchange& exchange);
+
+  void calcVariance();
+
+  // 找到 starti 前面的最高点
+  int findPreMax(int starti);
+  // 找到 starti 后面的最低点
+  int findNextMin(int starti);
+  // 找到starti前面第一个阶段性低点
+  // 假设starti是一个高点，该函数返回这个高点前一个下跌的终点
+  int findPreUpMin(int starti);
+
+  // 找到 starti 前面的最低点
+  int findPreMin(int starti);
+  // 找到 starti 后面的最高点
+  int findNextMax(int starti);
+  // 找到starti前面第一个阶段性高点
+  // 假设starti是一个低点，该函数返回这个低点前一个上涨的终点
+  int findPreDownMax(int starti);
 
  public:
   void addAsset(const char* asset);
 
-  // Volume getAssetVolume(const Exchange& exchange, const char* asset,
-  //                       TimeStamp ts);
-
-  // Money getAssetCost(const Exchange& exchange, const char* asset, TimeStamp
-  // ts);
-
   void getAssetInfo(const Exchange& exchange, const char* asset, TimeStamp ts,
                     Money& cost, Volume& volume);
-
-  // Money getHandMoney(const Exchange& exchange, TimeStamp ts);
 
   void getHandMoneyEx(const Exchange& exchange, TimeStamp ts, Money& total,
                       Money& last);
