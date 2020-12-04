@@ -19,13 +19,15 @@ bool CCBuyAndHold::isValid(const tradingpb::CtrlCondition& cc, CtrlType ct) {
   return false;
 }
 
-void CCBuyAndHold::procCtrl(const IndicatorMap& mapIndicators,
-                            const tradingpb::CtrlCondition& cc, bool issim,
-                            CtrlType ct, TimeStamp ts, int index,
-                            CandleData& cd, void* pData, FuncOnCtrl onctrl) {
-  if (ct == CT_BUY && index == 0 && onctrl != NULL) {
-    onctrl(issim, ct, ts);
+bool CCBuyAndHold::canCtrl(const IndicatorMap& mapIndicators,
+                           const tradingpb::CtrlCondition& cc, bool issim,
+                           CtrlType ct, TimeStamp ts, int index, CandleData& cd,
+                           void* pData) {
+  if (ct == CT_BUY && index == 0) {
+    return true;
   }
+
+  return false;
 }
 
 CR2END

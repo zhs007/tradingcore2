@@ -46,10 +46,9 @@ class CtrlConditionMgr {
 
   void deleteCtrlConditionData(const tradingpb::CtrlCondition& cc, void* pData);
 
-  void procCtrl(const IndicatorMap& mapIndicators,
-                const tradingpb::CtrlCondition& cc, bool issim, CtrlType ct,
-                TimeStamp ts, int index, CandleData& cd, void* pData,
-                CtrlConditionHelper::FuncOnCtrl onctrl);
+  bool canCtrl(const IndicatorMap& mapIndicators,
+               const tradingpb::CtrlCondition& cc, bool issim, CtrlType ct,
+               TimeStamp ts, int index, CandleData& cd, void* pData);
 
   void getIndicators(std::set<std::string>& indicators, Strategy& strategy);
 

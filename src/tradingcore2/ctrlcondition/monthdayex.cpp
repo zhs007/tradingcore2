@@ -16,22 +16,22 @@ bool CCMonthDayEx::isValid(const tradingpb::CtrlCondition& cc, CtrlType ct) {
   return cc.vals_size() == 1;
 }
 
-void CCMonthDayEx::procCtrl(const IndicatorMap& mapIndicators,
-                            const tradingpb::CtrlCondition& cc, bool issim,
-                            CtrlType ct, TimeStamp ts, int index,
-                            CandleData& cd, void* pData, FuncOnCtrl onctrl) {
+bool CCMonthDayEx::canCtrl(const IndicatorMap& mapIndicators,
+                           const tradingpb::CtrlCondition& cc, bool issim,
+                           CtrlType ct, TimeStamp ts, int index, CandleData& cd,
+                           void* pData) {
   assert(pData != NULL);
   auto pMyData = static_cast<_Data*>(pData);
 
   auto md = calcMonthOffWithMonthDay(pMyData->lastTs, ts, cc.vals(0));
 
   if (md > 0) {
-    if (onctrl != NULL) {
-      onctrl(issim, ct, ts);
-    }
-
     pMyData->lastTs = ts;
+
+    return true;
   }
+
+  return false;
 }
 
 CR2END

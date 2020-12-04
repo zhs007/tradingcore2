@@ -25,10 +25,10 @@ bool CCIndicatorSP::isValid(const tradingpb::CtrlCondition& cc, CtrlType ct) {
   return cc.strvals_size() == 1 && cc.operators_size() == 1;
 }
 
-void CCIndicatorSP::procCtrl(const IndicatorMap& mapIndicators,
-                             const tradingpb::CtrlCondition& cc, bool issim,
-                             CtrlType ct, TimeStamp ts, int index,
-                             CandleData& cd, void* pData, FuncOnCtrl onctrl) {
+bool CCIndicatorSP::canCtrl(const IndicatorMap& mapIndicators,
+                            const tradingpb::CtrlCondition& cc, bool issim,
+                            CtrlType ct, TimeStamp ts, int index,
+                            CandleData& cd, void* pData) {
   auto pIndicator = mapIndicators.getIndicator(cc.strvals(0).c_str());
   if (pIndicator != NULL) {
     auto cv = pIndicator->getSingleValue(index);
@@ -37,31 +37,23 @@ void CCIndicatorSP::procCtrl(const IndicatorMap& mapIndicators,
     assert(pData != NULL);
     auto pMyData = static_cast<_Data*>(pData);
 
-    // exchange.
+    bool canctrl = false;
 
     if (cc.operators(0) == "up") {
       if (cd.close > cv->value) {
-        if (onctrl != NULL) {
-          onctrl(issim, ct, ts);
-        }
+        canctrl = true;
       }
     } else if (cc.operators(0) == "down") {
       if (cd.close < cv->value) {
-        if (onctrl != NULL) {
-          onctrl(issim, ct, ts);
-        }
+        canctrl = true;
       }
     } else if (cc.operators(0) == "upcross") {
       if (cd.close > cv->value && pMyData->lastState <= 0) {
-        if (onctrl != NULL) {
-          onctrl(issim, ct, ts);
-        }
+        canctrl = true;
       }
     } else if (cc.operators(0) == "downcross") {
       if (cd.close < cv->value && pMyData->lastState >= 0) {
-        if (onctrl != NULL) {
-          onctrl(issim, ct, ts);
-        }
+        canctrl = true;
       }
     }
 
@@ -72,9 +64,13 @@ void CCIndicatorSP::procCtrl(const IndicatorMap& mapIndicators,
     } else if (cd.close == cv->value) {
       pMyData->lastState = 0;
     }
+
+    return canctrl;
   } else {
     LOG(INFO) << "no indicator " << cc.strvals(0);
   }
+
+  return false;
 }
 
 CR2END

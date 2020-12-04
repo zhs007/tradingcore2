@@ -32,10 +32,10 @@ class CtrlConditionHelper {
 
   virtual bool isValid(const tradingpb::CtrlCondition& cc, CtrlType ct) = 0;
 
-  virtual void procCtrl(const IndicatorMap& mapIndicators,
-                        const tradingpb::CtrlCondition& cc, bool issim,
-                        CtrlType ct, TimeStamp ts, int index, CandleData& cd,
-                        void* pData, FuncOnCtrl onctrl) = 0;
+  virtual bool canCtrl(const IndicatorMap& mapIndicators,
+                       const tradingpb::CtrlCondition& cc, bool issim,
+                       CtrlType ct, TimeStamp ts, int index, CandleData& cd,
+                       void* pData) = 0;
 };
 
 CR2END

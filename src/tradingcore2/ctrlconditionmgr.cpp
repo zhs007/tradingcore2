@@ -74,19 +74,18 @@ int CtrlConditionMgr::isValidStrategy(const tradingpb::Strategy& strategy) {
   return 0;
 }
 
-void CtrlConditionMgr::procCtrl(const IndicatorMap& mapIndicators,
-                                const tradingpb::CtrlCondition& cc, bool issim,
-                                CtrlType ct, TimeStamp ts, int index,
-                                CandleData& cd, void* pData,
-                                CtrlConditionHelper::FuncOnCtrl onctrl) {
+bool CtrlConditionMgr::canCtrl(const IndicatorMap& mapIndicators,
+                               const tradingpb::CtrlCondition& cc, bool issim,
+                               CtrlType ct, TimeStamp ts, int index,
+                               CandleData& cd, void* pData) {
   auto name = cc.name();
   auto it = this->m_mapCtrlCondition.find(name);
   if (it != this->m_mapCtrlCondition.end()) {
-    it->second->procCtrl(mapIndicators, cc, issim, ct, ts, index, cd, pData,
-                         onctrl);
-
-    return;
+    return it->second->canCtrl(mapIndicators, cc, issim, ct, ts, index, cd,
+                               pData);
   }
+
+  return false;
 }
 
 // procStrategy -
@@ -99,28 +98,58 @@ int CtrlConditionMgr::procStrategy(Strategy& strategy,
   exchange.getData(pbStrategy.asset().code().c_str(), index, cd);
 
   {
-    auto f = std::bind(&Strategy::buy, &strategy, std::placeholders::_1,
-                       std::placeholders::_3);
+    // auto f = std::bind(&Strategy::buy, &strategy, std::placeholders::_1,
+    //                    std::placeholders::_3);
+
+    bool canbuy = false;
 
     for (auto i = 0; i < pbStrategy.buy_size(); i++) {
       auto cc = pbStrategy.buy(i);
       auto pD = pData->lstBuy[i];
 
-      this->procCtrl(strategy.getMapIndicators(), cc, issim, CT_BUY, ts, index,
-                     cd, pD, f);
+      bool curcanctrl = this->canCtrl(strategy.getMapIndicators(), cc, issim,
+                                      CT_BUY, ts, index, cd, pD);
+      if (i == 0) {
+        canbuy = curcanctrl;
+      } else {
+        if (cc.combcondition() == "||") {
+          canbuy = canbuy || curcanctrl;
+        } else {
+          canbuy = canbuy && curcanctrl;
+        }
+      }
+    }
+
+    if (canbuy) {
+      strategy.buy(issim, ts);
     }
   }
 
   {
-    auto f = std::bind(&Strategy::sell, &strategy, std::placeholders::_1,
-                       std::placeholders::_3);
+    bool cansell = false;
+
+    // auto f = std::bind(&Strategy::sell, &strategy, std::placeholders::_1,
+    //                    std::placeholders::_3);
 
     for (auto i = 0; i < pbStrategy.sell_size(); i++) {
       auto cc = pbStrategy.sell(i);
       auto pD = pData->lstSell[i];
 
-      this->procCtrl(strategy.getMapIndicators(), cc, issim, CT_SELL, ts, index,
-                     cd, pD, f);
+      bool curcanctrl = this->canCtrl(strategy.getMapIndicators(), cc, issim,
+                                      CT_SELL, ts, index, cd, pD);
+      if (i == 0) {
+        cansell = curcanctrl;
+      } else {
+        if (cc.combcondition() == "||") {
+          cansell = cansell || curcanctrl;
+        } else {
+          cansell = cansell && curcanctrl;
+        }
+      }
+    }
+
+    if (cansell) {
+      strategy.sell(issim, ts);
     }
   }
 
