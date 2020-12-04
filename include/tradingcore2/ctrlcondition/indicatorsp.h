@@ -43,10 +43,10 @@ class CCIndicatorSP final : public CtrlConditionHelper {
   virtual bool isValid(const tradingpb::CtrlCondition& cc,
                        CtrlType ct) override;
 
-  virtual void procCtrl(const IndicatorMap& mapIndicators,
-                        const tradingpb::CtrlCondition& cc, bool issim,
-                        CtrlType ct, TimeStamp ts, int index, CandleData& cd,
-                        void* pData, FuncOnCtrl onctrl) override;
+  virtual bool canCtrl(const IndicatorMap& mapIndicators,
+                       const tradingpb::CtrlCondition& cc, bool issim,
+                       CtrlType ct, TimeStamp ts, int index, CandleData& cd,
+                       void* pData) override;
 };
 
 CR2END

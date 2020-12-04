@@ -16,16 +16,18 @@ bool CCWeekDay::isValid(const tradingpb::CtrlCondition& cc, CtrlType ct) {
   return cc.vals_size() == 1;
 }
 
-void CCWeekDay::procCtrl(const IndicatorMap& mapIndicators,
-                         const tradingpb::CtrlCondition& cc, bool issim,
-                         CtrlType ct, TimeStamp ts, int index, CandleData& cd,
-                         void* pData, FuncOnCtrl onctrl) {
+bool CCWeekDay::canCtrl(const IndicatorMap& mapIndicators,
+                        const tradingpb::CtrlCondition& cc, bool issim,
+                        CtrlType ct, TimeStamp ts, int index, CandleData& cd,
+                        void* pData) {
   tm ctm;
   timestamp2timeUTC(ts, ctm);
 
-  if (ctm.tm_wday == cc.vals(0) && onctrl != NULL) {
-    onctrl(issim, ct, ts);
+  if (ctm.tm_wday == cc.vals(0)) {
+    return true;
   }
+
+  return false;
 }
 
 CR2END

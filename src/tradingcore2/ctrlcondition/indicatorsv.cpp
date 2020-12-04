@@ -24,39 +24,45 @@ bool CCIndicatorSV::isValid(const tradingpb::CtrlCondition& cc, CtrlType ct) {
          cc.operators_size() == 1;
 }
 
-void CCIndicatorSV::procCtrl(const IndicatorMap& mapIndicators,
-                             const tradingpb::CtrlCondition& cc, bool issim,
-                             CtrlType ct, TimeStamp ts, int index,
-                             CandleData& cd, void* pData, FuncOnCtrl onctrl) {
+bool CCIndicatorSV::canCtrl(const IndicatorMap& mapIndicators,
+                            const tradingpb::CtrlCondition& cc, bool issim,
+                            CtrlType ct, TimeStamp ts, int index,
+                            CandleData& cd, void* pData) {
   auto pIndicator = mapIndicators.getIndicator(cc.strvals(0).c_str());
   if (pIndicator != NULL) {
     auto cv = pIndicator->getSingleValue(index);
     assert(cv != NULL);
 
+    bool canctrl = false;
+
     if (cc.operators(0) == "=" || cc.operators(0) == "==") {
-      if (cv->value == cc.vals(0) && onctrl != NULL) {
-        onctrl(issim, ct, ts);
+      if (cv->value == cc.vals(0)) {
+        canctrl = true;
       }
     } else if (cc.operators(0) == ">") {
-      if (cv->value > cc.vals(0) && onctrl != NULL) {
-        onctrl(issim, ct, ts);
+      if (cv->value > cc.vals(0)) {
+        canctrl = true;
       }
     } else if (cc.operators(0) == ">=") {
-      if (cv->value >= cc.vals(0) && onctrl != NULL) {
-        onctrl(issim, ct, ts);
+      if (cv->value >= cc.vals(0)) {
+        canctrl = true;
       }
     } else if (cc.operators(0) == "<") {
-      if (cv->value < cc.vals(0) && onctrl != NULL) {
-        onctrl(issim, ct, ts);
+      if (cv->value < cc.vals(0)) {
+        canctrl = true;
       }
     } else if (cc.operators(0) == "<=") {
-      if (cv->value <= cc.vals(0) && onctrl != NULL) {
-        onctrl(issim, ct, ts);
+      if (cv->value <= cc.vals(0)) {
+        canctrl = true;
       }
     }
+
+    return canctrl;
   } else {
     LOG(INFO) << "no indicator " << cc.strvals(0);
   }
+
+  return false;
 }
 
 CR2END
