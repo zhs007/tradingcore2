@@ -65,7 +65,7 @@ class TrDB2CNFundsExchange final : public Exchange {
 
   virtual TimeStamp getLastTimeStamp() const override;
 
-  virtual int getTradingDays4Year() const override { return 250; }
+  virtual int getTradingDays4Year() const override;
 
   virtual float getRiskFreeInterestRate() const override { return 0.03; }
 

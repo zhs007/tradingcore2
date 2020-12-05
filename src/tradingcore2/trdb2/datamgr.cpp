@@ -86,4 +86,36 @@ void TrDB2DataMgr::foreachCandles(FuncOnCandles onCandles) {
   }
 }
 
+int TrDB2DataMgr::getTradingDays4Year(const char *market,
+                                      const char *symbol) const {
+  std::string code = market;
+  code += ".";
+  code += symbol;
+
+  auto it = this->m_map.find(code);
+  if (it != this->m_map.end()) {
+    return calcTradingDays4Year(*it->second);
+  }
+
+  return 0;
+}
+
+int TrDB2DataMgr::calcAverageTradingDays4Year() const {
+  int totaldfy = 0;
+  int tnums = 0;
+  for (auto it = this->m_map.begin(); it != this->m_map.end(); ++it) {
+    auto dfy = calcTradingDays4Year(*it->second);
+    if (dfy > 0) {
+      totaldfy += dfy;
+      tnums++;
+    }
+  }
+
+  if (tnums <= 1) {
+    return totaldfy;
+  }
+
+  return totaldfy / tnums;
+}
+
 CR2END

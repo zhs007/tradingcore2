@@ -37,6 +37,10 @@ class TrDB2DataMgr {
 
   void foreachCandles(FuncOnCandles onCandles);
 
+  int getTradingDays4Year(const char *market, const char *symbol) const;
+
+  int calcAverageTradingDays4Year() const;
+
  private:
   _Map m_map;
 

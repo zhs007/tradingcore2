@@ -513,8 +513,7 @@ void PNL2::calcTotalReturns() {
     return;
   }
 
-  t->set_totalreturns(t->values(t->values_size() - 1).value() /
-                      t->values(0).value());
+  t->set_totalreturns(t->values(t->values_size() - 1).pervalue());
 }
 
 void PNL2::calcSharpe(const Exchange& exchange) {
@@ -533,9 +532,8 @@ void PNL2::calcAnnualizedReturns(const Exchange& exchange) {
     return;
   }
 
-  t->set_annualizedreturns(
-      (t->values(t->values_size() - 1).value() / t->values(0).value() - 1) /
-      t->values_size() * exchange.getTradingDays4Year());
+  t->set_annualizedreturns((t->values(t->values_size() - 1).pervalue() - 1) /
+                           t->values_size() * exchange.getTradingDays4Year());
 }
 
 void PNL2::calcAnnualizedVolatility(const Exchange& exchange) {
@@ -551,7 +549,7 @@ void PNL2::calcAnnualizedVolatility(const Exchange& exchange) {
   float* pU = new float[t->values_size() - 1];
 
   for (int i = 1; i < t->values_size(); ++i) {
-    pU[i - 1] = log(t->values(i).value() / t->values(i - 1).value());
+    pU[i - 1] = log(t->values(i).pervalue() / t->values(i - 1).pervalue());
   }
 
   float s = gsl_stats_float_sd(pU, 1, t->values_size() - 1);
@@ -569,9 +567,9 @@ void PNL2::calcVariance() {
 
   float* pU = new float[t->values_size()];
 
-  float sm = t->values(0).value();
+  // float sm = t->values(0).pervalue();
   for (int i = 0; i < t->values_size(); ++i) {
-    pU[i] = t->values(i).value() / sm;
+    pU[i] = t->values(i).pervalue();
   }
 
   float s = gsl_stats_float_variance(pU, 1, t->values_size());
