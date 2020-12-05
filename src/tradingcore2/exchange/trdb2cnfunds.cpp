@@ -226,6 +226,10 @@ TimeStamp TrDB2CNFundsExchange::getFirstTimeStamp() const {
 
 void TrDB2CNFundsExchange::release() { this->m_mgrData.release(); }
 
+int TrDB2CNFundsExchange::getTradingDays4Year() const {
+  return this->m_mgrData.calcAverageTradingDays4Year();
+}
+
 Exchange* newTrDB2CNFunds(const Config& cfg) {
   auto exchange =
       new TrDB2CNFundsExchange(cfg.trdb2Serv.c_str(), cfg.trdb2Token.c_str());

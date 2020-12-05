@@ -41,4 +41,29 @@ const tradingpb::Candle *getCandle(tradingpb::Candles *candles, int64_t ts) {
   return pCandle;
 }
 
+int calcTradingDays4Year(const tradingpb::Candles &candles) {
+  if (candles.candles_size() > 0) {
+    tm stm, etm;
+    timestamp2timeUTC(candles.candles(0).ts(), stm);
+    timestamp2timeUTC(candles.candles(candles.candles_size() - 1).ts(), etm);
+
+    int yoff = etm.tm_year - stm.tm_year;
+    if (yoff <= 0) {
+      return candles.candles_size();
+    }
+
+    int sday = 364 - stm.tm_yday;
+    if (sday < 0) {
+      sday = 0;
+    }
+    int eday = etm.tm_yday;
+
+    float fy = (yoff - 1) + sday / 365.0f + eday / 365.0f;
+
+    return candles.candles_size() / fy;
+  }
+
+  return 0;
+}
+
 CR2END

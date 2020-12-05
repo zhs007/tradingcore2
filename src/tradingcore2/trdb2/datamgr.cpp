@@ -86,4 +86,58 @@ void TrDB2DataMgr::foreachCandles(FuncOnCandles onCandles) {
   }
 }
 
+int TrDB2DataMgr::getTradingDays4Year(const char *market,
+                                      const char *symbol) const {
+  std::string code = market;
+  code += ".";
+  code += symbol;
+
+  auto it = this->m_map.find(code);
+  if (it != this->m_map.end()) {
+    auto candles = it->second;
+
+    if (candles->candles_size() > 0) {
+      tm stm, etm;
+      timestamp2timeUTC(candles->candles(0).ts(), stm);
+      timestamp2timeUTC(candles->candles(candles->candles_size() - 1).ts(),
+                        etm);
+
+      int yoff = etm.tm_year - stm.tm_year;
+      if (yoff <= 0) {
+        return candles->candles_size();
+      }
+
+      int sday = 364 - stm.tm_yday;
+      if (sday < 0) {
+        sday = 0;
+      }
+      int eday = etm.tm_yday;
+
+      float fy = (yoff - 1) + sday / 365.0f + eday / 365.0f;
+
+      return candles->candles_size() / fy;
+    }
+  }
+
+  return 0;
+}
+
+int TrDB2DataMgr::calcAverageTradingDays4Year() const {
+  int totaldfy = 0;
+  int tnums = 0;
+  for (auto it = this->m_map.begin(); it != this->m_map.end(); ++it) {
+    auto dfy = calcTradingDays4Year(*it->second);
+    if (dfy > 0) {
+      totaldfy += dfy;
+      tnums++;
+    }
+  }
+
+  if (tnums <= 1) {
+    return totaldfy;
+  }
+
+  return totaldfy / tnums;
+}
+
 CR2END
