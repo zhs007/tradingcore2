@@ -25,6 +25,9 @@ class CtrlConditionMgr {
     std::vector<void*> lstSell;
   };
 
+  typedef std::function<void(int, const ::tradingpb::CtrlCondition*&, void*&)>
+      FuncGetCtrlCondition;
+
  public:
   static CtrlConditionMgr* getSingleton();
 
@@ -49,6 +52,10 @@ class CtrlConditionMgr {
   bool canCtrl(const IndicatorMap& mapIndicators,
                const tradingpb::CtrlCondition& cc, bool issim, CtrlType ct,
                TimeStamp ts, int index, CandleData& cd, void* pData);
+
+  bool canCtrl(const IndicatorMap& mapIndicators, int ccnums, bool issim,
+               CtrlType ct, TimeStamp ts, int index, CandleData& cd,
+               void* pData, FuncGetCtrlCondition funcGetCC);
 
   void getIndicators(std::set<std::string>& indicators, Strategy& strategy);
 
