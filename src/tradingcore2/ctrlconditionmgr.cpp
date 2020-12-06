@@ -103,7 +103,7 @@ bool CtrlConditionMgr::canCtrl(const IndicatorMap& mapIndicators, int ccnums,
     bool isNewGroup = false;
     auto itGroup = mapGroup.find(pCC->group());
     if (itGroup == mapGroup.end()) {
-      std::pair pairGroup(pCC->group(), false);
+      std::pair<int, bool> pairGroup(pCC->group(), false);
       mapGroup.insert(pairGroup);
 
       itGroup = mapGroup.find(pCC->group());
