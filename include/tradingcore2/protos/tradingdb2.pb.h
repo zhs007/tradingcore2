@@ -3236,6 +3236,7 @@ class RequestSimTrading :
   enum : int {
     kBasicRequestFieldNumber = 1,
     kParamsFieldNumber = 2,
+    kIgnoreCacheFieldNumber = 3,
   };
   // .tradingpb.BasicRequestData basicRequest = 1;
   bool has_basicrequest() const;
@@ -3267,6 +3268,15 @@ class RequestSimTrading :
   ::tradingpb::SimTradingParams* _internal_mutable_params();
   public:
 
+  // bool ignoreCache = 3;
+  void clear_ignorecache();
+  bool ignorecache() const;
+  void set_ignorecache(bool value);
+  private:
+  bool _internal_ignorecache() const;
+  void _internal_set_ignorecache(bool value);
+  public:
+
   // @@protoc_insertion_point(class_scope:tradingpb.RequestSimTrading)
  private:
   class _Internal;
@@ -3274,6 +3284,7 @@ class RequestSimTrading :
   ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
   ::tradingpb::BasicRequestData* basicrequest_;
   ::tradingpb::SimTradingParams* params_;
+  bool ignorecache_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_tradingdb2_2eproto;
 };
@@ -6662,6 +6673,26 @@ inline void RequestSimTrading::set_allocated_params(::tradingpb::SimTradingParam
   }
   params_ = params;
   // @@protoc_insertion_point(field_set_allocated:tradingpb.RequestSimTrading.params)
+}
+
+// bool ignoreCache = 3;
+inline void RequestSimTrading::clear_ignorecache() {
+  ignorecache_ = false;
+}
+inline bool RequestSimTrading::_internal_ignorecache() const {
+  return ignorecache_;
+}
+inline bool RequestSimTrading::ignorecache() const {
+  // @@protoc_insertion_point(field_get:tradingpb.RequestSimTrading.ignoreCache)
+  return _internal_ignorecache();
+}
+inline void RequestSimTrading::_internal_set_ignorecache(bool value) {
+  
+  ignorecache_ = value;
+}
+inline void RequestSimTrading::set_ignorecache(bool value) {
+  _internal_set_ignorecache(value);
+  // @@protoc_insertion_point(field_set:tradingpb.RequestSimTrading.ignoreCache)
 }
 
 // -------------------------------------------------------------------

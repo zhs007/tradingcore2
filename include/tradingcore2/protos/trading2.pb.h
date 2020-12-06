@@ -1170,6 +1170,7 @@ class CtrlCondition :
     kIndicatorFieldNumber = 1,
     kCombConditionFieldNumber = 4,
     kNameFieldNumber = 9,
+    kGroupFieldNumber = 10,
   };
   // repeated float vals = 2;
   int vals_size() const;
@@ -1355,6 +1356,15 @@ class CtrlCondition :
   std::string* _internal_mutable_name();
   public:
 
+  // int32 group = 10;
+  void clear_group();
+  ::PROTOBUF_NAMESPACE_ID::int32 group() const;
+  void set_group(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_group() const;
+  void _internal_set_group(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
   // @@protoc_insertion_point(class_scope:tradingpb.CtrlCondition)
  private:
   class _Internal;
@@ -1373,6 +1383,7 @@ class CtrlCondition :
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr indicator_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr combcondition_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+  ::PROTOBUF_NAMESPACE_ID::int32 group_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_trading2_2eproto;
 };
@@ -5729,6 +5740,26 @@ inline void CtrlCondition::set_allocated_name(std::string* name) {
   }
   name_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), name);
   // @@protoc_insertion_point(field_set_allocated:tradingpb.CtrlCondition.name)
+}
+
+// int32 group = 10;
+inline void CtrlCondition::clear_group() {
+  group_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 CtrlCondition::_internal_group() const {
+  return group_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 CtrlCondition::group() const {
+  // @@protoc_insertion_point(field_get:tradingpb.CtrlCondition.group)
+  return _internal_group();
+}
+inline void CtrlCondition::_internal_set_group(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  group_ = value;
+}
+inline void CtrlCondition::set_group(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_group(value);
+  // @@protoc_insertion_point(field_set:tradingpb.CtrlCondition.group)
 }
 
 // -------------------------------------------------------------------

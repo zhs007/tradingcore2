@@ -143,6 +143,7 @@ message RequestGetSymbols {
 message RequestSimTrading {
     BasicRequestData basicRequest = 1;
     SimTradingParams params = 2;
+    bool ignoreCache = 3;
 }
 
 // ReplySimTrading - reply simTrading

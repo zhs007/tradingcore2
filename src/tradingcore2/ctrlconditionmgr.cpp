@@ -88,6 +88,67 @@ bool CtrlConditionMgr::canCtrl(const IndicatorMap& mapIndicators,
   return false;
 }
 
+bool CtrlConditionMgr::canCtrl(const IndicatorMap& mapIndicators, int ccnums,
+                               bool issim, CtrlType ct, TimeStamp ts, int index,
+                               CandleData& cd, FuncGetCtrlCondition funcGetCC) {
+  // LOG(INFO) << "ccnums " << ccnums;
+  std::map<int, bool> mapGroup;
+
+  for (auto i = 0; i < ccnums; i++) {
+    const ::tradingpb::CtrlCondition* pCC = NULL;
+    void* pData = NULL;
+
+    funcGetCC(i, &pCC, &pData);
+
+    bool isNewGroup = false;
+    auto itGroup = mapGroup.find(pCC->group());
+    if (itGroup == mapGroup.end()) {
+      std::pair pairGroup(pCC->group(), false);
+      mapGroup.insert(pairGroup);
+
+      itGroup = mapGroup.find(pCC->group());
+      isNewGroup = true;
+    }
+
+    bool curcanctrl =
+        this->canCtrl(mapIndicators, *pCC, issim, ct, ts, index, cd, pData);
+    if (isNewGroup) {
+      itGroup->second = curcanctrl;
+    } else {
+      if (pCC->combcondition() == "||") {
+        itGroup->second = itGroup->second || curcanctrl;
+      } else {
+        itGroup->second = itGroup->second && curcanctrl;
+      }
+    }
+
+    // LOG(INFO) << "canCtrl ct " << ct << " group " << pCC->group() << "
+    // canctrl "
+    //           << curcanctrl << " ctrl " << itGroup->second;
+  }
+
+  if (mapGroup.size() == 1) {
+    if (mapGroup.begin()->second) {
+      return true;
+    }
+  } else {
+    bool canctrl = false;
+    for (auto it = mapGroup.begin(); it != mapGroup.end(); ++it) {
+      if (it->second) {
+        canctrl = true;
+
+        break;
+      }
+    }
+
+    if (canctrl) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
 // procStrategy -
 int CtrlConditionMgr::procStrategy(Strategy& strategy,
                                    CtrlConditionMgr::CtrlConditionData* pData,
@@ -98,59 +159,136 @@ int CtrlConditionMgr::procStrategy(Strategy& strategy,
   exchange.getData(pbStrategy.asset().code().c_str(), index, cd);
 
   {
-    // auto f = std::bind(&Strategy::buy, &strategy, std::placeholders::_1,
-    //                    std::placeholders::_3);
+    auto f0 = [](const tradingpb::Strategy& pbStrategy,
+                 CtrlConditionMgr::CtrlConditionData* pData, int i,
+                 const ::tradingpb::CtrlCondition** ppCC, void** ppD) {
+      // LOG(INFO) << "i " << i;
 
-    bool canbuy = false;
+      *ppCC = &pbStrategy.buy(i);
+      *ppD = pData->lstBuy[i];
+    };
+    auto f = std::bind(f0, pbStrategy, pData, std::placeholders::_1,
+                       std::placeholders::_2, std::placeholders::_3);
 
-    for (auto i = 0; i < pbStrategy.buy_size(); i++) {
-      auto cc = pbStrategy.buy(i);
-      auto pD = pData->lstBuy[i];
+    if (this->canCtrl(strategy.getMapIndicators(), pbStrategy.buy_size(), issim,
+                      CT_BUY, ts, index, cd, f)) {
+      // LOG(INFO) << "buy ";
 
-      bool curcanctrl = this->canCtrl(strategy.getMapIndicators(), cc, issim,
-                                      CT_BUY, ts, index, cd, pD);
-      if (i == 0) {
-        canbuy = curcanctrl;
-      } else {
-        if (cc.combcondition() == "||") {
-          canbuy = canbuy || curcanctrl;
-        } else {
-          canbuy = canbuy && curcanctrl;
-        }
-      }
-    }
-
-    if (canbuy) {
       strategy.buy(issim, ts);
     }
+
+    // // bool canbuy = false;
+    // std::map<int, bool> mapGroup;
+
+    // for (auto i = 0; i < pbStrategy.buy_size(); i++) {
+    //   auto cc = pbStrategy.buy(i);
+    //   auto pD = pData->lstBuy[i];
+
+    //   auto itGroup = mapGroup.find(cc.group());
+    //   if (itGroup == mapGroup.end()) {
+    //     std::pair pairGroup(cc.group(), false);
+    //     mapGroup.insert(pairGroup);
+
+    //     itGroup = mapGroup.find(cc.group());
+    //   }
+
+    //   bool curcanctrl = this->canCtrl(strategy.getMapIndicators(), cc, issim,
+    //                                   CT_BUY, ts, index, cd, pD);
+    //   if (i == 0) {
+    //     itGroup->second = curcanctrl;
+    //   } else {
+    //     if (cc.combcondition() == "||") {
+    //       itGroup->second = itGroup->second || curcanctrl;
+    //     } else {
+    //       itGroup->second = itGroup->second && curcanctrl;
+    //     }
+    //   }
+    // }
+
+    // if (mapGroup.size() == 1) {
+    //   if (mapGroup.begin()->second) {
+    //     strategy.buy(issim, ts);
+    //   }
+    // } else {
+    //   bool canbuy = false;
+    //   for (auto it = mapGroup.begin(); it != mapGroup.end(); ++it) {
+    //     if (it->second) {
+    //       canbuy = true;
+
+    //       break;
+    //     }
+    //   }
+
+    //   if (canbuy) {
+    //     strategy.buy(issim, ts);
+    //   }
+    // }
   }
 
   {
-    bool cansell = false;
+    auto f0 = [](const tradingpb::Strategy& pbStrategy,
+                 CtrlConditionMgr::CtrlConditionData* pData, int i,
+                 const ::tradingpb::CtrlCondition** ppCC, void** ppD) {
+      // LOG(INFO) << "i " << i;
 
-    // auto f = std::bind(&Strategy::sell, &strategy, std::placeholders::_1,
-    //                    std::placeholders::_3);
+      *ppCC = &pbStrategy.sell(i);
+      *ppD = pData->lstSell[i];
+    };
+    auto f = std::bind(f0, pbStrategy, pData, std::placeholders::_1,
+                       std::placeholders::_2, std::placeholders::_3);
 
-    for (auto i = 0; i < pbStrategy.sell_size(); i++) {
-      auto cc = pbStrategy.sell(i);
-      auto pD = pData->lstSell[i];
+    if (this->canCtrl(strategy.getMapIndicators(), pbStrategy.sell_size(),
+                      issim, CT_SELL, ts, index, cd, f)) {
+      // LOG(INFO) << "sell ";
 
-      bool curcanctrl = this->canCtrl(strategy.getMapIndicators(), cc, issim,
-                                      CT_SELL, ts, index, cd, pD);
-      if (i == 0) {
-        cansell = curcanctrl;
-      } else {
-        if (cc.combcondition() == "||") {
-          cansell = cansell || curcanctrl;
-        } else {
-          cansell = cansell && curcanctrl;
-        }
-      }
-    }
-
-    if (cansell) {
       strategy.sell(issim, ts);
     }
+    // // bool cansell = false;
+    // std::map<int, bool> mapGroup;
+
+    // for (auto i = 0; i < pbStrategy.sell_size(); i++) {
+    //   auto cc = pbStrategy.sell(i);
+    //   auto pD = pData->lstSell[i];
+
+    //   auto itGroup = mapGroup.find(cc.group());
+    //   if (itGroup == mapGroup.end()) {
+    //     std::pair pairGroup(cc.group(), false);
+    //     mapGroup.insert(pairGroup);
+
+    //     itGroup = mapGroup.find(cc.group());
+    //   }
+
+    //   bool curcanctrl = this->canCtrl(strategy.getMapIndicators(), cc, issim,
+    //                                   CT_SELL, ts, index, cd, pD);
+    //   if (i == 0) {
+    //     itGroup->second = curcanctrl;
+    //   } else {
+    //     if (cc.combcondition() == "||") {
+    //       itGroup->second = itGroup->second || curcanctrl;
+    //     } else {
+    //       itGroup->second = itGroup->second && curcanctrl;
+    //     }
+    //   }
+    // }
+
+    // if (mapGroup.size() == 1) {
+    //   if (mapGroup.begin()->second) {
+    //     strategy.sell(issim, ts);
+    //   }
+    // } else {
+    //   bool cansell = false;
+    //   for (auto it = mapGroup.begin(); it != mapGroup.end(); ++it) {
+    //     if (it->second) {
+    //       cansell = true;
+
+    //       break;
+    //     }
+    //   }
+
+    //   if (cansell) {
+    //     strategy.sell(issim, ts);
+    //   }
+    // }
   }
 
   return 0;

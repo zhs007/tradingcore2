@@ -53,12 +53,13 @@ message CtrlCondition {
     string indicator = 1 [deprecated = true];   // 弃用，因为control condition不仅仅只有indicator，还有别的condition，所以换个名不至于引起歧义
     repeated float vals = 2;                    // 浮点数参数
     repeated string operators = 3;              // 操作符，按道理应该和 vals 长度一样，大于小于等于
-    string combCondition = 4;                   // 组合条件，如果有多个操作条件，这里是 与或非
+    string combCondition = 4;                   // 组合条件，如果有多个操作条件，这里是 与或，&& ||，这里没括号，所以没办法做特别复杂的判断，默认是 &&
     repeated float minvals = 5;                 // 区间参数
     repeated float maxvals = 6;                 // 区间参数
     repeated float offvals = 7;
     repeated string strVals = 8;                // 字符串参数
-    string name = 9;
+    string name = 9;                            // 实际的 Control Condition 类型，替代以前的 indicator
+    int32 group = 10;                           // 组，用来处理 (A&&B)||(C&&D)这样的复杂判断，group之间只可能是或的关系
 }
 
 // IndicatorType - indicator类型
