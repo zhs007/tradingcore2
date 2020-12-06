@@ -25,7 +25,7 @@ class CtrlConditionMgr {
     std::vector<void*> lstSell;
   };
 
-  typedef std::function<void(int, const ::tradingpb::CtrlCondition*&, void*&)>
+  typedef std::function<void(int, const ::tradingpb::CtrlCondition**, void**)>
       FuncGetCtrlCondition;
 
  public:
@@ -55,7 +55,7 @@ class CtrlConditionMgr {
 
   bool canCtrl(const IndicatorMap& mapIndicators, int ccnums, bool issim,
                CtrlType ct, TimeStamp ts, int index, CandleData& cd,
-               void* pData, FuncGetCtrlCondition funcGetCC);
+               FuncGetCtrlCondition funcGetCC);
 
   void getIndicators(std::set<std::string>& indicators, Strategy& strategy);
 
