@@ -100,17 +100,19 @@ bool CtrlConditionMgr::canCtrl(const IndicatorMap& mapIndicators, int ccnums,
 
     funcGetCC(i, &pCC, &pData);
 
+    bool isNewGroup = false;
     auto itGroup = mapGroup.find(pCC->group());
     if (itGroup == mapGroup.end()) {
       std::pair pairGroup(pCC->group(), false);
       mapGroup.insert(pairGroup);
 
       itGroup = mapGroup.find(pCC->group());
+      isNewGroup = true;
     }
 
     bool curcanctrl =
         this->canCtrl(mapIndicators, *pCC, issim, ct, ts, index, cd, pData);
-    if (i == 0) {
+    if (isNewGroup) {
       itGroup->second = curcanctrl;
     } else {
       if (pCC->combcondition() == "||") {
@@ -119,6 +121,10 @@ bool CtrlConditionMgr::canCtrl(const IndicatorMap& mapIndicators, int ccnums,
         itGroup->second = itGroup->second && curcanctrl;
       }
     }
+
+    // LOG(INFO) << "canCtrl ct " << ct << " group " << pCC->group() << "
+    // canctrl "
+    //           << curcanctrl << " ctrl " << itGroup->second;
   }
 
   if (mapGroup.size() == 1) {
@@ -166,6 +172,8 @@ int CtrlConditionMgr::procStrategy(Strategy& strategy,
 
     if (this->canCtrl(strategy.getMapIndicators(), pbStrategy.buy_size(), issim,
                       CT_BUY, ts, index, cd, f)) {
+      // LOG(INFO) << "buy ";
+
       strategy.buy(issim, ts);
     }
 
@@ -231,6 +239,8 @@ int CtrlConditionMgr::procStrategy(Strategy& strategy,
 
     if (this->canCtrl(strategy.getMapIndicators(), pbStrategy.sell_size(),
                       issim, CT_SELL, ts, index, cd, f)) {
+      // LOG(INFO) << "sell ";
+
       strategy.sell(issim, ts);
     }
     // // bool cansell = false;
