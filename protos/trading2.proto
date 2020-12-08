@@ -50,16 +50,16 @@ message Wallet {
 
 // CtrlCondition - control condition
 message CtrlCondition {
-    string indicator = 1 [deprecated = true];   // 弃用，因为control condition不仅仅只有indicator，还有别的condition，所以换个名不至于引起歧义
-    repeated float vals = 2;                    // 浮点数参数
-    repeated string operators = 3;              // 操作符，按道理应该和 vals 长度一样，大于小于等于
-    string combCondition = 4;                   // 组合条件，如果有多个操作条件，这里是 与或，&& ||，这里没括号，所以没办法做特别复杂的判断，默认是 &&
-    repeated float minvals = 5;                 // 区间参数
-    repeated float maxvals = 6;                 // 区间参数
-    repeated float offvals = 7;
-    repeated string strVals = 8;                // 字符串参数
-    string name = 9;                            // 实际的 Control Condition 类型，替代以前的 indicator
-    int32 group = 10;                           // 组，用来处理 (A&&B)||(C&&D)这样的复杂判断，group之间只可能是或的关系
+    string indicator = 1 [deprecated = true];           // 弃用，因为control condition不仅仅只有indicator，还有别的condition，所以换个名不至于引起歧义
+    repeated float vals = 2;                            // 浮点数参数
+    repeated string operators = 3;                      // 操作符，按道理应该和 vals 长度一样，大于小于等于
+    string combCondition = 4;                           // 组合条件，如果有多个操作条件，这里是 与或，&& ||，这里没括号，所以没办法做特别复杂的判断，默认是 &&
+    repeated float minvals = 5 [deprecated = true];     // 最初规划用来做穷举策略参数用的区间参数
+    repeated float maxvals = 6 [deprecated = true];     // 最初规划用来做穷举策略参数用的区间参数
+    repeated float offvals = 7 [deprecated = true];     // 最初规划用来做穷举策略参数用的区间参数的偏移量
+    repeated string strVals = 8;                        // 字符串参数
+    string name = 9;                                    // 实际的 Control Condition 类型，替代以前的 indicator
+    int32 group = 10;                                   // 组，用来处理 (A&&B)||(C&&D) 这样的复杂判断，group之间只可能是或的关系
 }
 
 // IndicatorType - indicator类型
@@ -141,7 +141,7 @@ message Strategy {
     TakeProfitParams paramsTakeProfit = 10;     // 止盈的参数
     InitParams paramsInit = 11;                 // 初始化的参数
     AIPParams paramsAIP = 12;                   // 定投参数
-    string title = 13;                          // 标题，这个可以任意起名
+    string title = 13 [deprecated = true];      // 弃用了，title主要用途是能和返回的PNLData对应上，这里没办法一一对应
     repeated string indicators = 14;            // 需要得到的indicators数据
 }
 
@@ -192,25 +192,27 @@ message PNLAssetData {
     float maxPerDownYear = 32;              // 最大单年跌幅
     repeated CtrlNode lstCtrl = 33;         // 操作队列
     repeated Indicator indicators = 34;     // 请求的indicators
+    int32 winTimes = 35;                    // 胜利次数，winTimes / (sellTimes + stoplossTimes) 就是胜率
 }
 
 // PNLData - 
 message PNLData {
-    string name = 1;
+    string name = 1 [deprecated = true];                    // 弃用了，名字统一，用title
     PNLAssetData total = 2;
-    repeated PNLAssetData assets = 3;
-    string title = 4;
-    int64 lastts = 5 [deprecated = true];
+    repeated PNLAssetData assets = 3 [deprecated = true];
+    string title = 4;                                       // 应该用 SimTradingParams 的 title 赋值，cache 读取后也需要
+    int64 lastts = 5 [deprecated = true];                   // 弃用了，直接用 SimTradingCacheNode 里的 lastTs
 }
 
 // SimTradingParams - simTrading parameters
 message SimTradingParams {
     repeated Asset assets = 1;
-    repeated Asset baselines = 2;
+    repeated Asset baselines = 2 [deprecated = true];   // 弃用了，基线直接用单独的 SimTradingParams 来处理，更容易缓存一些
     int64 startTs = 3;
     int64 endTs = 4;
     repeated Strategy strategies = 5;
     Wallet wallet = 6;
+    string title = 7;                                   // title，会重新设置到PNLData上
 }
 
 // TradingNodeInfo - trading node2 infomation

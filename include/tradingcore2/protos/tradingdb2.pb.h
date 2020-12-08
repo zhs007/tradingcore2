@@ -3237,6 +3237,7 @@ class RequestSimTrading :
     kBasicRequestFieldNumber = 1,
     kParamsFieldNumber = 2,
     kIgnoreCacheFieldNumber = 3,
+    kIndexFieldNumber = 4,
   };
   // .tradingpb.BasicRequestData basicRequest = 1;
   bool has_basicrequest() const;
@@ -3277,6 +3278,15 @@ class RequestSimTrading :
   void _internal_set_ignorecache(bool value);
   public:
 
+  // int32 index = 4;
+  void clear_index();
+  ::PROTOBUF_NAMESPACE_ID::int32 index() const;
+  void set_index(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_index() const;
+  void _internal_set_index(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
   // @@protoc_insertion_point(class_scope:tradingpb.RequestSimTrading)
  private:
   class _Internal;
@@ -3285,6 +3295,7 @@ class RequestSimTrading :
   ::tradingpb::BasicRequestData* basicrequest_;
   ::tradingpb::SimTradingParams* params_;
   bool ignorecache_;
+  ::PROTOBUF_NAMESPACE_ID::int32 index_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_tradingdb2_2eproto;
 };
@@ -3398,6 +3409,7 @@ class ReplySimTrading :
   enum : int {
     kPnlFieldNumber = 1,
     kBaselineFieldNumber = 2,
+    kIndexFieldNumber = 3,
   };
   // repeated .tradingpb.PNLData pnl = 1;
   int pnl_size() const;
@@ -3417,23 +3429,32 @@ class ReplySimTrading :
   const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingpb::PNLData >&
       pnl() const;
 
-  // repeated .tradingpb.PNLData baseline = 2;
-  int baseline_size() const;
+  // repeated .tradingpb.PNLData baseline = 2 [deprecated = true];
+  PROTOBUF_DEPRECATED int baseline_size() const;
   private:
   int _internal_baseline_size() const;
   public:
-  void clear_baseline();
-  ::tradingpb::PNLData* mutable_baseline(int index);
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingpb::PNLData >*
+  PROTOBUF_DEPRECATED void clear_baseline();
+  PROTOBUF_DEPRECATED ::tradingpb::PNLData* mutable_baseline(int index);
+  PROTOBUF_DEPRECATED ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingpb::PNLData >*
       mutable_baseline();
   private:
   const ::tradingpb::PNLData& _internal_baseline(int index) const;
   ::tradingpb::PNLData* _internal_add_baseline();
   public:
-  const ::tradingpb::PNLData& baseline(int index) const;
-  ::tradingpb::PNLData* add_baseline();
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingpb::PNLData >&
+  PROTOBUF_DEPRECATED const ::tradingpb::PNLData& baseline(int index) const;
+  PROTOBUF_DEPRECATED ::tradingpb::PNLData* add_baseline();
+  PROTOBUF_DEPRECATED const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingpb::PNLData >&
       baseline() const;
+
+  // int32 index = 3;
+  void clear_index();
+  ::PROTOBUF_NAMESPACE_ID::int32 index() const;
+  void set_index(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_index() const;
+  void _internal_set_index(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
 
   // @@protoc_insertion_point(class_scope:tradingpb.ReplySimTrading)
  private:
@@ -3442,6 +3463,7 @@ class ReplySimTrading :
   ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingpb::PNLData > pnl_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingpb::PNLData > baseline_;
+  ::PROTOBUF_NAMESPACE_ID::int32 index_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_tradingdb2_2eproto;
 };
@@ -6695,6 +6717,26 @@ inline void RequestSimTrading::set_ignorecache(bool value) {
   // @@protoc_insertion_point(field_set:tradingpb.RequestSimTrading.ignoreCache)
 }
 
+// int32 index = 4;
+inline void RequestSimTrading::clear_index() {
+  index_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 RequestSimTrading::_internal_index() const {
+  return index_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 RequestSimTrading::index() const {
+  // @@protoc_insertion_point(field_get:tradingpb.RequestSimTrading.index)
+  return _internal_index();
+}
+inline void RequestSimTrading::_internal_set_index(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  index_ = value;
+}
+inline void RequestSimTrading::set_index(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_index(value);
+  // @@protoc_insertion_point(field_set:tradingpb.RequestSimTrading.index)
+}
+
 // -------------------------------------------------------------------
 
 // ReplySimTrading
@@ -6735,7 +6777,7 @@ ReplySimTrading::pnl() const {
   return pnl_;
 }
 
-// repeated .tradingpb.PNLData baseline = 2;
+// repeated .tradingpb.PNLData baseline = 2 [deprecated = true];
 inline int ReplySimTrading::_internal_baseline_size() const {
   return baseline_.size();
 }
@@ -6769,6 +6811,26 @@ inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingpb::PNLData >&
 ReplySimTrading::baseline() const {
   // @@protoc_insertion_point(field_list:tradingpb.ReplySimTrading.baseline)
   return baseline_;
+}
+
+// int32 index = 3;
+inline void ReplySimTrading::clear_index() {
+  index_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 ReplySimTrading::_internal_index() const {
+  return index_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 ReplySimTrading::index() const {
+  // @@protoc_insertion_point(field_get:tradingpb.ReplySimTrading.index)
+  return _internal_index();
+}
+inline void ReplySimTrading::_internal_set_index(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  index_ = value;
+}
+inline void ReplySimTrading::set_index(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_index(value);
+  // @@protoc_insertion_point(field_set:tradingpb.ReplySimTrading.index)
 }
 
 #ifdef __GNUC__

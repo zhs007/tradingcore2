@@ -28,6 +28,7 @@ static const char* TradingDB2_method_names[] = {
   "/tradingpb.TradingDB2/getSymbol",
   "/tradingpb.TradingDB2/getSymbols",
   "/tradingpb.TradingDB2/simTrading",
+  "/tradingpb.TradingDB2/simTrading2",
 };
 
 std::unique_ptr< TradingDB2::Stub> TradingDB2::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -43,6 +44,7 @@ TradingDB2::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel
   , rpcmethod_getSymbol_(TradingDB2_method_names[3], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_getSymbols_(TradingDB2_method_names[4], ::grpc::internal::RpcMethod::SERVER_STREAMING, channel)
   , rpcmethod_simTrading_(TradingDB2_method_names[5], ::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_simTrading2_(TradingDB2_method_names[6], ::grpc::internal::RpcMethod::BIDI_STREAMING, channel)
   {}
 
 ::grpc::ClientWriter< ::tradingpb::RequestUpdCandles>* TradingDB2::Stub::updCandlesRaw(::grpc::ClientContext* context, ::tradingpb::ReplyUpdCandles* response) {
@@ -177,6 +179,22 @@ void TradingDB2::Stub::experimental_async::simTrading(::grpc::ClientContext* con
   return ::grpc_impl::internal::ClientAsyncResponseReaderFactory< ::tradingpb::ReplySimTrading>::Create(channel_.get(), cq, rpcmethod_simTrading_, context, request, false);
 }
 
+::grpc::ClientReaderWriter< ::tradingpb::RequestSimTrading, ::tradingpb::ReplySimTrading>* TradingDB2::Stub::simTrading2Raw(::grpc::ClientContext* context) {
+  return ::grpc_impl::internal::ClientReaderWriterFactory< ::tradingpb::RequestSimTrading, ::tradingpb::ReplySimTrading>::Create(channel_.get(), rpcmethod_simTrading2_, context);
+}
+
+void TradingDB2::Stub::experimental_async::simTrading2(::grpc::ClientContext* context, ::grpc::experimental::ClientBidiReactor< ::tradingpb::RequestSimTrading,::tradingpb::ReplySimTrading>* reactor) {
+  ::grpc_impl::internal::ClientCallbackReaderWriterFactory< ::tradingpb::RequestSimTrading,::tradingpb::ReplySimTrading>::Create(stub_->channel_.get(), stub_->rpcmethod_simTrading2_, context, reactor);
+}
+
+::grpc::ClientAsyncReaderWriter< ::tradingpb::RequestSimTrading, ::tradingpb::ReplySimTrading>* TradingDB2::Stub::AsyncsimTrading2Raw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
+  return ::grpc_impl::internal::ClientAsyncReaderWriterFactory< ::tradingpb::RequestSimTrading, ::tradingpb::ReplySimTrading>::Create(channel_.get(), cq, rpcmethod_simTrading2_, context, true, tag);
+}
+
+::grpc::ClientAsyncReaderWriter< ::tradingpb::RequestSimTrading, ::tradingpb::ReplySimTrading>* TradingDB2::Stub::PrepareAsyncsimTrading2Raw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
+  return ::grpc_impl::internal::ClientAsyncReaderWriterFactory< ::tradingpb::RequestSimTrading, ::tradingpb::ReplySimTrading>::Create(channel_.get(), cq, rpcmethod_simTrading2_, context, false, nullptr);
+}
+
 TradingDB2::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       TradingDB2_method_names[0],
@@ -238,6 +256,16 @@ TradingDB2::Service::Service() {
              ::tradingpb::ReplySimTrading* resp) {
                return service->simTrading(ctx, req, resp);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      TradingDB2_method_names[6],
+      ::grpc::internal::RpcMethod::BIDI_STREAMING,
+      new ::grpc::internal::BidiStreamingHandler< TradingDB2::Service, ::tradingpb::RequestSimTrading, ::tradingpb::ReplySimTrading>(
+          [](TradingDB2::Service* service,
+             ::grpc_impl::ServerContext* ctx,
+             ::grpc_impl::ServerReaderWriter<::tradingpb::ReplySimTrading,
+             ::tradingpb::RequestSimTrading>* stream) {
+               return service->simTrading2(ctx, stream);
+             }, this)));
 }
 
 TradingDB2::Service::~Service() {
@@ -282,6 +310,12 @@ TradingDB2::Service::~Service() {
   (void) context;
   (void) request;
   (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status TradingDB2::Service::simTrading2(::grpc::ServerContext* context, ::grpc::ServerReaderWriter< ::tradingpb::ReplySimTrading, ::tradingpb::RequestSimTrading>* stream) {
+  (void) context;
+  (void) stream;
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 

@@ -53,6 +53,8 @@ class PNL2 {
 
   void calcVariance();
 
+  void calcControls();
+
   // 找到 starti 前面的最高点
   int findPreMax(int starti);
   // 找到 starti 后面的最低点

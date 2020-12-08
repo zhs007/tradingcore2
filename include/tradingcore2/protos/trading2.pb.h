@@ -1218,12 +1218,12 @@ class CtrlCondition :
   std::string* _internal_add_operators();
   public:
 
-  // repeated float minvals = 5;
-  int minvals_size() const;
+  // repeated float minvals = 5 [deprecated = true];
+  PROTOBUF_DEPRECATED int minvals_size() const;
   private:
   int _internal_minvals_size() const;
   public:
-  void clear_minvals();
+  PROTOBUF_DEPRECATED void clear_minvals();
   private:
   float _internal_minvals(int index) const;
   const ::PROTOBUF_NAMESPACE_ID::RepeatedField< float >&
@@ -1232,20 +1232,20 @@ class CtrlCondition :
   ::PROTOBUF_NAMESPACE_ID::RepeatedField< float >*
       _internal_mutable_minvals();
   public:
-  float minvals(int index) const;
-  void set_minvals(int index, float value);
-  void add_minvals(float value);
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< float >&
+  PROTOBUF_DEPRECATED float minvals(int index) const;
+  PROTOBUF_DEPRECATED void set_minvals(int index, float value);
+  PROTOBUF_DEPRECATED void add_minvals(float value);
+  PROTOBUF_DEPRECATED const ::PROTOBUF_NAMESPACE_ID::RepeatedField< float >&
       minvals() const;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedField< float >*
+  PROTOBUF_DEPRECATED ::PROTOBUF_NAMESPACE_ID::RepeatedField< float >*
       mutable_minvals();
 
-  // repeated float maxvals = 6;
-  int maxvals_size() const;
+  // repeated float maxvals = 6 [deprecated = true];
+  PROTOBUF_DEPRECATED int maxvals_size() const;
   private:
   int _internal_maxvals_size() const;
   public:
-  void clear_maxvals();
+  PROTOBUF_DEPRECATED void clear_maxvals();
   private:
   float _internal_maxvals(int index) const;
   const ::PROTOBUF_NAMESPACE_ID::RepeatedField< float >&
@@ -1254,20 +1254,20 @@ class CtrlCondition :
   ::PROTOBUF_NAMESPACE_ID::RepeatedField< float >*
       _internal_mutable_maxvals();
   public:
-  float maxvals(int index) const;
-  void set_maxvals(int index, float value);
-  void add_maxvals(float value);
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< float >&
+  PROTOBUF_DEPRECATED float maxvals(int index) const;
+  PROTOBUF_DEPRECATED void set_maxvals(int index, float value);
+  PROTOBUF_DEPRECATED void add_maxvals(float value);
+  PROTOBUF_DEPRECATED const ::PROTOBUF_NAMESPACE_ID::RepeatedField< float >&
       maxvals() const;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedField< float >*
+  PROTOBUF_DEPRECATED ::PROTOBUF_NAMESPACE_ID::RepeatedField< float >*
       mutable_maxvals();
 
-  // repeated float offvals = 7;
-  int offvals_size() const;
+  // repeated float offvals = 7 [deprecated = true];
+  PROTOBUF_DEPRECATED int offvals_size() const;
   private:
   int _internal_offvals_size() const;
   public:
-  void clear_offvals();
+  PROTOBUF_DEPRECATED void clear_offvals();
   private:
   float _internal_offvals(int index) const;
   const ::PROTOBUF_NAMESPACE_ID::RepeatedField< float >&
@@ -1276,12 +1276,12 @@ class CtrlCondition :
   ::PROTOBUF_NAMESPACE_ID::RepeatedField< float >*
       _internal_mutable_offvals();
   public:
-  float offvals(int index) const;
-  void set_offvals(int index, float value);
-  void add_offvals(float value);
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< float >&
+  PROTOBUF_DEPRECATED float offvals(int index) const;
+  PROTOBUF_DEPRECATED void set_offvals(int index, float value);
+  PROTOBUF_DEPRECATED void add_offvals(float value);
+  PROTOBUF_DEPRECATED const ::PROTOBUF_NAMESPACE_ID::RepeatedField< float >&
       offvals() const;
-  ::PROTOBUF_NAMESPACE_ID::RepeatedField< float >*
+  PROTOBUF_DEPRECATED ::PROTOBUF_NAMESPACE_ID::RepeatedField< float >*
       mutable_offvals();
 
   // repeated string strVals = 8;
@@ -2830,16 +2830,16 @@ class Strategy :
   std::string* _internal_mutable_name();
   public:
 
-  // string title = 13;
-  void clear_title();
-  const std::string& title() const;
-  void set_title(const std::string& value);
-  void set_title(std::string&& value);
-  void set_title(const char* value);
-  void set_title(const char* value, size_t size);
-  std::string* mutable_title();
-  std::string* release_title();
-  void set_allocated_title(std::string* title);
+  // string title = 13 [deprecated = true];
+  PROTOBUF_DEPRECATED void clear_title();
+  PROTOBUF_DEPRECATED const std::string& title() const;
+  PROTOBUF_DEPRECATED void set_title(const std::string& value);
+  PROTOBUF_DEPRECATED void set_title(std::string&& value);
+  PROTOBUF_DEPRECATED void set_title(const char* value);
+  PROTOBUF_DEPRECATED void set_title(const char* value, size_t size);
+  PROTOBUF_DEPRECATED std::string* mutable_title();
+  PROTOBUF_DEPRECATED std::string* release_title();
+  PROTOBUF_DEPRECATED void set_allocated_title(std::string* title);
   private:
   const std::string& _internal_title() const;
   void _internal_set_title(const std::string& value);
@@ -3324,6 +3324,7 @@ class PNLAssetData :
     kMaxDownYearTsFieldNumber = 31,
     kMaxPerUpYearFieldNumber = 30,
     kMaxPerDownYearFieldNumber = 32,
+    kWinTimesFieldNumber = 35,
   };
   // repeated .tradingpb.PNLDataValue values = 2;
   int values_size() const;
@@ -3664,6 +3665,15 @@ class PNLAssetData :
   void _internal_set_maxperdownyear(float value);
   public:
 
+  // int32 winTimes = 35;
+  void clear_wintimes();
+  ::PROTOBUF_NAMESPACE_ID::int32 wintimes() const;
+  void set_wintimes(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_wintimes() const;
+  void _internal_set_wintimes(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
   // @@protoc_insertion_point(class_scope:tradingpb.PNLAssetData)
  private:
   class _Internal;
@@ -3703,6 +3713,7 @@ class PNLAssetData :
   ::PROTOBUF_NAMESPACE_ID::int64 maxdownyearts_;
   float maxperupyear_;
   float maxperdownyear_;
+  ::PROTOBUF_NAMESPACE_ID::int32 wintimes_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_trading2_2eproto;
 };
@@ -3820,34 +3831,34 @@ class PNLData :
     kTotalFieldNumber = 2,
     kLasttsFieldNumber = 5,
   };
-  // repeated .tradingpb.PNLAssetData assets = 3;
-  int assets_size() const;
+  // repeated .tradingpb.PNLAssetData assets = 3 [deprecated = true];
+  PROTOBUF_DEPRECATED int assets_size() const;
   private:
   int _internal_assets_size() const;
   public:
-  void clear_assets();
-  ::tradingpb::PNLAssetData* mutable_assets(int index);
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingpb::PNLAssetData >*
+  PROTOBUF_DEPRECATED void clear_assets();
+  PROTOBUF_DEPRECATED ::tradingpb::PNLAssetData* mutable_assets(int index);
+  PROTOBUF_DEPRECATED ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingpb::PNLAssetData >*
       mutable_assets();
   private:
   const ::tradingpb::PNLAssetData& _internal_assets(int index) const;
   ::tradingpb::PNLAssetData* _internal_add_assets();
   public:
-  const ::tradingpb::PNLAssetData& assets(int index) const;
-  ::tradingpb::PNLAssetData* add_assets();
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingpb::PNLAssetData >&
+  PROTOBUF_DEPRECATED const ::tradingpb::PNLAssetData& assets(int index) const;
+  PROTOBUF_DEPRECATED ::tradingpb::PNLAssetData* add_assets();
+  PROTOBUF_DEPRECATED const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingpb::PNLAssetData >&
       assets() const;
 
-  // string name = 1;
-  void clear_name();
-  const std::string& name() const;
-  void set_name(const std::string& value);
-  void set_name(std::string&& value);
-  void set_name(const char* value);
-  void set_name(const char* value, size_t size);
-  std::string* mutable_name();
-  std::string* release_name();
-  void set_allocated_name(std::string* name);
+  // string name = 1 [deprecated = true];
+  PROTOBUF_DEPRECATED void clear_name();
+  PROTOBUF_DEPRECATED const std::string& name() const;
+  PROTOBUF_DEPRECATED void set_name(const std::string& value);
+  PROTOBUF_DEPRECATED void set_name(std::string&& value);
+  PROTOBUF_DEPRECATED void set_name(const char* value);
+  PROTOBUF_DEPRECATED void set_name(const char* value, size_t size);
+  PROTOBUF_DEPRECATED std::string* mutable_name();
+  PROTOBUF_DEPRECATED std::string* release_name();
+  PROTOBUF_DEPRECATED void set_allocated_name(std::string* name);
   private:
   const std::string& _internal_name() const;
   void _internal_set_name(const std::string& value);
@@ -4018,6 +4029,7 @@ class SimTradingParams :
     kAssetsFieldNumber = 1,
     kBaselinesFieldNumber = 2,
     kStrategiesFieldNumber = 5,
+    kTitleFieldNumber = 7,
     kWalletFieldNumber = 6,
     kStartTsFieldNumber = 3,
     kEndTsFieldNumber = 4,
@@ -4040,22 +4052,22 @@ class SimTradingParams :
   const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingpb::Asset >&
       assets() const;
 
-  // repeated .tradingpb.Asset baselines = 2;
-  int baselines_size() const;
+  // repeated .tradingpb.Asset baselines = 2 [deprecated = true];
+  PROTOBUF_DEPRECATED int baselines_size() const;
   private:
   int _internal_baselines_size() const;
   public:
-  void clear_baselines();
-  ::tradingpb::Asset* mutable_baselines(int index);
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingpb::Asset >*
+  PROTOBUF_DEPRECATED void clear_baselines();
+  PROTOBUF_DEPRECATED ::tradingpb::Asset* mutable_baselines(int index);
+  PROTOBUF_DEPRECATED ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingpb::Asset >*
       mutable_baselines();
   private:
   const ::tradingpb::Asset& _internal_baselines(int index) const;
   ::tradingpb::Asset* _internal_add_baselines();
   public:
-  const ::tradingpb::Asset& baselines(int index) const;
-  ::tradingpb::Asset* add_baselines();
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingpb::Asset >&
+  PROTOBUF_DEPRECATED const ::tradingpb::Asset& baselines(int index) const;
+  PROTOBUF_DEPRECATED ::tradingpb::Asset* add_baselines();
+  PROTOBUF_DEPRECATED const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingpb::Asset >&
       baselines() const;
 
   // repeated .tradingpb.Strategy strategies = 5;
@@ -4075,6 +4087,22 @@ class SimTradingParams :
   ::tradingpb::Strategy* add_strategies();
   const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingpb::Strategy >&
       strategies() const;
+
+  // string title = 7;
+  void clear_title();
+  const std::string& title() const;
+  void set_title(const std::string& value);
+  void set_title(std::string&& value);
+  void set_title(const char* value);
+  void set_title(const char* value, size_t size);
+  std::string* mutable_title();
+  std::string* release_title();
+  void set_allocated_title(std::string* title);
+  private:
+  const std::string& _internal_title() const;
+  void _internal_set_title(const std::string& value);
+  std::string* _internal_mutable_title();
+  public:
 
   // .tradingpb.Wallet wallet = 6;
   bool has_wallet() const;
@@ -4117,6 +4145,7 @@ class SimTradingParams :
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingpb::Asset > assets_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingpb::Asset > baselines_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingpb::Strategy > strategies_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr title_;
   ::tradingpb::Wallet* wallet_;
   ::PROTOBUF_NAMESPACE_ID::int64 startts_;
   ::PROTOBUF_NAMESPACE_ID::int64 endts_;
@@ -5467,7 +5496,7 @@ inline void CtrlCondition::set_allocated_combcondition(std::string* combconditio
   // @@protoc_insertion_point(field_set_allocated:tradingpb.CtrlCondition.combCondition)
 }
 
-// repeated float minvals = 5;
+// repeated float minvals = 5 [deprecated = true];
 inline int CtrlCondition::_internal_minvals_size() const {
   return minvals_.size();
 }
@@ -5514,7 +5543,7 @@ CtrlCondition::mutable_minvals() {
   return _internal_mutable_minvals();
 }
 
-// repeated float maxvals = 6;
+// repeated float maxvals = 6 [deprecated = true];
 inline int CtrlCondition::_internal_maxvals_size() const {
   return maxvals_.size();
 }
@@ -5561,7 +5590,7 @@ CtrlCondition::mutable_maxvals() {
   return _internal_mutable_maxvals();
 }
 
-// repeated float offvals = 7;
+// repeated float offvals = 7 [deprecated = true];
 inline int CtrlCondition::_internal_offvals_size() const {
   return offvals_.size();
 }
@@ -6960,7 +6989,7 @@ inline void Strategy::set_allocated_paramsaip(::tradingpb::AIPParams* paramsaip)
   // @@protoc_insertion_point(field_set_allocated:tradingpb.Strategy.paramsAIP)
 }
 
-// string title = 13;
+// string title = 13 [deprecated = true];
 inline void Strategy::clear_title() {
   title_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
@@ -8073,11 +8102,31 @@ PNLAssetData::indicators() const {
   return indicators_;
 }
 
+// int32 winTimes = 35;
+inline void PNLAssetData::clear_wintimes() {
+  wintimes_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 PNLAssetData::_internal_wintimes() const {
+  return wintimes_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 PNLAssetData::wintimes() const {
+  // @@protoc_insertion_point(field_get:tradingpb.PNLAssetData.winTimes)
+  return _internal_wintimes();
+}
+inline void PNLAssetData::_internal_set_wintimes(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  wintimes_ = value;
+}
+inline void PNLAssetData::set_wintimes(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_wintimes(value);
+  // @@protoc_insertion_point(field_set:tradingpb.PNLAssetData.winTimes)
+}
+
 // -------------------------------------------------------------------
 
 // PNLData
 
-// string name = 1;
+// string name = 1 [deprecated = true];
 inline void PNLData::clear_name() {
   name_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 }
@@ -8197,7 +8246,7 @@ inline void PNLData::set_allocated_total(::tradingpb::PNLAssetData* total) {
   // @@protoc_insertion_point(field_set_allocated:tradingpb.PNLData.total)
 }
 
-// repeated .tradingpb.PNLAssetData assets = 3;
+// repeated .tradingpb.PNLAssetData assets = 3 [deprecated = true];
 inline int PNLData::_internal_assets_size() const {
   return assets_.size();
 }
@@ -8359,7 +8408,7 @@ SimTradingParams::assets() const {
   return assets_;
 }
 
-// repeated .tradingpb.Asset baselines = 2;
+// repeated .tradingpb.Asset baselines = 2 [deprecated = true];
 inline int SimTradingParams::_internal_baselines_size() const {
   return baselines_.size();
 }
@@ -8535,6 +8584,66 @@ inline void SimTradingParams::set_allocated_wallet(::tradingpb::Wallet* wallet) 
   }
   wallet_ = wallet;
   // @@protoc_insertion_point(field_set_allocated:tradingpb.SimTradingParams.wallet)
+}
+
+// string title = 7;
+inline void SimTradingParams::clear_title() {
+  title_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline const std::string& SimTradingParams::title() const {
+  // @@protoc_insertion_point(field_get:tradingpb.SimTradingParams.title)
+  return _internal_title();
+}
+inline void SimTradingParams::set_title(const std::string& value) {
+  _internal_set_title(value);
+  // @@protoc_insertion_point(field_set:tradingpb.SimTradingParams.title)
+}
+inline std::string* SimTradingParams::mutable_title() {
+  // @@protoc_insertion_point(field_mutable:tradingpb.SimTradingParams.title)
+  return _internal_mutable_title();
+}
+inline const std::string& SimTradingParams::_internal_title() const {
+  return title_.GetNoArena();
+}
+inline void SimTradingParams::_internal_set_title(const std::string& value) {
+  
+  title_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+}
+inline void SimTradingParams::set_title(std::string&& value) {
+  
+  title_.SetNoArena(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:tradingpb.SimTradingParams.title)
+}
+inline void SimTradingParams::set_title(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  title_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:tradingpb.SimTradingParams.title)
+}
+inline void SimTradingParams::set_title(const char* value, size_t size) {
+  
+  title_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:tradingpb.SimTradingParams.title)
+}
+inline std::string* SimTradingParams::_internal_mutable_title() {
+  
+  return title_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline std::string* SimTradingParams::release_title() {
+  // @@protoc_insertion_point(field_release:tradingpb.SimTradingParams.title)
+  
+  return title_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline void SimTradingParams::set_allocated_title(std::string* title) {
+  if (title != nullptr) {
+    
+  } else {
+    
+  }
+  title_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), title);
+  // @@protoc_insertion_point(field_set_allocated:tradingpb.SimTradingParams.title)
 }
 
 // -------------------------------------------------------------------
