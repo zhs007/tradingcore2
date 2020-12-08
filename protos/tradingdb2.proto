@@ -144,12 +144,14 @@ message RequestSimTrading {
     BasicRequestData basicRequest = 1;
     SimTradingParams params = 2;
     bool ignoreCache = 3;
+    int32 index = 4;
 }
 
 // ReplySimTrading - reply simTrading
 message ReplySimTrading {
     repeated PNLData pnl = 1;
-    repeated PNLData baseline = 2;
+    repeated PNLData baseline = 2 [deprecated = true];
+    int32 index = 3;
 }
 
 // TradingDB2 - TradingDB2 service
@@ -166,4 +168,6 @@ service TradingDB2 {
     rpc getSymbols(RequestGetSymbols) returns (stream ReplyGetSymbol) {}
     // simTrading - simulation trading
     rpc simTrading(RequestSimTrading) returns (ReplySimTrading) {}
+    // simTrading2 - simulation trading
+    rpc simTrading2(stream RequestSimTrading) returns (stream ReplySimTrading) {}
 }

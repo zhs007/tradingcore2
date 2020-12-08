@@ -275,6 +275,8 @@ void PNL2::onBuildEnd(const Exchange& exchange) {
   this->calcSharpe(exchange);
 
   this->calcVariance();
+
+  this->calcControls();
 }
 
 void PNL2::calcMaxDrawdown() {
@@ -576,6 +578,30 @@ void PNL2::calcVariance() {
   t->set_variance(s);
 
   delete[] pU;
+}
+
+void PNL2::calcControls() {
+  auto mt = this->m_data.mutable_total();
+  mt->set_buytimes(0);
+  mt->set_selltimes(0);
+  mt->set_stoplosstimes(0);
+  mt->set_wintimes(0);
+
+  auto t = this->m_data.total();
+  double lastprice = 0;
+  for (auto i = 0; i < t.lstctrl_size(); ++i) {
+    auto cc = t.lstctrl(i);
+
+    if (cc.type() == tradingpb::CTRL_SELL) {
+      mt->set_selltimes(mt->selltimes() + 1);
+
+      if (cc.sellprice() > cc.averageholdingprice()) {
+        mt->set_wintimes(mt->wintimes() + 1);
+      }
+    } else if (cc.type() == tradingpb::CTRL_BUY) {
+      mt->set_buytimes(mt->buytimes() + 1);
+    }
+  }
 }
 
 CR2END
