@@ -24,7 +24,7 @@ const char* TrDB2CNFundsExchange::getTypeName() const {
 // loadDat - [tsStart, tsEnd]
 void TrDB2CNFundsExchange::loadData(const char* assetName, TimeStamp tsStart,
                                     TimeStamp tsEnd) {
-  this->m_mgrData.addData("cnfunds", assetName, NULL, tsStart, tsEnd);
+  this->m_mgrData.addData("jrj", assetName, NULL, tsStart, tsEnd);
 }
 
 bool TrDB2CNFundsExchange::calculateVolume(const char* assetsName, TimeStamp ts,
@@ -34,7 +34,7 @@ bool TrDB2CNFundsExchange::calculateVolume(const char* assetsName, TimeStamp ts,
   assert(ts > 0);
   assert(money > ZEROMONEY);
 
-  auto c = this->m_mgrData.getCandle("cnfunds", assetsName, ts);
+  auto c = this->m_mgrData.getCandle("jrj", assetsName, ts);
   if (c == NULL) {
     return false;
   }
@@ -53,7 +53,7 @@ bool TrDB2CNFundsExchange::calculatePrice(const char* assetsName, TimeStamp ts,
   assert(ts > 0);
   assert(volume > ZEROVOLUME);
 
-  auto c = this->m_mgrData.getCandle("cnfunds", assetsName, ts);
+  auto c = this->m_mgrData.getCandle("jrj", assetsName, ts);
   if (c == NULL) {
     return false;
   }
@@ -68,7 +68,7 @@ bool TrDB2CNFundsExchange::calculatePrice(const char* assetsName, TimeStamp ts,
 bool TrDB2CNFundsExchange::getDataWithTimestamp(const char* assetsName,
                                                 TimeStamp ts,
                                                 CandleData& data) const {
-  auto c = this->m_mgrData.getCandle("cnfunds", assetsName, ts);
+  auto c = this->m_mgrData.getCandle("jrj", assetsName, ts);
   if (c == NULL) {
     // LOG(INFO) << "TrDB2CNFundsExchange:getDataWithTimestamp " << assetsName
     //           << " " << ts;
@@ -87,7 +87,7 @@ bool TrDB2CNFundsExchange::getData(const char* assetsName, int index,
                                    CandleData& data) {
   assert(index >= 0);
 
-  auto candles = this->m_mgrData.getData("cnfunds", assetsName);
+  auto candles = this->m_mgrData.getData("jrj", assetsName);
   if (candles == NULL) {
     return false;
   }
@@ -105,7 +105,7 @@ bool TrDB2CNFundsExchange::getData(const char* assetsName, int index,
 }
 
 int TrDB2CNFundsExchange::getDataLength(const char* assetsName) {
-  auto candles = this->m_mgrData.getData("cnfunds", assetsName);
+  auto candles = this->m_mgrData.getData("jrj", assetsName);
   if (candles == NULL) {
     return 0;
   }
@@ -140,7 +140,7 @@ void TrDB2CNFundsExchange::forEachAssetsData(const char* assetsName,
                                              Exchange::FuncOnAssetsData func,
                                              TimeStamp tsStart,
                                              TimeStamp tsEnd) const {
-  auto candles = this->m_mgrData.getData("cnfunds", assetsName);
+  auto candles = this->m_mgrData.getData("jrj", assetsName);
   assert(candles != NULL);
 
   if (tsStart == tsEnd) {
