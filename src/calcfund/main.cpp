@@ -63,7 +63,7 @@ void calcAllFunds(std::string fn, std::string strStart, std::string strEnd,
 
   int totalnums = 0;
   auto ret = tr2::getSymbols(
-      cfg.trdb2Serv.c_str(), cfg.trdb2Token.c_str(), "cnfunds", NULL,
+      cfg.trdb2Serv.c_str(), cfg.trdb2Token.c_str(), "jrj", NULL,
       [&](tradingpb::SymbolInfo& si) {
         printf("onSymbol %s\n", si.fund().code().c_str());
 
@@ -80,7 +80,7 @@ void calcAllFunds(std::string fn, std::string strStart, std::string strEnd,
 
         tradingpb::Candles candles;
         auto ret = tr2::getCandles(candles, cfg.trdb2Serv.c_str(),
-                                   cfg.trdb2Token.c_str(), "cnfunds",
+                                   cfg.trdb2Token.c_str(), "jrj",
                                    si.fund().code().c_str(), NULL, st, et - 1);
 
         printf("getCandles %s\n", ret ? "ok" : "fail");
@@ -235,7 +235,7 @@ void calcAllManagers(std::string fn, tr2::Config& cfg) {
 
   int totalnums = 0;
   auto ret = tr2::getSymbols(
-      cfg.trdb2Serv.c_str(), cfg.trdb2Token.c_str(), "cnfunds", NULL,
+      cfg.trdb2Serv.c_str(), cfg.trdb2Token.c_str(), "jrj", NULL,
       [&](tradingpb::SymbolInfo& si) {
         printf("onSymbol %s\n", si.fund().code().c_str());
         tradingpb::SymbolInfo nsi(si);
@@ -260,7 +260,7 @@ void calcAllManagers(std::string fn, tr2::Config& cfg) {
 
             tradingpb::Candles candles;
             auto ret = tr2::getCandles(candles, cfg.trdb2Serv.c_str(),
-                                       cfg.trdb2Token.c_str(), "cnfunds",
+                                       cfg.trdb2Token.c_str(), "jrj",
                                        si.fund().code().c_str(), NULL, st, et);
 
             printf("getCandles %s\n", ret ? "ok" : "fail");

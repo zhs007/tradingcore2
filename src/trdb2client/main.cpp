@@ -19,7 +19,7 @@ int main(int argc, char *argv[]) {
   tradingpb::Candles candles;
   auto ret =
       tr2::getCandles(candles, cfg.trdb2Serv.c_str(), cfg.trdb2Token.c_str(),
-                      "cnfunds", "000001", NULL, 0, 0);
+                      "jrj", "000001", NULL, 0, 0);
 
   printf("getCandles %s\n", ret ? "ok" : "fail");
   printf("candles %d\n", candles.candles_size());

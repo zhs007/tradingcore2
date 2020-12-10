@@ -69,7 +69,7 @@ class TrDB2CNFundsExchange final : public Exchange {
 
   virtual float getRiskFreeInterestRate() const override { return 0.03; }
 
-  virtual const char* getMarketName() const override { return "cnfunds"; }
+  virtual const char* getMarketName() const override { return "jrj"; }
 
   virtual void rebuildTimeStampList() override;
 
