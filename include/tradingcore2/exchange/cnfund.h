@@ -23,12 +23,15 @@ struct CNFundValue {
   const CNFundValueNode* getNode(TimeStamp ts) const;
 };
 
-static const char* CNFundTypeName = "cnfund";
+// static const char* CNFundTypeName = "cnfund";
 
-Exchange* newCNFund(const Config& cfg);
+// Exchange* newCNFund(const Config& cfg);
 
 class CNFundExchange final : public Exchange {
-  friend Exchange* newCNFund(const Config& cfg);
+ public:
+  static Exchange* newExchange(const Config& cfg);
+
+  static void regExchange();
 
  public:
   typedef std::map<std::string, CNFundValue*> Map;

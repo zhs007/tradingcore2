@@ -1,5 +1,5 @@
-#ifndef __TRADINGCORE2_EXCHANGE_TRDB2CNFUNDS_H__
-#define __TRADINGCORE2_EXCHANGE_TRDB2CNFUNDS_H__
+#ifndef __TRADINGCORE2_EXCHANGE_TRDB2_H__
+#define __TRADINGCORE2_EXCHANGE_TRDB2_H__
 
 #include <tradingcore2/basedef.h>
 #include <tradingcore2/exchange.h>
@@ -15,24 +15,20 @@ CR2BEGIN
 
 // Exchange* newTrDB2CNFunds(const Config& cfg);
 
-class TrDB2CNFundsExchange final : public Exchange {
- public:
-  static Exchange* newExchange(const Config& cfg);
-
-  static void regExchange();
+class TrDB2Exchange : public Exchange {
+  //   friend Exchange* newTrDB2CNFunds(const Config& cfg);
 
  public:
   typedef std::vector<TimeStamp> TimeStampList;
 
- private:
-  TrDB2CNFundsExchange(const char* host, const char* token)
-      : m_mgrData(host, token) {}
-  virtual ~TrDB2CNFundsExchange() { this->release(); }
+ protected:
+  TrDB2Exchange(const char* host, const char* token) : m_mgrData(host, token) {}
+  // virtual ~TrDB2Exchange() { this->release(); }
 
  public:
   virtual bool init(const Config& cfg) override;
 
-  virtual const char* getTypeName() const override;
+  //   virtual const char* getTypeName() const override;
 
   // loadDat - [tsStart, tsEnd]
   virtual void loadData(const char* assetName, TimeStamp tsStart,
@@ -68,11 +64,11 @@ class TrDB2CNFundsExchange final : public Exchange {
 
   virtual TimeStamp getLastTimeStamp() const override;
 
-  virtual int getTradingDays4Year() const override;
+  //   virtual int getTradingDays4Year() const override;
 
-  virtual float getRiskFreeInterestRate() const override { return 0.03; }
+  //   virtual float getRiskFreeInterestRate() const override { return 0.03; }
 
-  virtual const char* getMarketName() const override { return "jrj"; }
+  //   virtual const char* getMarketName() const override { return "jrj"; }
 
   virtual void rebuildTimeStampList() override;
 
@@ -90,4 +86,4 @@ class TrDB2CNFundsExchange final : public Exchange {
 
 CR2END
 
-#endif  // __TRADINGCORE2_EXCHANGE_TRDB2CNFUNDS_H__
+#endif  // __TRADINGCORE2_EXCHANGE_TRDB2_H__

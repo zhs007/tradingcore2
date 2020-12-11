@@ -84,13 +84,25 @@ void TradingNode2Impl::init(const Config& cfg) {
     return grpc::Status(grpc::StatusCode::INVALID_ARGUMENT, "invalid token");
   }
 
-  auto exchange =
-      tr2::ExchangeMgr::getSingleton()->newExchange(TrDB2CNFundsTypeName);
-  if (exchange == NULL) {
-    LOG(ERROR) << "_calcPNL:getExchange " << TrDB2CNFundsTypeName;
+  std::string mainMarket = "";
+  for (auto i = 0; i < request->params().assets_size(); ++i) {
+    auto ca = request->params().assets(i);
+    if (mainMarket != "") {
+      if (mainMarket != ca.market()) {
+        return grpc::Status(grpc::StatusCode::UNKNOWN,
+                            "I get a defferent market.");
+      }
+    } else {
+      mainMarket = ca.market();
+    }
+  }
 
-    return grpc::Status(grpc::StatusCode::UNKNOWN,
-                        "don't get exchange for TrDB2CNFundsTypeName");
+  auto exchange =
+      tr2::ExchangeMgr::getSingleton()->newExchange(mainMarket.c_str());
+  if (exchange == NULL) {
+    LOG(ERROR) << "_calcPNL:getExchange " << mainMarket;
+
+    return grpc::Status(grpc::StatusCode::UNKNOWN, "I can't get exchange");
   }
 
   for (auto i = 0; i < request->params().assets_size(); ++i) {
