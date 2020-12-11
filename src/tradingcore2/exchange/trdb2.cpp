@@ -2,8 +2,7 @@
 #include <dirent.h>
 #include <stdlib.h>
 #include <tradingcore2/csv.h>
-#include <tradingcore2/exchange/trdb2cnfunds.h>
-#include <tradingcore2/exchangemgr.h>
+#include <tradingcore2/exchange/trdb2.h>
 #include <tradingcore2/trdb2/utils.h>
 #include <tradingcore2/utils.h>
 
@@ -12,32 +11,31 @@
 
 CR2BEGIN
 
-const char* TrDB2CNFundsTypeName = "trdb2cnfunds";
-
-bool TrDB2CNFundsExchange::init(const Config& cfg) {
+bool TrDB2Exchange::init(const Config& cfg) {
   this->rebuildTimeStampList();
 
   return true;
 }
 
-const char* TrDB2CNFundsExchange::getTypeName() const {
-  return TrDB2CNFundsTypeName;
-}
+// const char* TrDB2CNFundsExchange::getTypeName() const {
+//   return TrDB2CNFundsTypeName;
+// }
 
 // loadDat - [tsStart, tsEnd]
-void TrDB2CNFundsExchange::loadData(const char* assetName, TimeStamp tsStart,
-                                    TimeStamp tsEnd) {
-  this->m_mgrData.addData("jrj", assetName, NULL, tsStart, tsEnd);
+void TrDB2Exchange::loadData(const char* assetName, TimeStamp tsStart,
+                             TimeStamp tsEnd) {
+  this->m_mgrData.addData(this->getMarketName(), assetName, NULL, tsStart,
+                          tsEnd);
 }
 
-bool TrDB2CNFundsExchange::calculateVolume(const char* assetsName, TimeStamp ts,
-                                           Money money, Volume& volume,
-                                           Money& price, Money& fee) {
+bool TrDB2Exchange::calculateVolume(const char* assetsName, TimeStamp ts,
+                                    Money money, Volume& volume, Money& price,
+                                    Money& fee) {
   assert(assetsName != NULL);
   assert(ts > 0);
   assert(money > ZEROMONEY);
 
-  auto c = this->m_mgrData.getCandle("jrj", assetsName, ts);
+  auto c = this->m_mgrData.getCandle(this->getMarketName(), assetsName, ts);
   if (c == NULL) {
     return false;
   }
@@ -49,14 +47,14 @@ bool TrDB2CNFundsExchange::calculateVolume(const char* assetsName, TimeStamp ts,
   return true;
 }
 
-bool TrDB2CNFundsExchange::calculatePrice(const char* assetsName, TimeStamp ts,
-                                          Volume volume, Money& money,
-                                          Money& price, Money& fee) {
+bool TrDB2Exchange::calculatePrice(const char* assetsName, TimeStamp ts,
+                                   Volume volume, Money& money, Money& price,
+                                   Money& fee) {
   assert(assetsName != NULL);
   assert(ts > 0);
   assert(volume > ZEROVOLUME);
 
-  auto c = this->m_mgrData.getCandle("jrj", assetsName, ts);
+  auto c = this->m_mgrData.getCandle(this->getMarketName(), assetsName, ts);
   if (c == NULL) {
     return false;
   }
@@ -68,10 +66,9 @@ bool TrDB2CNFundsExchange::calculatePrice(const char* assetsName, TimeStamp ts,
   return true;
 }
 
-bool TrDB2CNFundsExchange::getDataWithTimestamp(const char* assetsName,
-                                                TimeStamp ts,
-                                                CandleData& data) const {
-  auto c = this->m_mgrData.getCandle("jrj", assetsName, ts);
+bool TrDB2Exchange::getDataWithTimestamp(const char* assetsName, TimeStamp ts,
+                                         CandleData& data) const {
+  auto c = this->m_mgrData.getCandle(this->getMarketName(), assetsName, ts);
   if (c == NULL) {
     // LOG(INFO) << "TrDB2CNFundsExchange:getDataWithTimestamp " << assetsName
     //           << " " << ts;
@@ -86,11 +83,11 @@ bool TrDB2CNFundsExchange::getDataWithTimestamp(const char* assetsName,
   return true;
 }
 
-bool TrDB2CNFundsExchange::getData(const char* assetsName, int index,
-                                   CandleData& data) {
+bool TrDB2Exchange::getData(const char* assetsName, int index,
+                            CandleData& data) {
   assert(index >= 0);
 
-  auto candles = this->m_mgrData.getData("jrj", assetsName);
+  auto candles = this->m_mgrData.getData(this->getMarketName(), assetsName);
   if (candles == NULL) {
     return false;
   }
@@ -107,8 +104,8 @@ bool TrDB2CNFundsExchange::getData(const char* assetsName, int index,
   return false;
 }
 
-int TrDB2CNFundsExchange::getDataLength(const char* assetsName) {
-  auto candles = this->m_mgrData.getData("jrj", assetsName);
+int TrDB2Exchange::getDataLength(const char* assetsName) {
+  auto candles = this->m_mgrData.getData(this->getMarketName(), assetsName);
   if (candles == NULL) {
     return 0;
   }
@@ -116,9 +113,8 @@ int TrDB2CNFundsExchange::getDataLength(const char* assetsName) {
   return candles->candles_size();
 }
 
-void TrDB2CNFundsExchange::forEachTimeStamp(Exchange::FuncOnTimeStamp func,
-                                            TimeStamp tsStart,
-                                            TimeStamp tsEnd) const {
+void TrDB2Exchange::forEachTimeStamp(Exchange::FuncOnTimeStamp func,
+                                     TimeStamp tsStart, TimeStamp tsEnd) const {
   if (this->m_lstTimeStamp.empty()) {
     return;
   }
@@ -139,11 +135,11 @@ void TrDB2CNFundsExchange::forEachTimeStamp(Exchange::FuncOnTimeStamp func,
   }
 }
 
-void TrDB2CNFundsExchange::forEachAssetsData(const char* assetsName,
-                                             Exchange::FuncOnAssetsData func,
-                                             TimeStamp tsStart,
-                                             TimeStamp tsEnd) const {
-  auto candles = this->m_mgrData.getData("jrj", assetsName);
+void TrDB2Exchange::forEachAssetsData(const char* assetsName,
+                                      Exchange::FuncOnAssetsData func,
+                                      TimeStamp tsStart,
+                                      TimeStamp tsEnd) const {
+  auto candles = this->m_mgrData.getData(this->getMarketName(), assetsName);
   assert(candles != NULL);
 
   if (tsStart == tsEnd) {
@@ -177,24 +173,23 @@ void TrDB2CNFundsExchange::forEachAssetsData(const char* assetsName,
   }
 }
 
-void TrDB2CNFundsExchange::foreachCandlesTimeStamp(
-    const tradingpb::Candles* candles) {
+void TrDB2Exchange::foreachCandlesTimeStamp(const tradingpb::Candles* candles) {
   for (auto i = 0; i < candles->candles_size(); ++i) {
     auto c = candles->candles(i);
     this->insertTimeStamp(c.ts());
   }
 }
 
-void TrDB2CNFundsExchange::rebuildTimeStampList() {
+void TrDB2Exchange::rebuildTimeStampList() {
   this->m_lstTimeStamp.clear();
 
-  auto f = std::bind(&TrDB2CNFundsExchange::foreachCandlesTimeStamp, this,
+  auto f = std::bind(&TrDB2Exchange::foreachCandlesTimeStamp, this,
                      std::placeholders::_1);
 
   this->m_mgrData.foreachCandles(f);
 }
 
-void TrDB2CNFundsExchange::insertTimeStamp(TimeStamp ts) {
+void TrDB2Exchange::insertTimeStamp(TimeStamp ts) {
   for (auto it = this->m_lstTimeStamp.begin(); it != this->m_lstTimeStamp.end();
        ++it) {
     if (ts == *it) {
@@ -211,7 +206,7 @@ void TrDB2CNFundsExchange::insertTimeStamp(TimeStamp ts) {
   this->m_lstTimeStamp.push_back(ts);
 }
 
-TimeStamp TrDB2CNFundsExchange::getLastTimeStamp() const {
+TimeStamp TrDB2Exchange::getLastTimeStamp() const {
   if (this->m_lstTimeStamp.empty()) {
     return 0;
   }
@@ -219,7 +214,7 @@ TimeStamp TrDB2CNFundsExchange::getLastTimeStamp() const {
   return this->m_lstTimeStamp[this->m_lstTimeStamp.size() - 1];
 }
 
-TimeStamp TrDB2CNFundsExchange::getFirstTimeStamp() const {
+TimeStamp TrDB2Exchange::getFirstTimeStamp() const {
   if (this->m_lstTimeStamp.empty()) {
     return 0;
   }
@@ -227,11 +222,11 @@ TimeStamp TrDB2CNFundsExchange::getFirstTimeStamp() const {
   return this->m_lstTimeStamp[0];
 }
 
-void TrDB2CNFundsExchange::release() { this->m_mgrData.release(); }
+void TrDB2Exchange::release() { this->m_mgrData.release(); }
 
-int TrDB2CNFundsExchange::getTradingDays4Year() const {
-  return this->m_mgrData.calcAverageTradingDays4Year();
-}
+// int TrDB2Exchange::getTradingDays4Year() const {
+//   return this->m_mgrData.calcAverageTradingDays4Year();
+// }
 
 // Exchange* newTrDB2CNFunds(const Config& cfg) {
 //   auto exchange =
@@ -242,19 +237,5 @@ int TrDB2CNFundsExchange::getTradingDays4Year() const {
 
 //   return exchange;
 // }
-
-Exchange* TrDB2CNFundsExchange::newExchange(const Config& cfg) {
-  auto exchange =
-      new TrDB2CNFundsExchange(cfg.trdb2Serv.c_str(), cfg.trdb2Token.c_str());
-
-  exchange->init(cfg);
-
-  return exchange;
-}
-
-void TrDB2CNFundsExchange::regExchange() {
-  ExchangeMgr::getSingleton()->regNewExchange(
-      TrDB2CNFundsTypeName, TrDB2CNFundsExchange::newExchange);
-}
 
 CR2END

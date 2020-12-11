@@ -3,12 +3,15 @@
 #include <stdlib.h>
 #include <tradingcore2/csv.h>
 #include <tradingcore2/exchange/cnfund.h>
+#include <tradingcore2/exchangemgr.h>
 #include <tradingcore2/utils.h>
 
 #include <ctime>
 #include <iomanip>
 
 CR2BEGIN
+
+const char* CNFundTypeName = "cnfund";
 
 const CNFundValueNode* CNFundValue::getNode(TimeStamp ts) const {
   for (auto it = this->data.begin(); it != this->data.end(); ++it) {
@@ -284,12 +287,25 @@ void CNFundExchange::release() {
   this->m_map.clear();
 }
 
-Exchange* newCNFund(const Config& cfg) {
+// Exchange* newCNFund(const Config& cfg) {
+//   auto exchange = new CNFundExchange();
+
+//   exchange->init(cfg);
+
+//   return exchange;
+// }
+
+Exchange* CNFundExchange::newExchange(const Config& cfg) {
   auto exchange = new CNFundExchange();
 
   exchange->init(cfg);
 
   return exchange;
+}
+
+void CNFundExchange::regExchange() {
+  ExchangeMgr::getSingleton()->regNewExchange(CNFundTypeName,
+                                              CNFundExchange::newExchange);
 }
 
 CR2END
