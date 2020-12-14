@@ -49,13 +49,13 @@ class CtrlConditionMgr {
 
   void deleteCtrlConditionData(const tradingpb::CtrlCondition& cc, void* pData);
 
-  bool canCtrl(const IndicatorMap& mapIndicators,
+  bool canCtrl(const Exchange& exchange, const IndicatorMap& mapIndicators,
                const tradingpb::CtrlCondition& cc, bool issim, CtrlType ct,
                TimeStamp ts, int index, CandleData& cd, void* pData);
 
-  bool canCtrl(const IndicatorMap& mapIndicators, int ccnums, bool issim,
-               CtrlType ct, TimeStamp ts, int index, CandleData& cd,
-               FuncGetCtrlCondition funcGetCC);
+  bool canCtrl(const Exchange& exchange, const IndicatorMap& mapIndicators,
+               int ccnums, bool issim, CtrlType ct, TimeStamp ts, int index,
+               CandleData& cd, FuncGetCtrlCondition funcGetCC);
 
   void getIndicators(std::set<std::string>& indicators, Strategy& strategy);
 

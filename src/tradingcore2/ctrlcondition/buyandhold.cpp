@@ -19,7 +19,8 @@ bool CCBuyAndHold::isValid(const tradingpb::CtrlCondition& cc, CtrlType ct) {
   return false;
 }
 
-bool CCBuyAndHold::canCtrl(const IndicatorMap& mapIndicators,
+bool CCBuyAndHold::canCtrl(const Exchange& exchange,
+                           const IndicatorMap& mapIndicators,
                            const tradingpb::CtrlCondition& cc, bool issim,
                            CtrlType ct, TimeStamp ts, int index, CandleData& cd,
                            void* pData) {

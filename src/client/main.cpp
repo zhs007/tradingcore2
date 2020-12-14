@@ -373,6 +373,85 @@ void normalWeekDay5(const tr2::Config& cfg) {
   //                                       5, 5 /* off2 */, 10, 2);
 }
 
+void normalWeekDay6(const tr2::Config& cfg) {
+  // 周3 且周5能卖，才买
+  // 周5 卖
+  tr2::NodeClient2 client(cfg.servs[0].host.c_str(),
+                          cfg.servs[0].token.c_str());
+
+  ::tradingpb::SimTradingParams params;
+
+  auto asset0 = params.add_assets();
+  asset0->set_market("jrj");
+  asset0->set_code("001631");
+
+  auto strategy0 = params.add_strategies();
+  strategy0->set_name("normal");
+  auto asset1 = strategy0->mutable_asset();
+  asset1->set_market("jrj");
+  asset1->set_code("001631");
+  auto buy0 = strategy0->add_buy();
+  buy0->set_name("weekday2");
+  buy0->add_vals(3);
+  buy0->add_vals(2);
+  // auto buy1 = strategy0->add_buy();
+  // buy1->set_name("indicatorsp");
+  // buy1->add_operators("up");
+  // buy1->add_strvals("ema.5");
+
+  // auto buy2 = strategy0->add_buy();
+  // buy2->set_name("weekday");
+  // buy2->add_vals(1);
+  // buy2->set_group(1);
+  // auto buy3 = strategy0->add_buy();
+  // buy3->set_name("indicatorsp");
+  // buy3->add_operators("up");
+  // buy3->add_strvals("ema.5");
+  // buy3->set_group(1);
+
+  auto sell0 = strategy0->add_sell();
+  sell0->set_name("weekday");
+  sell0->add_vals(5);
+
+  // auto sell1 = strategy0->add_sell();
+  // sell1->set_name("indicatorsp");
+  // sell1->add_operators("down");
+  // sell1->add_strvals("ema.5");
+  // sell0->add_vals(1);
+  auto bp = strategy0->mutable_paramsbuy();
+  bp->set_perhandmoney(1);
+  auto sp = strategy0->mutable_paramssell();
+  sp->set_pervolume(1);
+  // auto ip = strategy0->mutable_paramsinit();
+  // ip->set_money(10000);
+  auto aip = strategy0->mutable_paramsaip();
+  aip->set_money(10000);
+  aip->set_type(tradingpb::AIPTT_WEEKDAY);
+  aip->set_day(1);
+
+  params.set_startts(tr2::str2timestampUTC("20200101", "%Y%m%d"));
+  params.set_endts(tr2::str2timestampUTC("20200301", "%Y%m%d"));
+
+  ::tradingpb::ReplyCalcPNL res;
+  auto status = client.clacPNL(params, res);
+
+  // client.waitStop();
+
+  // ::tradingpb::ReplyServerInfo res;
+  // auto status = client.getServerInfo(res);
+  LOG(INFO) << "calcPNL " << status.error_code();
+
+  if (status.ok()) {
+    tr2::logProtobuf("reply ", res);
+    // LOG(INFO) << res.DebugString();
+  }
+
+  // auto cnfund = tr2::ExchangeMgr::getSingleton()->getExchange("cnfund");
+  // tr2::startTrainSingleIndicator2ExPool(cfg, *cnfund, "110022", "rsi",
+  //                                       "../output", 10000, 5, 5 /* off0 */,
+  //                                       5, 5 /* off2 */, 10, 2);
+}
+
 void normalROC1(const tr2::Config& cfg) {
   tr2::NodeClient2 client(cfg.servs[0].host.c_str(),
                           cfg.servs[0].token.c_str());
@@ -523,7 +602,8 @@ int main(int argc, char* argv[]) {
   // normalROC1(cfg);
   // normalEMA5(cfg);
   // normalWeekDay3(cfg);
-  normalWeekDay5(cfg);
+  // normalWeekDay5(cfg);
+  normalWeekDay6(cfg);
 
   return 0;
 }

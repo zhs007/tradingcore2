@@ -13,6 +13,7 @@
 CR2BEGIN
 
 class IndicatorMap;
+class Exchange;
 
 class CtrlConditionHelper {
  public:
@@ -32,7 +33,8 @@ class CtrlConditionHelper {
 
   virtual bool isValid(const tradingpb::CtrlCondition& cc, CtrlType ct) = 0;
 
-  virtual bool canCtrl(const IndicatorMap& mapIndicators,
+  virtual bool canCtrl(const Exchange& exchange,
+                       const IndicatorMap& mapIndicators,
                        const tradingpb::CtrlCondition& cc, bool issim,
                        CtrlType ct, TimeStamp ts, int index, CandleData& cd,
                        void* pData) = 0;

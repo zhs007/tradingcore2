@@ -1,5 +1,5 @@
-#ifndef __TRADINGCORE2_CTRLCONDITION_MONTHDAY_H__
-#define __TRADINGCORE2_CTRLCONDITION_MONTHDAY_H__
+#ifndef __TRADINGCORE2_CTRLCONDITION_WEEKDAY2_H__
+#define __TRADINGCORE2_CTRLCONDITION_WEEKDAY2_H__
 
 #include <tradingcore2/basedef.h>
 #include <tradingcore2/candle.h>
@@ -13,13 +13,13 @@
 
 CR2BEGIN
 
-class CCMonthDay final : public CtrlConditionHelper {
+class CCWeekDay2 final : public CtrlConditionHelper {
  public:
   static void regCtrlConditionHelper();
 
  protected:
-  CCMonthDay() {}
-  virtual ~CCMonthDay() {}
+  CCWeekDay2() {}
+  virtual ~CCWeekDay2() {}
 
  public:
   virtual void getIndicators(std::set<std::string>& indicators,
@@ -41,4 +41,4 @@ class CCMonthDay final : public CtrlConditionHelper {
 
 CR2END
 
-#endif  // __TRADINGCORE2_CTRLCONDITION_MONTHDAY_H__
+#endif  // __TRADINGCORE2_CTRLCONDITION_WEEKDAY2_H__

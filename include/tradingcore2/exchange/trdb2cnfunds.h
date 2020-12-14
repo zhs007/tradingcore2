@@ -11,10 +11,6 @@
 
 CR2BEGIN
 
-// static const char* TrDB2CNFundsTypeName = "trdb2cnfunds";
-
-// Exchange* newTrDB2CNFunds(const Config& cfg);
-
 class TrDB2CNFundsExchange final : public Exchange {
  public:
   static Exchange* newExchange(const Config& cfg);
@@ -73,6 +69,8 @@ class TrDB2CNFundsExchange final : public Exchange {
   virtual float getRiskFreeInterestRate() const override { return 0.03; }
 
   virtual const char* getMarketName() const override { return "jrj"; }
+
+  virtual bool isValidTs(TimeStamp ts) const override;
 
   virtual void rebuildTimeStampList() override;
 

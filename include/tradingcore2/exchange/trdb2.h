@@ -11,24 +11,15 @@
 
 CR2BEGIN
 
-// static const char* TrDB2CNFundsTypeName = "trdb2cnfunds";
-
-// Exchange* newTrDB2CNFunds(const Config& cfg);
-
 class TrDB2Exchange : public Exchange {
-  //   friend Exchange* newTrDB2CNFunds(const Config& cfg);
-
  public:
   typedef std::vector<TimeStamp> TimeStampList;
 
  protected:
   TrDB2Exchange(const char* host, const char* token) : m_mgrData(host, token) {}
-  // virtual ~TrDB2Exchange() { this->release(); }
 
  public:
   virtual bool init(const Config& cfg) override;
-
-  //   virtual const char* getTypeName() const override;
 
   // loadDat - [tsStart, tsEnd]
   virtual void loadData(const char* assetName, TimeStamp tsStart,
@@ -63,12 +54,6 @@ class TrDB2Exchange : public Exchange {
   virtual TimeStamp getFirstTimeStamp() const override;
 
   virtual TimeStamp getLastTimeStamp() const override;
-
-  //   virtual int getTradingDays4Year() const override;
-
-  //   virtual float getRiskFreeInterestRate() const override { return 0.03; }
-
-  //   virtual const char* getMarketName() const override { return "jrj"; }
 
   virtual void rebuildTimeStampList() override;
 

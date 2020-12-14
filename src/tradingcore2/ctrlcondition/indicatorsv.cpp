@@ -24,7 +24,8 @@ bool CCIndicatorSV::isValid(const tradingpb::CtrlCondition& cc, CtrlType ct) {
          cc.operators_size() == 1;
 }
 
-bool CCIndicatorSV::canCtrl(const IndicatorMap& mapIndicators,
+bool CCIndicatorSV::canCtrl(const Exchange& exchange,
+                            const IndicatorMap& mapIndicators,
                             const tradingpb::CtrlCondition& cc, bool issim,
                             CtrlType ct, TimeStamp ts, int index,
                             CandleData& cd, void* pData) {
