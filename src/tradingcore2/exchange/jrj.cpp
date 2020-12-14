@@ -235,6 +235,25 @@ int JRJExchange::getTradingDays4Year() const {
   return this->m_mgrData.calcAverageTradingDays4Year();
 }
 
+bool JRJExchange::isValidTs(TimeStamp ts) const {
+  tm ctm;
+  timestamp2timeUTC(ts, ctm);
+
+  for (auto it = this->m_lstTimeStamp.begin(); it != this->m_lstTimeStamp.end();
+       ++it) {
+    tm curtm;
+    timestamp2timeUTC(*it, curtm);
+
+    if (curtm.tm_year == ctm.tm_year && curtm.tm_yday == ctm.tm_yday) {
+      return true;
+    } else if (curtm.tm_year >= ctm.tm_year && curtm.tm_yday > ctm.tm_yday) {
+      return false;
+    }
+  }
+
+  return false;
+}
+
 Exchange* JRJExchange::newExchange(const Config& cfg) {
   auto exchange =
       new JRJExchange(cfg.trdb2Serv.c_str(), cfg.trdb2Token.c_str());

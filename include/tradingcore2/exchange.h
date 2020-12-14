@@ -67,6 +67,8 @@ class Exchange {
 
   virtual void rebuildTimeStampList() = 0;
 
+  virtual bool isValidTs(TimeStamp ts) const = 0;
+
  protected:
 };
 

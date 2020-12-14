@@ -87,6 +87,8 @@ class CNFundExchange final : public Exchange {
 
   virtual const char* getMarketName() const override { return "cnfund"; }
 
+  virtual bool isValidTs(TimeStamp ts) const override;
+
   virtual void rebuildTimeStampList() override;
 
  public:

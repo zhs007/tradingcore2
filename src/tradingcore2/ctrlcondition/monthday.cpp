@@ -16,7 +16,8 @@ bool CCMonthDay::isValid(const tradingpb::CtrlCondition& cc, CtrlType ct) {
   return cc.vals_size() == 1;
 }
 
-bool CCMonthDay::canCtrl(const IndicatorMap& mapIndicators,
+bool CCMonthDay::canCtrl(const Exchange& exchange,
+                         const IndicatorMap& mapIndicators,
                          const tradingpb::CtrlCondition& cc, bool issim,
                          CtrlType ct, TimeStamp ts, int index, CandleData& cd,
                          void* pData) {

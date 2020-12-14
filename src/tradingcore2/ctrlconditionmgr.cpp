@@ -74,21 +74,23 @@ int CtrlConditionMgr::isValidStrategy(const tradingpb::Strategy& strategy) {
   return 0;
 }
 
-bool CtrlConditionMgr::canCtrl(const IndicatorMap& mapIndicators,
+bool CtrlConditionMgr::canCtrl(const Exchange& exchange,
+                               const IndicatorMap& mapIndicators,
                                const tradingpb::CtrlCondition& cc, bool issim,
                                CtrlType ct, TimeStamp ts, int index,
                                CandleData& cd, void* pData) {
   auto name = cc.name();
   auto it = this->m_mapCtrlCondition.find(name);
   if (it != this->m_mapCtrlCondition.end()) {
-    return it->second->canCtrl(mapIndicators, cc, issim, ct, ts, index, cd,
-                               pData);
+    return it->second->canCtrl(exchange, mapIndicators, cc, issim, ct, ts,
+                               index, cd, pData);
   }
 
   return false;
 }
 
-bool CtrlConditionMgr::canCtrl(const IndicatorMap& mapIndicators, int ccnums,
+bool CtrlConditionMgr::canCtrl(const Exchange& exchange,
+                               const IndicatorMap& mapIndicators, int ccnums,
                                bool issim, CtrlType ct, TimeStamp ts, int index,
                                CandleData& cd, FuncGetCtrlCondition funcGetCC) {
   // LOG(INFO) << "ccnums " << ccnums;
@@ -110,8 +112,8 @@ bool CtrlConditionMgr::canCtrl(const IndicatorMap& mapIndicators, int ccnums,
       isNewGroup = true;
     }
 
-    bool curcanctrl =
-        this->canCtrl(mapIndicators, *pCC, issim, ct, ts, index, cd, pData);
+    bool curcanctrl = this->canCtrl(exchange, mapIndicators, *pCC, issim, ct,
+                                    ts, index, cd, pData);
     if (isNewGroup) {
       itGroup->second = curcanctrl;
     } else {
@@ -173,8 +175,8 @@ int CtrlConditionMgr::procStrategy(Strategy& strategy,
     auto f = std::bind(f0, pbStrategy, pData, std::placeholders::_1,
                        std::placeholders::_2, std::placeholders::_3);
 
-    if (this->canCtrl(strategy.getMapIndicators(), pbStrategy.buy_size(), issim,
-                      CT_BUY, ts, index, cd, f)) {
+    if (this->canCtrl(exchange, strategy.getMapIndicators(),
+                      pbStrategy.buy_size(), issim, CT_BUY, ts, index, cd, f)) {
       // LOG(INFO) << "buy ";
 
       // strategy.buy(issim, ts);
@@ -194,8 +196,9 @@ int CtrlConditionMgr::procStrategy(Strategy& strategy,
     auto f = std::bind(f0, pbStrategy, pData, std::placeholders::_1,
                        std::placeholders::_2, std::placeholders::_3);
 
-    if (this->canCtrl(strategy.getMapIndicators(), pbStrategy.sell_size(),
-                      issim, CT_SELL, ts, index, cd, f)) {
+    if (this->canCtrl(exchange, strategy.getMapIndicators(),
+                      pbStrategy.sell_size(), issim, CT_SELL, ts, index, cd,
+                      f)) {
       // LOG(INFO) << "sell ";
 
       // strategy.sell(issim, ts);

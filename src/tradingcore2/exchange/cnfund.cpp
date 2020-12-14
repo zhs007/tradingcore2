@@ -287,13 +287,24 @@ void CNFundExchange::release() {
   this->m_map.clear();
 }
 
-// Exchange* newCNFund(const Config& cfg) {
-//   auto exchange = new CNFundExchange();
+bool CNFundExchange::isValidTs(TimeStamp ts) const {
+  tm ctm;
+  timestamp2timeUTC(ts, ctm);
 
-//   exchange->init(cfg);
+  for (auto it = this->m_lstTimeStamp.begin(); it != this->m_lstTimeStamp.end();
+       ++it) {
+    tm curtm;
+    timestamp2timeUTC(*it, curtm);
 
-//   return exchange;
-// }
+    if (curtm.tm_year == ctm.tm_year && curtm.tm_yday == ctm.tm_yday) {
+      return true;
+    } else if (curtm.tm_year >= ctm.tm_year && curtm.tm_yday > ctm.tm_yday) {
+      return false;
+    }
+  }
+
+  return false;
+}
 
 Exchange* CNFundExchange::newExchange(const Config& cfg) {
   auto exchange = new CNFundExchange();
