@@ -14,6 +14,7 @@
 CR2BEGIN
 
 // Strategy - 仅处理单个资产，可以有多个条件，如果要处理多个资产，在外部处理
+//    支持多个策略对应一个钱包
 class Strategy {
  public:
   Strategy(Wallet& wallet, Exchange& exchange)
@@ -60,9 +61,9 @@ class Strategy {
 
   const tradingpb::Strategy& getStrategy() const { return m_strategy; }
 
-  void buy(bool issim, TimeStamp ts);
+  void buy(bool issim, TimeStamp ts, int strategyID, int ctrlConditionID);
 
-  void sell(bool issim, TimeStamp ts);
+  void sell(bool issim, TimeStamp ts, int strategyID, int ctrlConditionID);
 
   void initMoney(bool issim, TimeStamp ts);
 
@@ -81,7 +82,8 @@ class Strategy {
   void setStopLossPrice(Money price) { m_curStopLossPrice = price; }
 
   Money onProcStopLoss(const char* assetsName, Money curPrice, Volume volume,
-                       TimeStamp ts, int index);
+                       TimeStamp ts, int index, int strategyID,
+                       int ctrlConditionID);
 
   void onTradingFail() { m_failNums++; }
 

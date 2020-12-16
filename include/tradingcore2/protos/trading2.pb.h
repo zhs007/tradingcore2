@@ -658,8 +658,10 @@ class CtrlNode :
     kVolumeDstFieldNumber = 5,
     kFeeFieldNumber = 7,
     kAverageHoldingPriceFieldNumber = 8,
-    kSellPriceFieldNumber = 9,
     kTypeFieldNumber = 6,
+    kCtrlConditionIDFieldNumber = 10,
+    kSellPriceFieldNumber = 9,
+    kStrategyIDFieldNumber = 11,
   };
   // .tradingpb.Asset src = 2;
   bool has_src() const;
@@ -736,6 +738,24 @@ class CtrlNode :
   void _internal_set_averageholdingprice(double value);
   public:
 
+  // .tradingpb.CtrlType type = 6;
+  void clear_type();
+  ::tradingpb::CtrlType type() const;
+  void set_type(::tradingpb::CtrlType value);
+  private:
+  ::tradingpb::CtrlType _internal_type() const;
+  void _internal_set_type(::tradingpb::CtrlType value);
+  public:
+
+  // int32 ctrlConditionID = 10;
+  void clear_ctrlconditionid();
+  ::PROTOBUF_NAMESPACE_ID::int32 ctrlconditionid() const;
+  void set_ctrlconditionid(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_ctrlconditionid() const;
+  void _internal_set_ctrlconditionid(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
   // double sellPrice = 9;
   void clear_sellprice();
   double sellprice() const;
@@ -745,13 +765,13 @@ class CtrlNode :
   void _internal_set_sellprice(double value);
   public:
 
-  // .tradingpb.CtrlType type = 6;
-  void clear_type();
-  ::tradingpb::CtrlType type() const;
-  void set_type(::tradingpb::CtrlType value);
+  // int32 strategyID = 11;
+  void clear_strategyid();
+  ::PROTOBUF_NAMESPACE_ID::int32 strategyid() const;
+  void set_strategyid(::PROTOBUF_NAMESPACE_ID::int32 value);
   private:
-  ::tradingpb::CtrlType _internal_type() const;
-  void _internal_set_type(::tradingpb::CtrlType value);
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_strategyid() const;
+  void _internal_set_strategyid(::PROTOBUF_NAMESPACE_ID::int32 value);
   public:
 
   // @@protoc_insertion_point(class_scope:tradingpb.CtrlNode)
@@ -766,8 +786,10 @@ class CtrlNode :
   double volumedst_;
   double fee_;
   double averageholdingprice_;
-  double sellprice_;
   int type_;
+  ::PROTOBUF_NAMESPACE_ID::int32 ctrlconditionid_;
+  double sellprice_;
+  ::PROTOBUF_NAMESPACE_ID::int32 strategyid_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_trading2_2eproto;
 };
@@ -5122,6 +5144,46 @@ inline void CtrlNode::_internal_set_sellprice(double value) {
 inline void CtrlNode::set_sellprice(double value) {
   _internal_set_sellprice(value);
   // @@protoc_insertion_point(field_set:tradingpb.CtrlNode.sellPrice)
+}
+
+// int32 ctrlConditionID = 10;
+inline void CtrlNode::clear_ctrlconditionid() {
+  ctrlconditionid_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 CtrlNode::_internal_ctrlconditionid() const {
+  return ctrlconditionid_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 CtrlNode::ctrlconditionid() const {
+  // @@protoc_insertion_point(field_get:tradingpb.CtrlNode.ctrlConditionID)
+  return _internal_ctrlconditionid();
+}
+inline void CtrlNode::_internal_set_ctrlconditionid(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  ctrlconditionid_ = value;
+}
+inline void CtrlNode::set_ctrlconditionid(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_ctrlconditionid(value);
+  // @@protoc_insertion_point(field_set:tradingpb.CtrlNode.ctrlConditionID)
+}
+
+// int32 strategyID = 11;
+inline void CtrlNode::clear_strategyid() {
+  strategyid_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 CtrlNode::_internal_strategyid() const {
+  return strategyid_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 CtrlNode::strategyid() const {
+  // @@protoc_insertion_point(field_get:tradingpb.CtrlNode.strategyID)
+  return _internal_strategyid();
+}
+inline void CtrlNode::_internal_set_strategyid(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  strategyid_ = value;
+}
+inline void CtrlNode::set_strategyid(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_strategyid(value);
+  // @@protoc_insertion_point(field_set:tradingpb.CtrlNode.strategyID)
 }
 
 // -------------------------------------------------------------------

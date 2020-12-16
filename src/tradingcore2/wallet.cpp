@@ -47,7 +47,8 @@ void Wallet::withdraw(Money money, TimeStamp ts) {
   this->_addHistory(n);
 }
 
-Volume Wallet::buyAssets(const char* assetsName, Money money, TimeStamp ts) {
+Volume Wallet::buyAssets(const char* assetsName, Money money, TimeStamp ts,
+                         int strategyID, int ctrlConditionID) {
   assert(assetsName != NULL);
   assert(money > ZEROMONEY);
 
@@ -69,14 +70,16 @@ Volume Wallet::buyAssets(const char* assetsName, Money money, TimeStamp ts) {
   this->m_money -= money;
 
   WalletHistoryNode n;
-  n.setTrade(TT_BUY, assetsName, price, volume, fee, ts, -money);
+  n.setTrade(TT_BUY, assetsName, price, volume, fee, ts, -money, strategyID,
+             ctrlConditionID);
 
   this->_addHistory(n);
 
   return volume;
 }
 
-Money Wallet::sellAssets(const char* assetsName, Volume volume, TimeStamp ts) {
+Money Wallet::sellAssets(const char* assetsName, Volume volume, TimeStamp ts,
+                         int strategyID, int ctrlConditionID) {
   assert(assetsName != NULL);
   assert(volume > ZEROVOLUME);
 
@@ -100,7 +103,8 @@ Money Wallet::sellAssets(const char* assetsName, Volume volume, TimeStamp ts) {
   this->m_money += money;
 
   WalletHistoryNode n;
-  n.setTrade(TT_SELL, assetsName, price, volume, fee, ts, money);
+  n.setTrade(TT_SELL, assetsName, price, volume, fee, ts, money, strategyID,
+             ctrlConditionID);
 
   this->_addHistory(n);
 

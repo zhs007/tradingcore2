@@ -24,6 +24,8 @@ struct WalletHistoryNode {
   Money offMoney;
   Trade trade;
   TimeStamp ts;
+  int strategyID;
+  int ctrlConditionID;
 
   WalletHistoryNode() : nodeType(WHNT_NONE) {}
 
@@ -43,15 +45,19 @@ struct WalletHistoryNode {
     this->ts = ts;
   }
 
-  void setTrade(Trade& trade, Money offMoney) {
+  void setTrade(Trade& trade, Money offMoney, int strategyID,
+                int ctrlConditionID) {
     this->nodeType = WHNT_TRADE;
     this->offMoney = offMoney;
     this->trade = trade;
     this->ts = trade.ts;
+    this->strategyID = strategyID;
+    this->ctrlConditionID = ctrlConditionID;
   }
 
   void setTrade(TradeType tradeType, const char* assetsName, Money price,
-                Volume volume, Money fee, TimeStamp ts, Money offMoney) {
+                Volume volume, Money fee, TimeStamp ts, Money offMoney,
+                int strategyID, int ctrlConditionID) {
     this->nodeType = WHNT_TRADE;
     this->offMoney = offMoney;
     this->ts = ts;
@@ -63,6 +69,8 @@ struct WalletHistoryNode {
     this->trade.money = offMoney < 0 ? -offMoney : offMoney;
     this->trade.volume = volume;
     this->trade.ts = ts;
+    this->strategyID = strategyID;
+    this->ctrlConditionID = ctrlConditionID;
   }
 };
 
@@ -86,9 +94,11 @@ class Wallet {
  public:
   Assets getAssets(const char* assetsName) const;
 
-  Volume buyAssets(const char* assetsName, Money money, TimeStamp ts);
+  Volume buyAssets(const char* assetsName, Money money, TimeStamp ts,
+                   int strategyID, int ctrlConditionID);
 
-  Money sellAssets(const char* assetsName, Volume volume, TimeStamp ts);
+  Money sellAssets(const char* assetsName, Volume volume, TimeStamp ts,
+                   int strategyID, int ctrlConditionID);
 
   void deposit(Money money, TimeStamp ts);
 

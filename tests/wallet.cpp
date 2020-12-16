@@ -50,8 +50,8 @@ TEST_F(WalletTest, trade) {
   pWallet->deposit(10000, tr2::str2timestampUTC("20100820", "%Y%m%d"));
   EXPECT_EQ(pWallet->getMoney(), 10000);
 
-  pWallet->buyAssets("110022", 100,
-                     tr2::str2timestampUTC("20100820", "%Y%m%d"));
+  pWallet->buyAssets("110022", 100, tr2::str2timestampUTC("20100820", "%Y%m%d"),
+                     0, 0);
   EXPECT_EQ(pWallet->getMoney(), 9900);
 
   auto assets = pWallet->getAssets("110022");
@@ -60,7 +60,7 @@ TEST_F(WalletTest, trade) {
   EXPECT_EQ(assets.blocks.size(), 1);
 
   pWallet->sellAssets("110022", 100,
-                      tr2::str2timestampUTC("20100827", "%Y%m%d"));
+                      tr2::str2timestampUTC("20100827", "%Y%m%d"), 0, 0);
   EXPECT_NEAR(pWallet->getMoney(), 10000.09, 0.00004);
 
   assets = pWallet->getAssets("110022");
@@ -78,7 +78,7 @@ TEST_F(WalletTest, trade2) {
   EXPECT_EQ(pWallet->getMoney(), 10000);
 
   pWallet->buyAssets("110022", 1000,
-                     tr2::str2timestampUTC("20100820", "%Y%m%d"));
+                     tr2::str2timestampUTC("20100820", "%Y%m%d"), 0, 0);
   EXPECT_EQ(pWallet->getMoney(), 9000);
 
   auto assets = pWallet->getAssets("110022");
@@ -87,7 +87,7 @@ TEST_F(WalletTest, trade2) {
   EXPECT_EQ(assets.blocks.size(), 1);
 
   pWallet->sellAssets("110022", 100,
-                      tr2::str2timestampUTC("20100827", "%Y%m%d"));
+                      tr2::str2timestampUTC("20100827", "%Y%m%d"), 0, 0);
   EXPECT_NEAR(pWallet->getMoney(), 9100.09, 0.00004);
 
   assets = pWallet->getAssets("110022");
@@ -96,7 +96,7 @@ TEST_F(WalletTest, trade2) {
   EXPECT_EQ(assets.blocks.size(), 1);
 
   pWallet->buyAssets("110022", 1010,
-                     tr2::str2timestampUTC("20101022", "%Y%m%d"));
+                     tr2::str2timestampUTC("20101022", "%Y%m%d"), 0, 0);
   EXPECT_EQ(pWallet->getMoney(), 9100.09 - 1010);
 
   assets = pWallet->getAssets("110022");
@@ -105,7 +105,7 @@ TEST_F(WalletTest, trade2) {
   EXPECT_EQ(assets.blocks.size(), 2);
 
   pWallet->sellAssets("110022", 1800,
-                      tr2::str2timestampUTC("20200212", "%Y%m%d"));
+                      tr2::str2timestampUTC("20200212", "%Y%m%d"), 0, 0);
   EXPECT_NEAR(pWallet->getMoney(), 9100.09 - 1010 + 1800 * 2.915, 0.00004);
 
   assets = pWallet->getAssets("110022");
@@ -123,7 +123,7 @@ TEST_F(WalletTest, pnl) {
   EXPECT_EQ(pWallet->getMoney(), 10000);
 
   pWallet->buyAssets("110022", 1000,
-                     tr2::str2timestampUTC("20100820", "%Y%m%d"));
+                     tr2::str2timestampUTC("20100820", "%Y%m%d"), 0, 0);
   EXPECT_EQ(pWallet->getMoney(), 9000);
 
   auto assets = pWallet->getAssets("110022");
@@ -132,7 +132,7 @@ TEST_F(WalletTest, pnl) {
   EXPECT_EQ(assets.blocks.size(), 1);
 
   pWallet->sellAssets("110022", 100,
-                      tr2::str2timestampUTC("20100827", "%Y%m%d"));
+                      tr2::str2timestampUTC("20100827", "%Y%m%d"), 0, 0);
   EXPECT_NEAR(pWallet->getMoney(), 9100.09, 0.00004);
 
   assets = pWallet->getAssets("110022");
@@ -141,7 +141,7 @@ TEST_F(WalletTest, pnl) {
   EXPECT_EQ(assets.blocks.size(), 1);
 
   pWallet->buyAssets("110022", 1010,
-                     tr2::str2timestampUTC("20101022", "%Y%m%d"));
+                     tr2::str2timestampUTC("20101022", "%Y%m%d"), 0, 0);
   EXPECT_EQ(pWallet->getMoney(), 9100.09 - 1010);
 
   assets = pWallet->getAssets("110022");
@@ -150,7 +150,7 @@ TEST_F(WalletTest, pnl) {
   EXPECT_EQ(assets.blocks.size(), 2);
 
   pWallet->sellAssets("110022", 1800,
-                      tr2::str2timestampUTC("20200212", "%Y%m%d"));
+                      tr2::str2timestampUTC("20200212", "%Y%m%d"), 0, 0);
   EXPECT_NEAR(pWallet->getMoney(), 9100.09 - 1010 + 1800 * 2.915, 0.00004);
 
   assets = pWallet->getAssets("110022");
