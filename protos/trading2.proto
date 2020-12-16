@@ -35,6 +35,8 @@ message CtrlNode {
     double fee = 7;
     double averageHoldingPrice = 8;
     double sellPrice = 9;
+    int32 ctrlConditionID = 10;             // 用于多条件时，标记条件ID，条件ID是条件index + 1，0是无效值
+    int32 strategyID = 11;                  // 用于多策略时，标记策略ID，策略ID是策略index + 1，0是无效值
 }
 
 // WalletAsset - wallet asset

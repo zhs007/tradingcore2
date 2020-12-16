@@ -47,7 +47,8 @@ void Wallet::withdraw(Money money, TimeStamp ts) {
   this->_addHistory(n);
 }
 
-Volume Wallet::buyAssets(const char* assetsName, Money money, TimeStamp ts) {
+Volume Wallet::buyAssets(const char* assetsName, Money money, TimeStamp ts,
+                         int strategyID, int ctrlConditionID) {
   assert(assetsName != NULL);
   assert(money > ZEROMONEY);
 
@@ -69,14 +70,18 @@ Volume Wallet::buyAssets(const char* assetsName, Money money, TimeStamp ts) {
   this->m_money -= money;
 
   WalletHistoryNode n;
-  n.setTrade(TT_BUY, assetsName, price, volume, fee, ts, -money);
+  n.setTrade(TT_BUY, assetsName, price, volume, fee, ts, -money, strategyID,
+             ctrlConditionID);
 
   this->_addHistory(n);
+
+  // LOG(INFO) << "TT_BUY " << this->m_history.size() << " " << ts;
 
   return volume;
 }
 
-Money Wallet::sellAssets(const char* assetsName, Volume volume, TimeStamp ts) {
+Money Wallet::sellAssets(const char* assetsName, Volume volume, TimeStamp ts,
+                         int strategyID, int ctrlConditionID) {
   assert(assetsName != NULL);
   assert(volume > ZEROVOLUME);
 
@@ -100,9 +105,12 @@ Money Wallet::sellAssets(const char* assetsName, Volume volume, TimeStamp ts) {
   this->m_money += money;
 
   WalletHistoryNode n;
-  n.setTrade(TT_SELL, assetsName, price, volume, fee, ts, money);
+  n.setTrade(TT_SELL, assetsName, price, volume, fee, ts, money, strategyID,
+             ctrlConditionID);
 
   this->_addHistory(n);
+
+  // LOG(INFO) << "TT_SELL " << this->m_history.size() << " " << ts;
 
   return money;
 }
@@ -192,6 +200,18 @@ void Wallet::buildPNL2(PNL2& pnl2) const {
   pnl2.procTotalPNLAssetData(this->m_exchange);
 
   pnl2.onBuildEnd(this->m_exchange);
+}
+
+const WalletHistoryNode* Wallet::getLastNode(TradeType tradeType) const {
+  // LOG(INFO) << "getLastNode " << this->m_history.size();
+
+  for (auto it = this->m_history.rbegin(); it != this->m_history.rend(); ++it) {
+    if (it->nodeType == WHNT_TRADE && it->trade.tradeType == tradeType) {
+      return &(*it);
+    }
+  }
+
+  return NULL;
 }
 
 CR2END
