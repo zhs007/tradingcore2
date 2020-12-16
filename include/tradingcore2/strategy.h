@@ -73,6 +73,8 @@ class Strategy {
 
   Exchange& getExchange() { return this->m_exchange; }
 
+  Wallet& getWallet() { return this->m_wallet; }
+
  protected:
   void release();
 

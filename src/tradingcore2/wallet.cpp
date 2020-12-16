@@ -75,6 +75,8 @@ Volume Wallet::buyAssets(const char* assetsName, Money money, TimeStamp ts,
 
   this->_addHistory(n);
 
+  // LOG(INFO) << "TT_BUY " << this->m_history.size() << " " << ts;
+
   return volume;
 }
 
@@ -107,6 +109,8 @@ Money Wallet::sellAssets(const char* assetsName, Volume volume, TimeStamp ts,
              ctrlConditionID);
 
   this->_addHistory(n);
+
+  // LOG(INFO) << "TT_SELL " << this->m_history.size() << " " << ts;
 
   return money;
 }
@@ -196,6 +200,18 @@ void Wallet::buildPNL2(PNL2& pnl2) const {
   pnl2.procTotalPNLAssetData(this->m_exchange);
 
   pnl2.onBuildEnd(this->m_exchange);
+}
+
+const WalletHistoryNode* Wallet::getLastNode(TradeType tradeType) const {
+  // LOG(INFO) << "getLastNode " << this->m_history.size();
+
+  for (auto it = this->m_history.rbegin(); it != this->m_history.rend(); ++it) {
+    if (it->nodeType == WHNT_TRADE && it->trade.tradeType == tradeType) {
+      return &(*it);
+    }
+  }
+
+  return NULL;
 }
 
 CR2END

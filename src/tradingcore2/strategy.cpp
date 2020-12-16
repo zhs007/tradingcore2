@@ -102,6 +102,8 @@ void Strategy::buy(bool issim, TimeStamp ts, int strategyID,
     this->m_wallet.buyAssets(this->m_strategy.asset().code().c_str(), m, ts,
                              strategyID, ctrlConditionID);
   } else if (buy.perhandmoney() > 0) {
+    // LOG(INFO) << "buy " << this->m_handMoney;
+
     auto m = this->m_handMoney * buy.perhandmoney();
 
     if (m <= 0) {
@@ -183,6 +185,8 @@ void Strategy::sell(bool issim, TimeStamp ts, int strategyID,
 
       this->onSell(issim, ts, m, v, 0);
     }
+
+    // LOG(INFO) << "sell " << this->m_handMoney;
   } else if (sell.money() > 0) {
   }
 }

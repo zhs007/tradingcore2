@@ -25,7 +25,7 @@ bool CCIndicatorSP::isValid(const tradingpb::CtrlCondition& cc, CtrlType ct) {
   return cc.strvals_size() == 1 && cc.operators_size() == 1;
 }
 
-bool CCIndicatorSP::canCtrl(const Exchange& exchange,
+bool CCIndicatorSP::canCtrl(const Exchange& exchange, const Wallet& wallet,
                             const IndicatorMap& mapIndicators,
                             const tradingpb::CtrlCondition& cc, bool issim,
                             CtrlType ct, TimeStamp ts, int index,

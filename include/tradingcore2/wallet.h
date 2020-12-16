@@ -115,6 +115,8 @@ class Wallet {
 
   Money getMoney() const { return m_money; }
 
+  const WalletHistoryNode* getLastNode(TradeType tradeType) const;
+
  protected:
   void _addHistory(WalletHistoryNode& n) { m_history.push_back(n); }
 
