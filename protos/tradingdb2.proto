@@ -143,8 +143,9 @@ message RequestGetSymbols {
 message RequestSimTrading {
     BasicRequestData basicRequest = 1;
     SimTradingParams params = 2;
-    bool ignoreCache = 3;
-    int32 index = 4;
+    bool ignoreCache = 3;                   // 忽略cache，重新计算
+    int32 index = 4;                        // simtradings时用于关联请求结果用的
+    float ignoreTotalReturn = 5;            // 忽略总回报低于这个值的明细返回，主要用于大批量训练，减少数据处理量。但实际运算会执行，且cache数据是完整的
 }
 
 // ReplySimTrading - reply simTrading

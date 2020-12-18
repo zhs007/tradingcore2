@@ -2032,6 +2032,7 @@ class SellParams :
   enum : int {
     kVolumeFieldNumber = 1,
     kPerVolumeFieldNumber = 2,
+    kKeepTimeFieldNumber = 4,
     kMoneyFieldNumber = 3,
   };
   // float volume = 1;
@@ -2052,6 +2053,15 @@ class SellParams :
   void _internal_set_pervolume(float value);
   public:
 
+  // int64 keepTime = 4;
+  void clear_keeptime();
+  ::PROTOBUF_NAMESPACE_ID::int64 keeptime() const;
+  void set_keeptime(::PROTOBUF_NAMESPACE_ID::int64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int64 _internal_keeptime() const;
+  void _internal_set_keeptime(::PROTOBUF_NAMESPACE_ID::int64 value);
+  public:
+
   // float money = 3;
   void clear_money();
   float money() const;
@@ -2068,6 +2078,7 @@ class SellParams :
   ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
   float volume_;
   float pervolume_;
+  ::PROTOBUF_NAMESPACE_ID::int64 keeptime_;
   float money_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_trading2_2eproto;
@@ -6253,6 +6264,26 @@ inline void SellParams::_internal_set_money(float value) {
 inline void SellParams::set_money(float value) {
   _internal_set_money(value);
   // @@protoc_insertion_point(field_set:tradingpb.SellParams.money)
+}
+
+// int64 keepTime = 4;
+inline void SellParams::clear_keeptime() {
+  keeptime_ = PROTOBUF_LONGLONG(0);
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 SellParams::_internal_keeptime() const {
+  return keeptime_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 SellParams::keeptime() const {
+  // @@protoc_insertion_point(field_get:tradingpb.SellParams.keepTime)
+  return _internal_keeptime();
+}
+inline void SellParams::_internal_set_keeptime(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  
+  keeptime_ = value;
+}
+inline void SellParams::set_keeptime(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  _internal_set_keeptime(value);
+  // @@protoc_insertion_point(field_set:tradingpb.SellParams.keepTime)
 }
 
 // -------------------------------------------------------------------

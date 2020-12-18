@@ -3238,6 +3238,7 @@ class RequestSimTrading :
     kParamsFieldNumber = 2,
     kIgnoreCacheFieldNumber = 3,
     kIndexFieldNumber = 4,
+    kIgnoreTotalReturnFieldNumber = 5,
   };
   // .tradingpb.BasicRequestData basicRequest = 1;
   bool has_basicrequest() const;
@@ -3287,6 +3288,15 @@ class RequestSimTrading :
   void _internal_set_index(::PROTOBUF_NAMESPACE_ID::int32 value);
   public:
 
+  // float ignoreTotalReturn = 5;
+  void clear_ignoretotalreturn();
+  float ignoretotalreturn() const;
+  void set_ignoretotalreturn(float value);
+  private:
+  float _internal_ignoretotalreturn() const;
+  void _internal_set_ignoretotalreturn(float value);
+  public:
+
   // @@protoc_insertion_point(class_scope:tradingpb.RequestSimTrading)
  private:
   class _Internal;
@@ -3296,6 +3306,7 @@ class RequestSimTrading :
   ::tradingpb::SimTradingParams* params_;
   bool ignorecache_;
   ::PROTOBUF_NAMESPACE_ID::int32 index_;
+  float ignoretotalreturn_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_tradingdb2_2eproto;
 };
@@ -6735,6 +6746,26 @@ inline void RequestSimTrading::_internal_set_index(::PROTOBUF_NAMESPACE_ID::int3
 inline void RequestSimTrading::set_index(::PROTOBUF_NAMESPACE_ID::int32 value) {
   _internal_set_index(value);
   // @@protoc_insertion_point(field_set:tradingpb.RequestSimTrading.index)
+}
+
+// float ignoreTotalReturn = 5;
+inline void RequestSimTrading::clear_ignoretotalreturn() {
+  ignoretotalreturn_ = 0;
+}
+inline float RequestSimTrading::_internal_ignoretotalreturn() const {
+  return ignoretotalreturn_;
+}
+inline float RequestSimTrading::ignoretotalreturn() const {
+  // @@protoc_insertion_point(field_get:tradingpb.RequestSimTrading.ignoreTotalReturn)
+  return _internal_ignoretotalreturn();
+}
+inline void RequestSimTrading::_internal_set_ignoretotalreturn(float value) {
+  
+  ignoretotalreturn_ = value;
+}
+inline void RequestSimTrading::set_ignoretotalreturn(float value) {
+  _internal_set_ignoretotalreturn(value);
+  // @@protoc_insertion_point(field_set:tradingpb.RequestSimTrading.ignoreTotalReturn)
 }
 
 // -------------------------------------------------------------------
