@@ -117,6 +117,10 @@ class Wallet {
 
   const WalletHistoryNode* getLastNode(TradeType tradeType) const;
 
+  // calcAssetVolumeWithKeepTime - 计算持有时间超过keeptime的数量
+  Volume calcAssetVolumeWithKeepTime(const char* assetsName, TimeStamp keeptime,
+                                     TimeStamp ts) const;
+
  protected:
   void _addHistory(WalletHistoryNode& n) { m_history.push_back(n); }
 

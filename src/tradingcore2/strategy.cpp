@@ -188,6 +188,17 @@ void Strategy::sell(bool issim, TimeStamp ts, int strategyID,
 
     // LOG(INFO) << "sell " << this->m_handMoney;
   } else if (sell.money() > 0) {
+  } else if (sell.keeptime() > 0) {
+    auto v = this->m_wallet.calcAssetVolumeWithKeepTime(
+        this->m_strategy.asset().code().c_str(), sell.keeptime(), ts);
+
+    if (v > 0) {
+      auto m =
+          this->m_wallet.sellAssets(this->m_strategy.asset().code().c_str(), v,
+                                    ts, strategyID, ctrlConditionID);
+
+      this->onSell(issim, ts, m, v, 0);
+    }
   }
 }
 

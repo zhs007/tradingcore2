@@ -26,6 +26,9 @@ bool CCWeekDay2::canCtrl(const Exchange& exchange, const Wallet& wallet,
   tm ctm;
   timestamp2timeUTC(ts, ctm);
 
+  // LOG(INFO) << "CCWeekDay2 " << ts << " " << ctm.tm_wday << " " << cc.vals(0)
+  //           << " " << cc.vals(1);
+
   if (ctm.tm_wday == cc.vals(0) &&
       exchange.isValidTs(ts + cc.vals(1) * 24 * 60 * 60)) {
     return true;
