@@ -5,6 +5,7 @@
 #include <tradingcore2/ctrlcondition/indicatorsv.h>
 #include <tradingcore2/ctrlcondition/monthday.h>
 #include <tradingcore2/ctrlcondition/monthdayex.h>
+#include <tradingcore2/ctrlcondition/waittostart.h>
 #include <tradingcore2/ctrlcondition/weekday.h>
 #include <tradingcore2/ctrlcondition/weekday2.h>
 #include <tradingcore2/ctrlcondition/weekdayex.h>
@@ -22,6 +23,7 @@ void regAllCtrlConditionHelper() {
   CCIndicatorSV::regCtrlConditionHelper();
   CCIndicatorSP::regCtrlConditionHelper();
   CCCtrlConditionID::regCtrlConditionHelper();
+  CCWaitToStart::regCtrlConditionHelper();
 }
 
 CR2END

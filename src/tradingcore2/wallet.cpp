@@ -214,4 +214,33 @@ const WalletHistoryNode* Wallet::getLastNode(TradeType tradeType) const {
   return NULL;
 }
 
+// calcAssetVolumeWithKeepTime - 计算持有时间超过keeptime的数量
+Volume Wallet::calcAssetVolumeWithKeepTime(const char* assetsName,
+                                           TimeStamp keeptime,
+                                           TimeStamp ts) const {
+  Volume v = 0;
+
+  for (auto it = this->m_history.begin(); it != this->m_history.end(); ++it) {
+    if (ts < it->ts) {
+      break;
+    }
+
+    if (it->nodeType == WHNT_TRADE && it->trade.assetsName == assetsName) {
+      if (it->trade.tradeType == TT_BUY) {
+        if (ts > it->ts + keeptime) {
+          v += it->trade.volume;
+        }
+      } else if (it->trade.tradeType == TT_SELL) {
+        v -= it->trade.volume;
+      }
+    }
+  }
+
+  if (v < 0) {
+    return 0;
+  }
+
+  return v;
+}
+
 CR2END

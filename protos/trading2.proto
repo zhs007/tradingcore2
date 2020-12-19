@@ -98,6 +98,7 @@ message SellParams {
     float volume = 1;
     float perVolume = 2;
     float money = 3;
+    int64 keepTime = 4;             // 卖出这个时间以前的持有，秒为单位，如果是卖出1天以前的全部持有，应该就是 24*60*60 
 }
 
 // StopLossParams - stop loss parameters

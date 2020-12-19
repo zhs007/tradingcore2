@@ -535,6 +535,7 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_tradingdb2_2eproto::offsets[] 
   PROTOBUF_FIELD_OFFSET(::tradingpb::RequestSimTrading, params_),
   PROTOBUF_FIELD_OFFSET(::tradingpb::RequestSimTrading, ignorecache_),
   PROTOBUF_FIELD_OFFSET(::tradingpb::RequestSimTrading, index_),
+  PROTOBUF_FIELD_OFFSET(::tradingpb::RequestSimTrading, ignoretotalreturn_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::tradingpb::ReplySimTrading, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -562,7 +563,7 @@ static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOB
   { 138, -1, sizeof(::tradingpb::ReplyGetSymbol)},
   { 144, -1, sizeof(::tradingpb::RequestGetSymbols)},
   { 153, -1, sizeof(::tradingpb::RequestSimTrading)},
-  { 162, -1, sizeof(::tradingpb::ReplySimTrading)},
+  { 163, -1, sizeof(::tradingpb::ReplySimTrading)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
@@ -635,28 +636,29 @@ const char descriptor_table_protodef_tradingdb2_2eproto[] PROTOBUF_SECTION_VARIA
   "mbolInfo\"z\n\021RequestGetSymbols\022\021\n\005token\030\001"
   " \001(\tB\002\030\001\022\016\n\006market\030\002 \001(\t\022\017\n\007symbols\030\003 \003("
   "\t\0221\n\014basicRequest\030\004 \001(\0132\033.tradingpb.Basi"
-  "cRequestData\"\227\001\n\021RequestSimTrading\0221\n\014ba"
+  "cRequestData\"\262\001\n\021RequestSimTrading\0221\n\014ba"
   "sicRequest\030\001 \001(\0132\033.tradingpb.BasicReques"
   "tData\022+\n\006params\030\002 \001(\0132\033.tradingpb.SimTra"
   "dingParams\022\023\n\013ignoreCache\030\003 \001(\010\022\r\n\005index"
-  "\030\004 \001(\005\"k\n\017ReplySimTrading\022\037\n\003pnl\030\001 \003(\0132\022"
-  ".tradingpb.PNLData\022(\n\010baseline\030\002 \003(\0132\022.t"
-  "radingpb.PNLDataB\002\030\001\022\r\n\005index\030\003 \001(\0052\226\004\n\n"
-  "TradingDB2\022J\n\nupdCandles\022\034.tradingpb.Req"
-  "uestUpdCandles\032\032.tradingpb.ReplyUpdCandl"
-  "es\"\000(\001\022J\n\ngetCandles\022\034.tradingpb.Request"
-  "GetCandles\032\032.tradingpb.ReplyGetCandles\"\000"
-  "0\001\022E\n\tupdSymbol\022\033.tradingpb.RequestUpdSy"
-  "mbol\032\031.tradingpb.ReplyUpdSymbol\"\000\022E\n\tget"
-  "Symbol\022\033.tradingpb.RequestGetSymbol\032\031.tr"
-  "adingpb.ReplyGetSymbol\"\000\022I\n\ngetSymbols\022\034"
-  ".tradingpb.RequestGetSymbols\032\031.tradingpb"
-  ".ReplyGetSymbol\"\0000\001\022H\n\nsimTrading\022\034.trad"
-  "ingpb.RequestSimTrading\032\032.tradingpb.Repl"
-  "ySimTrading\"\000\022M\n\013simTrading2\022\034.tradingpb"
-  ".RequestSimTrading\032\032.tradingpb.ReplySimT"
-  "rading\"\000(\0010\001B(Z&github.com/zhs007/tradin"
-  "gdb2/tradingpbb\006proto3"
+  "\030\004 \001(\005\022\031\n\021ignoreTotalReturn\030\005 \001(\002\"k\n\017Rep"
+  "lySimTrading\022\037\n\003pnl\030\001 \003(\0132\022.tradingpb.PN"
+  "LData\022(\n\010baseline\030\002 \003(\0132\022.tradingpb.PNLD"
+  "ataB\002\030\001\022\r\n\005index\030\003 \001(\0052\226\004\n\nTradingDB2\022J\n"
+  "\nupdCandles\022\034.tradingpb.RequestUpdCandle"
+  "s\032\032.tradingpb.ReplyUpdCandles\"\000(\001\022J\n\nget"
+  "Candles\022\034.tradingpb.RequestGetCandles\032\032."
+  "tradingpb.ReplyGetCandles\"\0000\001\022E\n\tupdSymb"
+  "ol\022\033.tradingpb.RequestUpdSymbol\032\031.tradin"
+  "gpb.ReplyUpdSymbol\"\000\022E\n\tgetSymbol\022\033.trad"
+  "ingpb.RequestGetSymbol\032\031.tradingpb.Reply"
+  "GetSymbol\"\000\022I\n\ngetSymbols\022\034.tradingpb.Re"
+  "questGetSymbols\032\031.tradingpb.ReplyGetSymb"
+  "ol\"\0000\001\022H\n\nsimTrading\022\034.tradingpb.Request"
+  "SimTrading\032\032.tradingpb.ReplySimTrading\"\000"
+  "\022M\n\013simTrading2\022\034.tradingpb.RequestSimTr"
+  "ading\032\032.tradingpb.ReplySimTrading\"\000(\0010\001B"
+  "(Z&github.com/zhs007/tradingdb2/tradingp"
+  "bb\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_tradingdb2_2eproto_deps[1] = {
   &::descriptor_table_trading2_2eproto,
@@ -684,7 +686,7 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_tra
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_tradingdb2_2eproto_once;
 static bool descriptor_table_tradingdb2_2eproto_initialized = false;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_tradingdb2_2eproto = {
-  &descriptor_table_tradingdb2_2eproto_initialized, descriptor_table_protodef_tradingdb2_2eproto, "tradingdb2.proto", 2782,
+  &descriptor_table_tradingdb2_2eproto_initialized, descriptor_table_protodef_tradingdb2_2eproto, "tradingdb2.proto", 2809,
   &descriptor_table_tradingdb2_2eproto_once, descriptor_table_tradingdb2_2eproto_sccs, descriptor_table_tradingdb2_2eproto_deps, 18, 1,
   schemas, file_default_instances, TableStruct_tradingdb2_2eproto::offsets,
   file_level_metadata_tradingdb2_2eproto, 18, file_level_enum_descriptors_tradingdb2_2eproto, file_level_service_descriptors_tradingdb2_2eproto,
@@ -5750,16 +5752,16 @@ RequestSimTrading::RequestSimTrading(const RequestSimTrading& from)
     params_ = nullptr;
   }
   ::memcpy(&ignorecache_, &from.ignorecache_,
-    static_cast<size_t>(reinterpret_cast<char*>(&index_) -
-    reinterpret_cast<char*>(&ignorecache_)) + sizeof(index_));
+    static_cast<size_t>(reinterpret_cast<char*>(&ignoretotalreturn_) -
+    reinterpret_cast<char*>(&ignorecache_)) + sizeof(ignoretotalreturn_));
   // @@protoc_insertion_point(copy_constructor:tradingpb.RequestSimTrading)
 }
 
 void RequestSimTrading::SharedCtor() {
   ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_RequestSimTrading_tradingdb2_2eproto.base);
   ::memset(&basicrequest_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&index_) -
-      reinterpret_cast<char*>(&basicrequest_)) + sizeof(index_));
+      reinterpret_cast<char*>(&ignoretotalreturn_) -
+      reinterpret_cast<char*>(&basicrequest_)) + sizeof(ignoretotalreturn_));
 }
 
 RequestSimTrading::~RequestSimTrading() {
@@ -5796,8 +5798,8 @@ void RequestSimTrading::Clear() {
   }
   params_ = nullptr;
   ::memset(&ignorecache_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&index_) -
-      reinterpret_cast<char*>(&ignorecache_)) + sizeof(index_));
+      reinterpret_cast<char*>(&ignoretotalreturn_) -
+      reinterpret_cast<char*>(&ignorecache_)) + sizeof(ignoretotalreturn_));
   _internal_metadata_.Clear();
 }
 
@@ -5834,6 +5836,13 @@ const char* RequestSimTrading::_InternalParse(const char* ptr, ::PROTOBUF_NAMESP
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 32)) {
           index_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
           CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // float ignoreTotalReturn = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 45)) {
+          ignoretotalreturn_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
         } else goto handle_unusual;
         continue;
       default: {
@@ -5890,6 +5899,12 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(4, this->_internal_index(), target);
   }
 
+  // float ignoreTotalReturn = 5;
+  if (!(this->ignoretotalreturn() <= 0 && this->ignoretotalreturn() >= 0)) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(5, this->_internal_ignoretotalreturn(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields(), target, stream);
@@ -5930,6 +5945,11 @@ size_t RequestSimTrading::ByteSizeLong() const {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
         this->_internal_index());
+  }
+
+  // float ignoreTotalReturn = 5;
+  if (!(this->ignoretotalreturn() <= 0 && this->ignoretotalreturn() >= 0)) {
+    total_size += 1 + 4;
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -5975,6 +5995,9 @@ void RequestSimTrading::MergeFrom(const RequestSimTrading& from) {
   if (from.index() != 0) {
     _internal_set_index(from._internal_index());
   }
+  if (!(from.ignoretotalreturn() <= 0 && from.ignoretotalreturn() >= 0)) {
+    _internal_set_ignoretotalreturn(from._internal_ignoretotalreturn());
+  }
 }
 
 void RequestSimTrading::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
@@ -6002,6 +6025,7 @@ void RequestSimTrading::InternalSwap(RequestSimTrading* other) {
   swap(params_, other->params_);
   swap(ignorecache_, other->ignorecache_);
   swap(index_, other->index_);
+  swap(ignoretotalreturn_, other->ignoretotalreturn_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata RequestSimTrading::GetMetadata() const {
