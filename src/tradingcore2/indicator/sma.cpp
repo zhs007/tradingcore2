@@ -139,7 +139,9 @@ const IndicatorData_singleValue* IndicatorSMA::getMaxSingleValue(
   return pMax;
 }
 
-// NewIndicatorSMA - new IndicatorSMA
-Indicator* NewIndicatorSMA(int avgtimes) { return new IndicatorSMA(avgtimes); }
+// newIndicator - new IndicatorSMA
+Indicator* IndicatorSMA::newIndicator(int avgtimes) {
+  return new IndicatorSMA(avgtimes);
+}
 
 CR2END

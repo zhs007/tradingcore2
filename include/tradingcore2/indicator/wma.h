@@ -20,6 +20,10 @@ class IndicatorWMA final : public Indicator {
   typedef std::vector<Node> List;
 
  public:
+  // newIndicator - new IndicatorWMA
+  static Indicator* newIndicator(int avgtimes);
+
+ protected:
   IndicatorWMA(int avgtimes) : m_avgtimes(avgtimes), m_iStart(-1) {
     assert(avgtimes > 1);
   }
@@ -67,8 +71,8 @@ class IndicatorWMA final : public Indicator {
   int m_iStart;
 };
 
-// NewIndicatorWMA - new IndicatorWMA
-Indicator* NewIndicatorWMA(int avgtimes);
+// // NewIndicatorWMA - new IndicatorWMA
+// Indicator* NewIndicatorWMA(int avgtimes);
 
 CR2END
 

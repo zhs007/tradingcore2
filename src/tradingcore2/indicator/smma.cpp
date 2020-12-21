@@ -88,8 +88,8 @@ const IndicatorData_singleValue* IndicatorSMMA::getMaxSingleValue(
   return pMax;
 }
 
-// NewIndicatorSMMA - new IndicatorSMMA
-Indicator* NewIndicatorSMMA(int avgtimes) {
+// newIndicator - new IndicatorSMMA
+Indicator* IndicatorSMMA::newIndicator(int avgtimes) {
   return new IndicatorSMMA(avgtimes);
 }
 

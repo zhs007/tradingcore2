@@ -87,7 +87,9 @@ const IndicatorData_singleValue* IndicatorEMA::getMaxSingleValue(
   return pMax;
 }
 
-// NewIndicatorEMA - new IndicatorEMA
-Indicator* NewIndicatorEMA(int avgtimes) { return new IndicatorEMA(avgtimes); }
+// newIndicator - new IndicatorEMA
+Indicator* IndicatorEMA::newIndicator(int avgtimes) {
+  return new IndicatorEMA(avgtimes);
+}
 
 CR2END

@@ -117,7 +117,9 @@ const IndicatorData_singleValue* IndicatorRSI::getMaxSingleValue(
   return pMax;
 }
 
-// NewIndicatorRSI - new IndicatorRSI
-Indicator* NewIndicatorRSI(int avgtimes) { return new IndicatorRSI(avgtimes); }
+// newIndicator - new IndicatorRSI
+Indicator* IndicatorRSI::newIndicator(int avgtimes) {
+  return new IndicatorRSI(avgtimes);
+}
 
 CR2END

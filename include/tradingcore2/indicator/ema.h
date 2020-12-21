@@ -21,6 +21,10 @@ class IndicatorEMA final : public Indicator {
   typedef std::vector<Node> List;
 
  public:
+  // newIndicator - new IndicatorEMA
+  static Indicator* newIndicator(int avgtimes);
+
+ protected:
   IndicatorEMA(int avgtimes) : m_avgtimes(avgtimes), m_iStart(-1) {
     assert(avgtimes > 1);
   }
@@ -64,8 +68,8 @@ class IndicatorEMA final : public Indicator {
   int m_iStart;
 };
 
-// NewIndicatorEMA - new IndicatorEMA
-Indicator* NewIndicatorEMA(int avgtimes);
+// // NewIndicatorEMA - new IndicatorEMA
+// Indicator* NewIndicatorEMA(int avgtimes);
 
 CR2END
 

@@ -115,7 +115,9 @@ const IndicatorData_singleValue* IndicatorROC::getMaxSingleValue(
   return pMax;
 }
 
-// NewIndicatorROC - new IndicatorROC
-Indicator* NewIndicatorROC(int avgtimes) { return new IndicatorROC(avgtimes); }
+// newIndicator - new IndicatorROC
+Indicator* IndicatorROC::newIndicator(int avgtimes) {
+  return new IndicatorROC(avgtimes);
+}
 
 CR2END

@@ -14,7 +14,8 @@ class RSITest : public testing::Test {
 };
 
 TEST_F(RSITest, rsi_2) {
-  tr2::IndicatorRSI* pRSI = new tr2::IndicatorRSI(2);
+  tr2::IndicatorRSI* pRSI =
+      (tr2::IndicatorRSI*)tr2::IndicatorRSI::newIndicator(2);
 
   auto isok = pRSI->build(*cnfund, "110022", 0, 2280);
   EXPECT_TRUE(isok);
@@ -74,7 +75,8 @@ TEST_F(RSITest, rsi_2) {
 }
 
 TEST_F(RSITest, rsi_3) {
-  tr2::IndicatorRSI* pRSI = new tr2::IndicatorRSI(3);
+  tr2::IndicatorRSI* pRSI =
+      (tr2::IndicatorRSI*)tr2::IndicatorRSI::newIndicator(3);
 
   auto isok = pRSI->build(*cnfund, "110022", 0, 2280);
   EXPECT_TRUE(isok);

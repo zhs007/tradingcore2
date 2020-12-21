@@ -1,6 +1,8 @@
-#ifndef __TRADINGCORE2_INDICATOR_ROC_H__
-#define __TRADINGCORE2_INDICATOR_ROC_H__
+#ifndef __TRADINGCORE2_INDICATOR_TA_MA_H__
+#define __TRADINGCORE2_INDICATOR_TA_MA_H__
 
+#include <ta_func.h>
+#include <ta_libc.h>
 #include <tradingcore2/basedef.h>
 #include <tradingcore2/indicator.h>
 
@@ -8,9 +10,9 @@
 
 CR2BEGIN
 
-// https://school.stockcharts.com/doku.php?id=technical_indicators:rate_of_change_roc_and_momentum
+//!! https://ta-lib.org/
 
-class IndicatorROC final : public Indicator {
+class IndicatorTA_MA final : public Indicator {
  public:
   struct Node {
     TimeStamp ts;
@@ -20,14 +22,15 @@ class IndicatorROC final : public Indicator {
   typedef std::vector<Node> List;
 
  public:
-  // newIndicator - new IndicatorROC
+  // newIndicator - new IndicatorTA_MA
   static Indicator* newIndicator(int avgtimes);
 
  protected:
-  IndicatorROC(int avgtimes) : m_avgtimes(avgtimes), m_iStart(-1) {
+  IndicatorTA_MA(int avgtimes)
+      : m_avgtimes(avgtimes), m_iStart(-1), m_maType(TA_MAType_SMA) {
     assert(avgtimes >= 1);
   }
-  virtual ~IndicatorROC() {}
+  virtual ~IndicatorTA_MA() {}
 
  public:
   virtual bool build(Exchange& exchange, const char* assetsName, int start,
@@ -63,17 +66,21 @@ class IndicatorROC final : public Indicator {
 
  protected:
   void _buildFirst(Exchange& exchange, const char* assetsName, int start,
+                   int length, Money& totalPrice);
+
+  bool _build_avg1(Exchange& exchange, const char* assetsName, int start,
                    int length);
 
  protected:
   int m_avgtimes;
   List m_lst;
   int m_iStart;
+  TA_MAType m_maType;
 };
 
-// // NewIndicatorROC - new IndicatorROC
-// Indicator* NewIndicatorROC(int avgtimes);
+// // NewIndicatorTA_MA - new IndicatorTA_MA
+// Indicator* NewIndicatorTA_MA(int avgtimes);
 
 CR2END
 
-#endif  // __TRADINGCORE2_INDICATOR_ROC_H__
+#endif  // __TRADINGCORE2_INDICATOR_TA_MA_H__

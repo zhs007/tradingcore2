@@ -16,6 +16,7 @@ link_directories(../../deps/grpc/cmakebuild/third_party/abseil-cpp/absl/numeric)
 link_directories(../../deps/grpc/cmakebuild/third_party/protobuf)
 link_directories(../../deps/grpc/cmakebuild/third_party/cares/cares/lib)
 link_directories(../../deps/grpc/cmakebuild/third_party/zlib)
+link_directories(../../deps/ta-lib/src/.libs)
 
 aux_source_directory(. DIR_MAIN_SRCS)
 
@@ -23,6 +24,7 @@ add_executable(tc2serv ${DIR_MAIN_SRCS})
 
 target_link_libraries(tc2serv libtradingcore2)
 target_link_libraries(tc2serv libgsl.a)
+target_link_libraries(tc2serv libta_lib.a)
 if (UNIX AND NOT APPLE)
   target_link_libraries(tc2serv grpc)
   target_link_libraries(tc2serv grpc++)
