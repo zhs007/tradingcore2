@@ -13,13 +13,14 @@ CR2BEGIN
 void regAllIndicators() {
   auto mgr = IndicatorMgr::getSingleton();
 
-  mgr->regIndicatorWithAvgTimes("ema", IndicatorEMA::newIndicator);
-  mgr->regIndicatorWithAvgTimes("roc", IndicatorROC::newIndicator);
-  mgr->regIndicatorWithAvgTimes("rsi", IndicatorRSI::newIndicator);
-  mgr->regIndicatorWithAvgTimes("sma", IndicatorSMA::newIndicator);
-  mgr->regIndicatorWithAvgTimes("smma", IndicatorSMMA::newIndicator);
-  mgr->regIndicatorWithAvgTimes("wma", IndicatorWMA::newIndicator);
-  mgr->regIndicatorWithAvgTimes("ta_ma", IndicatorTA_MA::newIndicator);
+  mgr->regIndicator("ema", IndicatorEMA::newIndicator, IndicatorEMA::isMine);
+  mgr->regIndicator("roc", IndicatorROC::newIndicator, IndicatorROC::isMine);
+  mgr->regIndicator("rsi", IndicatorRSI::newIndicator, IndicatorRSI::isMine);
+  mgr->regIndicator("sma", IndicatorSMA::newIndicator, IndicatorSMA::isMine);
+  mgr->regIndicator("smma", IndicatorSMMA::newIndicator, IndicatorSMMA::isMine);
+  mgr->regIndicator("wma", IndicatorWMA::newIndicator, IndicatorWMA::isMine);
+  mgr->regIndicator("ta-ma", IndicatorTA_MA::newIndicator,
+                    IndicatorTA_MA::isMine);
 }
 
 CR2END

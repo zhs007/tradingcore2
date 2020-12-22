@@ -15,7 +15,7 @@ class ROCTest : public testing::Test {
 
 TEST_F(ROCTest, roc_1) {
   tr2::IndicatorROC* pROC =
-      (tr2::IndicatorROC*)tr2::IndicatorROC::newIndicator(1);
+      (tr2::IndicatorROC*)tr2::IndicatorROC::newIndicator("roc.1");
 
   auto isok = pROC->build(*cnfund, "110022", 0, 2280);
   EXPECT_TRUE(isok);
@@ -34,7 +34,7 @@ TEST_F(ROCTest, roc_1) {
 
 TEST_F(ROCTest, roc_2) {
   tr2::IndicatorROC* pROC =
-      (tr2::IndicatorROC*)tr2::IndicatorROC::newIndicator(2);
+      (tr2::IndicatorROC*)tr2::IndicatorROC::newIndicator("roc.2");
 
   auto isok = pROC->build(*cnfund, "110022", 0, 2280);
   EXPECT_TRUE(isok);

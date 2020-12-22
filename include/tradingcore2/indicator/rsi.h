@@ -25,7 +25,9 @@ class IndicatorRSI final : public Indicator {
 
  public:
   // newIndicator - new IndicatorRSI
-  static Indicator* newIndicator(int avgtimes);
+  static Indicator* newIndicator(const char* name);
+  // isMine - isMine
+  static bool isMine(const char* name);
 
  protected:
   IndicatorRSI(int avgtimes) : m_avgtimes(avgtimes), m_iStart(-1) {

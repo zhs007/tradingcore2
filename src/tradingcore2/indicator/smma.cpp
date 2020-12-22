@@ -89,8 +89,37 @@ const IndicatorData_singleValue* IndicatorSMMA::getMaxSingleValue(
 }
 
 // newIndicator - new IndicatorSMMA
-Indicator* IndicatorSMMA::newIndicator(int avgtimes) {
-  return new IndicatorSMMA(avgtimes);
+Indicator* IndicatorSMMA::newIndicator(const char* name) {
+  std::vector<std::string> arr;
+  splitStr(arr, name, ".");
+
+  if (arr.size() == 2) {
+    try {
+      auto v = std::stoi(arr[1]);
+      return new IndicatorSMMA(v);
+    } catch (...) {
+      return NULL;
+    }
+  }
+
+  return NULL;
+}
+
+// isMine - isMine
+bool IndicatorSMMA::isMine(const char* name) {
+  std::vector<std::string> arr;
+  splitStr(arr, name, ".");
+
+  if (arr.size() == 2 && arr[0] == "smma") {
+    try {
+      auto v = std::stoi(arr[1]);
+      return true;
+    } catch (...) {
+      return false;
+    }
+  }
+
+  return false;
 }
 
 CR2END

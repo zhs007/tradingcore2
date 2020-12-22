@@ -22,7 +22,9 @@ class IndicatorEMA final : public Indicator {
 
  public:
   // newIndicator - new IndicatorEMA
-  static Indicator* newIndicator(int avgtimes);
+  static Indicator* newIndicator(const char* name);
+  // isMine - isMine
+  static bool isMine(const char* name);
 
  protected:
   IndicatorEMA(int avgtimes) : m_avgtimes(avgtimes), m_iStart(-1) {

@@ -1,5 +1,6 @@
 #include <math.h>
 #include <tradingcore2/indicatormgr.h>
+#include <tradingcore2/utils.h>
 
 #include <functional>
 
@@ -12,19 +13,35 @@ IndicatorMgr* IndicatorMgr::getSingleton() {
   return &s_mgr;
 }
 
-void IndicatorMgr::regIndicatorWithAvgTimes(const char* name,
-                                            FuncNewIndicatorWithAvgTimes func) {
-  assert(this->m_mapWithAvgTimes.find(name) == this->m_mapWithAvgTimes.end());
+void IndicatorMgr::regIndicator(const char* name,
+                                FuncNewIndicator funcNewIndicator,
+                                FuncIsMime funcIsMine) {
+  assert(this->m_map.find(name) == this->m_map.end());
 
-  PairWithAvgTimes p(name, func);
-  auto ret = this->m_mapWithAvgTimes.insert(p);
+  Pair p;
+  p.first = name;
+  p.second.newIndicator = funcNewIndicator;
+  p.second.isMine = funcIsMine;
+
+  auto ret = this->m_map.insert(p);
   assert(ret.second);
 }
 
-Indicator* IndicatorMgr::newIndicator(const char* name, int avgtimes) {
-  auto it = this->m_mapWithAvgTimes.find(name);
-  if (it != this->m_mapWithAvgTimes.end()) {
-    return it->second(avgtimes);
+Indicator* IndicatorMgr::newIndicator(const char* name) {
+  std::vector<std::string> arr;
+  splitStr(arr, name, ".");
+
+  auto it = this->m_map.find(arr[0]);
+  if (it != this->m_map.end()) {
+    if (it->second.isMine(name)) {
+      return it->second.newIndicator(name);
+    }
+  }
+
+  for (auto it = this->m_map.begin(); it != this->m_map.end(); ++it) {
+    if (it->second.isMine(name)) {
+      return it->second.newIndicator(name);
+    }
   }
 
   return NULL;

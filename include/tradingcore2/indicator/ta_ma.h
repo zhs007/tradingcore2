@@ -23,11 +23,13 @@ class IndicatorTA_MA final : public Indicator {
 
  public:
   // newIndicator - new IndicatorTA_MA
-  static Indicator* newIndicator(int avgtimes);
+  static Indicator* newIndicator(const char* name);
+  // isMine - isMine
+  static bool isMine(const char* name);
 
  protected:
-  IndicatorTA_MA(int avgtimes)
-      : m_avgtimes(avgtimes), m_iStart(-1), m_maType(TA_MAType_SMA) {
+  IndicatorTA_MA(TA_MAType type, int avgtimes)
+      : m_avgtimes(avgtimes), m_iStart(-1), m_maType(type) {
     assert(avgtimes >= 1);
   }
   virtual ~IndicatorTA_MA() {}

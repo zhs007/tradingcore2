@@ -21,7 +21,9 @@ class IndicatorWMA final : public Indicator {
 
  public:
   // newIndicator - new IndicatorWMA
-  static Indicator* newIndicator(int avgtimes);
+  static Indicator* newIndicator(const char* name);
+  // isMine - isMine
+  static bool isMine(const char* name);
 
  protected:
   IndicatorWMA(int avgtimes) : m_avgtimes(avgtimes), m_iStart(-1) {

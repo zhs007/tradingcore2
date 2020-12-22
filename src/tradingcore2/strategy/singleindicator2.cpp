@@ -8,27 +8,27 @@ CR2BEGIN
 void StrategySI2::init(const char* assetsName, const char* nameIndicator,
                        int avgtimes, StrategySI2::FuncOnTimeStamp funcBuy,
                        StrategySI2::FuncOnTimeStamp funcSell, Money money) {
-  assert(assetsName != NULL);
-  assert(nameIndicator != NULL);
-  assert(avgtimes >= 0);
-  assert(money > 0);
-  assert(funcBuy != NULL);
-  assert(funcSell != NULL);
+  // assert(assetsName != NULL);
+  // assert(nameIndicator != NULL);
+  // assert(avgtimes >= 0);
+  // assert(money > 0);
+  // assert(funcBuy != NULL);
+  // assert(funcSell != NULL);
 
-  this->m_assetsName = assetsName;
+  // this->m_assetsName = assetsName;
 
-  auto mgr = IndicatorMgr::getSingleton();
-  this->m_pIndicator = mgr->newIndicator(nameIndicator, avgtimes);
+  // auto mgr = IndicatorMgr::getSingleton();
+  // this->m_pIndicator = mgr->newIndicator(nameIndicator, avgtimes);
 
-  this->m_pIndicator->build(
-      this->m_exchange, this->m_assetsName.c_str(), 0,
-      this->m_exchange.getDataLength(this->m_assetsName.c_str()));
+  // this->m_pIndicator->build(
+  //     this->m_exchange, this->m_assetsName.c_str(), 0,
+  //     this->m_exchange.getDataLength(this->m_assetsName.c_str()));
 
-  m_funcBuy = funcBuy;
-  m_funcSell = funcSell;
+  // m_funcBuy = funcBuy;
+  // m_funcSell = funcSell;
 
-  m_money = money;
-  m_volume = 0;
+  // m_money = money;
+  // m_volume = 0;
 }
 
 void StrategySI2::onTimeStamp(bool issim, TimeStamp ts, int index) {

@@ -87,7 +87,7 @@ bool IndicatorTA_MA::build(Exchange& exchange, const char* assetsName,
 
   // CandleData cd;
   for (int i = 0; i < length; ++i) {
-    auto isok = exchange.getData(assetsName, start + i - this->m_avgtimes, cd);
+    auto isok = exchange.getData(assetsName, start + i, cd);
     assert(isok);
 
     if (i < outBeg) {
@@ -152,8 +152,62 @@ const IndicatorData_singleValue* IndicatorTA_MA::getMaxSingleValue(
 }
 
 // newIndicator - new IndicatorTA_MA
-Indicator* IndicatorTA_MA::newIndicator(int avgtimes) {
-  return new IndicatorTA_MA(avgtimes);
+Indicator* IndicatorTA_MA::newIndicator(const char* name) {
+  std::vector<std::string> arr;
+  splitStr(arr, name, ".");
+
+  if (arr.size() == 2) {
+    TA_MAType maType;
+    if (arr[0] == "ta-sma") {
+      maType = TA_MAType_SMA;
+    } else if (arr[0] == "ta-ema") {
+      maType = TA_MAType_EMA;
+    } else if (arr[0] == "ta-wma") {
+      maType = TA_MAType_WMA;
+    } else if (arr[0] == "ta-dema") {
+      maType = TA_MAType_DEMA;
+    } else if (arr[0] == "ta-tema") {
+      maType = TA_MAType_TEMA;
+    } else if (arr[0] == "ta-trima") {
+      maType = TA_MAType_TRIMA;
+    } else if (arr[0] == "ta-kama") {
+      maType = TA_MAType_KAMA;
+    } else if (arr[0] == "ta-mama") {
+      maType = TA_MAType_MAMA;
+    } else if (arr[0] == "ta-t3") {
+      maType = TA_MAType_T3;
+    }
+
+    try {
+      auto v = std::stoi(arr[1]);
+      return new IndicatorTA_MA(maType, v);
+    } catch (...) {
+      return NULL;
+    }
+  }
+
+  return NULL;
+}
+
+// isMine - isMine
+bool IndicatorTA_MA::isMine(const char* name) {
+  std::vector<std::string> arr;
+  splitStr(arr, name, ".");
+
+  if (arr.size() == 2) {
+    if (arr[0] == "ta-sma" || arr[0] == "ta-ema" || arr[0] == "ta-wma" ||
+        arr[0] == "ta-dema" || arr[0] == "ta-tema" || arr[0] == "ta-trima" ||
+        arr[0] == "ta-kama" || arr[0] == "ta-mama" || arr[0] == "ta-t3") {
+      try {
+        auto v = std::stoi(arr[1]);
+        return true;
+      } catch (...) {
+        return false;
+      }
+    }
+  }
+
+  return false;
 }
 
 CR2END

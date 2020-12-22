@@ -41,26 +41,26 @@ bool calcIndicatorRange(Exchange& exchange, const char* assetsName,
                         const char* indicatorName, int avgtimes,
                         IndicatorDataValue& minval,
                         IndicatorDataValue& maxval) {
-  auto mgr = IndicatorMgr::getSingleton();
-  auto pIndicator = mgr->newIndicator(indicatorName, avgtimes);
+  // auto mgr = IndicatorMgr::getSingleton();
+  // auto pIndicator = mgr->newIndicator(indicatorName, avgtimes);
 
-  pIndicator->build(exchange, assetsName, 0,
-                    exchange.getDataLength(assetsName));
+  // pIndicator->build(exchange, assetsName, 0,
+  //                   exchange.getDataLength(assetsName));
 
-  int index;
-  auto pMin = pIndicator->getMinSingleValue(index);
-  auto pMax = pIndicator->getMaxSingleValue(index);
+  // int index;
+  // auto pMin = pIndicator->getMinSingleValue(index);
+  // auto pMax = pIndicator->getMaxSingleValue(index);
 
-  if (pMin != NULL && pMax != NULL) {
-    minval = pMin->value;
-    maxval = pMax->value;
+  // if (pMin != NULL && pMax != NULL) {
+  //   minval = pMin->value;
+  //   maxval = pMax->value;
 
-    delete pIndicator;
+  //   delete pIndicator;
 
-    return true;
-  }
+  //   return true;
+  // }
 
-  delete pIndicator;
+  // delete pIndicator;
 
   return false;
 }
