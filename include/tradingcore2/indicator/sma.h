@@ -20,6 +20,12 @@ class IndicatorSMA final : public Indicator {
   typedef std::vector<Node> List;
 
  public:
+  // newIndicator - new IndicatorSMA
+  static Indicator* newIndicator(const char* name);
+  // isMine - isMine
+  static bool isMine(const char* name);
+
+ protected:
   IndicatorSMA(int avgtimes) : m_avgtimes(avgtimes), m_iStart(-1) {
     assert(avgtimes >= 1);
   }
@@ -70,8 +76,8 @@ class IndicatorSMA final : public Indicator {
   int m_iStart;
 };
 
-// NewIndicatorSMA - new IndicatorSMA
-Indicator* NewIndicatorSMA(int avgtimes);
+// // NewIndicatorSMA - new IndicatorSMA
+// Indicator* NewIndicatorSMA(int avgtimes);
 
 CR2END
 

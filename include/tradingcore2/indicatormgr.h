@@ -10,13 +10,20 @@
 
 CR2BEGIN
 
-// FuncNewIndicatorWithAvgTimes - new Indicator(int avgtime)
-typedef std::function<Indicator*(int avgtimes)> FuncNewIndicatorWithAvgTimes;
+// FuncNewIndicator - newIndicator(const char*)
+typedef std::function<Indicator*(const char*)> FuncNewIndicator;
+// FuncIsMime - bool isMine(const char*)
+typedef std::function<bool(const char*)> FuncIsMime;
 
 class IndicatorMgr {
  public:
-  typedef std::pair<std::string, FuncNewIndicatorWithAvgTimes> PairWithAvgTimes;
-  typedef std::map<std::string, FuncNewIndicatorWithAvgTimes> MapWithAvgTimes;
+  struct IndicatorFuns {
+    FuncNewIndicator newIndicator;
+    FuncIsMime isMine;
+  };
+
+  typedef std::pair<std::string, IndicatorFuns> Pair;
+  typedef std::map<std::string, IndicatorFuns> Map;
 
  public:
   static IndicatorMgr* getSingleton();
@@ -26,14 +33,14 @@ class IndicatorMgr {
   ~IndicatorMgr() {}
 
  public:
-  void regIndicatorWithAvgTimes(const char* name,
-                                FuncNewIndicatorWithAvgTimes func);
+  void regIndicator(const char* name, FuncNewIndicator funcNewIndicator,
+                    FuncIsMime funcIsMine);
 
  public:
-  Indicator* newIndicator(const char* name, int avgtimes);
+  Indicator* newIndicator(const char* name);
 
  protected:
-  MapWithAvgTimes m_mapWithAvgTimes;
+  Map m_map;
 };
 
 CR2END

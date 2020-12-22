@@ -20,6 +20,7 @@ include_directories(../../deps/yaml-cpp/include)
 include_directories(${gflags_INCLUDE_DIRS})
 include_directories(../../deps/glog/cmakebuild)
 include_directories(../../deps/glog/src)
+include_directories(../../deps/ta-lib/include)
 
 aux_source_directory(. DIR_LIB_SRCS)
 aux_source_directory(../../include/tradingcore2/protos DIR_LIB_PROTO_SRCS)

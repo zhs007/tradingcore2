@@ -14,7 +14,8 @@ class SMATest : public testing::Test {
 };
 
 TEST_F(SMATest, sma_2) {
-  tr2::IndicatorSMA* pSMA = new tr2::IndicatorSMA(2);
+  tr2::IndicatorSMA* pSMA =
+      (tr2::IndicatorSMA*)tr2::IndicatorSMA::newIndicator("sma.2");
 
   auto isok = pSMA->build(*cnfund, "110022", 0, 2280);
   EXPECT_TRUE(isok);
@@ -29,7 +30,8 @@ TEST_F(SMATest, sma_2) {
 }
 
 TEST_F(SMATest, sma_3) {
-  tr2::IndicatorSMA* pSMA = new tr2::IndicatorSMA(3);
+  tr2::IndicatorSMA* pSMA =
+      (tr2::IndicatorSMA*)tr2::IndicatorSMA::newIndicator("sma.3");
 
   auto isok = pSMA->build(*cnfund, "110022", 0, 2280);
   EXPECT_TRUE(isok);

@@ -20,6 +20,12 @@ class IndicatorROC final : public Indicator {
   typedef std::vector<Node> List;
 
  public:
+  // newIndicator - new IndicatorROC
+  static Indicator* newIndicator(const char* name);
+  // isMine - isMine
+  static bool isMine(const char* name);
+
+ protected:
   IndicatorROC(int avgtimes) : m_avgtimes(avgtimes), m_iStart(-1) {
     assert(avgtimes >= 1);
   }
@@ -67,8 +73,8 @@ class IndicatorROC final : public Indicator {
   int m_iStart;
 };
 
-// NewIndicatorROC - new IndicatorROC
-Indicator* NewIndicatorROC(int avgtimes);
+// // NewIndicatorROC - new IndicatorROC
+// Indicator* NewIndicatorROC(int avgtimes);
 
 CR2END
 

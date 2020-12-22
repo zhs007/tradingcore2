@@ -20,7 +20,7 @@ class IndicatorTest : public testing::Test {
 TEST_F(IndicatorTest, ema5) {
   auto mgr = tr2::IndicatorMgr::getSingleton();
 
-  auto pEMA = mgr->newIndicator("ema", 5);
+  auto pEMA = mgr->newIndicator("ema.5");
   pEMA->build(*cnfund, "110022", 0, cnfund->getDataLength("110022"));
 
   pEMA->saveCSV("../output/test.ema5.csv");
@@ -29,7 +29,7 @@ TEST_F(IndicatorTest, ema5) {
 TEST_F(IndicatorTest, sma1) {
   auto mgr = tr2::IndicatorMgr::getSingleton();
 
-  auto pSMA = mgr->newIndicator("sma", 1);
+  auto pSMA = mgr->newIndicator("sma.1");
   pSMA->build(*cnfund, "110022", 0, cnfund->getDataLength("110022"));
 
   pSMA->saveCSV("../output/test.sma1.csv");
@@ -38,7 +38,7 @@ TEST_F(IndicatorTest, sma1) {
 TEST_F(IndicatorTest, smma10) {
   auto mgr = tr2::IndicatorMgr::getSingleton();
 
-  auto pEMA = mgr->newIndicator("smma", 10);
+  auto pEMA = mgr->newIndicator("smma.10");
   pEMA->build(*cnfund, "110022", 0, cnfund->getDataLength("110022"));
 
   pEMA->saveCSV("../output/test.smma10.csv");
@@ -47,7 +47,7 @@ TEST_F(IndicatorTest, smma10) {
 TEST_F(IndicatorTest, rsi7) {
   auto mgr = tr2::IndicatorMgr::getSingleton();
 
-  auto pEMA = mgr->newIndicator("rsi", 7);
+  auto pEMA = mgr->newIndicator("rsi.7");
   pEMA->build(*cnfund, "110022", 0, cnfund->getDataLength("110022"));
 
   pEMA->saveCSV("../output/test.rsi.csv");

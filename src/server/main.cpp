@@ -23,6 +23,7 @@ int main(int argc, char* argv[]) {
     return -1;
   }
 
+  tr2::initTALib();
   tr2::regAllIndicators();
   tr2::regAllExchanges();
   tr2::regAllCtrlConditionHelper();
@@ -39,6 +40,8 @@ int main(int argc, char* argv[]) {
   startServ(cfg);
 
   LOG(INFO) << "tr2serv exit.";
+
+  tr2::releaseTALib();
 
   return 0;
 }

@@ -139,7 +139,38 @@ const IndicatorData_singleValue* IndicatorSMA::getMaxSingleValue(
   return pMax;
 }
 
-// NewIndicatorSMA - new IndicatorSMA
-Indicator* NewIndicatorSMA(int avgtimes) { return new IndicatorSMA(avgtimes); }
+// newIndicator - new IndicatorSMA
+Indicator* IndicatorSMA::newIndicator(const char* name) {
+  std::vector<std::string> arr;
+  splitStr(arr, name, ".");
+
+  if (arr.size() == 2) {
+    try {
+      auto v = std::stoi(arr[1]);
+      return new IndicatorSMA(v);
+    } catch (...) {
+      return NULL;
+    }
+  }
+
+  return NULL;
+}
+
+// isMine - isMine
+bool IndicatorSMA::isMine(const char* name) {
+  std::vector<std::string> arr;
+  splitStr(arr, name, ".");
+
+  if (arr.size() == 2 && arr[0] == "sma") {
+    try {
+      auto v = std::stoi(arr[1]);
+      return true;
+    } catch (...) {
+      return false;
+    }
+  }
+
+  return false;
+}
 
 CR2END

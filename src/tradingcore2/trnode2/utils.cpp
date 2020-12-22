@@ -17,40 +17,40 @@
 
 CR2BEGIN
 
-// findAssetData - find PNLAssetData
-::tradingpb::PNLAssetData* findAssetData(::tradingpb::PNLData* pPNLData,
-                                         const char* market,
-                                         const char* symbol) {
-  assert(pPNLData != NULL);
-  assert(market != NULL);
-  assert(symbol != NULL);
+// // findAssetData - find PNLAssetData
+// ::tradingpb::PNLAssetData* findAssetData(::tradingpb::PNLData* pPNLData,
+//                                          const char* market,
+//                                          const char* symbol) {
+//   assert(pPNLData != NULL);
+//   assert(market != NULL);
+//   assert(symbol != NULL);
 
-  for (auto i = 0; i < pPNLData->assets_size(); ++i) {
-    auto curasset = pPNLData->mutable_assets(i);
-    auto a = curasset->asset();
-    if (a.market() == market && a.code() == symbol) {
-      return curasset;
-    }
-  }
+//   for (auto i = 0; i < pPNLData->assets_size(); ++i) {
+//     auto curasset = pPNLData->mutable_assets(i);
+//     auto a = curasset->asset();
+//     if (a.market() == market && a.code() == symbol) {
+//       return curasset;
+//     }
+//   }
 
-  return NULL;
-}
+//   return NULL;
+// }
 
-// findAssetDataEx - find PNLAssetData
-//      if can't find it, it will new a PNLAssetData
-::tradingpb::PNLAssetData* findAssetDataEx(::tradingpb::PNLData* pPNLData,
-                                           const char* market,
-                                           const char* symbol) {
-  auto pData = findAssetData(pPNLData, market, symbol);
-  if (pData == NULL) {
-    pData = pPNLData->add_assets();
-    auto asset = pData->mutable_asset();
-    asset->set_market(market);
-    asset->set_code(symbol);
-  }
+// // findAssetDataEx - find PNLAssetData
+// //      if can't find it, it will new a PNLAssetData
+// ::tradingpb::PNLAssetData* findAssetDataEx(::tradingpb::PNLData* pPNLData,
+//                                            const char* market,
+//                                            const char* symbol) {
+//   auto pData = findAssetData(pPNLData, market, symbol);
+//   if (pData == NULL) {
+//     pData = pPNLData->add_assets();
+//     auto asset = pData->mutable_asset();
+//     asset->set_market(market);
+//     asset->set_code(symbol);
+//   }
 
-  return pData;
-}
+//   return pData;
+// }
 
 // insTimestamp - insert a timestamp
 void insTimestamp(::tradingpb::PNLAssetData* pAssetData, time_t ts) {

@@ -24,6 +24,12 @@ class IndicatorRSI final : public Indicator {
   typedef std::vector<Node> List;
 
  public:
+  // newIndicator - new IndicatorRSI
+  static Indicator* newIndicator(const char* name);
+  // isMine - isMine
+  static bool isMine(const char* name);
+
+ protected:
   IndicatorRSI(int avgtimes) : m_avgtimes(avgtimes), m_iStart(-1) {
     assert(avgtimes >= 1);
   }
@@ -97,8 +103,8 @@ class IndicatorRSI final : public Indicator {
   int m_iStart;
 };
 
-// NewIndicatorRSI - new IndicatorRSI
-Indicator* NewIndicatorRSI(int avgtimes);
+// // NewIndicatorRSI - new IndicatorRSI
+// Indicator* NewIndicatorRSI(int avgtimes);
 
 CR2END
 

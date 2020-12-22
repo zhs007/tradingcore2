@@ -112,7 +112,38 @@ const IndicatorData_singleValue* IndicatorWMA::getMaxSingleValue(
   return pMax;
 }
 
-// NewIndicatorWMA - new IndicatorWMA
-Indicator* NewIndicatorWMA(int avgtimes) { return new IndicatorWMA(avgtimes); }
+// newIndicator - new IndicatorWMA
+Indicator* IndicatorWMA::newIndicator(const char* name) {
+  std::vector<std::string> arr;
+  splitStr(arr, name, ".");
+
+  if (arr.size() == 2) {
+    try {
+      auto v = std::stoi(arr[1]);
+      return new IndicatorWMA(v);
+    } catch (...) {
+      return NULL;
+    }
+  }
+
+  return NULL;
+}
+
+// isMine - isMine
+bool IndicatorWMA::isMine(const char* name) {
+  std::vector<std::string> arr;
+  splitStr(arr, name, ".");
+
+  if (arr.size() == 2 && arr[0] == "wma") {
+    try {
+      auto v = std::stoi(arr[1]);
+      return true;
+    } catch (...) {
+      return false;
+    }
+  }
+
+  return false;
+}
 
 CR2END

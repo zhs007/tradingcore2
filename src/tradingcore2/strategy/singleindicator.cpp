@@ -10,22 +10,22 @@ void StrategySI::init(const char* assetsName, const char* nameIndicator,
                       IndicatorDataValue maxvalbuy,
                       IndicatorDataValue minvalsell,
                       IndicatorDataValue maxvalsell, Money money) {
-  this->m_assetsName = assetsName;
+  // this->m_assetsName = assetsName;
 
-  auto mgr = IndicatorMgr::getSingleton();
-  this->m_pIndicator = mgr->newIndicator(nameIndicator, avgtimes);
+  // auto mgr = IndicatorMgr::getSingleton();
+  // this->m_pIndicator = mgr->newIndicator(nameIndicator, avgtimes);
 
-  this->m_pIndicator->build(
-      this->m_exchange, this->m_assetsName.c_str(), 0,
-      this->m_exchange.getDataLength(this->m_assetsName.c_str()));
+  // this->m_pIndicator->build(
+  //     this->m_exchange, this->m_assetsName.c_str(), 0,
+  //     this->m_exchange.getDataLength(this->m_assetsName.c_str()));
 
-  m_minValBuy = minvalbuy;
-  m_maxValBuy = maxvalbuy;
-  m_minValSell = minvalsell;
-  m_maxValSell = maxvalsell;
+  // m_minValBuy = minvalbuy;
+  // m_maxValBuy = maxvalbuy;
+  // m_minValSell = minvalsell;
+  // m_maxValSell = maxvalsell;
 
-  m_money = money;
-  m_volume = 0;
+  // m_money = money;
+  // m_volume = 0;
 }
 
 void StrategySI::onTimeStamp(bool issim, TimeStamp ts, int index) {

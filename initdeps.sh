@@ -17,3 +17,5 @@ sh buildgflags.sh
 sh buildrocksdb.sh
 
 sh buildyamlcpp.sh
+
+sh buildtalib.sh

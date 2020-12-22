@@ -14,7 +14,8 @@ class WMATest : public testing::Test {
 };
 
 TEST_F(WMATest, wma_2) {
-  tr2::IndicatorWMA* pWMA = new tr2::IndicatorWMA(2);
+  tr2::IndicatorWMA* pWMA =
+      (tr2::IndicatorWMA*)tr2::IndicatorWMA::newIndicator("wma.2");
 
   auto isok = pWMA->build(*cnfund, "110022", 0, 2280);
   EXPECT_TRUE(isok);
@@ -31,8 +32,9 @@ TEST_F(WMATest, wma_2) {
               0.00005);
 }
 
-TEST_F(WMATest, ema_3) {
-  tr2::IndicatorWMA* pWMA = new tr2::IndicatorWMA(3);
+TEST_F(WMATest, wma_3) {
+  tr2::IndicatorWMA* pWMA =
+      (tr2::IndicatorWMA*)tr2::IndicatorWMA::newIndicator("wma.3");
 
   auto isok = pWMA->build(*cnfund, "110022", 0, 2280);
   EXPECT_TRUE(isok);

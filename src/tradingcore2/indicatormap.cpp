@@ -14,19 +14,18 @@ void IndicatorMap::addIndicator(const char* fullname) {
     return;
   }
 
-  std::vector<std::string> arr;
-  splitStr(arr, fullname, ".");
+  // std::vector<std::string> arr;
+  // splitStr(arr, fullname, ".");
 
-  if (arr.size() == 2) {
-    auto v = atoi(arr[1].c_str());
+  // if (arr.size() == 2) {
+  //   auto v = atoi(arr[1].c_str());
 
-    auto pIndicator =
-        IndicatorMgr::getSingleton()->newIndicator(arr[0].c_str(), v);
+  auto pIndicator = IndicatorMgr::getSingleton()->newIndicator(fullname);
 
-    PairIndicator p(fullname, pIndicator);
-    auto ret = this->m_map.insert(p);
-    assert(ret.second);
-  }
+  PairIndicator p(fullname, pIndicator);
+  auto ret = this->m_map.insert(p);
+  assert(ret.second);
+  // }
 }
 
 void IndicatorMap::build(Exchange& exchange, const char* asset) {

@@ -14,16 +14,16 @@ bool isValidTokens(const REQUEST* request, RESPONSE* response,
   return cfg.hasToken(token.c_str());
 }
 
-// findAssetData - find PNLAssetData
-::tradingpb::PNLAssetData* findAssetData(::tradingpb::PNLData* pPNLData,
-                                         const char* market,
-                                         const char* symbol);
+// // findAssetData - find PNLAssetData
+// ::tradingpb::PNLAssetData* findAssetData(::tradingpb::PNLData* pPNLData,
+//                                          const char* market,
+//                                          const char* symbol);
 
-// findAssetDataEx - find PNLAssetData
-//      if can't find it, it will new a PNLAssetData
-::tradingpb::PNLAssetData* findAssetDataEx(::tradingpb::PNLData* pPNLData,
-                                           const char* market,
-                                           const char* symbol);
+// // findAssetDataEx - find PNLAssetData
+// //      if can't find it, it will new a PNLAssetData
+// ::tradingpb::PNLAssetData* findAssetDataEx(::tradingpb::PNLData* pPNLData,
+//                                            const char* market,
+//                                            const char* symbol);
 
 // insTimestamp - insert a timestamp
 void insTimestamp(::tradingpb::PNLAssetData* pAssetData, time_t ts);

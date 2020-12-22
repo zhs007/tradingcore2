@@ -87,7 +87,38 @@ const IndicatorData_singleValue* IndicatorEMA::getMaxSingleValue(
   return pMax;
 }
 
-// NewIndicatorEMA - new IndicatorEMA
-Indicator* NewIndicatorEMA(int avgtimes) { return new IndicatorEMA(avgtimes); }
+// newIndicator - new IndicatorEMA
+Indicator* IndicatorEMA::newIndicator(const char* name) {
+  std::vector<std::string> arr;
+  splitStr(arr, name, ".");
+
+  if (arr.size() == 2) {
+    try {
+      auto v = std::stoi(arr[1]);
+      return new IndicatorEMA(v);
+    } catch (...) {
+      return NULL;
+    }
+  }
+
+  return NULL;
+}
+
+// isMine - isMine
+bool IndicatorEMA::isMine(const char* name) {
+  std::vector<std::string> arr;
+  splitStr(arr, name, ".");
+
+  if (arr.size() == 2 && arr[0] == "ema") {
+    try {
+      auto v = std::stoi(arr[1]);
+      return true;
+    } catch (...) {
+      return false;
+    }
+  }
+
+  return false;
+}
 
 CR2END

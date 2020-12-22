@@ -39,6 +39,7 @@
 #include <tradingcore2/strategy/buyandhold.h>
 #include <tradingcore2/strategy/singleindicator.h>
 #include <tradingcore2/strategymgr.h>
+#include <tradingcore2/talib.h>
 #include <tradingcore2/trade.h>
 #include <tradingcore2/train.h>
 #include <tradingcore2/trdb2/client.h>

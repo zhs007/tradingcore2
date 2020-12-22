@@ -1,6 +1,8 @@
-#ifndef __TRADINGCORE2_INDICATOR_EMA_H__
-#define __TRADINGCORE2_INDICATOR_EMA_H__
+#ifndef __TRADINGCORE2_INDICATOR_TA_MA_H__
+#define __TRADINGCORE2_INDICATOR_TA_MA_H__
 
+#include <ta_func.h>
+#include <ta_libc.h>
 #include <tradingcore2/basedef.h>
 #include <tradingcore2/indicator.h>
 
@@ -8,10 +10,9 @@
 
 CR2BEGIN
 
-//!! https://en.wikipedia.org/wiki/Moving_average
-//!! https://baike.baidu.com/item/EMA/12646151
+//!! https://ta-lib.org/
 
-class IndicatorEMA final : public Indicator {
+class IndicatorTA_MA final : public Indicator {
  public:
   struct Node {
     TimeStamp ts;
@@ -21,16 +22,17 @@ class IndicatorEMA final : public Indicator {
   typedef std::vector<Node> List;
 
  public:
-  // newIndicator - new IndicatorEMA
+  // newIndicator - new IndicatorTA_MA
   static Indicator* newIndicator(const char* name);
   // isMine - isMine
   static bool isMine(const char* name);
 
  protected:
-  IndicatorEMA(int avgtimes) : m_avgtimes(avgtimes), m_iStart(-1) {
-    assert(avgtimes > 1);
+  IndicatorTA_MA(TA_MAType type, int avgtimes)
+      : m_avgtimes(avgtimes), m_iStart(-1), m_maType(type) {
+    assert(avgtimes >= 1);
   }
-  virtual ~IndicatorEMA() {}
+  virtual ~IndicatorTA_MA() {}
 
  public:
   virtual bool build(Exchange& exchange, const char* assetsName, int start,
@@ -65,14 +67,22 @@ class IndicatorEMA final : public Indicator {
   void pushData(TimeStamp ts, IndicatorDataValue val);
 
  protected:
+  void _buildFirst(Exchange& exchange, const char* assetsName, int start,
+                   int length, Money& totalPrice);
+
+  bool _build_avg1(Exchange& exchange, const char* assetsName, int start,
+                   int length);
+
+ protected:
   int m_avgtimes;
   List m_lst;
   int m_iStart;
+  TA_MAType m_maType;
 };
 
-// // NewIndicatorEMA - new IndicatorEMA
-// Indicator* NewIndicatorEMA(int avgtimes);
+// // NewIndicatorTA_MA - new IndicatorTA_MA
+// Indicator* NewIndicatorTA_MA(int avgtimes);
 
 CR2END
 
-#endif  // __TRADINGCORE2_INDICATOR_EMA_H__
+#endif  // __TRADINGCORE2_INDICATOR_TA_MA_H__

@@ -117,7 +117,38 @@ const IndicatorData_singleValue* IndicatorRSI::getMaxSingleValue(
   return pMax;
 }
 
-// NewIndicatorRSI - new IndicatorRSI
-Indicator* NewIndicatorRSI(int avgtimes) { return new IndicatorRSI(avgtimes); }
+// newIndicator - new IndicatorRSI
+Indicator* IndicatorRSI::newIndicator(const char* name) {
+  std::vector<std::string> arr;
+  splitStr(arr, name, ".");
+
+  if (arr.size() == 2) {
+    try {
+      auto v = std::stoi(arr[1]);
+      return new IndicatorRSI(v);
+    } catch (...) {
+      return NULL;
+    }
+  }
+
+  return NULL;
+}
+
+// isMine - isMine
+bool IndicatorRSI::isMine(const char* name) {
+  std::vector<std::string> arr;
+  splitStr(arr, name, ".");
+
+  if (arr.size() == 2 && arr[0] == "rsi") {
+    try {
+      auto v = std::stoi(arr[1]);
+      return true;
+    } catch (...) {
+      return false;
+    }
+  }
+
+  return false;
+}
 
 CR2END
