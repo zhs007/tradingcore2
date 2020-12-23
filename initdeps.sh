@@ -6,13 +6,13 @@ sh buildgoogletest.sh
 
 sh buildgsl.sh
 
-sh fixgrpc.sh
-
-sh buildgrpc.sh
-
 sh buildglog.sh
 
 sh buildgflags.sh
+
+sh fixgrpc.sh
+
+sh buildgrpc.sh
 
 sh buildrocksdb.sh
 

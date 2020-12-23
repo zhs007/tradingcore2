@@ -1,4 +1,4 @@
-cd deps/glog
+cd $PWD/deps/glog
 mkdir cmakebuild
 cd cmakebuild
 cmake ..

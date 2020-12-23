@@ -1,4 +1,4 @@
-cd deps/grpc
+cd $PWD/deps/grpc
 mkdir cmakebuild
 cd cmakebuild
 cmake ..
