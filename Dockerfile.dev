@@ -1,18 +1,18 @@
 # https://github.com/zhs007/tradingcore2
 # zerrozhao@gmail.com
 
-FROM buildpack-deps:stretch
+FROM buildpack-deps:buster
 
-RUN echo "deb http://ftp.de.debian.org/debian stretch main" >> /etc/apt/sources.list \
+RUN echo "deb http://ftp.de.debian.org/debian buster main" >> /etc/apt/sources.list \
   && apt-get update -y \
   && apt-get install git wget gcc make automake libc6-dbg -y \
   && rm -rf /var/lib/apt/lists/*
 
-RUN wget https://github.com/Kitware/CMake/releases/download/v3.17.0/cmake-3.17.0.tar.gz \
+RUN wget https://github.com/Kitware/CMake/releases/download/v3.18.5/cmake-3.18.5.tar.gz \
   && tar zxvf cmake-3.* \
   && cd cmake-3.* \
   && ./bootstrap --prefix=/usr/local \
-  && make -j$(nproc) \
+  && make \
   && make install \
   && cd .. \
   && rm -rf cmake-3.*

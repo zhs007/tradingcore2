@@ -15,7 +15,7 @@ link_directories(../../deps/grpc/cmakebuild/third_party/abseil-cpp/absl/types)
 link_directories(../../deps/grpc/cmakebuild/third_party/abseil-cpp/absl/numeric)
 link_directories(../../deps/grpc/cmakebuild/third_party/protobuf)
 link_directories(../../deps/grpc/cmakebuild/third_party/cares/cares/lib)
-link_directories(../../deps/grpc/cmakebuild/third_party/zlib)
+link_directories(../../deps/zlib/build)
 link_directories(../../deps/ta-lib/src/.libs)
 
 aux_source_directory(. DIR_MAIN_SRCS)
