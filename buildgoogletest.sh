@@ -1,4 +1,4 @@
-cd deps/googletest
+cd $PWD/deps/googletest
 mkdir build
 cd build
 cmake ..

@@ -1,6 +1,6 @@
-cd deps/gflags
+cd $PWD/deps/gflags
 mkdir cmakebuild
 cd cmakebuild
 cmake ..
-make gflags_static
+make
 make install
