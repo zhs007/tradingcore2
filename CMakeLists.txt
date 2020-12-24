@@ -12,6 +12,9 @@ find_package(gflags REQUIRED)
 set(glog_DIR ./deps/glog/cmakebuild)
 find_package(glog REQUIRED)
 
+# set(zlib_DIR ./deps/zlib/build)
+# find_package(zlib REQUIRED)
+
 include_directories(./include)
 include_directories(${gflags_INCLUDE_DIRS})
 include_directories(./deps/glog/cmakebuild)

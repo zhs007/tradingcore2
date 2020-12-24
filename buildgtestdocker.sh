@@ -1,1 +1,1 @@
-docker build --file Dockerfile.gtest -t tradingcore2 .
+docker build --file Dockerfile.gtest -t tc2gtest .

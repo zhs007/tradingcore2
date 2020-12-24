@@ -16,12 +16,4 @@ RUN wget https://github.com/Kitware/CMake/releases/download/v3.18.5/cmake-3.18.5
   && cd .. \
   && rm -rf cmake-3.*
 
-WORKDIR /app/
-
-COPY ./ ./
-
-RUN sh initdeps.sh \
-  && mkdir output \
-  && sh build.sh \
-  && cd build \
-  && ./tests/tests
+WORKDIR /app/proj

@@ -1,1 +1,1 @@
-docker build --file Dockerfile.dev -t tradingcore2 .
+docker build --file Dockerfile.dev -t tc2dev .
