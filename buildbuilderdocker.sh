@@ -1,0 +1,1 @@
+docker build --file Dockerfile.builder -t tc2builder .
