@@ -1,0 +1,9 @@
+# https://github.com/zhs007/tradingcore2
+# zerrozhao@gmail.com
+
+FROM debian:buster-slim
+WORKDIR /app/trnode2
+COPY ./dockerhub /app/
+COPY ./data /app/trnode2/data
+RUN mkdir output
+CMD ["./tc2serv", "./cfg/config.yaml"]
