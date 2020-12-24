@@ -12,6 +12,11 @@ find_package(gflags REQUIRED)
 set(glog_DIR ./deps/glog/cmakebuild)
 find_package(glog REQUIRED)
 
+set(ZLIB_INCLUDE_DIRS ./deps/zlib)
+set(ZLIB_LIBRARIES ./deps/zlib/build/libz.a)
+set(ZLIB_FOUND True)
+# find_package(glog REQUIRED)
+
 # set(zlib_DIR ./deps/zlib/build)
 # find_package(zlib REQUIRED)
 
