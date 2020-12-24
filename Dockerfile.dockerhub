@@ -2,8 +2,8 @@
 # zerrozhao@gmail.com
 
 FROM debian:buster-slim
-WORKDIR /app/trnode2
-COPY ./dockerhub /app/
-COPY ./data /app/trnode2/data
+WORKDIR /app/tr2
+COPY ./dockerhub/trnode2/* /app/tr2/
+COPY ./data /app/tr2/data
 RUN mkdir output
 CMD ["./tc2serv", "./cfg/config.yaml"]
