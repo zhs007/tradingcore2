@@ -264,7 +264,7 @@ Exchange* JQDataExchange::newExchange(const Config& cfg) {
 }
 
 void JQDataExchange::regExchange() {
-  ExchangeMgr::getSingleton()->regNewExchange(JRJTypeName,
+  ExchangeMgr::getSingleton()->regNewExchange(JQDataTypeName,
                                               JQDataExchange::newExchange);
 }
 
