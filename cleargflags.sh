@@ -1,2 +1,2 @@
-cd deps/gflags/cmakebuild
+cd $PWD/deps/gflags/cmakebuild
 make uninstall
