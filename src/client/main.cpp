@@ -56,20 +56,26 @@ void aipWeekDay(const tr2::Config& cfg) {
   ::tradingpb::SimTradingParams params;
 
   auto asset0 = params.add_assets();
-  asset0->set_market("jrj");
-  asset0->set_code("001631");
+  asset0->set_market("jqdata");
+  asset0->set_code("000300_XSHG");
 
   auto strategy0 = params.add_strategies();
-  strategy0->set_name("aip");
+  strategy0->set_name("normal");
   auto asset1 = strategy0->mutable_asset();
-  asset1->set_market("jrj");
-  asset1->set_code("001631");
+  asset1->set_market("jqdata");
+  asset1->set_code("000300_XSHG");
   auto buy0 = strategy0->add_buy();
   buy0->set_name("weekday");
-  buy0->add_vals(3);
+  buy0->add_vals(5);
+  auto sell0 = strategy0->add_sell();
+  sell0->set_name("weekday");
+  sell0->add_vals(1);
   auto bp = strategy0->mutable_paramsbuy();
-  bp->set_aipmoney(10000);
-  // bp->set_permoney(1);
+  bp->set_perhandmoney(1);
+  auto sp = strategy0->mutable_paramssell();
+  sp->set_pervolume(1);
+  auto ip = strategy0->mutable_paramsinit();
+  ip->set_money(10000);
 
   ::tradingpb::ReplyCalcPNL res;
   auto status = client.clacPNL(params, res);
@@ -828,13 +834,13 @@ int main(int argc, char* argv[]) {
   mgr->init(cfg);
 
   // buyandhold(cfg);
-  // aipWeekDay(cfg);
+  aipWeekDay(cfg);
   // aipMonthDay(cfg);
   // normalWeekDay(cfg);
   // normalWeekDay2(cfg);
   // normalROC1(cfg);
   // normalEMA5(cfg);
-  normalTAMA5(cfg, "ta-ema.5");
+  // normalTAMA5(cfg, "ta-ema.5");
   // normalWeekDay3(cfg);
   // normalWeekDay5(cfg);
   // normalWeekDay6(cfg);
