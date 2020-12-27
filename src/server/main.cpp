@@ -10,17 +10,24 @@ void startServ(const tr2::Config& cfg) {
 int main(int argc, char* argv[]) {
   putenv("TZ=UTC");
   tr2::LogHelper log(argv[0]);
+  char buf[1024];
 
   LOG(INFO) << "tr2serv (" << tr2::getVersion() << ") starting...";
+  LOG(INFO) << "curpath is " << getcwd(buf, 1024);
   // LOG(INFO) << "tr2serv starting...";
   // printf("tr2serv starting...\n");
   // printf("version is %s\n", tr2::getVersion());
 
+  std::string strparams;
   if (argc != 2) {
-    LOG(ERROR) << "tr2serv argv file.";
+    strparams = "../../../cfg/config.yaml";
+
+    // LOG(ERROR) << "tr2serv argv file.";
     // printf("please type server cfgfile.\n");
 
-    return -1;
+    // return -1;
+  } else {
+    strparams = argv[1];
   }
 
   tr2::initTALib();
@@ -30,7 +37,7 @@ int main(int argc, char* argv[]) {
   tr2::regAllStrategy();
 
   tr2::Config cfg;
-  tr2::loadConfig(cfg, argv[1]);
+  tr2::loadConfig(cfg, strparams.c_str());
 
   auto mgr = tr2::ExchangeMgr::getSingleton();
   mgr->init(cfg);

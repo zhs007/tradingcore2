@@ -308,7 +308,7 @@ void PNL2::calcMaxDrawdown() {
                 1.0f / t->values(csi).pervalue();
     // }
 
-    if (cmdd > mdd) {
+    if (cmdd >= mdd) {
       si = csi;
       ei = cei;
       mdd = cmdd;
@@ -384,7 +384,7 @@ int PNL2::findPreUpMin(int starti) {
   }
 
   auto mm = t.values(starti).value();
-  ;
+
   for (int i = starti - 1; i >= 0; --i) {
     if (t.values(i).value() > t.values(i + 1).value()) {
       return i + 1;
@@ -423,7 +423,7 @@ void PNL2::calcMaxDrawup() {
                 1.0f / t->values(csi).pervalue();
     // }
 
-    if (cmdd > mdd) {
+    if (cmdd >= mdd) {
       si = csi;
       ei = cei;
       mdd = cmdd;
