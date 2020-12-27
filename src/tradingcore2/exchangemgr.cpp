@@ -14,6 +14,10 @@ ExchangeMgr* ExchangeMgr::getSingleton() {
 
 Exchange* ExchangeMgr::newExchange(const char* name, const Config& cfg) {
   auto it = this->m_mapNewFunc.find(name);
+  if (it == this->m_mapNewFunc.end()) {
+    return NULL;
+  }
+
   assert(it != this->m_mapNewFunc.end());
 
   auto pExchange = it->second(cfg);
@@ -56,6 +60,9 @@ Exchange* ExchangeMgr::newExchange(const char* name) {
   assert(this->m_pCfg != NULL);
 
   auto e = this->newExchange(name, *this->m_pCfg);
+  if (e == NULL) {
+    return NULL;
+  }
 
   this->m_exchanges.insert(e);
 
