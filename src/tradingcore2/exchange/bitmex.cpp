@@ -2,7 +2,7 @@
 #include <dirent.h>
 #include <stdlib.h>
 #include <tradingcore2/csv.h>
-#include <tradingcore2/exchange/jqdata.h>
+#include <tradingcore2/exchange/bitmex.h>
 #include <tradingcore2/exchangemgr.h>
 #include <tradingcore2/trdb2/utils.h>
 #include <tradingcore2/utils.h>
@@ -12,15 +12,15 @@
 
 CR2BEGIN
 
-const char* JQDataTypeName = "jqdata";
+const char* BitMexTypeName = "bitmex";
 
-const char* JQDataExchange::getTypeName() const { return JQDataTypeName; }
+const char* BitMexExchange::getTypeName() const { return BitMexTypeName; }
 
-int JQDataExchange::getTradingDays4Year() const {
+int BitMexExchange::getTradingDays4Year() const {
   return this->m_mgrData.calcAverageTradingDays4Year();
 }
 
-bool JQDataExchange::isValidTs(TimeStamp ts) const {
+bool BitMexExchange::isValidTs(TimeStamp ts) const {
   tm ctm;
   timestamp2timeUTC(ts, ctm);
 
@@ -39,18 +39,18 @@ bool JQDataExchange::isValidTs(TimeStamp ts) const {
   return false;
 }
 
-Exchange* JQDataExchange::newExchange(const Config& cfg) {
+Exchange* BitMexExchange::newExchange(const Config& cfg) {
   auto exchange =
-      new JQDataExchange(cfg.trdb2Serv.c_str(), cfg.trdb2Token.c_str());
+      new BitMexExchange(cfg.trdb2Serv.c_str(), cfg.trdb2Token.c_str());
 
   exchange->init(cfg);
 
   return exchange;
 }
 
-void JQDataExchange::regExchange() {
-  ExchangeMgr::getSingleton()->regNewExchange(JQDataTypeName,
-                                              JQDataExchange::newExchange);
+void BitMexExchange::regExchange() {
+  ExchangeMgr::getSingleton()->regNewExchange(BitMexTypeName,
+                                              BitMexExchange::newExchange);
 }
 
 CR2END

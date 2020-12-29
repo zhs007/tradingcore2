@@ -1,4 +1,5 @@
 #include <tradingcore2/allexchanges.h>
+#include <tradingcore2/exchange/bitmex.h>
 #include <tradingcore2/exchange/cnfund.h>
 #include <tradingcore2/exchange/jqdata.h>
 #include <tradingcore2/exchange/jrj.h>
@@ -14,8 +15,7 @@ void regAllExchanges() {
   TrDB2CNFundsExchange::regExchange();
   JRJExchange::regExchange();
   JQDataExchange::regExchange();
-  // mgr->regNewExchange(CNFundTypeName, newCNFund);
-  // mgr->regNewExchange(TrDB2CNFundsTypeName, newTrDB2CNFunds);
+  BitMexExchange::regExchange();
 }
 
 CR2END
