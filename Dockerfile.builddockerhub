@@ -19,6 +19,3 @@ RUN wget https://github.com/Kitware/CMake/releases/download/v3.18.5/cmake-3.18.5
 WORKDIR /app/tr2
 
 COPY ./ ./
-
-RUN sh initdeps.sh
-RUN sh build.sh
