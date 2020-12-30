@@ -113,6 +113,8 @@ void TradingNode2Impl::init(const Config& cfg) {
 
   exchange->rebuildTimeStampList();
 
+  LOG(ERROR) << "_calcPNL:rebuildTimeStampList ok!";
+
   auto pWallet = new tr2::Wallet(*exchange);
 
   auto sts = request->params().startts();
@@ -168,8 +170,12 @@ void TradingNode2Impl::init(const Config& cfg) {
     // }
   }
 
+  LOG(ERROR) << "_calcPNL:simulateTrading ok!";
+
   tr2::PNL2 pnl2;
   pWallet->buildPNL2(pnl2);
+
+  LOG(ERROR) << "_calcPNL:buildPNL2 ok!";
 
   auto pPNLData = response->add_pnl();
   pPNLData->CopyFrom(pnl2.m_data);
