@@ -12,9 +12,8 @@ sh buildgflags.sh
 
 sh buildzlib.sh
 
-sh fixgrpc.sh
-
-sh buildgrpc.sh
+# sh fixgrpc.sh
+# sh buildgrpc.sh
 
 sh buildrocksdb.sh
 

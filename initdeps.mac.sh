@@ -12,12 +12,11 @@ sh buildgflags.sh
 
 sh buildzlib.sh
 
+# sh fixgrpc.sh
+sh buildgrpc.sh
+
 sh buildrocksdb.sh
 
 sh buildyamlcpp.sh
 
 sh buildtalib.sh
-
-cd $PWD/build
-cmake ..
-make
