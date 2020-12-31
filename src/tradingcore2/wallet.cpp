@@ -176,6 +176,8 @@ void Wallet::buildPNL(PNL& pnl) const {
 void Wallet::buildPNL2(PNL2& pnl2) const {
   pnl2.initTimestamp(this->m_exchange);
 
+  LOG(INFO) << "buildPNL2:initTimestamp ok.";
+
   for (auto it = this->m_history.begin(); it != this->m_history.end(); ++it) {
     if (it->nodeType == WHNT_DEPOSIT) {
       pnl2.deposit(it->offMoney, it->ts);
@@ -196,8 +198,13 @@ void Wallet::buildPNL2(PNL2& pnl2) const {
     }
   }
 
+  LOG(INFO) << "buildPNL2:proc contorl ok.";
+
   pnl2.procCtrlNodeData(this->m_exchange);
+  LOG(INFO) << "buildPNL2:procCtrlNodeData ok.";
+
   pnl2.procTotalPNLAssetData(this->m_exchange);
+  LOG(INFO) << "buildPNL2:procTotalPNLAssetData ok.";
 
   pnl2.onBuildEnd(this->m_exchange);
 }
