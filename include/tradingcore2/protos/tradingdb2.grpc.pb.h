@@ -38,6 +38,7 @@ class TradingDB2 final {
    public:
     virtual ~StubInterface() {}
     // updCandles - update candles
+    //      这个接口现在是覆盖的，不会和原有数据做任何合并操作
     std::unique_ptr< ::grpc::ClientWriterInterface< ::tradingpb::RequestUpdCandles>> updCandles(::grpc::ClientContext* context, ::tradingpb::ReplyUpdCandles* response) {
       return std::unique_ptr< ::grpc::ClientWriterInterface< ::tradingpb::RequestUpdCandles>>(updCandlesRaw(context, response));
     }
@@ -105,6 +106,7 @@ class TradingDB2 final {
      public:
       virtual ~experimental_async_interface() {}
       // updCandles - update candles
+      //      这个接口现在是覆盖的，不会和原有数据做任何合并操作
       #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
       virtual void updCandles(::grpc::ClientContext* context, ::tradingpb::ReplyUpdCandles* response, ::grpc::ClientWriteReactor< ::tradingpb::RequestUpdCandles>* reactor) = 0;
       #else
@@ -358,6 +360,7 @@ class TradingDB2 final {
     Service();
     virtual ~Service();
     // updCandles - update candles
+    //      这个接口现在是覆盖的，不会和原有数据做任何合并操作
     virtual ::grpc::Status updCandles(::grpc::ServerContext* context, ::grpc::ServerReader< ::tradingpb::RequestUpdCandles>* reader, ::tradingpb::ReplyUpdCandles* response);
     // getCandles - get candles
     virtual ::grpc::Status getCandles(::grpc::ServerContext* context, const ::tradingpb::RequestGetCandles* request, ::grpc::ServerWriter< ::tradingpb::ReplyGetCandles>* writer);

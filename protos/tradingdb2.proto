@@ -5,7 +5,7 @@ import "trading2.proto";
 
 // Candle - candle
 message Candle {
-    int64 ts = 1;
+    int64 ts = 1;                   // UTC时间戳
     int64 open = 2;
     int64 close = 3;
     int64 high = 4;
@@ -18,6 +18,12 @@ message Candle {
     int64 turnover = 11;
     double homeNotional = 12;
     double foreignNotional = 13;
+    int64 totalMoney = 14;          // 总金额
+    bool paused = 15;               // 是否停盘
+    int64 highLimit = 16;           // 上涨限制
+    int64 lowLimit = 17;            // 下跌限制
+    int64 avg = 18;                 // 平均价格
+    int64 preClose = 19;            // 前一天的close价格
 }
 
 // Candles - candles
@@ -26,6 +32,7 @@ message Candles {
     string symbol = 2;
     string tag = 3;
     repeated Candle candles = 4;
+    map<int64, Candle> mapCandles = 5;  // 快速检索用，不做传递，本地运算缓存用
 }
 
 // FundSize - fund size
@@ -75,6 +82,9 @@ message SymbolInfo {
     string market = 1;
     string symbol = 2;
     Fund fund = 3;
+    string name = 4;            // 名称，一般是缩写
+    string fullname = 5;        // 全名，识别性更强的名字
+    string type = 6;            // 类型，指数、基金等
 }
 
 // RequestUpdCandles - request UpdCandles
@@ -145,7 +155,10 @@ message RequestSimTrading {
     SimTradingParams params = 2;
     bool ignoreCache = 3;                   // 忽略cache，重新计算
     int32 index = 4;                        // simtradings时用于关联请求结果用的
-    float ignoreTotalReturn = 5;            // 忽略总回报低于这个值的明细返回，主要用于大批量训练，减少数据处理量。但实际运算会执行，且cache数据是完整的
+    float ignoreTotalReturn = 5;            // 忽略总回报低于这个值的数据返回，主要用于大批量训练，减少数据处理量。但实际运算会执行，且cache数据是完整的
+    int32 minNums = 6;                      // 被忽略的数据里，还是保留这个条数返回，默认是10
+    int32 maxNums = 7 [deprecated = true];  // 最大的消息数量，超过这个数量就不要了，这个不会影响符合ignoreTotalReturn条件的
+    string sortBy = 8;                      // 按什么字段来排序，默认是 totalreturn
 }
 
 // ReplySimTrading - reply simTrading
@@ -157,7 +170,8 @@ message ReplySimTrading {
 
 // TradingDB2 - TradingDB2 service
 service TradingDB2 {
-	// updCandles - update candles
+    // updCandles - update candles
+    //      这个接口现在是覆盖的，不会和原有数据做任何合并操作
     rpc updCandles(stream RequestUpdCandles) returns (ReplyUpdCandles) {}
 	// getCandles - get candles
     rpc getCandles(RequestGetCandles) returns (stream ReplyGetCandles) {}

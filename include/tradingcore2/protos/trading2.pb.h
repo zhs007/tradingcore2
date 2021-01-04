@@ -31,6 +31,9 @@
 #include <google/protobuf/message.h>
 #include <google/protobuf/repeated_field.h>  // IWYU pragma: export
 #include <google/protobuf/extension_set.h>  // IWYU pragma: export
+#include <google/protobuf/map.h>  // IWYU pragma: export
+#include <google/protobuf/map_entry.h>
+#include <google/protobuf/map_field_inl.h>
 #include <google/protobuf/generated_enum_reflection.h>
 #include <google/protobuf/unknown_field_set.h>
 // @@protoc_insertion_point(includes)
@@ -48,7 +51,7 @@ struct TableStruct_trading2_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxillaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[22]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[24]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -74,6 +77,12 @@ extern CtrlConditionDefaultTypeInternal _CtrlCondition_default_instance_;
 class CtrlNode;
 class CtrlNodeDefaultTypeInternal;
 extern CtrlNodeDefaultTypeInternal _CtrlNode_default_instance_;
+class CtrlNodeAssetInfo;
+class CtrlNodeAssetInfoDefaultTypeInternal;
+extern CtrlNodeAssetInfoDefaultTypeInternal _CtrlNodeAssetInfo_default_instance_;
+class CtrlNode_MapAssetsInfoEntry_DoNotUse;
+class CtrlNode_MapAssetsInfoEntry_DoNotUseDefaultTypeInternal;
+extern CtrlNode_MapAssetsInfoEntry_DoNotUseDefaultTypeInternal _CtrlNode_MapAssetsInfoEntry_DoNotUse_default_instance_;
 class Indicator;
 class IndicatorDefaultTypeInternal;
 extern IndicatorDefaultTypeInternal _Indicator_default_instance_;
@@ -130,6 +139,8 @@ template<> ::tradingpb::BasicRequestData* Arena::CreateMaybeMessage<::tradingpb:
 template<> ::tradingpb::BuyParams* Arena::CreateMaybeMessage<::tradingpb::BuyParams>(Arena*);
 template<> ::tradingpb::CtrlCondition* Arena::CreateMaybeMessage<::tradingpb::CtrlCondition>(Arena*);
 template<> ::tradingpb::CtrlNode* Arena::CreateMaybeMessage<::tradingpb::CtrlNode>(Arena*);
+template<> ::tradingpb::CtrlNodeAssetInfo* Arena::CreateMaybeMessage<::tradingpb::CtrlNodeAssetInfo>(Arena*);
+template<> ::tradingpb::CtrlNode_MapAssetsInfoEntry_DoNotUse* Arena::CreateMaybeMessage<::tradingpb::CtrlNode_MapAssetsInfoEntry_DoNotUse>(Arena*);
 template<> ::tradingpb::Indicator* Arena::CreateMaybeMessage<::tradingpb::Indicator>(Arena*);
 template<> ::tradingpb::IndicatorData* Arena::CreateMaybeMessage<::tradingpb::IndicatorData>(Arena*);
 template<> ::tradingpb::InitParams* Arena::CreateMaybeMessage<::tradingpb::InitParams>(Arena*);
@@ -545,6 +556,177 @@ class Asset :
 };
 // -------------------------------------------------------------------
 
+class CtrlNodeAssetInfo :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tradingpb.CtrlNodeAssetInfo) */ {
+ public:
+  CtrlNodeAssetInfo();
+  virtual ~CtrlNodeAssetInfo();
+
+  CtrlNodeAssetInfo(const CtrlNodeAssetInfo& from);
+  CtrlNodeAssetInfo(CtrlNodeAssetInfo&& from) noexcept
+    : CtrlNodeAssetInfo() {
+    *this = ::std::move(from);
+  }
+
+  inline CtrlNodeAssetInfo& operator=(const CtrlNodeAssetInfo& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline CtrlNodeAssetInfo& operator=(CtrlNodeAssetInfo&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const CtrlNodeAssetInfo& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const CtrlNodeAssetInfo* internal_default_instance() {
+    return reinterpret_cast<const CtrlNodeAssetInfo*>(
+               &_CtrlNodeAssetInfo_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    2;
+
+  friend void swap(CtrlNodeAssetInfo& a, CtrlNodeAssetInfo& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(CtrlNodeAssetInfo* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline CtrlNodeAssetInfo* New() const final {
+    return CreateMaybeMessage<CtrlNodeAssetInfo>(nullptr);
+  }
+
+  CtrlNodeAssetInfo* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<CtrlNodeAssetInfo>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const CtrlNodeAssetInfo& from);
+  void MergeFrom(const CtrlNodeAssetInfo& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(CtrlNodeAssetInfo* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "tradingpb.CtrlNodeAssetInfo";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_trading2_2eproto);
+    return ::descriptor_table_trading2_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kVolumeFieldNumber = 1,
+    kCostFieldNumber = 2,
+  };
+  // double volume = 1;
+  void clear_volume();
+  double volume() const;
+  void set_volume(double value);
+  private:
+  double _internal_volume() const;
+  void _internal_set_volume(double value);
+  public:
+
+  // double cost = 2;
+  void clear_cost();
+  double cost() const;
+  void set_cost(double value);
+  private:
+  double _internal_cost() const;
+  void _internal_set_cost(double value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:tradingpb.CtrlNodeAssetInfo)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  double volume_;
+  double cost_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_trading2_2eproto;
+};
+// -------------------------------------------------------------------
+
+class CtrlNode_MapAssetsInfoEntry_DoNotUse : public ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<CtrlNode_MapAssetsInfoEntry_DoNotUse, 
+    std::string, ::tradingpb::CtrlNodeAssetInfo,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE,
+    0 > {
+public:
+  typedef ::PROTOBUF_NAMESPACE_ID::internal::MapEntry<CtrlNode_MapAssetsInfoEntry_DoNotUse, 
+    std::string, ::tradingpb::CtrlNodeAssetInfo,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE,
+    0 > SuperType;
+  CtrlNode_MapAssetsInfoEntry_DoNotUse();
+  CtrlNode_MapAssetsInfoEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  void MergeFrom(const CtrlNode_MapAssetsInfoEntry_DoNotUse& other);
+  static const CtrlNode_MapAssetsInfoEntry_DoNotUse* internal_default_instance() { return reinterpret_cast<const CtrlNode_MapAssetsInfoEntry_DoNotUse*>(&_CtrlNode_MapAssetsInfoEntry_DoNotUse_default_instance_); }
+  static bool ValidateKey(std::string* s) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(s->data(), static_cast<int>(s->size()), ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::PARSE, "tradingpb.CtrlNode.MapAssetsInfoEntry.key");
+ }
+  static bool ValidateValue(void*) { return true; }
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& other) final;
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_trading2_2eproto);
+    return ::descriptor_table_trading2_2eproto.file_level_metadata[3];
+  }
+
+  public:
+};
+
+// -------------------------------------------------------------------
+
 class CtrlNode :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tradingpb.CtrlNode) */ {
  public:
@@ -587,7 +769,7 @@ class CtrlNode :
                &_CtrlNode_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    2;
+    4;
 
   friend void swap(CtrlNode& a, CtrlNode& b) {
     a.Swap(&b);
@@ -648,9 +830,11 @@ class CtrlNode :
 
   // nested types ----------------------------------------------------
 
+
   // accessors -------------------------------------------------------
 
   enum : int {
+    kMapAssetsInfoFieldNumber = 14,
     kSrcFieldNumber = 2,
     kDstFieldNumber = 3,
     kTsFieldNumber = 1,
@@ -661,8 +845,27 @@ class CtrlNode :
     kTypeFieldNumber = 6,
     kCtrlConditionIDFieldNumber = 10,
     kSellPriceFieldNumber = 9,
+    kTotalMoneyFieldNumber = 12,
+    kLastMoneyFieldNumber = 13,
     kStrategyIDFieldNumber = 11,
   };
+  // map<string, .tradingpb.CtrlNodeAssetInfo> mapAssetsInfo = 14;
+  int mapassetsinfo_size() const;
+  private:
+  int _internal_mapassetsinfo_size() const;
+  public:
+  void clear_mapassetsinfo();
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::tradingpb::CtrlNodeAssetInfo >&
+      _internal_mapassetsinfo() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::tradingpb::CtrlNodeAssetInfo >*
+      _internal_mutable_mapassetsinfo();
+  public:
+  const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::tradingpb::CtrlNodeAssetInfo >&
+      mapassetsinfo() const;
+  ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::tradingpb::CtrlNodeAssetInfo >*
+      mutable_mapassetsinfo();
+
   // .tradingpb.Asset src = 2;
   bool has_src() const;
   private:
@@ -765,6 +968,24 @@ class CtrlNode :
   void _internal_set_sellprice(double value);
   public:
 
+  // double totalMoney = 12;
+  void clear_totalmoney();
+  double totalmoney() const;
+  void set_totalmoney(double value);
+  private:
+  double _internal_totalmoney() const;
+  void _internal_set_totalmoney(double value);
+  public:
+
+  // double lastMoney = 13;
+  void clear_lastmoney();
+  double lastmoney() const;
+  void set_lastmoney(double value);
+  private:
+  double _internal_lastmoney() const;
+  void _internal_set_lastmoney(double value);
+  public:
+
   // int32 strategyID = 11;
   void clear_strategyid();
   ::PROTOBUF_NAMESPACE_ID::int32 strategyid() const;
@@ -779,6 +1000,12 @@ class CtrlNode :
   class _Internal;
 
   ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::PROTOBUF_NAMESPACE_ID::internal::MapField<
+      CtrlNode_MapAssetsInfoEntry_DoNotUse,
+      std::string, ::tradingpb::CtrlNodeAssetInfo,
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_STRING,
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::TYPE_MESSAGE,
+      0 > mapassetsinfo_;
   ::tradingpb::Asset* src_;
   ::tradingpb::Asset* dst_;
   ::PROTOBUF_NAMESPACE_ID::int64 ts_;
@@ -789,6 +1016,8 @@ class CtrlNode :
   int type_;
   ::PROTOBUF_NAMESPACE_ID::int32 ctrlconditionid_;
   double sellprice_;
+  double totalmoney_;
+  double lastmoney_;
   ::PROTOBUF_NAMESPACE_ID::int32 strategyid_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_trading2_2eproto;
@@ -837,7 +1066,7 @@ class WalletAsset :
                &_WalletAsset_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    3;
+    5;
 
   friend void swap(WalletAsset& a, WalletAsset& b) {
     a.Swap(&b);
@@ -982,7 +1211,7 @@ class Wallet :
                &_Wallet_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    4;
+    6;
 
   friend void swap(Wallet& a, Wallet& b) {
     a.Swap(&b);
@@ -1119,7 +1348,7 @@ class CtrlCondition :
                &_CtrlCondition_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    5;
+    7;
 
   friend void swap(CtrlCondition& a, CtrlCondition& b) {
     a.Swap(&b);
@@ -1453,7 +1682,7 @@ class IndicatorData :
                &_IndicatorData_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    6;
+    8;
 
   friend void swap(IndicatorData& a, IndicatorData& b) {
     a.Swap(&b);
@@ -1606,7 +1835,7 @@ class Indicator :
                &_Indicator_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    7;
+    9;
 
   friend void swap(Indicator& a, Indicator& b) {
     a.Swap(&b);
@@ -1772,7 +2001,7 @@ class BuyParams :
                &_BuyParams_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    8;
+    10;
 
   friend void swap(BuyParams& a, BuyParams& b) {
     a.Swap(&b);
@@ -1966,7 +2195,7 @@ class SellParams :
                &_SellParams_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    9;
+    11;
 
   friend void swap(SellParams& a, SellParams& b) {
     a.Swap(&b);
@@ -2127,7 +2356,7 @@ class StopLossParams :
                &_StopLossParams_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    10;
+    12;
 
   friend void swap(StopLossParams& a, StopLossParams& b) {
     a.Swap(&b);
@@ -2255,7 +2484,7 @@ class TakeProfitParams :
                &_TakeProfitParams_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    11;
+    13;
 
   friend void swap(TakeProfitParams& a, TakeProfitParams& b) {
     a.Swap(&b);
@@ -2383,7 +2612,7 @@ class InitParams :
                &_InitParams_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    12;
+    14;
 
   friend void swap(InitParams& a, InitParams& b) {
     a.Swap(&b);
@@ -2522,7 +2751,7 @@ class AIPParams :
                &_AIPParams_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    13;
+    15;
 
   friend void swap(AIPParams& a, AIPParams& b) {
     a.Swap(&b);
@@ -2672,7 +2901,7 @@ class Strategy :
                &_Strategy_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    14;
+    16;
 
   friend void swap(Strategy& a, Strategy& b) {
     a.Swap(&b);
@@ -3050,7 +3279,7 @@ class PNLDataValue :
                &_PNLDataValue_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    15;
+    17;
 
   friend void swap(PNLDataValue& a, PNLDataValue& b) {
     a.Swap(&b);
@@ -3259,7 +3488,7 @@ class PNLAssetData :
                &_PNLAssetData_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    16;
+    18;
 
   friend void swap(PNLAssetData& a, PNLAssetData& b) {
     a.Swap(&b);
@@ -3794,7 +4023,7 @@ class PNLData :
                &_PNLData_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    17;
+    19;
 
   friend void swap(PNLData& a, PNLData& b) {
     a.Swap(&b);
@@ -3995,7 +4224,7 @@ class SimTradingParams :
                &_SimTradingParams_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    18;
+    20;
 
   friend void swap(SimTradingParams& a, SimTradingParams& b) {
     a.Swap(&b);
@@ -4229,7 +4458,7 @@ class TradingNodeInfo :
                &_TradingNodeInfo_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    19;
+    21;
 
   friend void swap(TradingNodeInfo& a, TradingNodeInfo& b) {
     a.Swap(&b);
@@ -4368,7 +4597,7 @@ class SimTradingCacheNode :
                &_SimTradingCacheNode_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    20;
+    22;
 
   friend void swap(SimTradingCacheNode& a, SimTradingCacheNode& b) {
     a.Swap(&b);
@@ -4531,7 +4760,7 @@ class SimTradingCache :
                &_SimTradingCache_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    21;
+    23;
 
   friend void swap(SimTradingCache& a, SimTradingCache& b) {
     a.Swap(&b);
@@ -4895,6 +5124,52 @@ Asset::mutable_tags() {
 
 // -------------------------------------------------------------------
 
+// CtrlNodeAssetInfo
+
+// double volume = 1;
+inline void CtrlNodeAssetInfo::clear_volume() {
+  volume_ = 0;
+}
+inline double CtrlNodeAssetInfo::_internal_volume() const {
+  return volume_;
+}
+inline double CtrlNodeAssetInfo::volume() const {
+  // @@protoc_insertion_point(field_get:tradingpb.CtrlNodeAssetInfo.volume)
+  return _internal_volume();
+}
+inline void CtrlNodeAssetInfo::_internal_set_volume(double value) {
+  
+  volume_ = value;
+}
+inline void CtrlNodeAssetInfo::set_volume(double value) {
+  _internal_set_volume(value);
+  // @@protoc_insertion_point(field_set:tradingpb.CtrlNodeAssetInfo.volume)
+}
+
+// double cost = 2;
+inline void CtrlNodeAssetInfo::clear_cost() {
+  cost_ = 0;
+}
+inline double CtrlNodeAssetInfo::_internal_cost() const {
+  return cost_;
+}
+inline double CtrlNodeAssetInfo::cost() const {
+  // @@protoc_insertion_point(field_get:tradingpb.CtrlNodeAssetInfo.cost)
+  return _internal_cost();
+}
+inline void CtrlNodeAssetInfo::_internal_set_cost(double value) {
+  
+  cost_ = value;
+}
+inline void CtrlNodeAssetInfo::set_cost(double value) {
+  _internal_set_cost(value);
+  // @@protoc_insertion_point(field_set:tradingpb.CtrlNodeAssetInfo.cost)
+}
+
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // CtrlNode
 
 // int64 ts = 1;
@@ -5195,6 +5470,75 @@ inline void CtrlNode::_internal_set_strategyid(::PROTOBUF_NAMESPACE_ID::int32 va
 inline void CtrlNode::set_strategyid(::PROTOBUF_NAMESPACE_ID::int32 value) {
   _internal_set_strategyid(value);
   // @@protoc_insertion_point(field_set:tradingpb.CtrlNode.strategyID)
+}
+
+// double totalMoney = 12;
+inline void CtrlNode::clear_totalmoney() {
+  totalmoney_ = 0;
+}
+inline double CtrlNode::_internal_totalmoney() const {
+  return totalmoney_;
+}
+inline double CtrlNode::totalmoney() const {
+  // @@protoc_insertion_point(field_get:tradingpb.CtrlNode.totalMoney)
+  return _internal_totalmoney();
+}
+inline void CtrlNode::_internal_set_totalmoney(double value) {
+  
+  totalmoney_ = value;
+}
+inline void CtrlNode::set_totalmoney(double value) {
+  _internal_set_totalmoney(value);
+  // @@protoc_insertion_point(field_set:tradingpb.CtrlNode.totalMoney)
+}
+
+// double lastMoney = 13;
+inline void CtrlNode::clear_lastmoney() {
+  lastmoney_ = 0;
+}
+inline double CtrlNode::_internal_lastmoney() const {
+  return lastmoney_;
+}
+inline double CtrlNode::lastmoney() const {
+  // @@protoc_insertion_point(field_get:tradingpb.CtrlNode.lastMoney)
+  return _internal_lastmoney();
+}
+inline void CtrlNode::_internal_set_lastmoney(double value) {
+  
+  lastmoney_ = value;
+}
+inline void CtrlNode::set_lastmoney(double value) {
+  _internal_set_lastmoney(value);
+  // @@protoc_insertion_point(field_set:tradingpb.CtrlNode.lastMoney)
+}
+
+// map<string, .tradingpb.CtrlNodeAssetInfo> mapAssetsInfo = 14;
+inline int CtrlNode::_internal_mapassetsinfo_size() const {
+  return mapassetsinfo_.size();
+}
+inline int CtrlNode::mapassetsinfo_size() const {
+  return _internal_mapassetsinfo_size();
+}
+inline void CtrlNode::clear_mapassetsinfo() {
+  mapassetsinfo_.Clear();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::tradingpb::CtrlNodeAssetInfo >&
+CtrlNode::_internal_mapassetsinfo() const {
+  return mapassetsinfo_.GetMap();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::tradingpb::CtrlNodeAssetInfo >&
+CtrlNode::mapassetsinfo() const {
+  // @@protoc_insertion_point(field_map:tradingpb.CtrlNode.mapAssetsInfo)
+  return _internal_mapassetsinfo();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::tradingpb::CtrlNodeAssetInfo >*
+CtrlNode::_internal_mutable_mapassetsinfo() {
+  return mapassetsinfo_.MutableMap();
+}
+inline ::PROTOBUF_NAMESPACE_ID::Map< std::string, ::tradingpb::CtrlNodeAssetInfo >*
+CtrlNode::mutable_mapassetsinfo() {
+  // @@protoc_insertion_point(field_mutable_map:tradingpb.CtrlNode.mapAssetsInfo)
+  return _internal_mutable_mapassetsinfo();
 }
 
 // -------------------------------------------------------------------
@@ -8973,6 +9317,10 @@ SimTradingCache::nodes() const {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

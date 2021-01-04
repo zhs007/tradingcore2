@@ -24,6 +24,12 @@ enum CtrlType {
     CTRL_DEPOSIT = 6;
 }
 
+// CtrlNodeAssetInfo - asset infomation in control node
+message CtrlNodeAssetInfo {
+    double volume = 1;
+    double cost = 2;
+}
+
 // CtrlNode - ctrl node
 message CtrlNode {
     int64 ts = 1;
@@ -35,8 +41,11 @@ message CtrlNode {
     double fee = 7;
     double averageHoldingPrice = 8;
     double sellPrice = 9;
-    int32 ctrlConditionID = 10;             // 用于多条件时，标记条件ID，条件ID是条件index + 1，0是无效值
-    int32 strategyID = 11;                  // 用于多策略时，标记策略ID，策略ID是策略index + 1，0是无效值
+    int32 ctrlConditionID = 10;                             // 用于多条件时，标记条件ID，条件ID是条件index + 1，0是无效值
+    int32 strategyID = 11;                                  // 用于多策略时，标记策略ID，策略ID是策略index + 1，0是无效值
+    double totalMoney = 12;                                 // 统计值，用于运算，当前时间节点总投入货币
+    double lastMoney = 13;                                  // 统计值，用于运算，当前时间节点剩余未投入货币
+    map<string, CtrlNodeAssetInfo> mapAssetsInfo = 14;      // 统计值，用于运算，当前时间节点资产数量和成本
 }
 
 // WalletAsset - wallet asset

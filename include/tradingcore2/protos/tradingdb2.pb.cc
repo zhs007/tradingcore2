@@ -16,7 +16,8 @@
 #include <google/protobuf/port_def.inc>
 extern PROTOBUF_INTERNAL_EXPORT_trading2_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_BasicRequestData_trading2_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_tradingdb2_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_Candle_tradingdb2_2eproto;
-extern PROTOBUF_INTERNAL_EXPORT_tradingdb2_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_Candles_tradingdb2_2eproto;
+extern PROTOBUF_INTERNAL_EXPORT_tradingdb2_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<2> scc_info_Candles_tradingdb2_2eproto;
+extern PROTOBUF_INTERNAL_EXPORT_tradingdb2_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_Candles_MapCandlesEntry_DoNotUse_tradingdb2_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_tradingdb2_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<3> scc_info_Fund_tradingdb2_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_tradingdb2_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_FundManager_tradingdb2_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_tradingdb2_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_FundResult_tradingdb2_2eproto;
@@ -29,6 +30,10 @@ class CandleDefaultTypeInternal {
  public:
   ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<Candle> _instance;
 } _Candle_default_instance_;
+class Candles_MapCandlesEntry_DoNotUseDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<Candles_MapCandlesEntry_DoNotUse> _instance;
+} _Candles_MapCandlesEntry_DoNotUse_default_instance_;
 class CandlesDefaultTypeInternal {
  public:
   ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<Candles> _instance;
@@ -123,8 +128,23 @@ static void InitDefaultsscc_info_Candles_tradingdb2_2eproto() {
   ::tradingpb::Candles::InitAsDefaultInstance();
 }
 
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_Candles_tradingdb2_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_Candles_tradingdb2_2eproto}, {
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<2> scc_info_Candles_tradingdb2_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 2, 0, InitDefaultsscc_info_Candles_tradingdb2_2eproto}, {
+      &scc_info_Candle_tradingdb2_2eproto.base,
+      &scc_info_Candles_MapCandlesEntry_DoNotUse_tradingdb2_2eproto.base,}};
+
+static void InitDefaultsscc_info_Candles_MapCandlesEntry_DoNotUse_tradingdb2_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::tradingpb::_Candles_MapCandlesEntry_DoNotUse_default_instance_;
+    new (ptr) ::tradingpb::Candles_MapCandlesEntry_DoNotUse();
+  }
+  ::tradingpb::Candles_MapCandlesEntry_DoNotUse::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_Candles_MapCandlesEntry_DoNotUse_tradingdb2_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_Candles_MapCandlesEntry_DoNotUse_tradingdb2_2eproto}, {
       &scc_info_Candle_tradingdb2_2eproto.base,}};
 
 static void InitDefaultsscc_info_Fund_tradingdb2_2eproto() {
@@ -368,7 +388,7 @@ static void InitDefaultsscc_info_SymbolInfo_tradingdb2_2eproto() {
     {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_SymbolInfo_tradingdb2_2eproto}, {
       &scc_info_Fund_tradingdb2_2eproto.base,}};
 
-static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_tradingdb2_2eproto[18];
+static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_tradingdb2_2eproto[19];
 static constexpr ::PROTOBUF_NAMESPACE_ID::EnumDescriptor const** file_level_enum_descriptors_tradingdb2_2eproto = nullptr;
 static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_tradingdb2_2eproto = nullptr;
 
@@ -391,6 +411,21 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_tradingdb2_2eproto::offsets[] 
   PROTOBUF_FIELD_OFFSET(::tradingpb::Candle, turnover_),
   PROTOBUF_FIELD_OFFSET(::tradingpb::Candle, homenotional_),
   PROTOBUF_FIELD_OFFSET(::tradingpb::Candle, foreignnotional_),
+  PROTOBUF_FIELD_OFFSET(::tradingpb::Candle, totalmoney_),
+  PROTOBUF_FIELD_OFFSET(::tradingpb::Candle, paused_),
+  PROTOBUF_FIELD_OFFSET(::tradingpb::Candle, highlimit_),
+  PROTOBUF_FIELD_OFFSET(::tradingpb::Candle, lowlimit_),
+  PROTOBUF_FIELD_OFFSET(::tradingpb::Candle, avg_),
+  PROTOBUF_FIELD_OFFSET(::tradingpb::Candle, preclose_),
+  PROTOBUF_FIELD_OFFSET(::tradingpb::Candles_MapCandlesEntry_DoNotUse, _has_bits_),
+  PROTOBUF_FIELD_OFFSET(::tradingpb::Candles_MapCandlesEntry_DoNotUse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::tradingpb::Candles_MapCandlesEntry_DoNotUse, key_),
+  PROTOBUF_FIELD_OFFSET(::tradingpb::Candles_MapCandlesEntry_DoNotUse, value_),
+  0,
+  1,
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::tradingpb::Candles, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -400,6 +435,7 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_tradingdb2_2eproto::offsets[] 
   PROTOBUF_FIELD_OFFSET(::tradingpb::Candles, symbol_),
   PROTOBUF_FIELD_OFFSET(::tradingpb::Candles, tag_),
   PROTOBUF_FIELD_OFFSET(::tradingpb::Candles, candles_),
+  PROTOBUF_FIELD_OFFSET(::tradingpb::Candles, mapcandles_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::tradingpb::FundSize, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -455,6 +491,9 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_tradingdb2_2eproto::offsets[] 
   PROTOBUF_FIELD_OFFSET(::tradingpb::SymbolInfo, market_),
   PROTOBUF_FIELD_OFFSET(::tradingpb::SymbolInfo, symbol_),
   PROTOBUF_FIELD_OFFSET(::tradingpb::SymbolInfo, fund_),
+  PROTOBUF_FIELD_OFFSET(::tradingpb::SymbolInfo, name_),
+  PROTOBUF_FIELD_OFFSET(::tradingpb::SymbolInfo, fullname_),
+  PROTOBUF_FIELD_OFFSET(::tradingpb::SymbolInfo, type_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::tradingpb::RequestUpdCandles, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -536,6 +575,9 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_tradingdb2_2eproto::offsets[] 
   PROTOBUF_FIELD_OFFSET(::tradingpb::RequestSimTrading, ignorecache_),
   PROTOBUF_FIELD_OFFSET(::tradingpb::RequestSimTrading, index_),
   PROTOBUF_FIELD_OFFSET(::tradingpb::RequestSimTrading, ignoretotalreturn_),
+  PROTOBUF_FIELD_OFFSET(::tradingpb::RequestSimTrading, minnums_),
+  PROTOBUF_FIELD_OFFSET(::tradingpb::RequestSimTrading, maxnums_),
+  PROTOBUF_FIELD_OFFSET(::tradingpb::RequestSimTrading, sortby_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::tradingpb::ReplySimTrading, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -547,27 +589,29 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_tradingdb2_2eproto::offsets[] 
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, sizeof(::tradingpb::Candle)},
-  { 18, -1, sizeof(::tradingpb::Candles)},
-  { 27, -1, sizeof(::tradingpb::FundSize)},
-  { 34, -1, sizeof(::tradingpb::FundManager)},
-  { 48, -1, sizeof(::tradingpb::FundResult)},
-  { 61, -1, sizeof(::tradingpb::Fund)},
-  { 74, -1, sizeof(::tradingpb::SymbolInfo)},
-  { 82, -1, sizeof(::tradingpb::RequestUpdCandles)},
-  { 90, -1, sizeof(::tradingpb::ReplyUpdCandles)},
-  { 96, -1, sizeof(::tradingpb::RequestGetCandles)},
-  { 109, -1, sizeof(::tradingpb::ReplyGetCandles)},
-  { 115, -1, sizeof(::tradingpb::RequestUpdSymbol)},
-  { 123, -1, sizeof(::tradingpb::ReplyUpdSymbol)},
-  { 129, -1, sizeof(::tradingpb::RequestGetSymbol)},
-  { 138, -1, sizeof(::tradingpb::ReplyGetSymbol)},
-  { 144, -1, sizeof(::tradingpb::RequestGetSymbols)},
-  { 153, -1, sizeof(::tradingpb::RequestSimTrading)},
-  { 163, -1, sizeof(::tradingpb::ReplySimTrading)},
+  { 24, 31, sizeof(::tradingpb::Candles_MapCandlesEntry_DoNotUse)},
+  { 33, -1, sizeof(::tradingpb::Candles)},
+  { 43, -1, sizeof(::tradingpb::FundSize)},
+  { 50, -1, sizeof(::tradingpb::FundManager)},
+  { 64, -1, sizeof(::tradingpb::FundResult)},
+  { 77, -1, sizeof(::tradingpb::Fund)},
+  { 90, -1, sizeof(::tradingpb::SymbolInfo)},
+  { 101, -1, sizeof(::tradingpb::RequestUpdCandles)},
+  { 109, -1, sizeof(::tradingpb::ReplyUpdCandles)},
+  { 115, -1, sizeof(::tradingpb::RequestGetCandles)},
+  { 128, -1, sizeof(::tradingpb::ReplyGetCandles)},
+  { 134, -1, sizeof(::tradingpb::RequestUpdSymbol)},
+  { 142, -1, sizeof(::tradingpb::ReplyUpdSymbol)},
+  { 148, -1, sizeof(::tradingpb::RequestGetSymbol)},
+  { 157, -1, sizeof(::tradingpb::ReplyGetSymbol)},
+  { 163, -1, sizeof(::tradingpb::RequestGetSymbols)},
+  { 172, -1, sizeof(::tradingpb::RequestSimTrading)},
+  { 185, -1, sizeof(::tradingpb::ReplySimTrading)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::tradingpb::_Candle_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::tradingpb::_Candles_MapCandlesEntry_DoNotUse_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::tradingpb::_Candles_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::tradingpb::_FundSize_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::tradingpb::_FundManager_default_instance_),
@@ -589,83 +633,92 @@ static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] =
 
 const char descriptor_table_protodef_tradingdb2_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n\020tradingdb2.proto\022\ttradingpb\032\016trading2."
-  "proto\"\343\001\n\006Candle\022\n\n\002ts\030\001 \001(\003\022\014\n\004open\030\002 \001"
+  "proto\"\313\002\n\006Candle\022\n\n\002ts\030\001 \001(\003\022\014\n\004open\030\002 \001"
   "(\003\022\r\n\005close\030\003 \001(\003\022\014\n\004high\030\004 \001(\003\022\013\n\003low\030\005"
   " \001(\003\022\016\n\006volume\030\006 \001(\003\022\024\n\014openInterest\030\007 \001"
   "(\003\022\016\n\006trades\030\010 \001(\003\022\014\n\004vwap\030\t \001(\001\022\020\n\010last"
   "Size\030\n \001(\003\022\020\n\010turnover\030\013 \001(\003\022\024\n\014homeNoti"
-  "onal\030\014 \001(\001\022\027\n\017foreignNotional\030\r \001(\001\"Z\n\007C"
-  "andles\022\016\n\006market\030\001 \001(\t\022\016\n\006symbol\030\002 \001(\t\022\013"
-  "\n\003tag\030\003 \001(\t\022\"\n\007candles\030\004 \003(\0132\021.tradingpb"
-  ".Candle\"&\n\010FundSize\022\014\n\004size\030\001 \001(\002\022\014\n\004tim"
-  "e\030\002 \001(\003\"\273\001\n\013FundManager\022\014\n\004name\030\001 \001(\t\022\021\n"
-  "\tstartTime\030\002 \001(\003\022\017\n\007endTime\030\003 \001(\003\022\021\n\tbir"
-  "thYear\030\004 \001(\003\022\013\n\003sex\030\005 \001(\010\022\021\n\teducation\030\006"
-  " \001(\t\022\017\n\007country\030\007 \001(\t\022\016\n\006resume\030\010 \001(\t\022&\n"
-  "\007results\030\t \003(\0132\025.tradingpb.FundResult\"\262\001"
-  "\n\nFundResult\022\023\n\013maxDrawdown\030\001 \001(\002\022\016\n\006sha"
-  "rpe\030\002 \001(\002\022\031\n\021annualizedReturns\030\003 \001(\002\022\034\n\024"
-  "annualizedVolatility\030\004 \001(\002\022\024\n\014totalRetur"
-  "ns\030\005 \001(\002\022\021\n\tstartTime\030\006 \001(\003\022\017\n\007endTime\030\007"
-  " \001(\003\022\014\n\004name\030\010 \001(\t\"\312\001\n\004Fund\022\014\n\004code\030\001 \001("
-  "\t\022\014\n\004name\030\002 \001(\t\022\014\n\004tags\030\003 \003(\t\022\022\n\ncreateT"
-  "ime\030\004 \001(\003\022!\n\004size\030\005 \003(\0132\023.tradingpb.Fund"
-  "Size\022\017\n\007company\030\006 \001(\t\022(\n\010managers\030\007 \003(\0132"
-  "\026.tradingpb.FundManager\022&\n\007results\030\010 \003(\013"
-  "2\025.tradingpb.FundResult\"K\n\nSymbolInfo\022\016\n"
-  "\006market\030\001 \001(\t\022\016\n\006symbol\030\002 \001(\t\022\035\n\004fund\030\003 "
-  "\001(\0132\017.tradingpb.Fund\"~\n\021RequestUpdCandle"
-  "s\022\021\n\005token\030\001 \001(\tB\002\030\001\022#\n\007candles\030\002 \001(\0132\022."
-  "tradingpb.Candles\0221\n\014basicRequest\030\003 \001(\0132"
-  "\033.tradingpb.BasicRequestData\"#\n\017ReplyUpd"
-  "Candles\022\020\n\010lengthOK\030\001 \001(\005\"\270\001\n\021RequestGet"
-  "Candles\022\021\n\005token\030\001 \001(\tB\002\030\001\022\016\n\006market\030\002 \001"
-  "(\t\022\016\n\006symbol\030\003 \001(\t\022\017\n\003tag\030\004 \001(\tB\002\030\001\022\017\n\007t"
-  "sStart\030\005 \001(\003\022\r\n\005tsEnd\030\006 \001(\003\022\014\n\004tags\030\007 \003("
-  "\t\0221\n\014basicRequest\030\010 \001(\0132\033.tradingpb.Basi"
-  "cRequestData\"6\n\017ReplyGetCandles\022#\n\007candl"
-  "es\030\001 \001(\0132\022.tradingpb.Candles\"\177\n\020RequestU"
-  "pdSymbol\022\021\n\005token\030\001 \001(\tB\002\030\001\022%\n\006symbol\030\002 "
-  "\001(\0132\025.tradingpb.SymbolInfo\0221\n\014basicReque"
-  "st\030\003 \001(\0132\033.tradingpb.BasicRequestData\"\036\n"
-  "\016ReplyUpdSymbol\022\014\n\004isOK\030\001 \001(\010\"x\n\020Request"
-  "GetSymbol\022\021\n\005token\030\001 \001(\tB\002\030\001\022\016\n\006market\030\002"
-  " \001(\t\022\016\n\006symbol\030\003 \001(\t\0221\n\014basicRequest\030\004 \001"
-  "(\0132\033.tradingpb.BasicRequestData\"7\n\016Reply"
-  "GetSymbol\022%\n\006symbol\030\001 \001(\0132\025.tradingpb.Sy"
-  "mbolInfo\"z\n\021RequestGetSymbols\022\021\n\005token\030\001"
-  " \001(\tB\002\030\001\022\016\n\006market\030\002 \001(\t\022\017\n\007symbols\030\003 \003("
-  "\t\0221\n\014basicRequest\030\004 \001(\0132\033.tradingpb.Basi"
-  "cRequestData\"\262\001\n\021RequestSimTrading\0221\n\014ba"
-  "sicRequest\030\001 \001(\0132\033.tradingpb.BasicReques"
-  "tData\022+\n\006params\030\002 \001(\0132\033.tradingpb.SimTra"
-  "dingParams\022\023\n\013ignoreCache\030\003 \001(\010\022\r\n\005index"
-  "\030\004 \001(\005\022\031\n\021ignoreTotalReturn\030\005 \001(\002\"k\n\017Rep"
-  "lySimTrading\022\037\n\003pnl\030\001 \003(\0132\022.tradingpb.PN"
-  "LData\022(\n\010baseline\030\002 \003(\0132\022.tradingpb.PNLD"
-  "ataB\002\030\001\022\r\n\005index\030\003 \001(\0052\226\004\n\nTradingDB2\022J\n"
-  "\nupdCandles\022\034.tradingpb.RequestUpdCandle"
-  "s\032\032.tradingpb.ReplyUpdCandles\"\000(\001\022J\n\nget"
-  "Candles\022\034.tradingpb.RequestGetCandles\032\032."
-  "tradingpb.ReplyGetCandles\"\0000\001\022E\n\tupdSymb"
-  "ol\022\033.tradingpb.RequestUpdSymbol\032\031.tradin"
-  "gpb.ReplyUpdSymbol\"\000\022E\n\tgetSymbol\022\033.trad"
-  "ingpb.RequestGetSymbol\032\031.tradingpb.Reply"
-  "GetSymbol\"\000\022I\n\ngetSymbols\022\034.tradingpb.Re"
-  "questGetSymbols\032\031.tradingpb.ReplyGetSymb"
-  "ol\"\0000\001\022H\n\nsimTrading\022\034.tradingpb.Request"
-  "SimTrading\032\032.tradingpb.ReplySimTrading\"\000"
-  "\022M\n\013simTrading2\022\034.tradingpb.RequestSimTr"
-  "ading\032\032.tradingpb.ReplySimTrading\"\000(\0010\001B"
-  "(Z&github.com/zhs007/tradingdb2/tradingp"
-  "bb\006proto3"
+  "onal\030\014 \001(\001\022\027\n\017foreignNotional\030\r \001(\001\022\022\n\nt"
+  "otalMoney\030\016 \001(\003\022\016\n\006paused\030\017 \001(\010\022\021\n\thighL"
+  "imit\030\020 \001(\003\022\020\n\010lowLimit\030\021 \001(\003\022\013\n\003avg\030\022 \001("
+  "\003\022\020\n\010preClose\030\023 \001(\003\"\330\001\n\007Candles\022\016\n\006marke"
+  "t\030\001 \001(\t\022\016\n\006symbol\030\002 \001(\t\022\013\n\003tag\030\003 \001(\t\022\"\n\007"
+  "candles\030\004 \003(\0132\021.tradingpb.Candle\0226\n\nmapC"
+  "andles\030\005 \003(\0132\".tradingpb.Candles.MapCand"
+  "lesEntry\032D\n\017MapCandlesEntry\022\013\n\003key\030\001 \001(\003"
+  "\022 \n\005value\030\002 \001(\0132\021.tradingpb.Candle:\0028\001\"&"
+  "\n\010FundSize\022\014\n\004size\030\001 \001(\002\022\014\n\004time\030\002 \001(\003\"\273"
+  "\001\n\013FundManager\022\014\n\004name\030\001 \001(\t\022\021\n\tstartTim"
+  "e\030\002 \001(\003\022\017\n\007endTime\030\003 \001(\003\022\021\n\tbirthYear\030\004 "
+  "\001(\003\022\013\n\003sex\030\005 \001(\010\022\021\n\teducation\030\006 \001(\t\022\017\n\007c"
+  "ountry\030\007 \001(\t\022\016\n\006resume\030\010 \001(\t\022&\n\007results\030"
+  "\t \003(\0132\025.tradingpb.FundResult\"\262\001\n\nFundRes"
+  "ult\022\023\n\013maxDrawdown\030\001 \001(\002\022\016\n\006sharpe\030\002 \001(\002"
+  "\022\031\n\021annualizedReturns\030\003 \001(\002\022\034\n\024annualize"
+  "dVolatility\030\004 \001(\002\022\024\n\014totalReturns\030\005 \001(\002\022"
+  "\021\n\tstartTime\030\006 \001(\003\022\017\n\007endTime\030\007 \001(\003\022\014\n\004n"
+  "ame\030\010 \001(\t\"\312\001\n\004Fund\022\014\n\004code\030\001 \001(\t\022\014\n\004name"
+  "\030\002 \001(\t\022\014\n\004tags\030\003 \003(\t\022\022\n\ncreateTime\030\004 \001(\003"
+  "\022!\n\004size\030\005 \003(\0132\023.tradingpb.FundSize\022\017\n\007c"
+  "ompany\030\006 \001(\t\022(\n\010managers\030\007 \003(\0132\026.trading"
+  "pb.FundManager\022&\n\007results\030\010 \003(\0132\025.tradin"
+  "gpb.FundResult\"y\n\nSymbolInfo\022\016\n\006market\030\001"
+  " \001(\t\022\016\n\006symbol\030\002 \001(\t\022\035\n\004fund\030\003 \001(\0132\017.tra"
+  "dingpb.Fund\022\014\n\004name\030\004 \001(\t\022\020\n\010fullname\030\005 "
+  "\001(\t\022\014\n\004type\030\006 \001(\t\"~\n\021RequestUpdCandles\022\021"
+  "\n\005token\030\001 \001(\tB\002\030\001\022#\n\007candles\030\002 \001(\0132\022.tra"
+  "dingpb.Candles\0221\n\014basicRequest\030\003 \001(\0132\033.t"
+  "radingpb.BasicRequestData\"#\n\017ReplyUpdCan"
+  "dles\022\020\n\010lengthOK\030\001 \001(\005\"\270\001\n\021RequestGetCan"
+  "dles\022\021\n\005token\030\001 \001(\tB\002\030\001\022\016\n\006market\030\002 \001(\t\022"
+  "\016\n\006symbol\030\003 \001(\t\022\017\n\003tag\030\004 \001(\tB\002\030\001\022\017\n\007tsSt"
+  "art\030\005 \001(\003\022\r\n\005tsEnd\030\006 \001(\003\022\014\n\004tags\030\007 \003(\t\0221"
+  "\n\014basicRequest\030\010 \001(\0132\033.tradingpb.BasicRe"
+  "questData\"6\n\017ReplyGetCandles\022#\n\007candles\030"
+  "\001 \001(\0132\022.tradingpb.Candles\"\177\n\020RequestUpdS"
+  "ymbol\022\021\n\005token\030\001 \001(\tB\002\030\001\022%\n\006symbol\030\002 \001(\013"
+  "2\025.tradingpb.SymbolInfo\0221\n\014basicRequest\030"
+  "\003 \001(\0132\033.tradingpb.BasicRequestData\"\036\n\016Re"
+  "plyUpdSymbol\022\014\n\004isOK\030\001 \001(\010\"x\n\020RequestGet"
+  "Symbol\022\021\n\005token\030\001 \001(\tB\002\030\001\022\016\n\006market\030\002 \001("
+  "\t\022\016\n\006symbol\030\003 \001(\t\0221\n\014basicRequest\030\004 \001(\0132"
+  "\033.tradingpb.BasicRequestData\"7\n\016ReplyGet"
+  "Symbol\022%\n\006symbol\030\001 \001(\0132\025.tradingpb.Symbo"
+  "lInfo\"z\n\021RequestGetSymbols\022\021\n\005token\030\001 \001("
+  "\tB\002\030\001\022\016\n\006market\030\002 \001(\t\022\017\n\007symbols\030\003 \003(\t\0221"
+  "\n\014basicRequest\030\004 \001(\0132\033.tradingpb.BasicRe"
+  "questData\"\350\001\n\021RequestSimTrading\0221\n\014basic"
+  "Request\030\001 \001(\0132\033.tradingpb.BasicRequestDa"
+  "ta\022+\n\006params\030\002 \001(\0132\033.tradingpb.SimTradin"
+  "gParams\022\023\n\013ignoreCache\030\003 \001(\010\022\r\n\005index\030\004 "
+  "\001(\005\022\031\n\021ignoreTotalReturn\030\005 \001(\002\022\017\n\007minNum"
+  "s\030\006 \001(\005\022\023\n\007maxNums\030\007 \001(\005B\002\030\001\022\016\n\006sortBy\030\010"
+  " \001(\t\"k\n\017ReplySimTrading\022\037\n\003pnl\030\001 \003(\0132\022.t"
+  "radingpb.PNLData\022(\n\010baseline\030\002 \003(\0132\022.tra"
+  "dingpb.PNLDataB\002\030\001\022\r\n\005index\030\003 \001(\0052\226\004\n\nTr"
+  "adingDB2\022J\n\nupdCandles\022\034.tradingpb.Reque"
+  "stUpdCandles\032\032.tradingpb.ReplyUpdCandles"
+  "\"\000(\001\022J\n\ngetCandles\022\034.tradingpb.RequestGe"
+  "tCandles\032\032.tradingpb.ReplyGetCandles\"\0000\001"
+  "\022E\n\tupdSymbol\022\033.tradingpb.RequestUpdSymb"
+  "ol\032\031.tradingpb.ReplyUpdSymbol\"\000\022E\n\tgetSy"
+  "mbol\022\033.tradingpb.RequestGetSymbol\032\031.trad"
+  "ingpb.ReplyGetSymbol\"\000\022I\n\ngetSymbols\022\034.t"
+  "radingpb.RequestGetSymbols\032\031.tradingpb.R"
+  "eplyGetSymbol\"\0000\001\022H\n\nsimTrading\022\034.tradin"
+  "gpb.RequestSimTrading\032\032.tradingpb.ReplyS"
+  "imTrading\"\000\022M\n\013simTrading2\022\034.tradingpb.R"
+  "equestSimTrading\032\032.tradingpb.ReplySimTra"
+  "ding\"\000(\0010\001B(Z&github.com/zhs007/tradingd"
+  "b2/tradingpbb\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_tradingdb2_2eproto_deps[1] = {
   &::descriptor_table_trading2_2eproto,
 };
-static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_tradingdb2_2eproto_sccs[18] = {
+static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_tradingdb2_2eproto_sccs[19] = {
   &scc_info_Candle_tradingdb2_2eproto.base,
   &scc_info_Candles_tradingdb2_2eproto.base,
+  &scc_info_Candles_MapCandlesEntry_DoNotUse_tradingdb2_2eproto.base,
   &scc_info_Fund_tradingdb2_2eproto.base,
   &scc_info_FundManager_tradingdb2_2eproto.base,
   &scc_info_FundResult_tradingdb2_2eproto.base,
@@ -686,10 +739,10 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_tra
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_tradingdb2_2eproto_once;
 static bool descriptor_table_tradingdb2_2eproto_initialized = false;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_tradingdb2_2eproto = {
-  &descriptor_table_tradingdb2_2eproto_initialized, descriptor_table_protodef_tradingdb2_2eproto, "tradingdb2.proto", 2809,
-  &descriptor_table_tradingdb2_2eproto_once, descriptor_table_tradingdb2_2eproto_sccs, descriptor_table_tradingdb2_2eproto_deps, 18, 1,
+  &descriptor_table_tradingdb2_2eproto_initialized, descriptor_table_protodef_tradingdb2_2eproto, "tradingdb2.proto", 3140,
+  &descriptor_table_tradingdb2_2eproto_once, descriptor_table_tradingdb2_2eproto_sccs, descriptor_table_tradingdb2_2eproto_deps, 19, 1,
   schemas, file_default_instances, TableStruct_tradingdb2_2eproto::offsets,
-  file_level_metadata_tradingdb2_2eproto, 18, file_level_enum_descriptors_tradingdb2_2eproto, file_level_service_descriptors_tradingdb2_2eproto,
+  file_level_metadata_tradingdb2_2eproto, 19, file_level_enum_descriptors_tradingdb2_2eproto, file_level_service_descriptors_tradingdb2_2eproto,
 };
 
 // Force running AddDescriptors() at dynamic initialization time.
@@ -714,15 +767,15 @@ Candle::Candle(const Candle& from)
       _internal_metadata_(nullptr) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   ::memcpy(&ts_, &from.ts_,
-    static_cast<size_t>(reinterpret_cast<char*>(&foreignnotional_) -
-    reinterpret_cast<char*>(&ts_)) + sizeof(foreignnotional_));
+    static_cast<size_t>(reinterpret_cast<char*>(&paused_) -
+    reinterpret_cast<char*>(&ts_)) + sizeof(paused_));
   // @@protoc_insertion_point(copy_constructor:tradingpb.Candle)
 }
 
 void Candle::SharedCtor() {
   ::memset(&ts_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&foreignnotional_) -
-      reinterpret_cast<char*>(&ts_)) + sizeof(foreignnotional_));
+      reinterpret_cast<char*>(&paused_) -
+      reinterpret_cast<char*>(&ts_)) + sizeof(paused_));
 }
 
 Candle::~Candle() {
@@ -749,8 +802,8 @@ void Candle::Clear() {
   (void) cached_has_bits;
 
   ::memset(&ts_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&foreignnotional_) -
-      reinterpret_cast<char*>(&ts_)) + sizeof(foreignnotional_));
+      reinterpret_cast<char*>(&paused_) -
+      reinterpret_cast<char*>(&ts_)) + sizeof(paused_));
   _internal_metadata_.Clear();
 }
 
@@ -850,6 +903,48 @@ const char* Candle::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::int
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 105)) {
           foreignnotional_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<double>(ptr);
           ptr += sizeof(double);
+        } else goto handle_unusual;
+        continue;
+      // int64 totalMoney = 14;
+      case 14:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 112)) {
+          totalmoney_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // bool paused = 15;
+      case 15:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 120)) {
+          paused_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // int64 highLimit = 16;
+      case 16:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 128)) {
+          highlimit_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // int64 lowLimit = 17;
+      case 17:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 136)) {
+          lowlimit_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // int64 avg = 18;
+      case 18:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 144)) {
+          avg_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // int64 preClose = 19;
+      case 19:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 152)) {
+          preclose_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
         } else goto handle_unusual;
         continue;
       default: {
@@ -956,6 +1051,42 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteDoubleToArray(13, this->_internal_foreignnotional(), target);
   }
 
+  // int64 totalMoney = 14;
+  if (this->totalmoney() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt64ToArray(14, this->_internal_totalmoney(), target);
+  }
+
+  // bool paused = 15;
+  if (this->paused() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(15, this->_internal_paused(), target);
+  }
+
+  // int64 highLimit = 16;
+  if (this->highlimit() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt64ToArray(16, this->_internal_highlimit(), target);
+  }
+
+  // int64 lowLimit = 17;
+  if (this->lowlimit() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt64ToArray(17, this->_internal_lowlimit(), target);
+  }
+
+  // int64 avg = 18;
+  if (this->avg() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt64ToArray(18, this->_internal_avg(), target);
+  }
+
+  // int64 preClose = 19;
+  if (this->preclose() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt64ToArray(19, this->_internal_preclose(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields(), target, stream);
@@ -1057,6 +1188,46 @@ size_t Candle::ByteSizeLong() const {
     total_size += 1 + 8;
   }
 
+  // int64 totalMoney = 14;
+  if (this->totalmoney() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int64Size(
+        this->_internal_totalmoney());
+  }
+
+  // int64 highLimit = 16;
+  if (this->highlimit() != 0) {
+    total_size += 2 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int64Size(
+        this->_internal_highlimit());
+  }
+
+  // int64 lowLimit = 17;
+  if (this->lowlimit() != 0) {
+    total_size += 2 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int64Size(
+        this->_internal_lowlimit());
+  }
+
+  // int64 avg = 18;
+  if (this->avg() != 0) {
+    total_size += 2 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int64Size(
+        this->_internal_avg());
+  }
+
+  // int64 preClose = 19;
+  if (this->preclose() != 0) {
+    total_size += 2 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int64Size(
+        this->_internal_preclose());
+  }
+
+  // bool paused = 15;
+  if (this->paused() != 0) {
+    total_size += 1 + 1;
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
         _internal_metadata_, total_size, &_cached_size_);
@@ -1127,6 +1298,24 @@ void Candle::MergeFrom(const Candle& from) {
   if (!(from.foreignnotional() <= 0 && from.foreignnotional() >= 0)) {
     _internal_set_foreignnotional(from._internal_foreignnotional());
   }
+  if (from.totalmoney() != 0) {
+    _internal_set_totalmoney(from._internal_totalmoney());
+  }
+  if (from.highlimit() != 0) {
+    _internal_set_highlimit(from._internal_highlimit());
+  }
+  if (from.lowlimit() != 0) {
+    _internal_set_lowlimit(from._internal_lowlimit());
+  }
+  if (from.avg() != 0) {
+    _internal_set_avg(from._internal_avg());
+  }
+  if (from.preclose() != 0) {
+    _internal_set_preclose(from._internal_preclose());
+  }
+  if (from.paused() != 0) {
+    _internal_set_paused(from._internal_paused());
+  }
 }
 
 void Candle::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
@@ -1163,10 +1352,33 @@ void Candle::InternalSwap(Candle* other) {
   swap(turnover_, other->turnover_);
   swap(homenotional_, other->homenotional_);
   swap(foreignnotional_, other->foreignnotional_);
+  swap(totalmoney_, other->totalmoney_);
+  swap(highlimit_, other->highlimit_);
+  swap(lowlimit_, other->lowlimit_);
+  swap(avg_, other->avg_);
+  swap(preclose_, other->preclose_);
+  swap(paused_, other->paused_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata Candle::GetMetadata() const {
   return GetMetadataStatic();
+}
+
+
+// ===================================================================
+
+Candles_MapCandlesEntry_DoNotUse::Candles_MapCandlesEntry_DoNotUse() {}
+Candles_MapCandlesEntry_DoNotUse::Candles_MapCandlesEntry_DoNotUse(::PROTOBUF_NAMESPACE_ID::Arena* arena)
+    : SuperType(arena) {}
+void Candles_MapCandlesEntry_DoNotUse::MergeFrom(const Candles_MapCandlesEntry_DoNotUse& other) {
+  MergeFromInternal(other);
+}
+::PROTOBUF_NAMESPACE_ID::Metadata Candles_MapCandlesEntry_DoNotUse::GetMetadata() const {
+  return GetMetadataStatic();
+}
+void Candles_MapCandlesEntry_DoNotUse::MergeFrom(
+    const ::PROTOBUF_NAMESPACE_ID::Message& other) {
+  ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom(other);
 }
 
 
@@ -1188,6 +1400,7 @@ Candles::Candles(const Candles& from)
       _internal_metadata_(nullptr),
       candles_(from.candles_) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
+  mapcandles_.MergeFrom(from.mapcandles_);
   market_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (!from._internal_market().empty()) {
     market_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.market_);
@@ -1237,6 +1450,7 @@ void Candles::Clear() {
   (void) cached_has_bits;
 
   candles_.Clear();
+  mapcandles_.Clear();
   market_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   symbol_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   tag_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
@@ -1287,6 +1501,18 @@ const char* Candles::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::in
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<34>(ptr));
+        } else goto handle_unusual;
+        continue;
+      // map<int64, .tradingpb.Candle> mapCandles = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 42)) {
+          ptr -= 1;
+          do {
+            ptr += 1;
+            ptr = ctx->ParseMessage(&mapcandles_, ptr);
+            CHK_(ptr);
+            if (!ctx->DataAvailable(ptr)) break;
+          } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<42>(ptr));
         } else goto handle_unusual;
         continue;
       default: {
@@ -1353,6 +1579,37 @@ failure:
       InternalWriteMessage(4, this->_internal_candles(i), target, stream);
   }
 
+  // map<int64, .tradingpb.Candle> mapCandles = 5;
+  if (!this->_internal_mapcandles().empty()) {
+    typedef ::PROTOBUF_NAMESPACE_ID::Map< ::PROTOBUF_NAMESPACE_ID::int64, ::tradingpb::Candle >::const_pointer
+        ConstPtr;
+    typedef ::PROTOBUF_NAMESPACE_ID::internal::SortItem< ::PROTOBUF_NAMESPACE_ID::int64, ConstPtr > SortItem;
+    typedef ::PROTOBUF_NAMESPACE_ID::internal::CompareByFirstField<SortItem> Less;
+
+    if (stream->IsSerializationDeterministic() &&
+        this->_internal_mapcandles().size() > 1) {
+      ::std::unique_ptr<SortItem[]> items(
+          new SortItem[this->_internal_mapcandles().size()]);
+      typedef ::PROTOBUF_NAMESPACE_ID::Map< ::PROTOBUF_NAMESPACE_ID::int64, ::tradingpb::Candle >::size_type size_type;
+      size_type n = 0;
+      for (::PROTOBUF_NAMESPACE_ID::Map< ::PROTOBUF_NAMESPACE_ID::int64, ::tradingpb::Candle >::const_iterator
+          it = this->_internal_mapcandles().begin();
+          it != this->_internal_mapcandles().end(); ++it, ++n) {
+        items[static_cast<ptrdiff_t>(n)] = SortItem(&*it);
+      }
+      ::std::sort(&items[0], &items[static_cast<ptrdiff_t>(n)], Less());
+      for (size_type i = 0; i < n; i++) {
+        target = Candles_MapCandlesEntry_DoNotUse::Funcs::InternalSerialize(5, items[static_cast<ptrdiff_t>(i)].second->first, items[static_cast<ptrdiff_t>(i)].second->second, target, stream);
+      }
+    } else {
+      for (::PROTOBUF_NAMESPACE_ID::Map< ::PROTOBUF_NAMESPACE_ID::int64, ::tradingpb::Candle >::const_iterator
+          it = this->_internal_mapcandles().begin();
+          it != this->_internal_mapcandles().end(); ++it) {
+        target = Candles_MapCandlesEntry_DoNotUse::Funcs::InternalSerialize(5, it->first, it->second, target, stream);
+      }
+    }
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields(), target, stream);
@@ -1374,6 +1631,15 @@ size_t Candles::ByteSizeLong() const {
   for (const auto& msg : this->candles_) {
     total_size +=
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(msg);
+  }
+
+  // map<int64, .tradingpb.Candle> mapCandles = 5;
+  total_size += 1 *
+      ::PROTOBUF_NAMESPACE_ID::internal::FromIntSize(this->_internal_mapcandles_size());
+  for (::PROTOBUF_NAMESPACE_ID::Map< ::PROTOBUF_NAMESPACE_ID::int64, ::tradingpb::Candle >::const_iterator
+      it = this->_internal_mapcandles().begin();
+      it != this->_internal_mapcandles().end(); ++it) {
+    total_size += Candles_MapCandlesEntry_DoNotUse::Funcs::ByteSizeLong(it->first, it->second);
   }
 
   // string market = 1;
@@ -1429,6 +1695,7 @@ void Candles::MergeFrom(const Candles& from) {
   (void) cached_has_bits;
 
   candles_.MergeFrom(from.candles_);
+  mapcandles_.MergeFrom(from.mapcandles_);
   if (from.market().size() > 0) {
 
     market_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.market_);
@@ -1465,6 +1732,7 @@ void Candles::InternalSwap(Candles* other) {
   using std::swap;
   _internal_metadata_.Swap(&other->_internal_metadata_);
   candles_.InternalSwap(&other->candles_);
+  mapcandles_.Swap(&other->mapcandles_);
   market_.Swap(&other->market_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
     GetArenaNoVirtual());
   symbol_.Swap(&other->symbol_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
@@ -2973,6 +3241,18 @@ SymbolInfo::SymbolInfo(const SymbolInfo& from)
   if (!from._internal_symbol().empty()) {
     symbol_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.symbol_);
   }
+  name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_name().empty()) {
+    name_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.name_);
+  }
+  fullname_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_fullname().empty()) {
+    fullname_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.fullname_);
+  }
+  type_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_type().empty()) {
+    type_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.type_);
+  }
   if (from._internal_has_fund()) {
     fund_ = new ::tradingpb::Fund(*from.fund_);
   } else {
@@ -2985,6 +3265,9 @@ void SymbolInfo::SharedCtor() {
   ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_SymbolInfo_tradingdb2_2eproto.base);
   market_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   symbol_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  fullname_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  type_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   fund_ = nullptr;
 }
 
@@ -2996,6 +3279,9 @@ SymbolInfo::~SymbolInfo() {
 void SymbolInfo::SharedDtor() {
   market_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   symbol_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  name_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  fullname_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  type_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (this != internal_default_instance()) delete fund_;
 }
 
@@ -3016,6 +3302,9 @@ void SymbolInfo::Clear() {
 
   market_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   symbol_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  name_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  fullname_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  type_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (GetArenaNoVirtual() == nullptr && fund_ != nullptr) {
     delete fund_;
   }
@@ -3052,6 +3341,33 @@ const char* SymbolInfo::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID:
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
           ptr = ctx->ParseMessage(_internal_mutable_fund(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string name = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 34)) {
+          auto str = _internal_mutable_name();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "tradingpb.SymbolInfo.name"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string fullname = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 42)) {
+          auto str = _internal_mutable_fullname();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "tradingpb.SymbolInfo.fullname"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string type = 6;
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 50)) {
+          auto str = _internal_mutable_type();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "tradingpb.SymbolInfo.type"));
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -3109,6 +3425,36 @@ failure:
         3, _Internal::fund(this), target, stream);
   }
 
+  // string name = 4;
+  if (this->name().size() > 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_name().data(), static_cast<int>(this->_internal_name().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "tradingpb.SymbolInfo.name");
+    target = stream->WriteStringMaybeAliased(
+        4, this->_internal_name(), target);
+  }
+
+  // string fullname = 5;
+  if (this->fullname().size() > 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_fullname().data(), static_cast<int>(this->_internal_fullname().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "tradingpb.SymbolInfo.fullname");
+    target = stream->WriteStringMaybeAliased(
+        5, this->_internal_fullname(), target);
+  }
+
+  // string type = 6;
+  if (this->type().size() > 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_type().data(), static_cast<int>(this->_internal_type().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "tradingpb.SymbolInfo.type");
+    target = stream->WriteStringMaybeAliased(
+        6, this->_internal_type(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields(), target, stream);
@@ -3137,6 +3483,27 @@ size_t SymbolInfo::ByteSizeLong() const {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
         this->_internal_symbol());
+  }
+
+  // string name = 4;
+  if (this->name().size() > 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_name());
+  }
+
+  // string fullname = 5;
+  if (this->fullname().size() > 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_fullname());
+  }
+
+  // string type = 6;
+  if (this->type().size() > 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_type());
   }
 
   // .tradingpb.Fund fund = 3;
@@ -3185,6 +3552,18 @@ void SymbolInfo::MergeFrom(const SymbolInfo& from) {
 
     symbol_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.symbol_);
   }
+  if (from.name().size() > 0) {
+
+    name_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.name_);
+  }
+  if (from.fullname().size() > 0) {
+
+    fullname_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.fullname_);
+  }
+  if (from.type().size() > 0) {
+
+    type_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.type_);
+  }
   if (from.has_fund()) {
     _internal_mutable_fund()->::tradingpb::Fund::MergeFrom(from._internal_fund());
   }
@@ -3214,6 +3593,12 @@ void SymbolInfo::InternalSwap(SymbolInfo* other) {
   market_.Swap(&other->market_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
     GetArenaNoVirtual());
   symbol_.Swap(&other->symbol_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+    GetArenaNoVirtual());
+  name_.Swap(&other->name_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+    GetArenaNoVirtual());
+  fullname_.Swap(&other->fullname_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+    GetArenaNoVirtual());
+  type_.Swap(&other->type_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
     GetArenaNoVirtual());
   swap(fund_, other->fund_);
 }
@@ -5741,6 +6126,10 @@ RequestSimTrading::RequestSimTrading(const RequestSimTrading& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
       _internal_metadata_(nullptr) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
+  sortby_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_sortby().empty()) {
+    sortby_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.sortby_);
+  }
   if (from._internal_has_basicrequest()) {
     basicrequest_ = new ::tradingpb::BasicRequestData(*from.basicrequest_);
   } else {
@@ -5752,16 +6141,17 @@ RequestSimTrading::RequestSimTrading(const RequestSimTrading& from)
     params_ = nullptr;
   }
   ::memcpy(&ignorecache_, &from.ignorecache_,
-    static_cast<size_t>(reinterpret_cast<char*>(&ignoretotalreturn_) -
-    reinterpret_cast<char*>(&ignorecache_)) + sizeof(ignoretotalreturn_));
+    static_cast<size_t>(reinterpret_cast<char*>(&maxnums_) -
+    reinterpret_cast<char*>(&ignorecache_)) + sizeof(maxnums_));
   // @@protoc_insertion_point(copy_constructor:tradingpb.RequestSimTrading)
 }
 
 void RequestSimTrading::SharedCtor() {
   ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_RequestSimTrading_tradingdb2_2eproto.base);
+  sortby_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   ::memset(&basicrequest_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&ignoretotalreturn_) -
-      reinterpret_cast<char*>(&basicrequest_)) + sizeof(ignoretotalreturn_));
+      reinterpret_cast<char*>(&maxnums_) -
+      reinterpret_cast<char*>(&basicrequest_)) + sizeof(maxnums_));
 }
 
 RequestSimTrading::~RequestSimTrading() {
@@ -5770,6 +6160,7 @@ RequestSimTrading::~RequestSimTrading() {
 }
 
 void RequestSimTrading::SharedDtor() {
+  sortby_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (this != internal_default_instance()) delete basicrequest_;
   if (this != internal_default_instance()) delete params_;
 }
@@ -5789,6 +6180,7 @@ void RequestSimTrading::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  sortby_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (GetArenaNoVirtual() == nullptr && basicrequest_ != nullptr) {
     delete basicrequest_;
   }
@@ -5798,8 +6190,8 @@ void RequestSimTrading::Clear() {
   }
   params_ = nullptr;
   ::memset(&ignorecache_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&ignoretotalreturn_) -
-      reinterpret_cast<char*>(&ignorecache_)) + sizeof(ignoretotalreturn_));
+      reinterpret_cast<char*>(&maxnums_) -
+      reinterpret_cast<char*>(&ignorecache_)) + sizeof(maxnums_));
   _internal_metadata_.Clear();
 }
 
@@ -5843,6 +6235,29 @@ const char* RequestSimTrading::_InternalParse(const char* ptr, ::PROTOBUF_NAMESP
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 45)) {
           ignoretotalreturn_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
+        } else goto handle_unusual;
+        continue;
+      // int32 minNums = 6;
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 48)) {
+          minnums_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // int32 maxNums = 7 [deprecated = true];
+      case 7:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 56)) {
+          maxnums_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string sortBy = 8;
+      case 8:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 66)) {
+          auto str = _internal_mutable_sortby();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "tradingpb.RequestSimTrading.sortBy"));
+          CHK_(ptr);
         } else goto handle_unusual;
         continue;
       default: {
@@ -5905,6 +6320,28 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(5, this->_internal_ignoretotalreturn(), target);
   }
 
+  // int32 minNums = 6;
+  if (this->minnums() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(6, this->_internal_minnums(), target);
+  }
+
+  // int32 maxNums = 7 [deprecated = true];
+  if (this->maxnums() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(7, this->_internal_maxnums(), target);
+  }
+
+  // string sortBy = 8;
+  if (this->sortby().size() > 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_sortby().data(), static_cast<int>(this->_internal_sortby().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "tradingpb.RequestSimTrading.sortBy");
+    target = stream->WriteStringMaybeAliased(
+        8, this->_internal_sortby(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields(), target, stream);
@@ -5920,6 +6357,13 @@ size_t RequestSimTrading::ByteSizeLong() const {
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
+
+  // string sortBy = 8;
+  if (this->sortby().size() > 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_sortby());
+  }
 
   // .tradingpb.BasicRequestData basicRequest = 1;
   if (this->has_basicrequest()) {
@@ -5950,6 +6394,20 @@ size_t RequestSimTrading::ByteSizeLong() const {
   // float ignoreTotalReturn = 5;
   if (!(this->ignoretotalreturn() <= 0 && this->ignoretotalreturn() >= 0)) {
     total_size += 1 + 4;
+  }
+
+  // int32 minNums = 6;
+  if (this->minnums() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_minnums());
+  }
+
+  // int32 maxNums = 7 [deprecated = true];
+  if (this->maxnums() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_maxnums());
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -5983,6 +6441,10 @@ void RequestSimTrading::MergeFrom(const RequestSimTrading& from) {
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
+  if (from.sortby().size() > 0) {
+
+    sortby_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.sortby_);
+  }
   if (from.has_basicrequest()) {
     _internal_mutable_basicrequest()->::tradingpb::BasicRequestData::MergeFrom(from._internal_basicrequest());
   }
@@ -5997,6 +6459,12 @@ void RequestSimTrading::MergeFrom(const RequestSimTrading& from) {
   }
   if (!(from.ignoretotalreturn() <= 0 && from.ignoretotalreturn() >= 0)) {
     _internal_set_ignoretotalreturn(from._internal_ignoretotalreturn());
+  }
+  if (from.minnums() != 0) {
+    _internal_set_minnums(from._internal_minnums());
+  }
+  if (from.maxnums() != 0) {
+    _internal_set_maxnums(from._internal_maxnums());
   }
 }
 
@@ -6021,11 +6489,15 @@ bool RequestSimTrading::IsInitialized() const {
 void RequestSimTrading::InternalSwap(RequestSimTrading* other) {
   using std::swap;
   _internal_metadata_.Swap(&other->_internal_metadata_);
+  sortby_.Swap(&other->sortby_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+    GetArenaNoVirtual());
   swap(basicrequest_, other->basicrequest_);
   swap(params_, other->params_);
   swap(ignorecache_, other->ignorecache_);
   swap(index_, other->index_);
   swap(ignoretotalreturn_, other->ignoretotalreturn_);
+  swap(minnums_, other->minnums_);
+  swap(maxnums_, other->maxnums_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata RequestSimTrading::GetMetadata() const {
@@ -6293,6 +6765,9 @@ void ReplySimTrading::InternalSwap(ReplySimTrading* other) {
 PROTOBUF_NAMESPACE_OPEN
 template<> PROTOBUF_NOINLINE ::tradingpb::Candle* Arena::CreateMaybeMessage< ::tradingpb::Candle >(Arena* arena) {
   return Arena::CreateInternal< ::tradingpb::Candle >(arena);
+}
+template<> PROTOBUF_NOINLINE ::tradingpb::Candles_MapCandlesEntry_DoNotUse* Arena::CreateMaybeMessage< ::tradingpb::Candles_MapCandlesEntry_DoNotUse >(Arena* arena) {
+  return Arena::CreateInternal< ::tradingpb::Candles_MapCandlesEntry_DoNotUse >(arena);
 }
 template<> PROTOBUF_NOINLINE ::tradingpb::Candles* Arena::CreateMaybeMessage< ::tradingpb::Candles >(Arena* arena) {
   return Arena::CreateInternal< ::tradingpb::Candles >(arena);

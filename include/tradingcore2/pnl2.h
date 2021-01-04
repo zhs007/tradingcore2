@@ -72,13 +72,24 @@ class PNL2 {
   int findPreDownMax(int starti);
 
  public:
+  // 构建ctrl统计数据
+  void onBuildCtrl(const Exchange& exchange);
+  // 清理构建PNL时需要的统计数据
+  void clearCtrlTmpData();
+
   void addAsset(const char* asset);
 
   void getAssetInfo(const Exchange& exchange, const char* asset, TimeStamp ts,
                     Money& cost, Volume& volume);
 
+  void getAssetInfo2(const Exchange& exchange, const char* asset, TimeStamp ts,
+                     Money& cost, Volume& volume);
+
   void getHandMoneyEx(const Exchange& exchange, TimeStamp ts, Money& total,
                       Money& last);
+
+  void getHandMoneyEx2(const Exchange& exchange, TimeStamp ts, Money& total,
+                       Money& last);
 
   void setTotalPNLAssetData(const Exchange* pExchange,
                             ::tradingpb::PNLDataValue* pVal);
