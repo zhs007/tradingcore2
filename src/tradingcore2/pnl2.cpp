@@ -139,6 +139,28 @@ void PNL2::getAssetInfo(const Exchange& exchange, const char* asset,
   }
 }
 
+void PNL2::getAssetInfo2(const Exchange& exchange, const char* asset,
+                         TimeStamp ts, Money& cost, Volume& volume) {
+  cost = 0;
+  volume = 0;
+
+  auto t = this->m_data.total();
+  if (t.lstctrl_size() > 0) {
+    for (auto i = 0; i < t.lstctrl_size(); ++i) {
+      auto cc = t.lstctrl(i);
+      if (cc.ts() > ts) {
+        break;
+      }
+
+      auto mapsiit = cc.mapassetsinfo().find(asset);
+      if (mapsiit != cc.mapassetsinfo().end()) {
+        volume = (*mapsiit).second.volume();
+        cost = (*mapsiit).second.cost();
+      }
+    }
+  }
+}
+
 void PNL2::getHandMoneyEx(const Exchange& exchange, TimeStamp ts, Money& total,
                           Money& last) {
   total = 0;
@@ -167,12 +189,127 @@ void PNL2::getHandMoneyEx(const Exchange& exchange, TimeStamp ts, Money& total,
   }
 }
 
+void PNL2::getHandMoneyEx2(const Exchange& exchange, TimeStamp ts, Money& total,
+                           Money& last) {
+  total = 0;
+  last = 0;
+
+  auto t = this->m_data.total();
+  if (t.lstctrl_size() > 0) {
+    for (auto i = 0; i < t.lstctrl_size(); ++i) {
+      auto cc = t.lstctrl(i);
+      if (cc.ts() > ts) {
+        break;
+      }
+
+      total = cc.totalmoney();
+      last = cc.lastmoney();
+    }
+  }
+}
+
+// 构建ctrl统计数据
+void PNL2::onBuildCtrl(const Exchange& exchange) {
+  std::map<std::string, tradingpb::CtrlNodeAssetInfo> mapAssetInfo;
+  for (auto it = this->m_mapAssets.begin(); it != this->m_mapAssets.end();
+       ++it) {
+    std::pair<std::string, tradingpb::CtrlNodeAssetInfo> p;
+    p.first = it->c_str();
+    p.second.set_volume(0);
+    p.second.set_cost(0);
+
+    mapAssetInfo.insert(p);
+  }
+
+  double total = 0;
+  double last = 0;
+
+  auto t = this->m_data.total();
+  if (t.lstctrl_size() > 0) {
+    for (auto i = 0; i < t.lstctrl_size(); ++i) {
+      auto cc = t.lstctrl(i);
+
+      if (cc.type() == tradingpb::CTRL_DEPOSIT) {
+        total += cc.volumedst();
+        last += cc.volumedst();
+      } else if (cc.type() == tradingpb::CTRL_WITHDRAW) {
+        total -= cc.volumedst();
+        last -= cc.volumedst();
+      } else if (cc.type() == tradingpb::CTRL_BUY) {
+        last -= cc.volumesrc();
+      } else if (cc.type() == tradingpb::CTRL_SELL) {
+        last += cc.volumedst();
+      }
+
+      auto mcc = t.mutable_lstctrl(i);
+      mcc->set_totalmoney(total);
+      mcc->set_lastmoney(last);
+
+      {
+        auto ait1 = mapAssetInfo.find(cc.dst().code());
+        if (ait1 != mapAssetInfo.end()) {
+          ait1->second.set_volume(ait1->second.volume() + cc.volumedst());
+          ait1->second.set_cost(ait1->second.cost() + cc.volumesrc());
+
+          {
+            auto mapai = mcc->mutable_mapassetsinfo();
+            auto mapaiobj = mapai->at(cc.dst().code());
+
+            mapaiobj.set_volume(ait1->second.volume());
+            mapaiobj.set_cost(ait1->second.cost());
+          }
+        }
+      }
+
+      {
+        auto ait2 = mapAssetInfo.find(cc.src().code());
+        if (ait2 != mapAssetInfo.end()) {
+          auto price = 0;
+          if (ait2->second.volume() > 0) {
+            price = ait2->second.cost() / ait2->second.volume();
+          }
+
+          ait2->second.set_volume(ait2->second.volume() - cc.volumesrc());
+
+          CandleData cd;
+          if (exchange.getDataWithTimestamp(cc.src().code().c_str(), cc.ts(),
+                                            cd)) {
+            ait2->second.set_cost(ait2->second.volume() * price);
+          }
+
+          {
+            auto mapai = mcc->mutable_mapassetsinfo();
+            auto mapaiobj = mapai->at(cc.dst().code());
+
+            mapaiobj.set_volume(ait2->second.volume());
+            mapaiobj.set_cost(ait2->second.cost());
+          }
+        }
+      }
+    }
+  }
+}
+
+// 清理构建PNL时需要的统计数据
+void PNL2::clearCtrlTmpData() {
+  auto t = this->m_data.total();
+  if (t.lstctrl_size() > 0) {
+    for (auto i = 0; i < t.lstctrl_size(); ++i) {
+      auto mcc = t.mutable_lstctrl(i);
+
+      mcc->clear_mapassetsinfo();
+      mcc->clear_lastmoney();
+      mcc->clear_totalmoney();
+    }
+  }
+}
+
 void PNL2::setTotalPNLAssetData(const Exchange* pExchange,
                                 ::tradingpb::PNLDataValue* pVal) {
   assert(pVal != NULL);
 
   Money total, last;
-  this->getHandMoneyEx(*pExchange, pVal->ts(), total, last);
+  this->getHandMoneyEx2(*pExchange, pVal->ts(), total, last);
   pVal->set_cost(total);
   pVal->set_value(last);
 
@@ -180,7 +317,7 @@ void PNL2::setTotalPNLAssetData(const Exchange* pExchange,
        ++it) {
     Money cost;
     Volume volume;
-    this->getAssetInfo(*pExchange, it->c_str(), pVal->ts(), cost, volume);
+    this->getAssetInfo2(*pExchange, it->c_str(), pVal->ts(), cost, volume);
 
     // pVal->set_cost(cost + pVal->cost());
 

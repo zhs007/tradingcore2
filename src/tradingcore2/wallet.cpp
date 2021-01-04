@@ -200,6 +200,9 @@ void Wallet::buildPNL2(PNL2& pnl2) const {
 
   LOG(INFO) << "buildPNL2:proc contorl ok.";
 
+  pnl2.onBuildCtrl(this->m_exchange);
+  LOG(INFO) << "buildPNL2:onBuildCtrl ok.";
+
   pnl2.procCtrlNodeData(this->m_exchange);
   LOG(INFO) << "buildPNL2:procCtrlNodeData ok.";
 
@@ -207,6 +210,8 @@ void Wallet::buildPNL2(PNL2& pnl2) const {
   LOG(INFO) << "buildPNL2:procTotalPNLAssetData ok.";
 
   pnl2.onBuildEnd(this->m_exchange);
+
+  pnl2.clearCtrlTmpData();
 }
 
 const WalletHistoryNode* Wallet::getLastNode(TradeType tradeType) const {
