@@ -90,9 +90,10 @@ void foreachPNLDataValue(::tradingpb::PNLAssetData* pAssetData,
   assert(pAssetData != NULL);
   assert(onPNLDataValueTs != NULL);
 
+  int ctrlIndex = 0;
   for (auto i = 0; i < pAssetData->values_size(); ++i) {
     auto cv = pAssetData->mutable_values(i);
-    onPNLDataValueTs(cv);
+    ctrlIndex = onPNLDataValueTs(cv, ctrlIndex);
   }
 }
 

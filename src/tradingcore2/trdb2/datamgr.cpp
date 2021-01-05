@@ -18,7 +18,7 @@ CR2BEGIN
 
 void TrDB2DataMgr::release() {
   for (auto it = this->m_map.begin(); it != this->m_map.end(); ++it) {
-    delete it->second;
+    delete it->second.candles;
   }
 
   this->m_map.clear();
@@ -41,7 +41,9 @@ bool TrDB2DataMgr::addData(const char *market, const char *symbol,
   code += ".";
   code += symbol;
 
-  _Pair p(code, pCandles);
+  _Pair p;
+  p.first = code;
+  p.second.candles = pCandles;
   auto retIns = this->m_map.insert(p);
 
   return retIns.second;
@@ -55,7 +57,7 @@ const tradingpb::Candles *TrDB2DataMgr::getData(const char *market,
 
   auto it = this->m_map.find(code);
   if (it != this->m_map.end()) {
-    return it->second;
+    return it->second.candles;
   }
 
   return NULL;
@@ -70,9 +72,26 @@ const tradingpb::Candle *TrDB2DataMgr::getCandle(const char *market,
 
   auto it = this->m_map.find(code);
   if (it != this->m_map.end()) {
-    auto candles = it->second;
+    auto candles = it->second.candles;
 
     return tr2::getCandle(candles, ts);
+  }
+
+  return NULL;
+}
+
+const tradingpb::Candle *TrDB2DataMgr::getCandle2(const char *market,
+                                                  const char *symbol,
+                                                  int64_t ts) const {
+  std::string code = market;
+  code += ".";
+  code += symbol;
+
+  auto it = this->m_map.find(code);
+  if (it != this->m_map.end()) {
+    auto cit = it->second.mapCandles.find(ts);
+
+    return cit->second;
   }
 
   return NULL;
@@ -82,7 +101,7 @@ void TrDB2DataMgr::foreachCandles(FuncOnCandles onCandles) {
   for (auto it = this->m_map.begin(); it != this->m_map.end(); ++it) {
     LOG(INFO) << "TrDB2DataMgr::foreachCandles " << it->first;
 
-    onCandles(it->second);
+    onCandles(it->second.candles);
   }
 }
 
@@ -94,7 +113,7 @@ int TrDB2DataMgr::getTradingDays4Year(const char *market,
 
   auto it = this->m_map.find(code);
   if (it != this->m_map.end()) {
-    return calcTradingDays4Year(*it->second);
+    return calcTradingDays4Year(*it->second.candles);
   }
 
   return 0;
@@ -104,7 +123,7 @@ int TrDB2DataMgr::calcAverageTradingDays4Year() const {
   int totaldfy = 0;
   int tnums = 0;
   for (auto it = this->m_map.begin(); it != this->m_map.end(); ++it) {
-    auto dfy = calcTradingDays4Year(*it->second);
+    auto dfy = calcTradingDays4Year(*it->second.candles);
     if (dfy > 0) {
       totaldfy += dfy;
       tnums++;
@@ -116,6 +135,18 @@ int TrDB2DataMgr::calcAverageTradingDays4Year() const {
   }
 
   return totaldfy / tnums;
+}
+
+void TrDB2DataMgr::buildMap() {
+  for (auto it = this->m_map.begin(); it != this->m_map.end(); ++it) {
+    it->second.mapCandles.clear();
+
+    for (auto i = 0; i < it->second.candles->candles_size(); ++i) {
+      auto mc = it->second.candles->mutable_candles(i);
+      std::pair<int64_t, const tradingpb::Candle *> p(mc->ts(), mc);
+      it->second.mapCandles.insert(p);
+    }
+  }
 }
 
 CR2END

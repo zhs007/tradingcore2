@@ -68,7 +68,7 @@ bool TrDB2Exchange::calculatePrice(const char* assetsName, TimeStamp ts,
 
 bool TrDB2Exchange::getDataWithTimestamp(const char* assetsName, TimeStamp ts,
                                          CandleData& data) const {
-  auto c = this->m_mgrData.getCandle(this->getMarketName(), assetsName, ts);
+  auto c = this->m_mgrData.getCandle2(this->getMarketName(), assetsName, ts);
   if (c == NULL) {
     // LOG(INFO) << "TrDB2CNFundsExchange:getDataWithTimestamp " << assetsName
     //           << " " << ts;
@@ -187,6 +187,7 @@ void TrDB2Exchange::rebuildTimeStampList() {
                      std::placeholders::_1);
 
   this->m_mgrData.foreachCandles(f);
+  this->m_mgrData.buildMap();
 }
 
 void TrDB2Exchange::insertTimeStamp(TimeStamp ts) {

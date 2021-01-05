@@ -203,8 +203,8 @@ void Wallet::buildPNL2(PNL2& pnl2) const {
   pnl2.onBuildCtrl(this->m_exchange);
   LOG(INFO) << "buildPNL2:onBuildCtrl ok.";
 
-  pnl2.procCtrlNodeData(this->m_exchange);
-  LOG(INFO) << "buildPNL2:procCtrlNodeData ok.";
+  // pnl2.procCtrlNodeData(this->m_exchange);
+  // LOG(INFO) << "buildPNL2:procCtrlNodeData ok.";
 
   pnl2.procTotalPNLAssetData(this->m_exchange);
   LOG(INFO) << "buildPNL2:procTotalPNLAssetData ok.";

@@ -12,8 +12,13 @@ typedef std::function<void(const tradingpb::Candles *)> FuncOnCandles;
 
 class TrDB2DataMgr {
  public:
-  typedef std::map<std::string, tradingpb::Candles *> _Map;
-  typedef std::pair<std::string, tradingpb::Candles *> _Pair;
+  struct CandlesData {
+    tradingpb::Candles *candles;
+    std::map<int64_t, const tradingpb::Candle *> mapCandles;
+  };
+
+  typedef std::map<std::string, CandlesData> _Map;
+  typedef std::pair<std::string, CandlesData> _Pair;
 
  public:
   TrDB2DataMgr(const char *host, const char *token)
@@ -35,11 +40,16 @@ class TrDB2DataMgr {
   const tradingpb::Candle *getCandle(const char *market, const char *symbol,
                                      int64_t ts) const;
 
+  const tradingpb::Candle *getCandle2(const char *market, const char *symbol,
+                                      int64_t ts) const;
+
   void foreachCandles(FuncOnCandles onCandles);
 
   int getTradingDays4Year(const char *market, const char *symbol) const;
 
   int calcAverageTradingDays4Year() const;
+
+  void buildMap();
 
  private:
   _Map m_map;
