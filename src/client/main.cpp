@@ -57,13 +57,13 @@ void aipWeekDay(const tr2::Config& cfg) {
 
   auto asset0 = params.add_assets();
   asset0->set_market("jqdata");
-  asset0->set_code("000300_XSHG");
+  asset0->set_code("000300_XSHG|1d");
 
   auto strategy0 = params.add_strategies();
   strategy0->set_name("normal");
   auto asset1 = strategy0->mutable_asset();
   asset1->set_market("jqdata");
-  asset1->set_code("000300_XSHG");
+  asset1->set_code("000300_XSHG|1d");
   auto buy0 = strategy0->add_buy();
   buy0->set_name("weekday");
   buy0->add_vals(5);
