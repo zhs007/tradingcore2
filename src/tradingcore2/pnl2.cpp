@@ -259,6 +259,11 @@ void PNL2::onBuildCtrl(const Exchange& exchange) {
             mapaiobj.set_volume(ait1->second.volume());
             mapaiobj.set_cost(ait1->second.cost());
           }
+
+          if (ait1->second.volume() > 0) {
+            mcc->set_averageholdingprice(ait1->second.cost() /
+                                         ait1->second.volume());
+          }
         }
       }
 
@@ -284,6 +289,17 @@ void PNL2::onBuildCtrl(const Exchange& exchange) {
 
             mapaiobj.set_volume(ait2->second.volume());
             mapaiobj.set_cost(ait2->second.cost());
+          }
+
+          CandleData cd;
+          if (exchange.getDataWithTimestamp(cc.src().code().c_str(), cc.ts(),
+                                            cd)) {
+            mcc->set_sellprice(cd.close);
+          }
+
+          if (ait2->second.volume() > 0) {
+            mcc->set_averageholdingprice(ait2->second.cost() /
+                                         ait2->second.volume());
           }
         }
       }
@@ -377,8 +393,8 @@ void PNL2::procCtrlNodeData(const Exchange& exchange) {
       if (cc->type() == tradingpb::CTRL_BUY && cc->dst().code() == *it) {
         Money cost;
         Volume volume;
-        this->getAssetInfo(exchange, cc->dst().code().c_str(), cc->ts(), cost,
-                           volume);
+        this->getAssetInfo2(exchange, cc->dst().code().c_str(), cc->ts(), cost,
+                            volume);
 
         if (volume > 0) {
           lastprice = cost / volume;
