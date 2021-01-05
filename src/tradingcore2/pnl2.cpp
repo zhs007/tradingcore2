@@ -225,6 +225,7 @@ void PNL2::onBuildCtrl(const Exchange& exchange) {
   double last = 0;
 
   auto t = this->m_data.total();
+  auto mt = this->m_data.mutable_total();
   if (t.lstctrl_size() > 0) {
     for (auto i = 0; i < t.lstctrl_size(); ++i) {
       auto cc = t.lstctrl(i);
@@ -241,7 +242,7 @@ void PNL2::onBuildCtrl(const Exchange& exchange) {
         last += cc.volumedst();
       }
 
-      auto mcc = t.mutable_lstctrl(i);
+      auto mcc = mt->mutable_lstctrl(i);
       mcc->set_totalmoney(total);
       mcc->set_lastmoney(last);
 
@@ -271,11 +272,11 @@ void PNL2::onBuildCtrl(const Exchange& exchange) {
 
           ait2->second.set_volume(ait2->second.volume() - cc.volumesrc());
 
-          CandleData cd;
-          if (exchange.getDataWithTimestamp(cc.src().code().c_str(), cc.ts(),
-                                            cd)) {
-            ait2->second.set_cost(ait2->second.volume() * price);
-          }
+          // CandleData cd;
+          // if (exchange.getDataWithTimestamp(cc.src().code().c_str(), cc.ts(),
+          //                                   cd)) {
+          ait2->second.set_cost(ait2->second.volume() * price);
+          // }
 
           {
             auto mapai = mcc->mutable_mapassetsinfo();
