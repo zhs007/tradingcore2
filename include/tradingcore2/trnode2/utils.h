@@ -33,7 +33,8 @@ void insTimestamp(::tradingpb::PNLAssetData* pAssetData, time_t ts);
     ::tradingpb::PNLAssetData* pAssetData, time_t ts);
 
 // FuncOnPNLDataValueTs - for foreachPNLDataValue
-typedef std::function<void(::tradingpb::PNLDataValue*)> FuncOnPNLDataValueTs;
+typedef std::function<int(::tradingpb::PNLDataValue*, int ctrlIndex)>
+    FuncOnPNLDataValueTs;
 
 // foreachPNLDataValue - foreach PNLDataValue
 void foreachPNLDataValue(::tradingpb::PNLAssetData* pAssetData,

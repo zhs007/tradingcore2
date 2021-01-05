@@ -161,6 +161,35 @@ void PNL2::getAssetInfo2(const Exchange& exchange, const char* asset,
   }
 }
 
+int PNL2::getAssetInfo3(const Exchange& exchange, const char* asset,
+                        TimeStamp ts, Money& cost, Volume& volume,
+                        int ctrlIndex) {
+  cost = 0;
+  volume = 0;
+
+  auto t = this->m_data.total();
+  if (t.lstctrl_size() > 0) {
+    for (auto i = ctrlIndex; i < t.lstctrl_size(); ++i) {
+      auto cc = t.lstctrl(i);
+      if (cc.ts() > ts) {
+        if (i > 0) {
+          return i - 1;
+        }
+
+        return ctrlIndex;
+      }
+
+      auto mapsiit = cc.mapassetsinfo().find(asset);
+      if (mapsiit != cc.mapassetsinfo().end()) {
+        volume = (*mapsiit).second.volume();
+        cost = (*mapsiit).second.cost();
+      }
+    }
+  }
+
+  return ctrlIndex;
+}
+
 void PNL2::getHandMoneyEx(const Exchange& exchange, TimeStamp ts, Money& total,
                           Money& last) {
   total = 0;
@@ -206,6 +235,31 @@ void PNL2::getHandMoneyEx2(const Exchange& exchange, TimeStamp ts, Money& total,
       last = cc.lastmoney();
     }
   }
+}
+
+int PNL2::getHandMoneyEx3(const Exchange& exchange, TimeStamp ts, Money& total,
+                          Money& last, int ctrlIndex) {
+  total = 0;
+  last = 0;
+
+  auto t = this->m_data.total();
+  if (t.lstctrl_size() > 0) {
+    for (auto i = ctrlIndex; i < t.lstctrl_size(); ++i) {
+      auto cc = t.lstctrl(i);
+      if (cc.ts() > ts) {
+        if (i > 0) {
+          return i - 1;
+        }
+
+        return ctrlIndex;
+      }
+
+      total = cc.totalmoney();
+      last = cc.lastmoney();
+    }
+  }
+
+  return ctrlIndex;
 }
 
 // 构建ctrl统计数据
@@ -321,12 +375,13 @@ void PNL2::clearCtrlTmpData() {
   }
 }
 
-void PNL2::setTotalPNLAssetData(const Exchange* pExchange,
-                                ::tradingpb::PNLDataValue* pVal) {
+int PNL2::setTotalPNLAssetData(const Exchange* pExchange,
+                               ::tradingpb::PNLDataValue* pVal, int ctrlIndex) {
   assert(pVal != NULL);
 
   Money total, last;
-  this->getHandMoneyEx2(*pExchange, pVal->ts(), total, last);
+  auto newctrlindex =
+      this->getHandMoneyEx3(*pExchange, pVal->ts(), total, last, ctrlIndex);
   pVal->set_cost(total);
   pVal->set_value(last);
 
@@ -334,7 +389,8 @@ void PNL2::setTotalPNLAssetData(const Exchange* pExchange,
        ++it) {
     Money cost;
     Volume volume;
-    this->getAssetInfo2(*pExchange, it->c_str(), pVal->ts(), cost, volume);
+    this->getAssetInfo3(*pExchange, it->c_str(), pVal->ts(), cost, volume,
+                        ctrlIndex);
 
     // pVal->set_cost(cost + pVal->cost());
 
@@ -371,11 +427,13 @@ void PNL2::setTotalPNLAssetData(const Exchange* pExchange,
   } else {
     pVal->set_pervalue(1);
   }
+
+  return newctrlindex;
 }
 
 void PNL2::procTotalPNLAssetData(const Exchange& exchange) {
   auto f = std::bind(&PNL2::setTotalPNLAssetData, this, &exchange,
-                     std::placeholders::_1);
+                     std::placeholders::_1, std::placeholders::_2);
   foreachPNLDataValue(this->m_data.mutable_total(), f);
 }
 

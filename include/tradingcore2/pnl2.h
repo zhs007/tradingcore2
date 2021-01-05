@@ -85,14 +85,20 @@ class PNL2 {
   void getAssetInfo2(const Exchange& exchange, const char* asset, TimeStamp ts,
                      Money& cost, Volume& volume);
 
+  int getAssetInfo3(const Exchange& exchange, const char* asset, TimeStamp ts,
+                    Money& cost, Volume& volume, int ctrlIndex);
+
   void getHandMoneyEx(const Exchange& exchange, TimeStamp ts, Money& total,
                       Money& last);
 
   void getHandMoneyEx2(const Exchange& exchange, TimeStamp ts, Money& total,
                        Money& last);
 
-  void setTotalPNLAssetData(const Exchange* pExchange,
-                            ::tradingpb::PNLDataValue* pVal);
+  int getHandMoneyEx3(const Exchange& exchange, TimeStamp ts, Money& total,
+                      Money& last, int ctrlIndex);
+
+  int setTotalPNLAssetData(const Exchange* pExchange,
+                           ::tradingpb::PNLDataValue* pVal, int ctrlIndex);
 
   void procTotalPNLAssetData(const Exchange& exchange);
   // 处理ctrlnode里的统计数据
