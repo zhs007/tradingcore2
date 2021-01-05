@@ -90,8 +90,9 @@ const tradingpb::Candle *TrDB2DataMgr::getCandle2(const char *market,
   auto it = this->m_map.find(code);
   if (it != this->m_map.end()) {
     auto cit = it->second.mapCandles.find(ts);
-
-    return cit->second;
+    if (cit != it->second.mapCandles.end()) {
+      return cit->second;
+    }
   }
 
   return NULL;

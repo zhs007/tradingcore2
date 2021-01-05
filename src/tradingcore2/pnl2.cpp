@@ -339,7 +339,7 @@ void PNL2::onBuildCtrl(const Exchange& exchange) {
 
           {
             auto mapai = mcc->mutable_mapassetsinfo();
-            tradingpb::CtrlNodeAssetInfo& mapaiobj = (*mapai)[cc.dst().code()];
+            tradingpb::CtrlNodeAssetInfo& mapaiobj = (*mapai)[cc.src().code()];
 
             mapaiobj.set_volume(ait2->second.volume());
             mapaiobj.set_cost(ait2->second.cost());
