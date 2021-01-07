@@ -377,6 +377,7 @@ void PNL2::clearCtrlTmpData() {
 
 int PNL2::setTotalPNLAssetData(const Exchange* pExchange,
                                ::tradingpb::PNLDataValue* pVal, int ctrlIndex) {
+  // return 0;
   assert(pVal != NULL);
 
   Money total, last;
@@ -387,6 +388,7 @@ int PNL2::setTotalPNLAssetData(const Exchange* pExchange,
 
   for (auto it = this->m_mapAssets.begin(); it != this->m_mapAssets.end();
        ++it) {
+    // break;
     Money cost;
     Volume volume;
     this->getAssetInfo3(*pExchange, it->c_str(), pVal->ts(), cost, volume,
@@ -398,7 +400,7 @@ int PNL2::setTotalPNLAssetData(const Exchange* pExchange,
     pVal->set_volume(volume);
 
     // LOG(INFO) << "profit " << profit;
-
+    // break;
     CandleData cd;
     if (volume > 0 &&
         pExchange->getDataWithTimestamp(it->c_str(), pVal->ts(), cd)) {
