@@ -303,6 +303,9 @@ void PNL2::onBuildCtrl(const Exchange& exchange) {
       {
         auto ait1 = mapAssetInfo.find(cc.dst().code());
         if (ait1 != mapAssetInfo.end()) {
+          // auto bv = ait1->second.volume();
+          // auto bc = ait1->second.cost();
+
           ait1->second.set_volume(ait1->second.volume() + cc.volumedst());
           ait1->second.set_cost(ait1->second.cost() + cc.volumesrc());
 
@@ -318,6 +321,9 @@ void PNL2::onBuildCtrl(const Exchange& exchange) {
             mcc->set_averageholdingprice(ait1->second.cost() /
                                          ait1->second.volume());
           }
+          // else if (bv > 0) {
+          //   mcc->set_averageholdingprice(bc / bv);
+          // }
         }
       }
 
@@ -354,6 +360,8 @@ void PNL2::onBuildCtrl(const Exchange& exchange) {
           if (ait2->second.volume() > 0) {
             mcc->set_averageholdingprice(ait2->second.cost() /
                                          ait2->second.volume());
+          } else {
+            mcc->set_averageholdingprice(price);
           }
         }
       }
