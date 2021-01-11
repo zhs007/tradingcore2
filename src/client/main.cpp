@@ -894,7 +894,7 @@ int main(int argc, char* argv[]) {
 
   // buyandhold(cfg);
   // aipWeekDay(cfg);
-  // aipMonthDay(cfg);
+  aipMonthDay(cfg);
   // normalWeekDay(cfg);
   // normalWeekDay2(cfg);
   // normalROC1(cfg);
@@ -905,7 +905,7 @@ int main(int argc, char* argv[]) {
   // normalWeekDay6(cfg);
   // normalWeekDay7(cfg);
   // normalWeekDay8(cfg);
-  normalEMA15(cfg);
+  // normalEMA15(cfg);
 
   return 0;
 }
