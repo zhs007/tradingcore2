@@ -94,11 +94,11 @@ class Wallet {
  public:
   Assets getAssets(const char* assetsName) const;
 
-  Volume buyAssets(const char* assetsName, Money money, TimeStamp ts,
+  Volume buyAssets(const char* assetsName, Money money, Money fee, TimeStamp ts,
                    int strategyID, int ctrlConditionID);
 
-  Money sellAssets(const char* assetsName, Volume volume, TimeStamp ts,
-                   int strategyID, int ctrlConditionID);
+  Money sellAssets(const char* assetsName, Volume volume, Money fee,
+                   TimeStamp ts, int strategyID, int ctrlConditionID);
 
   void deposit(Money money, TimeStamp ts);
 

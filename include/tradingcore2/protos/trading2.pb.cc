@@ -21,6 +21,7 @@ extern PROTOBUF_INTERNAL_EXPORT_trading2_2eproto ::PROTOBUF_NAMESPACE_ID::intern
 extern PROTOBUF_INTERNAL_EXPORT_trading2_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<2> scc_info_CtrlNode_trading2_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_trading2_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_CtrlNode_MapAssetsInfoEntry_DoNotUse_trading2_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_trading2_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_CtrlNodeAssetInfo_trading2_2eproto;
+extern PROTOBUF_INTERNAL_EXPORT_trading2_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_FeeParams_trading2_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_trading2_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_Indicator_trading2_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_trading2_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_IndicatorData_trading2_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_trading2_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_InitParams_trading2_2eproto;
@@ -30,7 +31,7 @@ extern PROTOBUF_INTERNAL_EXPORT_trading2_2eproto ::PROTOBUF_NAMESPACE_ID::intern
 extern PROTOBUF_INTERNAL_EXPORT_trading2_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_SimTradingCacheNode_trading2_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_trading2_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<3> scc_info_SimTradingParams_trading2_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_trading2_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_StopLossParams_trading2_2eproto;
-extern PROTOBUF_INTERNAL_EXPORT_trading2_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<8> scc_info_Strategy_trading2_2eproto;
+extern PROTOBUF_INTERNAL_EXPORT_trading2_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<9> scc_info_Strategy_trading2_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_trading2_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_TakeProfitParams_trading2_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_trading2_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_Wallet_trading2_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_trading2_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_WalletAsset_trading2_2eproto;
@@ -99,6 +100,10 @@ class AIPParamsDefaultTypeInternal {
  public:
   ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<AIPParams> _instance;
 } _AIPParams_default_instance_;
+class FeeParamsDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<FeeParams> _instance;
+} _FeeParams_default_instance_;
 class StrategyDefaultTypeInternal {
  public:
   ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<Strategy> _instance;
@@ -245,6 +250,20 @@ static void InitDefaultsscc_info_CtrlNodeAssetInfo_trading2_2eproto() {
 
 ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_CtrlNodeAssetInfo_trading2_2eproto =
     {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_CtrlNodeAssetInfo_trading2_2eproto}, {}};
+
+static void InitDefaultsscc_info_FeeParams_trading2_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::tradingpb::_FeeParams_default_instance_;
+    new (ptr) ::tradingpb::FeeParams();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::tradingpb::FeeParams::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<0> scc_info_FeeParams_trading2_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 0, 0, InitDefaultsscc_info_FeeParams_trading2_2eproto}, {}};
 
 static void InitDefaultsscc_info_Indicator_trading2_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
@@ -422,8 +441,8 @@ static void InitDefaultsscc_info_Strategy_trading2_2eproto() {
   ::tradingpb::Strategy::InitAsDefaultInstance();
 }
 
-::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<8> scc_info_Strategy_trading2_2eproto =
-    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 8, 0, InitDefaultsscc_info_Strategy_trading2_2eproto}, {
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<9> scc_info_Strategy_trading2_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 9, 0, InitDefaultsscc_info_Strategy_trading2_2eproto}, {
       &scc_info_Asset_trading2_2eproto.base,
       &scc_info_CtrlCondition_trading2_2eproto.base,
       &scc_info_BuyParams_trading2_2eproto.base,
@@ -431,7 +450,8 @@ static void InitDefaultsscc_info_Strategy_trading2_2eproto() {
       &scc_info_StopLossParams_trading2_2eproto.base,
       &scc_info_TakeProfitParams_trading2_2eproto.base,
       &scc_info_InitParams_trading2_2eproto.base,
-      &scc_info_AIPParams_trading2_2eproto.base,}};
+      &scc_info_AIPParams_trading2_2eproto.base,
+      &scc_info_FeeParams_trading2_2eproto.base,}};
 
 static void InitDefaultsscc_info_TakeProfitParams_trading2_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
@@ -491,7 +511,7 @@ static void InitDefaultsscc_info_WalletAsset_trading2_2eproto() {
     {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_WalletAsset_trading2_2eproto}, {
       &scc_info_Asset_trading2_2eproto.base,}};
 
-static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_trading2_2eproto[24];
+static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_trading2_2eproto[25];
 static const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* file_level_enum_descriptors_trading2_2eproto[3];
 static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_trading2_2eproto = nullptr;
 
@@ -637,6 +657,14 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_trading2_2eproto::offsets[] PR
   PROTOBUF_FIELD_OFFSET(::tradingpb::AIPParams, type_),
   PROTOBUF_FIELD_OFFSET(::tradingpb::AIPParams, day_),
   ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::tradingpb::FeeParams, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::tradingpb::FeeParams, percentage_),
+  PROTOBUF_FIELD_OFFSET(::tradingpb::FeeParams, minlimit_),
+  PROTOBUF_FIELD_OFFSET(::tradingpb::FeeParams, maxlimit_),
+  ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::tradingpb::Strategy, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
@@ -655,6 +683,8 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_trading2_2eproto::offsets[] PR
   PROTOBUF_FIELD_OFFSET(::tradingpb::Strategy, paramsaip_),
   PROTOBUF_FIELD_OFFSET(::tradingpb::Strategy, title_),
   PROTOBUF_FIELD_OFFSET(::tradingpb::Strategy, indicators_),
+  PROTOBUF_FIELD_OFFSET(::tradingpb::Strategy, feebuy_),
+  PROTOBUF_FIELD_OFFSET(::tradingpb::Strategy, feesell_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::tradingpb::PNLDataValue, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -768,14 +798,15 @@ static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOB
   { 119, -1, sizeof(::tradingpb::TakeProfitParams)},
   { 125, -1, sizeof(::tradingpb::InitParams)},
   { 132, -1, sizeof(::tradingpb::AIPParams)},
-  { 140, -1, sizeof(::tradingpb::Strategy)},
-  { 159, -1, sizeof(::tradingpb::PNLDataValue)},
-  { 171, -1, sizeof(::tradingpb::PNLAssetData)},
-  { 211, -1, sizeof(::tradingpb::PNLData)},
-  { 221, -1, sizeof(::tradingpb::SimTradingParams)},
-  { 233, -1, sizeof(::tradingpb::TradingNodeInfo)},
-  { 240, -1, sizeof(::tradingpb::SimTradingCacheNode)},
-  { 248, -1, sizeof(::tradingpb::SimTradingCache)},
+  { 140, -1, sizeof(::tradingpb::FeeParams)},
+  { 148, -1, sizeof(::tradingpb::Strategy)},
+  { 169, -1, sizeof(::tradingpb::PNLDataValue)},
+  { 181, -1, sizeof(::tradingpb::PNLAssetData)},
+  { 221, -1, sizeof(::tradingpb::PNLData)},
+  { 231, -1, sizeof(::tradingpb::SimTradingParams)},
+  { 243, -1, sizeof(::tradingpb::TradingNodeInfo)},
+  { 250, -1, sizeof(::tradingpb::SimTradingCacheNode)},
+  { 258, -1, sizeof(::tradingpb::SimTradingCache)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
@@ -795,6 +826,7 @@ static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] =
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::tradingpb::_TakeProfitParams_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::tradingpb::_InitParams_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::tradingpb::_AIPParams_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::tradingpb::_FeeParams_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::tradingpb::_Strategy_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::tradingpb::_PNLDataValue_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::tradingpb::_PNLAssetData_default_instance_),
@@ -844,71 +876,75 @@ const char descriptor_table_protodef_trading2_2eproto[] PROTOBUF_SECTION_VARIABL
   "\001 \001(\002\"+\n\nInitParams\022\r\n\005money\030\001 \001(\002\022\016\n\006vo"
   "mume\030\002 \001(\002\"M\n\tAIPParams\022\r\n\005money\030\001 \001(\002\022$"
   "\n\004type\030\002 \001(\0162\026.tradingpb.AIPTimeType\022\013\n\003"
-  "day\030\003 \001(\005\"\233\004\n\010Strategy\022\014\n\004name\030\001 \001(\t\022\037\n\005"
-  "asset\030\002 \001(\0132\020.tradingpb.Asset\022%\n\003buy\030\003 \003"
-  "(\0132\030.tradingpb.CtrlCondition\022&\n\004sell\030\004 \003"
-  "(\0132\030.tradingpb.CtrlCondition\022*\n\010stoploss"
-  "\030\005 \003(\0132\030.tradingpb.CtrlCondition\022,\n\ntake"
-  "profit\030\006 \003(\0132\030.tradingpb.CtrlCondition\022\'"
-  "\n\tparamsBuy\030\007 \001(\0132\024.tradingpb.BuyParams\022"
-  ")\n\nparamsSell\030\010 \001(\0132\025.tradingpb.SellPara"
-  "ms\0221\n\016paramsStopLoss\030\t \001(\0132\031.tradingpb.S"
-  "topLossParams\0225\n\020paramsTakeProfit\030\n \001(\0132"
-  "\033.tradingpb.TakeProfitParams\022)\n\nparamsIn"
-  "it\030\013 \001(\0132\025.tradingpb.InitParams\022\'\n\tparam"
-  "sAIP\030\014 \001(\0132\024.tradingpb.AIPParams\022\021\n\005titl"
-  "e\030\r \001(\tB\002\030\001\022\022\n\nindicators\030\016 \003(\t\"v\n\014PNLDa"
-  "taValue\022\n\n\002ts\030\001 \001(\003\022\020\n\010perValue\030\002 \001(\002\022\014\n"
-  "\004tags\030\003 \003(\t\022\014\n\004cost\030\004 \001(\002\022\r\n\005value\030\005 \001(\002"
-  "\022\016\n\006volume\030\006 \001(\002\022\r\n\005price\030\007 \001(\002\"\337\006\n\014PNLA"
-  "ssetData\022\037\n\005asset\030\001 \001(\0132\020.tradingpb.Asse"
-  "t\022\'\n\006values\030\002 \003(\0132\027.tradingpb.PNLDataVal"
-  "ue\022\023\n\013maxDrawdown\030\003 \001(\002\022\032\n\022maxDrawdownSt"
-  "artTs\030\004 \001(\003\022\030\n\020maxDrawdownEndTs\030\005 \001(\003\022\021\n"
-  "\tmaxDrawup\030\006 \001(\002\022\030\n\020maxDrawupStartTs\030\007 \001"
-  "(\003\022\026\n\016maxDrawupEndTs\030\010 \001(\003\022\016\n\006sharpe\030\t \001"
-  "(\002\022\031\n\021annualizedReturns\030\n \001(\002\022\034\n\024annuali"
-  "zedVolatility\030\013 \001(\002\022\024\n\014totalReturns\030\014 \001("
-  "\002\022\020\n\010variance\030\r \001(\002\022\020\n\010buyTimes\030\016 \001(\005\022\021\n"
-  "\tsellTimes\030\017 \001(\005\022\025\n\rstoplossTimes\030\020 \001(\005\022"
-  "\022\n\nmaxUpDayTs\030\021 \001(\003\022\023\n\013maxPerUpDay\030\022 \001(\002"
-  "\022\024\n\014maxDownDayTs\030\023 \001(\003\022\025\n\rmaxPerDownDay\030"
-  "\024 \001(\002\022\023\n\013maxUpWeekTs\030\025 \001(\003\022\024\n\014maxPerUpWe"
-  "ek\030\026 \001(\002\022\025\n\rmaxDownWeekTs\030\027 \001(\003\022\026\n\016maxPe"
-  "rDownWeek\030\030 \001(\002\022\024\n\014maxUpMonthTs\030\031 \001(\003\022\025\n"
-  "\rmaxPerUpMonth\030\032 \001(\002\022\026\n\016maxDownMonthTs\030\033"
-  " \001(\003\022\027\n\017maxPerDownMonth\030\034 \001(\002\022\023\n\013maxUpYe"
-  "arTs\030\035 \001(\003\022\024\n\014maxPerUpYear\030\036 \001(\002\022\025\n\rmaxD"
-  "ownYearTs\030\037 \001(\003\022\026\n\016maxPerDownYear\030  \001(\002\022"
-  "$\n\007lstCtrl\030! \003(\0132\023.tradingpb.CtrlNode\022(\n"
-  "\nindicators\030\" \003(\0132\024.tradingpb.Indicator\022"
-  "\020\n\010winTimes\030# \001(\005\"\223\001\n\007PNLData\022\020\n\004name\030\001 "
-  "\001(\tB\002\030\001\022&\n\005total\030\002 \001(\0132\027.tradingpb.PNLAs"
-  "setData\022+\n\006assets\030\003 \003(\0132\027.tradingpb.PNLA"
-  "ssetDataB\002\030\001\022\r\n\005title\030\004 \001(\t\022\022\n\006lastts\030\005 "
-  "\001(\003B\002\030\001\"\330\001\n\020SimTradingParams\022 \n\006assets\030\001"
-  " \003(\0132\020.tradingpb.Asset\022\'\n\tbaselines\030\002 \003("
-  "\0132\020.tradingpb.AssetB\002\030\001\022\017\n\007startTs\030\003 \001(\003"
-  "\022\r\n\005endTs\030\004 \001(\003\022\'\n\nstrategies\030\005 \003(\0132\023.tr"
-  "adingpb.Strategy\022!\n\006wallet\030\006 \001(\0132\021.tradi"
-  "ngpb.Wallet\022\r\n\005title\030\007 \001(\t\"5\n\017TradingNod"
-  "eInfo\022\020\n\010maxTasks\030\001 \001(\005\022\020\n\010curTasks\030\002 \001("
-  "\005\"_\n\023SimTradingCacheNode\022+\n\006params\030\001 \001(\013"
-  "2\033.tradingpb.SimTradingParams\022\013\n\003key\030\002 \001"
-  "(\t\022\016\n\006lastTs\030\003 \001(\003\"@\n\017SimTradingCache\022-\n"
-  "\005nodes\030\001 \003(\0132\036.tradingpb.SimTradingCache"
-  "Node*\203\001\n\010CtrlType\022\r\n\tCTRL_INIT\020\000\022\014\n\010CTRL"
-  "_BUY\020\001\022\r\n\tCTRL_SELL\020\002\022\021\n\rCTRL_STOPLOSS\020\003"
-  "\022\023\n\017CTRL_TAKEPROFIT\020\004\022\021\n\rCTRL_WITHDRAW\020\005"
-  "\022\020\n\014CTRL_DEPOSIT\020\006*7\n\rIndicatorType\022\022\n\016I"
-  "T_SINGLEVALUE\020\000\022\022\n\016IT_SINGLEPRICE\020\001*4\n\013A"
-  "IPTimeType\022\021\n\rAIPTT_WEEKDAY\020\000\022\022\n\016AIPTT_M"
-  "ONTHDAY\020\001B(Z&github.com/zhs007/tradingdb"
-  "2/tradingpbb\006proto3"
+  "day\030\003 \001(\005\"C\n\tFeeParams\022\022\n\npercentage\030\001 \001"
+  "(\002\022\020\n\010minLimit\030\002 \001(\002\022\020\n\010maxLimit\030\003 \001(\002\"\350"
+  "\004\n\010Strategy\022\014\n\004name\030\001 \001(\t\022\037\n\005asset\030\002 \001(\013"
+  "2\020.tradingpb.Asset\022%\n\003buy\030\003 \003(\0132\030.tradin"
+  "gpb.CtrlCondition\022&\n\004sell\030\004 \003(\0132\030.tradin"
+  "gpb.CtrlCondition\022*\n\010stoploss\030\005 \003(\0132\030.tr"
+  "adingpb.CtrlCondition\022,\n\ntakeprofit\030\006 \003("
+  "\0132\030.tradingpb.CtrlCondition\022\'\n\tparamsBuy"
+  "\030\007 \001(\0132\024.tradingpb.BuyParams\022)\n\nparamsSe"
+  "ll\030\010 \001(\0132\025.tradingpb.SellParams\0221\n\016param"
+  "sStopLoss\030\t \001(\0132\031.tradingpb.StopLossPara"
+  "ms\0225\n\020paramsTakeProfit\030\n \001(\0132\033.tradingpb"
+  ".TakeProfitParams\022)\n\nparamsInit\030\013 \001(\0132\025."
+  "tradingpb.InitParams\022\'\n\tparamsAIP\030\014 \001(\0132"
+  "\024.tradingpb.AIPParams\022\021\n\005title\030\r \001(\tB\002\030\001"
+  "\022\022\n\nindicators\030\016 \003(\t\022$\n\006feeBuy\030\017 \001(\0132\024.t"
+  "radingpb.FeeParams\022%\n\007feeSell\030\020 \001(\0132\024.tr"
+  "adingpb.FeeParams\"v\n\014PNLDataValue\022\n\n\002ts\030"
+  "\001 \001(\003\022\020\n\010perValue\030\002 \001(\002\022\014\n\004tags\030\003 \003(\t\022\014\n"
+  "\004cost\030\004 \001(\002\022\r\n\005value\030\005 \001(\002\022\016\n\006volume\030\006 \001"
+  "(\002\022\r\n\005price\030\007 \001(\002\"\337\006\n\014PNLAssetData\022\037\n\005as"
+  "set\030\001 \001(\0132\020.tradingpb.Asset\022\'\n\006values\030\002 "
+  "\003(\0132\027.tradingpb.PNLDataValue\022\023\n\013maxDrawd"
+  "own\030\003 \001(\002\022\032\n\022maxDrawdownStartTs\030\004 \001(\003\022\030\n"
+  "\020maxDrawdownEndTs\030\005 \001(\003\022\021\n\tmaxDrawup\030\006 \001"
+  "(\002\022\030\n\020maxDrawupStartTs\030\007 \001(\003\022\026\n\016maxDrawu"
+  "pEndTs\030\010 \001(\003\022\016\n\006sharpe\030\t \001(\002\022\031\n\021annualiz"
+  "edReturns\030\n \001(\002\022\034\n\024annualizedVolatility\030"
+  "\013 \001(\002\022\024\n\014totalReturns\030\014 \001(\002\022\020\n\010variance\030"
+  "\r \001(\002\022\020\n\010buyTimes\030\016 \001(\005\022\021\n\tsellTimes\030\017 \001"
+  "(\005\022\025\n\rstoplossTimes\030\020 \001(\005\022\022\n\nmaxUpDayTs\030"
+  "\021 \001(\003\022\023\n\013maxPerUpDay\030\022 \001(\002\022\024\n\014maxDownDay"
+  "Ts\030\023 \001(\003\022\025\n\rmaxPerDownDay\030\024 \001(\002\022\023\n\013maxUp"
+  "WeekTs\030\025 \001(\003\022\024\n\014maxPerUpWeek\030\026 \001(\002\022\025\n\rma"
+  "xDownWeekTs\030\027 \001(\003\022\026\n\016maxPerDownWeek\030\030 \001("
+  "\002\022\024\n\014maxUpMonthTs\030\031 \001(\003\022\025\n\rmaxPerUpMonth"
+  "\030\032 \001(\002\022\026\n\016maxDownMonthTs\030\033 \001(\003\022\027\n\017maxPer"
+  "DownMonth\030\034 \001(\002\022\023\n\013maxUpYearTs\030\035 \001(\003\022\024\n\014"
+  "maxPerUpYear\030\036 \001(\002\022\025\n\rmaxDownYearTs\030\037 \001("
+  "\003\022\026\n\016maxPerDownYear\030  \001(\002\022$\n\007lstCtrl\030! \003"
+  "(\0132\023.tradingpb.CtrlNode\022(\n\nindicators\030\" "
+  "\003(\0132\024.tradingpb.Indicator\022\020\n\010winTimes\030# "
+  "\001(\005\"\223\001\n\007PNLData\022\020\n\004name\030\001 \001(\tB\002\030\001\022&\n\005tot"
+  "al\030\002 \001(\0132\027.tradingpb.PNLAssetData\022+\n\006ass"
+  "ets\030\003 \003(\0132\027.tradingpb.PNLAssetDataB\002\030\001\022\r"
+  "\n\005title\030\004 \001(\t\022\022\n\006lastts\030\005 \001(\003B\002\030\001\"\330\001\n\020Si"
+  "mTradingParams\022 \n\006assets\030\001 \003(\0132\020.trading"
+  "pb.Asset\022\'\n\tbaselines\030\002 \003(\0132\020.tradingpb."
+  "AssetB\002\030\001\022\017\n\007startTs\030\003 \001(\003\022\r\n\005endTs\030\004 \001("
+  "\003\022\'\n\nstrategies\030\005 \003(\0132\023.tradingpb.Strate"
+  "gy\022!\n\006wallet\030\006 \001(\0132\021.tradingpb.Wallet\022\r\n"
+  "\005title\030\007 \001(\t\"5\n\017TradingNodeInfo\022\020\n\010maxTa"
+  "sks\030\001 \001(\005\022\020\n\010curTasks\030\002 \001(\005\"_\n\023SimTradin"
+  "gCacheNode\022+\n\006params\030\001 \001(\0132\033.tradingpb.S"
+  "imTradingParams\022\013\n\003key\030\002 \001(\t\022\016\n\006lastTs\030\003"
+  " \001(\003\"@\n\017SimTradingCache\022-\n\005nodes\030\001 \003(\0132\036"
+  ".tradingpb.SimTradingCacheNode*\203\001\n\010CtrlT"
+  "ype\022\r\n\tCTRL_INIT\020\000\022\014\n\010CTRL_BUY\020\001\022\r\n\tCTRL"
+  "_SELL\020\002\022\021\n\rCTRL_STOPLOSS\020\003\022\023\n\017CTRL_TAKEP"
+  "ROFIT\020\004\022\021\n\rCTRL_WITHDRAW\020\005\022\020\n\014CTRL_DEPOS"
+  "IT\020\006*7\n\rIndicatorType\022\022\n\016IT_SINGLEVALUE\020"
+  "\000\022\022\n\016IT_SINGLEPRICE\020\001*4\n\013AIPTimeType\022\021\n\r"
+  "AIPTT_WEEKDAY\020\000\022\022\n\016AIPTT_MONTHDAY\020\001B(Z&g"
+  "ithub.com/zhs007/tradingdb2/tradingpbb\006p"
+  "roto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_trading2_2eproto_deps[1] = {
 };
-static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_trading2_2eproto_sccs[24] = {
+static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_trading2_2eproto_sccs[25] = {
   &scc_info_AIPParams_trading2_2eproto.base,
   &scc_info_Asset_trading2_2eproto.base,
   &scc_info_BasicRequestData_trading2_2eproto.base,
@@ -917,6 +953,7 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_tra
   &scc_info_CtrlNode_trading2_2eproto.base,
   &scc_info_CtrlNode_MapAssetsInfoEntry_DoNotUse_trading2_2eproto.base,
   &scc_info_CtrlNodeAssetInfo_trading2_2eproto.base,
+  &scc_info_FeeParams_trading2_2eproto.base,
   &scc_info_Indicator_trading2_2eproto.base,
   &scc_info_IndicatorData_trading2_2eproto.base,
   &scc_info_InitParams_trading2_2eproto.base,
@@ -937,10 +974,10 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_tra
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_trading2_2eproto_once;
 static bool descriptor_table_trading2_2eproto_initialized = false;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_trading2_2eproto = {
-  &descriptor_table_trading2_2eproto_initialized, descriptor_table_protodef_trading2_2eproto, "trading2.proto", 3939,
-  &descriptor_table_trading2_2eproto_once, descriptor_table_trading2_2eproto_sccs, descriptor_table_trading2_2eproto_deps, 24, 0,
+  &descriptor_table_trading2_2eproto_initialized, descriptor_table_protodef_trading2_2eproto, "trading2.proto", 4085,
+  &descriptor_table_trading2_2eproto_once, descriptor_table_trading2_2eproto_sccs, descriptor_table_trading2_2eproto_deps, 25, 0,
   schemas, file_default_instances, TableStruct_trading2_2eproto::offsets,
-  file_level_metadata_trading2_2eproto, 24, file_level_enum_descriptors_trading2_2eproto, file_level_service_descriptors_trading2_2eproto,
+  file_level_metadata_trading2_2eproto, 25, file_level_enum_descriptors_trading2_2eproto, file_level_service_descriptors_trading2_2eproto,
 };
 
 // Force running AddDescriptors() at dynamic initialization time.
@@ -5080,6 +5117,240 @@ void AIPParams::InternalSwap(AIPParams* other) {
 
 // ===================================================================
 
+void FeeParams::InitAsDefaultInstance() {
+}
+class FeeParams::_Internal {
+ public:
+};
+
+FeeParams::FeeParams()
+  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:tradingpb.FeeParams)
+}
+FeeParams::FeeParams(const FeeParams& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _internal_metadata_(nullptr) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::memcpy(&percentage_, &from.percentage_,
+    static_cast<size_t>(reinterpret_cast<char*>(&maxlimit_) -
+    reinterpret_cast<char*>(&percentage_)) + sizeof(maxlimit_));
+  // @@protoc_insertion_point(copy_constructor:tradingpb.FeeParams)
+}
+
+void FeeParams::SharedCtor() {
+  ::memset(&percentage_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&maxlimit_) -
+      reinterpret_cast<char*>(&percentage_)) + sizeof(maxlimit_));
+}
+
+FeeParams::~FeeParams() {
+  // @@protoc_insertion_point(destructor:tradingpb.FeeParams)
+  SharedDtor();
+}
+
+void FeeParams::SharedDtor() {
+}
+
+void FeeParams::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const FeeParams& FeeParams::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_FeeParams_trading2_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void FeeParams::Clear() {
+// @@protoc_insertion_point(message_clear_start:tradingpb.FeeParams)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  ::memset(&percentage_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&maxlimit_) -
+      reinterpret_cast<char*>(&percentage_)) + sizeof(maxlimit_));
+  _internal_metadata_.Clear();
+}
+
+const char* FeeParams::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // float percentage = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 13)) {
+          percentage_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else goto handle_unusual;
+        continue;
+      // float minLimit = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 21)) {
+          minlimit_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else goto handle_unusual;
+        continue;
+      // float maxLimit = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 29)) {
+          maxlimit_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* FeeParams::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:tradingpb.FeeParams)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // float percentage = 1;
+  if (!(this->percentage() <= 0 && this->percentage() >= 0)) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(1, this->_internal_percentage(), target);
+  }
+
+  // float minLimit = 2;
+  if (!(this->minlimit() <= 0 && this->minlimit() >= 0)) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(2, this->_internal_minlimit(), target);
+  }
+
+  // float maxLimit = 3;
+  if (!(this->maxlimit() <= 0 && this->maxlimit() >= 0)) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(3, this->_internal_maxlimit(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields(), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:tradingpb.FeeParams)
+  return target;
+}
+
+size_t FeeParams::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:tradingpb.FeeParams)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // float percentage = 1;
+  if (!(this->percentage() <= 0 && this->percentage() >= 0)) {
+    total_size += 1 + 4;
+  }
+
+  // float minLimit = 2;
+  if (!(this->minlimit() <= 0 && this->minlimit() >= 0)) {
+    total_size += 1 + 4;
+  }
+
+  // float maxLimit = 3;
+  if (!(this->maxlimit() <= 0 && this->maxlimit() >= 0)) {
+    total_size += 1 + 4;
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void FeeParams::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:tradingpb.FeeParams)
+  GOOGLE_DCHECK_NE(&from, this);
+  const FeeParams* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<FeeParams>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:tradingpb.FeeParams)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:tradingpb.FeeParams)
+    MergeFrom(*source);
+  }
+}
+
+void FeeParams::MergeFrom(const FeeParams& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:tradingpb.FeeParams)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!(from.percentage() <= 0 && from.percentage() >= 0)) {
+    _internal_set_percentage(from._internal_percentage());
+  }
+  if (!(from.minlimit() <= 0 && from.minlimit() >= 0)) {
+    _internal_set_minlimit(from._internal_minlimit());
+  }
+  if (!(from.maxlimit() <= 0 && from.maxlimit() >= 0)) {
+    _internal_set_maxlimit(from._internal_maxlimit());
+  }
+}
+
+void FeeParams::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:tradingpb.FeeParams)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void FeeParams::CopyFrom(const FeeParams& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:tradingpb.FeeParams)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool FeeParams::IsInitialized() const {
+  return true;
+}
+
+void FeeParams::InternalSwap(FeeParams* other) {
+  using std::swap;
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  swap(percentage_, other->percentage_);
+  swap(minlimit_, other->minlimit_);
+  swap(maxlimit_, other->maxlimit_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata FeeParams::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
+
+// ===================================================================
+
 void Strategy::InitAsDefaultInstance() {
   ::tradingpb::_Strategy_default_instance_._instance.get_mutable()->asset_ = const_cast< ::tradingpb::Asset*>(
       ::tradingpb::Asset::internal_default_instance());
@@ -5095,6 +5366,10 @@ void Strategy::InitAsDefaultInstance() {
       ::tradingpb::InitParams::internal_default_instance());
   ::tradingpb::_Strategy_default_instance_._instance.get_mutable()->paramsaip_ = const_cast< ::tradingpb::AIPParams*>(
       ::tradingpb::AIPParams::internal_default_instance());
+  ::tradingpb::_Strategy_default_instance_._instance.get_mutable()->feebuy_ = const_cast< ::tradingpb::FeeParams*>(
+      ::tradingpb::FeeParams::internal_default_instance());
+  ::tradingpb::_Strategy_default_instance_._instance.get_mutable()->feesell_ = const_cast< ::tradingpb::FeeParams*>(
+      ::tradingpb::FeeParams::internal_default_instance());
 }
 class Strategy::_Internal {
  public:
@@ -5105,6 +5380,8 @@ class Strategy::_Internal {
   static const ::tradingpb::TakeProfitParams& paramstakeprofit(const Strategy* msg);
   static const ::tradingpb::InitParams& paramsinit(const Strategy* msg);
   static const ::tradingpb::AIPParams& paramsaip(const Strategy* msg);
+  static const ::tradingpb::FeeParams& feebuy(const Strategy* msg);
+  static const ::tradingpb::FeeParams& feesell(const Strategy* msg);
 };
 
 const ::tradingpb::Asset&
@@ -5134,6 +5411,14 @@ Strategy::_Internal::paramsinit(const Strategy* msg) {
 const ::tradingpb::AIPParams&
 Strategy::_Internal::paramsaip(const Strategy* msg) {
   return *msg->paramsaip_;
+}
+const ::tradingpb::FeeParams&
+Strategy::_Internal::feebuy(const Strategy* msg) {
+  return *msg->feebuy_;
+}
+const ::tradingpb::FeeParams&
+Strategy::_Internal::feesell(const Strategy* msg) {
+  return *msg->feesell_;
 }
 Strategy::Strategy()
   : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
@@ -5192,6 +5477,16 @@ Strategy::Strategy(const Strategy& from)
   } else {
     paramsaip_ = nullptr;
   }
+  if (from._internal_has_feebuy()) {
+    feebuy_ = new ::tradingpb::FeeParams(*from.feebuy_);
+  } else {
+    feebuy_ = nullptr;
+  }
+  if (from._internal_has_feesell()) {
+    feesell_ = new ::tradingpb::FeeParams(*from.feesell_);
+  } else {
+    feesell_ = nullptr;
+  }
   // @@protoc_insertion_point(copy_constructor:tradingpb.Strategy)
 }
 
@@ -5200,8 +5495,8 @@ void Strategy::SharedCtor() {
   name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   title_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   ::memset(&asset_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&paramsaip_) -
-      reinterpret_cast<char*>(&asset_)) + sizeof(paramsaip_));
+      reinterpret_cast<char*>(&feesell_) -
+      reinterpret_cast<char*>(&asset_)) + sizeof(feesell_));
 }
 
 Strategy::~Strategy() {
@@ -5219,6 +5514,8 @@ void Strategy::SharedDtor() {
   if (this != internal_default_instance()) delete paramstakeprofit_;
   if (this != internal_default_instance()) delete paramsinit_;
   if (this != internal_default_instance()) delete paramsaip_;
+  if (this != internal_default_instance()) delete feebuy_;
+  if (this != internal_default_instance()) delete feesell_;
 }
 
 void Strategy::SetCachedSize(int size) const {
@@ -5271,6 +5568,14 @@ void Strategy::Clear() {
     delete paramsaip_;
   }
   paramsaip_ = nullptr;
+  if (GetArenaNoVirtual() == nullptr && feebuy_ != nullptr) {
+    delete feebuy_;
+  }
+  feebuy_ = nullptr;
+  if (GetArenaNoVirtual() == nullptr && feesell_ != nullptr) {
+    delete feesell_;
+  }
+  feesell_ = nullptr;
   _internal_metadata_.Clear();
 }
 
@@ -5408,6 +5713,20 @@ const char* Strategy::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::i
             CHK_(ptr);
             if (!ctx->DataAvailable(ptr)) break;
           } while (::PROTOBUF_NAMESPACE_ID::internal::ExpectTag<114>(ptr));
+        } else goto handle_unusual;
+        continue;
+      // .tradingpb.FeeParams feeBuy = 15;
+      case 15:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 122)) {
+          ptr = ctx->ParseMessage(_internal_mutable_feebuy(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .tradingpb.FeeParams feeSell = 16;
+      case 16:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 130)) {
+          ptr = ctx->ParseMessage(_internal_mutable_feesell(), ptr);
+          CHK_(ptr);
         } else goto handle_unusual;
         continue;
       default: {
@@ -5554,6 +5873,22 @@ failure:
     target = stream->WriteString(14, s, target);
   }
 
+  // .tradingpb.FeeParams feeBuy = 15;
+  if (this->has_feebuy()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        15, _Internal::feebuy(this), target, stream);
+  }
+
+  // .tradingpb.FeeParams feeSell = 16;
+  if (this->has_feesell()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        16, _Internal::feesell(this), target, stream);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields(), target, stream);
@@ -5669,6 +6004,20 @@ size_t Strategy::ByteSizeLong() const {
         *paramsaip_);
   }
 
+  // .tradingpb.FeeParams feeBuy = 15;
+  if (this->has_feebuy()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *feebuy_);
+  }
+
+  // .tradingpb.FeeParams feeSell = 16;
+  if (this->has_feesell()) {
+    total_size += 2 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *feesell_);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
         _internal_metadata_, total_size, &_cached_size_);
@@ -5734,6 +6083,12 @@ void Strategy::MergeFrom(const Strategy& from) {
   if (from.has_paramsaip()) {
     _internal_mutable_paramsaip()->::tradingpb::AIPParams::MergeFrom(from._internal_paramsaip());
   }
+  if (from.has_feebuy()) {
+    _internal_mutable_feebuy()->::tradingpb::FeeParams::MergeFrom(from._internal_feebuy());
+  }
+  if (from.has_feesell()) {
+    _internal_mutable_feesell()->::tradingpb::FeeParams::MergeFrom(from._internal_feesell());
+  }
 }
 
 void Strategy::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
@@ -5773,6 +6128,8 @@ void Strategy::InternalSwap(Strategy* other) {
   swap(paramstakeprofit_, other->paramstakeprofit_);
   swap(paramsinit_, other->paramsinit_);
   swap(paramsaip_, other->paramsaip_);
+  swap(feebuy_, other->feebuy_);
+  swap(feesell_, other->feesell_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata Strategy::GetMetadata() const {
@@ -8599,6 +8956,9 @@ template<> PROTOBUF_NOINLINE ::tradingpb::InitParams* Arena::CreateMaybeMessage<
 }
 template<> PROTOBUF_NOINLINE ::tradingpb::AIPParams* Arena::CreateMaybeMessage< ::tradingpb::AIPParams >(Arena* arena) {
   return Arena::CreateInternal< ::tradingpb::AIPParams >(arena);
+}
+template<> PROTOBUF_NOINLINE ::tradingpb::FeeParams* Arena::CreateMaybeMessage< ::tradingpb::FeeParams >(Arena* arena) {
+  return Arena::CreateInternal< ::tradingpb::FeeParams >(arena);
 }
 template<> PROTOBUF_NOINLINE ::tradingpb::Strategy* Arena::CreateMaybeMessage< ::tradingpb::Strategy >(Arena* arena) {
   return Arena::CreateInternal< ::tradingpb::Strategy >(arena);

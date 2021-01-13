@@ -139,6 +139,13 @@ message AIPParams {
     int32 day = 3;
 }
 
+// FeeParams - parameters for fee
+message FeeParams {
+    float percentage = 1;       // 百分比
+    float minLimit = 2;         // 最小的额度，低于这个也要支付这么多
+    float maxLimit = 3;         // 最大的额度，高于这个也只需要支付这么多
+}
+
 // Strategy - strategy
 message Strategy {
     string name = 1;                            // strategy名，需要是服务器已经有实现的
@@ -155,6 +162,8 @@ message Strategy {
     AIPParams paramsAIP = 12;                   // 定投参数
     string title = 13 [deprecated = true];      // 弃用了，title主要用途是能和返回的PNLData对应上，这里没办法一一对应
     repeated string indicators = 14;            // 需要得到的indicators数据
+    FeeParams feeBuy = 15;                      // 买入的fee
+    FeeParams feeSell = 16;                     // 卖出的fee
 }
 
 // PNLDataValue - 

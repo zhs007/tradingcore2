@@ -51,7 +51,7 @@ struct TableStruct_trading2_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxillaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[24]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[25]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -83,6 +83,9 @@ extern CtrlNodeAssetInfoDefaultTypeInternal _CtrlNodeAssetInfo_default_instance_
 class CtrlNode_MapAssetsInfoEntry_DoNotUse;
 class CtrlNode_MapAssetsInfoEntry_DoNotUseDefaultTypeInternal;
 extern CtrlNode_MapAssetsInfoEntry_DoNotUseDefaultTypeInternal _CtrlNode_MapAssetsInfoEntry_DoNotUse_default_instance_;
+class FeeParams;
+class FeeParamsDefaultTypeInternal;
+extern FeeParamsDefaultTypeInternal _FeeParams_default_instance_;
 class Indicator;
 class IndicatorDefaultTypeInternal;
 extern IndicatorDefaultTypeInternal _Indicator_default_instance_;
@@ -141,6 +144,7 @@ template<> ::tradingpb::CtrlCondition* Arena::CreateMaybeMessage<::tradingpb::Ct
 template<> ::tradingpb::CtrlNode* Arena::CreateMaybeMessage<::tradingpb::CtrlNode>(Arena*);
 template<> ::tradingpb::CtrlNodeAssetInfo* Arena::CreateMaybeMessage<::tradingpb::CtrlNodeAssetInfo>(Arena*);
 template<> ::tradingpb::CtrlNode_MapAssetsInfoEntry_DoNotUse* Arena::CreateMaybeMessage<::tradingpb::CtrlNode_MapAssetsInfoEntry_DoNotUse>(Arena*);
+template<> ::tradingpb::FeeParams* Arena::CreateMaybeMessage<::tradingpb::FeeParams>(Arena*);
 template<> ::tradingpb::Indicator* Arena::CreateMaybeMessage<::tradingpb::Indicator>(Arena*);
 template<> ::tradingpb::IndicatorData* Arena::CreateMaybeMessage<::tradingpb::IndicatorData>(Arena*);
 template<> ::tradingpb::InitParams* Arena::CreateMaybeMessage<::tradingpb::InitParams>(Arena*);
@@ -2859,6 +2863,156 @@ class AIPParams :
 };
 // -------------------------------------------------------------------
 
+class FeeParams :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tradingpb.FeeParams) */ {
+ public:
+  FeeParams();
+  virtual ~FeeParams();
+
+  FeeParams(const FeeParams& from);
+  FeeParams(FeeParams&& from) noexcept
+    : FeeParams() {
+    *this = ::std::move(from);
+  }
+
+  inline FeeParams& operator=(const FeeParams& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline FeeParams& operator=(FeeParams&& from) noexcept {
+    if (GetArenaNoVirtual() == from.GetArenaNoVirtual()) {
+      if (this != &from) InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return GetMetadataStatic().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return GetMetadataStatic().reflection;
+  }
+  static const FeeParams& default_instance();
+
+  static void InitAsDefaultInstance();  // FOR INTERNAL USE ONLY
+  static inline const FeeParams* internal_default_instance() {
+    return reinterpret_cast<const FeeParams*>(
+               &_FeeParams_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    16;
+
+  friend void swap(FeeParams& a, FeeParams& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(FeeParams* other) {
+    if (other == this) return;
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline FeeParams* New() const final {
+    return CreateMaybeMessage<FeeParams>(nullptr);
+  }
+
+  FeeParams* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<FeeParams>(arena);
+  }
+  void CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) final;
+  void CopyFrom(const FeeParams& from);
+  void MergeFrom(const FeeParams& from);
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  inline void SharedCtor();
+  inline void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(FeeParams* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "tradingpb.FeeParams";
+  }
+  private:
+  inline ::PROTOBUF_NAMESPACE_ID::Arena* GetArenaNoVirtual() const {
+    return nullptr;
+  }
+  inline void* MaybeArenaPtr() const {
+    return nullptr;
+  }
+  public:
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+  private:
+  static ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadataStatic() {
+    ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(&::descriptor_table_trading2_2eproto);
+    return ::descriptor_table_trading2_2eproto.file_level_metadata[kIndexInFileMessages];
+  }
+
+  public:
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kPercentageFieldNumber = 1,
+    kMinLimitFieldNumber = 2,
+    kMaxLimitFieldNumber = 3,
+  };
+  // float percentage = 1;
+  void clear_percentage();
+  float percentage() const;
+  void set_percentage(float value);
+  private:
+  float _internal_percentage() const;
+  void _internal_set_percentage(float value);
+  public:
+
+  // float minLimit = 2;
+  void clear_minlimit();
+  float minlimit() const;
+  void set_minlimit(float value);
+  private:
+  float _internal_minlimit() const;
+  void _internal_set_minlimit(float value);
+  public:
+
+  // float maxLimit = 3;
+  void clear_maxlimit();
+  float maxlimit() const;
+  void set_maxlimit(float value);
+  private:
+  float _internal_maxlimit() const;
+  void _internal_set_maxlimit(float value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:tradingpb.FeeParams)
+ private:
+  class _Internal;
+
+  ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  float percentage_;
+  float minlimit_;
+  float maxlimit_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_trading2_2eproto;
+};
+// -------------------------------------------------------------------
+
 class Strategy :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:tradingpb.Strategy) */ {
  public:
@@ -2901,7 +3055,7 @@ class Strategy :
                &_Strategy_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    16;
+    17;
 
   friend void swap(Strategy& a, Strategy& b) {
     a.Swap(&b);
@@ -2979,6 +3133,8 @@ class Strategy :
     kParamsTakeProfitFieldNumber = 10,
     kParamsInitFieldNumber = 11,
     kParamsAIPFieldNumber = 12,
+    kFeeBuyFieldNumber = 15,
+    kFeeSellFieldNumber = 16,
   };
   // repeated .tradingpb.CtrlCondition buy = 3;
   int buy_size() const;
@@ -3213,6 +3369,36 @@ class Strategy :
   ::tradingpb::AIPParams* _internal_mutable_paramsaip();
   public:
 
+  // .tradingpb.FeeParams feeBuy = 15;
+  bool has_feebuy() const;
+  private:
+  bool _internal_has_feebuy() const;
+  public:
+  void clear_feebuy();
+  const ::tradingpb::FeeParams& feebuy() const;
+  ::tradingpb::FeeParams* release_feebuy();
+  ::tradingpb::FeeParams* mutable_feebuy();
+  void set_allocated_feebuy(::tradingpb::FeeParams* feebuy);
+  private:
+  const ::tradingpb::FeeParams& _internal_feebuy() const;
+  ::tradingpb::FeeParams* _internal_mutable_feebuy();
+  public:
+
+  // .tradingpb.FeeParams feeSell = 16;
+  bool has_feesell() const;
+  private:
+  bool _internal_has_feesell() const;
+  public:
+  void clear_feesell();
+  const ::tradingpb::FeeParams& feesell() const;
+  ::tradingpb::FeeParams* release_feesell();
+  ::tradingpb::FeeParams* mutable_feesell();
+  void set_allocated_feesell(::tradingpb::FeeParams* feesell);
+  private:
+  const ::tradingpb::FeeParams& _internal_feesell() const;
+  ::tradingpb::FeeParams* _internal_mutable_feesell();
+  public:
+
   // @@protoc_insertion_point(class_scope:tradingpb.Strategy)
  private:
   class _Internal;
@@ -3232,6 +3418,8 @@ class Strategy :
   ::tradingpb::TakeProfitParams* paramstakeprofit_;
   ::tradingpb::InitParams* paramsinit_;
   ::tradingpb::AIPParams* paramsaip_;
+  ::tradingpb::FeeParams* feebuy_;
+  ::tradingpb::FeeParams* feesell_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_trading2_2eproto;
 };
@@ -3279,7 +3467,7 @@ class PNLDataValue :
                &_PNLDataValue_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    17;
+    18;
 
   friend void swap(PNLDataValue& a, PNLDataValue& b) {
     a.Swap(&b);
@@ -3488,7 +3676,7 @@ class PNLAssetData :
                &_PNLAssetData_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    18;
+    19;
 
   friend void swap(PNLAssetData& a, PNLAssetData& b) {
     a.Swap(&b);
@@ -4023,7 +4211,7 @@ class PNLData :
                &_PNLData_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    19;
+    20;
 
   friend void swap(PNLData& a, PNLData& b) {
     a.Swap(&b);
@@ -4224,7 +4412,7 @@ class SimTradingParams :
                &_SimTradingParams_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    20;
+    21;
 
   friend void swap(SimTradingParams& a, SimTradingParams& b) {
     a.Swap(&b);
@@ -4458,7 +4646,7 @@ class TradingNodeInfo :
                &_TradingNodeInfo_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    21;
+    22;
 
   friend void swap(TradingNodeInfo& a, TradingNodeInfo& b) {
     a.Swap(&b);
@@ -4597,7 +4785,7 @@ class SimTradingCacheNode :
                &_SimTradingCacheNode_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    22;
+    23;
 
   friend void swap(SimTradingCacheNode& a, SimTradingCacheNode& b) {
     a.Swap(&b);
@@ -4760,7 +4948,7 @@ class SimTradingCache :
                &_SimTradingCache_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    23;
+    24;
 
   friend void swap(SimTradingCache& a, SimTradingCache& b) {
     a.Swap(&b);
@@ -6788,6 +6976,70 @@ inline void AIPParams::set_day(::PROTOBUF_NAMESPACE_ID::int32 value) {
 
 // -------------------------------------------------------------------
 
+// FeeParams
+
+// float percentage = 1;
+inline void FeeParams::clear_percentage() {
+  percentage_ = 0;
+}
+inline float FeeParams::_internal_percentage() const {
+  return percentage_;
+}
+inline float FeeParams::percentage() const {
+  // @@protoc_insertion_point(field_get:tradingpb.FeeParams.percentage)
+  return _internal_percentage();
+}
+inline void FeeParams::_internal_set_percentage(float value) {
+  
+  percentage_ = value;
+}
+inline void FeeParams::set_percentage(float value) {
+  _internal_set_percentage(value);
+  // @@protoc_insertion_point(field_set:tradingpb.FeeParams.percentage)
+}
+
+// float minLimit = 2;
+inline void FeeParams::clear_minlimit() {
+  minlimit_ = 0;
+}
+inline float FeeParams::_internal_minlimit() const {
+  return minlimit_;
+}
+inline float FeeParams::minlimit() const {
+  // @@protoc_insertion_point(field_get:tradingpb.FeeParams.minLimit)
+  return _internal_minlimit();
+}
+inline void FeeParams::_internal_set_minlimit(float value) {
+  
+  minlimit_ = value;
+}
+inline void FeeParams::set_minlimit(float value) {
+  _internal_set_minlimit(value);
+  // @@protoc_insertion_point(field_set:tradingpb.FeeParams.minLimit)
+}
+
+// float maxLimit = 3;
+inline void FeeParams::clear_maxlimit() {
+  maxlimit_ = 0;
+}
+inline float FeeParams::_internal_maxlimit() const {
+  return maxlimit_;
+}
+inline float FeeParams::maxlimit() const {
+  // @@protoc_insertion_point(field_get:tradingpb.FeeParams.maxLimit)
+  return _internal_maxlimit();
+}
+inline void FeeParams::_internal_set_maxlimit(float value) {
+  
+  maxlimit_ = value;
+}
+inline void FeeParams::set_maxlimit(float value) {
+  _internal_set_maxlimit(value);
+  // @@protoc_insertion_point(field_set:tradingpb.FeeParams.maxLimit)
+}
+
+// -------------------------------------------------------------------
+
 // Strategy
 
 // string name = 1;
@@ -7558,6 +7810,126 @@ inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
 Strategy::mutable_indicators() {
   // @@protoc_insertion_point(field_mutable_list:tradingpb.Strategy.indicators)
   return &indicators_;
+}
+
+// .tradingpb.FeeParams feeBuy = 15;
+inline bool Strategy::_internal_has_feebuy() const {
+  return this != internal_default_instance() && feebuy_ != nullptr;
+}
+inline bool Strategy::has_feebuy() const {
+  return _internal_has_feebuy();
+}
+inline void Strategy::clear_feebuy() {
+  if (GetArenaNoVirtual() == nullptr && feebuy_ != nullptr) {
+    delete feebuy_;
+  }
+  feebuy_ = nullptr;
+}
+inline const ::tradingpb::FeeParams& Strategy::_internal_feebuy() const {
+  const ::tradingpb::FeeParams* p = feebuy_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::tradingpb::FeeParams*>(
+      &::tradingpb::_FeeParams_default_instance_);
+}
+inline const ::tradingpb::FeeParams& Strategy::feebuy() const {
+  // @@protoc_insertion_point(field_get:tradingpb.Strategy.feeBuy)
+  return _internal_feebuy();
+}
+inline ::tradingpb::FeeParams* Strategy::release_feebuy() {
+  // @@protoc_insertion_point(field_release:tradingpb.Strategy.feeBuy)
+  
+  ::tradingpb::FeeParams* temp = feebuy_;
+  feebuy_ = nullptr;
+  return temp;
+}
+inline ::tradingpb::FeeParams* Strategy::_internal_mutable_feebuy() {
+  
+  if (feebuy_ == nullptr) {
+    auto* p = CreateMaybeMessage<::tradingpb::FeeParams>(GetArenaNoVirtual());
+    feebuy_ = p;
+  }
+  return feebuy_;
+}
+inline ::tradingpb::FeeParams* Strategy::mutable_feebuy() {
+  // @@protoc_insertion_point(field_mutable:tradingpb.Strategy.feeBuy)
+  return _internal_mutable_feebuy();
+}
+inline void Strategy::set_allocated_feebuy(::tradingpb::FeeParams* feebuy) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == nullptr) {
+    delete feebuy_;
+  }
+  if (feebuy) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    if (message_arena != submessage_arena) {
+      feebuy = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, feebuy, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  feebuy_ = feebuy;
+  // @@protoc_insertion_point(field_set_allocated:tradingpb.Strategy.feeBuy)
+}
+
+// .tradingpb.FeeParams feeSell = 16;
+inline bool Strategy::_internal_has_feesell() const {
+  return this != internal_default_instance() && feesell_ != nullptr;
+}
+inline bool Strategy::has_feesell() const {
+  return _internal_has_feesell();
+}
+inline void Strategy::clear_feesell() {
+  if (GetArenaNoVirtual() == nullptr && feesell_ != nullptr) {
+    delete feesell_;
+  }
+  feesell_ = nullptr;
+}
+inline const ::tradingpb::FeeParams& Strategy::_internal_feesell() const {
+  const ::tradingpb::FeeParams* p = feesell_;
+  return p != nullptr ? *p : *reinterpret_cast<const ::tradingpb::FeeParams*>(
+      &::tradingpb::_FeeParams_default_instance_);
+}
+inline const ::tradingpb::FeeParams& Strategy::feesell() const {
+  // @@protoc_insertion_point(field_get:tradingpb.Strategy.feeSell)
+  return _internal_feesell();
+}
+inline ::tradingpb::FeeParams* Strategy::release_feesell() {
+  // @@protoc_insertion_point(field_release:tradingpb.Strategy.feeSell)
+  
+  ::tradingpb::FeeParams* temp = feesell_;
+  feesell_ = nullptr;
+  return temp;
+}
+inline ::tradingpb::FeeParams* Strategy::_internal_mutable_feesell() {
+  
+  if (feesell_ == nullptr) {
+    auto* p = CreateMaybeMessage<::tradingpb::FeeParams>(GetArenaNoVirtual());
+    feesell_ = p;
+  }
+  return feesell_;
+}
+inline ::tradingpb::FeeParams* Strategy::mutable_feesell() {
+  // @@protoc_insertion_point(field_mutable:tradingpb.Strategy.feeSell)
+  return _internal_mutable_feesell();
+}
+inline void Strategy::set_allocated_feesell(::tradingpb::FeeParams* feesell) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaNoVirtual();
+  if (message_arena == nullptr) {
+    delete feesell_;
+  }
+  if (feesell) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena = nullptr;
+    if (message_arena != submessage_arena) {
+      feesell = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, feesell, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  feesell_ = feesell;
+  // @@protoc_insertion_point(field_set_allocated:tradingpb.Strategy.feeSell)
 }
 
 // -------------------------------------------------------------------
@@ -9317,6 +9689,8 @@ SimTradingCache::nodes() const {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

@@ -45,8 +45,9 @@ Money Strategy::onProcStopLoss(const char* assetsName, Money curPrice,
     if (curPrice <= this->m_curStopLossPrice) {
       m_stoplossNums++;
 
-      auto money = this->m_wallet.sellAssets(assetsName, volume, ts, strategyID,
-                                             ctrlConditionID);
+      Money fee = 0;
+      auto money = this->m_wallet.sellAssets(assetsName, volume, fee, ts,
+                                             strategyID, ctrlConditionID);
 
       return money;
     }
@@ -99,8 +100,8 @@ void Strategy::buy(bool issim, TimeStamp ts, int strategyID,
 
     this->onBuy(issim, ts, m, volume, fee);
 
-    this->m_wallet.buyAssets(this->m_strategy.asset().code().c_str(), m, ts,
-                             strategyID, ctrlConditionID);
+    this->m_wallet.buyAssets(this->m_strategy.asset().code().c_str(), m, fee,
+                             ts, strategyID, ctrlConditionID);
   } else if (buy.perhandmoney() > 0) {
     // LOG(INFO) << "buy " << this->m_handMoney;
 
@@ -121,8 +122,8 @@ void Strategy::buy(bool issim, TimeStamp ts, int strategyID,
 
     this->onBuy(issim, ts, m, volume, fee);
 
-    this->m_wallet.buyAssets(this->m_strategy.asset().code().c_str(), m, ts,
-                             strategyID, ctrlConditionID);
+    this->m_wallet.buyAssets(this->m_strategy.asset().code().c_str(), m, fee,
+                             ts, strategyID, ctrlConditionID);
   } else if (buy.volume() > 0) {
   } else if (buy.aipmoney() > 0) {
     auto m = buy.aipmoney();
@@ -142,8 +143,8 @@ void Strategy::buy(bool issim, TimeStamp ts, int strategyID,
 
     this->onBuy(issim, ts, m, volume, fee);
 
-    this->m_wallet.buyAssets(this->m_strategy.asset().code().c_str(), m, ts,
-                             strategyID, ctrlConditionID);
+    this->m_wallet.buyAssets(this->m_strategy.asset().code().c_str(), m, fee,
+                             ts, strategyID, ctrlConditionID);
   }
 }
 
@@ -169,9 +170,11 @@ void Strategy::sell(bool issim, TimeStamp ts, int strategyID,
     }
 
     if (v > 0) {
+      Money fee = 0;
+
       auto m =
           this->m_wallet.sellAssets(this->m_strategy.asset().code().c_str(), v,
-                                    ts, strategyID, ctrlConditionID);
+                                    fee, ts, strategyID, ctrlConditionID);
 
       this->onSell(issim, ts, m, v, 0);
     }
@@ -179,9 +182,11 @@ void Strategy::sell(bool issim, TimeStamp ts, int strategyID,
     auto v = sell.pervolume() * this->m_volume;
 
     if (v > 0) {
+      Money fee = 0;
+
       auto m =
           this->m_wallet.sellAssets(this->m_strategy.asset().code().c_str(), v,
-                                    ts, strategyID, ctrlConditionID);
+                                    fee, ts, strategyID, ctrlConditionID);
 
       this->onSell(issim, ts, m, v, 0);
     }
@@ -193,9 +198,10 @@ void Strategy::sell(bool issim, TimeStamp ts, int strategyID,
         this->m_strategy.asset().code().c_str(), sell.keeptime(), ts);
 
     if (v > 0) {
+      Money fee = 0;
       auto m =
           this->m_wallet.sellAssets(this->m_strategy.asset().code().c_str(), v,
-                                    ts, strategyID, ctrlConditionID);
+                                    fee, ts, strategyID, ctrlConditionID);
 
       this->onSell(issim, ts, m, v, 0);
     }
