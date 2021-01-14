@@ -40,8 +40,8 @@ void StrategySI::onTimeStamp(bool issim, TimeStamp ts, int index) {
   if (this->m_volume == 0) {
     if (cv->value >= this->m_minValBuy && cv->value < this->m_maxValBuy) {
       Money fee = 0;
-      this->m_volume = this->m_wallet.buyAssets(this->m_assetsName.c_str(),
-                                                this->m_money, fee, ts, 0, 0);
+      this->m_volume = this->m_wallet.buyAssets(
+          this->m_assetsName.c_str(), this->m_money, fee, ts, 0, 0, NULL);
 
       this->onTrading();
 
@@ -52,8 +52,8 @@ void StrategySI::onTimeStamp(bool issim, TimeStamp ts, int index) {
   } else {
     if (cv->value >= this->m_minValSell && cv->value < this->m_maxValSell) {
       Money fee = 0;
-      this->m_money = this->m_wallet.sellAssets(this->m_assetsName.c_str(),
-                                                this->m_volume, fee, ts, 0, 0);
+      this->m_money = this->m_wallet.sellAssets(
+          this->m_assetsName.c_str(), this->m_volume, fee, ts, 0, 0, NULL);
 
       if (cd.close <= this->m_buyPrice) {
         this->onTradingFail();

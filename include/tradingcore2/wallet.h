@@ -74,6 +74,10 @@ struct WalletHistoryNode {
   }
 };
 
+typedef std::function<Money(const char* assetsName, Money money, Volume volume,
+                            TimeStamp ts)>
+    FuncCalcFee;
+
 // Wallet - This wallet class is implemented for a single exchange
 class Wallet {
  public:
@@ -94,11 +98,13 @@ class Wallet {
  public:
   Assets getAssets(const char* assetsName) const;
 
-  Volume buyAssets(const char* assetsName, Money money, Money fee, TimeStamp ts,
-                   int strategyID, int ctrlConditionID);
+  Volume buyAssets(const char* assetsName, Money money, Money& fee,
+                   TimeStamp ts, int strategyID, int ctrlConditionID,
+                   FuncCalcFee calcFee);
 
-  Money sellAssets(const char* assetsName, Volume volume, Money fee,
-                   TimeStamp ts, int strategyID, int ctrlConditionID);
+  Money sellAssets(const char* assetsName, Volume volume, Money& fee,
+                   TimeStamp ts, int strategyID, int ctrlConditionID,
+                   FuncCalcFee calcFee);
 
   void deposit(Money money, TimeStamp ts);
 

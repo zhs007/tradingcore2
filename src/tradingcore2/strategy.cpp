@@ -46,11 +46,57 @@ Money Strategy::onProcStopLoss(const char* assetsName, Money curPrice,
       m_stoplossNums++;
 
       Money fee = 0;
+      auto f = std::bind(&Strategy::calcFee4Sell, this, std::placeholders::_1,
+                         std::placeholders::_2, std::placeholders::_3,
+                         std::placeholders::_4);
+
       auto money = this->m_wallet.sellAssets(assetsName, volume, fee, ts,
-                                             strategyID, ctrlConditionID);
+                                             strategyID, ctrlConditionID, f);
 
       return money;
     }
+  }
+
+  return 0;
+}
+
+Money Strategy::calcFee4Buy(const char* assetsName, Money money, Volume volume,
+                            TimeStamp ts) {
+  auto buy = this->m_strategy.feebuy();
+
+  if (buy.percentage() > 0) {
+    Money fee = money * buy.percentage();
+
+    if (buy.minlimit() > 0 && fee < buy.minlimit()) {
+      fee = buy.minlimit();
+    }
+
+    if (buy.maxlimit() > 0 && fee > buy.maxlimit()) {
+      fee = buy.maxlimit();
+    }
+
+    return fee;
+  }
+
+  return 0;
+}
+
+Money Strategy::calcFee4Sell(const char* assetsName, Money money, Volume volume,
+                             TimeStamp ts) {
+  auto sell = this->m_strategy.feesell();
+
+  if (sell.percentage() > 0) {
+    Money fee = money * sell.percentage();
+
+    if (sell.minlimit() > 0 && fee < sell.minlimit()) {
+      fee = sell.minlimit();
+    }
+
+    if (sell.maxlimit() > 0 && fee > sell.maxlimit()) {
+      fee = sell.maxlimit();
+    }
+
+    return fee;
   }
 
   return 0;
@@ -81,6 +127,9 @@ void Strategy::onTimeStamp(bool issim, TimeStamp ts, int index) {
 void Strategy::buy(bool issim, TimeStamp ts, int strategyID,
                    int ctrlConditionID) {
   auto buy = this->m_strategy.paramsbuy();
+  auto f = std::bind(&Strategy::calcFee4Buy, this, std::placeholders::_1,
+                     std::placeholders::_2, std::placeholders::_3,
+                     std::placeholders::_4);
 
   if (buy.perinitmoney() > 0) {
     auto m = this->m_initMoney * buy.perinitmoney();
@@ -101,7 +150,7 @@ void Strategy::buy(bool issim, TimeStamp ts, int strategyID,
     this->onBuy(issim, ts, m, volume, fee);
 
     this->m_wallet.buyAssets(this->m_strategy.asset().code().c_str(), m, fee,
-                             ts, strategyID, ctrlConditionID);
+                             ts, strategyID, ctrlConditionID, f);
   } else if (buy.perhandmoney() > 0) {
     // LOG(INFO) << "buy " << this->m_handMoney;
 
@@ -123,7 +172,7 @@ void Strategy::buy(bool issim, TimeStamp ts, int strategyID,
     this->onBuy(issim, ts, m, volume, fee);
 
     this->m_wallet.buyAssets(this->m_strategy.asset().code().c_str(), m, fee,
-                             ts, strategyID, ctrlConditionID);
+                             ts, strategyID, ctrlConditionID, f);
   } else if (buy.volume() > 0) {
   } else if (buy.aipmoney() > 0) {
     auto m = buy.aipmoney();
@@ -144,7 +193,7 @@ void Strategy::buy(bool issim, TimeStamp ts, int strategyID,
     this->onBuy(issim, ts, m, volume, fee);
 
     this->m_wallet.buyAssets(this->m_strategy.asset().code().c_str(), m, fee,
-                             ts, strategyID, ctrlConditionID);
+                             ts, strategyID, ctrlConditionID, f);
   }
 }
 
@@ -162,6 +211,9 @@ void Strategy::onBuy(bool issim, TimeStamp ts, Money money, Volume volume,
 void Strategy::sell(bool issim, TimeStamp ts, int strategyID,
                     int ctrlConditionID) {
   auto sell = this->m_strategy.paramssell();
+  auto f = std::bind(&Strategy::calcFee4Sell, this, std::placeholders::_1,
+                     std::placeholders::_2, std::placeholders::_3,
+                     std::placeholders::_4);
 
   if (sell.volume() > 0) {
     auto v = sell.volume();
@@ -174,7 +226,7 @@ void Strategy::sell(bool issim, TimeStamp ts, int strategyID,
 
       auto m =
           this->m_wallet.sellAssets(this->m_strategy.asset().code().c_str(), v,
-                                    fee, ts, strategyID, ctrlConditionID);
+                                    fee, ts, strategyID, ctrlConditionID, f);
 
       this->onSell(issim, ts, m, v, 0);
     }
@@ -186,7 +238,7 @@ void Strategy::sell(bool issim, TimeStamp ts, int strategyID,
 
       auto m =
           this->m_wallet.sellAssets(this->m_strategy.asset().code().c_str(), v,
-                                    fee, ts, strategyID, ctrlConditionID);
+                                    fee, ts, strategyID, ctrlConditionID, f);
 
       this->onSell(issim, ts, m, v, 0);
     }
@@ -201,7 +253,7 @@ void Strategy::sell(bool issim, TimeStamp ts, int strategyID,
       Money fee = 0;
       auto m =
           this->m_wallet.sellAssets(this->m_strategy.asset().code().c_str(), v,
-                                    fee, ts, strategyID, ctrlConditionID);
+                                    fee, ts, strategyID, ctrlConditionID, f);
 
       this->onSell(issim, ts, m, v, 0);
     }

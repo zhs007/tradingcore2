@@ -47,8 +47,9 @@ void Wallet::withdraw(Money money, TimeStamp ts) {
   this->_addHistory(n);
 }
 
-Volume Wallet::buyAssets(const char* assetsName, Money money, Money fee,
-                         TimeStamp ts, int strategyID, int ctrlConditionID) {
+Volume Wallet::buyAssets(const char* assetsName, Money money, Money& fee,
+                         TimeStamp ts, int strategyID, int ctrlConditionID,
+                         FuncCalcFee calcFee) {
   assert(assetsName != NULL);
   assert(money > ZEROMONEY);
 
@@ -67,6 +68,10 @@ Volume Wallet::buyAssets(const char* assetsName, Money money, Money fee,
 
   this->m_map.buyAssets(assetsName, ts, price, volume, fee);
 
+  if (calcFee != NULL) {
+    fee = calcFee(assetsName, money, volume, ts);
+  }
+
   this->m_money -= money;
   this->m_money -= fee;
 
@@ -81,8 +86,9 @@ Volume Wallet::buyAssets(const char* assetsName, Money money, Money fee,
   return volume;
 }
 
-Money Wallet::sellAssets(const char* assetsName, Volume volume, Money fee,
-                         TimeStamp ts, int strategyID, int ctrlConditionID) {
+Money Wallet::sellAssets(const char* assetsName, Volume volume, Money& fee,
+                         TimeStamp ts, int strategyID, int ctrlConditionID,
+                         FuncCalcFee calcFee) {
   assert(assetsName != NULL);
   assert(volume > ZEROVOLUME);
 
@@ -102,6 +108,10 @@ Money Wallet::sellAssets(const char* assetsName, Volume volume, Money fee,
   assert(isok);
 
   this->m_map.sellAssets(assetsName, ts, price, volume, fee);
+
+  if (calcFee != NULL) {
+    fee = calcFee(assetsName, money, volume, ts);
+  }
 
   this->m_money += money;
   this->m_money -= fee;

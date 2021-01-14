@@ -91,6 +91,14 @@ class Strategy {
 
   void onTrading() { m_tradingNums++; }
 
+  Money calcFeeForBuy();
+
+  Money calcFee4Buy(const char* assetsName, Money money, Volume volume,
+                    TimeStamp ts);
+
+  Money calcFee4Sell(const char* assetsName, Money money, Volume volume,
+                     TimeStamp ts);
+
  protected:
   Wallet& m_wallet;
   Exchange& m_exchange;
