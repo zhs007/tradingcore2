@@ -47,8 +47,9 @@ void Wallet::withdraw(Money money, TimeStamp ts) {
   this->_addHistory(n);
 }
 
-Volume Wallet::buyAssets(const char* assetsName, Money money, TimeStamp ts,
-                         int strategyID, int ctrlConditionID) {
+Volume Wallet::buyAssets(const char* assetsName, Money money, Money& fee,
+                         TimeStamp ts, int strategyID, int ctrlConditionID,
+                         FuncCalcFee calcFee) {
   assert(assetsName != NULL);
   assert(money > ZEROMONEY);
 
@@ -58,7 +59,7 @@ Volume Wallet::buyAssets(const char* assetsName, Money money, TimeStamp ts,
 
   Volume volume = ZEROVOLUME;
   Money price = ZEROMONEY;
-  Money fee = ZEROMONEY;
+  // Money fee = fee;
 
   bool isok =
       m_exchange.calculateVolume(assetsName, ts, money, volume, price, fee);
@@ -67,7 +68,12 @@ Volume Wallet::buyAssets(const char* assetsName, Money money, TimeStamp ts,
 
   this->m_map.buyAssets(assetsName, ts, price, volume, fee);
 
+  if (calcFee != NULL) {
+    fee = calcFee(assetsName, money, volume, ts);
+  }
+
   this->m_money -= money;
+  this->m_money -= fee;
 
   WalletHistoryNode n;
   n.setTrade(TT_BUY, assetsName, price, volume, fee, ts, -money, strategyID,
@@ -80,8 +86,9 @@ Volume Wallet::buyAssets(const char* assetsName, Money money, TimeStamp ts,
   return volume;
 }
 
-Money Wallet::sellAssets(const char* assetsName, Volume volume, TimeStamp ts,
-                         int strategyID, int ctrlConditionID) {
+Money Wallet::sellAssets(const char* assetsName, Volume volume, Money& fee,
+                         TimeStamp ts, int strategyID, int ctrlConditionID,
+                         FuncCalcFee calcFee) {
   assert(assetsName != NULL);
   assert(volume > ZEROVOLUME);
 
@@ -94,7 +101,7 @@ Money Wallet::sellAssets(const char* assetsName, Volume volume, TimeStamp ts,
 
   Money money = ZEROMONEY;
   Money price = ZEROMONEY;
-  Money fee = ZEROMONEY;
+  // Money fee = ZEROMONEY;
 
   bool isok =
       m_exchange.calculatePrice(assetsName, ts, volume, money, price, fee);
@@ -102,7 +109,12 @@ Money Wallet::sellAssets(const char* assetsName, Volume volume, TimeStamp ts,
 
   this->m_map.sellAssets(assetsName, ts, price, volume, fee);
 
+  if (calcFee != NULL) {
+    fee = calcFee(assetsName, money, volume, ts);
+  }
+
   this->m_money += money;
+  this->m_money -= fee;
 
   WalletHistoryNode n;
   n.setTrade(TT_SELL, assetsName, price, volume, fee, ts, money, strategyID,

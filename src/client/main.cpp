@@ -829,11 +829,15 @@ void normalEMA15(const tr2::Config& cfg) {
   // buy0->add_vals(-0.015);
   buy0->add_operators("upcross");
   buy0->add_strvals("ema.15");
+  auto feebuy = strategy0->mutable_feebuy();
+  feebuy->set_percentage(0.0003);
   auto sell0 = strategy0->add_sell();
   sell0->set_name("indicatorsp");
   // sell0->add_vals(0.02);
   sell0->add_operators("downcross");
   sell0->add_strvals("ema.15");
+  auto feesell = strategy0->mutable_feesell();
+  feesell->set_percentage(0.0005);
   auto bp = strategy0->mutable_paramsbuy();
   bp->set_perhandmoney(1);
   auto sp = strategy0->mutable_paramssell();
@@ -894,7 +898,7 @@ int main(int argc, char* argv[]) {
 
   // buyandhold(cfg);
   // aipWeekDay(cfg);
-  aipMonthDay(cfg);
+  // aipMonthDay(cfg);
   // normalWeekDay(cfg);
   // normalWeekDay2(cfg);
   // normalROC1(cfg);
@@ -905,7 +909,7 @@ int main(int argc, char* argv[]) {
   // normalWeekDay6(cfg);
   // normalWeekDay7(cfg);
   // normalWeekDay8(cfg);
-  // normalEMA15(cfg);
+  normalEMA15(cfg);
 
   return 0;
 }
