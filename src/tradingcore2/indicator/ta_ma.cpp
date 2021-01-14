@@ -103,6 +103,12 @@ bool IndicatorTA_MA::build(Exchange& exchange, const char* assetsName,
   return true;
 }
 
+bool IndicatorTA_MA::build2(Exchange& exchange, const char* assetsName,
+                            const char* assetsName2, IndicatorBuild2Type b2t,
+                            int64_t ot, int start, int length) {
+  return true;
+}
+
 // bool IndicatorTAMA::_build_avg1(Exchange& exchange, const char* assetsName,
 //                                 int start, int length) {
 //   assert(assetsName != NULL);

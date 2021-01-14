@@ -59,6 +59,12 @@ bool IndicatorEMA::build(Exchange& exchange, const char* assetsName, int start,
   return true;
 }
 
+bool IndicatorEMA::build2(Exchange& exchange, const char* assetsName,
+                          const char* assetsName2, IndicatorBuild2Type b2t,
+                          int64_t ot, int start, int length) {
+  return true;
+}
+
 const IndicatorData_singleValue* IndicatorEMA::getMinSingleValue(
     int& index) const {
   const IndicatorData_singleValue* pMin = NULL;

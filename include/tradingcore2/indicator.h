@@ -12,6 +12,8 @@ struct IndicatorData_singleValue {
   IndicatorDataValue value;
 };
 
+enum IndicatorBuild2Type { IB2T_DAY };
+
 class Indicator {
  public:
   Indicator() {}
@@ -20,6 +22,10 @@ class Indicator {
  public:
   virtual bool build(Exchange& exchange, const char* assetsName, int start,
                      int length) = 0;
+
+  virtual bool build2(Exchange& exchange, const char* assetsName,
+                      const char* assetsName2, IndicatorBuild2Type b2t,
+                      int64_t ot, int start, int length) = 0;
 
   virtual const IndicatorData_singleValue* getSingleValue(int index) const {
     assert(false && "unimplemented");

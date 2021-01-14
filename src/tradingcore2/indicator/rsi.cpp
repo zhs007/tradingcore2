@@ -89,6 +89,12 @@ bool IndicatorRSI::build(Exchange& exchange, const char* assetsName, int start,
   return true;
 }
 
+bool IndicatorRSI::build2(Exchange& exchange, const char* assetsName,
+                          const char* assetsName2, IndicatorBuild2Type b2t,
+                          int64_t ot, int start, int length) {
+  return true;
+}
+
 const IndicatorData_singleValue* IndicatorRSI::getMinSingleValue(
     int& index) const {
   const IndicatorData_singleValue* pMin = NULL;

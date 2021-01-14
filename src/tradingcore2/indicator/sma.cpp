@@ -91,6 +91,12 @@ bool IndicatorSMA::build(Exchange& exchange, const char* assetsName, int start,
   return true;
 }
 
+bool IndicatorSMA::build2(Exchange& exchange, const char* assetsName,
+                          const char* assetsName2, IndicatorBuild2Type b2t,
+                          int64_t ot, int start, int length) {
+  return true;
+}
+
 bool IndicatorSMA::_build_avg1(Exchange& exchange, const char* assetsName,
                                int start, int length) {
   assert(assetsName != NULL);

@@ -38,6 +38,10 @@ class IndicatorTA_MA final : public Indicator {
   virtual bool build(Exchange& exchange, const char* assetsName, int start,
                      int length) override;
 
+  virtual bool build2(Exchange& exchange, const char* assetsName,
+                      const char* assetsName2, IndicatorBuild2Type b2t,
+                      int64_t ot, int start, int length) override;
+
   virtual const IndicatorData_singleValue* getSingleValue(
       int index) const override {
     assert(index >= 0);
