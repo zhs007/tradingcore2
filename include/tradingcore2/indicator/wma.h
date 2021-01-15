@@ -26,7 +26,8 @@ class IndicatorWMA final : public Indicator {
   static bool isMine(const char* name);
 
  protected:
-  IndicatorWMA(int avgtimes) : m_avgtimes(avgtimes), m_iStart(-1) {
+  IndicatorWMA(int avgtimes)
+      : Indicator(""), m_avgtimes(avgtimes), m_iStart(-1) {
     assert(avgtimes > 1);
   }
   virtual ~IndicatorWMA() {}

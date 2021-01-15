@@ -26,7 +26,8 @@ class IndicatorROC final : public Indicator {
   static bool isMine(const char* name);
 
  protected:
-  IndicatorROC(int avgtimes) : m_avgtimes(avgtimes), m_iStart(-1) {
+  IndicatorROC(int avgtimes)
+      : Indicator(""), m_avgtimes(avgtimes), m_iStart(-1) {
     assert(avgtimes >= 1);
   }
   virtual ~IndicatorROC() {}

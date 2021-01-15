@@ -30,7 +30,8 @@ class IndicatorRSI final : public Indicator {
   static bool isMine(const char* name);
 
  protected:
-  IndicatorRSI(int avgtimes) : m_avgtimes(avgtimes), m_iStart(-1) {
+  IndicatorRSI(int avgtimes)
+      : Indicator(""), m_avgtimes(avgtimes), m_iStart(-1) {
     assert(avgtimes >= 1);
   }
   virtual ~IndicatorRSI() {}

@@ -12,11 +12,30 @@ struct IndicatorData_singleValue {
   IndicatorDataValue value;
 };
 
-enum IndicatorBuild2Type { IB2T_DAY };
+enum IndicatorBuild2Type { IB2T_NONE, IB2T_DAY };
+
+struct IndicatorParams {
+  std::string name;
+  int avgtimes;
+  IndicatorBuild2Type b2type;
+  int64_t b2OffTime;
+  std::vector<std::string> assetsNames;
+
+  void clear() {
+    this->name.clear();
+    this->avgtimes = 0;
+    this->b2type = IB2T_NONE;
+    this->b2OffTime = 0;
+    this->assetsNames.clear();
+  }
+};
+
+bool parseIndicatorParams(IndicatorParams& params, const char* fullname,
+                          const char* assetname);
 
 class Indicator {
  public:
-  Indicator() {}
+  Indicator(const char* fullname) : m_fullname(fullname) {}
   virtual ~Indicator() {}
 
  public:
@@ -54,6 +73,8 @@ class Indicator {
   void saveCSV(const char* fn);
 
  protected:
+  std::string m_fullname;
+  IndicatorParams m_params;
 };
 
 CR2END

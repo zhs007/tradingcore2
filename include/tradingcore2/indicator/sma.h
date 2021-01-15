@@ -26,7 +26,8 @@ class IndicatorSMA final : public Indicator {
   static bool isMine(const char* name);
 
  protected:
-  IndicatorSMA(int avgtimes) : m_avgtimes(avgtimes), m_iStart(-1) {
+  IndicatorSMA(int avgtimes)
+      : Indicator(""), m_avgtimes(avgtimes), m_iStart(-1) {
     assert(avgtimes >= 1);
   }
   virtual ~IndicatorSMA() {}

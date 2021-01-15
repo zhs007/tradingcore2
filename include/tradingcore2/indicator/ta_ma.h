@@ -29,7 +29,7 @@ class IndicatorTA_MA final : public Indicator {
 
  protected:
   IndicatorTA_MA(TA_MAType type, int avgtimes)
-      : m_avgtimes(avgtimes), m_iStart(-1), m_maType(type) {
+      : Indicator(""), m_avgtimes(avgtimes), m_iStart(-1), m_maType(type) {
     assert(avgtimes >= 1);
   }
   virtual ~IndicatorTA_MA() {}
