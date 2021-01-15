@@ -35,7 +35,10 @@ bool parseIndicatorParams(IndicatorParams& params, const char* fullname,
 
 class Indicator {
  public:
-  Indicator(const char* fullname) : m_fullname(fullname) {}
+  Indicator(const char* fullname, const char* assetsName)
+      : m_fullname(fullname) {
+    parseIndicatorParams(this->m_params, fullname, assetsName);
+  }
   virtual ~Indicator() {}
 
  public:

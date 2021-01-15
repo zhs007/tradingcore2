@@ -61,8 +61,8 @@ bool IndicatorSMMA::build(Exchange& exchange, const char* assetsName, int start,
 }
 
 bool IndicatorSMMA::build2(Exchange& exchange, const char* assetsName,
-                          const char* assetsName2, IndicatorBuild2Type b2t,
-                          int64_t ot, int start, int length) {
+                           const char* assetsName2, IndicatorBuild2Type b2t,
+                           int64_t ot, int start, int length) {
   return true;
 }
 
@@ -95,20 +95,9 @@ const IndicatorData_singleValue* IndicatorSMMA::getMaxSingleValue(
 }
 
 // newIndicator - new IndicatorSMMA
-Indicator* IndicatorSMMA::newIndicator(const char* name) {
-  std::vector<std::string> arr;
-  splitStr(arr, name, ".");
-
-  if (arr.size() == 2) {
-    try {
-      auto v = std::stoi(arr[1]);
-      return new IndicatorSMMA(v);
-    } catch (...) {
-      return NULL;
-    }
-  }
-
-  return NULL;
+Indicator* IndicatorSMMA::newIndicator(const char* fullname,
+                                       const char* assetsName) {
+  return new IndicatorSMMA(fullname, assetsName);
 }
 
 // isMine - isMine

@@ -158,9 +158,10 @@ const IndicatorData_singleValue* IndicatorTA_MA::getMaxSingleValue(
 }
 
 // newIndicator - new IndicatorTA_MA
-Indicator* IndicatorTA_MA::newIndicator(const char* name) {
+Indicator* IndicatorTA_MA::newIndicator(const char* fullname,
+                                        const char* assetsName) {
   std::vector<std::string> arr;
-  splitStr(arr, name, ".");
+  splitStr(arr, fullname, ".");
 
   if (arr.size() == 2) {
     TA_MAType maType;
@@ -184,12 +185,7 @@ Indicator* IndicatorTA_MA::newIndicator(const char* name) {
       maType = TA_MAType_T3;
     }
 
-    try {
-      auto v = std::stoi(arr[1]);
-      return new IndicatorTA_MA(maType, v);
-    } catch (...) {
-      return NULL;
-    }
+    return new IndicatorTA_MA(maType, fullname, assetsName);
   }
 
   return NULL;

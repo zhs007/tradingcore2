@@ -146,20 +146,9 @@ const IndicatorData_singleValue* IndicatorSMA::getMaxSingleValue(
 }
 
 // newIndicator - new IndicatorSMA
-Indicator* IndicatorSMA::newIndicator(const char* name) {
-  std::vector<std::string> arr;
-  splitStr(arr, name, ".");
-
-  if (arr.size() == 2) {
-    try {
-      auto v = std::stoi(arr[1]);
-      return new IndicatorSMA(v);
-    } catch (...) {
-      return NULL;
-    }
-  }
-
-  return NULL;
+Indicator* IndicatorSMA::newIndicator(const char* fullname,
+                                      const char* assetsName) {
+  return new IndicatorSMA(fullname, assetsName);
 }
 
 // isMine - isMine

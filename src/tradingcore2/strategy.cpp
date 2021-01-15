@@ -14,7 +14,8 @@ void Strategy::simulateTrading() {
   CtrlConditionMgr::getSingleton()->getIndicators(indicators, *this);
 
   for (auto it = indicators.begin(); it != indicators.end(); ++it) {
-    this->m_mapIndicators.addIndicator(it->c_str());
+    this->m_mapIndicators.addIndicator(it->c_str(),
+                                       this->m_strategy.asset().code().c_str());
   }
 
   this->m_mapIndicators.build(this->m_exchange,

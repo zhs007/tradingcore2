@@ -21,14 +21,15 @@ class IndicatorROC final : public Indicator {
 
  public:
   // newIndicator - new IndicatorROC
-  static Indicator* newIndicator(const char* name);
+  static Indicator* newIndicator(const char* fullname, const char* assetsName);
   // isMine - isMine
   static bool isMine(const char* name);
 
  protected:
-  IndicatorROC(int avgtimes)
-      : Indicator(""), m_avgtimes(avgtimes), m_iStart(-1) {
-    assert(avgtimes >= 1);
+  IndicatorROC(const char* fullname, const char* assetsName)
+      : Indicator(fullname, assetsName), m_iStart(-1) {
+    m_avgtimes = this->m_params.avgtimes;
+    assert(m_avgtimes >= 1);
   }
   virtual ~IndicatorROC() {}
 

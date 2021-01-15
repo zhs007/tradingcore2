@@ -119,20 +119,9 @@ const IndicatorData_singleValue* IndicatorWMA::getMaxSingleValue(
 }
 
 // newIndicator - new IndicatorWMA
-Indicator* IndicatorWMA::newIndicator(const char* name) {
-  std::vector<std::string> arr;
-  splitStr(arr, name, ".");
-
-  if (arr.size() == 2) {
-    try {
-      auto v = std::stoi(arr[1]);
-      return new IndicatorWMA(v);
-    } catch (...) {
-      return NULL;
-    }
-  }
-
-  return NULL;
+Indicator* IndicatorWMA::newIndicator(const char* fullname,
+                                      const char* assetsName) {
+  return new IndicatorWMA(fullname, assetsName);
 }
 
 // isMine - isMine

@@ -122,20 +122,9 @@ const IndicatorData_singleValue* IndicatorROC::getMaxSingleValue(
 }
 
 // newIndicator - new IndicatorROC
-Indicator* IndicatorROC::newIndicator(const char* name) {
-  std::vector<std::string> arr;
-  splitStr(arr, name, ".");
-
-  if (arr.size() == 2) {
-    try {
-      auto v = std::stoi(arr[1]);
-      return new IndicatorROC(v);
-    } catch (...) {
-      return NULL;
-    }
-  }
-
-  return NULL;
+Indicator* IndicatorROC::newIndicator(const char* fullname,
+                                      const char* assetsName) {
+  return new IndicatorROC(fullname, assetsName);
 }
 
 // isMine - isMine

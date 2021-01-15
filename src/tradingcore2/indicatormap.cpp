@@ -8,7 +8,7 @@
 
 CR2BEGIN
 
-void IndicatorMap::addIndicator(const char* fullname) {
+void IndicatorMap::addIndicator(const char* fullname, const char* asset) {
   auto it = this->m_map.find(fullname);
   if (it != this->m_map.end()) {
     return;
@@ -20,7 +20,7 @@ void IndicatorMap::addIndicator(const char* fullname) {
   // if (arr.size() == 2) {
   //   auto v = atoi(arr[1].c_str());
 
-  auto pIndicator = IndicatorMgr::getSingleton()->newIndicator(fullname);
+  auto pIndicator = IndicatorMgr::getSingleton()->newIndicator(fullname, asset);
 
   PairIndicator p(fullname, pIndicator);
   auto ret = this->m_map.insert(p);

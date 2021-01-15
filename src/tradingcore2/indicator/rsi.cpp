@@ -124,20 +124,9 @@ const IndicatorData_singleValue* IndicatorRSI::getMaxSingleValue(
 }
 
 // newIndicator - new IndicatorRSI
-Indicator* IndicatorRSI::newIndicator(const char* name) {
-  std::vector<std::string> arr;
-  splitStr(arr, name, ".");
-
-  if (arr.size() == 2) {
-    try {
-      auto v = std::stoi(arr[1]);
-      return new IndicatorRSI(v);
-    } catch (...) {
-      return NULL;
-    }
-  }
-
-  return NULL;
+Indicator* IndicatorRSI::newIndicator(const char* fullname,
+                                      const char* assetsName) {
+  return new IndicatorRSI(fullname, assetsName);
 }
 
 // isMine - isMine

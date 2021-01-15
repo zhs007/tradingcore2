@@ -19,7 +19,7 @@ class IndicatorMap {
   ~IndicatorMap() {}
 
  public:
-  void addIndicator(const char* fullname);
+  void addIndicator(const char* fullname, const char* asset);
 
   void build(Exchange& exchange, const char* asset);
 
