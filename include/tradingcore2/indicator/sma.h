@@ -76,6 +76,14 @@ class IndicatorSMA final : public Indicator {
   bool _build_avg1(Exchange& exchange, const char* assetsName, int start,
                    int length);
 
+  void _buildFirst2(Exchange& exchange, const char* assetsName,
+                    const char* assetsName2, IndicatorBuild2Type b2t,
+                    int64_t ot, int start, int length, Money& totalPrice);
+
+  bool _build2_avg1(Exchange& exchange, const char* assetsName,
+                    const char* assetsName2, IndicatorBuild2Type b2t,
+                    int64_t ot, int start, int length);
+
  protected:
   int m_avgtimes;
   List m_lst;

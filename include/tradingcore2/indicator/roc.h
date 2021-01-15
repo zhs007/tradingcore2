@@ -73,6 +73,11 @@ class IndicatorROC final : public Indicator {
   void _buildFirst(Exchange& exchange, const char* assetsName, int start,
                    int length);
 
+  void _buildFirst2(Exchange& exchange, const char* assetsName,
+                    const char* assetsName2, IndicatorBuild2Type b2t,
+                    int64_t ot, int start, int length,
+                    IndicatorDataValue* pBuf);
+
  protected:
   int m_avgtimes;
   List m_lst;

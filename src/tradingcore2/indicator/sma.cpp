@@ -94,6 +94,65 @@ bool IndicatorSMA::build(Exchange& exchange, const char* assetsName, int start,
 bool IndicatorSMA::build2(Exchange& exchange, const char* assetsName,
                           const char* assetsName2, IndicatorBuild2Type b2t,
                           int64_t ot, int start, int length) {
+  assert(assetsName != NULL);
+  assert(assetsName2 != NULL);
+  assert(start >= 0);
+  assert(length > 0);
+
+  this->release();
+
+  int totalLength = exchange.getDataLength(assetsName);
+  if (start >= totalLength) {
+    return false;
+  }
+
+  if (start + length >= totalLength) {
+    length = totalLength - start;
+  }
+
+  if (length <= 0) {
+    return false;
+  }
+
+  if (this->m_avgtimes == 1) {
+    return this->_build2_avg1(exchange, assetsName, assetsName2, b2t, ot, start,
+                              length);
+  }
+
+  m_iStart = start;
+
+  if (this->m_avgtimes >= length) {
+    Money tp;
+    this->_buildFirst2(exchange, assetsName, assetsName2, b2t, ot, start,
+                       length, tp);
+
+    return true;
+  }
+
+  Money tp;
+  this->_buildFirst2(exchange, assetsName, assetsName2, b2t, ot, start,
+                     this->m_avgtimes, tp);
+
+  CandleData cd;
+  for (int i = this->m_avgtimes; i < length; ++i) {
+    auto isok = exchange.getData(assetsName, start + i - this->m_avgtimes, cd);
+    assert(isok);
+
+    tp -= cd.close;
+
+    isok = exchange.getData(assetsName, start + i, cd);
+    assert(isok);
+
+    CandleData cd1;
+    isok = exchange.getDataWithTimestamp(assetsName2,
+                                         cd.ts + this->m_params.b2OffTime, cd1);
+    assert(isok);
+
+    this->pushData(cd.ts, (tp + cd1.close) / this->m_avgtimes);
+
+    tp += cd.close;
+  }
+
   return true;
 }
 
@@ -112,6 +171,66 @@ bool IndicatorSMA::_build_avg1(Exchange& exchange, const char* assetsName,
     assert(isok);
 
     this->pushData(cd.ts, cd.close);
+  }
+
+  return true;
+}
+
+void IndicatorSMA::_buildFirst2(Exchange& exchange, const char* assetsName,
+                                const char* assetsName2,
+                                IndicatorBuild2Type b2t, int64_t ot, int start,
+                                int length, Money& totalPrice) {
+  CandleData cd;
+  auto isok = exchange.getData(assetsName, start, cd);
+  assert(isok);
+
+  totalPrice = cd.close;
+  // this->pushData(cd.ts, totalPrice);
+
+  CandleData cd1;
+  isok = exchange.getDataWithTimestamp(assetsName2,
+                                       cd.ts + this->m_params.b2OffTime, cd1);
+  assert(isok);
+
+  this->pushData(cd.ts, cd1.close);
+
+  for (int i = 1; i < length; ++i) {
+    isok = exchange.getData(assetsName, start + i, cd);
+    assert(isok);
+
+    isok = exchange.getDataWithTimestamp(assetsName2,
+                                         cd.ts + this->m_params.b2OffTime, cd1);
+    assert(isok);
+
+    this->pushData(cd.ts, (totalPrice + cd1.close) / (i + 1));
+
+    totalPrice += cd.close;
+  }
+}
+
+bool IndicatorSMA::_build2_avg1(Exchange& exchange, const char* assetsName,
+                                const char* assetsName2,
+                                IndicatorBuild2Type b2t, int64_t ot, int start,
+                                int length) {
+  assert(assetsName != NULL);
+  assert(assetsName2 != NULL);
+  assert(start >= 0);
+  assert(length > 0);
+  assert(this->m_avgtimes == 1);
+
+  m_iStart = start;
+
+  CandleData cd;
+  CandleData cd1;
+  for (int i = 0; i < length; ++i) {
+    auto isok = exchange.getData(assetsName, start + i, cd);
+    assert(isok);
+
+    isok = exchange.getDataWithTimestamp(assetsName2,
+                                         cd.ts + this->m_params.b2OffTime, cd1);
+    assert(isok);
+
+    this->pushData(cd.ts, cd1.close);
   }
 
   return true;

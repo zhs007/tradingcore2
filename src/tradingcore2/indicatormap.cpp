@@ -30,7 +30,14 @@ void IndicatorMap::addIndicator(const char* fullname, const char* asset) {
 
 void IndicatorMap::build(Exchange& exchange, const char* asset) {
   for (auto it = this->m_map.begin(); it != this->m_map.end(); ++it) {
-    it->second->build(exchange, asset, 0, exchange.getDataLength(asset));
+    auto params = it->second->getParams();
+    if (params.b2type == IB2T_NONE) {
+      it->second->build(exchange, asset, 0, exchange.getDataLength(asset));
+    } else {
+      it->second->build2(exchange, params.assetsNames[0].c_str(),
+                         params.assetsNames[1].c_str(), params.b2type,
+                         params.b2OffTime, 0, exchange.getDataLength(asset));
+    }
   }
 }
 

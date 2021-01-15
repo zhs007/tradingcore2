@@ -75,6 +75,9 @@ class Indicator {
   // saveCSV - save to a csv file
   void saveCSV(const char* fn);
 
+ public:
+  const IndicatorParams& getParams() const { return this->m_params; }
+
  protected:
   std::string m_fullname;
   IndicatorParams m_params;
