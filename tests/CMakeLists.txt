@@ -7,6 +7,7 @@ include_directories(../deps/googletest/googletest/include)
 include_directories(../deps/grpc/third_party/protobuf/src)
 include_directories(../deps/grpc/include)
 # include_directories(${CMAKE_BINARY_DIR}/deps/glog)
+include_directories(../deps/ta-lib/include)
 
 link_directories(../deps/googletest/build/lib)
 link_directories(../deps/gsl/build)

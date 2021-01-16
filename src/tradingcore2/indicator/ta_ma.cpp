@@ -106,6 +106,103 @@ bool IndicatorTA_MA::build(Exchange& exchange, const char* assetsName,
 bool IndicatorTA_MA::build2(Exchange& exchange, const char* assetsName,
                             const char* assetsName2, IndicatorBuild2Type b2t,
                             int64_t ot, int start, int length) {
+  assert(assetsName != NULL);
+  assert(assetsName2 != NULL);
+  assert(start >= 0);
+  assert(length > 0);
+
+  this->release();
+
+  int totalLength = exchange.getDataLength(assetsName);
+  if (start >= totalLength) {
+    return false;
+  }
+
+  if (start + length >= totalLength) {
+    length = totalLength - start;
+  }
+
+  if (length <= 0) {
+    return false;
+  }
+
+  TA_Real* pPrice = new TA_Real[length];
+  TA_Real* pOut = new TA_Real[length];
+  TA_Integer outBeg;
+  TA_Integer outNbElement;
+
+  CandleData cd;
+  for (int ii = 0; ii < length; ++ii) {
+    auto isok = exchange.getData(assetsName, start + ii, cd);
+    assert(isok);
+
+    if (ii >= this->m_avgtimes) {
+      CandleData cd1;
+      isok = exchange.getDataWithTimestamp(
+          assetsName2, cd.ts + this->m_params.b2OffTime, cd1);
+      assert(isok);
+
+      pPrice[ii] = cd1.close;
+
+      auto retCode = TA_MA(ii - this->m_avgtimes, ii, pPrice, this->m_avgtimes,
+                           m_maType, &outBeg, &outNbElement, pOut);
+      if (retCode != TA_SUCCESS) {
+        LOG(ERROR) << "IndicatorTAMA:TA_MA " << retCode;
+
+        delete[] pPrice;
+        delete[] pOut;
+
+        return false;
+      }
+      assert(outBeg == ii - (ii - this->m_avgtimes) - outNbElement);
+      assert(outNbElement == 1);
+
+      this->pushData(cd.ts, pOut[0]);
+    } else {
+      this->pushData(cd.ts, cd.close);
+    }
+
+    pPrice[ii] = cd.close;
+  }
+
+  // for (int i = 0; i < length; ++i) {
+  //   auto isok = exchange.getData(assetsName, start + i, cd);
+  //   assert(isok);
+
+  //   pPrice[i] = cd.close;
+  // }
+
+  // auto retCode = TA_MA(0, length - 1, pPrice, this->m_avgtimes, m_maType,
+  //                      &outBeg, &outNbElement, pOut);
+  // if (retCode != TA_SUCCESS) {
+  //   LOG(ERROR) << "IndicatorTAMA:TA_MA " << retCode;
+
+  //   delete[] pPrice;
+  //   delete[] pOut;
+
+  //   return false;
+  // }
+
+  // LOG(INFO) << "IndicatorTAMA:TA_MA length " << length << " outBeg " <<
+  // outBeg
+  //           << " outNbElement " << outNbElement;
+  // assert(outBeg == length - outNbElement);
+
+  // // CandleData cd;
+  // for (int i = 0; i < length; ++i) {
+  //   auto isok = exchange.getData(assetsName, start + i, cd);
+  //   assert(isok);
+
+  //   if (i < outBeg) {
+  //     this->pushData(cd.ts, cd.close);
+  //   } else {
+  //     this->pushData(cd.ts, pOut[i - outBeg]);
+  //   }
+  // }
+
+  delete[] pPrice;
+  delete[] pOut;
+
   return true;
 }
 
