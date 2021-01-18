@@ -55,7 +55,7 @@ class TrDB2Exchange : public Exchange {
 
   virtual TimeStamp getLastTimeStamp() const override;
 
-  virtual void rebuildTimeStampList() override;
+  virtual void rebuildTimeStampList(const char* assetsName) override;
 
  public:
   void foreachCandlesTimeStamp(const tradingpb::Candles* candles);

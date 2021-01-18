@@ -234,6 +234,7 @@ message SimTradingParams {
     repeated Strategy strategies = 5;
     Wallet wallet = 6;
     string title = 7;                                   // title，会重新设置到PNLData上
+    int32 mainAssetIndex = 8;                           // 主Asset索引，默认为0
 }
 
 // TradingNodeInfo - trading node2 infomation

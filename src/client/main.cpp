@@ -809,6 +809,68 @@ void normalTAMA5(const tr2::Config& cfg, const char* indicator) {
   //                                       5, 5 /* off2 */, 10, 2);
 }
 
+void normalTAMA5_2(const tr2::Config& cfg, const char* indicator) {
+  tr2::NodeClient2 client(cfg.servs[0].host.c_str(),
+                          cfg.servs[0].token.c_str());
+
+  ::tradingpb::SimTradingParams params;
+
+  auto asset0 = params.add_assets();
+  asset0->set_market("jqdata");
+  asset0->set_code("000300_XSHG|1d");
+  auto asset1 = params.add_assets();
+  asset1->set_market("jqdata");
+  asset1->set_code("000300_XSHG|5m");
+
+  auto strategy0 = params.add_strategies();
+  strategy0->set_name("normal");
+  auto asset10 = strategy0->mutable_asset();
+  asset10->set_market("jqdata");
+  asset10->set_code("000300_XSHG|1d");
+  auto buy0 = strategy0->add_buy();
+  buy0->set_name("indicatorsp");
+  // buy0->add_vals(-0.015);
+  buy0->add_operators("upcross");
+  buy0->add_strvals(indicator);
+  auto sell0 = strategy0->add_sell();
+  sell0->set_name("indicatorsp");
+  // sell0->add_vals(0.02);
+  sell0->add_operators("downcross");
+  sell0->add_strvals(indicator);
+  auto bp = strategy0->mutable_paramsbuy();
+  bp->set_perhandmoney(1);
+  auto sp = strategy0->mutable_paramssell();
+  sp->set_pervolume(1);
+  auto ip = strategy0->mutable_paramsinit();
+  ip->set_money(10000);
+  // auto aip = strategy0->mutable_paramsaip();
+  // aip->set_money(10000);
+  // aip->set_type(tradingpb::AIPTT_WEEKDAY);
+  // aip->set_day(3);
+
+  params.set_startts(tr2::str2timestampUTC("20200101", "%Y%m%d"));
+  params.set_endts(tr2::str2timestampUTC("20200301", "%Y%m%d"));
+
+  ::tradingpb::ReplyCalcPNL res;
+  auto status = client.clacPNL(params, res);
+
+  // client.waitStop();
+
+  // ::tradingpb::ReplyServerInfo res;
+  // auto status = client.getServerInfo(res);
+  LOG(INFO) << "calcPNL " << status.error_code();
+
+  if (status.ok()) {
+    tr2::logProtobuf("reply ", res);
+    // LOG(INFO) << res.DebugString();
+  }
+
+  // auto cnfund = tr2::ExchangeMgr::getSingleton()->getExchange("cnfund");
+  // tr2::startTrainSingleIndicator2ExPool(cfg, *cnfund, "110022", "rsi",
+  //                                       "../output", 10000, 5, 5 /* off0 */,
+  //                                       5, 5 /* off2 */, 10, 2);
+}
+
 void normalEMA15(const tr2::Config& cfg) {
   tr2::NodeClient2 client(cfg.servs[0].host.c_str(),
                           cfg.servs[0].token.c_str());
@@ -818,12 +880,15 @@ void normalEMA15(const tr2::Config& cfg) {
   auto asset0 = params.add_assets();
   asset0->set_market("bitmex");
   asset0->set_code("XBTUSD|1d");
+  auto asset1 = params.add_assets();
+  asset1->set_market("bitmex");
+  asset1->set_code("XBTUSD|5m");
 
   auto strategy0 = params.add_strategies();
   strategy0->set_name("normal");
-  auto asset1 = strategy0->mutable_asset();
-  asset1->set_market("bitmex");
-  asset1->set_code("XBTUSD|1d");
+  auto asset01 = strategy0->mutable_asset();
+  asset01->set_market("bitmex");
+  asset01->set_code("XBTUSD|1d");
   auto buy0 = strategy0->add_buy();
   buy0->set_name("indicatorsp");
   // buy0->add_vals(-0.015);
@@ -909,7 +974,8 @@ int main(int argc, char* argv[]) {
   // normalWeekDay6(cfg);
   // normalWeekDay7(cfg);
   // normalWeekDay8(cfg);
-  normalEMA15(cfg);
+  // normalEMA15(cfg);
+  normalTAMA5_2(cfg, "ta-sma.3>day/1d/5m/53700");
 
   return 0;
 }

@@ -136,7 +136,7 @@ bool IndicatorTA_MA::build2(Exchange& exchange, const char* assetsName,
     auto isok = exchange.getData(assetsName, start + ii, cd);
     assert(isok);
 
-    if (ii >= this->m_avgtimes) {
+    if (ii >= this->m_avgtimes - 1) {
       CandleData cd1;
       isok = exchange.getDataWithTimestamp(
           assetsName2, cd.ts + this->m_params.b2OffTime, cd1);
@@ -144,8 +144,9 @@ bool IndicatorTA_MA::build2(Exchange& exchange, const char* assetsName,
 
       pPrice[ii] = cd1.close;
 
-      auto retCode = TA_MA(ii - this->m_avgtimes, ii, pPrice, this->m_avgtimes,
-                           m_maType, &outBeg, &outNbElement, pOut);
+      auto retCode =
+          TA_MA(ii - this->m_avgtimes + 1, ii, pPrice, this->m_avgtimes,
+                m_maType, &outBeg, &outNbElement, pOut);
       if (retCode != TA_SUCCESS) {
         LOG(ERROR) << "IndicatorTAMA:TA_MA " << retCode;
 
@@ -154,10 +155,13 @@ bool IndicatorTA_MA::build2(Exchange& exchange, const char* assetsName,
 
         return false;
       }
-      assert(outBeg == ii - (ii - this->m_avgtimes) - outNbElement);
-      assert(outNbElement == 1);
 
-      this->pushData(cd.ts, pOut[0]);
+      assert(outNbElement >= 1 && outNbElement <= this->m_avgtimes);
+      assert(outBeg == this->m_avgtimes - 1 ||
+             outBeg == ii - this->m_avgtimes + 1);
+      // assert(outBeg == ii + 1 - (ii - this->m_avgtimes + 1) - outNbElement);
+      // assert(outNbElement == 1);
+      this->pushData(cd.ts, pOut[outNbElement - 1]);
     } else {
       this->pushData(cd.ts, cd.close);
     }

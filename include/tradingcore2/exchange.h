@@ -65,7 +65,7 @@ class Exchange {
 
   virtual const char* getMarketName() const = 0;
 
-  virtual void rebuildTimeStampList() = 0;
+  virtual void rebuildTimeStampList(const char* assetsName) = 0;
 
   virtual bool isValidTs(TimeStamp ts) const = 0;
 

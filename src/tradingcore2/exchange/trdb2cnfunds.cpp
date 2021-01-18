@@ -15,7 +15,7 @@ CR2BEGIN
 const char* TrDB2CNFundsTypeName = "trdb2cnfunds";
 
 bool TrDB2CNFundsExchange::init(const Config& cfg) {
-  this->rebuildTimeStampList();
+  this->rebuildTimeStampList(NULL);
 
   return true;
 }
@@ -185,7 +185,7 @@ void TrDB2CNFundsExchange::foreachCandlesTimeStamp(
   }
 }
 
-void TrDB2CNFundsExchange::rebuildTimeStampList() {
+void TrDB2CNFundsExchange::rebuildTimeStampList(const char* assetsName) {
   this->m_lstTimeStamp.clear();
 
   auto f = std::bind(&TrDB2CNFundsExchange::foreachCandlesTimeStamp, this,

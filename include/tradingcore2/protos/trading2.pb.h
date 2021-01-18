@@ -4483,6 +4483,7 @@ class SimTradingParams :
     kWalletFieldNumber = 6,
     kStartTsFieldNumber = 3,
     kEndTsFieldNumber = 4,
+    kMainAssetIndexFieldNumber = 8,
   };
   // repeated .tradingpb.Asset assets = 1;
   int assets_size() const;
@@ -4587,6 +4588,15 @@ class SimTradingParams :
   void _internal_set_endts(::PROTOBUF_NAMESPACE_ID::int64 value);
   public:
 
+  // int32 mainAssetIndex = 8;
+  void clear_mainassetindex();
+  ::PROTOBUF_NAMESPACE_ID::int32 mainassetindex() const;
+  void set_mainassetindex(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_mainassetindex() const;
+  void _internal_set_mainassetindex(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
   // @@protoc_insertion_point(class_scope:tradingpb.SimTradingParams)
  private:
   class _Internal;
@@ -4599,6 +4609,7 @@ class SimTradingParams :
   ::tradingpb::Wallet* wallet_;
   ::PROTOBUF_NAMESPACE_ID::int64 startts_;
   ::PROTOBUF_NAMESPACE_ID::int64 endts_;
+  ::PROTOBUF_NAMESPACE_ID::int32 mainassetindex_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_trading2_2eproto;
 };
@@ -9453,6 +9464,26 @@ inline void SimTradingParams::set_allocated_title(std::string* title) {
   }
   title_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), title);
   // @@protoc_insertion_point(field_set_allocated:tradingpb.SimTradingParams.title)
+}
+
+// int32 mainAssetIndex = 8;
+inline void SimTradingParams::clear_mainassetindex() {
+  mainassetindex_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 SimTradingParams::_internal_mainassetindex() const {
+  return mainassetindex_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 SimTradingParams::mainassetindex() const {
+  // @@protoc_insertion_point(field_get:tradingpb.SimTradingParams.mainAssetIndex)
+  return _internal_mainassetindex();
+}
+inline void SimTradingParams::_internal_set_mainassetindex(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  mainassetindex_ = value;
+}
+inline void SimTradingParams::set_mainassetindex(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_mainassetindex(value);
+  // @@protoc_insertion_point(field_set:tradingpb.SimTradingParams.mainAssetIndex)
 }
 
 // -------------------------------------------------------------------
