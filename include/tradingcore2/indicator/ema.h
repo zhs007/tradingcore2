@@ -22,19 +22,25 @@ class IndicatorEMA final : public Indicator {
 
  public:
   // newIndicator - new IndicatorEMA
-  static Indicator* newIndicator(const char* name);
+  static Indicator* newIndicator(const char* fullname, const char* assetsName);
   // isMine - isMine
   static bool isMine(const char* name);
 
  protected:
-  IndicatorEMA(int avgtimes) : m_avgtimes(avgtimes), m_iStart(-1) {
-    assert(avgtimes > 1);
+  IndicatorEMA(const char* fullname, const char* assetsName)
+      : Indicator(fullname, assetsName), m_iStart(-1) {
+    m_avgtimes = this->m_params.avgtimes;
+    assert(m_avgtimes > 1);
   }
   virtual ~IndicatorEMA() {}
 
  public:
   virtual bool build(Exchange& exchange, const char* assetsName, int start,
                      int length) override;
+
+  virtual bool build2(Exchange& exchange, const char* assetsName,
+                      const char* assetsName2, IndicatorBuild2Type b2t,
+                      int64_t ot, int start, int length) override;
 
   virtual const IndicatorData_singleValue* getSingleValue(
       int index) const override {

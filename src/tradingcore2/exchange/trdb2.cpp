@@ -12,7 +12,7 @@
 CR2BEGIN
 
 bool TrDB2Exchange::init(const Config& cfg) {
-  this->rebuildTimeStampList();
+  this->rebuildTimeStampList(NULL);
 
   return true;
 }
@@ -180,13 +180,18 @@ void TrDB2Exchange::foreachCandlesTimeStamp(const tradingpb::Candles* candles) {
   }
 }
 
-void TrDB2Exchange::rebuildTimeStampList() {
+void TrDB2Exchange::rebuildTimeStampList(const char* assetsName) {
   this->m_lstTimeStamp.clear();
 
   auto f = std::bind(&TrDB2Exchange::foreachCandlesTimeStamp, this,
                      std::placeholders::_1);
 
-  this->m_mgrData.foreachCandles(f);
+  if (assetsName == NULL || strlen(assetsName) == 0) {
+    this->m_mgrData.foreachCandles(f);
+  } else {
+    this->m_mgrData.foreachCandles2(this->getTypeName(), assetsName, f);
+  }
+
   this->m_mgrData.buildMap();
 }
 

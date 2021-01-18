@@ -60,6 +60,62 @@ bool IndicatorSMMA::build(Exchange& exchange, const char* assetsName, int start,
   return true;
 }
 
+bool IndicatorSMMA::build2(Exchange& exchange, const char* assetsName,
+                           const char* assetsName2, IndicatorBuild2Type b2t,
+                           int64_t ot, int start, int length) {
+  assert(assetsName != NULL);
+  assert(assetsName2 != NULL);
+  assert(start >= 0);
+  assert(length > 0);
+
+  this->release();
+
+  int totalLength = exchange.getDataLength(assetsName);
+  if (start >= totalLength) {
+    return false;
+  }
+
+  if (start + length >= totalLength) {
+    length = totalLength - start;
+  }
+
+  if (length <= 0) {
+    return false;
+  }
+
+  m_iStart = start;
+
+  CandleData cd;
+  auto isok = exchange.getData(assetsName, start, cd);
+  assert(isok);
+
+  IndicatorDataValue pv = cd.close;
+
+  CandleData cd1;
+  isok = exchange.getDataWithTimestamp(assetsName2,
+                                       cd.ts + this->m_params.b2OffTime, cd1);
+  assert(isok);
+
+  this->pushData(cd.ts, cd1.close);
+
+  for (int i = 1; i < length; ++i) {
+    auto isok = exchange.getData(assetsName, start + i, cd);
+    assert(isok);
+
+    CandleData cd1;
+    isok = exchange.getDataWithTimestamp(assetsName2,
+                                         cd.ts + this->m_params.b2OffTime, cd1);
+    assert(isok);
+
+    this->pushData(
+        cd.ts, (pv * (this->m_avgtimes - 1) + cd1.close) / this->m_avgtimes);
+
+    pv = (pv * (this->m_avgtimes - 1) + cd.close) / this->m_avgtimes;
+  }
+
+  return true;
+}
+
 const IndicatorData_singleValue* IndicatorSMMA::getMinSingleValue(
     int& index) const {
   const IndicatorData_singleValue* pMin = NULL;
@@ -89,20 +145,9 @@ const IndicatorData_singleValue* IndicatorSMMA::getMaxSingleValue(
 }
 
 // newIndicator - new IndicatorSMMA
-Indicator* IndicatorSMMA::newIndicator(const char* name) {
-  std::vector<std::string> arr;
-  splitStr(arr, name, ".");
-
-  if (arr.size() == 2) {
-    try {
-      auto v = std::stoi(arr[1]);
-      return new IndicatorSMMA(v);
-    } catch (...) {
-      return NULL;
-    }
-  }
-
-  return NULL;
+Indicator* IndicatorSMMA::newIndicator(const char* fullname,
+                                       const char* assetsName) {
+  return new IndicatorSMMA(fullname, assetsName);
 }
 
 // isMine - isMine

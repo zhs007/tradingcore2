@@ -260,3 +260,15 @@ TEST(Utils, getDate) {
   ym = tr2::getDate(1602827513);
   EXPECT_EQ(ym, 20201016);
 }
+
+TEST(Utils, splitStr) {
+  std::vector<std::string> arr;
+  tr2::splitStr(arr, "ema.5", ">");
+  EXPECT_EQ(arr.size(), 1);
+  EXPECT_EQ(arr[0], "ema.5");
+
+  tr2::splitStr(arr, "ema.5", ".");
+  EXPECT_EQ(arr.size(), 2);
+  EXPECT_EQ(arr[0], "ema");
+  EXPECT_EQ(arr[1], "5");
+}

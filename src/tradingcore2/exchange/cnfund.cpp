@@ -31,7 +31,7 @@ bool CNFundExchange::init(const Config& cfg) {
 
   tr2::foreachPathWithExt(cfg.cnfundPath.c_str(), ".csv", onfile);
 
-  this->rebuildTimeStampList();
+  this->rebuildTimeStampList(NULL);
 
   return true;
 }
@@ -239,7 +239,7 @@ void CNFundExchange::forEachAssetsData(const char* assetsName,
   }
 }
 
-void CNFundExchange::rebuildTimeStampList() {
+void CNFundExchange::rebuildTimeStampList(const char* assetsName) {
   this->m_lstTimeStamp.clear();
 
   for (auto it = this->m_map.begin(); it != this->m_map.end(); ++it) {

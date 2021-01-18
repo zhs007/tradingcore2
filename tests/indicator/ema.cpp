@@ -15,7 +15,7 @@ class EMATest : public testing::Test {
 
 TEST_F(EMATest, ema_2) {
   tr2::IndicatorEMA* pEMA =
-      (tr2::IndicatorEMA*)tr2::IndicatorEMA::newIndicator("ema.2");
+      (tr2::IndicatorEMA*)tr2::IndicatorEMA::newIndicator("ema.2", "110022");
 
   auto isok = pEMA->build(*cnfund, "110022", 0, 2280);
   EXPECT_TRUE(isok);
@@ -35,7 +35,7 @@ TEST_F(EMATest, ema_2) {
 
 TEST_F(EMATest, ema_3) {
   tr2::IndicatorEMA* pEMA =
-      (tr2::IndicatorEMA*)tr2::IndicatorEMA::newIndicator("ema.3");
+      (tr2::IndicatorEMA*)tr2::IndicatorEMA::newIndicator("ema.3", "110022");
 
   auto isok = pEMA->build(*cnfund, "110022", 0, 2280);
   EXPECT_TRUE(isok);

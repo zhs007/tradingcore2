@@ -106,6 +106,21 @@ void TrDB2DataMgr::foreachCandles(FuncOnCandles onCandles) {
   }
 }
 
+void TrDB2DataMgr::foreachCandles2(const char *market, const char *symbol,
+                                   FuncOnCandles onCandles) {
+  std::string code = market;
+  code += ".";
+  code += symbol;
+
+  for (auto it = this->m_map.begin(); it != this->m_map.end(); ++it) {
+    LOG(INFO) << "TrDB2DataMgr::foreachCandles2 " << it->first;
+
+    if (it->first == code) {
+      onCandles(it->second.candles);
+    }
+  }
+}
+
 int TrDB2DataMgr::getTradingDays4Year(const char *market,
                                       const char *symbol) const {
   std::string code = market;

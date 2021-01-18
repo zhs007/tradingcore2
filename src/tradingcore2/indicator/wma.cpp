@@ -84,6 +84,65 @@ bool IndicatorWMA::build(Exchange& exchange, const char* assetsName, int start,
   return true;
 }
 
+bool IndicatorWMA::build2(Exchange& exchange, const char* assetsName,
+                          const char* assetsName2, IndicatorBuild2Type b2t,
+                          int64_t ot, int start, int length) {
+  assert(assetsName != NULL);
+  assert(assetsName2 != NULL);
+  assert(start >= 0);
+  assert(length > 0);
+
+  this->release();
+
+  int totalLength = exchange.getDataLength(assetsName);
+  if (start >= totalLength) {
+    return false;
+  }
+
+  if (start + length >= totalLength) {
+    length = totalLength - start;
+  }
+
+  if (length <= 0) {
+    return false;
+  }
+
+  m_iStart = start;
+
+  CandleData cd;
+  auto isok = exchange.getData(assetsName, start, cd);
+  assert(isok);
+
+  CandleData cd1;
+  isok = exchange.getDataWithTimestamp(assetsName2,
+                                       cd.ts + this->m_params.b2OffTime, cd1);
+  assert(isok);
+
+  this->pushData(cd.ts, cd1.close);
+
+  for (int i = 1; i < length; ++i) {
+    auto isok = exchange.getData(assetsName, start + i, cd);
+    assert(isok);
+
+    CandleData cd1;
+    isok = exchange.getDataWithTimestamp(assetsName2,
+                                         cd.ts + this->m_params.b2OffTime, cd1);
+    assert(isok);
+
+    Money tp = cd1.close * this->m_avgtimes;
+
+    for (int j = this->m_avgtimes - 1; j > 0; --j) {
+      Money cp = this->_getPrice(exchange, assetsName, start,
+                                 i - this->m_avgtimes + j);
+      tp += j * cp;
+    }
+
+    this->pushData(cd.ts, tp / (m_avgtimes * (m_avgtimes + 1) / 2));
+  }
+
+  return true;
+}
+
 const IndicatorData_singleValue* IndicatorWMA::getMinSingleValue(
     int& index) const {
   const IndicatorData_singleValue* pMin = NULL;
@@ -113,20 +172,9 @@ const IndicatorData_singleValue* IndicatorWMA::getMaxSingleValue(
 }
 
 // newIndicator - new IndicatorWMA
-Indicator* IndicatorWMA::newIndicator(const char* name) {
-  std::vector<std::string> arr;
-  splitStr(arr, name, ".");
-
-  if (arr.size() == 2) {
-    try {
-      auto v = std::stoi(arr[1]);
-      return new IndicatorWMA(v);
-    } catch (...) {
-      return NULL;
-    }
-  }
-
-  return NULL;
+Indicator* IndicatorWMA::newIndicator(const char* fullname,
+                                      const char* assetsName) {
+  return new IndicatorWMA(fullname, assetsName);
 }
 
 // isMine - isMine

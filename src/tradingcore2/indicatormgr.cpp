@@ -27,20 +27,21 @@ void IndicatorMgr::regIndicator(const char* name,
   assert(ret.second);
 }
 
-Indicator* IndicatorMgr::newIndicator(const char* name) {
+Indicator* IndicatorMgr::newIndicator(const char* fullname,
+                                      const char* assetsName) {
   std::vector<std::string> arr;
-  splitStr(arr, name, ".");
+  splitStr(arr, fullname, ".");
 
   auto it = this->m_map.find(arr[0]);
   if (it != this->m_map.end()) {
-    if (it->second.isMine(name)) {
-      return it->second.newIndicator(name);
+    if (it->second.isMine(fullname)) {
+      return it->second.newIndicator(fullname, assetsName);
     }
   }
 
   for (auto it = this->m_map.begin(); it != this->m_map.end(); ++it) {
-    if (it->second.isMine(name)) {
-      return it->second.newIndicator(name);
+    if (it->second.isMine(fullname)) {
+      return it->second.newIndicator(fullname, assetsName);
     }
   }
 

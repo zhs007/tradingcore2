@@ -89,7 +89,7 @@ class CNFundExchange final : public Exchange {
 
   virtual bool isValidTs(TimeStamp ts) const override;
 
-  virtual void rebuildTimeStampList() override;
+  virtual void rebuildTimeStampList(const char* assetsName) override;
 
  public:
   const CNFundValue* getFundValue(const char* assetsName) const;

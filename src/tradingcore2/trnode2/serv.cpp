@@ -105,13 +105,22 @@ void TradingNode2Impl::init(const Config& cfg) {
     return grpc::Status(grpc::StatusCode::UNKNOWN, "I can't get exchange");
   }
 
+  std::string mainasset;
   for (auto i = 0; i < request->params().assets_size(); ++i) {
     auto ca = request->params().assets(i);
     exchange->loadData(ca.code().c_str(), request->params().startts(),
                        request->params().endts());
+
+    if (i == request->params().mainassetindex()) {
+      mainasset = ca.code();
+    }
   }
 
-  exchange->rebuildTimeStampList();
+  if (request->params().mainassetindex() < 0) {
+    exchange->rebuildTimeStampList(NULL);
+  } else {
+    exchange->rebuildTimeStampList(mainasset.c_str());
+  }
 
   LOG(ERROR) << "_calcPNL:rebuildTimeStampList ok!";
 

@@ -11,7 +11,7 @@
 CR2BEGIN
 
 // FuncNewIndicator - newIndicator(const char*)
-typedef std::function<Indicator*(const char*)> FuncNewIndicator;
+typedef std::function<Indicator*(const char*, const char*)> FuncNewIndicator;
 // FuncIsMime - bool isMine(const char*)
 typedef std::function<bool(const char*)> FuncIsMime;
 
@@ -37,7 +37,7 @@ class IndicatorMgr {
                     FuncIsMime funcIsMine);
 
  public:
-  Indicator* newIndicator(const char* name);
+  Indicator* newIndicator(const char* fullname, const char* assetsName);
 
  protected:
   Map m_map;
