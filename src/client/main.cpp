@@ -849,7 +849,7 @@ void normalTAMA5_2(const tr2::Config& cfg, const char* indicator) {
   // aip->set_day(3);
 
   params.set_startts(tr2::str2timestampUTC("20130501", "%Y%m%d"));
-  params.set_endts(tr2::str2timestampUTC("20200930", "%Y%m%d"));
+  params.set_endts(tr2::str2timestampUTC("20200930", "%Y%m%d") + 1987199);
 
   ::tradingpb::ReplyCalcPNL res;
   auto status = client.clacPNL(params, res);
