@@ -848,8 +848,8 @@ void normalTAMA5_2(const tr2::Config& cfg, const char* indicator) {
   // aip->set_type(tradingpb::AIPTT_WEEKDAY);
   // aip->set_day(3);
 
-  params.set_startts(tr2::str2timestampUTC("20200101", "%Y%m%d"));
-  params.set_endts(tr2::str2timestampUTC("20200301", "%Y%m%d"));
+  params.set_startts(tr2::str2timestampUTC("20130501", "%Y%m%d"));
+  params.set_endts(tr2::str2timestampUTC("20200930", "%Y%m%d") + 1987199);
 
   ::tradingpb::ReplyCalcPNL res;
   auto status = client.clacPNL(params, res);
@@ -975,7 +975,7 @@ int main(int argc, char* argv[]) {
   // normalWeekDay7(cfg);
   // normalWeekDay8(cfg);
   // normalEMA15(cfg);
-  normalTAMA5_2(cfg, "ta-sma.3>day/1d/5m/53700");
+  normalTAMA5_2(cfg, "ta-ema.29>day/1d/5m/53700");
 
   return 0;
 }
