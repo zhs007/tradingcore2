@@ -241,14 +241,17 @@ int PNL2::getHandMoneyEx3(const Exchange& exchange, TimeStamp ts, Money& total,
                           Money& last, int ctrlIndex) {
   total = 0;
   last = 0;
+  bool lastisvalid = false;
 
   auto t = this->m_data.total();
   if (t.lstctrl_size() > 0) {
     for (auto i = ctrlIndex; i < t.lstctrl_size(); ++i) {
       auto cc = t.lstctrl(i);
       if (cc.ts() > ts) {
-        if (i > 0) {
-          return i - 1;
+        if (lastisvalid) {
+          if (i > 0) {
+            return i - 1;
+          }
         }
 
         return ctrlIndex;
@@ -256,6 +259,13 @@ int PNL2::getHandMoneyEx3(const Exchange& exchange, TimeStamp ts, Money& total,
 
       total = cc.totalmoney();
       last = cc.lastmoney();
+
+      if (cc.type() == tradingpb::CTRL_BUY ||
+          cc.type() == tradingpb::CTRL_SELL) {
+        lastisvalid = true;
+      } else {
+        lastisvalid = false;
+      }
     }
   }
 

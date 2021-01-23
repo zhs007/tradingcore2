@@ -67,15 +67,22 @@ void aipWeekDay(const tr2::Config& cfg) {
   auto buy0 = strategy0->add_buy();
   buy0->set_name("weekday");
   buy0->add_vals(5);
-  auto sell0 = strategy0->add_sell();
-  sell0->set_name("weekday");
-  sell0->add_vals(1);
+  // auto sell0 = strategy0->add_sell();
+  // sell0->set_name("weekday");
+  // sell0->add_vals(1);
   auto bp = strategy0->mutable_paramsbuy();
   bp->set_perhandmoney(1);
   auto sp = strategy0->mutable_paramssell();
   sp->set_pervolume(1);
   auto ip = strategy0->mutable_paramsinit();
   ip->set_money(10000);
+  auto aip = strategy0->mutable_paramsaip();
+  aip->set_money(10000);
+  aip->set_type(::tradingpb::AIPTT_WEEKDAY);
+  aip->set_day(1);
+
+  params.set_startts(tr2::str2timestampUTC("20200101", "%Y%m%d"));
+  params.set_endts(tr2::str2timestampUTC("20200301", "%Y%m%d"));
 
   ::tradingpb::ReplyCalcPNL res;
   auto status = client.clacPNL(params, res);
@@ -87,7 +94,7 @@ void aipWeekDay(const tr2::Config& cfg) {
   LOG(INFO) << "calcPNL " << status.error_code();
 
   if (status.ok()) {
-    LOG(INFO) << res.DebugString();
+    tr2::logProtobuf("reply ", res);
   }
 
   // auto cnfund = tr2::ExchangeMgr::getSingleton()->getExchange("cnfund");
@@ -962,7 +969,7 @@ int main(int argc, char* argv[]) {
   mgr->init(cfg);
 
   // buyandhold(cfg);
-  // aipWeekDay(cfg);
+  aipWeekDay(cfg);
   // aipMonthDay(cfg);
   // normalWeekDay(cfg);
   // normalWeekDay2(cfg);
@@ -975,7 +982,7 @@ int main(int argc, char* argv[]) {
   // normalWeekDay7(cfg);
   // normalWeekDay8(cfg);
   // normalEMA15(cfg);
-  normalTAMA5_2(cfg, "ta-ema.29>day/1d/5m/53700");
+  // normalTAMA5_2(cfg, "ta-ema.29>day/1d/5m/53700");
 
   return 0;
 }
