@@ -22,9 +22,6 @@
 [submodule "deps/snappy"]
 	path = deps/snappy
 	url = https://github.com/google/snappy.git
-[submodule "deps/bzip2-1.0.6"]
-	path = deps/bzip2-1.0.6
-	url = https://github.com/enthought/bzip2-1.0.6.git
 [submodule "deps/lz4"]
 	path = deps/lz4
 	url = https://github.com/lz4/lz4.git
