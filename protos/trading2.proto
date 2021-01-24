@@ -46,6 +46,8 @@ message CtrlNode {
     double totalMoney = 12;                                 // 统计值，用于运算，当前时间节点总投入货币
     double lastMoney = 13;                                  // 统计值，用于运算，当前时间节点剩余未投入货币
     map<string, CtrlNodeAssetInfo> mapAssetsInfo = 14;      // 统计值，用于运算，当前时间节点资产数量和成本
+    int32 moneyParts = 15;                                  // 当买入条件以moneyparts的时候，这是当前操作买入的
+    int32 lastMoneyParts = 16;                              // 当买入条件以moneyparts的时候，这是剩下的
 }
 
 // WalletAsset - wallet asset
@@ -93,13 +95,18 @@ message Indicator {
 
 // BuyParams - buy parameters
 message BuyParams {
-    float initMoney = 1 [deprecated = true];    // 初始资金池
-    float perMoney = 2 [deprecated = true];     // 每次用初始资金池的百分比来购买
-    float volume = 3;                           // 每次买特定数量
-    float aipMoney = 4;                         // 每次买特定金额，这个一般用于定投
-    float perInitMoney = 5;                     // 使用初始资金池的一定比例购买
-    float perHandMoney = 6;                     // 使用余额的一定比例购买
-    float perTotalMoney = 7;                    // 使用总资金的一定比例购买
+    float initMoney = 1 [deprecated = true];        // 初始资金池
+    float perMoney = 2 [deprecated = true];         // 每次用初始资金池的百分比来购买
+    float volume = 3;                               // 每次买特定数量
+    float aipMoney = 4;                             // 每次买特定金额，这个一般用于定投
+    float perInitMoney = 5;                         // 使用初始资金池的一定比例购买
+    float perHandMoney = 6;                         // 使用余额的一定比例购买
+    float perTotalMoney = 7 [deprecated = true];    // 使用总资金的一定比例购买
+    string assetCode = 8;                           // 用这个asset的价格来买入，只有当希望用非main asset的价格来买入时，才用到这个
+    string timeTypeBuyAsset = 9;                    // 配合assetCode用的买入时间方式，mainasset是1d的时候，这个一般是 day
+    int64 tsOffBuy = 10;                            // 配合assetCode用的买入时差，如果是14:55分得价格购买，这里应该是14:55的秒差
+    string typeBuyAsset = 11;                       // 配合assetCode用的买入方式；为了更好的模拟交易，这里用来做交易价格，最差的情况应该用high买到
+    int32 moneyParts = 12;                          // 将钱分成几部分
 }
 
 // SellParams - sell parameters
@@ -108,6 +115,10 @@ message SellParams {
     float perVolume = 2;
     float money = 3;
     int64 keepTime = 4;             // 卖出这个时间以前的持有，秒为单位，如果是卖出1天以前的全部持有，应该就是 24*60*60 
+    string assetCode = 5;           // 用这个asset的价格来卖出，只有当希望用非main asset的价格来卖出时，才用到这个
+    string timeTypeSellAsset = 6;   // 配合assetCode用的卖出时间方式，mainasset是1d的时候，这个一般是 day
+    int64 tsOffSell = 7;            // 配合assetCode用的卖出时差，如果是14:55分得价格购买，这里应该是14:55的秒差
+    string typeSellAsset = 8;       // 配合assetCode用的卖出方式；为了更好的模拟交易，这里用来做交易价格，最差的情况应该用low卖出
 }
 
 // StopLossParams - stop loss parameters

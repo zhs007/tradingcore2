@@ -852,6 +852,8 @@ class CtrlNode :
     kTotalMoneyFieldNumber = 12,
     kLastMoneyFieldNumber = 13,
     kStrategyIDFieldNumber = 11,
+    kMoneyPartsFieldNumber = 15,
+    kLastMoneyPartsFieldNumber = 16,
   };
   // map<string, .tradingpb.CtrlNodeAssetInfo> mapAssetsInfo = 14;
   int mapassetsinfo_size() const;
@@ -999,6 +1001,24 @@ class CtrlNode :
   void _internal_set_strategyid(::PROTOBUF_NAMESPACE_ID::int32 value);
   public:
 
+  // int32 moneyParts = 15;
+  void clear_moneyparts();
+  ::PROTOBUF_NAMESPACE_ID::int32 moneyparts() const;
+  void set_moneyparts(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_moneyparts() const;
+  void _internal_set_moneyparts(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // int32 lastMoneyParts = 16;
+  void clear_lastmoneyparts();
+  ::PROTOBUF_NAMESPACE_ID::int32 lastmoneyparts() const;
+  void set_lastmoneyparts(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_lastmoneyparts() const;
+  void _internal_set_lastmoneyparts(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
   // @@protoc_insertion_point(class_scope:tradingpb.CtrlNode)
  private:
   class _Internal;
@@ -1023,6 +1043,8 @@ class CtrlNode :
   double totalmoney_;
   double lastmoney_;
   ::PROTOBUF_NAMESPACE_ID::int32 strategyid_;
+  ::PROTOBUF_NAMESPACE_ID::int32 moneyparts_;
+  ::PROTOBUF_NAMESPACE_ID::int32 lastmoneyparts_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_trading2_2eproto;
 };
@@ -2069,6 +2091,9 @@ class BuyParams :
   // accessors -------------------------------------------------------
 
   enum : int {
+    kAssetCodeFieldNumber = 8,
+    kTimeTypeBuyAssetFieldNumber = 9,
+    kTypeBuyAssetFieldNumber = 11,
     kInitMoneyFieldNumber = 1,
     kPerMoneyFieldNumber = 2,
     kVolumeFieldNumber = 3,
@@ -2076,7 +2101,57 @@ class BuyParams :
     kPerInitMoneyFieldNumber = 5,
     kPerHandMoneyFieldNumber = 6,
     kPerTotalMoneyFieldNumber = 7,
+    kMoneyPartsFieldNumber = 12,
+    kTsOffBuyFieldNumber = 10,
   };
+  // string assetCode = 8;
+  void clear_assetcode();
+  const std::string& assetcode() const;
+  void set_assetcode(const std::string& value);
+  void set_assetcode(std::string&& value);
+  void set_assetcode(const char* value);
+  void set_assetcode(const char* value, size_t size);
+  std::string* mutable_assetcode();
+  std::string* release_assetcode();
+  void set_allocated_assetcode(std::string* assetcode);
+  private:
+  const std::string& _internal_assetcode() const;
+  void _internal_set_assetcode(const std::string& value);
+  std::string* _internal_mutable_assetcode();
+  public:
+
+  // string timeTypeBuyAsset = 9;
+  void clear_timetypebuyasset();
+  const std::string& timetypebuyasset() const;
+  void set_timetypebuyasset(const std::string& value);
+  void set_timetypebuyasset(std::string&& value);
+  void set_timetypebuyasset(const char* value);
+  void set_timetypebuyasset(const char* value, size_t size);
+  std::string* mutable_timetypebuyasset();
+  std::string* release_timetypebuyasset();
+  void set_allocated_timetypebuyasset(std::string* timetypebuyasset);
+  private:
+  const std::string& _internal_timetypebuyasset() const;
+  void _internal_set_timetypebuyasset(const std::string& value);
+  std::string* _internal_mutable_timetypebuyasset();
+  public:
+
+  // string typeBuyAsset = 11;
+  void clear_typebuyasset();
+  const std::string& typebuyasset() const;
+  void set_typebuyasset(const std::string& value);
+  void set_typebuyasset(std::string&& value);
+  void set_typebuyasset(const char* value);
+  void set_typebuyasset(const char* value, size_t size);
+  std::string* mutable_typebuyasset();
+  std::string* release_typebuyasset();
+  void set_allocated_typebuyasset(std::string* typebuyasset);
+  private:
+  const std::string& _internal_typebuyasset() const;
+  void _internal_set_typebuyasset(const std::string& value);
+  std::string* _internal_mutable_typebuyasset();
+  public:
+
   // float initMoney = 1 [deprecated = true];
   PROTOBUF_DEPRECATED void clear_initmoney();
   PROTOBUF_DEPRECATED float initmoney() const;
@@ -2131,13 +2206,31 @@ class BuyParams :
   void _internal_set_perhandmoney(float value);
   public:
 
-  // float perTotalMoney = 7;
-  void clear_pertotalmoney();
-  float pertotalmoney() const;
-  void set_pertotalmoney(float value);
+  // float perTotalMoney = 7 [deprecated = true];
+  PROTOBUF_DEPRECATED void clear_pertotalmoney();
+  PROTOBUF_DEPRECATED float pertotalmoney() const;
+  PROTOBUF_DEPRECATED void set_pertotalmoney(float value);
   private:
   float _internal_pertotalmoney() const;
   void _internal_set_pertotalmoney(float value);
+  public:
+
+  // int32 moneyParts = 12;
+  void clear_moneyparts();
+  ::PROTOBUF_NAMESPACE_ID::int32 moneyparts() const;
+  void set_moneyparts(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_moneyparts() const;
+  void _internal_set_moneyparts(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // int64 tsOffBuy = 10;
+  void clear_tsoffbuy();
+  ::PROTOBUF_NAMESPACE_ID::int64 tsoffbuy() const;
+  void set_tsoffbuy(::PROTOBUF_NAMESPACE_ID::int64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int64 _internal_tsoffbuy() const;
+  void _internal_set_tsoffbuy(::PROTOBUF_NAMESPACE_ID::int64 value);
   public:
 
   // @@protoc_insertion_point(class_scope:tradingpb.BuyParams)
@@ -2145,6 +2238,9 @@ class BuyParams :
   class _Internal;
 
   ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr assetcode_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr timetypebuyasset_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr typebuyasset_;
   float initmoney_;
   float permoney_;
   float volume_;
@@ -2152,6 +2248,8 @@ class BuyParams :
   float perinitmoney_;
   float perhandmoney_;
   float pertotalmoney_;
+  ::PROTOBUF_NAMESPACE_ID::int32 moneyparts_;
+  ::PROTOBUF_NAMESPACE_ID::int64 tsoffbuy_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_trading2_2eproto;
 };
@@ -2263,11 +2361,63 @@ class SellParams :
   // accessors -------------------------------------------------------
 
   enum : int {
+    kAssetCodeFieldNumber = 5,
+    kTimeTypeSellAssetFieldNumber = 6,
+    kTypeSellAssetFieldNumber = 8,
     kVolumeFieldNumber = 1,
     kPerVolumeFieldNumber = 2,
     kKeepTimeFieldNumber = 4,
+    kTsOffSellFieldNumber = 7,
     kMoneyFieldNumber = 3,
   };
+  // string assetCode = 5;
+  void clear_assetcode();
+  const std::string& assetcode() const;
+  void set_assetcode(const std::string& value);
+  void set_assetcode(std::string&& value);
+  void set_assetcode(const char* value);
+  void set_assetcode(const char* value, size_t size);
+  std::string* mutable_assetcode();
+  std::string* release_assetcode();
+  void set_allocated_assetcode(std::string* assetcode);
+  private:
+  const std::string& _internal_assetcode() const;
+  void _internal_set_assetcode(const std::string& value);
+  std::string* _internal_mutable_assetcode();
+  public:
+
+  // string timeTypeSellAsset = 6;
+  void clear_timetypesellasset();
+  const std::string& timetypesellasset() const;
+  void set_timetypesellasset(const std::string& value);
+  void set_timetypesellasset(std::string&& value);
+  void set_timetypesellasset(const char* value);
+  void set_timetypesellasset(const char* value, size_t size);
+  std::string* mutable_timetypesellasset();
+  std::string* release_timetypesellasset();
+  void set_allocated_timetypesellasset(std::string* timetypesellasset);
+  private:
+  const std::string& _internal_timetypesellasset() const;
+  void _internal_set_timetypesellasset(const std::string& value);
+  std::string* _internal_mutable_timetypesellasset();
+  public:
+
+  // string typeSellAsset = 8;
+  void clear_typesellasset();
+  const std::string& typesellasset() const;
+  void set_typesellasset(const std::string& value);
+  void set_typesellasset(std::string&& value);
+  void set_typesellasset(const char* value);
+  void set_typesellasset(const char* value, size_t size);
+  std::string* mutable_typesellasset();
+  std::string* release_typesellasset();
+  void set_allocated_typesellasset(std::string* typesellasset);
+  private:
+  const std::string& _internal_typesellasset() const;
+  void _internal_set_typesellasset(const std::string& value);
+  std::string* _internal_mutable_typesellasset();
+  public:
+
   // float volume = 1;
   void clear_volume();
   float volume() const;
@@ -2295,6 +2445,15 @@ class SellParams :
   void _internal_set_keeptime(::PROTOBUF_NAMESPACE_ID::int64 value);
   public:
 
+  // int64 tsOffSell = 7;
+  void clear_tsoffsell();
+  ::PROTOBUF_NAMESPACE_ID::int64 tsoffsell() const;
+  void set_tsoffsell(::PROTOBUF_NAMESPACE_ID::int64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int64 _internal_tsoffsell() const;
+  void _internal_set_tsoffsell(::PROTOBUF_NAMESPACE_ID::int64 value);
+  public:
+
   // float money = 3;
   void clear_money();
   float money() const;
@@ -2309,9 +2468,13 @@ class SellParams :
   class _Internal;
 
   ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr assetcode_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr timetypesellasset_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr typesellasset_;
   float volume_;
   float pervolume_;
   ::PROTOBUF_NAMESPACE_ID::int64 keeptime_;
+  ::PROTOBUF_NAMESPACE_ID::int64 tsoffsell_;
   float money_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_trading2_2eproto;
@@ -5740,6 +5903,46 @@ CtrlNode::mutable_mapassetsinfo() {
   return _internal_mutable_mapassetsinfo();
 }
 
+// int32 moneyParts = 15;
+inline void CtrlNode::clear_moneyparts() {
+  moneyparts_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 CtrlNode::_internal_moneyparts() const {
+  return moneyparts_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 CtrlNode::moneyparts() const {
+  // @@protoc_insertion_point(field_get:tradingpb.CtrlNode.moneyParts)
+  return _internal_moneyparts();
+}
+inline void CtrlNode::_internal_set_moneyparts(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  moneyparts_ = value;
+}
+inline void CtrlNode::set_moneyparts(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_moneyparts(value);
+  // @@protoc_insertion_point(field_set:tradingpb.CtrlNode.moneyParts)
+}
+
+// int32 lastMoneyParts = 16;
+inline void CtrlNode::clear_lastmoneyparts() {
+  lastmoneyparts_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 CtrlNode::_internal_lastmoneyparts() const {
+  return lastmoneyparts_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 CtrlNode::lastmoneyparts() const {
+  // @@protoc_insertion_point(field_get:tradingpb.CtrlNode.lastMoneyParts)
+  return _internal_lastmoneyparts();
+}
+inline void CtrlNode::_internal_set_lastmoneyparts(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  lastmoneyparts_ = value;
+}
+inline void CtrlNode::set_lastmoneyparts(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_lastmoneyparts(value);
+  // @@protoc_insertion_point(field_set:tradingpb.CtrlNode.lastMoneyParts)
+}
+
 // -------------------------------------------------------------------
 
 // WalletAsset
@@ -6725,7 +6928,7 @@ inline void BuyParams::set_perhandmoney(float value) {
   // @@protoc_insertion_point(field_set:tradingpb.BuyParams.perHandMoney)
 }
 
-// float perTotalMoney = 7;
+// float perTotalMoney = 7 [deprecated = true];
 inline void BuyParams::clear_pertotalmoney() {
   pertotalmoney_ = 0;
 }
@@ -6743,6 +6946,226 @@ inline void BuyParams::_internal_set_pertotalmoney(float value) {
 inline void BuyParams::set_pertotalmoney(float value) {
   _internal_set_pertotalmoney(value);
   // @@protoc_insertion_point(field_set:tradingpb.BuyParams.perTotalMoney)
+}
+
+// string assetCode = 8;
+inline void BuyParams::clear_assetcode() {
+  assetcode_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline const std::string& BuyParams::assetcode() const {
+  // @@protoc_insertion_point(field_get:tradingpb.BuyParams.assetCode)
+  return _internal_assetcode();
+}
+inline void BuyParams::set_assetcode(const std::string& value) {
+  _internal_set_assetcode(value);
+  // @@protoc_insertion_point(field_set:tradingpb.BuyParams.assetCode)
+}
+inline std::string* BuyParams::mutable_assetcode() {
+  // @@protoc_insertion_point(field_mutable:tradingpb.BuyParams.assetCode)
+  return _internal_mutable_assetcode();
+}
+inline const std::string& BuyParams::_internal_assetcode() const {
+  return assetcode_.GetNoArena();
+}
+inline void BuyParams::_internal_set_assetcode(const std::string& value) {
+  
+  assetcode_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+}
+inline void BuyParams::set_assetcode(std::string&& value) {
+  
+  assetcode_.SetNoArena(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:tradingpb.BuyParams.assetCode)
+}
+inline void BuyParams::set_assetcode(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  assetcode_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:tradingpb.BuyParams.assetCode)
+}
+inline void BuyParams::set_assetcode(const char* value, size_t size) {
+  
+  assetcode_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:tradingpb.BuyParams.assetCode)
+}
+inline std::string* BuyParams::_internal_mutable_assetcode() {
+  
+  return assetcode_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline std::string* BuyParams::release_assetcode() {
+  // @@protoc_insertion_point(field_release:tradingpb.BuyParams.assetCode)
+  
+  return assetcode_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline void BuyParams::set_allocated_assetcode(std::string* assetcode) {
+  if (assetcode != nullptr) {
+    
+  } else {
+    
+  }
+  assetcode_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), assetcode);
+  // @@protoc_insertion_point(field_set_allocated:tradingpb.BuyParams.assetCode)
+}
+
+// string timeTypeBuyAsset = 9;
+inline void BuyParams::clear_timetypebuyasset() {
+  timetypebuyasset_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline const std::string& BuyParams::timetypebuyasset() const {
+  // @@protoc_insertion_point(field_get:tradingpb.BuyParams.timeTypeBuyAsset)
+  return _internal_timetypebuyasset();
+}
+inline void BuyParams::set_timetypebuyasset(const std::string& value) {
+  _internal_set_timetypebuyasset(value);
+  // @@protoc_insertion_point(field_set:tradingpb.BuyParams.timeTypeBuyAsset)
+}
+inline std::string* BuyParams::mutable_timetypebuyasset() {
+  // @@protoc_insertion_point(field_mutable:tradingpb.BuyParams.timeTypeBuyAsset)
+  return _internal_mutable_timetypebuyasset();
+}
+inline const std::string& BuyParams::_internal_timetypebuyasset() const {
+  return timetypebuyasset_.GetNoArena();
+}
+inline void BuyParams::_internal_set_timetypebuyasset(const std::string& value) {
+  
+  timetypebuyasset_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+}
+inline void BuyParams::set_timetypebuyasset(std::string&& value) {
+  
+  timetypebuyasset_.SetNoArena(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:tradingpb.BuyParams.timeTypeBuyAsset)
+}
+inline void BuyParams::set_timetypebuyasset(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  timetypebuyasset_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:tradingpb.BuyParams.timeTypeBuyAsset)
+}
+inline void BuyParams::set_timetypebuyasset(const char* value, size_t size) {
+  
+  timetypebuyasset_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:tradingpb.BuyParams.timeTypeBuyAsset)
+}
+inline std::string* BuyParams::_internal_mutable_timetypebuyasset() {
+  
+  return timetypebuyasset_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline std::string* BuyParams::release_timetypebuyasset() {
+  // @@protoc_insertion_point(field_release:tradingpb.BuyParams.timeTypeBuyAsset)
+  
+  return timetypebuyasset_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline void BuyParams::set_allocated_timetypebuyasset(std::string* timetypebuyasset) {
+  if (timetypebuyasset != nullptr) {
+    
+  } else {
+    
+  }
+  timetypebuyasset_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), timetypebuyasset);
+  // @@protoc_insertion_point(field_set_allocated:tradingpb.BuyParams.timeTypeBuyAsset)
+}
+
+// int64 tsOffBuy = 10;
+inline void BuyParams::clear_tsoffbuy() {
+  tsoffbuy_ = PROTOBUF_LONGLONG(0);
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 BuyParams::_internal_tsoffbuy() const {
+  return tsoffbuy_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 BuyParams::tsoffbuy() const {
+  // @@protoc_insertion_point(field_get:tradingpb.BuyParams.tsOffBuy)
+  return _internal_tsoffbuy();
+}
+inline void BuyParams::_internal_set_tsoffbuy(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  
+  tsoffbuy_ = value;
+}
+inline void BuyParams::set_tsoffbuy(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  _internal_set_tsoffbuy(value);
+  // @@protoc_insertion_point(field_set:tradingpb.BuyParams.tsOffBuy)
+}
+
+// string typeBuyAsset = 11;
+inline void BuyParams::clear_typebuyasset() {
+  typebuyasset_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline const std::string& BuyParams::typebuyasset() const {
+  // @@protoc_insertion_point(field_get:tradingpb.BuyParams.typeBuyAsset)
+  return _internal_typebuyasset();
+}
+inline void BuyParams::set_typebuyasset(const std::string& value) {
+  _internal_set_typebuyasset(value);
+  // @@protoc_insertion_point(field_set:tradingpb.BuyParams.typeBuyAsset)
+}
+inline std::string* BuyParams::mutable_typebuyasset() {
+  // @@protoc_insertion_point(field_mutable:tradingpb.BuyParams.typeBuyAsset)
+  return _internal_mutable_typebuyasset();
+}
+inline const std::string& BuyParams::_internal_typebuyasset() const {
+  return typebuyasset_.GetNoArena();
+}
+inline void BuyParams::_internal_set_typebuyasset(const std::string& value) {
+  
+  typebuyasset_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+}
+inline void BuyParams::set_typebuyasset(std::string&& value) {
+  
+  typebuyasset_.SetNoArena(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:tradingpb.BuyParams.typeBuyAsset)
+}
+inline void BuyParams::set_typebuyasset(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  typebuyasset_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:tradingpb.BuyParams.typeBuyAsset)
+}
+inline void BuyParams::set_typebuyasset(const char* value, size_t size) {
+  
+  typebuyasset_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:tradingpb.BuyParams.typeBuyAsset)
+}
+inline std::string* BuyParams::_internal_mutable_typebuyasset() {
+  
+  return typebuyasset_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline std::string* BuyParams::release_typebuyasset() {
+  // @@protoc_insertion_point(field_release:tradingpb.BuyParams.typeBuyAsset)
+  
+  return typebuyasset_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline void BuyParams::set_allocated_typebuyasset(std::string* typebuyasset) {
+  if (typebuyasset != nullptr) {
+    
+  } else {
+    
+  }
+  typebuyasset_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), typebuyasset);
+  // @@protoc_insertion_point(field_set_allocated:tradingpb.BuyParams.typeBuyAsset)
+}
+
+// int32 moneyParts = 12;
+inline void BuyParams::clear_moneyparts() {
+  moneyparts_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 BuyParams::_internal_moneyparts() const {
+  return moneyparts_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 BuyParams::moneyparts() const {
+  // @@protoc_insertion_point(field_get:tradingpb.BuyParams.moneyParts)
+  return _internal_moneyparts();
+}
+inline void BuyParams::_internal_set_moneyparts(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  moneyparts_ = value;
+}
+inline void BuyParams::set_moneyparts(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_moneyparts(value);
+  // @@protoc_insertion_point(field_set:tradingpb.BuyParams.moneyParts)
 }
 
 // -------------------------------------------------------------------
@@ -6827,6 +7250,206 @@ inline void SellParams::_internal_set_keeptime(::PROTOBUF_NAMESPACE_ID::int64 va
 inline void SellParams::set_keeptime(::PROTOBUF_NAMESPACE_ID::int64 value) {
   _internal_set_keeptime(value);
   // @@protoc_insertion_point(field_set:tradingpb.SellParams.keepTime)
+}
+
+// string assetCode = 5;
+inline void SellParams::clear_assetcode() {
+  assetcode_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline const std::string& SellParams::assetcode() const {
+  // @@protoc_insertion_point(field_get:tradingpb.SellParams.assetCode)
+  return _internal_assetcode();
+}
+inline void SellParams::set_assetcode(const std::string& value) {
+  _internal_set_assetcode(value);
+  // @@protoc_insertion_point(field_set:tradingpb.SellParams.assetCode)
+}
+inline std::string* SellParams::mutable_assetcode() {
+  // @@protoc_insertion_point(field_mutable:tradingpb.SellParams.assetCode)
+  return _internal_mutable_assetcode();
+}
+inline const std::string& SellParams::_internal_assetcode() const {
+  return assetcode_.GetNoArena();
+}
+inline void SellParams::_internal_set_assetcode(const std::string& value) {
+  
+  assetcode_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+}
+inline void SellParams::set_assetcode(std::string&& value) {
+  
+  assetcode_.SetNoArena(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:tradingpb.SellParams.assetCode)
+}
+inline void SellParams::set_assetcode(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  assetcode_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:tradingpb.SellParams.assetCode)
+}
+inline void SellParams::set_assetcode(const char* value, size_t size) {
+  
+  assetcode_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:tradingpb.SellParams.assetCode)
+}
+inline std::string* SellParams::_internal_mutable_assetcode() {
+  
+  return assetcode_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline std::string* SellParams::release_assetcode() {
+  // @@protoc_insertion_point(field_release:tradingpb.SellParams.assetCode)
+  
+  return assetcode_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline void SellParams::set_allocated_assetcode(std::string* assetcode) {
+  if (assetcode != nullptr) {
+    
+  } else {
+    
+  }
+  assetcode_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), assetcode);
+  // @@protoc_insertion_point(field_set_allocated:tradingpb.SellParams.assetCode)
+}
+
+// string timeTypeSellAsset = 6;
+inline void SellParams::clear_timetypesellasset() {
+  timetypesellasset_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline const std::string& SellParams::timetypesellasset() const {
+  // @@protoc_insertion_point(field_get:tradingpb.SellParams.timeTypeSellAsset)
+  return _internal_timetypesellasset();
+}
+inline void SellParams::set_timetypesellasset(const std::string& value) {
+  _internal_set_timetypesellasset(value);
+  // @@protoc_insertion_point(field_set:tradingpb.SellParams.timeTypeSellAsset)
+}
+inline std::string* SellParams::mutable_timetypesellasset() {
+  // @@protoc_insertion_point(field_mutable:tradingpb.SellParams.timeTypeSellAsset)
+  return _internal_mutable_timetypesellasset();
+}
+inline const std::string& SellParams::_internal_timetypesellasset() const {
+  return timetypesellasset_.GetNoArena();
+}
+inline void SellParams::_internal_set_timetypesellasset(const std::string& value) {
+  
+  timetypesellasset_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+}
+inline void SellParams::set_timetypesellasset(std::string&& value) {
+  
+  timetypesellasset_.SetNoArena(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:tradingpb.SellParams.timeTypeSellAsset)
+}
+inline void SellParams::set_timetypesellasset(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  timetypesellasset_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:tradingpb.SellParams.timeTypeSellAsset)
+}
+inline void SellParams::set_timetypesellasset(const char* value, size_t size) {
+  
+  timetypesellasset_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:tradingpb.SellParams.timeTypeSellAsset)
+}
+inline std::string* SellParams::_internal_mutable_timetypesellasset() {
+  
+  return timetypesellasset_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline std::string* SellParams::release_timetypesellasset() {
+  // @@protoc_insertion_point(field_release:tradingpb.SellParams.timeTypeSellAsset)
+  
+  return timetypesellasset_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline void SellParams::set_allocated_timetypesellasset(std::string* timetypesellasset) {
+  if (timetypesellasset != nullptr) {
+    
+  } else {
+    
+  }
+  timetypesellasset_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), timetypesellasset);
+  // @@protoc_insertion_point(field_set_allocated:tradingpb.SellParams.timeTypeSellAsset)
+}
+
+// int64 tsOffSell = 7;
+inline void SellParams::clear_tsoffsell() {
+  tsoffsell_ = PROTOBUF_LONGLONG(0);
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 SellParams::_internal_tsoffsell() const {
+  return tsoffsell_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 SellParams::tsoffsell() const {
+  // @@protoc_insertion_point(field_get:tradingpb.SellParams.tsOffSell)
+  return _internal_tsoffsell();
+}
+inline void SellParams::_internal_set_tsoffsell(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  
+  tsoffsell_ = value;
+}
+inline void SellParams::set_tsoffsell(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  _internal_set_tsoffsell(value);
+  // @@protoc_insertion_point(field_set:tradingpb.SellParams.tsOffSell)
+}
+
+// string typeSellAsset = 8;
+inline void SellParams::clear_typesellasset() {
+  typesellasset_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline const std::string& SellParams::typesellasset() const {
+  // @@protoc_insertion_point(field_get:tradingpb.SellParams.typeSellAsset)
+  return _internal_typesellasset();
+}
+inline void SellParams::set_typesellasset(const std::string& value) {
+  _internal_set_typesellasset(value);
+  // @@protoc_insertion_point(field_set:tradingpb.SellParams.typeSellAsset)
+}
+inline std::string* SellParams::mutable_typesellasset() {
+  // @@protoc_insertion_point(field_mutable:tradingpb.SellParams.typeSellAsset)
+  return _internal_mutable_typesellasset();
+}
+inline const std::string& SellParams::_internal_typesellasset() const {
+  return typesellasset_.GetNoArena();
+}
+inline void SellParams::_internal_set_typesellasset(const std::string& value) {
+  
+  typesellasset_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+}
+inline void SellParams::set_typesellasset(std::string&& value) {
+  
+  typesellasset_.SetNoArena(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:tradingpb.SellParams.typeSellAsset)
+}
+inline void SellParams::set_typesellasset(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  typesellasset_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:tradingpb.SellParams.typeSellAsset)
+}
+inline void SellParams::set_typesellasset(const char* value, size_t size) {
+  
+  typesellasset_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:tradingpb.SellParams.typeSellAsset)
+}
+inline std::string* SellParams::_internal_mutable_typesellasset() {
+  
+  return typesellasset_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline std::string* SellParams::release_typesellasset() {
+  // @@protoc_insertion_point(field_release:tradingpb.SellParams.typeSellAsset)
+  
+  return typesellasset_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline void SellParams::set_allocated_typesellasset(std::string* typesellasset) {
+  if (typesellasset != nullptr) {
+    
+  } else {
+    
+  }
+  typesellasset_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), typesellasset);
+  // @@protoc_insertion_point(field_set_allocated:tradingpb.SellParams.typeSellAsset)
 }
 
 // -------------------------------------------------------------------
