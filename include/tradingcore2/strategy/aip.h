@@ -27,8 +27,7 @@ class StrategyAIP final : public Strategy {
 
  public:
   virtual void onBuy(bool issim, TimeStamp ts, Money money, Volume volume,
-                     Money fee) override;
-
+                     Money fee, int offMoneyParts) override;
 };
 
 CR2END

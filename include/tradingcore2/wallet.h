@@ -45,19 +45,19 @@ struct WalletHistoryNode {
     this->ts = ts;
   }
 
-  void setTrade(Trade& trade, Money offMoney, int strategyID,
-                int ctrlConditionID) {
-    this->nodeType = WHNT_TRADE;
-    this->offMoney = offMoney;
-    this->trade = trade;
-    this->ts = trade.ts;
-    this->strategyID = strategyID;
-    this->ctrlConditionID = ctrlConditionID;
-  }
+  // void setTrade(Trade& trade, Money offMoney, int strategyID,
+  //               int ctrlConditionID) {
+  //   this->nodeType = WHNT_TRADE;
+  //   this->offMoney = offMoney;
+  //   this->trade = trade;
+  //   this->ts = trade.ts;
+  //   this->strategyID = strategyID;
+  //   this->ctrlConditionID = ctrlConditionID;
+  // }
 
   void setTrade(TradeType tradeType, const char* assetsName, Money price,
                 Volume volume, Money fee, TimeStamp ts, Money offMoney,
-                int strategyID, int ctrlConditionID) {
+                int strategyID, int ctrlConditionID, int moneyParts) {
     this->nodeType = WHNT_TRADE;
     this->offMoney = offMoney;
     this->ts = ts;
@@ -71,6 +71,8 @@ struct WalletHistoryNode {
     this->trade.ts = ts;
     this->strategyID = strategyID;
     this->ctrlConditionID = ctrlConditionID;
+
+    this->trade.moneyParts = moneyParts;
   }
 };
 
@@ -100,11 +102,11 @@ class Wallet {
 
   Volume buyAssets(const char* assetsName, Money money, Money& fee,
                    TimeStamp ts, int strategyID, int ctrlConditionID,
-                   FuncCalcFee calcFee);
+                   FuncCalcFee calcFee, int moneyParts);
 
   Money sellAssets(const char* assetsName, Volume volume, Money& fee,
                    TimeStamp ts, int strategyID, int ctrlConditionID,
-                   FuncCalcFee calcFee);
+                   FuncCalcFee calcFee, int moneyParts);
 
   void deposit(Money money, TimeStamp ts);
 
@@ -125,7 +127,11 @@ class Wallet {
 
   // calcAssetVolumeWithKeepTime - 计算持有时间超过keeptime的数量
   Volume calcAssetVolumeWithKeepTime(const char* assetsName, TimeStamp keeptime,
-                                     TimeStamp ts) const;
+                                     TimeStamp ts, int& moneyParts) const;
+
+  // calcAssetVolume - 计算持有时间超过keeptime的数量
+  Volume calcAssetVolume(const char* assetsName, TimeStamp ts,
+                         int& moneyParts) const;
 
  protected:
   void _addHistory(WalletHistoryNode& n) { m_history.push_back(n); }

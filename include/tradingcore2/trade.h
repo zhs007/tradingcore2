@@ -2,6 +2,7 @@
 #define __TRADINGCORE2_TRADE_H__
 
 #include <tradingcore2/basedef.h>
+
 #include <string>
 
 CR2BEGIN
@@ -16,6 +17,7 @@ struct Trade {
   Money price;
   Money fee;
   TimeStamp ts;
+  int moneyParts;
 };
 
 CR2END
