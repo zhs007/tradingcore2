@@ -125,7 +125,7 @@ void moneyParts(const tr2::Config& cfg) {
   sell0->set_name("weekday");
   sell0->add_vals(2);
   auto bp = strategy0->mutable_paramsbuy();
-  bp->set_moneyparts(3);
+  bp->set_moneyparts(2);
   auto sp = strategy0->mutable_paramssell();
   // sp->set_pervolume(1);
   sp->set_keeptime(7 * 24 * 60 * 60);

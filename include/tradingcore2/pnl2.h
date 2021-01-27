@@ -21,10 +21,10 @@ class PNL2 {
 
  public:
   void buyAsset(const char* market0, const char* symbol0, time_t ts,
-                Money money, Money volume, Money fee);
+                Money money, Money volume, Money fee, int moneyParts);
 
   void sellAsset(const char* market0, const char* symbol0, time_t ts,
-                 Money money, Money volume, Money fee);
+                 Money money, Money volume, Money fee, int moneyParts);
 
   void withdraw(Money money, time_t ts);
 

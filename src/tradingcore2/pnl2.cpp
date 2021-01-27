@@ -15,7 +15,7 @@ CR2BEGIN
 void PNL2::release() { this->m_data.Clear(); }
 
 void PNL2::buyAsset(const char* market0, const char* symbol0, time_t ts,
-                    Money money, Money volume, Money fee) {
+                    Money money, Money volume, Money fee, int moneyParts) {
   auto objTotal = this->m_data.mutable_total();
   auto ctrl = objTotal->add_lstctrl();
 
@@ -33,11 +33,13 @@ void PNL2::buyAsset(const char* market0, const char* symbol0, time_t ts,
   ctrl->set_type(::tradingpb::CTRL_BUY);
   ctrl->set_fee(fee);
 
+  ctrl->set_moneyparts(moneyParts);
+
   this->addAsset(symbol0);
 }
 
 void PNL2::sellAsset(const char* market0, const char* symbol0, time_t ts,
-                     Money money, Money volume, Money fee) {
+                     Money money, Money volume, Money fee, int moneyParts) {
   auto objTotal = this->m_data.mutable_total();
   auto ctrl = objTotal->add_lstctrl();
 
@@ -54,6 +56,8 @@ void PNL2::sellAsset(const char* market0, const char* symbol0, time_t ts,
   ctrl->set_ts(ts);
   ctrl->set_type(::tradingpb::CTRL_SELL);
   ctrl->set_fee(fee);
+
+  ctrl->set_moneyparts(moneyParts);
 
   this->addAsset(symbol0);
 }
