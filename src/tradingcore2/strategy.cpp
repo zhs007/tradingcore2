@@ -267,7 +267,7 @@ void Strategy::sell(bool issim, TimeStamp ts, int strategyID,
           this->m_strategy.asset().code().c_str(), v, fee, ts, strategyID,
           ctrlConditionID, f, moneyParts);
 
-      this->onSell(issim, ts, m, v, 0, -moneyParts);
+      this->onSell(issim, ts, m, v, 0, moneyParts);
     }
   } else if (sell.pervolume() > 0) {
     int moneyParts;
@@ -285,7 +285,7 @@ void Strategy::sell(bool issim, TimeStamp ts, int strategyID,
           this->m_strategy.asset().code().c_str(), v, fee, ts, strategyID,
           ctrlConditionID, f, moneyParts);
 
-      this->onSell(issim, ts, m, v, 0, -moneyParts);
+      this->onSell(issim, ts, m, v, 0, moneyParts);
     }
 
     // LOG(INFO) << "sell " << this->m_handMoney;
@@ -302,7 +302,7 @@ void Strategy::sell(bool issim, TimeStamp ts, int strategyID,
           this->m_strategy.asset().code().c_str(), v, fee, ts, strategyID,
           ctrlConditionID, f, moneyParts);
 
-      this->onSell(issim, ts, m, v, 0, -moneyParts);
+      this->onSell(issim, ts, m, v, 0, moneyParts);
     }
   }
 }

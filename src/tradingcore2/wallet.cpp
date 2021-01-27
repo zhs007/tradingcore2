@@ -200,12 +200,12 @@ void Wallet::buildPNL2(PNL2& pnl2) const {
         pnl2.buyAsset(this->m_exchange.getMarketName(),
                       it->trade.assetsName.c_str(), it->ts,
                       it->trade.price * it->trade.volume, it->trade.volume,
-                      it->trade.fee);
+                      it->trade.fee, it->trade.moneyParts);
       } else {
         pnl2.sellAsset(this->m_exchange.getMarketName(),
                        it->trade.assetsName.c_str(), it->ts,
                        it->trade.price * it->trade.volume, it->trade.volume,
-                       it->trade.fee);
+                       it->trade.fee, it->trade.moneyParts);
       }
     }
   }
