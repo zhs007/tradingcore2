@@ -41,7 +41,7 @@ void StrategySI::onTimeStamp(bool issim, TimeStamp ts, int index) {
     if (cv->value >= this->m_minValBuy && cv->value < this->m_maxValBuy) {
       Money fee = 0;
       this->m_volume = this->m_wallet.buyAssets(
-          this->m_assetsName.c_str(), this->m_money, fee, ts, 0, 0, NULL);
+          this->m_assetsName.c_str(), this->m_money, fee, ts, 0, 0, NULL, 0);
 
       this->onTrading();
 
@@ -53,7 +53,7 @@ void StrategySI::onTimeStamp(bool issim, TimeStamp ts, int index) {
     if (cv->value >= this->m_minValSell && cv->value < this->m_maxValSell) {
       Money fee = 0;
       this->m_money = this->m_wallet.sellAssets(
-          this->m_assetsName.c_str(), this->m_volume, fee, ts, 0, 0, NULL);
+          this->m_assetsName.c_str(), this->m_volume, fee, ts, 0, 0, NULL, 0);
 
       if (cd.close <= this->m_buyPrice) {
         this->onTradingFail();
@@ -62,7 +62,7 @@ void StrategySI::onTimeStamp(bool issim, TimeStamp ts, int index) {
       this->m_volume = 0;
     } else {
       auto curmoney = this->onProcStopLoss(this->m_assetsName.c_str(), cd.close,
-                                           this->m_volume, ts, index, 0, 0);
+                                           this->m_volume, ts, index, 0, 0, 0);
 
       if (curmoney > 0) {
         this->m_money = curmoney;

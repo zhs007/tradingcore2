@@ -32,17 +32,18 @@ class Strategy {
         m_price(0),
         m_fee(0),
         m_pCCData(NULL),
-        m_lastAIPTs(0) {}
+        m_lastAIPTs(0),
+        m_lastMoneyParts(-1) {}
   virtual ~Strategy() { this->release(); }
 
  public:
   virtual void onTimeStamp(bool issim, TimeStamp ts, int index);
 
   virtual void onBuy(bool issim, TimeStamp ts, Money money, Volume volume,
-                     Money fee);
+                     Money fee, int offMoneyParts);
 
   virtual void onSell(bool issim, TimeStamp ts, Money money, Volume volume,
-                      Money fee);
+                      Money fee, int offMoneyParts);
 
  public:
   void init(const tradingpb::Strategy& strategy) {
@@ -85,7 +86,7 @@ class Strategy {
 
   Money onProcStopLoss(const char* assetsName, Money curPrice, Volume volume,
                        TimeStamp ts, int index, int strategyID,
-                       int ctrlConditionID);
+                       int ctrlConditionID, int moneyParts);
 
   void onTradingFail() { m_failNums++; }
 
@@ -121,6 +122,7 @@ class Strategy {
   CtrlConditionMgr::CtrlConditionData* m_pCCData;
   time_t m_lastAIPTs;
   IndicatorMap m_mapIndicators;
+  int m_lastMoneyParts;
 };
 
 CR2END

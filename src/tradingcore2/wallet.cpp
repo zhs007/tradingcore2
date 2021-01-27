@@ -49,7 +49,7 @@ void Wallet::withdraw(Money money, TimeStamp ts) {
 
 Volume Wallet::buyAssets(const char* assetsName, Money money, Money& fee,
                          TimeStamp ts, int strategyID, int ctrlConditionID,
-                         FuncCalcFee calcFee) {
+                         FuncCalcFee calcFee, int moneyParts) {
   assert(assetsName != NULL);
   assert(money > ZEROMONEY);
 
@@ -77,7 +77,7 @@ Volume Wallet::buyAssets(const char* assetsName, Money money, Money& fee,
 
   WalletHistoryNode n;
   n.setTrade(TT_BUY, assetsName, price, volume, fee, ts, -money, strategyID,
-             ctrlConditionID);
+             ctrlConditionID, moneyParts);
 
   this->_addHistory(n);
 
@@ -88,7 +88,7 @@ Volume Wallet::buyAssets(const char* assetsName, Money money, Money& fee,
 
 Money Wallet::sellAssets(const char* assetsName, Volume volume, Money& fee,
                          TimeStamp ts, int strategyID, int ctrlConditionID,
-                         FuncCalcFee calcFee) {
+                         FuncCalcFee calcFee, int moneyParts) {
   assert(assetsName != NULL);
   assert(volume > ZEROVOLUME);
 
@@ -118,7 +118,7 @@ Money Wallet::sellAssets(const char* assetsName, Volume volume, Money& fee,
 
   WalletHistoryNode n;
   n.setTrade(TT_SELL, assetsName, price, volume, fee, ts, money, strategyID,
-             ctrlConditionID);
+             ctrlConditionID, moneyParts);
 
   this->_addHistory(n);
 
@@ -240,9 +240,10 @@ const WalletHistoryNode* Wallet::getLastNode(TradeType tradeType) const {
 
 // calcAssetVolumeWithKeepTime - 计算持有时间超过keeptime的数量
 Volume Wallet::calcAssetVolumeWithKeepTime(const char* assetsName,
-                                           TimeStamp keeptime,
-                                           TimeStamp ts) const {
+                                           TimeStamp keeptime, TimeStamp ts,
+                                           int& moneyParts) const {
   Volume v = 0;
+  moneyParts = 0;
 
   for (auto it = this->m_history.begin(); it != this->m_history.end(); ++it) {
     if (ts < it->ts) {
@@ -253,9 +254,40 @@ Volume Wallet::calcAssetVolumeWithKeepTime(const char* assetsName,
       if (it->trade.tradeType == TT_BUY) {
         if (ts > it->ts + keeptime) {
           v += it->trade.volume;
+          moneyParts += it->trade.moneyParts;
         }
       } else if (it->trade.tradeType == TT_SELL) {
         v -= it->trade.volume;
+        moneyParts -= it->trade.moneyParts;
+      }
+    }
+  }
+
+  if (v < 0) {
+    return 0;
+  }
+
+  return v;
+}
+
+// calcAssetVolume - 计算持有时间超过keeptime的数量
+Volume Wallet::calcAssetVolume(const char* assetsName, TimeStamp ts,
+                               int& moneyParts) const {
+  Volume v = 0;
+  moneyParts = 0;
+
+  for (auto it = this->m_history.begin(); it != this->m_history.end(); ++it) {
+    if (ts < it->ts) {
+      break;
+    }
+
+    if (it->nodeType == WHNT_TRADE && it->trade.assetsName == assetsName) {
+      if (it->trade.tradeType == TT_BUY) {
+        v += it->trade.volume;
+        moneyParts += it->trade.moneyParts;
+      } else if (it->trade.tradeType == TT_SELL) {
+        v -= it->trade.volume;
+        moneyParts -= it->trade.moneyParts;
       }
     }
   }

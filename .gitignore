@@ -12,3 +12,4 @@ _deps
 build
 output
 cfg/config.yaml
+deps/ta-lib
