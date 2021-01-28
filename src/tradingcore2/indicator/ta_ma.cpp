@@ -141,7 +141,11 @@ bool IndicatorTA_MA::build2(Exchange& exchange, const char* assetsName,
       isok = exchange.getDataWithTimestamp(
           assetsName2, cd.ts + this->m_params.b2OffTime, cd1);
       if (!isok) {
-        assert(ii == length - 1);
+        if (ii != length - 1) {
+          LOG(WARNING) << "IndicatorTAMA:getDataWithTimestamp " << ii << " "
+                       << cd.ts + this->m_params.b2OffTime;
+        }
+        // assert(ii == length - 1);
 
         cd1.close = cd.close;
       }
