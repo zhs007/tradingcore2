@@ -2103,6 +2103,7 @@ class BuyParams :
     kPerTotalMoneyFieldNumber = 7,
     kMoneyPartsFieldNumber = 12,
     kTsOffBuyFieldNumber = 10,
+    kNextTimesFieldNumber = 13,
   };
   // string assetCode = 8;
   void clear_assetcode();
@@ -2233,6 +2234,15 @@ class BuyParams :
   void _internal_set_tsoffbuy(::PROTOBUF_NAMESPACE_ID::int64 value);
   public:
 
+  // int32 nextTimes = 13;
+  void clear_nexttimes();
+  ::PROTOBUF_NAMESPACE_ID::int32 nexttimes() const;
+  void set_nexttimes(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_nexttimes() const;
+  void _internal_set_nexttimes(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
   // @@protoc_insertion_point(class_scope:tradingpb.BuyParams)
  private:
   class _Internal;
@@ -2250,6 +2260,7 @@ class BuyParams :
   float pertotalmoney_;
   ::PROTOBUF_NAMESPACE_ID::int32 moneyparts_;
   ::PROTOBUF_NAMESPACE_ID::int64 tsoffbuy_;
+  ::PROTOBUF_NAMESPACE_ID::int32 nexttimes_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_trading2_2eproto;
 };
@@ -2367,8 +2378,9 @@ class SellParams :
     kVolumeFieldNumber = 1,
     kPerVolumeFieldNumber = 2,
     kKeepTimeFieldNumber = 4,
-    kTsOffSellFieldNumber = 7,
     kMoneyFieldNumber = 3,
+    kNextTimesFieldNumber = 9,
+    kTsOffSellFieldNumber = 7,
   };
   // string assetCode = 5;
   void clear_assetcode();
@@ -2445,15 +2457,6 @@ class SellParams :
   void _internal_set_keeptime(::PROTOBUF_NAMESPACE_ID::int64 value);
   public:
 
-  // int64 tsOffSell = 7;
-  void clear_tsoffsell();
-  ::PROTOBUF_NAMESPACE_ID::int64 tsoffsell() const;
-  void set_tsoffsell(::PROTOBUF_NAMESPACE_ID::int64 value);
-  private:
-  ::PROTOBUF_NAMESPACE_ID::int64 _internal_tsoffsell() const;
-  void _internal_set_tsoffsell(::PROTOBUF_NAMESPACE_ID::int64 value);
-  public:
-
   // float money = 3;
   void clear_money();
   float money() const;
@@ -2461,6 +2464,24 @@ class SellParams :
   private:
   float _internal_money() const;
   void _internal_set_money(float value);
+  public:
+
+  // int32 nextTimes = 9;
+  void clear_nexttimes();
+  ::PROTOBUF_NAMESPACE_ID::int32 nexttimes() const;
+  void set_nexttimes(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_nexttimes() const;
+  void _internal_set_nexttimes(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // int64 tsOffSell = 7;
+  void clear_tsoffsell();
+  ::PROTOBUF_NAMESPACE_ID::int64 tsoffsell() const;
+  void set_tsoffsell(::PROTOBUF_NAMESPACE_ID::int64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int64 _internal_tsoffsell() const;
+  void _internal_set_tsoffsell(::PROTOBUF_NAMESPACE_ID::int64 value);
   public:
 
   // @@protoc_insertion_point(class_scope:tradingpb.SellParams)
@@ -2474,8 +2495,9 @@ class SellParams :
   float volume_;
   float pervolume_;
   ::PROTOBUF_NAMESPACE_ID::int64 keeptime_;
-  ::PROTOBUF_NAMESPACE_ID::int64 tsoffsell_;
   float money_;
+  ::PROTOBUF_NAMESPACE_ID::int32 nexttimes_;
+  ::PROTOBUF_NAMESPACE_ID::int64 tsoffsell_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_trading2_2eproto;
 };
@@ -7168,6 +7190,26 @@ inline void BuyParams::set_moneyparts(::PROTOBUF_NAMESPACE_ID::int32 value) {
   // @@protoc_insertion_point(field_set:tradingpb.BuyParams.moneyParts)
 }
 
+// int32 nextTimes = 13;
+inline void BuyParams::clear_nexttimes() {
+  nexttimes_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 BuyParams::_internal_nexttimes() const {
+  return nexttimes_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 BuyParams::nexttimes() const {
+  // @@protoc_insertion_point(field_get:tradingpb.BuyParams.nextTimes)
+  return _internal_nexttimes();
+}
+inline void BuyParams::_internal_set_nexttimes(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  nexttimes_ = value;
+}
+inline void BuyParams::set_nexttimes(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_nexttimes(value);
+  // @@protoc_insertion_point(field_set:tradingpb.BuyParams.nextTimes)
+}
+
 // -------------------------------------------------------------------
 
 // SellParams
@@ -7450,6 +7492,26 @@ inline void SellParams::set_allocated_typesellasset(std::string* typesellasset) 
   }
   typesellasset_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), typesellasset);
   // @@protoc_insertion_point(field_set_allocated:tradingpb.SellParams.typeSellAsset)
+}
+
+// int32 nextTimes = 9;
+inline void SellParams::clear_nexttimes() {
+  nexttimes_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 SellParams::_internal_nexttimes() const {
+  return nexttimes_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 SellParams::nexttimes() const {
+  // @@protoc_insertion_point(field_get:tradingpb.SellParams.nextTimes)
+  return _internal_nexttimes();
+}
+inline void SellParams::_internal_set_nexttimes(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  nexttimes_ = value;
+}
+inline void SellParams::set_nexttimes(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_nexttimes(value);
+  // @@protoc_insertion_point(field_set:tradingpb.SellParams.nextTimes)
 }
 
 // -------------------------------------------------------------------

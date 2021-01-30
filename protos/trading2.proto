@@ -107,6 +107,7 @@ message BuyParams {
     int64 tsOffBuy = 10;                            // 配合assetCode用的买入时差，如果是14:55分得价格购买，这里应该是14:55的秒差
     string typeBuyAsset = 11;                       // 配合assetCode用的买入方式；为了更好的模拟交易，这里用来做交易价格，最差的情况应该用high买到
     int32 moneyParts = 12;                          // 将钱分成几部分
+    int32 nextTimes = 13;                           // 信号触发后，下几次再买入，1表示下一次买入
 }
 
 // SellParams - sell parameters
@@ -119,6 +120,7 @@ message SellParams {
     string timeTypeSellAsset = 6;   // 配合assetCode用的卖出时间方式，mainasset是1d的时候，这个一般是 day
     int64 tsOffSell = 7;            // 配合assetCode用的卖出时差，如果是14:55分得价格购买，这里应该是14:55的秒差
     string typeSellAsset = 8;       // 配合assetCode用的卖出方式；为了更好的模拟交易，这里用来做交易价格，最差的情况应该用low卖出
+    int32 nextTimes = 9;            // 信号触发后，下几次再卖出，1表示下一次卖出
 }
 
 // StopLossParams - stop loss parameters
