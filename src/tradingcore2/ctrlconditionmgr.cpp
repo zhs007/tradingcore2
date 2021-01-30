@@ -165,6 +165,8 @@ int CtrlConditionMgr::procStrategy(Strategy& strategy,
   CandleData cd;
   exchange.getData(pbStrategy.asset().code().c_str(), index, cd);
 
+  strategy.onNextTimes(issim, ts);
+
   bool canbuy = false;
   bool cansell = false;
   int buyConditionID = 0;
@@ -217,9 +219,9 @@ int CtrlConditionMgr::procStrategy(Strategy& strategy,
   }
 
   if (canbuy && !cansell) {
-    strategy.buy(issim, ts, 0, buyConditionID);
+    strategy.buy(issim, ts, 0, buyConditionID, false);
   } else if (cansell && !canbuy) {
-    strategy.sell(issim, ts, 0, sellConditionID);
+    strategy.sell(issim, ts, 0, sellConditionID, false);
   }
 
   return 0;

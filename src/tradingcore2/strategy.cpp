@@ -128,13 +128,15 @@ void Strategy::onTimeStamp(bool issim, TimeStamp ts, int index) {
 }
 
 void Strategy::buy(bool issim, TimeStamp ts, int strategyID,
-                   int ctrlConditionID) {
+                   int ctrlConditionID, bool noNextTimes) {
   auto buy = this->m_strategy.paramsbuy();
   auto f = std::bind(&Strategy::calcFee4Buy, this, std::placeholders::_1,
                      std::placeholders::_2, std::placeholders::_3,
                      std::placeholders::_4);
 
-  if (buy.perinitmoney() > 0) {
+  if (!noNextTimes && buy.nexttimes() > 0) {
+    this->nextBuy(buy.nexttimes(), strategyID, ctrlConditionID);
+  } else if (buy.perinitmoney() > 0) {
     auto m = this->m_initMoney * buy.perinitmoney();
 
     if (m <= 0) {
@@ -242,13 +244,15 @@ void Strategy::onBuy(bool issim, TimeStamp ts, Money money, Volume volume,
 }
 
 void Strategy::sell(bool issim, TimeStamp ts, int strategyID,
-                    int ctrlConditionID) {
+                    int ctrlConditionID, bool noNextTimes) {
   auto sell = this->m_strategy.paramssell();
   auto f = std::bind(&Strategy::calcFee4Sell, this, std::placeholders::_1,
                      std::placeholders::_2, std::placeholders::_3,
                      std::placeholders::_4);
 
-  if (sell.volume() > 0) {
+  if (!noNextTimes && sell.nexttimes() > 0) {
+    this->nextSell(sell.nexttimes(), strategyID, ctrlConditionID);
+  } else if (sell.volume() > 0) {
     int moneyParts;
     auto v1 = this->m_wallet.calcAssetVolume(
         this->m_strategy.asset().code().c_str(), ts, moneyParts);
@@ -357,5 +361,45 @@ void Strategy::onAIP(bool issim, TimeStamp ts) {
 }
 
 void Strategy::release() { this->m_mapIndicators.release(); }
+
+void Strategy::nextBuy(int times, int strategyID, int ctrlConditionID) {
+  this->m_lastTimesBuy = times;
+  this->m_nextBuyStrategyID = strategyID;
+  this->m_nextBuyCtrlConditionID = ctrlConditionID;
+}
+
+void Strategy::nextSell(int times, int strategyID, int ctrlConditionID) {
+  this->m_lastTimesSell = times;
+  this->m_nextSellStrategyID = strategyID;
+  this->m_nextSellCtrlConditionID = ctrlConditionID;
+}
+
+void Strategy::onNextTimes(bool issim, TimeStamp ts) {
+  bool canbuy = false;
+  bool cansell = false;
+  if (this->m_lastTimesBuy > 0) {
+    this->m_lastTimesBuy--;
+
+    if (this->m_lastTimesBuy <= 0) {
+      canbuy = true;
+    }
+  }
+
+  if (this->m_lastTimesSell > 0) {
+    this->m_lastTimesSell--;
+
+    if (this->m_lastTimesSell <= 0) {
+      cansell = true;
+    }
+  }
+
+  if (canbuy && !cansell) {
+    this->buy(issim, ts, this->m_nextBuyStrategyID,
+              this->m_nextBuyCtrlConditionID, true);
+  } else if (cansell && !canbuy) {
+    this->sell(issim, ts, this->m_nextSellStrategyID,
+               this->m_nextSellCtrlConditionID, true);
+  }
+}
 
 CR2END
