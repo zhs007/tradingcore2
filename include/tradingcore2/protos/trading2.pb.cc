@@ -627,6 +627,7 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_trading2_2eproto::offsets[] PR
   PROTOBUF_FIELD_OFFSET(::tradingpb::BuyParams, tsoffbuy_),
   PROTOBUF_FIELD_OFFSET(::tradingpb::BuyParams, typebuyasset_),
   PROTOBUF_FIELD_OFFSET(::tradingpb::BuyParams, moneyparts_),
+  PROTOBUF_FIELD_OFFSET(::tradingpb::BuyParams, nexttimes_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::tradingpb::SellParams, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -640,6 +641,7 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_trading2_2eproto::offsets[] PR
   PROTOBUF_FIELD_OFFSET(::tradingpb::SellParams, timetypesellasset_),
   PROTOBUF_FIELD_OFFSET(::tradingpb::SellParams, tsoffsell_),
   PROTOBUF_FIELD_OFFSET(::tradingpb::SellParams, typesellasset_),
+  PROTOBUF_FIELD_OFFSET(::tradingpb::SellParams, nexttimes_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::tradingpb::StopLossParams, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -805,20 +807,20 @@ static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOB
   { 79, -1, sizeof(::tradingpb::IndicatorData)},
   { 86, -1, sizeof(::tradingpb::Indicator)},
   { 94, -1, sizeof(::tradingpb::BuyParams)},
-  { 111, -1, sizeof(::tradingpb::SellParams)},
-  { 124, -1, sizeof(::tradingpb::StopLossParams)},
-  { 130, -1, sizeof(::tradingpb::TakeProfitParams)},
-  { 136, -1, sizeof(::tradingpb::InitParams)},
-  { 143, -1, sizeof(::tradingpb::AIPParams)},
-  { 151, -1, sizeof(::tradingpb::FeeParams)},
-  { 159, -1, sizeof(::tradingpb::Strategy)},
-  { 180, -1, sizeof(::tradingpb::PNLDataValue)},
-  { 192, -1, sizeof(::tradingpb::PNLAssetData)},
-  { 232, -1, sizeof(::tradingpb::PNLData)},
-  { 242, -1, sizeof(::tradingpb::SimTradingParams)},
-  { 255, -1, sizeof(::tradingpb::TradingNodeInfo)},
-  { 262, -1, sizeof(::tradingpb::SimTradingCacheNode)},
-  { 270, -1, sizeof(::tradingpb::SimTradingCache)},
+  { 112, -1, sizeof(::tradingpb::SellParams)},
+  { 126, -1, sizeof(::tradingpb::StopLossParams)},
+  { 132, -1, sizeof(::tradingpb::TakeProfitParams)},
+  { 138, -1, sizeof(::tradingpb::InitParams)},
+  { 145, -1, sizeof(::tradingpb::AIPParams)},
+  { 153, -1, sizeof(::tradingpb::FeeParams)},
+  { 161, -1, sizeof(::tradingpb::Strategy)},
+  { 182, -1, sizeof(::tradingpb::PNLDataValue)},
+  { 194, -1, sizeof(::tradingpb::PNLAssetData)},
+  { 234, -1, sizeof(::tradingpb::PNLData)},
+  { 244, -1, sizeof(::tradingpb::SimTradingParams)},
+  { 257, -1, sizeof(::tradingpb::TradingNodeInfo)},
+  { 264, -1, sizeof(::tradingpb::SimTradingCacheNode)},
+  { 272, -1, sizeof(::tradingpb::SimTradingCache)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
@@ -878,87 +880,88 @@ const char descriptor_table_protodef_trading2_2eproto[] PROTOBUF_SECTION_VARIABL
   "\n\004vals\030\001 \003(\002\022\n\n\002ts\030\002 \001(\003\"m\n\tIndicator\022\020\n"
   "\010fullname\030\001 \001(\t\022&\n\004type\030\002 \001(\0162\030.tradingp"
   "b.IndicatorType\022&\n\004data\030\003 \003(\0132\030.tradingp"
-  "b.IndicatorData\"\212\002\n\tBuyParams\022\025\n\tinitMon"
+  "b.IndicatorData\"\235\002\n\tBuyParams\022\025\n\tinitMon"
   "ey\030\001 \001(\002B\002\030\001\022\024\n\010perMoney\030\002 \001(\002B\002\030\001\022\016\n\006vo"
   "lume\030\003 \001(\002\022\020\n\010aipMoney\030\004 \001(\002\022\024\n\014perInitM"
   "oney\030\005 \001(\002\022\024\n\014perHandMoney\030\006 \001(\002\022\031\n\rperT"
   "otalMoney\030\007 \001(\002B\002\030\001\022\021\n\tassetCode\030\010 \001(\t\022\030"
   "\n\020timeTypeBuyAsset\030\t \001(\t\022\020\n\010tsOffBuy\030\n \001"
   "(\003\022\024\n\014typeBuyAsset\030\013 \001(\t\022\022\n\nmoneyParts\030\014"
-  " \001(\005\"\250\001\n\nSellParams\022\016\n\006volume\030\001 \001(\002\022\021\n\tp"
-  "erVolume\030\002 \001(\002\022\r\n\005money\030\003 \001(\002\022\020\n\010keepTim"
-  "e\030\004 \001(\003\022\021\n\tassetCode\030\005 \001(\t\022\031\n\021timeTypeSe"
-  "llAsset\030\006 \001(\t\022\021\n\ttsOffSell\030\007 \001(\003\022\025\n\rtype"
-  "SellAsset\030\010 \001(\t\"\"\n\016StopLossParams\022\020\n\010dra"
-  "wdown\030\001 \001(\002\"\"\n\020TakeProfitParams\022\016\n\006profi"
-  "t\030\001 \001(\002\"+\n\nInitParams\022\r\n\005money\030\001 \001(\002\022\016\n\006"
-  "vomume\030\002 \001(\002\"M\n\tAIPParams\022\r\n\005money\030\001 \001(\002"
-  "\022$\n\004type\030\002 \001(\0162\026.tradingpb.AIPTimeType\022\013"
-  "\n\003day\030\003 \001(\005\"C\n\tFeeParams\022\022\n\npercentage\030\001"
-  " \001(\002\022\020\n\010minLimit\030\002 \001(\002\022\020\n\010maxLimit\030\003 \001(\002"
-  "\"\350\004\n\010Strategy\022\014\n\004name\030\001 \001(\t\022\037\n\005asset\030\002 \001"
-  "(\0132\020.tradingpb.Asset\022%\n\003buy\030\003 \003(\0132\030.trad"
-  "ingpb.CtrlCondition\022&\n\004sell\030\004 \003(\0132\030.trad"
-  "ingpb.CtrlCondition\022*\n\010stoploss\030\005 \003(\0132\030."
-  "tradingpb.CtrlCondition\022,\n\ntakeprofit\030\006 "
-  "\003(\0132\030.tradingpb.CtrlCondition\022\'\n\tparamsB"
-  "uy\030\007 \001(\0132\024.tradingpb.BuyParams\022)\n\nparams"
-  "Sell\030\010 \001(\0132\025.tradingpb.SellParams\0221\n\016par"
-  "amsStopLoss\030\t \001(\0132\031.tradingpb.StopLossPa"
-  "rams\0225\n\020paramsTakeProfit\030\n \001(\0132\033.trading"
-  "pb.TakeProfitParams\022)\n\nparamsInit\030\013 \001(\0132"
-  "\025.tradingpb.InitParams\022\'\n\tparamsAIP\030\014 \001("
-  "\0132\024.tradingpb.AIPParams\022\021\n\005title\030\r \001(\tB\002"
-  "\030\001\022\022\n\nindicators\030\016 \003(\t\022$\n\006feeBuy\030\017 \001(\0132\024"
-  ".tradingpb.FeeParams\022%\n\007feeSell\030\020 \001(\0132\024."
-  "tradingpb.FeeParams\"v\n\014PNLDataValue\022\n\n\002t"
-  "s\030\001 \001(\003\022\020\n\010perValue\030\002 \001(\002\022\014\n\004tags\030\003 \003(\t\022"
-  "\014\n\004cost\030\004 \001(\002\022\r\n\005value\030\005 \001(\002\022\016\n\006volume\030\006"
-  " \001(\002\022\r\n\005price\030\007 \001(\002\"\337\006\n\014PNLAssetData\022\037\n\005"
-  "asset\030\001 \001(\0132\020.tradingpb.Asset\022\'\n\006values\030"
-  "\002 \003(\0132\027.tradingpb.PNLDataValue\022\023\n\013maxDra"
-  "wdown\030\003 \001(\002\022\032\n\022maxDrawdownStartTs\030\004 \001(\003\022"
-  "\030\n\020maxDrawdownEndTs\030\005 \001(\003\022\021\n\tmaxDrawup\030\006"
-  " \001(\002\022\030\n\020maxDrawupStartTs\030\007 \001(\003\022\026\n\016maxDra"
-  "wupEndTs\030\010 \001(\003\022\016\n\006sharpe\030\t \001(\002\022\031\n\021annual"
-  "izedReturns\030\n \001(\002\022\034\n\024annualizedVolatilit"
-  "y\030\013 \001(\002\022\024\n\014totalReturns\030\014 \001(\002\022\020\n\010varianc"
-  "e\030\r \001(\002\022\020\n\010buyTimes\030\016 \001(\005\022\021\n\tsellTimes\030\017"
-  " \001(\005\022\025\n\rstoplossTimes\030\020 \001(\005\022\022\n\nmaxUpDayT"
-  "s\030\021 \001(\003\022\023\n\013maxPerUpDay\030\022 \001(\002\022\024\n\014maxDownD"
-  "ayTs\030\023 \001(\003\022\025\n\rmaxPerDownDay\030\024 \001(\002\022\023\n\013max"
-  "UpWeekTs\030\025 \001(\003\022\024\n\014maxPerUpWeek\030\026 \001(\002\022\025\n\r"
-  "maxDownWeekTs\030\027 \001(\003\022\026\n\016maxPerDownWeek\030\030 "
-  "\001(\002\022\024\n\014maxUpMonthTs\030\031 \001(\003\022\025\n\rmaxPerUpMon"
-  "th\030\032 \001(\002\022\026\n\016maxDownMonthTs\030\033 \001(\003\022\027\n\017maxP"
-  "erDownMonth\030\034 \001(\002\022\023\n\013maxUpYearTs\030\035 \001(\003\022\024"
-  "\n\014maxPerUpYear\030\036 \001(\002\022\025\n\rmaxDownYearTs\030\037 "
-  "\001(\003\022\026\n\016maxPerDownYear\030  \001(\002\022$\n\007lstCtrl\030!"
-  " \003(\0132\023.tradingpb.CtrlNode\022(\n\nindicators\030"
-  "\" \003(\0132\024.tradingpb.Indicator\022\020\n\010winTimes\030"
-  "# \001(\005\"\223\001\n\007PNLData\022\020\n\004name\030\001 \001(\tB\002\030\001\022&\n\005t"
-  "otal\030\002 \001(\0132\027.tradingpb.PNLAssetData\022+\n\006a"
-  "ssets\030\003 \003(\0132\027.tradingpb.PNLAssetDataB\002\030\001"
-  "\022\r\n\005title\030\004 \001(\t\022\022\n\006lastts\030\005 \001(\003B\002\030\001\"\360\001\n\020"
-  "SimTradingParams\022 \n\006assets\030\001 \003(\0132\020.tradi"
-  "ngpb.Asset\022\'\n\tbaselines\030\002 \003(\0132\020.tradingp"
-  "b.AssetB\002\030\001\022\017\n\007startTs\030\003 \001(\003\022\r\n\005endTs\030\004 "
-  "\001(\003\022\'\n\nstrategies\030\005 \003(\0132\023.tradingpb.Stra"
-  "tegy\022!\n\006wallet\030\006 \001(\0132\021.tradingpb.Wallet\022"
-  "\r\n\005title\030\007 \001(\t\022\026\n\016mainAssetIndex\030\010 \001(\005\"5"
-  "\n\017TradingNodeInfo\022\020\n\010maxTasks\030\001 \001(\005\022\020\n\010c"
-  "urTasks\030\002 \001(\005\"_\n\023SimTradingCacheNode\022+\n\006"
-  "params\030\001 \001(\0132\033.tradingpb.SimTradingParam"
-  "s\022\013\n\003key\030\002 \001(\t\022\016\n\006lastTs\030\003 \001(\003\"@\n\017SimTra"
-  "dingCache\022-\n\005nodes\030\001 \003(\0132\036.tradingpb.Sim"
-  "TradingCacheNode*\203\001\n\010CtrlType\022\r\n\tCTRL_IN"
-  "IT\020\000\022\014\n\010CTRL_BUY\020\001\022\r\n\tCTRL_SELL\020\002\022\021\n\rCTR"
-  "L_STOPLOSS\020\003\022\023\n\017CTRL_TAKEPROFIT\020\004\022\021\n\rCTR"
-  "L_WITHDRAW\020\005\022\020\n\014CTRL_DEPOSIT\020\006*7\n\rIndica"
-  "torType\022\022\n\016IT_SINGLEVALUE\020\000\022\022\n\016IT_SINGLE"
-  "PRICE\020\001*4\n\013AIPTimeType\022\021\n\rAIPTT_WEEKDAY\020"
-  "\000\022\022\n\016AIPTT_MONTHDAY\020\001B(Z&github.com/zhs0"
-  "07/tradingdb2/tradingpbb\006proto3"
+  " \001(\005\022\021\n\tnextTimes\030\r \001(\005\"\273\001\n\nSellParams\022\016"
+  "\n\006volume\030\001 \001(\002\022\021\n\tperVolume\030\002 \001(\002\022\r\n\005mon"
+  "ey\030\003 \001(\002\022\020\n\010keepTime\030\004 \001(\003\022\021\n\tassetCode\030"
+  "\005 \001(\t\022\031\n\021timeTypeSellAsset\030\006 \001(\t\022\021\n\ttsOf"
+  "fSell\030\007 \001(\003\022\025\n\rtypeSellAsset\030\010 \001(\t\022\021\n\tne"
+  "xtTimes\030\t \001(\005\"\"\n\016StopLossParams\022\020\n\010drawd"
+  "own\030\001 \001(\002\"\"\n\020TakeProfitParams\022\016\n\006profit\030"
+  "\001 \001(\002\"+\n\nInitParams\022\r\n\005money\030\001 \001(\002\022\016\n\006vo"
+  "mume\030\002 \001(\002\"M\n\tAIPParams\022\r\n\005money\030\001 \001(\002\022$"
+  "\n\004type\030\002 \001(\0162\026.tradingpb.AIPTimeType\022\013\n\003"
+  "day\030\003 \001(\005\"C\n\tFeeParams\022\022\n\npercentage\030\001 \001"
+  "(\002\022\020\n\010minLimit\030\002 \001(\002\022\020\n\010maxLimit\030\003 \001(\002\"\350"
+  "\004\n\010Strategy\022\014\n\004name\030\001 \001(\t\022\037\n\005asset\030\002 \001(\013"
+  "2\020.tradingpb.Asset\022%\n\003buy\030\003 \003(\0132\030.tradin"
+  "gpb.CtrlCondition\022&\n\004sell\030\004 \003(\0132\030.tradin"
+  "gpb.CtrlCondition\022*\n\010stoploss\030\005 \003(\0132\030.tr"
+  "adingpb.CtrlCondition\022,\n\ntakeprofit\030\006 \003("
+  "\0132\030.tradingpb.CtrlCondition\022\'\n\tparamsBuy"
+  "\030\007 \001(\0132\024.tradingpb.BuyParams\022)\n\nparamsSe"
+  "ll\030\010 \001(\0132\025.tradingpb.SellParams\0221\n\016param"
+  "sStopLoss\030\t \001(\0132\031.tradingpb.StopLossPara"
+  "ms\0225\n\020paramsTakeProfit\030\n \001(\0132\033.tradingpb"
+  ".TakeProfitParams\022)\n\nparamsInit\030\013 \001(\0132\025."
+  "tradingpb.InitParams\022\'\n\tparamsAIP\030\014 \001(\0132"
+  "\024.tradingpb.AIPParams\022\021\n\005title\030\r \001(\tB\002\030\001"
+  "\022\022\n\nindicators\030\016 \003(\t\022$\n\006feeBuy\030\017 \001(\0132\024.t"
+  "radingpb.FeeParams\022%\n\007feeSell\030\020 \001(\0132\024.tr"
+  "adingpb.FeeParams\"v\n\014PNLDataValue\022\n\n\002ts\030"
+  "\001 \001(\003\022\020\n\010perValue\030\002 \001(\002\022\014\n\004tags\030\003 \003(\t\022\014\n"
+  "\004cost\030\004 \001(\002\022\r\n\005value\030\005 \001(\002\022\016\n\006volume\030\006 \001"
+  "(\002\022\r\n\005price\030\007 \001(\002\"\337\006\n\014PNLAssetData\022\037\n\005as"
+  "set\030\001 \001(\0132\020.tradingpb.Asset\022\'\n\006values\030\002 "
+  "\003(\0132\027.tradingpb.PNLDataValue\022\023\n\013maxDrawd"
+  "own\030\003 \001(\002\022\032\n\022maxDrawdownStartTs\030\004 \001(\003\022\030\n"
+  "\020maxDrawdownEndTs\030\005 \001(\003\022\021\n\tmaxDrawup\030\006 \001"
+  "(\002\022\030\n\020maxDrawupStartTs\030\007 \001(\003\022\026\n\016maxDrawu"
+  "pEndTs\030\010 \001(\003\022\016\n\006sharpe\030\t \001(\002\022\031\n\021annualiz"
+  "edReturns\030\n \001(\002\022\034\n\024annualizedVolatility\030"
+  "\013 \001(\002\022\024\n\014totalReturns\030\014 \001(\002\022\020\n\010variance\030"
+  "\r \001(\002\022\020\n\010buyTimes\030\016 \001(\005\022\021\n\tsellTimes\030\017 \001"
+  "(\005\022\025\n\rstoplossTimes\030\020 \001(\005\022\022\n\nmaxUpDayTs\030"
+  "\021 \001(\003\022\023\n\013maxPerUpDay\030\022 \001(\002\022\024\n\014maxDownDay"
+  "Ts\030\023 \001(\003\022\025\n\rmaxPerDownDay\030\024 \001(\002\022\023\n\013maxUp"
+  "WeekTs\030\025 \001(\003\022\024\n\014maxPerUpWeek\030\026 \001(\002\022\025\n\rma"
+  "xDownWeekTs\030\027 \001(\003\022\026\n\016maxPerDownWeek\030\030 \001("
+  "\002\022\024\n\014maxUpMonthTs\030\031 \001(\003\022\025\n\rmaxPerUpMonth"
+  "\030\032 \001(\002\022\026\n\016maxDownMonthTs\030\033 \001(\003\022\027\n\017maxPer"
+  "DownMonth\030\034 \001(\002\022\023\n\013maxUpYearTs\030\035 \001(\003\022\024\n\014"
+  "maxPerUpYear\030\036 \001(\002\022\025\n\rmaxDownYearTs\030\037 \001("
+  "\003\022\026\n\016maxPerDownYear\030  \001(\002\022$\n\007lstCtrl\030! \003"
+  "(\0132\023.tradingpb.CtrlNode\022(\n\nindicators\030\" "
+  "\003(\0132\024.tradingpb.Indicator\022\020\n\010winTimes\030# "
+  "\001(\005\"\223\001\n\007PNLData\022\020\n\004name\030\001 \001(\tB\002\030\001\022&\n\005tot"
+  "al\030\002 \001(\0132\027.tradingpb.PNLAssetData\022+\n\006ass"
+  "ets\030\003 \003(\0132\027.tradingpb.PNLAssetDataB\002\030\001\022\r"
+  "\n\005title\030\004 \001(\t\022\022\n\006lastts\030\005 \001(\003B\002\030\001\"\360\001\n\020Si"
+  "mTradingParams\022 \n\006assets\030\001 \003(\0132\020.trading"
+  "pb.Asset\022\'\n\tbaselines\030\002 \003(\0132\020.tradingpb."
+  "AssetB\002\030\001\022\017\n\007startTs\030\003 \001(\003\022\r\n\005endTs\030\004 \001("
+  "\003\022\'\n\nstrategies\030\005 \003(\0132\023.tradingpb.Strate"
+  "gy\022!\n\006wallet\030\006 \001(\0132\021.tradingpb.Wallet\022\r\n"
+  "\005title\030\007 \001(\t\022\026\n\016mainAssetIndex\030\010 \001(\005\"5\n\017"
+  "TradingNodeInfo\022\020\n\010maxTasks\030\001 \001(\005\022\020\n\010cur"
+  "Tasks\030\002 \001(\005\"_\n\023SimTradingCacheNode\022+\n\006pa"
+  "rams\030\001 \001(\0132\033.tradingpb.SimTradingParams\022"
+  "\013\n\003key\030\002 \001(\t\022\016\n\006lastTs\030\003 \001(\003\"@\n\017SimTradi"
+  "ngCache\022-\n\005nodes\030\001 \003(\0132\036.tradingpb.SimTr"
+  "adingCacheNode*\203\001\n\010CtrlType\022\r\n\tCTRL_INIT"
+  "\020\000\022\014\n\010CTRL_BUY\020\001\022\r\n\tCTRL_SELL\020\002\022\021\n\rCTRL_"
+  "STOPLOSS\020\003\022\023\n\017CTRL_TAKEPROFIT\020\004\022\021\n\rCTRL_"
+  "WITHDRAW\020\005\022\020\n\014CTRL_DEPOSIT\020\006*7\n\rIndicato"
+  "rType\022\022\n\016IT_SINGLEVALUE\020\000\022\022\n\016IT_SINGLEPR"
+  "ICE\020\001*4\n\013AIPTimeType\022\021\n\rAIPTT_WEEKDAY\020\000\022"
+  "\022\n\016AIPTT_MONTHDAY\020\001B(Z&github.com/zhs007"
+  "/tradingdb2/tradingpbb\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_trading2_2eproto_deps[1] = {
 };
@@ -992,7 +995,7 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_tra
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_trading2_2eproto_once;
 static bool descriptor_table_trading2_2eproto_initialized = false;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_trading2_2eproto = {
-  &descriptor_table_trading2_2eproto_initialized, descriptor_table_protodef_trading2_2eproto, "trading2.proto", 4351,
+  &descriptor_table_trading2_2eproto_initialized, descriptor_table_protodef_trading2_2eproto, "trading2.proto", 4389,
   &descriptor_table_trading2_2eproto_once, descriptor_table_trading2_2eproto_sccs, descriptor_table_trading2_2eproto_deps, 25, 0,
   schemas, file_default_instances, TableStruct_trading2_2eproto::offsets,
   file_level_metadata_trading2_2eproto, 25, file_level_enum_descriptors_trading2_2eproto, file_level_service_descriptors_trading2_2eproto,
@@ -3812,8 +3815,8 @@ BuyParams::BuyParams(const BuyParams& from)
     typebuyasset_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.typebuyasset_);
   }
   ::memcpy(&initmoney_, &from.initmoney_,
-    static_cast<size_t>(reinterpret_cast<char*>(&tsoffbuy_) -
-    reinterpret_cast<char*>(&initmoney_)) + sizeof(tsoffbuy_));
+    static_cast<size_t>(reinterpret_cast<char*>(&nexttimes_) -
+    reinterpret_cast<char*>(&initmoney_)) + sizeof(nexttimes_));
   // @@protoc_insertion_point(copy_constructor:tradingpb.BuyParams)
 }
 
@@ -3823,8 +3826,8 @@ void BuyParams::SharedCtor() {
   timetypebuyasset_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   typebuyasset_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   ::memset(&initmoney_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&tsoffbuy_) -
-      reinterpret_cast<char*>(&initmoney_)) + sizeof(tsoffbuy_));
+      reinterpret_cast<char*>(&nexttimes_) -
+      reinterpret_cast<char*>(&initmoney_)) + sizeof(nexttimes_));
 }
 
 BuyParams::~BuyParams() {
@@ -3857,8 +3860,8 @@ void BuyParams::Clear() {
   timetypebuyasset_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   typebuyasset_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   ::memset(&initmoney_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&tsoffbuy_) -
-      reinterpret_cast<char*>(&initmoney_)) + sizeof(tsoffbuy_));
+      reinterpret_cast<char*>(&nexttimes_) -
+      reinterpret_cast<char*>(&initmoney_)) + sizeof(nexttimes_));
   _internal_metadata_.Clear();
 }
 
@@ -3956,6 +3959,13 @@ const char* BuyParams::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::
       case 12:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 96)) {
           moneyparts_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // int32 nextTimes = 13;
+      case 13:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 104)) {
+          nexttimes_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -4069,6 +4079,12 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(12, this->_internal_moneyparts(), target);
   }
 
+  // int32 nextTimes = 13;
+  if (this->nexttimes() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(13, this->_internal_nexttimes(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields(), target, stream);
@@ -4155,6 +4171,13 @@ size_t BuyParams::ByteSizeLong() const {
         this->_internal_tsoffbuy());
   }
 
+  // int32 nextTimes = 13;
+  if (this->nexttimes() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_nexttimes());
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
         _internal_metadata_, total_size, &_cached_size_);
@@ -4225,6 +4248,9 @@ void BuyParams::MergeFrom(const BuyParams& from) {
   if (from.tsoffbuy() != 0) {
     _internal_set_tsoffbuy(from._internal_tsoffbuy());
   }
+  if (from.nexttimes() != 0) {
+    _internal_set_nexttimes(from._internal_nexttimes());
+  }
 }
 
 void BuyParams::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
@@ -4263,6 +4289,7 @@ void BuyParams::InternalSwap(BuyParams* other) {
   swap(pertotalmoney_, other->pertotalmoney_);
   swap(moneyparts_, other->moneyparts_);
   swap(tsoffbuy_, other->tsoffbuy_);
+  swap(nexttimes_, other->nexttimes_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata BuyParams::GetMetadata() const {
@@ -4300,8 +4327,8 @@ SellParams::SellParams(const SellParams& from)
     typesellasset_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.typesellasset_);
   }
   ::memcpy(&volume_, &from.volume_,
-    static_cast<size_t>(reinterpret_cast<char*>(&money_) -
-    reinterpret_cast<char*>(&volume_)) + sizeof(money_));
+    static_cast<size_t>(reinterpret_cast<char*>(&tsoffsell_) -
+    reinterpret_cast<char*>(&volume_)) + sizeof(tsoffsell_));
   // @@protoc_insertion_point(copy_constructor:tradingpb.SellParams)
 }
 
@@ -4311,8 +4338,8 @@ void SellParams::SharedCtor() {
   timetypesellasset_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   typesellasset_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   ::memset(&volume_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&money_) -
-      reinterpret_cast<char*>(&volume_)) + sizeof(money_));
+      reinterpret_cast<char*>(&tsoffsell_) -
+      reinterpret_cast<char*>(&volume_)) + sizeof(tsoffsell_));
 }
 
 SellParams::~SellParams() {
@@ -4345,8 +4372,8 @@ void SellParams::Clear() {
   timetypesellasset_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   typesellasset_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   ::memset(&volume_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&money_) -
-      reinterpret_cast<char*>(&volume_)) + sizeof(money_));
+      reinterpret_cast<char*>(&tsoffsell_) -
+      reinterpret_cast<char*>(&volume_)) + sizeof(tsoffsell_));
   _internal_metadata_.Clear();
 }
 
@@ -4416,6 +4443,13 @@ const char* SellParams::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID:
           auto str = _internal_mutable_typesellasset();
           ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "tradingpb.SellParams.typeSellAsset"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // int32 nextTimes = 9;
+      case 9:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 72)) {
+          nexttimes_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -4505,6 +4539,12 @@ failure:
         8, this->_internal_typesellasset(), target);
   }
 
+  // int32 nextTimes = 9;
+  if (this->nexttimes() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(9, this->_internal_nexttimes(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields(), target, stream);
@@ -4559,16 +4599,23 @@ size_t SellParams::ByteSizeLong() const {
         this->_internal_keeptime());
   }
 
+  // float money = 3;
+  if (!(this->money() <= 0 && this->money() >= 0)) {
+    total_size += 1 + 4;
+  }
+
+  // int32 nextTimes = 9;
+  if (this->nexttimes() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_nexttimes());
+  }
+
   // int64 tsOffSell = 7;
   if (this->tsoffsell() != 0) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int64Size(
         this->_internal_tsoffsell());
-  }
-
-  // float money = 3;
-  if (!(this->money() <= 0 && this->money() >= 0)) {
-    total_size += 1 + 4;
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -4623,11 +4670,14 @@ void SellParams::MergeFrom(const SellParams& from) {
   if (from.keeptime() != 0) {
     _internal_set_keeptime(from._internal_keeptime());
   }
-  if (from.tsoffsell() != 0) {
-    _internal_set_tsoffsell(from._internal_tsoffsell());
-  }
   if (!(from.money() <= 0 && from.money() >= 0)) {
     _internal_set_money(from._internal_money());
+  }
+  if (from.nexttimes() != 0) {
+    _internal_set_nexttimes(from._internal_nexttimes());
+  }
+  if (from.tsoffsell() != 0) {
+    _internal_set_tsoffsell(from._internal_tsoffsell());
   }
 }
 
@@ -4661,8 +4711,9 @@ void SellParams::InternalSwap(SellParams* other) {
   swap(volume_, other->volume_);
   swap(pervolume_, other->pervolume_);
   swap(keeptime_, other->keeptime_);
-  swap(tsoffsell_, other->tsoffsell_);
   swap(money_, other->money_);
+  swap(nexttimes_, other->nexttimes_);
+  swap(tsoffsell_, other->tsoffsell_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata SellParams::GetMetadata() const {

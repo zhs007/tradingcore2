@@ -33,7 +33,13 @@ class Strategy {
         m_fee(0),
         m_pCCData(NULL),
         m_lastAIPTs(0),
-        m_lastMoneyParts(-1) {}
+        m_lastMoneyParts(-1),
+        m_lastTimesBuy(-1),
+        m_lastTimesSell(-1),
+        m_nextBuyStrategyID(0),
+        m_nextBuyCtrlConditionID(0),
+        m_nextSellStrategyID(0),
+        m_nextSellCtrlConditionID(0) {}
   virtual ~Strategy() { this->release(); }
 
  public:
@@ -62,9 +68,11 @@ class Strategy {
 
   const tradingpb::Strategy& getStrategy() const { return m_strategy; }
 
-  void buy(bool issim, TimeStamp ts, int strategyID, int ctrlConditionID);
+  void buy(bool issim, TimeStamp ts, int strategyID, int ctrlConditionID,
+           bool noNextTimes);
 
-  void sell(bool issim, TimeStamp ts, int strategyID, int ctrlConditionID);
+  void sell(bool issim, TimeStamp ts, int strategyID, int ctrlConditionID,
+            bool noNextTimes);
 
   void initMoney(bool issim, TimeStamp ts);
 
@@ -75,6 +83,8 @@ class Strategy {
   Exchange& getExchange() { return this->m_exchange; }
 
   Wallet& getWallet() { return this->m_wallet; }
+
+  void onNextTimes(bool issim, TimeStamp ts);
 
  protected:
   void release();
@@ -100,6 +110,10 @@ class Strategy {
   Money calcFee4Sell(const char* assetsName, Money money, Volume volume,
                      TimeStamp ts);
 
+  void nextBuy(int times, int strategyID, int ctrlConditionID);
+
+  void nextSell(int times, int strategyID, int ctrlConditionID);
+
  protected:
   Wallet& m_wallet;
   Exchange& m_exchange;
@@ -123,6 +137,13 @@ class Strategy {
   time_t m_lastAIPTs;
   IndicatorMap m_mapIndicators;
   int m_lastMoneyParts;
+
+  int m_lastTimesBuy;
+  int m_nextBuyStrategyID;
+  int m_nextBuyCtrlConditionID;
+  int m_lastTimesSell;
+  int m_nextSellStrategyID;
+  int m_nextSellCtrlConditionID;
 };
 
 CR2END
