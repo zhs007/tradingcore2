@@ -1134,6 +1134,8 @@ void normalEMA15(const tr2::Config& cfg) {
   params.set_startts(tr2::str2timestampUTC("20200101", "%Y%m%d"));
   params.set_endts(tr2::str2timestampUTC("20200301", "%Y%m%d"));
 
+  params.add_indicators("ema.15");
+
   ::tradingpb::ReplyCalcPNL res;
   auto status = client.clacPNL(params, res);
 
@@ -1191,11 +1193,11 @@ int main(int argc, char* argv[]) {
   // normalWeekDay6(cfg);
   // normalWeekDay7(cfg);
   // normalWeekDay8(cfg);
-  // normalEMA15(cfg);
+  normalEMA15(cfg);
   // normalTAMA5_2(cfg, "ta-ema.29>day/1d/5m/53700");
   // moneyParts(cfg);
   // nextBuy(cfg);
-  normalTAMA_3(cfg);
+  // normalTAMA_3(cfg);
 
   return 0;
 }

@@ -1,6 +1,7 @@
 
 #include <tradingcore2/ctrlconditionmgr.h>
 #include <tradingcore2/exchange.h>
+#include <tradingcore2/pnl2.h>
 #include <tradingcore2/strategy.h>
 #include <tradingcore2/utils.h>
 #include <tradingcore2/wallet.h>
@@ -399,6 +400,36 @@ void Strategy::onNextTimes(bool issim, TimeStamp ts) {
   } else if (cansell && !canbuy) {
     this->sell(issim, ts, this->m_nextSellStrategyID,
                this->m_nextSellCtrlConditionID, true);
+  }
+}
+
+void Strategy::buildIndicators(const tradingpb::SimTradingParams& params,
+                               PNL2& pnl2) const {
+  if (params.indicators_size() > 0) {
+    for (auto i = 0; i < params.indicators_size(); ++i) {
+      auto ci = params.indicators(i);
+      auto pIndicator = this->m_mapIndicators.getIndicator(ci.c_str());
+      if (pIndicator != NULL) {
+        auto curasset = params.assets(params.mainassetindex());
+
+        auto pDI = pnl2.m_data.mutable_total()->add_indicators();
+        pDI->set_fullname(ci.c_str());
+        pDI->set_type(tradingpb::IT_SINGLEPRICE);
+
+        for (auto j = 0; j < pIndicator->getLength(); ++j) {
+          auto cv = pIndicator->getSingleValue(j);
+          assert(cv != NULL);
+
+          CandleData cd;
+          this->m_exchange.getData(curasset.code().c_str(), j, cd);
+
+          auto pDID = pDI->add_data();
+          pDID->set_ts(cd.ts);
+
+          pDID->add_vals(cv->value);
+        }
+      }
+    }
   }
 }
 
