@@ -185,7 +185,8 @@ void Wallet::buildPNL(PNL& pnl) const {
   pnl.onBuildEnd(this->m_exchange);
 }
 
-void Wallet::buildPNL2(PNL2& pnl2) const {
+void Wallet::buildPNL2(const tradingpb::SimTradingParams& params,
+                       PNL2& pnl2) const {
   pnl2.initTimestamp(this->m_exchange);
 
   LOG(INFO) << "buildPNL2:initTimestamp ok.";
@@ -224,6 +225,12 @@ void Wallet::buildPNL2(PNL2& pnl2) const {
   pnl2.onBuildEnd(this->m_exchange);
 
   pnl2.clearCtrlTmpData();
+
+  // if (params.indicators_size() > 0) {
+  //   for (auto i = 0; i < params.indicators_size(); ++i) {
+
+  //   }
+  // }
 }
 
 const WalletHistoryNode* Wallet::getLastNode(TradeType tradeType) const {

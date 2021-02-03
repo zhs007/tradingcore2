@@ -86,6 +86,9 @@ class Strategy {
 
   void onNextTimes(bool issim, TimeStamp ts);
 
+  void buildIndicators(const tradingpb::SimTradingParams& params,
+                       PNL2& pnl2) const;
+
  protected:
   void release();
 

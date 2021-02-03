@@ -132,6 +132,7 @@ void TradingNode2Impl::init(const Config& cfg) {
   }
 
   // pWallet->deposit(10000, sts);
+  tr2::PNL2 pnl2;
 
   for (auto i = 0; i < request->params().strategies_size(); ++i) {
     auto cs = request->params().strategies(i);
@@ -148,6 +149,8 @@ void TradingNode2Impl::init(const Config& cfg) {
 
     strategy->init(cs);
     strategy->simulateTrading();
+
+    strategy->buildIndicators(request->params(), pnl2);
 
     // if (cs.name() == "bah") {
     //   tr2::StrategyBAH* bah = new tr2::StrategyBAH(*pWallet, *exchange);
@@ -181,8 +184,8 @@ void TradingNode2Impl::init(const Config& cfg) {
 
   LOG(ERROR) << "_calcPNL:simulateTrading ok!";
 
-  tr2::PNL2 pnl2;
-  pWallet->buildPNL2(pnl2);
+  // tr2::PNL2 pnl2;
+  pWallet->buildPNL2(request->params(), pnl2);
 
   LOG(ERROR) << "_calcPNL:buildPNL2 ok!";
 
