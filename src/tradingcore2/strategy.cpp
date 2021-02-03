@@ -264,7 +264,7 @@ void Strategy::sell(bool issim, TimeStamp ts, int strategyID,
     }
 
     if (v > 0) {
-      assert(v == v1);
+      assert(cmpValue<float>(v, v1));
 
       Money fee = 0;
 
@@ -282,7 +282,7 @@ void Strategy::sell(bool issim, TimeStamp ts, int strategyID,
     auto v = sell.pervolume() * this->m_volume;
 
     if (v > 0) {
-      assert(v == v1);
+      assert(cmpValue<float>(v, v1));
 
       Money fee = 0;
 
