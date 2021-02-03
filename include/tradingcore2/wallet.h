@@ -119,7 +119,7 @@ class Wallet {
 
   void buildPNL(PNL& pnl) const;
 
-  void buildPNL2(PNL2& pnl2) const;
+  void buildPNL2(const tradingpb::SimTradingParams& params, PNL2& pnl2) const;
 
   Money getMoney() const { return m_money; }
 

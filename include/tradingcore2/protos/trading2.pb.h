@@ -4664,6 +4664,7 @@ class SimTradingParams :
     kAssetsFieldNumber = 1,
     kBaselinesFieldNumber = 2,
     kStrategiesFieldNumber = 5,
+    kIndicatorsFieldNumber = 9,
     kTitleFieldNumber = 7,
     kWalletFieldNumber = 6,
     kStartTsFieldNumber = 3,
@@ -4723,6 +4724,30 @@ class SimTradingParams :
   ::tradingpb::Strategy* add_strategies();
   const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingpb::Strategy >&
       strategies() const;
+
+  // repeated string indicators = 9;
+  int indicators_size() const;
+  private:
+  int _internal_indicators_size() const;
+  public:
+  void clear_indicators();
+  const std::string& indicators(int index) const;
+  std::string* mutable_indicators(int index);
+  void set_indicators(int index, const std::string& value);
+  void set_indicators(int index, std::string&& value);
+  void set_indicators(int index, const char* value);
+  void set_indicators(int index, const char* value, size_t size);
+  std::string* add_indicators();
+  void add_indicators(const std::string& value);
+  void add_indicators(std::string&& value);
+  void add_indicators(const char* value);
+  void add_indicators(const char* value, size_t size);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>& indicators() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>* mutable_indicators();
+  private:
+  const std::string& _internal_indicators(int index) const;
+  std::string* _internal_add_indicators();
+  public:
 
   // string title = 7;
   void clear_title();
@@ -4790,6 +4815,7 @@ class SimTradingParams :
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingpb::Asset > assets_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingpb::Asset > baselines_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::tradingpb::Strategy > strategies_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> indicators_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr title_;
   ::tradingpb::Wallet* wallet_;
   ::PROTOBUF_NAMESPACE_ID::int64 startts_;
@@ -10169,6 +10195,80 @@ inline void SimTradingParams::_internal_set_mainassetindex(::PROTOBUF_NAMESPACE_
 inline void SimTradingParams::set_mainassetindex(::PROTOBUF_NAMESPACE_ID::int32 value) {
   _internal_set_mainassetindex(value);
   // @@protoc_insertion_point(field_set:tradingpb.SimTradingParams.mainAssetIndex)
+}
+
+// repeated string indicators = 9;
+inline int SimTradingParams::_internal_indicators_size() const {
+  return indicators_.size();
+}
+inline int SimTradingParams::indicators_size() const {
+  return _internal_indicators_size();
+}
+inline void SimTradingParams::clear_indicators() {
+  indicators_.Clear();
+}
+inline std::string* SimTradingParams::add_indicators() {
+  // @@protoc_insertion_point(field_add_mutable:tradingpb.SimTradingParams.indicators)
+  return _internal_add_indicators();
+}
+inline const std::string& SimTradingParams::_internal_indicators(int index) const {
+  return indicators_.Get(index);
+}
+inline const std::string& SimTradingParams::indicators(int index) const {
+  // @@protoc_insertion_point(field_get:tradingpb.SimTradingParams.indicators)
+  return _internal_indicators(index);
+}
+inline std::string* SimTradingParams::mutable_indicators(int index) {
+  // @@protoc_insertion_point(field_mutable:tradingpb.SimTradingParams.indicators)
+  return indicators_.Mutable(index);
+}
+inline void SimTradingParams::set_indicators(int index, const std::string& value) {
+  // @@protoc_insertion_point(field_set:tradingpb.SimTradingParams.indicators)
+  indicators_.Mutable(index)->assign(value);
+}
+inline void SimTradingParams::set_indicators(int index, std::string&& value) {
+  // @@protoc_insertion_point(field_set:tradingpb.SimTradingParams.indicators)
+  indicators_.Mutable(index)->assign(std::move(value));
+}
+inline void SimTradingParams::set_indicators(int index, const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  indicators_.Mutable(index)->assign(value);
+  // @@protoc_insertion_point(field_set_char:tradingpb.SimTradingParams.indicators)
+}
+inline void SimTradingParams::set_indicators(int index, const char* value, size_t size) {
+  indicators_.Mutable(index)->assign(
+    reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_set_pointer:tradingpb.SimTradingParams.indicators)
+}
+inline std::string* SimTradingParams::_internal_add_indicators() {
+  return indicators_.Add();
+}
+inline void SimTradingParams::add_indicators(const std::string& value) {
+  indicators_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add:tradingpb.SimTradingParams.indicators)
+}
+inline void SimTradingParams::add_indicators(std::string&& value) {
+  indicators_.Add(std::move(value));
+  // @@protoc_insertion_point(field_add:tradingpb.SimTradingParams.indicators)
+}
+inline void SimTradingParams::add_indicators(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  indicators_.Add()->assign(value);
+  // @@protoc_insertion_point(field_add_char:tradingpb.SimTradingParams.indicators)
+}
+inline void SimTradingParams::add_indicators(const char* value, size_t size) {
+  indicators_.Add()->assign(reinterpret_cast<const char*>(value), size);
+  // @@protoc_insertion_point(field_add_pointer:tradingpb.SimTradingParams.indicators)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>&
+SimTradingParams::indicators() const {
+  // @@protoc_insertion_point(field_list:tradingpb.SimTradingParams.indicators)
+  return indicators_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
+SimTradingParams::mutable_indicators() {
+  // @@protoc_insertion_point(field_mutable_list:tradingpb.SimTradingParams.indicators)
+  return &indicators_;
 }
 
 // -------------------------------------------------------------------

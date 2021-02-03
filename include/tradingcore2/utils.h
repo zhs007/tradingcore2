@@ -67,6 +67,11 @@ int calcMonthOff(time_t ts0, time_t ts1);
 void calcQuartile(float* sortedArr, size_t stride, size_t n, float& q1,
                   float& q2, float& q3);
 
+template <typename TYPE>
+bool cmpValue(TYPE a, TYPE b, TYPE epsilon = 0.005) {
+  return (a < b ? (b - a) : (a - b)) < epsilon;
+}
+
 // -------------------------------------------------------------------------------------
 // string
 
