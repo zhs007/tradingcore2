@@ -135,6 +135,11 @@ void Strategy::buy(bool issim, TimeStamp ts, int strategyID,
                      std::placeholders::_2, std::placeholders::_3,
                      std::placeholders::_4);
 
+  if (this->m_handMoney <= 0 && buy.depositmoney() > 0) {
+    this->m_wallet.deposit(buy.depositmoney(), ts);
+    this->m_handMoney += buy.depositmoney();
+  }
+
   if (!noNextTimes && buy.nexttimes() > 0) {
     this->nextBuy(buy.nexttimes(), strategyID, ctrlConditionID);
   } else if (buy.perinitmoney() > 0) {

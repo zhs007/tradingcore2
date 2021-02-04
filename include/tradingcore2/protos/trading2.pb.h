@@ -2104,6 +2104,7 @@ class BuyParams :
     kMoneyPartsFieldNumber = 12,
     kTsOffBuyFieldNumber = 10,
     kNextTimesFieldNumber = 13,
+    kDepositMoneyFieldNumber = 14,
   };
   // string assetCode = 8;
   void clear_assetcode();
@@ -2243,6 +2244,15 @@ class BuyParams :
   void _internal_set_nexttimes(::PROTOBUF_NAMESPACE_ID::int32 value);
   public:
 
+  // int32 depositMoney = 14;
+  void clear_depositmoney();
+  ::PROTOBUF_NAMESPACE_ID::int32 depositmoney() const;
+  void set_depositmoney(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_depositmoney() const;
+  void _internal_set_depositmoney(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
   // @@protoc_insertion_point(class_scope:tradingpb.BuyParams)
  private:
   class _Internal;
@@ -2261,6 +2271,7 @@ class BuyParams :
   ::PROTOBUF_NAMESPACE_ID::int32 moneyparts_;
   ::PROTOBUF_NAMESPACE_ID::int64 tsoffbuy_;
   ::PROTOBUF_NAMESPACE_ID::int32 nexttimes_;
+  ::PROTOBUF_NAMESPACE_ID::int32 depositmoney_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_trading2_2eproto;
 };
@@ -7234,6 +7245,26 @@ inline void BuyParams::_internal_set_nexttimes(::PROTOBUF_NAMESPACE_ID::int32 va
 inline void BuyParams::set_nexttimes(::PROTOBUF_NAMESPACE_ID::int32 value) {
   _internal_set_nexttimes(value);
   // @@protoc_insertion_point(field_set:tradingpb.BuyParams.nextTimes)
+}
+
+// int32 depositMoney = 14;
+inline void BuyParams::clear_depositmoney() {
+  depositmoney_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 BuyParams::_internal_depositmoney() const {
+  return depositmoney_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 BuyParams::depositmoney() const {
+  // @@protoc_insertion_point(field_get:tradingpb.BuyParams.depositMoney)
+  return _internal_depositmoney();
+}
+inline void BuyParams::_internal_set_depositmoney(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  depositmoney_ = value;
+}
+inline void BuyParams::set_depositmoney(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_depositmoney(value);
+  // @@protoc_insertion_point(field_set:tradingpb.BuyParams.depositMoney)
 }
 
 // -------------------------------------------------------------------
