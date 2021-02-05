@@ -11,6 +11,7 @@
 #include <tradingcore2/train.h>
 #include <tradingcore2/trnode2/serv.h>
 #include <tradingcore2/trnode2/utils.h>
+#include <tradingcore2/utils.h>
 #include <unistd.h>
 
 #include <atomic>
@@ -77,6 +78,8 @@ void TradingNode2Impl::init(const Config& cfg) {
   assert(response != NULL);
 
   LOG(INFO) << "_calcPNL...";
+
+  logProtobuf("calcPNL", *request);
 
   if (!isValidTokens(request, response, *m_pCfg)) {
     LOG(ERROR) << "_calcPNL:isValidTokens " << request->basicrequest().token();
