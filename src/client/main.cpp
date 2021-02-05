@@ -1186,14 +1186,14 @@ int main(int argc, char* argv[]) {
   // normalWeekDay(cfg);
   // normalWeekDay2(cfg);
   // normalROC1(cfg);
-  // normalEMA5(cfg);
+  normalEMA5(cfg);
   // normalTAMA5(cfg, "ta-ema.5");
   // normalWeekDay3(cfg);
   // normalWeekDay5(cfg);
   // normalWeekDay6(cfg);
   // normalWeekDay7(cfg);
   // normalWeekDay8(cfg);
-  normalEMA15(cfg);
+  // normalEMA15(cfg);
   // normalTAMA5_2(cfg, "ta-ema.29>day/1d/5m/53700");
   // moneyParts(cfg);
   // nextBuy(cfg);
