@@ -21,6 +21,12 @@ void IndicatorMap::addIndicator(const char* fullname, const char* asset) {
   //   auto v = atoi(arr[1].c_str());
 
   auto pIndicator = IndicatorMgr::getSingleton()->newIndicator(fullname, asset);
+  if (pIndicator == NULL) {
+    LOG(ERROR) << "IndicatorMap::addIndicator:newIndicator " << fullname << " "
+               << asset;
+
+    return;
+  }
 
   PairIndicator p(fullname, pIndicator);
   auto ret = this->m_map.insert(p);
