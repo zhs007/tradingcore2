@@ -3,6 +3,7 @@
 #include <tradingcore2/ctrlcondition/ctrlconditionid.h>
 #include <tradingcore2/ctrlcondition/indicatordp.h>
 #include <tradingcore2/ctrlcondition/indicatorsp.h>
+#include <tradingcore2/ctrlcondition/indicatorsp2.h>
 #include <tradingcore2/ctrlcondition/indicatorsv.h>
 #include <tradingcore2/ctrlcondition/month.h>
 #include <tradingcore2/ctrlcondition/monthday.h>
@@ -25,6 +26,7 @@ void regAllCtrlConditionHelper() {
   CCMonthDayEx::regCtrlConditionHelper();
   CCIndicatorSV::regCtrlConditionHelper();
   CCIndicatorSP::regCtrlConditionHelper();
+  CCIndicatorSP2::regCtrlConditionHelper();
   CCIndicatorDP::regCtrlConditionHelper();
   CCCtrlConditionID::regCtrlConditionHelper();
   CCWaitToStart::regCtrlConditionHelper();
