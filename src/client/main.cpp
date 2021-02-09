@@ -887,12 +887,12 @@ void normalEMA5_3(const tr2::Config& cfg) {
   buy0->set_name("indicatorsp2");
   buy0->add_vals(2);
   buy0->add_operators("upcross");
-  buy0->add_strvals("ema.5");
+  buy0->add_strvals("ema.29");
   auto sell0 = strategy0->add_sell();
   sell0->set_name("indicatorsp2");
   sell0->add_vals(2);
   sell0->add_operators("downcross");
-  sell0->add_strvals("ema.5");
+  sell0->add_strvals("ema.29");
   auto bp = strategy0->mutable_paramsbuy();
   bp->set_perhandmoney(1);
   auto sp = strategy0->mutable_paramssell();
@@ -904,7 +904,7 @@ void normalEMA5_3(const tr2::Config& cfg) {
   // aip->set_type(tradingpb::AIPTT_WEEKDAY);
   // aip->set_day(3);
 
-  params.set_startts(tr2::str2timestampUTC("20200101", "%Y%m%d"));
+  params.set_startts(tr2::str2timestampUTC("20150101", "%Y%m%d"));
   params.set_endts(tr2::str2timestampUTC("20200301", "%Y%m%d"));
 
   ::tradingpb::ReplyCalcPNL res;
