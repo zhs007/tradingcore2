@@ -40,6 +40,7 @@ bool CCIndicatorSP2::canCtrl(const Exchange& exchange, const Wallet& wallet,
     auto pMyData = static_cast<_Data*>(pData);
 
     bool canctrl = false;
+    bool noresettimes = false;
 
     if (cc.operators(0) == "up") {
       if (cd.close > cv->value) {
@@ -54,12 +55,13 @@ bool CCIndicatorSP2::canCtrl(const Exchange& exchange, const Wallet& wallet,
         if (pMyData->times == 0) {
           if (pMyData->lastState <= 0) {
             pMyData->times = 1;
+            noresettimes = true;
           }
         } else {
           pMyData->times++;
         }
 
-        if (pMyData->times >= cc.vals(0)) {
+        if (pMyData->times == cc.vals(0)) {
           canctrl = true;
         }
       }
@@ -68,31 +70,50 @@ bool CCIndicatorSP2::canCtrl(const Exchange& exchange, const Wallet& wallet,
         if (pMyData->times == 0) {
           if (pMyData->lastState >= 0) {
             pMyData->times = 1;
+            noresettimes = true;
           }
         } else {
           pMyData->times++;
         }
 
-        if (pMyData->times >= cc.vals(0)) {
+        if (pMyData->times == cc.vals(0)) {
           canctrl = true;
         }
       }
     }
 
-    auto oldstate = pMyData->lastState;
+    // auto oldstate = pMyData->lastState;
 
     if (cd.close > cv->value) {
+      if (pMyData->lastState != 1) {
+        if (!noresettimes) {
+          pMyData->times = 0;
+        }
+      }
+
       pMyData->lastState = 1;
     } else if (cd.close < cv->value) {
+      if (pMyData->lastState != -1) {
+        if (!noresettimes) {
+          pMyData->times = 0;
+        }
+      }
+
       pMyData->lastState = -1;
     } else if (cd.close == cv->value) {
+      if (pMyData->lastState != 0) {
+        if (!noresettimes) {
+          pMyData->times = 0;
+        }
+      }
+
       pMyData->lastState = 0;
     }
 
-    if (oldstate != 0 && pMyData->lastState != 0 &&
-        oldstate != pMyData->lastState) {
-      pMyData->times = 0;
-    }
+    // if (oldstate != 0 && pMyData->lastState != 0 &&
+    //     oldstate != pMyData->lastState) {
+    //   pMyData->times = 0;
+    // }
 
     return canctrl;
   } else {
