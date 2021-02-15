@@ -521,6 +521,7 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_tradingdb2_2eproto::offsets[] 
   PROTOBUF_FIELD_OFFSET(::tradingpb::RequestGetCandles, tsend_),
   PROTOBUF_FIELD_OFFSET(::tradingpb::RequestGetCandles, tags_),
   PROTOBUF_FIELD_OFFSET(::tradingpb::RequestGetCandles, basicrequest_),
+  PROTOBUF_FIELD_OFFSET(::tradingpb::RequestGetCandles, offset_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::tradingpb::ReplyGetCandles, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -599,14 +600,14 @@ static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOB
   { 101, -1, sizeof(::tradingpb::RequestUpdCandles)},
   { 109, -1, sizeof(::tradingpb::ReplyUpdCandles)},
   { 115, -1, sizeof(::tradingpb::RequestGetCandles)},
-  { 128, -1, sizeof(::tradingpb::ReplyGetCandles)},
-  { 134, -1, sizeof(::tradingpb::RequestUpdSymbol)},
-  { 142, -1, sizeof(::tradingpb::ReplyUpdSymbol)},
-  { 148, -1, sizeof(::tradingpb::RequestGetSymbol)},
-  { 157, -1, sizeof(::tradingpb::ReplyGetSymbol)},
-  { 163, -1, sizeof(::tradingpb::RequestGetSymbols)},
-  { 172, -1, sizeof(::tradingpb::RequestSimTrading)},
-  { 185, -1, sizeof(::tradingpb::ReplySimTrading)},
+  { 129, -1, sizeof(::tradingpb::ReplyGetCandles)},
+  { 135, -1, sizeof(::tradingpb::RequestUpdSymbol)},
+  { 143, -1, sizeof(::tradingpb::ReplyUpdSymbol)},
+  { 149, -1, sizeof(::tradingpb::RequestGetSymbol)},
+  { 158, -1, sizeof(::tradingpb::ReplyGetSymbol)},
+  { 164, -1, sizeof(::tradingpb::RequestGetSymbols)},
+  { 173, -1, sizeof(::tradingpb::RequestSimTrading)},
+  { 186, -1, sizeof(::tradingpb::ReplySimTrading)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
@@ -669,48 +670,48 @@ const char descriptor_table_protodef_tradingdb2_2eproto[] PROTOBUF_SECTION_VARIA
   "\n\005token\030\001 \001(\tB\002\030\001\022#\n\007candles\030\002 \001(\0132\022.tra"
   "dingpb.Candles\0221\n\014basicRequest\030\003 \001(\0132\033.t"
   "radingpb.BasicRequestData\"#\n\017ReplyUpdCan"
-  "dles\022\020\n\010lengthOK\030\001 \001(\005\"\270\001\n\021RequestGetCan"
+  "dles\022\020\n\010lengthOK\030\001 \001(\005\"\310\001\n\021RequestGetCan"
   "dles\022\021\n\005token\030\001 \001(\tB\002\030\001\022\016\n\006market\030\002 \001(\t\022"
   "\016\n\006symbol\030\003 \001(\t\022\017\n\003tag\030\004 \001(\tB\002\030\001\022\017\n\007tsSt"
   "art\030\005 \001(\003\022\r\n\005tsEnd\030\006 \001(\003\022\014\n\004tags\030\007 \003(\t\0221"
   "\n\014basicRequest\030\010 \001(\0132\033.tradingpb.BasicRe"
-  "questData\"6\n\017ReplyGetCandles\022#\n\007candles\030"
-  "\001 \001(\0132\022.tradingpb.Candles\"\177\n\020RequestUpdS"
-  "ymbol\022\021\n\005token\030\001 \001(\tB\002\030\001\022%\n\006symbol\030\002 \001(\013"
-  "2\025.tradingpb.SymbolInfo\0221\n\014basicRequest\030"
-  "\003 \001(\0132\033.tradingpb.BasicRequestData\"\036\n\016Re"
-  "plyUpdSymbol\022\014\n\004isOK\030\001 \001(\010\"x\n\020RequestGet"
-  "Symbol\022\021\n\005token\030\001 \001(\tB\002\030\001\022\016\n\006market\030\002 \001("
-  "\t\022\016\n\006symbol\030\003 \001(\t\0221\n\014basicRequest\030\004 \001(\0132"
-  "\033.tradingpb.BasicRequestData\"7\n\016ReplyGet"
-  "Symbol\022%\n\006symbol\030\001 \001(\0132\025.tradingpb.Symbo"
-  "lInfo\"z\n\021RequestGetSymbols\022\021\n\005token\030\001 \001("
-  "\tB\002\030\001\022\016\n\006market\030\002 \001(\t\022\017\n\007symbols\030\003 \003(\t\0221"
-  "\n\014basicRequest\030\004 \001(\0132\033.tradingpb.BasicRe"
-  "questData\"\350\001\n\021RequestSimTrading\0221\n\014basic"
-  "Request\030\001 \001(\0132\033.tradingpb.BasicRequestDa"
-  "ta\022+\n\006params\030\002 \001(\0132\033.tradingpb.SimTradin"
-  "gParams\022\023\n\013ignoreCache\030\003 \001(\010\022\r\n\005index\030\004 "
-  "\001(\005\022\031\n\021ignoreTotalReturn\030\005 \001(\002\022\017\n\007minNum"
-  "s\030\006 \001(\005\022\023\n\007maxNums\030\007 \001(\005B\002\030\001\022\016\n\006sortBy\030\010"
-  " \001(\t\"k\n\017ReplySimTrading\022\037\n\003pnl\030\001 \003(\0132\022.t"
-  "radingpb.PNLData\022(\n\010baseline\030\002 \003(\0132\022.tra"
-  "dingpb.PNLDataB\002\030\001\022\r\n\005index\030\003 \001(\0052\226\004\n\nTr"
-  "adingDB2\022J\n\nupdCandles\022\034.tradingpb.Reque"
-  "stUpdCandles\032\032.tradingpb.ReplyUpdCandles"
-  "\"\000(\001\022J\n\ngetCandles\022\034.tradingpb.RequestGe"
-  "tCandles\032\032.tradingpb.ReplyGetCandles\"\0000\001"
-  "\022E\n\tupdSymbol\022\033.tradingpb.RequestUpdSymb"
-  "ol\032\031.tradingpb.ReplyUpdSymbol\"\000\022E\n\tgetSy"
-  "mbol\022\033.tradingpb.RequestGetSymbol\032\031.trad"
-  "ingpb.ReplyGetSymbol\"\000\022I\n\ngetSymbols\022\034.t"
-  "radingpb.RequestGetSymbols\032\031.tradingpb.R"
-  "eplyGetSymbol\"\0000\001\022H\n\nsimTrading\022\034.tradin"
-  "gpb.RequestSimTrading\032\032.tradingpb.ReplyS"
-  "imTrading\"\000\022M\n\013simTrading2\022\034.tradingpb.R"
-  "equestSimTrading\032\032.tradingpb.ReplySimTra"
-  "ding\"\000(\0010\001B(Z&github.com/zhs007/tradingd"
-  "b2/tradingpbb\006proto3"
+  "questData\022\016\n\006offset\030\t \001(\005\"6\n\017ReplyGetCan"
+  "dles\022#\n\007candles\030\001 \001(\0132\022.tradingpb.Candle"
+  "s\"\177\n\020RequestUpdSymbol\022\021\n\005token\030\001 \001(\tB\002\030\001"
+  "\022%\n\006symbol\030\002 \001(\0132\025.tradingpb.SymbolInfo\022"
+  "1\n\014basicRequest\030\003 \001(\0132\033.tradingpb.BasicR"
+  "equestData\"\036\n\016ReplyUpdSymbol\022\014\n\004isOK\030\001 \001"
+  "(\010\"x\n\020RequestGetSymbol\022\021\n\005token\030\001 \001(\tB\002\030"
+  "\001\022\016\n\006market\030\002 \001(\t\022\016\n\006symbol\030\003 \001(\t\0221\n\014bas"
+  "icRequest\030\004 \001(\0132\033.tradingpb.BasicRequest"
+  "Data\"7\n\016ReplyGetSymbol\022%\n\006symbol\030\001 \001(\0132\025"
+  ".tradingpb.SymbolInfo\"z\n\021RequestGetSymbo"
+  "ls\022\021\n\005token\030\001 \001(\tB\002\030\001\022\016\n\006market\030\002 \001(\t\022\017\n"
+  "\007symbols\030\003 \003(\t\0221\n\014basicRequest\030\004 \001(\0132\033.t"
+  "radingpb.BasicRequestData\"\350\001\n\021RequestSim"
+  "Trading\0221\n\014basicRequest\030\001 \001(\0132\033.tradingp"
+  "b.BasicRequestData\022+\n\006params\030\002 \001(\0132\033.tra"
+  "dingpb.SimTradingParams\022\023\n\013ignoreCache\030\003"
+  " \001(\010\022\r\n\005index\030\004 \001(\005\022\031\n\021ignoreTotalReturn"
+  "\030\005 \001(\002\022\017\n\007minNums\030\006 \001(\005\022\023\n\007maxNums\030\007 \001(\005"
+  "B\002\030\001\022\016\n\006sortBy\030\010 \001(\t\"k\n\017ReplySimTrading\022"
+  "\037\n\003pnl\030\001 \003(\0132\022.tradingpb.PNLData\022(\n\010base"
+  "line\030\002 \003(\0132\022.tradingpb.PNLDataB\002\030\001\022\r\n\005in"
+  "dex\030\003 \001(\0052\226\004\n\nTradingDB2\022J\n\nupdCandles\022\034"
+  ".tradingpb.RequestUpdCandles\032\032.tradingpb"
+  ".ReplyUpdCandles\"\000(\001\022J\n\ngetCandles\022\034.tra"
+  "dingpb.RequestGetCandles\032\032.tradingpb.Rep"
+  "lyGetCandles\"\0000\001\022E\n\tupdSymbol\022\033.tradingp"
+  "b.RequestUpdSymbol\032\031.tradingpb.ReplyUpdS"
+  "ymbol\"\000\022E\n\tgetSymbol\022\033.tradingpb.Request"
+  "GetSymbol\032\031.tradingpb.ReplyGetSymbol\"\000\022I"
+  "\n\ngetSymbols\022\034.tradingpb.RequestGetSymbo"
+  "ls\032\031.tradingpb.ReplyGetSymbol\"\0000\001\022H\n\nsim"
+  "Trading\022\034.tradingpb.RequestSimTrading\032\032."
+  "tradingpb.ReplySimTrading\"\000\022M\n\013simTradin"
+  "g2\022\034.tradingpb.RequestSimTrading\032\032.tradi"
+  "ngpb.ReplySimTrading\"\000(\0010\001B(Z&github.com"
+  "/zhs007/tradingdb2/tradingpbb\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_tradingdb2_2eproto_deps[1] = {
   &::descriptor_table_trading2_2eproto,
@@ -739,7 +740,7 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_tra
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_tradingdb2_2eproto_once;
 static bool descriptor_table_tradingdb2_2eproto_initialized = false;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_tradingdb2_2eproto = {
-  &descriptor_table_tradingdb2_2eproto_initialized, descriptor_table_protodef_tradingdb2_2eproto, "tradingdb2.proto", 3140,
+  &descriptor_table_tradingdb2_2eproto_initialized, descriptor_table_protodef_tradingdb2_2eproto, "tradingdb2.proto", 3156,
   &descriptor_table_tradingdb2_2eproto_once, descriptor_table_tradingdb2_2eproto_sccs, descriptor_table_tradingdb2_2eproto_deps, 19, 1,
   schemas, file_default_instances, TableStruct_tradingdb2_2eproto::offsets,
   file_level_metadata_tradingdb2_2eproto, 19, file_level_enum_descriptors_tradingdb2_2eproto, file_level_service_descriptors_tradingdb2_2eproto,
@@ -4141,8 +4142,8 @@ RequestGetCandles::RequestGetCandles(const RequestGetCandles& from)
     basicrequest_ = nullptr;
   }
   ::memcpy(&tsstart_, &from.tsstart_,
-    static_cast<size_t>(reinterpret_cast<char*>(&tsend_) -
-    reinterpret_cast<char*>(&tsstart_)) + sizeof(tsend_));
+    static_cast<size_t>(reinterpret_cast<char*>(&offset_) -
+    reinterpret_cast<char*>(&tsstart_)) + sizeof(offset_));
   // @@protoc_insertion_point(copy_constructor:tradingpb.RequestGetCandles)
 }
 
@@ -4153,8 +4154,8 @@ void RequestGetCandles::SharedCtor() {
   symbol_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   tag_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   ::memset(&basicrequest_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&tsend_) -
-      reinterpret_cast<char*>(&basicrequest_)) + sizeof(tsend_));
+      reinterpret_cast<char*>(&offset_) -
+      reinterpret_cast<char*>(&basicrequest_)) + sizeof(offset_));
 }
 
 RequestGetCandles::~RequestGetCandles() {
@@ -4195,8 +4196,8 @@ void RequestGetCandles::Clear() {
   }
   basicrequest_ = nullptr;
   ::memset(&tsstart_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&tsend_) -
-      reinterpret_cast<char*>(&tsstart_)) + sizeof(tsend_));
+      reinterpret_cast<char*>(&offset_) -
+      reinterpret_cast<char*>(&tsstart_)) + sizeof(offset_));
   _internal_metadata_.Clear();
 }
 
@@ -4275,6 +4276,13 @@ const char* RequestGetCandles::_InternalParse(const char* ptr, ::PROTOBUF_NAMESP
       case 8:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 66)) {
           ptr = ctx->ParseMessage(_internal_mutable_basicrequest(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // int32 offset = 9;
+      case 9:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 72)) {
+          offset_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -4374,6 +4382,12 @@ failure:
         8, _Internal::basicrequest(this), target, stream);
   }
 
+  // int32 offset = 9;
+  if (this->offset() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(9, this->_internal_offset(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields(), target, stream);
@@ -4447,6 +4461,13 @@ size_t RequestGetCandles::ByteSizeLong() const {
         this->_internal_tsend());
   }
 
+  // int32 offset = 9;
+  if (this->offset() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+        this->_internal_offset());
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
         _internal_metadata_, total_size, &_cached_size_);
@@ -4504,6 +4525,9 @@ void RequestGetCandles::MergeFrom(const RequestGetCandles& from) {
   if (from.tsend() != 0) {
     _internal_set_tsend(from._internal_tsend());
   }
+  if (from.offset() != 0) {
+    _internal_set_offset(from._internal_offset());
+  }
 }
 
 void RequestGetCandles::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
@@ -4539,6 +4563,7 @@ void RequestGetCandles::InternalSwap(RequestGetCandles* other) {
   swap(basicrequest_, other->basicrequest_);
   swap(tsstart_, other->tsstart_);
   swap(tsend_, other->tsend_);
+  swap(offset_, other->offset_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata RequestGetCandles::GetMetadata() const {

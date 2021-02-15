@@ -112,7 +112,7 @@ void TradingNode2Impl::init(const Config& cfg) {
   for (auto i = 0; i < request->params().assets_size(); ++i) {
     auto ca = request->params().assets(i);
     exchange->loadData(ca.code().c_str(), request->params().startts(),
-                       request->params().endts());
+                       request->params().endts(), request->params().offset());
 
     if (i == request->params().mainassetindex()) {
       mainasset = ca.code();

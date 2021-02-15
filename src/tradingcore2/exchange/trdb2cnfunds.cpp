@@ -26,8 +26,8 @@ const char* TrDB2CNFundsExchange::getTypeName() const {
 
 // loadDat - [tsStart, tsEnd]
 void TrDB2CNFundsExchange::loadData(const char* assetName, TimeStamp tsStart,
-                                    TimeStamp tsEnd) {
-  this->m_mgrData.addData("jrj", assetName, NULL, tsStart, tsEnd);
+                                    TimeStamp tsEnd, int offset) {
+  this->m_mgrData.addData("jrj", assetName, NULL, tsStart, tsEnd, offset);
 }
 
 bool TrDB2CNFundsExchange::calculateVolume(const char* assetsName, TimeStamp ts,

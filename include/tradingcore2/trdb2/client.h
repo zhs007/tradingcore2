@@ -14,7 +14,7 @@ typedef std::function<void(tradingpb::SymbolInfo &si)> FuncOnSymbol;
 bool getCandles(tradingpb::Candles &candles, const char *host,
                 const char *token, const char *market, const char *symbol,
                 std::vector<const char *> *pTags, int64_t tsStart,
-                int64_t tsEnd);
+                int64_t tsEnd, int32_t offset);
 
 // getSymbols - get symbols
 bool getSymbols(const char *host, const char *token, const char *market,

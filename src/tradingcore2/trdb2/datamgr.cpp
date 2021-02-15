@@ -27,11 +27,11 @@ void TrDB2DataMgr::release() {
 // addData - add data
 bool TrDB2DataMgr::addData(const char *market, const char *symbol,
                            std::vector<const char *> *pTags, int64_t tsStart,
-                           int64_t tsEnd) {
+                           int64_t tsEnd, int32_t offset) {
   auto pCandles = new tradingpb::Candles();
 
   auto ret = getCandles(*pCandles, this->m_host.c_str(), this->m_token.c_str(),
-                        market, symbol, pTags, tsStart, tsEnd);
+                        market, symbol, pTags, tsStart, tsEnd, offset);
 
   if (!ret) {
     return false;

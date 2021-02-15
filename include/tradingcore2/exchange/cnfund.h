@@ -49,7 +49,7 @@ class CNFundExchange final : public Exchange {
 
   // loadDat - [tsStart, tsEnd]
   virtual void loadData(const char* assetName, TimeStamp tsStart,
-                        TimeStamp tsEnd) override;
+                        TimeStamp tsEnd, int offset) override;
 
  public:
   virtual bool calculateVolume(const char* assetsName, TimeStamp ts,

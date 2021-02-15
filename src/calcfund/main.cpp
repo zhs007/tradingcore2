@@ -79,9 +79,9 @@ void calcAllFunds(std::string fn, std::string strStart, std::string strEnd,
         }
 
         tradingpb::Candles candles;
-        auto ret = tr2::getCandles(candles, cfg.trdb2Serv.c_str(),
-                                   cfg.trdb2Token.c_str(), "jrj",
-                                   si.fund().code().c_str(), NULL, st, et - 1);
+        auto ret = tr2::getCandles(
+            candles, cfg.trdb2Serv.c_str(), cfg.trdb2Token.c_str(), "jrj",
+            si.fund().code().c_str(), NULL, st, et - 1, 0);
 
         printf("getCandles %s\n", ret ? "ok" : "fail");
         printf("candles %d\n", candles.candles_size());
@@ -259,9 +259,9 @@ void calcAllManagers(std::string fn, tr2::Config& cfg) {
             }
 
             tradingpb::Candles candles;
-            auto ret = tr2::getCandles(candles, cfg.trdb2Serv.c_str(),
-                                       cfg.trdb2Token.c_str(), "jrj",
-                                       si.fund().code().c_str(), NULL, st, et);
+            auto ret = tr2::getCandles(
+                candles, cfg.trdb2Serv.c_str(), cfg.trdb2Token.c_str(), "jrj",
+                si.fund().code().c_str(), NULL, st, et, 0);
 
             printf("getCandles %s\n", ret ? "ok" : "fail");
             printf("candles %d\n", candles.candles_size());
