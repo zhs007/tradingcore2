@@ -18,7 +18,7 @@ CR2BEGIN
 bool getCandles(tradingpb::Candles &candles, const char *host,
                 const char *token, const char *market, const char *symbol,
                 std::vector<const char *> *pTags, int64_t tsStart,
-                int64_t tsEnd) {
+                int64_t tsEnd, int32_t offset) {
   candles.set_market(market);
   candles.set_symbol(symbol);
   // candles.set_tag(tag);
@@ -37,6 +37,7 @@ bool getCandles(tradingpb::Candles &candles, const char *host,
   req.set_symbol(symbol);
   req.set_tsstart(tsStart);
   req.set_tsend(tsEnd);
+  req.set_offset(offset);
 
   if (pTags != NULL) {
     for (auto it = pTags->begin(); it != pTags->end(); ++it) {

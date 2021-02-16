@@ -2221,6 +2221,7 @@ class RequestGetCandles :
     kBasicRequestFieldNumber = 8,
     kTsStartFieldNumber = 5,
     kTsEndFieldNumber = 6,
+    kOffsetFieldNumber = 9,
   };
   // repeated string tags = 7;
   int tags_size() const;
@@ -2343,6 +2344,15 @@ class RequestGetCandles :
   void _internal_set_tsend(::PROTOBUF_NAMESPACE_ID::int64 value);
   public:
 
+  // int32 offset = 9;
+  void clear_offset();
+  ::PROTOBUF_NAMESPACE_ID::int32 offset() const;
+  void set_offset(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_offset() const;
+  void _internal_set_offset(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
   // @@protoc_insertion_point(class_scope:tradingpb.RequestGetCandles)
  private:
   class _Internal;
@@ -2356,6 +2366,7 @@ class RequestGetCandles :
   ::tradingpb::BasicRequestData* basicrequest_;
   ::PROTOBUF_NAMESPACE_ID::int64 tsstart_;
   ::PROTOBUF_NAMESPACE_ID::int64 tsend_;
+  ::PROTOBUF_NAMESPACE_ID::int32 offset_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_tradingdb2_2eproto;
 };
@@ -6327,6 +6338,26 @@ inline void RequestGetCandles::set_allocated_basicrequest(::tradingpb::BasicRequ
   }
   basicrequest_ = basicrequest;
   // @@protoc_insertion_point(field_set_allocated:tradingpb.RequestGetCandles.basicRequest)
+}
+
+// int32 offset = 9;
+inline void RequestGetCandles::clear_offset() {
+  offset_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 RequestGetCandles::_internal_offset() const {
+  return offset_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 RequestGetCandles::offset() const {
+  // @@protoc_insertion_point(field_get:tradingpb.RequestGetCandles.offset)
+  return _internal_offset();
+}
+inline void RequestGetCandles::_internal_set_offset(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  offset_ = value;
+}
+inline void RequestGetCandles::set_offset(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_offset(value);
+  // @@protoc_insertion_point(field_set:tradingpb.RequestGetCandles.offset)
 }
 
 // -------------------------------------------------------------------

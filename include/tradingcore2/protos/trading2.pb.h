@@ -4681,6 +4681,7 @@ class SimTradingParams :
     kStartTsFieldNumber = 3,
     kEndTsFieldNumber = 4,
     kMainAssetIndexFieldNumber = 8,
+    kOffsetFieldNumber = 10,
   };
   // repeated .tradingpb.Asset assets = 1;
   int assets_size() const;
@@ -4818,6 +4819,15 @@ class SimTradingParams :
   void _internal_set_mainassetindex(::PROTOBUF_NAMESPACE_ID::int32 value);
   public:
 
+  // int32 offset = 10;
+  void clear_offset();
+  ::PROTOBUF_NAMESPACE_ID::int32 offset() const;
+  void set_offset(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_offset() const;
+  void _internal_set_offset(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
   // @@protoc_insertion_point(class_scope:tradingpb.SimTradingParams)
  private:
   class _Internal;
@@ -4832,6 +4842,7 @@ class SimTradingParams :
   ::PROTOBUF_NAMESPACE_ID::int64 startts_;
   ::PROTOBUF_NAMESPACE_ID::int64 endts_;
   ::PROTOBUF_NAMESPACE_ID::int32 mainassetindex_;
+  ::PROTOBUF_NAMESPACE_ID::int32 offset_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_trading2_2eproto;
 };
@@ -10300,6 +10311,26 @@ inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string>*
 SimTradingParams::mutable_indicators() {
   // @@protoc_insertion_point(field_mutable_list:tradingpb.SimTradingParams.indicators)
   return &indicators_;
+}
+
+// int32 offset = 10;
+inline void SimTradingParams::clear_offset() {
+  offset_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 SimTradingParams::_internal_offset() const {
+  return offset_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 SimTradingParams::offset() const {
+  // @@protoc_insertion_point(field_get:tradingpb.SimTradingParams.offset)
+  return _internal_offset();
+}
+inline void SimTradingParams::_internal_set_offset(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  offset_ = value;
+}
+inline void SimTradingParams::set_offset(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_offset(value);
+  // @@protoc_insertion_point(field_set:tradingpb.SimTradingParams.offset)
 }
 
 // -------------------------------------------------------------------

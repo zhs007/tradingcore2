@@ -40,7 +40,7 @@ const char* CNFundExchange::getTypeName() const { return CNFundTypeName; }
 
 // loadDat - [tsStart, tsEnd]
 void CNFundExchange::loadData(const char* assetName, TimeStamp tsStart,
-                              TimeStamp tsEnd) {}
+                              TimeStamp tsEnd, int offset) {}
 
 void CNFundExchange::setFundValue(const char* assetsName, CNFundValue* fv) {
   this->releaseFundValue(assetsName);

@@ -109,6 +109,7 @@ message RequestGetCandles {
     int64 tsEnd = 6;
     repeated string tags = 7;
     BasicRequestData basicRequest = 8;
+    int32 offset = 9;                       // 提前多少数据
 }
 
 // ReplyGetCandles - reply GetCandles

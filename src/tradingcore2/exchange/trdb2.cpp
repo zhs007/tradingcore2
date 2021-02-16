@@ -23,9 +23,9 @@ bool TrDB2Exchange::init(const Config& cfg) {
 
 // loadDat - [tsStart, tsEnd]
 void TrDB2Exchange::loadData(const char* assetName, TimeStamp tsStart,
-                             TimeStamp tsEnd) {
+                             TimeStamp tsEnd, int offset) {
   this->m_mgrData.addData(this->getMarketName(), assetName, NULL, tsStart,
-                          tsEnd);
+                          tsEnd, offset);
 }
 
 bool TrDB2Exchange::calculateVolume(const char* assetsName, TimeStamp ts,

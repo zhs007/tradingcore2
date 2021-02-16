@@ -31,8 +31,8 @@ class TrDB2DataMgr {
  public:
   // addData - add data
   bool addData(const char *market, const char *symbol,
-               std::vector<const char *> *pTags, int64_t tsStart,
-               int64_t tsEnd);
+               std::vector<const char *> *pTags, int64_t tsStart, int64_t tsEnd,
+               int32_t offset);
 
   const tradingpb::Candles *getData(const char *market,
                                     const char *symbol) const;

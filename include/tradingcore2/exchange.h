@@ -30,7 +30,7 @@ class Exchange {
 
   // loadDat - [tsStart, tsEnd]
   virtual void loadData(const char* assetName, TimeStamp tsStart,
-                        TimeStamp tsEnd) = 0;
+                        TimeStamp tsEnd, int offset) = 0;
 
  public:
   virtual bool calculateVolume(const char* assetsName, TimeStamp ts,
