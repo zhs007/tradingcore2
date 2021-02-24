@@ -279,9 +279,9 @@ int calcMonthOffWithMonthDay(time_t lastts, time_t ts, int monthday) {
   tm t;
   timestamp2timeUTC(ts, t);
 
-  // 如果第一次，只有明确是几号，才返回
+  // 如果第一次，大于等于就返回
   if (lastts == 0) {
-    if (t.tm_mday == monthday) {
+    if (t.tm_mday >= monthday) {
       return 1;
     }
   } else {
