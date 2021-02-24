@@ -86,11 +86,15 @@ TEST(Utils, calcWeekOffWithWeekDay) {
 TEST(Utils, calcMonthOffWithMonthDay) {
   auto woff = tr2::calcMonthOffWithMonthDay(
       0, tr2::str2timestampUTC("20201123", "%Y%m%d"), 2);
-  EXPECT_EQ(woff, 0);
+  EXPECT_EQ(woff, 1);
 
   woff = tr2::calcMonthOffWithMonthDay(
       0, tr2::str2timestampUTC("20201123", "%Y%m%d"), 23);
   EXPECT_EQ(woff, 1);
+
+  woff = tr2::calcMonthOffWithMonthDay(
+      0, tr2::str2timestampUTC("20201123", "%Y%m%d"), 24);
+  EXPECT_EQ(woff, 0);
 
   woff = tr2::calcMonthOffWithMonthDay(
       tr2::str2timestampUTC("20201116", "%Y%m%d"),
