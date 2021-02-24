@@ -73,6 +73,7 @@ message CtrlCondition {
     repeated string strVals = 8;                        // 字符串参数
     string name = 9;                                    // 实际的 Control Condition 类型，替代以前的 indicator
     int32 group = 10;                                   // 组，用来处理 (A&&B)||(C&&D) 这样的复杂判断，group之间只可能是或的关系
+    repeated float int64Vals = 11;                      // int64参数
 }
 
 // IndicatorType - indicator类型
@@ -126,12 +127,16 @@ message SellParams {
 
 // StopLossParams - stop loss parameters
 message StopLossParams {
-    float drawdown = 1;
+    float drawdown = 1 [deprecated = true];     // 弃用，用ctrlcondition里的totalreturn做这个
+    bool isFinish = 2;                          // 止盈后，是否结束
+    float perVolume = 3;                        // 止盈多少份额    
 }
 
 // TakeProfitParams - take profit parameters
 message TakeProfitParams {
-    float profit = 1;
+    float profit = 1 [deprecated = true];       // 弃用，用ctrlcondition里的totalreturn做这个
+    bool isFinish = 2;                          // 止盈后，是否结束
+    float perVolume = 3;                        // 止盈多少份额
 }
 
 // InitParams - initial parameters
@@ -264,6 +269,8 @@ message SimTradingCacheNode {
     SimTradingParams params = 1;
     string key = 2;
     int64 lastTs = 3;
+    string hash = 4 [deprecated = true];    // 为了解决内存占用问题，hash弃用，直接保存 params 的 bytes，直接比较即可
+    bytes buf = 5;      
 }
 
 // SimTradingCache - 

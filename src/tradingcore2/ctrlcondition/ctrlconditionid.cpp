@@ -25,7 +25,7 @@ bool CCCtrlConditionID::canCtrl(const Exchange& exchange, const Wallet& wallet,
                                 const IndicatorMap& mapIndicators,
                                 const tradingpb::CtrlCondition& cc, bool issim,
                                 CtrlType ct, TimeStamp ts, int index,
-                                CandleData& cd, void* pData) {
+                                CandleData& cd, Assets& assets, void* pData) {
   if (cc.strvals(0) == "buy") {
     auto ln = wallet.getLastNode(TT_BUY);
     // if (ln != NULL) {

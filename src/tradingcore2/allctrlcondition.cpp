@@ -8,6 +8,8 @@
 #include <tradingcore2/ctrlcondition/month.h>
 #include <tradingcore2/ctrlcondition/monthday.h>
 #include <tradingcore2/ctrlcondition/monthdayex.h>
+#include <tradingcore2/ctrlcondition/timestamp.h>
+#include <tradingcore2/ctrlcondition/totalreturn.h>
 #include <tradingcore2/ctrlcondition/waittostart.h>
 #include <tradingcore2/ctrlcondition/weekday.h>
 #include <tradingcore2/ctrlcondition/weekday2.h>
@@ -29,6 +31,8 @@ void regAllCtrlConditionHelper() {
   CCIndicatorSP2::regCtrlConditionHelper();
   CCIndicatorDP::regCtrlConditionHelper();
   CCCtrlConditionID::regCtrlConditionHelper();
+  CCTimestamp::regCtrlConditionHelper();
+  CCTotalReturn::regCtrlConditionHelper();
   CCWaitToStart::regCtrlConditionHelper();
 }
 

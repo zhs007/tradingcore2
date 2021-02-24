@@ -133,6 +133,8 @@ class Wallet {
   Volume calcAssetVolume(const char* assetsName, TimeStamp ts,
                          int& moneyParts) const;
 
+  Money getCost() const { return m_cost; }
+
  protected:
   void _addHistory(WalletHistoryNode& n) { m_history.push_back(n); }
 
@@ -140,6 +142,7 @@ class Wallet {
   Exchange& m_exchange;
   AssetsMap m_map;
   Money m_money;
+  Money m_cost;
   History m_history;
 };
 

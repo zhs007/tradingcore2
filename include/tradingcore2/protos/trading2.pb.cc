@@ -595,6 +595,7 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_trading2_2eproto::offsets[] PR
   PROTOBUF_FIELD_OFFSET(::tradingpb::CtrlCondition, strvals_),
   PROTOBUF_FIELD_OFFSET(::tradingpb::CtrlCondition, name_),
   PROTOBUF_FIELD_OFFSET(::tradingpb::CtrlCondition, group_),
+  PROTOBUF_FIELD_OFFSET(::tradingpb::CtrlCondition, int64vals_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::tradingpb::IndicatorData, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -649,12 +650,16 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_trading2_2eproto::offsets[] PR
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   PROTOBUF_FIELD_OFFSET(::tradingpb::StopLossParams, drawdown_),
+  PROTOBUF_FIELD_OFFSET(::tradingpb::StopLossParams, isfinish_),
+  PROTOBUF_FIELD_OFFSET(::tradingpb::StopLossParams, pervolume_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::tradingpb::TakeProfitParams, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   PROTOBUF_FIELD_OFFSET(::tradingpb::TakeProfitParams, profit_),
+  PROTOBUF_FIELD_OFFSET(::tradingpb::TakeProfitParams, isfinish_),
+  PROTOBUF_FIELD_OFFSET(::tradingpb::TakeProfitParams, pervolume_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::tradingpb::InitParams, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -791,6 +796,8 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_trading2_2eproto::offsets[] PR
   PROTOBUF_FIELD_OFFSET(::tradingpb::SimTradingCacheNode, params_),
   PROTOBUF_FIELD_OFFSET(::tradingpb::SimTradingCacheNode, key_),
   PROTOBUF_FIELD_OFFSET(::tradingpb::SimTradingCacheNode, lastts_),
+  PROTOBUF_FIELD_OFFSET(::tradingpb::SimTradingCacheNode, hash_),
+  PROTOBUF_FIELD_OFFSET(::tradingpb::SimTradingCacheNode, buf_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::tradingpb::SimTradingCache, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -807,23 +814,23 @@ static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOB
   { 51, -1, sizeof(::tradingpb::WalletAsset)},
   { 58, -1, sizeof(::tradingpb::Wallet)},
   { 64, -1, sizeof(::tradingpb::CtrlCondition)},
-  { 79, -1, sizeof(::tradingpb::IndicatorData)},
-  { 86, -1, sizeof(::tradingpb::Indicator)},
-  { 94, -1, sizeof(::tradingpb::BuyParams)},
-  { 113, -1, sizeof(::tradingpb::SellParams)},
-  { 127, -1, sizeof(::tradingpb::StopLossParams)},
-  { 133, -1, sizeof(::tradingpb::TakeProfitParams)},
-  { 139, -1, sizeof(::tradingpb::InitParams)},
-  { 146, -1, sizeof(::tradingpb::AIPParams)},
-  { 154, -1, sizeof(::tradingpb::FeeParams)},
-  { 162, -1, sizeof(::tradingpb::Strategy)},
-  { 183, -1, sizeof(::tradingpb::PNLDataValue)},
-  { 195, -1, sizeof(::tradingpb::PNLAssetData)},
-  { 235, -1, sizeof(::tradingpb::PNLData)},
-  { 245, -1, sizeof(::tradingpb::SimTradingParams)},
-  { 260, -1, sizeof(::tradingpb::TradingNodeInfo)},
-  { 267, -1, sizeof(::tradingpb::SimTradingCacheNode)},
-  { 275, -1, sizeof(::tradingpb::SimTradingCache)},
+  { 80, -1, sizeof(::tradingpb::IndicatorData)},
+  { 87, -1, sizeof(::tradingpb::Indicator)},
+  { 95, -1, sizeof(::tradingpb::BuyParams)},
+  { 114, -1, sizeof(::tradingpb::SellParams)},
+  { 128, -1, sizeof(::tradingpb::StopLossParams)},
+  { 136, -1, sizeof(::tradingpb::TakeProfitParams)},
+  { 144, -1, sizeof(::tradingpb::InitParams)},
+  { 151, -1, sizeof(::tradingpb::AIPParams)},
+  { 159, -1, sizeof(::tradingpb::FeeParams)},
+  { 167, -1, sizeof(::tradingpb::Strategy)},
+  { 188, -1, sizeof(::tradingpb::PNLDataValue)},
+  { 200, -1, sizeof(::tradingpb::PNLAssetData)},
+  { 240, -1, sizeof(::tradingpb::PNLData)},
+  { 250, -1, sizeof(::tradingpb::SimTradingParams)},
+  { 265, -1, sizeof(::tradingpb::TradingNodeInfo)},
+  { 272, -1, sizeof(::tradingpb::SimTradingCacheNode)},
+  { 282, -1, sizeof(::tradingpb::SimTradingCache)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
@@ -874,99 +881,102 @@ const char descriptor_table_protodef_trading2_2eproto[] PROTOBUF_SECTION_VARIABL
   ".CtrlNodeAssetInfo:\0028\001\"=\n\013WalletAsset\022\037\n"
   "\005asset\030\001 \001(\0132\020.tradingpb.Asset\022\r\n\005value\030"
   "\002 \001(\001\"0\n\006Wallet\022&\n\006assets\030\001 \003(\0132\026.tradin"
-  "gpb.WalletAsset\"\313\001\n\rCtrlCondition\022\025\n\tind"
+  "gpb.WalletAsset\"\336\001\n\rCtrlCondition\022\025\n\tind"
   "icator\030\001 \001(\tB\002\030\001\022\014\n\004vals\030\002 \003(\002\022\021\n\toperat"
   "ors\030\003 \003(\t\022\025\n\rcombCondition\030\004 \001(\t\022\023\n\007minv"
   "als\030\005 \003(\002B\002\030\001\022\023\n\007maxvals\030\006 \003(\002B\002\030\001\022\023\n\007of"
   "fvals\030\007 \003(\002B\002\030\001\022\017\n\007strVals\030\010 \003(\t\022\014\n\004name"
-  "\030\t \001(\t\022\r\n\005group\030\n \001(\005\")\n\rIndicatorData\022\014"
-  "\n\004vals\030\001 \003(\002\022\n\n\002ts\030\002 \001(\003\"m\n\tIndicator\022\020\n"
-  "\010fullname\030\001 \001(\t\022&\n\004type\030\002 \001(\0162\030.tradingp"
-  "b.IndicatorType\022&\n\004data\030\003 \003(\0132\030.tradingp"
-  "b.IndicatorData\"\263\002\n\tBuyParams\022\025\n\tinitMon"
-  "ey\030\001 \001(\002B\002\030\001\022\024\n\010perMoney\030\002 \001(\002B\002\030\001\022\016\n\006vo"
-  "lume\030\003 \001(\002\022\020\n\010aipMoney\030\004 \001(\002\022\024\n\014perInitM"
-  "oney\030\005 \001(\002\022\024\n\014perHandMoney\030\006 \001(\002\022\031\n\rperT"
-  "otalMoney\030\007 \001(\002B\002\030\001\022\021\n\tassetCode\030\010 \001(\t\022\030"
-  "\n\020timeTypeBuyAsset\030\t \001(\t\022\020\n\010tsOffBuy\030\n \001"
-  "(\003\022\024\n\014typeBuyAsset\030\013 \001(\t\022\022\n\nmoneyParts\030\014"
-  " \001(\005\022\021\n\tnextTimes\030\r \001(\005\022\024\n\014depositMoney\030"
-  "\016 \001(\005\"\273\001\n\nSellParams\022\016\n\006volume\030\001 \001(\002\022\021\n\t"
-  "perVolume\030\002 \001(\002\022\r\n\005money\030\003 \001(\002\022\020\n\010keepTi"
-  "me\030\004 \001(\003\022\021\n\tassetCode\030\005 \001(\t\022\031\n\021timeTypeS"
-  "ellAsset\030\006 \001(\t\022\021\n\ttsOffSell\030\007 \001(\003\022\025\n\rtyp"
-  "eSellAsset\030\010 \001(\t\022\021\n\tnextTimes\030\t \001(\005\"\"\n\016S"
-  "topLossParams\022\020\n\010drawdown\030\001 \001(\002\"\"\n\020TakeP"
-  "rofitParams\022\016\n\006profit\030\001 \001(\002\"+\n\nInitParam"
-  "s\022\r\n\005money\030\001 \001(\002\022\016\n\006vomume\030\002 \001(\002\"M\n\tAIPP"
-  "arams\022\r\n\005money\030\001 \001(\002\022$\n\004type\030\002 \001(\0162\026.tra"
-  "dingpb.AIPTimeType\022\013\n\003day\030\003 \001(\005\"C\n\tFeePa"
-  "rams\022\022\n\npercentage\030\001 \001(\002\022\020\n\010minLimit\030\002 \001"
-  "(\002\022\020\n\010maxLimit\030\003 \001(\002\"\350\004\n\010Strategy\022\014\n\004nam"
-  "e\030\001 \001(\t\022\037\n\005asset\030\002 \001(\0132\020.tradingpb.Asset"
-  "\022%\n\003buy\030\003 \003(\0132\030.tradingpb.CtrlCondition\022"
-  "&\n\004sell\030\004 \003(\0132\030.tradingpb.CtrlCondition\022"
-  "*\n\010stoploss\030\005 \003(\0132\030.tradingpb.CtrlCondit"
-  "ion\022,\n\ntakeprofit\030\006 \003(\0132\030.tradingpb.Ctrl"
-  "Condition\022\'\n\tparamsBuy\030\007 \001(\0132\024.tradingpb"
-  ".BuyParams\022)\n\nparamsSell\030\010 \001(\0132\025.trading"
-  "pb.SellParams\0221\n\016paramsStopLoss\030\t \001(\0132\031."
-  "tradingpb.StopLossParams\0225\n\020paramsTakePr"
-  "ofit\030\n \001(\0132\033.tradingpb.TakeProfitParams\022"
-  ")\n\nparamsInit\030\013 \001(\0132\025.tradingpb.InitPara"
-  "ms\022\'\n\tparamsAIP\030\014 \001(\0132\024.tradingpb.AIPPar"
-  "ams\022\021\n\005title\030\r \001(\tB\002\030\001\022\022\n\nindicators\030\016 \003"
-  "(\t\022$\n\006feeBuy\030\017 \001(\0132\024.tradingpb.FeeParams"
-  "\022%\n\007feeSell\030\020 \001(\0132\024.tradingpb.FeeParams\""
-  "v\n\014PNLDataValue\022\n\n\002ts\030\001 \001(\003\022\020\n\010perValue\030"
-  "\002 \001(\002\022\014\n\004tags\030\003 \003(\t\022\014\n\004cost\030\004 \001(\002\022\r\n\005val"
-  "ue\030\005 \001(\002\022\016\n\006volume\030\006 \001(\002\022\r\n\005price\030\007 \001(\002\""
-  "\337\006\n\014PNLAssetData\022\037\n\005asset\030\001 \001(\0132\020.tradin"
-  "gpb.Asset\022\'\n\006values\030\002 \003(\0132\027.tradingpb.PN"
-  "LDataValue\022\023\n\013maxDrawdown\030\003 \001(\002\022\032\n\022maxDr"
-  "awdownStartTs\030\004 \001(\003\022\030\n\020maxDrawdownEndTs\030"
-  "\005 \001(\003\022\021\n\tmaxDrawup\030\006 \001(\002\022\030\n\020maxDrawupSta"
-  "rtTs\030\007 \001(\003\022\026\n\016maxDrawupEndTs\030\010 \001(\003\022\016\n\006sh"
-  "arpe\030\t \001(\002\022\031\n\021annualizedReturns\030\n \001(\002\022\034\n"
-  "\024annualizedVolatility\030\013 \001(\002\022\024\n\014totalRetu"
-  "rns\030\014 \001(\002\022\020\n\010variance\030\r \001(\002\022\020\n\010buyTimes\030"
-  "\016 \001(\005\022\021\n\tsellTimes\030\017 \001(\005\022\025\n\rstoplossTime"
-  "s\030\020 \001(\005\022\022\n\nmaxUpDayTs\030\021 \001(\003\022\023\n\013maxPerUpD"
-  "ay\030\022 \001(\002\022\024\n\014maxDownDayTs\030\023 \001(\003\022\025\n\rmaxPer"
-  "DownDay\030\024 \001(\002\022\023\n\013maxUpWeekTs\030\025 \001(\003\022\024\n\014ma"
-  "xPerUpWeek\030\026 \001(\002\022\025\n\rmaxDownWeekTs\030\027 \001(\003\022"
-  "\026\n\016maxPerDownWeek\030\030 \001(\002\022\024\n\014maxUpMonthTs\030"
-  "\031 \001(\003\022\025\n\rmaxPerUpMonth\030\032 \001(\002\022\026\n\016maxDownM"
-  "onthTs\030\033 \001(\003\022\027\n\017maxPerDownMonth\030\034 \001(\002\022\023\n"
-  "\013maxUpYearTs\030\035 \001(\003\022\024\n\014maxPerUpYear\030\036 \001(\002"
-  "\022\025\n\rmaxDownYearTs\030\037 \001(\003\022\026\n\016maxPerDownYea"
-  "r\030  \001(\002\022$\n\007lstCtrl\030! \003(\0132\023.tradingpb.Ctr"
-  "lNode\022(\n\nindicators\030\" \003(\0132\024.tradingpb.In"
-  "dicator\022\020\n\010winTimes\030# \001(\005\"\223\001\n\007PNLData\022\020\n"
-  "\004name\030\001 \001(\tB\002\030\001\022&\n\005total\030\002 \001(\0132\027.trading"
-  "pb.PNLAssetData\022+\n\006assets\030\003 \003(\0132\027.tradin"
-  "gpb.PNLAssetDataB\002\030\001\022\r\n\005title\030\004 \001(\t\022\022\n\006l"
-  "astts\030\005 \001(\003B\002\030\001\"\224\002\n\020SimTradingParams\022 \n\006"
-  "assets\030\001 \003(\0132\020.tradingpb.Asset\022\'\n\tbaseli"
-  "nes\030\002 \003(\0132\020.tradingpb.AssetB\002\030\001\022\017\n\007start"
-  "Ts\030\003 \001(\003\022\r\n\005endTs\030\004 \001(\003\022\'\n\nstrategies\030\005 "
-  "\003(\0132\023.tradingpb.Strategy\022!\n\006wallet\030\006 \001(\013"
-  "2\021.tradingpb.Wallet\022\r\n\005title\030\007 \001(\t\022\026\n\016ma"
-  "inAssetIndex\030\010 \001(\005\022\022\n\nindicators\030\t \003(\t\022\016"
-  "\n\006offset\030\n \001(\005\"5\n\017TradingNodeInfo\022\020\n\010max"
-  "Tasks\030\001 \001(\005\022\020\n\010curTasks\030\002 \001(\005\"_\n\023SimTrad"
-  "ingCacheNode\022+\n\006params\030\001 \001(\0132\033.tradingpb"
-  ".SimTradingParams\022\013\n\003key\030\002 \001(\t\022\016\n\006lastTs"
-  "\030\003 \001(\003\"@\n\017SimTradingCache\022-\n\005nodes\030\001 \003(\013"
-  "2\036.tradingpb.SimTradingCacheNode*\203\001\n\010Ctr"
-  "lType\022\r\n\tCTRL_INIT\020\000\022\014\n\010CTRL_BUY\020\001\022\r\n\tCT"
-  "RL_SELL\020\002\022\021\n\rCTRL_STOPLOSS\020\003\022\023\n\017CTRL_TAK"
-  "EPROFIT\020\004\022\021\n\rCTRL_WITHDRAW\020\005\022\020\n\014CTRL_DEP"
-  "OSIT\020\006*7\n\rIndicatorType\022\022\n\016IT_SINGLEVALU"
-  "E\020\000\022\022\n\016IT_SINGLEPRICE\020\001*4\n\013AIPTimeType\022\021"
-  "\n\rAIPTT_WEEKDAY\020\000\022\022\n\016AIPTT_MONTHDAY\020\001B(Z"
-  "&github.com/zhs007/tradingdb2/tradingpbb"
-  "\006proto3"
+  "\030\t \001(\t\022\r\n\005group\030\n \001(\005\022\021\n\tint64Vals\030\013 \003(\002"
+  "\")\n\rIndicatorData\022\014\n\004vals\030\001 \003(\002\022\n\n\002ts\030\002 "
+  "\001(\003\"m\n\tIndicator\022\020\n\010fullname\030\001 \001(\t\022&\n\004ty"
+  "pe\030\002 \001(\0162\030.tradingpb.IndicatorType\022&\n\004da"
+  "ta\030\003 \003(\0132\030.tradingpb.IndicatorData\"\263\002\n\tB"
+  "uyParams\022\025\n\tinitMoney\030\001 \001(\002B\002\030\001\022\024\n\010perMo"
+  "ney\030\002 \001(\002B\002\030\001\022\016\n\006volume\030\003 \001(\002\022\020\n\010aipMone"
+  "y\030\004 \001(\002\022\024\n\014perInitMoney\030\005 \001(\002\022\024\n\014perHand"
+  "Money\030\006 \001(\002\022\031\n\rperTotalMoney\030\007 \001(\002B\002\030\001\022\021"
+  "\n\tassetCode\030\010 \001(\t\022\030\n\020timeTypeBuyAsset\030\t "
+  "\001(\t\022\020\n\010tsOffBuy\030\n \001(\003\022\024\n\014typeBuyAsset\030\013 "
+  "\001(\t\022\022\n\nmoneyParts\030\014 \001(\005\022\021\n\tnextTimes\030\r \001"
+  "(\005\022\024\n\014depositMoney\030\016 \001(\005\"\273\001\n\nSellParams\022"
+  "\016\n\006volume\030\001 \001(\002\022\021\n\tperVolume\030\002 \001(\002\022\r\n\005mo"
+  "ney\030\003 \001(\002\022\020\n\010keepTime\030\004 \001(\003\022\021\n\tassetCode"
+  "\030\005 \001(\t\022\031\n\021timeTypeSellAsset\030\006 \001(\t\022\021\n\ttsO"
+  "ffSell\030\007 \001(\003\022\025\n\rtypeSellAsset\030\010 \001(\t\022\021\n\tn"
+  "extTimes\030\t \001(\005\"K\n\016StopLossParams\022\024\n\010draw"
+  "down\030\001 \001(\002B\002\030\001\022\020\n\010isFinish\030\002 \001(\010\022\021\n\tperV"
+  "olume\030\003 \001(\002\"K\n\020TakeProfitParams\022\022\n\006profi"
+  "t\030\001 \001(\002B\002\030\001\022\020\n\010isFinish\030\002 \001(\010\022\021\n\tperVolu"
+  "me\030\003 \001(\002\"+\n\nInitParams\022\r\n\005money\030\001 \001(\002\022\016\n"
+  "\006vomume\030\002 \001(\002\"M\n\tAIPParams\022\r\n\005money\030\001 \001("
+  "\002\022$\n\004type\030\002 \001(\0162\026.tradingpb.AIPTimeType\022"
+  "\013\n\003day\030\003 \001(\005\"C\n\tFeeParams\022\022\n\npercentage\030"
+  "\001 \001(\002\022\020\n\010minLimit\030\002 \001(\002\022\020\n\010maxLimit\030\003 \001("
+  "\002\"\350\004\n\010Strategy\022\014\n\004name\030\001 \001(\t\022\037\n\005asset\030\002 "
+  "\001(\0132\020.tradingpb.Asset\022%\n\003buy\030\003 \003(\0132\030.tra"
+  "dingpb.CtrlCondition\022&\n\004sell\030\004 \003(\0132\030.tra"
+  "dingpb.CtrlCondition\022*\n\010stoploss\030\005 \003(\0132\030"
+  ".tradingpb.CtrlCondition\022,\n\ntakeprofit\030\006"
+  " \003(\0132\030.tradingpb.CtrlCondition\022\'\n\tparams"
+  "Buy\030\007 \001(\0132\024.tradingpb.BuyParams\022)\n\nparam"
+  "sSell\030\010 \001(\0132\025.tradingpb.SellParams\0221\n\016pa"
+  "ramsStopLoss\030\t \001(\0132\031.tradingpb.StopLossP"
+  "arams\0225\n\020paramsTakeProfit\030\n \001(\0132\033.tradin"
+  "gpb.TakeProfitParams\022)\n\nparamsInit\030\013 \001(\013"
+  "2\025.tradingpb.InitParams\022\'\n\tparamsAIP\030\014 \001"
+  "(\0132\024.tradingpb.AIPParams\022\021\n\005title\030\r \001(\tB"
+  "\002\030\001\022\022\n\nindicators\030\016 \003(\t\022$\n\006feeBuy\030\017 \001(\0132"
+  "\024.tradingpb.FeeParams\022%\n\007feeSell\030\020 \001(\0132\024"
+  ".tradingpb.FeeParams\"v\n\014PNLDataValue\022\n\n\002"
+  "ts\030\001 \001(\003\022\020\n\010perValue\030\002 \001(\002\022\014\n\004tags\030\003 \003(\t"
+  "\022\014\n\004cost\030\004 \001(\002\022\r\n\005value\030\005 \001(\002\022\016\n\006volume\030"
+  "\006 \001(\002\022\r\n\005price\030\007 \001(\002\"\337\006\n\014PNLAssetData\022\037\n"
+  "\005asset\030\001 \001(\0132\020.tradingpb.Asset\022\'\n\006values"
+  "\030\002 \003(\0132\027.tradingpb.PNLDataValue\022\023\n\013maxDr"
+  "awdown\030\003 \001(\002\022\032\n\022maxDrawdownStartTs\030\004 \001(\003"
+  "\022\030\n\020maxDrawdownEndTs\030\005 \001(\003\022\021\n\tmaxDrawup\030"
+  "\006 \001(\002\022\030\n\020maxDrawupStartTs\030\007 \001(\003\022\026\n\016maxDr"
+  "awupEndTs\030\010 \001(\003\022\016\n\006sharpe\030\t \001(\002\022\031\n\021annua"
+  "lizedReturns\030\n \001(\002\022\034\n\024annualizedVolatili"
+  "ty\030\013 \001(\002\022\024\n\014totalReturns\030\014 \001(\002\022\020\n\010varian"
+  "ce\030\r \001(\002\022\020\n\010buyTimes\030\016 \001(\005\022\021\n\tsellTimes\030"
+  "\017 \001(\005\022\025\n\rstoplossTimes\030\020 \001(\005\022\022\n\nmaxUpDay"
+  "Ts\030\021 \001(\003\022\023\n\013maxPerUpDay\030\022 \001(\002\022\024\n\014maxDown"
+  "DayTs\030\023 \001(\003\022\025\n\rmaxPerDownDay\030\024 \001(\002\022\023\n\013ma"
+  "xUpWeekTs\030\025 \001(\003\022\024\n\014maxPerUpWeek\030\026 \001(\002\022\025\n"
+  "\rmaxDownWeekTs\030\027 \001(\003\022\026\n\016maxPerDownWeek\030\030"
+  " \001(\002\022\024\n\014maxUpMonthTs\030\031 \001(\003\022\025\n\rmaxPerUpMo"
+  "nth\030\032 \001(\002\022\026\n\016maxDownMonthTs\030\033 \001(\003\022\027\n\017max"
+  "PerDownMonth\030\034 \001(\002\022\023\n\013maxUpYearTs\030\035 \001(\003\022"
+  "\024\n\014maxPerUpYear\030\036 \001(\002\022\025\n\rmaxDownYearTs\030\037"
+  " \001(\003\022\026\n\016maxPerDownYear\030  \001(\002\022$\n\007lstCtrl\030"
+  "! \003(\0132\023.tradingpb.CtrlNode\022(\n\nindicators"
+  "\030\" \003(\0132\024.tradingpb.Indicator\022\020\n\010winTimes"
+  "\030# \001(\005\"\223\001\n\007PNLData\022\020\n\004name\030\001 \001(\tB\002\030\001\022&\n\005"
+  "total\030\002 \001(\0132\027.tradingpb.PNLAssetData\022+\n\006"
+  "assets\030\003 \003(\0132\027.tradingpb.PNLAssetDataB\002\030"
+  "\001\022\r\n\005title\030\004 \001(\t\022\022\n\006lastts\030\005 \001(\003B\002\030\001\"\224\002\n"
+  "\020SimTradingParams\022 \n\006assets\030\001 \003(\0132\020.trad"
+  "ingpb.Asset\022\'\n\tbaselines\030\002 \003(\0132\020.trading"
+  "pb.AssetB\002\030\001\022\017\n\007startTs\030\003 \001(\003\022\r\n\005endTs\030\004"
+  " \001(\003\022\'\n\nstrategies\030\005 \003(\0132\023.tradingpb.Str"
+  "ategy\022!\n\006wallet\030\006 \001(\0132\021.tradingpb.Wallet"
+  "\022\r\n\005title\030\007 \001(\t\022\026\n\016mainAssetIndex\030\010 \001(\005\022"
+  "\022\n\nindicators\030\t \003(\t\022\016\n\006offset\030\n \001(\005\"5\n\017T"
+  "radingNodeInfo\022\020\n\010maxTasks\030\001 \001(\005\022\020\n\010curT"
+  "asks\030\002 \001(\005\"~\n\023SimTradingCacheNode\022+\n\006par"
+  "ams\030\001 \001(\0132\033.tradingpb.SimTradingParams\022\013"
+  "\n\003key\030\002 \001(\t\022\016\n\006lastTs\030\003 \001(\003\022\020\n\004hash\030\004 \001("
+  "\tB\002\030\001\022\013\n\003buf\030\005 \001(\014\"@\n\017SimTradingCache\022-\n"
+  "\005nodes\030\001 \003(\0132\036.tradingpb.SimTradingCache"
+  "Node*\203\001\n\010CtrlType\022\r\n\tCTRL_INIT\020\000\022\014\n\010CTRL"
+  "_BUY\020\001\022\r\n\tCTRL_SELL\020\002\022\021\n\rCTRL_STOPLOSS\020\003"
+  "\022\023\n\017CTRL_TAKEPROFIT\020\004\022\021\n\rCTRL_WITHDRAW\020\005"
+  "\022\020\n\014CTRL_DEPOSIT\020\006*7\n\rIndicatorType\022\022\n\016I"
+  "T_SINGLEVALUE\020\000\022\022\n\016IT_SINGLEPRICE\020\001*4\n\013A"
+  "IPTimeType\022\021\n\rAIPTT_WEEKDAY\020\000\022\022\n\016AIPTT_M"
+  "ONTHDAY\020\001B(Z&github.com/zhs007/tradingdb"
+  "2/tradingpbb\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_trading2_2eproto_deps[1] = {
 };
@@ -1000,7 +1010,7 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_tra
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_trading2_2eproto_once;
 static bool descriptor_table_trading2_2eproto_initialized = false;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_trading2_2eproto = {
-  &descriptor_table_trading2_2eproto_initialized, descriptor_table_protodef_trading2_2eproto, "trading2.proto", 4447,
+  &descriptor_table_trading2_2eproto_initialized, descriptor_table_protodef_trading2_2eproto, "trading2.proto", 4579,
   &descriptor_table_trading2_2eproto_once, descriptor_table_trading2_2eproto_sccs, descriptor_table_trading2_2eproto_deps, 25, 0,
   schemas, file_default_instances, TableStruct_trading2_2eproto::offsets,
   file_level_metadata_trading2_2eproto, 25, file_level_enum_descriptors_trading2_2eproto, file_level_service_descriptors_trading2_2eproto,
@@ -2821,7 +2831,8 @@ CtrlCondition::CtrlCondition(const CtrlCondition& from)
       minvals_(from.minvals_),
       maxvals_(from.maxvals_),
       offvals_(from.offvals_),
-      strvals_(from.strvals_) {
+      strvals_(from.strvals_),
+      int64vals_(from.int64vals_) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
   indicator_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (!from._internal_indicator().empty()) {
@@ -2879,6 +2890,7 @@ void CtrlCondition::Clear() {
   maxvals_.Clear();
   offvals_.Clear();
   strvals_.Clear();
+  int64vals_.Clear();
   indicator_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   combcondition_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   name_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
@@ -2995,6 +3007,16 @@ const char* CtrlCondition::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
+      // repeated float int64Vals = 11;
+      case 11:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 90)) {
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::PackedFloatParser(_internal_mutable_int64vals(), ptr, ctx);
+          CHK_(ptr);
+        } else if (static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 93) {
+          _internal_add_int64vals(::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr));
+          ptr += sizeof(float);
+        } else goto handle_unusual;
+        continue;
       default: {
       handle_unusual:
         if ((tag & 7) == 4 || tag == 0) {
@@ -3097,6 +3119,11 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(10, this->_internal_group(), target);
   }
 
+  // repeated float int64Vals = 11;
+  if (this->_internal_int64vals_size() > 0) {
+    target = stream->WriteFixedPacked(11, _internal_int64vals(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields(), target, stream);
@@ -3189,6 +3216,21 @@ size_t CtrlCondition::ByteSizeLong() const {
       strvals_.Get(i));
   }
 
+  // repeated float int64Vals = 11;
+  {
+    unsigned int count = static_cast<unsigned int>(this->_internal_int64vals_size());
+    size_t data_size = 4UL * count;
+    if (data_size > 0) {
+      total_size += 1 +
+        ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int32Size(
+            static_cast<::PROTOBUF_NAMESPACE_ID::int32>(data_size));
+    }
+    int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(data_size);
+    _int64vals_cached_byte_size_.store(cached_size,
+                                    std::memory_order_relaxed);
+    total_size += data_size;
+  }
+
   // string indicator = 1 [deprecated = true];
   if (this->indicator().size() > 0) {
     total_size += 1 +
@@ -3254,6 +3296,7 @@ void CtrlCondition::MergeFrom(const CtrlCondition& from) {
   maxvals_.MergeFrom(from.maxvals_);
   offvals_.MergeFrom(from.offvals_);
   strvals_.MergeFrom(from.strvals_);
+  int64vals_.MergeFrom(from.int64vals_);
   if (from.indicator().size() > 0) {
 
     indicator_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.indicator_);
@@ -3298,6 +3341,7 @@ void CtrlCondition::InternalSwap(CtrlCondition* other) {
   maxvals_.InternalSwap(&other->maxvals_);
   offvals_.InternalSwap(&other->offvals_);
   strvals_.InternalSwap(&other->strvals_);
+  int64vals_.InternalSwap(&other->int64vals_);
   indicator_.Swap(&other->indicator_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
     GetArenaNoVirtual());
   combcondition_.Swap(&other->combcondition_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
@@ -4767,12 +4811,16 @@ StopLossParams::StopLossParams(const StopLossParams& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
       _internal_metadata_(nullptr) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
-  drawdown_ = from.drawdown_;
+  ::memcpy(&drawdown_, &from.drawdown_,
+    static_cast<size_t>(reinterpret_cast<char*>(&pervolume_) -
+    reinterpret_cast<char*>(&drawdown_)) + sizeof(pervolume_));
   // @@protoc_insertion_point(copy_constructor:tradingpb.StopLossParams)
 }
 
 void StopLossParams::SharedCtor() {
-  drawdown_ = 0;
+  ::memset(&drawdown_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&pervolume_) -
+      reinterpret_cast<char*>(&drawdown_)) + sizeof(pervolume_));
 }
 
 StopLossParams::~StopLossParams() {
@@ -4798,7 +4846,9 @@ void StopLossParams::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  drawdown_ = 0;
+  ::memset(&drawdown_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&pervolume_) -
+      reinterpret_cast<char*>(&drawdown_)) + sizeof(pervolume_));
   _internal_metadata_.Clear();
 }
 
@@ -4809,10 +4859,24 @@ const char* StopLossParams::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE
     ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
     CHK_(ptr);
     switch (tag >> 3) {
-      // float drawdown = 1;
+      // float drawdown = 1 [deprecated = true];
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 13)) {
           drawdown_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else goto handle_unusual;
+        continue;
+      // bool isFinish = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
+          isfinish_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // float perVolume = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 29)) {
+          pervolume_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else goto handle_unusual;
         continue;
@@ -4842,10 +4906,22 @@ failure:
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // float drawdown = 1;
+  // float drawdown = 1 [deprecated = true];
   if (!(this->drawdown() <= 0 && this->drawdown() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(1, this->_internal_drawdown(), target);
+  }
+
+  // bool isFinish = 2;
+  if (this->isfinish() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(2, this->_internal_isfinish(), target);
+  }
+
+  // float perVolume = 3;
+  if (!(this->pervolume() <= 0 && this->pervolume() >= 0)) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(3, this->_internal_pervolume(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -4864,8 +4940,18 @@ size_t StopLossParams::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // float drawdown = 1;
+  // float drawdown = 1 [deprecated = true];
   if (!(this->drawdown() <= 0 && this->drawdown() >= 0)) {
+    total_size += 1 + 4;
+  }
+
+  // bool isFinish = 2;
+  if (this->isfinish() != 0) {
+    total_size += 1 + 1;
+  }
+
+  // float perVolume = 3;
+  if (!(this->pervolume() <= 0 && this->pervolume() >= 0)) {
     total_size += 1 + 4;
   }
 
@@ -4903,6 +4989,12 @@ void StopLossParams::MergeFrom(const StopLossParams& from) {
   if (!(from.drawdown() <= 0 && from.drawdown() >= 0)) {
     _internal_set_drawdown(from._internal_drawdown());
   }
+  if (from.isfinish() != 0) {
+    _internal_set_isfinish(from._internal_isfinish());
+  }
+  if (!(from.pervolume() <= 0 && from.pervolume() >= 0)) {
+    _internal_set_pervolume(from._internal_pervolume());
+  }
 }
 
 void StopLossParams::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
@@ -4927,6 +5019,8 @@ void StopLossParams::InternalSwap(StopLossParams* other) {
   using std::swap;
   _internal_metadata_.Swap(&other->_internal_metadata_);
   swap(drawdown_, other->drawdown_);
+  swap(isfinish_, other->isfinish_);
+  swap(pervolume_, other->pervolume_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata StopLossParams::GetMetadata() const {
@@ -4951,12 +5045,16 @@ TakeProfitParams::TakeProfitParams(const TakeProfitParams& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
       _internal_metadata_(nullptr) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
-  profit_ = from.profit_;
+  ::memcpy(&profit_, &from.profit_,
+    static_cast<size_t>(reinterpret_cast<char*>(&pervolume_) -
+    reinterpret_cast<char*>(&profit_)) + sizeof(pervolume_));
   // @@protoc_insertion_point(copy_constructor:tradingpb.TakeProfitParams)
 }
 
 void TakeProfitParams::SharedCtor() {
-  profit_ = 0;
+  ::memset(&profit_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&pervolume_) -
+      reinterpret_cast<char*>(&profit_)) + sizeof(pervolume_));
 }
 
 TakeProfitParams::~TakeProfitParams() {
@@ -4982,7 +5080,9 @@ void TakeProfitParams::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  profit_ = 0;
+  ::memset(&profit_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&pervolume_) -
+      reinterpret_cast<char*>(&profit_)) + sizeof(pervolume_));
   _internal_metadata_.Clear();
 }
 
@@ -4993,10 +5093,24 @@ const char* TakeProfitParams::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPA
     ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
     CHK_(ptr);
     switch (tag >> 3) {
-      // float profit = 1;
+      // float profit = 1 [deprecated = true];
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 13)) {
           profit_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
+        } else goto handle_unusual;
+        continue;
+      // bool isFinish = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 16)) {
+          isfinish_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // float perVolume = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 29)) {
+          pervolume_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
           ptr += sizeof(float);
         } else goto handle_unusual;
         continue;
@@ -5026,10 +5140,22 @@ failure:
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
-  // float profit = 1;
+  // float profit = 1 [deprecated = true];
   if (!(this->profit() <= 0 && this->profit() >= 0)) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(1, this->_internal_profit(), target);
+  }
+
+  // bool isFinish = 2;
+  if (this->isfinish() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteBoolToArray(2, this->_internal_isfinish(), target);
+  }
+
+  // float perVolume = 3;
+  if (!(this->pervolume() <= 0 && this->pervolume() >= 0)) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(3, this->_internal_pervolume(), target);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -5048,8 +5174,18 @@ size_t TakeProfitParams::ByteSizeLong() const {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
-  // float profit = 1;
+  // float profit = 1 [deprecated = true];
   if (!(this->profit() <= 0 && this->profit() >= 0)) {
+    total_size += 1 + 4;
+  }
+
+  // bool isFinish = 2;
+  if (this->isfinish() != 0) {
+    total_size += 1 + 1;
+  }
+
+  // float perVolume = 3;
+  if (!(this->pervolume() <= 0 && this->pervolume() >= 0)) {
     total_size += 1 + 4;
   }
 
@@ -5087,6 +5223,12 @@ void TakeProfitParams::MergeFrom(const TakeProfitParams& from) {
   if (!(from.profit() <= 0 && from.profit() >= 0)) {
     _internal_set_profit(from._internal_profit());
   }
+  if (from.isfinish() != 0) {
+    _internal_set_isfinish(from._internal_isfinish());
+  }
+  if (!(from.pervolume() <= 0 && from.pervolume() >= 0)) {
+    _internal_set_pervolume(from._internal_pervolume());
+  }
 }
 
 void TakeProfitParams::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
@@ -5111,6 +5253,8 @@ void TakeProfitParams::InternalSwap(TakeProfitParams* other) {
   using std::swap;
   _internal_metadata_.Swap(&other->_internal_metadata_);
   swap(profit_, other->profit_);
+  swap(isfinish_, other->isfinish_);
+  swap(pervolume_, other->pervolume_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata TakeProfitParams::GetMetadata() const {
@@ -9010,6 +9154,14 @@ SimTradingCacheNode::SimTradingCacheNode(const SimTradingCacheNode& from)
   if (!from._internal_key().empty()) {
     key_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.key_);
   }
+  hash_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_hash().empty()) {
+    hash_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.hash_);
+  }
+  buf_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_buf().empty()) {
+    buf_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.buf_);
+  }
   if (from._internal_has_params()) {
     params_ = new ::tradingpb::SimTradingParams(*from.params_);
   } else {
@@ -9022,6 +9174,8 @@ SimTradingCacheNode::SimTradingCacheNode(const SimTradingCacheNode& from)
 void SimTradingCacheNode::SharedCtor() {
   ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_SimTradingCacheNode_trading2_2eproto.base);
   key_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  hash_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  buf_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   ::memset(&params_, 0, static_cast<size_t>(
       reinterpret_cast<char*>(&lastts_) -
       reinterpret_cast<char*>(&params_)) + sizeof(lastts_));
@@ -9034,6 +9188,8 @@ SimTradingCacheNode::~SimTradingCacheNode() {
 
 void SimTradingCacheNode::SharedDtor() {
   key_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  hash_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  buf_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (this != internal_default_instance()) delete params_;
 }
 
@@ -9053,6 +9209,8 @@ void SimTradingCacheNode::Clear() {
   (void) cached_has_bits;
 
   key_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  hash_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  buf_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (GetArenaNoVirtual() == nullptr && params_ != nullptr) {
     delete params_;
   }
@@ -9088,6 +9246,23 @@ const char* SimTradingCacheNode::_InternalParse(const char* ptr, ::PROTOBUF_NAME
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 24)) {
           lastts_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string hash = 4 [deprecated = true];
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 34)) {
+          auto str = _internal_mutable_hash();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "tradingpb.SimTradingCacheNode.hash"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // bytes buf = 5;
+      case 5:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 42)) {
+          auto str = _internal_mutable_buf();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -9141,6 +9316,22 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt64ToArray(3, this->_internal_lastts(), target);
   }
 
+  // string hash = 4 [deprecated = true];
+  if (this->hash().size() > 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_hash().data(), static_cast<int>(this->_internal_hash().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "tradingpb.SimTradingCacheNode.hash");
+    target = stream->WriteStringMaybeAliased(
+        4, this->_internal_hash(), target);
+  }
+
+  // bytes buf = 5;
+  if (this->buf().size() > 0) {
+    target = stream->WriteBytesMaybeAliased(
+        5, this->_internal_buf(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields(), target, stream);
@@ -9162,6 +9353,20 @@ size_t SimTradingCacheNode::ByteSizeLong() const {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
         this->_internal_key());
+  }
+
+  // string hash = 4 [deprecated = true];
+  if (this->hash().size() > 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_hash());
+  }
+
+  // bytes buf = 5;
+  if (this->buf().size() > 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::BytesSize(
+        this->_internal_buf());
   }
 
   // .tradingpb.SimTradingParams params = 1;
@@ -9213,6 +9418,14 @@ void SimTradingCacheNode::MergeFrom(const SimTradingCacheNode& from) {
 
     key_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.key_);
   }
+  if (from.hash().size() > 0) {
+
+    hash_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.hash_);
+  }
+  if (from.buf().size() > 0) {
+
+    buf_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.buf_);
+  }
   if (from.has_params()) {
     _internal_mutable_params()->::tradingpb::SimTradingParams::MergeFrom(from._internal_params());
   }
@@ -9243,6 +9456,10 @@ void SimTradingCacheNode::InternalSwap(SimTradingCacheNode* other) {
   using std::swap;
   _internal_metadata_.Swap(&other->_internal_metadata_);
   key_.Swap(&other->key_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+    GetArenaNoVirtual());
+  hash_.Swap(&other->hash_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+    GetArenaNoVirtual());
+  buf_.Swap(&other->buf_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
     GetArenaNoVirtual());
   swap(params_, other->params_);
   swap(lastts_, other->lastts_);

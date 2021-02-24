@@ -118,6 +118,10 @@ void Strategy::getTrainResult(TrainResult& tr) {
 }
 
 void Strategy::onTimeStamp(bool issim, TimeStamp ts, int index) {
+  if (this->m_isFinish) {
+    return;
+  }
+
   if (index == 0) {
     this->initMoney(issim, ts);
   }
@@ -314,6 +318,82 @@ void Strategy::sell(bool issim, TimeStamp ts, int strategyID,
 
       this->onSell(issim, ts, m, v, 0, moneyParts);
     }
+  }
+}
+
+void Strategy::takeProfit(bool issim, TimeStamp ts, int strategyID,
+                          int ctrlConditionID, bool noNextTimes) {
+  auto takeprofit = this->m_strategy.paramstakeprofit();
+  auto f = std::bind(&Strategy::calcFee4Sell, this, std::placeholders::_1,
+                     std::placeholders::_2, std::placeholders::_3,
+                     std::placeholders::_4);
+
+  if (takeprofit.pervolume() > 0) {
+    int moneyParts;
+    auto v1 = this->m_wallet.calcAssetVolume(
+        this->m_strategy.asset().code().c_str(), ts, moneyParts);
+
+    auto v = takeprofit.pervolume() * this->m_volume;
+
+    if (v > 0) {
+      assert(cmpValue<float>(v, v1));
+
+      Money fee = 0;
+
+      auto m = this->m_wallet.sellAssets(
+          this->m_strategy.asset().code().c_str(), v, fee, ts, strategyID,
+          ctrlConditionID, f, moneyParts);
+
+      this->onTakeProfit(issim, ts, m, v, 0, moneyParts);
+    }
+  }
+}
+
+void Strategy::stopLoss(bool issim, TimeStamp ts, int strategyID,
+                        int ctrlConditionID, bool noNextTimes) {
+  auto stoploss = this->m_strategy.paramsstoploss();
+  auto f = std::bind(&Strategy::calcFee4Sell, this, std::placeholders::_1,
+                     std::placeholders::_2, std::placeholders::_3,
+                     std::placeholders::_4);
+
+  if (stoploss.pervolume() > 0) {
+    int moneyParts;
+    auto v1 = this->m_wallet.calcAssetVolume(
+        this->m_strategy.asset().code().c_str(), ts, moneyParts);
+
+    auto v = stoploss.pervolume() * this->m_volume;
+
+    if (v > 0) {
+      assert(cmpValue<float>(v, v1));
+
+      Money fee = 0;
+
+      auto m = this->m_wallet.sellAssets(
+          this->m_strategy.asset().code().c_str(), v, fee, ts, strategyID,
+          ctrlConditionID, f, moneyParts);
+
+      this->onStopLoss(issim, ts, m, v, 0, moneyParts);
+    }
+  }
+}
+
+void Strategy::onStopLoss(bool issim, TimeStamp ts, Money money, Volume volume,
+                          Money fee, int offMoneyParts) {
+  this->onSell(issim, ts, money, volume, fee, offMoneyParts);
+
+  auto stoploss = this->m_strategy.paramsstoploss();
+  if (stoploss.isfinish()) {
+    m_isFinish = true;
+  }
+}
+
+void Strategy::onTakeProfit(bool issim, TimeStamp ts, Money money,
+                            Volume volume, Money fee, int offMoneyParts) {
+  this->onSell(issim, ts, money, volume, fee, offMoneyParts);
+
+  auto takeprofit = this->m_strategy.paramstakeprofit();
+  if (takeprofit.isfinish()) {
+    m_isFinish = true;
   }
 }
 

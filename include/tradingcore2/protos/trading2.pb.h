@@ -1444,6 +1444,7 @@ class CtrlCondition :
     kMaxvalsFieldNumber = 6,
     kOffvalsFieldNumber = 7,
     kStrValsFieldNumber = 8,
+    kInt64ValsFieldNumber = 11,
     kIndicatorFieldNumber = 1,
     kCombConditionFieldNumber = 4,
     kNameFieldNumber = 9,
@@ -1585,6 +1586,28 @@ class CtrlCondition :
   std::string* _internal_add_strvals();
   public:
 
+  // repeated float int64Vals = 11;
+  int int64vals_size() const;
+  private:
+  int _internal_int64vals_size() const;
+  public:
+  void clear_int64vals();
+  private:
+  float _internal_int64vals(int index) const;
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< float >&
+      _internal_int64vals() const;
+  void _internal_add_int64vals(float value);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< float >*
+      _internal_mutable_int64vals();
+  public:
+  float int64vals(int index) const;
+  void set_int64vals(int index, float value);
+  void add_int64vals(float value);
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedField< float >&
+      int64vals() const;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< float >*
+      mutable_int64vals();
+
   // string indicator = 1 [deprecated = true];
   PROTOBUF_DEPRECATED void clear_indicator();
   PROTOBUF_DEPRECATED const std::string& indicator() const;
@@ -1657,6 +1680,8 @@ class CtrlCondition :
   ::PROTOBUF_NAMESPACE_ID::RepeatedField< float > offvals_;
   mutable std::atomic<int> _offvals_cached_byte_size_;
   ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField<std::string> strvals_;
+  ::PROTOBUF_NAMESPACE_ID::RepeatedField< float > int64vals_;
+  mutable std::atomic<int> _int64vals_cached_byte_size_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr indicator_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr combcondition_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
@@ -2621,14 +2646,34 @@ class StopLossParams :
 
   enum : int {
     kDrawdownFieldNumber = 1,
+    kIsFinishFieldNumber = 2,
+    kPerVolumeFieldNumber = 3,
   };
-  // float drawdown = 1;
-  void clear_drawdown();
-  float drawdown() const;
-  void set_drawdown(float value);
+  // float drawdown = 1 [deprecated = true];
+  PROTOBUF_DEPRECATED void clear_drawdown();
+  PROTOBUF_DEPRECATED float drawdown() const;
+  PROTOBUF_DEPRECATED void set_drawdown(float value);
   private:
   float _internal_drawdown() const;
   void _internal_set_drawdown(float value);
+  public:
+
+  // bool isFinish = 2;
+  void clear_isfinish();
+  bool isfinish() const;
+  void set_isfinish(bool value);
+  private:
+  bool _internal_isfinish() const;
+  void _internal_set_isfinish(bool value);
+  public:
+
+  // float perVolume = 3;
+  void clear_pervolume();
+  float pervolume() const;
+  void set_pervolume(float value);
+  private:
+  float _internal_pervolume() const;
+  void _internal_set_pervolume(float value);
   public:
 
   // @@protoc_insertion_point(class_scope:tradingpb.StopLossParams)
@@ -2637,6 +2682,8 @@ class StopLossParams :
 
   ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
   float drawdown_;
+  bool isfinish_;
+  float pervolume_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_trading2_2eproto;
 };
@@ -2749,14 +2796,34 @@ class TakeProfitParams :
 
   enum : int {
     kProfitFieldNumber = 1,
+    kIsFinishFieldNumber = 2,
+    kPerVolumeFieldNumber = 3,
   };
-  // float profit = 1;
-  void clear_profit();
-  float profit() const;
-  void set_profit(float value);
+  // float profit = 1 [deprecated = true];
+  PROTOBUF_DEPRECATED void clear_profit();
+  PROTOBUF_DEPRECATED float profit() const;
+  PROTOBUF_DEPRECATED void set_profit(float value);
   private:
   float _internal_profit() const;
   void _internal_set_profit(float value);
+  public:
+
+  // bool isFinish = 2;
+  void clear_isfinish();
+  bool isfinish() const;
+  void set_isfinish(bool value);
+  private:
+  bool _internal_isfinish() const;
+  void _internal_set_isfinish(bool value);
+  public:
+
+  // float perVolume = 3;
+  void clear_pervolume();
+  float pervolume() const;
+  void set_pervolume(float value);
+  private:
+  float _internal_pervolume() const;
+  void _internal_set_pervolume(float value);
   public:
 
   // @@protoc_insertion_point(class_scope:tradingpb.TakeProfitParams)
@@ -2765,6 +2832,8 @@ class TakeProfitParams :
 
   ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
   float profit_;
+  bool isfinish_;
+  float pervolume_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_trading2_2eproto;
 };
@@ -5094,6 +5163,8 @@ class SimTradingCacheNode :
 
   enum : int {
     kKeyFieldNumber = 2,
+    kHashFieldNumber = 4,
+    kBufFieldNumber = 5,
     kParamsFieldNumber = 1,
     kLastTsFieldNumber = 3,
   };
@@ -5111,6 +5182,38 @@ class SimTradingCacheNode :
   const std::string& _internal_key() const;
   void _internal_set_key(const std::string& value);
   std::string* _internal_mutable_key();
+  public:
+
+  // string hash = 4 [deprecated = true];
+  PROTOBUF_DEPRECATED void clear_hash();
+  PROTOBUF_DEPRECATED const std::string& hash() const;
+  PROTOBUF_DEPRECATED void set_hash(const std::string& value);
+  PROTOBUF_DEPRECATED void set_hash(std::string&& value);
+  PROTOBUF_DEPRECATED void set_hash(const char* value);
+  PROTOBUF_DEPRECATED void set_hash(const char* value, size_t size);
+  PROTOBUF_DEPRECATED std::string* mutable_hash();
+  PROTOBUF_DEPRECATED std::string* release_hash();
+  PROTOBUF_DEPRECATED void set_allocated_hash(std::string* hash);
+  private:
+  const std::string& _internal_hash() const;
+  void _internal_set_hash(const std::string& value);
+  std::string* _internal_mutable_hash();
+  public:
+
+  // bytes buf = 5;
+  void clear_buf();
+  const std::string& buf() const;
+  void set_buf(const std::string& value);
+  void set_buf(std::string&& value);
+  void set_buf(const char* value);
+  void set_buf(const void* value, size_t size);
+  std::string* mutable_buf();
+  std::string* release_buf();
+  void set_allocated_buf(std::string* buf);
+  private:
+  const std::string& _internal_buf() const;
+  void _internal_set_buf(const std::string& value);
+  std::string* _internal_mutable_buf();
   public:
 
   // .tradingpb.SimTradingParams params = 1;
@@ -5143,6 +5246,8 @@ class SimTradingCacheNode :
 
   ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr key_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr hash_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr buf_;
   ::tradingpb::SimTradingParams* params_;
   ::PROTOBUF_NAMESPACE_ID::int64 lastts_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
@@ -6680,6 +6785,53 @@ inline void CtrlCondition::set_group(::PROTOBUF_NAMESPACE_ID::int32 value) {
   // @@protoc_insertion_point(field_set:tradingpb.CtrlCondition.group)
 }
 
+// repeated float int64Vals = 11;
+inline int CtrlCondition::_internal_int64vals_size() const {
+  return int64vals_.size();
+}
+inline int CtrlCondition::int64vals_size() const {
+  return _internal_int64vals_size();
+}
+inline void CtrlCondition::clear_int64vals() {
+  int64vals_.Clear();
+}
+inline float CtrlCondition::_internal_int64vals(int index) const {
+  return int64vals_.Get(index);
+}
+inline float CtrlCondition::int64vals(int index) const {
+  // @@protoc_insertion_point(field_get:tradingpb.CtrlCondition.int64Vals)
+  return _internal_int64vals(index);
+}
+inline void CtrlCondition::set_int64vals(int index, float value) {
+  int64vals_.Set(index, value);
+  // @@protoc_insertion_point(field_set:tradingpb.CtrlCondition.int64Vals)
+}
+inline void CtrlCondition::_internal_add_int64vals(float value) {
+  int64vals_.Add(value);
+}
+inline void CtrlCondition::add_int64vals(float value) {
+  _internal_add_int64vals(value);
+  // @@protoc_insertion_point(field_add:tradingpb.CtrlCondition.int64Vals)
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< float >&
+CtrlCondition::_internal_int64vals() const {
+  return int64vals_;
+}
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedField< float >&
+CtrlCondition::int64vals() const {
+  // @@protoc_insertion_point(field_list:tradingpb.CtrlCondition.int64Vals)
+  return _internal_int64vals();
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< float >*
+CtrlCondition::_internal_mutable_int64vals() {
+  return &int64vals_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< float >*
+CtrlCondition::mutable_int64vals() {
+  // @@protoc_insertion_point(field_mutable_list:tradingpb.CtrlCondition.int64Vals)
+  return _internal_mutable_int64vals();
+}
+
 // -------------------------------------------------------------------
 
 // IndicatorData
@@ -7586,7 +7738,7 @@ inline void SellParams::set_nexttimes(::PROTOBUF_NAMESPACE_ID::int32 value) {
 
 // StopLossParams
 
-// float drawdown = 1;
+// float drawdown = 1 [deprecated = true];
 inline void StopLossParams::clear_drawdown() {
   drawdown_ = 0;
 }
@@ -7606,11 +7758,51 @@ inline void StopLossParams::set_drawdown(float value) {
   // @@protoc_insertion_point(field_set:tradingpb.StopLossParams.drawdown)
 }
 
+// bool isFinish = 2;
+inline void StopLossParams::clear_isfinish() {
+  isfinish_ = false;
+}
+inline bool StopLossParams::_internal_isfinish() const {
+  return isfinish_;
+}
+inline bool StopLossParams::isfinish() const {
+  // @@protoc_insertion_point(field_get:tradingpb.StopLossParams.isFinish)
+  return _internal_isfinish();
+}
+inline void StopLossParams::_internal_set_isfinish(bool value) {
+  
+  isfinish_ = value;
+}
+inline void StopLossParams::set_isfinish(bool value) {
+  _internal_set_isfinish(value);
+  // @@protoc_insertion_point(field_set:tradingpb.StopLossParams.isFinish)
+}
+
+// float perVolume = 3;
+inline void StopLossParams::clear_pervolume() {
+  pervolume_ = 0;
+}
+inline float StopLossParams::_internal_pervolume() const {
+  return pervolume_;
+}
+inline float StopLossParams::pervolume() const {
+  // @@protoc_insertion_point(field_get:tradingpb.StopLossParams.perVolume)
+  return _internal_pervolume();
+}
+inline void StopLossParams::_internal_set_pervolume(float value) {
+  
+  pervolume_ = value;
+}
+inline void StopLossParams::set_pervolume(float value) {
+  _internal_set_pervolume(value);
+  // @@protoc_insertion_point(field_set:tradingpb.StopLossParams.perVolume)
+}
+
 // -------------------------------------------------------------------
 
 // TakeProfitParams
 
-// float profit = 1;
+// float profit = 1 [deprecated = true];
 inline void TakeProfitParams::clear_profit() {
   profit_ = 0;
 }
@@ -7628,6 +7820,46 @@ inline void TakeProfitParams::_internal_set_profit(float value) {
 inline void TakeProfitParams::set_profit(float value) {
   _internal_set_profit(value);
   // @@protoc_insertion_point(field_set:tradingpb.TakeProfitParams.profit)
+}
+
+// bool isFinish = 2;
+inline void TakeProfitParams::clear_isfinish() {
+  isfinish_ = false;
+}
+inline bool TakeProfitParams::_internal_isfinish() const {
+  return isfinish_;
+}
+inline bool TakeProfitParams::isfinish() const {
+  // @@protoc_insertion_point(field_get:tradingpb.TakeProfitParams.isFinish)
+  return _internal_isfinish();
+}
+inline void TakeProfitParams::_internal_set_isfinish(bool value) {
+  
+  isfinish_ = value;
+}
+inline void TakeProfitParams::set_isfinish(bool value) {
+  _internal_set_isfinish(value);
+  // @@protoc_insertion_point(field_set:tradingpb.TakeProfitParams.isFinish)
+}
+
+// float perVolume = 3;
+inline void TakeProfitParams::clear_pervolume() {
+  pervolume_ = 0;
+}
+inline float TakeProfitParams::_internal_pervolume() const {
+  return pervolume_;
+}
+inline float TakeProfitParams::pervolume() const {
+  // @@protoc_insertion_point(field_get:tradingpb.TakeProfitParams.perVolume)
+  return _internal_pervolume();
+}
+inline void TakeProfitParams::_internal_set_pervolume(float value) {
+  
+  pervolume_ = value;
+}
+inline void TakeProfitParams::set_pervolume(float value) {
+  _internal_set_pervolume(value);
+  // @@protoc_insertion_point(field_set:tradingpb.TakeProfitParams.perVolume)
 }
 
 // -------------------------------------------------------------------
@@ -10519,6 +10751,126 @@ inline void SimTradingCacheNode::_internal_set_lastts(::PROTOBUF_NAMESPACE_ID::i
 inline void SimTradingCacheNode::set_lastts(::PROTOBUF_NAMESPACE_ID::int64 value) {
   _internal_set_lastts(value);
   // @@protoc_insertion_point(field_set:tradingpb.SimTradingCacheNode.lastTs)
+}
+
+// string hash = 4 [deprecated = true];
+inline void SimTradingCacheNode::clear_hash() {
+  hash_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline const std::string& SimTradingCacheNode::hash() const {
+  // @@protoc_insertion_point(field_get:tradingpb.SimTradingCacheNode.hash)
+  return _internal_hash();
+}
+inline void SimTradingCacheNode::set_hash(const std::string& value) {
+  _internal_set_hash(value);
+  // @@protoc_insertion_point(field_set:tradingpb.SimTradingCacheNode.hash)
+}
+inline std::string* SimTradingCacheNode::mutable_hash() {
+  // @@protoc_insertion_point(field_mutable:tradingpb.SimTradingCacheNode.hash)
+  return _internal_mutable_hash();
+}
+inline const std::string& SimTradingCacheNode::_internal_hash() const {
+  return hash_.GetNoArena();
+}
+inline void SimTradingCacheNode::_internal_set_hash(const std::string& value) {
+  
+  hash_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+}
+inline void SimTradingCacheNode::set_hash(std::string&& value) {
+  
+  hash_.SetNoArena(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:tradingpb.SimTradingCacheNode.hash)
+}
+inline void SimTradingCacheNode::set_hash(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  hash_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:tradingpb.SimTradingCacheNode.hash)
+}
+inline void SimTradingCacheNode::set_hash(const char* value, size_t size) {
+  
+  hash_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:tradingpb.SimTradingCacheNode.hash)
+}
+inline std::string* SimTradingCacheNode::_internal_mutable_hash() {
+  
+  return hash_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline std::string* SimTradingCacheNode::release_hash() {
+  // @@protoc_insertion_point(field_release:tradingpb.SimTradingCacheNode.hash)
+  
+  return hash_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline void SimTradingCacheNode::set_allocated_hash(std::string* hash) {
+  if (hash != nullptr) {
+    
+  } else {
+    
+  }
+  hash_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), hash);
+  // @@protoc_insertion_point(field_set_allocated:tradingpb.SimTradingCacheNode.hash)
+}
+
+// bytes buf = 5;
+inline void SimTradingCacheNode::clear_buf() {
+  buf_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline const std::string& SimTradingCacheNode::buf() const {
+  // @@protoc_insertion_point(field_get:tradingpb.SimTradingCacheNode.buf)
+  return _internal_buf();
+}
+inline void SimTradingCacheNode::set_buf(const std::string& value) {
+  _internal_set_buf(value);
+  // @@protoc_insertion_point(field_set:tradingpb.SimTradingCacheNode.buf)
+}
+inline std::string* SimTradingCacheNode::mutable_buf() {
+  // @@protoc_insertion_point(field_mutable:tradingpb.SimTradingCacheNode.buf)
+  return _internal_mutable_buf();
+}
+inline const std::string& SimTradingCacheNode::_internal_buf() const {
+  return buf_.GetNoArena();
+}
+inline void SimTradingCacheNode::_internal_set_buf(const std::string& value) {
+  
+  buf_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+}
+inline void SimTradingCacheNode::set_buf(std::string&& value) {
+  
+  buf_.SetNoArena(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:tradingpb.SimTradingCacheNode.buf)
+}
+inline void SimTradingCacheNode::set_buf(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  buf_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:tradingpb.SimTradingCacheNode.buf)
+}
+inline void SimTradingCacheNode::set_buf(const void* value, size_t size) {
+  
+  buf_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:tradingpb.SimTradingCacheNode.buf)
+}
+inline std::string* SimTradingCacheNode::_internal_mutable_buf() {
+  
+  return buf_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline std::string* SimTradingCacheNode::release_buf() {
+  // @@protoc_insertion_point(field_release:tradingpb.SimTradingCacheNode.buf)
+  
+  return buf_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline void SimTradingCacheNode::set_allocated_buf(std::string* buf) {
+  if (buf != nullptr) {
+    
+  } else {
+    
+  }
+  buf_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), buf);
+  // @@protoc_insertion_point(field_set_allocated:tradingpb.SimTradingCacheNode.buf)
 }
 
 // -------------------------------------------------------------------

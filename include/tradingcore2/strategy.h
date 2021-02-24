@@ -39,7 +39,8 @@ class Strategy {
         m_nextBuyStrategyID(0),
         m_nextBuyCtrlConditionID(0),
         m_nextSellStrategyID(0),
-        m_nextSellCtrlConditionID(0) {}
+        m_nextSellCtrlConditionID(0),
+        m_isFinish(false) {}
   virtual ~Strategy() { this->release(); }
 
  public:
@@ -50,6 +51,12 @@ class Strategy {
 
   virtual void onSell(bool issim, TimeStamp ts, Money money, Volume volume,
                       Money fee, int offMoneyParts);
+
+  virtual void onStopLoss(bool issim, TimeStamp ts, Money money, Volume volume,
+                          Money fee, int offMoneyParts);
+
+  virtual void onTakeProfit(bool issim, TimeStamp ts, Money money,
+                            Volume volume, Money fee, int offMoneyParts);
 
  public:
   void init(const tradingpb::Strategy& strategy) {
@@ -73,6 +80,12 @@ class Strategy {
 
   void sell(bool issim, TimeStamp ts, int strategyID, int ctrlConditionID,
             bool noNextTimes);
+
+  void takeProfit(bool issim, TimeStamp ts, int strategyID, int ctrlConditionID,
+                  bool noNextTimes);
+
+  void stopLoss(bool issim, TimeStamp ts, int strategyID, int ctrlConditionID,
+                bool noNextTimes);
 
   void initMoney(bool issim, TimeStamp ts);
 
@@ -147,6 +160,8 @@ class Strategy {
   int m_lastTimesSell;
   int m_nextSellStrategyID;
   int m_nextSellCtrlConditionID;
+
+  bool m_isFinish;
 };
 
 CR2END

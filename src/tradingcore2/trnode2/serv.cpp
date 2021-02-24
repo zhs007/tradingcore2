@@ -134,7 +134,6 @@ void TradingNode2Impl::init(const Config& cfg) {
     sts = exchange->getFirstTimeStamp();
   }
 
-  // pWallet->deposit(10000, sts);
   tr2::PNL2 pnl2;
 
   for (auto i = 0; i < request->params().strategies_size(); ++i) {
@@ -154,35 +153,6 @@ void TradingNode2Impl::init(const Config& cfg) {
     strategy->simulateTrading();
 
     strategy->buildIndicators(request->params(), pnl2);
-
-    // if (cs.name() == "bah") {
-    //   tr2::StrategyBAH* bah = new tr2::StrategyBAH(*pWallet, *exchange);
-
-    //   // auto ca = cs.asset();
-    //   bah->init(cs);
-    //   bah->simulateTrading();
-    // } else if (cs.name() == "aip") {
-    //   StrategyAIP* aip = new tr2::StrategyAIP(*pWallet, *exchange);
-
-    //   aip->init(cs);
-    //   aip->simulateTrading();
-    //   // if (cs.buy_size() >= 1) {
-    //   //   auto cb = cs.buy(0);
-
-    //   //   StrategyAIP::TimeType tt = StrategyAIP::TT_NONE;
-    //   //   if (cb.indicator() == "monthday") {
-    //   //     tt = StrategyAIP::TT_MONTH;
-    //   //   } else if (cb.indicator() == "weekday") {
-    //   //     tt = StrategyAIP::TT_WEEK;
-    //   //   }
-
-    //   //   if (tt != StrategyAIP::TT_NONE && cb.vals_size() > 0) {
-    //   //     auto ca = cs.asset();
-    //   //     aip->init(ca.code().c_str(), tt, cb.vals(0), 10000);
-    //   //     aip->simulateTrading();
-    //   //   }
-    //   // }
-    // }
   }
 
   LOG(ERROR) << "_calcPNL:simulateTrading ok!";

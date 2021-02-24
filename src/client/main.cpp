@@ -306,6 +306,64 @@ void normalWeekDay(const tr2::Config& cfg) {
   //                                       5, 5 /* off2 */, 10, 2);
 }
 
+void takeProfitWeekDay(const tr2::Config& cfg) {
+  tr2::NodeClient2 client(cfg.servs[0].host.c_str(),
+                          cfg.servs[0].token.c_str());
+
+  ::tradingpb::SimTradingParams params;
+
+  auto asset0 = params.add_assets();
+  asset0->set_market("jrj");
+  asset0->set_code("001631");
+
+  auto strategy0 = params.add_strategies();
+  strategy0->set_name("normal");
+  auto asset1 = strategy0->mutable_asset();
+  asset1->set_market("jrj");
+  asset1->set_code("001631");
+  auto buy0 = strategy0->add_buy();
+  buy0->set_name("weekday");
+  buy0->add_vals(3);
+  auto sell0 = strategy0->add_sell();
+  sell0->set_name("weekday");
+  sell0->add_vals(4);
+  auto takeprofit0 = strategy0->add_takeprofit();
+  takeprofit0->set_name("totalreturn");
+  takeprofit0->add_vals(1.01);
+  takeprofit0->add_operators(">=");
+  auto bp = strategy0->mutable_paramsbuy();
+  bp->set_perhandmoney(1);
+  auto sp = strategy0->mutable_paramssell();
+  sp->set_pervolume(1);
+  auto ip = strategy0->mutable_paramsinit();
+  ip->set_money(10000);
+  auto tp = strategy0->mutable_paramstakeprofit();
+  tp->set_pervolume(1);
+  tp->set_isfinish(true);
+
+  params.set_startts(tr2::str2timestampUTC("20200101", "%Y%m%d"));
+  params.set_endts(tr2::str2timestampUTC("20200201", "%Y%m%d"));
+
+  ::tradingpb::ReplyCalcPNL res;
+  auto status = client.clacPNL(params, res);
+
+  // client.waitStop();
+
+  // ::tradingpb::ReplyServerInfo res;
+  // auto status = client.getServerInfo(res);
+  LOG(INFO) << "calcPNL " << status.error_code();
+
+  if (status.ok()) {
+    tr2::logProtobuf("reply ", res);
+    // LOG(INFO) << res.DebugString();
+  }
+
+  // auto cnfund = tr2::ExchangeMgr::getSingleton()->getExchange("cnfund");
+  // tr2::startTrainSingleIndicator2ExPool(cfg, *cnfund, "110022", "rsi",
+  //                                       "../output", 10000, 5, 5 /* off0 */,
+  //                                       5, 5 /* off2 */, 10, 2);
+}
+
 void normalWeekDay2(const tr2::Config& cfg) {
   tr2::NodeClient2 client(cfg.servs[0].host.c_str(),
                           cfg.servs[0].token.c_str());
@@ -1246,7 +1304,7 @@ int main(int argc, char* argv[]) {
   // normalWeekDay2(cfg);
   // normalROC1(cfg);
   // normalEMA5(cfg);
-  normalEMA5_3(cfg);
+  // normalEMA5_3(cfg);
   // normalTAMA5(cfg, "ta-ema.5");
   // normalWeekDay3(cfg);
   // normalWeekDay5(cfg);
@@ -1258,6 +1316,7 @@ int main(int argc, char* argv[]) {
   // moneyParts(cfg);
   // nextBuy(cfg);
   // normalTAMA_3(cfg);
+  takeProfitWeekDay(cfg);
 
   return 0;
 }

@@ -20,11 +20,12 @@ bool CCWeekDay::canCtrl(const Exchange& exchange, const Wallet& wallet,
                         const IndicatorMap& mapIndicators,
                         const tradingpb::CtrlCondition& cc, bool issim,
                         CtrlType ct, TimeStamp ts, int index, CandleData& cd,
-                        void* pData) {
+                        Assets& assets, void* pData) {
   tm ctm;
   timestamp2timeUTC(ts, ctm);
 
-  // LOG(INFO) << "CCWeekDay2 " << ts << " " << ctm.tm_wday << " " << cc.vals(0);
+  // LOG(INFO) << "CCWeekDay2 " << ts << " " << ctm.tm_wday << " " <<
+  // cc.vals(0);
 
   if (ctm.tm_wday == cc.vals(0)) {
     return true;

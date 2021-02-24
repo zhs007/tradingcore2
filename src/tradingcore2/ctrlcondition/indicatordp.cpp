@@ -31,7 +31,7 @@ bool CCIndicatorDP::canCtrl(const Exchange& exchange, const Wallet& wallet,
                             const IndicatorMap& mapIndicators,
                             const tradingpb::CtrlCondition& cc, bool issim,
                             CtrlType ct, TimeStamp ts, int index,
-                            CandleData& cd, void* pData) {
+                            CandleData& cd, Assets& assets, void* pData) {
   auto pIndicator0 = mapIndicators.getIndicator(cc.strvals(0).c_str());
   auto pIndicator1 = mapIndicators.getIndicator(cc.strvals(1).c_str());
   if (pIndicator0 != NULL && pIndicator1 != NULL) {

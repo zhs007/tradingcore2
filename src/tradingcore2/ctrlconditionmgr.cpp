@@ -3,6 +3,7 @@
 #include <tradingcore2/ctrlconditionmgr.h>
 #include <tradingcore2/exchange.h>
 #include <tradingcore2/strategy.h>
+#include <tradingcore2/wallet.h>
 
 #include <functional>
 
@@ -57,9 +58,40 @@ int CtrlConditionMgr::isValid(const tradingpb::CtrlCondition& cc, CtrlType ct) {
 // 表示没有有未支持的 CtrlCondition，返回 -1 表示有错误
 int CtrlConditionMgr::isValidStrategy(const tradingpb::Strategy& strategy) {
   bool hasnocc = false;
+
   for (auto i = 0; i < strategy.buy_size(); i++) {
     auto cc = strategy.buy(i);
     auto ret = this->isValid(cc, CT_BUY);
+    if (ret == -1) {
+      return -1;
+    } else if (ret == 1) {
+      hasnocc = true;
+    }
+  }
+
+  for (auto i = 0; i < strategy.sell_size(); i++) {
+    auto cc = strategy.sell(i);
+    auto ret = this->isValid(cc, CT_SELL);
+    if (ret == -1) {
+      return -1;
+    } else if (ret == 1) {
+      hasnocc = true;
+    }
+  }
+
+  for (auto i = 0; i < strategy.stoploss_size(); i++) {
+    auto cc = strategy.stoploss(i);
+    auto ret = this->isValid(cc, CT_STOPLOSS);
+    if (ret == -1) {
+      return -1;
+    } else if (ret == 1) {
+      hasnocc = true;
+    }
+  }
+
+  for (auto i = 0; i < strategy.takeprofit_size(); i++) {
+    auto cc = strategy.takeprofit(i);
+    auto ret = this->isValid(cc, CT_TAKEPROFIT);
     if (ret == -1) {
       return -1;
     } else if (ret == 1) {
@@ -78,12 +110,12 @@ bool CtrlConditionMgr::canCtrl(const Exchange& exchange, const Wallet& wallet,
                                const IndicatorMap& mapIndicators,
                                const tradingpb::CtrlCondition& cc, bool issim,
                                CtrlType ct, TimeStamp ts, int index,
-                               CandleData& cd, void* pData) {
+                               CandleData& cd, Assets& assets, void* pData) {
   auto name = cc.name();
   auto it = this->m_mapCtrlCondition.find(name);
   if (it != this->m_mapCtrlCondition.end()) {
     return it->second->canCtrl(exchange, wallet, mapIndicators, cc, issim, ct,
-                               ts, index, cd, pData);
+                               ts, index, cd, assets, pData);
   }
 
   return false;
@@ -92,8 +124,8 @@ bool CtrlConditionMgr::canCtrl(const Exchange& exchange, const Wallet& wallet,
 bool CtrlConditionMgr::canCtrlInCtrlConditions(
     const Exchange& exchange, const Wallet& wallet,
     const IndicatorMap& mapIndicators, int ccnums, bool issim, CtrlType ct,
-    TimeStamp ts, int index, CandleData& cd, FuncGetCtrlCondition funcGetCC,
-    int& ctrlConditionID) {
+    TimeStamp ts, int index, CandleData& cd, Assets& assets,
+    FuncGetCtrlCondition funcGetCC, int& ctrlConditionID) {
   ctrlConditionID = 0;
   // LOG(INFO) << "ccnums " << ccnums;
   std::map<int, bool> mapGroup;
@@ -115,7 +147,7 @@ bool CtrlConditionMgr::canCtrlInCtrlConditions(
     }
 
     bool curcanctrl = this->canCtrl(exchange, wallet, mapIndicators, *pCC,
-                                    issim, ct, ts, index, cd, pData);
+                                    issim, ct, ts, index, cd, assets, pData);
     if (isNewGroup) {
       itGroup->second = curcanctrl;
     } else {
@@ -164,8 +196,60 @@ int CtrlConditionMgr::procStrategy(Strategy& strategy,
   Wallet& wallet = strategy.getWallet();
   CandleData cd;
   exchange.getData(pbStrategy.asset().code().c_str(), index, cd);
+  Assets assets = wallet.getAssets(pbStrategy.asset().code().c_str());
 
   strategy.onNextTimes(issim, ts);
+
+  bool canstoploss = false;
+  bool cantakeprofit = false;
+  int stoplossConditionID = 0;
+  int takeprofitConditionID = 0;
+
+  {
+    auto f0 = [](const tradingpb::Strategy& pbStrategy,
+                 CtrlConditionMgr::CtrlConditionData* pData, int i,
+                 const ::tradingpb::CtrlCondition** ppCC, void** ppD) {
+      *ppCC = &pbStrategy.stoploss(i);
+      *ppD = pData->lstStopLoss[i];
+    };
+    auto f = std::bind(f0, pbStrategy, pData, std::placeholders::_1,
+                       std::placeholders::_2, std::placeholders::_3);
+
+    if (this->canCtrlInCtrlConditions(
+            exchange, wallet, strategy.getMapIndicators(),
+            pbStrategy.stoploss_size(), issim, CT_STOPLOSS, ts, index, cd,
+            assets, f, stoplossConditionID)) {
+      canstoploss = true;
+    }
+  }
+
+  {
+    auto f0 = [](const tradingpb::Strategy& pbStrategy,
+                 CtrlConditionMgr::CtrlConditionData* pData, int i,
+                 const ::tradingpb::CtrlCondition** ppCC, void** ppD) {
+      *ppCC = &pbStrategy.takeprofit(i);
+      *ppD = pData->lstTakeProfit[i];
+    };
+    auto f = std::bind(f0, pbStrategy, pData, std::placeholders::_1,
+                       std::placeholders::_2, std::placeholders::_3);
+
+    if (this->canCtrlInCtrlConditions(
+            exchange, wallet, strategy.getMapIndicators(),
+            pbStrategy.takeprofit_size(), issim, CT_TAKEPROFIT, ts, index, cd,
+            assets, f, takeprofitConditionID)) {
+      cantakeprofit = true;
+    }
+  }
+
+  if (cantakeprofit) {
+    strategy.takeProfit(issim, ts, 0, takeprofitConditionID, false);
+
+    return 0;
+  } else if (canstoploss) {
+    strategy.stopLoss(issim, ts, 0, stoplossConditionID, false);
+
+    return 0;
+  }
 
   bool canbuy = false;
   bool cansell = false;
@@ -187,7 +271,7 @@ int CtrlConditionMgr::procStrategy(Strategy& strategy,
     if (this->canCtrlInCtrlConditions(exchange, wallet,
                                       strategy.getMapIndicators(),
                                       pbStrategy.buy_size(), issim, CT_BUY, ts,
-                                      index, cd, f, buyConditionID)) {
+                                      index, cd, assets, f, buyConditionID)) {
       // LOG(INFO) << "buy " << buyConditionID;
 
       // strategy.buy(issim, ts);
@@ -207,10 +291,10 @@ int CtrlConditionMgr::procStrategy(Strategy& strategy,
     auto f = std::bind(f0, pbStrategy, pData, std::placeholders::_1,
                        std::placeholders::_2, std::placeholders::_3);
 
-    if (this->canCtrlInCtrlConditions(exchange, wallet,
-                                      strategy.getMapIndicators(),
-                                      pbStrategy.sell_size(), issim, CT_SELL,
-                                      ts, index, cd, f, sellConditionID)) {
+    if (this->canCtrlInCtrlConditions(
+            exchange, wallet, strategy.getMapIndicators(),
+            pbStrategy.sell_size(), issim, CT_SELL, ts, index, cd, assets, f,
+            sellConditionID)) {
       // LOG(INFO) << "sell " << sellConditionID;
 
       // strategy.sell(issim, ts);
@@ -246,6 +330,30 @@ void CtrlConditionMgr::getIndicators(std::set<std::string>& indicators,
   {
     for (auto i = 0; i < pbStrategy.sell_size(); i++) {
       auto cc = pbStrategy.sell(i);
+
+      auto name = cc.name();
+      auto it = this->m_mapCtrlCondition.find(name);
+      if (it != this->m_mapCtrlCondition.end()) {
+        it->second->getIndicators(indicators, cc);
+      }
+    }
+  }
+
+  {
+    for (auto i = 0; i < pbStrategy.stoploss_size(); i++) {
+      auto cc = pbStrategy.stoploss(i);
+
+      auto name = cc.name();
+      auto it = this->m_mapCtrlCondition.find(name);
+      if (it != this->m_mapCtrlCondition.end()) {
+        it->second->getIndicators(indicators, cc);
+      }
+    }
+  }
+
+  {
+    for (auto i = 0; i < pbStrategy.takeprofit_size(); i++) {
+      auto cc = pbStrategy.takeprofit(i);
 
       auto name = cc.name();
       auto it = this->m_mapCtrlCondition.find(name);
@@ -298,6 +406,18 @@ CtrlConditionMgr::CtrlConditionData* CtrlConditionMgr::newCtrlConditionData(
     pData->lstSell.push_back(pD);
   }
 
+  for (auto i = 0; i < pbStrategy.stoploss_size(); i++) {
+    auto cc = pbStrategy.stoploss(i);
+    auto pD = this->newCtrlConditionData(cc);
+    pData->lstStopLoss.push_back(pD);
+  }
+
+  for (auto i = 0; i < pbStrategy.takeprofit_size(); i++) {
+    auto cc = pbStrategy.takeprofit(i);
+    auto pD = this->newCtrlConditionData(cc);
+    pData->lstTakeProfit.push_back(pD);
+  }
+
   return pData;
 }
 
@@ -324,6 +444,22 @@ void CtrlConditionMgr::deleteCtrlConditionData(
   }
 
   pData->lstSell.clear();
+
+  for (auto i = 0; i < pbStrategy.stoploss_size(); i++) {
+    auto cc = pbStrategy.stoploss(i);
+    auto pD = pData->lstStopLoss[i];
+    this->deleteCtrlConditionData(cc, pD);
+  }
+
+  pData->lstStopLoss.clear();
+
+  for (auto i = 0; i < pbStrategy.takeprofit_size(); i++) {
+    auto cc = pbStrategy.takeprofit(i);
+    auto pD = pData->lstTakeProfit[i];
+    this->deleteCtrlConditionData(cc, pD);
+  }
+
+  pData->lstTakeProfit.clear();
 
   delete pData;
 }

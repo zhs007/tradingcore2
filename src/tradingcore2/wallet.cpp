@@ -6,7 +6,8 @@
 
 CR2BEGIN
 
-Wallet::Wallet(Exchange& exchange) : m_exchange(exchange), m_money(ZEROMONEY) {}
+Wallet::Wallet(Exchange& exchange)
+    : m_exchange(exchange), m_money(ZEROMONEY), m_cost(ZEROMONEY) {}
 
 Assets Wallet::getAssets(const char* assetsName) const {
   auto assets = this->m_map.getAssets(assetsName);
@@ -21,6 +22,7 @@ void Wallet::deposit(Money money, TimeStamp ts) {
   assert(money > ZEROMONEY);
 
   this->m_money += money;
+  this->m_cost += money;
 
   WalletHistoryNode n;
   n.setDeposit(money, ts);
@@ -40,6 +42,7 @@ void Wallet::withdraw(Money money, TimeStamp ts) {
   }
 
   this->m_money -= money;
+  this->m_cost -= money;
 
   WalletHistoryNode n;
   n.setWithdraw(-money, ts);

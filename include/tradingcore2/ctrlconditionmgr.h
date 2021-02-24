@@ -23,6 +23,8 @@ class CtrlConditionMgr {
   struct CtrlConditionData {
     std::vector<void*> lstBuy;
     std::vector<void*> lstSell;
+    std::vector<void*> lstStopLoss;
+    std::vector<void*> lstTakeProfit;
   };
 
   typedef std::function<void(int, const ::tradingpb::CtrlCondition**, void**)>
@@ -52,12 +54,14 @@ class CtrlConditionMgr {
   bool canCtrl(const Exchange& exchange, const Wallet& wallet,
                const IndicatorMap& mapIndicators,
                const tradingpb::CtrlCondition& cc, bool issim, CtrlType ct,
-               TimeStamp ts, int index, CandleData& cd, void* pData);
+               TimeStamp ts, int index, CandleData& cd, Assets& assets,
+               void* pData);
 
   bool canCtrlInCtrlConditions(const Exchange& exchange, const Wallet& wallet,
                                const IndicatorMap& mapIndicators, int ccnums,
                                bool issim, CtrlType ct, TimeStamp ts, int index,
-                               CandleData& cd, FuncGetCtrlCondition funcGetCC,
+                               CandleData& cd, Assets& assets,
+                               FuncGetCtrlCondition funcGetCC,
                                int& ctrlConditionID);
 
   void getIndicators(std::set<std::string>& indicators, Strategy& strategy);
