@@ -1,5 +1,5 @@
-#ifndef __TRADINGCORE2_CTRLCONDITION_INDICATORSP_H__
-#define __TRADINGCORE2_CTRLCONDITION_INDICATORSP_H__
+#ifndef __TRADINGCORE2_CTRLCONDITION_TIMESTAMP_H__
+#define __TRADINGCORE2_CTRLCONDITION_TIMESTAMP_H__
 
 #include <tradingcore2/basedef.h>
 #include <tradingcore2/candle.h>
@@ -13,24 +13,24 @@
 
 CR2BEGIN
 
-class CCIndicatorSP final : public CtrlConditionHelper {
+class CCTimestamp final : public CtrlConditionHelper {
  public:
   static void regCtrlConditionHelper();
 
  protected:
   struct _Data {
-    int lastState;
+    bool isProc;
 
-    _Data() : lastState(0) {}
+    _Data() : isProc(false) {}
   };
 
  protected:
-  CCIndicatorSP() {}
-  virtual ~CCIndicatorSP() {}
+  CCTimestamp() {}
+  virtual ~CCTimestamp() {}
 
  public:
   virtual void getIndicators(std::set<std::string>& indicators,
-                             const tradingpb::CtrlCondition& cc) override;
+                             const tradingpb::CtrlCondition& cc) override {}
 
   virtual void* newCtrlConditionData() override { return new _Data(); }
 
@@ -52,4 +52,4 @@ class CCIndicatorSP final : public CtrlConditionHelper {
 
 CR2END
 
-#endif  // __TRADINGCORE2_CTRLCONDITION_INDICATORSP_H__
+#endif  // __TRADINGCORE2_CTRLCONDITION_TIMESTAMP_H__

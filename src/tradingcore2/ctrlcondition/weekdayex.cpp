@@ -20,7 +20,7 @@ bool CCWeekDayEx::canCtrl(const Exchange& exchange, const Wallet& wallet,
                           const IndicatorMap& mapIndicators,
                           const tradingpb::CtrlCondition& cc, bool issim,
                           CtrlType ct, TimeStamp ts, int index, CandleData& cd,
-                          void* pData) {
+                          Assets& assets, void* pData) {
   assert(pData != NULL);
   auto pMyData = static_cast<_Data*>(pData);
 

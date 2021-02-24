@@ -1,6 +1,7 @@
 #ifndef __TRADINGCORE2_CTRLCONDITION__H__
 #define __TRADINGCORE2_CTRLCONDITION__H__
 
+#include <tradingcore2/assets.h>
 #include <tradingcore2/basedef.h>
 #include <tradingcore2/candle.h>
 #include <tradingcore2/config.h>
@@ -38,7 +39,7 @@ class CtrlConditionHelper {
                        const IndicatorMap& mapIndicators,
                        const tradingpb::CtrlCondition& cc, bool issim,
                        CtrlType ct, TimeStamp ts, int index, CandleData& cd,
-                       void* pData) = 0;
+                       Assets& assets, void* pData) = 0;
 };
 
 CR2END

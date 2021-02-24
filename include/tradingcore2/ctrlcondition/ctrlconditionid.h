@@ -36,7 +36,7 @@ class CCCtrlConditionID final : public CtrlConditionHelper {
                        const IndicatorMap& mapIndicators,
                        const tradingpb::CtrlCondition& cc, bool issim,
                        CtrlType ct, TimeStamp ts, int index, CandleData& cd,
-                       void* pData) override;
+                       Assets& assets, void* pData) override;
 };
 
 CR2END

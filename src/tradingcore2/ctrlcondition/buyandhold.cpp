@@ -23,7 +23,7 @@ bool CCBuyAndHold::canCtrl(const Exchange& exchange, const Wallet& wallet,
                            const IndicatorMap& mapIndicators,
                            const tradingpb::CtrlCondition& cc, bool issim,
                            CtrlType ct, TimeStamp ts, int index, CandleData& cd,
-                           void* pData) {
+                           Assets& assets, void* pData) {
   if (ct == CT_BUY && index == 0) {
     return true;
   }

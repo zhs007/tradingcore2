@@ -20,7 +20,7 @@ bool CCWaitToStart::canCtrl(const Exchange& exchange, const Wallet& wallet,
                             const IndicatorMap& mapIndicators,
                             const tradingpb::CtrlCondition& cc, bool issim,
                             CtrlType ct, TimeStamp ts, int index,
-                            CandleData& cd, void* pData) {
+                            CandleData& cd, Assets& assets, void* pData) {
   if (index >= cc.vals(0)) {
     return true;
   }
