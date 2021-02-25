@@ -26,6 +26,7 @@ class Strategy {
         m_stoplossNums(0),
         m_failNums(0),
         m_handMoney(0),
+        m_profitMoney(0),
         m_costMoney(0),
         m_initMoney(0),
         m_volume(0),
@@ -50,13 +51,14 @@ class Strategy {
                      Money fee, int offMoneyParts);
 
   virtual void onSell(bool issim, TimeStamp ts, Money money, Volume volume,
-                      Money fee, int offMoneyParts);
+                      Money fee, int offMoneyParts, SellMoneyTo smt);
 
   virtual void onStopLoss(bool issim, TimeStamp ts, Money money, Volume volume,
-                          Money fee, int offMoneyParts);
+                          Money fee, int offMoneyParts, SellMoneyTo smt);
 
   virtual void onTakeProfit(bool issim, TimeStamp ts, Money money,
-                            Volume volume, Money fee, int offMoneyParts);
+                            Volume volume, Money fee, int offMoneyParts,
+                            SellMoneyTo smt);
 
  public:
   void init(const tradingpb::Strategy& strategy) {
@@ -144,6 +146,7 @@ class Strategy {
 
   tradingpb::Strategy m_strategy;
   Money m_handMoney;
+  Money m_profitMoney;
   Money m_costMoney;
   Money m_initMoney;
   Volume m_volume;

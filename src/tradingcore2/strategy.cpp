@@ -281,7 +281,7 @@ void Strategy::sell(bool issim, TimeStamp ts, int strategyID,
           this->m_strategy.asset().code().c_str(), v, fee, ts, strategyID,
           ctrlConditionID, f, moneyParts);
 
-      this->onSell(issim, ts, m, v, 0, moneyParts);
+      this->onSell(issim, ts, m, v, 0, moneyParts, SMT_HAND);
     }
   } else if (sell.pervolume() > 0) {
     int moneyParts;
@@ -299,7 +299,7 @@ void Strategy::sell(bool issim, TimeStamp ts, int strategyID,
           this->m_strategy.asset().code().c_str(), v, fee, ts, strategyID,
           ctrlConditionID, f, moneyParts);
 
-      this->onSell(issim, ts, m, v, 0, moneyParts);
+      this->onSell(issim, ts, m, v, 0, moneyParts, SMT_HAND);
     }
 
     // LOG(INFO) << "sell " << this->m_handMoney;
@@ -316,7 +316,7 @@ void Strategy::sell(bool issim, TimeStamp ts, int strategyID,
           this->m_strategy.asset().code().c_str(), v, fee, ts, strategyID,
           ctrlConditionID, f, moneyParts);
 
-      this->onSell(issim, ts, m, v, 0, moneyParts);
+      this->onSell(issim, ts, m, v, 0, moneyParts, SMT_HAND);
     }
   }
 }
@@ -344,7 +344,11 @@ void Strategy::takeProfit(bool issim, TimeStamp ts, int strategyID,
           this->m_strategy.asset().code().c_str(), v, fee, ts, strategyID,
           ctrlConditionID, f, moneyParts);
 
-      this->onTakeProfit(issim, ts, m, v, 0, moneyParts);
+      if (takeprofit.giveto() == "hand") {
+        this->onTakeProfit(issim, ts, m, v, 0, moneyParts, SMT_HAND);
+      } else {
+        this->onTakeProfit(issim, ts, m, v, 0, moneyParts, SMT_PROFIT);
+      }
     }
   }
 }
@@ -372,14 +376,14 @@ void Strategy::stopLoss(bool issim, TimeStamp ts, int strategyID,
           this->m_strategy.asset().code().c_str(), v, fee, ts, strategyID,
           ctrlConditionID, f, moneyParts);
 
-      this->onStopLoss(issim, ts, m, v, 0, moneyParts);
+      this->onStopLoss(issim, ts, m, v, 0, moneyParts, SMT_HAND);
     }
   }
 }
 
 void Strategy::onStopLoss(bool issim, TimeStamp ts, Money money, Volume volume,
-                          Money fee, int offMoneyParts) {
-  this->onSell(issim, ts, money, volume, fee, offMoneyParts);
+                          Money fee, int offMoneyParts, SellMoneyTo smt) {
+  this->onSell(issim, ts, money, volume, fee, offMoneyParts, smt);
 
   auto stoploss = this->m_strategy.paramsstoploss();
   if (stoploss.isfinish()) {
@@ -388,8 +392,9 @@ void Strategy::onStopLoss(bool issim, TimeStamp ts, Money money, Volume volume,
 }
 
 void Strategy::onTakeProfit(bool issim, TimeStamp ts, Money money,
-                            Volume volume, Money fee, int offMoneyParts) {
-  this->onSell(issim, ts, money, volume, fee, offMoneyParts);
+                            Volume volume, Money fee, int offMoneyParts,
+                            SellMoneyTo smt) {
+  this->onSell(issim, ts, money, volume, fee, offMoneyParts, smt);
 
   auto takeprofit = this->m_strategy.paramstakeprofit();
   if (takeprofit.isfinish()) {
@@ -398,10 +403,15 @@ void Strategy::onTakeProfit(bool issim, TimeStamp ts, Money money,
 }
 
 void Strategy::onSell(bool issim, TimeStamp ts, Money money, Volume volume,
-                      Money fee, int offMoneyParts) {
+                      Money fee, int offMoneyParts, SellMoneyTo smt) {
   assert(volume <= this->m_volume);
 
-  this->m_handMoney += money;
+  if (smt == SMT_HAND) {
+    this->m_handMoney += money;
+  } else if (smt == SMT_PROFIT) {
+    this->m_profitMoney += money;
+  }
+
   this->m_fee += fee;
   this->m_volume -= volume;
 

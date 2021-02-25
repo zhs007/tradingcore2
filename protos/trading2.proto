@@ -129,7 +129,7 @@ message SellParams {
 message StopLossParams {
     float drawdown = 1 [deprecated = true];     // 弃用，用ctrlcondition里的totalreturn做这个
     bool isFinish = 2;                          // 止盈后，是否结束
-    float perVolume = 3;                        // 止盈多少份额    
+    float perVolume = 3;                        // 止盈多少份额
 }
 
 // TakeProfitParams - take profit parameters
@@ -137,6 +137,7 @@ message TakeProfitParams {
     float profit = 1 [deprecated = true];       // 弃用，用ctrlcondition里的totalreturn做这个
     bool isFinish = 2;                          // 止盈后，是否结束
     float perVolume = 3;                        // 止盈多少份额
+    string giveTo = 4;                          // 止盈的钱放哪儿，hand是继续投资、profit是作为盈利保存
 }
 
 // InitParams - initial parameters

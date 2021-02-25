@@ -2795,10 +2795,27 @@ class TakeProfitParams :
   // accessors -------------------------------------------------------
 
   enum : int {
+    kGiveToFieldNumber = 4,
     kProfitFieldNumber = 1,
     kIsFinishFieldNumber = 2,
     kPerVolumeFieldNumber = 3,
   };
+  // string giveTo = 4;
+  void clear_giveto();
+  const std::string& giveto() const;
+  void set_giveto(const std::string& value);
+  void set_giveto(std::string&& value);
+  void set_giveto(const char* value);
+  void set_giveto(const char* value, size_t size);
+  std::string* mutable_giveto();
+  std::string* release_giveto();
+  void set_allocated_giveto(std::string* giveto);
+  private:
+  const std::string& _internal_giveto() const;
+  void _internal_set_giveto(const std::string& value);
+  std::string* _internal_mutable_giveto();
+  public:
+
   // float profit = 1 [deprecated = true];
   PROTOBUF_DEPRECATED void clear_profit();
   PROTOBUF_DEPRECATED float profit() const;
@@ -2831,6 +2848,7 @@ class TakeProfitParams :
   class _Internal;
 
   ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr giveto_;
   float profit_;
   bool isfinish_;
   float pervolume_;
@@ -7860,6 +7878,66 @@ inline void TakeProfitParams::_internal_set_pervolume(float value) {
 inline void TakeProfitParams::set_pervolume(float value) {
   _internal_set_pervolume(value);
   // @@protoc_insertion_point(field_set:tradingpb.TakeProfitParams.perVolume)
+}
+
+// string giveTo = 4;
+inline void TakeProfitParams::clear_giveto() {
+  giveto_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline const std::string& TakeProfitParams::giveto() const {
+  // @@protoc_insertion_point(field_get:tradingpb.TakeProfitParams.giveTo)
+  return _internal_giveto();
+}
+inline void TakeProfitParams::set_giveto(const std::string& value) {
+  _internal_set_giveto(value);
+  // @@protoc_insertion_point(field_set:tradingpb.TakeProfitParams.giveTo)
+}
+inline std::string* TakeProfitParams::mutable_giveto() {
+  // @@protoc_insertion_point(field_mutable:tradingpb.TakeProfitParams.giveTo)
+  return _internal_mutable_giveto();
+}
+inline const std::string& TakeProfitParams::_internal_giveto() const {
+  return giveto_.GetNoArena();
+}
+inline void TakeProfitParams::_internal_set_giveto(const std::string& value) {
+  
+  giveto_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+}
+inline void TakeProfitParams::set_giveto(std::string&& value) {
+  
+  giveto_.SetNoArena(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:tradingpb.TakeProfitParams.giveTo)
+}
+inline void TakeProfitParams::set_giveto(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  giveto_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:tradingpb.TakeProfitParams.giveTo)
+}
+inline void TakeProfitParams::set_giveto(const char* value, size_t size) {
+  
+  giveto_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:tradingpb.TakeProfitParams.giveTo)
+}
+inline std::string* TakeProfitParams::_internal_mutable_giveto() {
+  
+  return giveto_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline std::string* TakeProfitParams::release_giveto() {
+  // @@protoc_insertion_point(field_release:tradingpb.TakeProfitParams.giveTo)
+  
+  return giveto_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline void TakeProfitParams::set_allocated_giveto(std::string* giveto) {
+  if (giveto != nullptr) {
+    
+  } else {
+    
+  }
+  giveto_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), giveto);
+  // @@protoc_insertion_point(field_set_allocated:tradingpb.TakeProfitParams.giveTo)
 }
 
 // -------------------------------------------------------------------
