@@ -84,7 +84,7 @@ class Strategy {
             bool noNextTimes);
 
   void takeProfit(bool issim, TimeStamp ts, int strategyID, int ctrlConditionID,
-                  bool noNextTimes);
+                  bool noNextTimes, CandleData& cd);
 
   void stopLoss(bool issim, TimeStamp ts, int strategyID, int ctrlConditionID,
                 bool noNextTimes);

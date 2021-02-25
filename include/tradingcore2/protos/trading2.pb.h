@@ -2797,8 +2797,9 @@ class TakeProfitParams :
   enum : int {
     kGiveToFieldNumber = 4,
     kProfitFieldNumber = 1,
-    kIsFinishFieldNumber = 2,
     kPerVolumeFieldNumber = 3,
+    kIsFinishFieldNumber = 2,
+    kIsOnlyProfitFieldNumber = 5,
   };
   // string giveTo = 4;
   void clear_giveto();
@@ -2825,15 +2826,6 @@ class TakeProfitParams :
   void _internal_set_profit(float value);
   public:
 
-  // bool isFinish = 2;
-  void clear_isfinish();
-  bool isfinish() const;
-  void set_isfinish(bool value);
-  private:
-  bool _internal_isfinish() const;
-  void _internal_set_isfinish(bool value);
-  public:
-
   // float perVolume = 3;
   void clear_pervolume();
   float pervolume() const;
@@ -2843,6 +2835,24 @@ class TakeProfitParams :
   void _internal_set_pervolume(float value);
   public:
 
+  // bool isFinish = 2;
+  void clear_isfinish();
+  bool isfinish() const;
+  void set_isfinish(bool value);
+  private:
+  bool _internal_isfinish() const;
+  void _internal_set_isfinish(bool value);
+  public:
+
+  // bool isOnlyProfit = 5;
+  void clear_isonlyprofit();
+  bool isonlyprofit() const;
+  void set_isonlyprofit(bool value);
+  private:
+  bool _internal_isonlyprofit() const;
+  void _internal_set_isonlyprofit(bool value);
+  public:
+
   // @@protoc_insertion_point(class_scope:tradingpb.TakeProfitParams)
  private:
   class _Internal;
@@ -2850,8 +2860,9 @@ class TakeProfitParams :
   ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr giveto_;
   float profit_;
-  bool isfinish_;
   float pervolume_;
+  bool isfinish_;
+  bool isonlyprofit_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_trading2_2eproto;
 };
@@ -7938,6 +7949,26 @@ inline void TakeProfitParams::set_allocated_giveto(std::string* giveto) {
   }
   giveto_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), giveto);
   // @@protoc_insertion_point(field_set_allocated:tradingpb.TakeProfitParams.giveTo)
+}
+
+// bool isOnlyProfit = 5;
+inline void TakeProfitParams::clear_isonlyprofit() {
+  isonlyprofit_ = false;
+}
+inline bool TakeProfitParams::_internal_isonlyprofit() const {
+  return isonlyprofit_;
+}
+inline bool TakeProfitParams::isonlyprofit() const {
+  // @@protoc_insertion_point(field_get:tradingpb.TakeProfitParams.isOnlyProfit)
+  return _internal_isonlyprofit();
+}
+inline void TakeProfitParams::_internal_set_isonlyprofit(bool value) {
+  
+  isonlyprofit_ = value;
+}
+inline void TakeProfitParams::set_isonlyprofit(bool value) {
+  _internal_set_isonlyprofit(value);
+  // @@protoc_insertion_point(field_set:tradingpb.TakeProfitParams.isOnlyProfit)
 }
 
 // -------------------------------------------------------------------

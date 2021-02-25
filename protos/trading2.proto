@@ -138,6 +138,7 @@ message TakeProfitParams {
     bool isFinish = 2;                          // 止盈后，是否结束
     float perVolume = 3;                        // 止盈多少份额
     string giveTo = 4;                          // 止盈的钱放哪儿，hand是继续投资、profit是作为盈利保存
+    bool isOnlyProfit = 5;                      // 只止盈盈利部分，本金保留
 }
 
 // InitParams - initial parameters
