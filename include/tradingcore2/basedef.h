@@ -57,6 +57,11 @@ enum CtrlType {
   CT_TAKEPROFIT = 4,
 };
 
+enum SellMoneyTo {
+  SMT_HAND = 1,
+  SMT_PROFIT = 2,
+};
+
 CR2END
 
 #endif  // __TRADINGCORE2_BASEDEF_H__
