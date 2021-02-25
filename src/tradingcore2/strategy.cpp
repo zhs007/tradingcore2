@@ -322,21 +322,47 @@ void Strategy::sell(bool issim, TimeStamp ts, int strategyID,
 }
 
 void Strategy::takeProfit(bool issim, TimeStamp ts, int strategyID,
-                          int ctrlConditionID, bool noNextTimes) {
+                          int ctrlConditionID, bool noNextTimes,
+                          CandleData& cd) {
   auto takeprofit = this->m_strategy.paramstakeprofit();
   auto f = std::bind(&Strategy::calcFee4Sell, this, std::placeholders::_1,
                      std::placeholders::_2, std::placeholders::_3,
                      std::placeholders::_4);
 
-  if (takeprofit.pervolume() > 0) {
+  if (takeprofit.isonlyprofit()) {
     int moneyParts;
-    auto v1 = this->m_wallet.calcAssetVolume(
-        this->m_strategy.asset().code().c_str(), ts, moneyParts);
+    // auto v1 = this->m_wallet.calcAssetVolume(
+    //     this->m_strategy.asset().code().c_str(), ts, moneyParts);
+
+    auto cost = this->m_wallet.getCost();
+    auto curv = this->m_volume * cd.close;
+
+    auto v = this->m_volume / (curv / cost);
+
+    if (v > 0) {
+      // assert(cmpValue<float>(v, v1));
+
+      Money fee = 0;
+
+      auto m = this->m_wallet.sellAssets(
+          this->m_strategy.asset().code().c_str(), v, fee, ts, strategyID,
+          ctrlConditionID, f, moneyParts);
+
+      if (takeprofit.giveto() == "hand") {
+        this->onTakeProfit(issim, ts, m, v, 0, moneyParts, SMT_HAND);
+      } else {
+        this->onTakeProfit(issim, ts, m, v, 0, moneyParts, SMT_PROFIT);
+      }
+    }
+  } else if (takeprofit.pervolume() > 0) {
+    int moneyParts;
+    // auto v1 = this->m_wallet.calcAssetVolume(
+    //     this->m_strategy.asset().code().c_str(), ts, moneyParts);
 
     auto v = takeprofit.pervolume() * this->m_volume;
 
     if (v > 0) {
-      assert(cmpValue<float>(v, v1));
+      // assert(cmpValue<float>(v, v1));
 
       Money fee = 0;
 

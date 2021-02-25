@@ -242,7 +242,7 @@ int CtrlConditionMgr::procStrategy(Strategy& strategy,
   }
 
   if (cantakeprofit) {
-    strategy.takeProfit(issim, ts, 0, takeprofitConditionID, false);
+    strategy.takeProfit(issim, ts, 0, takeprofitConditionID, false, cd);
 
     return 0;
   } else if (canstoploss) {
