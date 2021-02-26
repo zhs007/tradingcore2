@@ -29,6 +29,8 @@ class CCWeekDay final : public CtrlConditionHelper {
 
   virtual void deleteCtrlConditionData(void* pData) override {}
 
+  virtual void clearCtrlConditionData(void* pData) override {}
+
   virtual bool isValid(const tradingpb::CtrlCondition& cc,
                        CtrlType ct) override;
 

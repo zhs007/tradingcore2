@@ -125,10 +125,11 @@ bool CtrlConditionMgr::canCtrlInCtrlConditions(
     const Exchange& exchange, const Wallet& wallet,
     const IndicatorMap& mapIndicators, int ccnums, bool issim, CtrlType ct,
     TimeStamp ts, int index, CandleData& cd, Assets& assets,
-    FuncGetCtrlCondition funcGetCC, int& ctrlConditionID) {
+    FuncGetCtrlCondition funcGetCC, int& ctrlConditionID,
+    std::map<int, bool>& mapGroup) {
   ctrlConditionID = 0;
   // LOG(INFO) << "ccnums " << ccnums;
-  std::map<int, bool> mapGroup;
+  // std::map<int, bool> mapGroup;
 
   for (auto i = 0; i < ccnums; i++) {
     const ::tradingpb::CtrlCondition* pCC = NULL;
@@ -204,6 +205,8 @@ int CtrlConditionMgr::procStrategy(Strategy& strategy,
   bool cantakeprofit = false;
   int stoplossConditionID = 0;
   int takeprofitConditionID = 0;
+  std::map<int, bool> mgStopLoss;
+  std::map<int, bool> mgTakeProfit;
 
   {
     auto f0 = [](const tradingpb::Strategy& pbStrategy,
@@ -218,7 +221,7 @@ int CtrlConditionMgr::procStrategy(Strategy& strategy,
     if (this->canCtrlInCtrlConditions(
             exchange, wallet, strategy.getMapIndicators(),
             pbStrategy.stoploss_size(), issim, CT_STOPLOSS, ts, index, cd,
-            assets, f, stoplossConditionID)) {
+            assets, f, stoplossConditionID, mgStopLoss)) {
       canstoploss = true;
     }
   }
@@ -236,7 +239,7 @@ int CtrlConditionMgr::procStrategy(Strategy& strategy,
     if (this->canCtrlInCtrlConditions(
             exchange, wallet, strategy.getMapIndicators(),
             pbStrategy.takeprofit_size(), issim, CT_TAKEPROFIT, ts, index, cd,
-            assets, f, takeprofitConditionID)) {
+            assets, f, takeprofitConditionID, mgTakeProfit)) {
       cantakeprofit = true;
     }
   }
@@ -244,17 +247,27 @@ int CtrlConditionMgr::procStrategy(Strategy& strategy,
   if (cantakeprofit) {
     strategy.takeProfit(issim, ts, 0, takeprofitConditionID, false, cd);
 
+    this->clearCtrlConditionDataMap(strategy, pData, CT_STOPLOSS, mgStopLoss);
+
     return 0;
   } else if (canstoploss) {
     strategy.stopLoss(issim, ts, 0, stoplossConditionID, false);
 
+    this->clearCtrlConditionDataMap(strategy, pData, CT_TAKEPROFIT,
+                                    mgTakeProfit);
+
     return 0;
   }
+
+  this->clearCtrlConditionDataMap(strategy, pData, CT_TAKEPROFIT, mgTakeProfit);
+  this->clearCtrlConditionDataMap(strategy, pData, CT_STOPLOSS, mgStopLoss);
 
   bool canbuy = false;
   bool cansell = false;
   int buyConditionID = 0;
   int sellConditionID = 0;
+  std::map<int, bool> mgBuy;
+  std::map<int, bool> mgSell;
 
   {
     auto f0 = [](const tradingpb::Strategy& pbStrategy,
@@ -268,10 +281,10 @@ int CtrlConditionMgr::procStrategy(Strategy& strategy,
     auto f = std::bind(f0, pbStrategy, pData, std::placeholders::_1,
                        std::placeholders::_2, std::placeholders::_3);
 
-    if (this->canCtrlInCtrlConditions(exchange, wallet,
-                                      strategy.getMapIndicators(),
-                                      pbStrategy.buy_size(), issim, CT_BUY, ts,
-                                      index, cd, assets, f, buyConditionID)) {
+    if (this->canCtrlInCtrlConditions(
+            exchange, wallet, strategy.getMapIndicators(),
+            pbStrategy.buy_size(), issim, CT_BUY, ts, index, cd, assets, f,
+            buyConditionID, mgBuy)) {
       // LOG(INFO) << "buy " << buyConditionID;
 
       // strategy.buy(issim, ts);
@@ -294,7 +307,7 @@ int CtrlConditionMgr::procStrategy(Strategy& strategy,
     if (this->canCtrlInCtrlConditions(
             exchange, wallet, strategy.getMapIndicators(),
             pbStrategy.sell_size(), issim, CT_SELL, ts, index, cd, assets, f,
-            sellConditionID)) {
+            sellConditionID, mgSell)) {
       // LOG(INFO) << "sell " << sellConditionID;
 
       // strategy.sell(issim, ts);
@@ -304,8 +317,15 @@ int CtrlConditionMgr::procStrategy(Strategy& strategy,
 
   if (canbuy && !cansell) {
     strategy.buy(issim, ts, 0, buyConditionID, false);
+
+    this->clearCtrlConditionDataMap(strategy, pData, CT_SELL, mgSell);
   } else if (cansell && !canbuy) {
     strategy.sell(issim, ts, 0, sellConditionID, false);
+
+    this->clearCtrlConditionDataMap(strategy, pData, CT_BUY, mgBuy);
+  } else {
+    this->clearCtrlConditionDataMap(strategy, pData, CT_BUY, mgBuy);
+    this->clearCtrlConditionDataMap(strategy, pData, CT_SELL, mgSell);
   }
 
   return 0;
@@ -385,6 +405,52 @@ void CtrlConditionMgr::deleteCtrlConditionData(
   auto it = this->m_mapCtrlCondition.find(name);
   if (it != this->m_mapCtrlCondition.end()) {
     it->second->deleteCtrlConditionData(pData);
+  }
+}
+
+void CtrlConditionMgr::clearCtrlConditionData(
+    const tradingpb::CtrlCondition& cc, void* pData) {
+  if (pData == NULL) {
+    return;
+  }
+
+  auto name = cc.name();
+  auto it = this->m_mapCtrlCondition.find(name);
+  if (it != this->m_mapCtrlCondition.end()) {
+    it->second->clearCtrlConditionData(pData);
+  }
+}
+
+void CtrlConditionMgr::clearCtrlConditionDataMap(
+    Strategy& strategy, CtrlConditionMgr::CtrlConditionData* pData, CtrlType ct,
+    std::map<int, bool>& mapGroup) {
+  auto pbStrategy = strategy.getStrategy();
+  if (ct == CT_BUY) {
+    for (auto i = 0; i < pbStrategy.buy_size(); i++) {
+      if (mapGroup[i]) {
+        this->clearCtrlConditionData(pbStrategy.buy(i), pData->lstBuy[i]);
+      }
+    }
+  } else if (ct == CT_SELL) {
+    for (auto i = 0; i < pbStrategy.sell_size(); i++) {
+      if (mapGroup[i]) {
+        this->clearCtrlConditionData(pbStrategy.sell(i), pData->lstSell[i]);
+      }
+    }
+  } else if (ct == CT_TAKEPROFIT) {
+    for (auto i = 0; i < pbStrategy.takeprofit_size(); i++) {
+      if (mapGroup[i]) {
+        this->clearCtrlConditionData(pbStrategy.takeprofit(i),
+                                     pData->lstTakeProfit[i]);
+      }
+    }
+  } else if (ct == CT_STOPLOSS) {
+    for (auto i = 0; i < pbStrategy.stoploss_size(); i++) {
+      if (mapGroup[i]) {
+        this->clearCtrlConditionData(pbStrategy.stoploss(i),
+                                     pData->lstStopLoss[i]);
+      }
+    }
   }
 }
 

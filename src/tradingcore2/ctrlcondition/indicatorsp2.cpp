@@ -61,7 +61,8 @@ bool CCIndicatorSP2::canCtrl(const Exchange& exchange, const Wallet& wallet,
           pMyData->times++;
         }
 
-        if (pMyData->times == cc.vals(0)) {
+        if (!pMyData->isProc && pMyData->times >= cc.vals(0)) {
+          pMyData->isProc = true;
           canctrl = true;
         }
       }
@@ -76,7 +77,8 @@ bool CCIndicatorSP2::canCtrl(const Exchange& exchange, const Wallet& wallet,
           pMyData->times++;
         }
 
-        if (pMyData->times == cc.vals(0)) {
+        if (!pMyData->isProc && pMyData->times >= cc.vals(0)) {
+          pMyData->isProc = true;
           canctrl = true;
         }
       }
@@ -88,6 +90,7 @@ bool CCIndicatorSP2::canCtrl(const Exchange& exchange, const Wallet& wallet,
       if (pMyData->lastState != 1) {
         if (!noresettimes) {
           pMyData->times = 0;
+          pMyData->isProc = false;
         }
       }
 
@@ -96,6 +99,7 @@ bool CCIndicatorSP2::canCtrl(const Exchange& exchange, const Wallet& wallet,
       if (pMyData->lastState != -1) {
         if (!noresettimes) {
           pMyData->times = 0;
+          pMyData->isProc = false;
         }
       }
 
@@ -104,6 +108,7 @@ bool CCIndicatorSP2::canCtrl(const Exchange& exchange, const Wallet& wallet,
       if (pMyData->lastState != 0) {
         if (!noresettimes) {
           pMyData->times = 0;
+          pMyData->isProc = false;
         }
       }
 

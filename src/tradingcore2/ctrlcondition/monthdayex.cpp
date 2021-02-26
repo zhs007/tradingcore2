@@ -27,6 +27,7 @@ bool CCMonthDayEx::canCtrl(const Exchange& exchange, const Wallet& wallet,
   auto md = calcMonthOffWithMonthDay(pMyData->lastTs, ts, cc.vals(0));
 
   if (md > 0) {
+    pMyData->preTs = pMyData->lastTs;
     pMyData->lastTs = ts;
 
     return true;

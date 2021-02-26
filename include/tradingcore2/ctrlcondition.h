@@ -33,6 +33,8 @@ class CtrlConditionHelper {
 
   virtual void deleteCtrlConditionData(void* pData) = 0;
 
+  virtual void clearCtrlConditionData(void* pData) = 0;
+
   virtual bool isValid(const tradingpb::CtrlCondition& cc, CtrlType ct) = 0;
 
   virtual bool canCtrl(const Exchange& exchange, const Wallet& wallet,
