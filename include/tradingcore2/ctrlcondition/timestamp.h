@@ -22,6 +22,8 @@ class CCTimestamp final : public CtrlConditionHelper {
     bool isProc;
 
     _Data() : isProc(false) {}
+
+    void clear() { this->isProc = false; }
   };
 
  protected:
@@ -38,6 +40,12 @@ class CCTimestamp final : public CtrlConditionHelper {
     assert(pData != NULL);
     auto pMyData = static_cast<_Data*>(pData);
     delete pMyData;
+  }
+
+  virtual void clearCtrlConditionData(void* pData) override {
+    assert(pData != NULL);
+    auto pMyData = static_cast<_Data*>(pData);
+    pMyData->clear();
   }
 
   virtual bool isValid(const tradingpb::CtrlCondition& cc,

@@ -20,8 +20,11 @@ class CCWeekDayEx final : public CtrlConditionHelper {
  protected:
   struct _Data {
     time_t lastTs;
+    time_t preTs;
 
-    _Data() : lastTs(0) {}
+    _Data() : lastTs(0), preTs(0) {}
+
+    void clear() { this->lastTs = this->preTs; }
   };
 
  protected:
@@ -38,6 +41,12 @@ class CCWeekDayEx final : public CtrlConditionHelper {
     assert(pData != NULL);
     auto pMyData = static_cast<_Data*>(pData);
     delete pMyData;
+  }
+
+  virtual void clearCtrlConditionData(void* pData) override {
+    assert(pData != NULL);
+    auto pMyData = static_cast<_Data*>(pData);
+    pMyData->clear();
   }
 
   virtual bool isValid(const tradingpb::CtrlCondition& cc,

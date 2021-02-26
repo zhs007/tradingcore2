@@ -27,6 +27,7 @@ bool CCWeekDayEx::canCtrl(const Exchange& exchange, const Wallet& wallet,
   auto wd = calcWeekOffWithWeekDay(pMyData->lastTs, ts, cc.vals(0));
 
   if (wd > 0) {
+    pMyData->preTs = pMyData->lastTs;
     pMyData->lastTs = ts;
 
     return true;

@@ -21,8 +21,11 @@ class CCIndicatorSP2 final : public CtrlConditionHelper {
   struct _Data {
     int lastState;
     int times;
+    bool isProc;
 
-    _Data() : lastState(0), times(0) {}
+    _Data() : lastState(0), times(0), isProc(false) {}
+
+    void clear() { this->isProc = false; }
   };
 
  protected:
@@ -39,6 +42,12 @@ class CCIndicatorSP2 final : public CtrlConditionHelper {
     assert(pData != NULL);
     auto pMyData = static_cast<_Data*>(pData);
     delete pMyData;
+  }
+
+  virtual void clearCtrlConditionData(void* pData) override {
+    assert(pData != NULL);
+    auto pMyData = static_cast<_Data*>(pData);
+    pMyData->clear();
   }
 
   virtual bool isValid(const tradingpb::CtrlCondition& cc,
