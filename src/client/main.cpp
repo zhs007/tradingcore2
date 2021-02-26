@@ -270,17 +270,38 @@ void aipMonthDayTakeProfit(const tr2::Config& cfg) {
   auto asset1 = strategy0->mutable_asset();
   asset1->set_market("jqdata");
   asset1->set_code("000300_XSHG|1d");
+
   auto buy0 = strategy0->add_buy();
   buy0->set_name("monthdayex");
   buy0->add_vals(1);
+
+  auto tp0 = strategy0->add_takeprofit();
+  tp0->set_name("totalreturn");
+  tp0->add_vals(1.2);
+  tp0->add_operators(">=");
+
+  auto tp1 = strategy0->add_takeprofit();
+  tp1->set_name("timestamp");
+  tp1->add_int64vals(tr2::str2timestampUTC("20130501", "%Y%m%d") +
+                     60 * 60 * 24 * 365);
+  tp1->add_operators(">=");
+
   auto bp = strategy0->mutable_paramsbuy();
   // bp->set_aipmoney(10000);
-  bp->set_permoney(1);
+  bp->set_perhandmoney(1);
+
+  auto tp = strategy0->mutable_paramstakeprofit();
+  // bp->set_aipmoney(10000);
+  tp->set_pervolume(1);
+  tp->set_isfinish(true);
 
   auto ap = strategy0->mutable_paramsaip();
   ap->set_type(::tradingpb::AIPTimeType::AIPTT_MONTHDAY);
   ap->set_day(1);
   ap->set_money(10000);
+
+  params.set_startts(tr2::str2timestampUTC("20130501", "%Y%m%d"));
+  params.set_endts(tr2::str2timestampUTC("20200930", "%Y%m%d"));
 
   ::tradingpb::ReplyCalcPNL res;
   auto status = client.clacPNL(params, res);
@@ -1362,7 +1383,8 @@ int main(int argc, char* argv[]) {
   // moneyParts(cfg);
   // nextBuy(cfg);
   // normalTAMA_3(cfg);
-  takeProfitWeekDay(cfg);
+  // takeProfitWeekDay(cfg);
+  aipMonthDayTakeProfit(cfg);
 
   return 0;
 }
