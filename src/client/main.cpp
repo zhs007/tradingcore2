@@ -255,51 +255,72 @@ void aipMonthDay(const tr2::Config& cfg) {
   //                                       5, 5 /* off2 */, 10, 2);
 }
 
-// void aipMonthDayTakeProfit(const tr2::Config& cfg) {
-//   tr2::NodeClient2 client(cfg.servs[0].host.c_str(),
-//                           cfg.servs[0].token.c_str());
+void aipMonthDayTakeProfit(const tr2::Config& cfg) {
+  tr2::NodeClient2 client(cfg.servs[0].host.c_str(),
+                          cfg.servs[0].token.c_str());
 
-//   ::tradingpb::SimTradingParams params;
+  ::tradingpb::SimTradingParams params;
 
-//   auto asset0 = params.add_assets();
-//   asset0->set_market("jqdata");
-//   asset0->set_code("000300_XSHG|1d");
+  auto asset0 = params.add_assets();
+  asset0->set_market("jqdata");
+  asset0->set_code("000300_XSHG|1d");
 
-//   auto strategy0 = params.add_strategies();
-//   strategy0->set_name("aip");
-//   auto asset1 = strategy0->mutable_asset();
-//   asset1->set_market("jqdata");
-//   asset1->set_code("000300_XSHG|1d");
-//   auto buy0 = strategy0->add_buy();
-//   buy0->set_name("monthdayex");
-//   buy0->add_vals(1);
-//   auto bp = strategy0->mutable_paramsbuy();
-//   // bp->set_aipmoney(10000);
-//   bp->set_permoney(1);
+  auto strategy0 = params.add_strategies();
+  strategy0->set_name("aip");
+  auto asset1 = strategy0->mutable_asset();
+  asset1->set_market("jqdata");
+  asset1->set_code("000300_XSHG|1d");
 
-//   auto ap = strategy0->mutable_paramsaip();
-//   ap->set_type(::tradingpb::AIPTimeType::AIPTT_MONTHDAY);
-//   ap->set_day(1);
-//   ap->set_money(10000);
+  auto buy0 = strategy0->add_buy();
+  buy0->set_name("monthdayex");
+  buy0->add_vals(1);
 
-//   ::tradingpb::ReplyCalcPNL res;
-//   auto status = client.clacPNL(params, res);
+  auto tp0 = strategy0->add_takeprofit();
+  tp0->set_name("totalreturn");
+  tp0->add_vals(1.2);
+  tp0->add_operators(">=");
 
-//   // client.waitStop();
+  auto tp1 = strategy0->add_takeprofit();
+  tp1->set_name("timestamp");
+  tp1->add_int64vals(tr2::str2timestampUTC("20130501", "%Y%m%d") +
+                     60 * 60 * 24 * 365);
+  tp1->add_operators(">=");
 
-//   // ::tradingpb::ReplyServerInfo res;
-//   // auto status = client.getServerInfo(res);
-//   LOG(INFO) << "calcPNL " << status.error_code();
+  auto bp = strategy0->mutable_paramsbuy();
+  // bp->set_aipmoney(10000);
+  bp->set_perhandmoney(1);
 
-//   if (status.ok()) {
-//     LOG(INFO) << res.DebugString();
-//   }
+  auto tp = strategy0->mutable_paramstakeprofit();
+  // bp->set_aipmoney(10000);
+  tp->set_pervolume(1);
+  tp->set_isfinish(true);
 
-//   // auto cnfund = tr2::ExchangeMgr::getSingleton()->getExchange("cnfund");
-//   // tr2::startTrainSingleIndicator2ExPool(cfg, *cnfund, "110022", "rsi",
-//   //                                       "../output", 10000, 5, 5 /* off0 */,
-//   //                                       5, 5 /* off2 */, 10, 2);
-// }
+  auto ap = strategy0->mutable_paramsaip();
+  ap->set_type(::tradingpb::AIPTimeType::AIPTT_MONTHDAY);
+  ap->set_day(1);
+  ap->set_money(10000);
+
+  params.set_startts(tr2::str2timestampUTC("20130501", "%Y%m%d"));
+  params.set_endts(tr2::str2timestampUTC("20200930", "%Y%m%d"));
+
+  ::tradingpb::ReplyCalcPNL res;
+  auto status = client.clacPNL(params, res);
+
+  // client.waitStop();
+
+  // ::tradingpb::ReplyServerInfo res;
+  // auto status = client.getServerInfo(res);
+  LOG(INFO) << "calcPNL " << status.error_code();
+
+  if (status.ok()) {
+    tr2::logProtobuf("reply ", res);
+  }
+
+  // auto cnfund = tr2::ExchangeMgr::getSingleton()->getExchange("cnfund");
+  // tr2::startTrainSingleIndicator2ExPool(cfg, *cnfund, "110022", "rsi",
+  //                                       "../output", 10000, 5, 5 /* off0 */,
+  //                                       5, 5 /* off2 */, 10, 2);
+}
 
 void normalWeekDay(const tr2::Config& cfg) {
   tr2::NodeClient2 client(cfg.servs[0].host.c_str(),
@@ -1362,7 +1383,8 @@ int main(int argc, char* argv[]) {
   // moneyParts(cfg);
   // nextBuy(cfg);
   // normalTAMA_3(cfg);
-  takeProfitWeekDay(cfg);
+  // takeProfitWeekDay(cfg);
+  aipMonthDayTakeProfit(cfg);
 
   return 0;
 }
