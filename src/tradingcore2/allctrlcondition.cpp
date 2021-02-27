@@ -1,4 +1,5 @@
 #include <tradingcore2/allctrlcondition.h>
+#include <tradingcore2/ctrlcondition/annualizedreturns.h>
 #include <tradingcore2/ctrlcondition/buyandhold.h>
 #include <tradingcore2/ctrlcondition/ctrlconditionid.h>
 #include <tradingcore2/ctrlcondition/indicatordp.h>
@@ -33,6 +34,7 @@ void regAllCtrlConditionHelper() {
   CCCtrlConditionID::regCtrlConditionHelper();
   CCTimestamp::regCtrlConditionHelper();
   CCTotalReturn::regCtrlConditionHelper();
+  CCAnnualizedReturns::regCtrlConditionHelper();
   CCWaitToStart::regCtrlConditionHelper();
 }
 
