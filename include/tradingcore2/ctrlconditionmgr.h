@@ -55,7 +55,7 @@ class CtrlConditionMgr {
 
   void clearCtrlConditionDataMap(Strategy& strategy,
                                  CtrlConditionMgr::CtrlConditionData* pData,
-                                 CtrlType ct, std::map<int, bool>& mapGroup);
+                                 CtrlType ct, std::vector<bool>& lstCCStatus);
 
   bool canCtrl(const Exchange& exchange, const Wallet& wallet,
                const IndicatorMap& mapIndicators,
@@ -69,7 +69,7 @@ class CtrlConditionMgr {
                                CandleData& cd, Assets& assets,
                                FuncGetCtrlCondition funcGetCC,
                                int& ctrlConditionID,
-                               std::map<int, bool>& mapGroup);
+                               std::vector<bool>& lstCCStatus);
 
   void getIndicators(std::set<std::string>& indicators, Strategy& strategy);
 

@@ -313,7 +313,7 @@ void aipMonthDayTakeProfit(const tr2::Config& cfg) {
   LOG(INFO) << "calcPNL " << status.error_code();
 
   if (status.ok()) {
-    LOG(INFO) << res.DebugString();
+    tr2::logProtobuf("reply ", res);
   }
 
   // auto cnfund = tr2::ExchangeMgr::getSingleton()->getExchange("cnfund");
