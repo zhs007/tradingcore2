@@ -11,6 +11,7 @@
 #include <tradingcore2/ctrlcondition/monthday.h>
 #include <tradingcore2/ctrlcondition/monthdayex.h>
 #include <tradingcore2/ctrlcondition/timestamp.h>
+#include <tradingcore2/ctrlcondition/timestampex.h>
 #include <tradingcore2/ctrlcondition/totalreturn.h>
 #include <tradingcore2/ctrlcondition/totalreturnex.h>
 #include <tradingcore2/ctrlcondition/waittostart.h>
@@ -35,6 +36,7 @@ void regAllCtrlConditionHelper() {
   CCIndicatorDP::regCtrlConditionHelper();
   CCCtrlConditionID::regCtrlConditionHelper();
   CCTimestamp::regCtrlConditionHelper();
+  CCTimestampEx::regCtrlConditionHelper();
   CCTotalReturn::regCtrlConditionHelper();
   CCTotalReturnEx::regCtrlConditionHelper();
   CCAnnualizedReturns::regCtrlConditionHelper();

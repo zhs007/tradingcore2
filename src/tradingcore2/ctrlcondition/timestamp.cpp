@@ -27,6 +27,14 @@ bool CCTimestamp::canCtrl(const Exchange& exchange, const Wallet& wallet,
     return false;
   }
 
+  if (cc.operators(0) == "==") {
+    if (ts == cc.int64vals(0)) {
+      pMyData->isProc = true;
+
+      return true;
+    }
+  }
+
   if (cc.operators(0) == ">=") {
     if (ts >= cc.int64vals(0)) {
       pMyData->isProc = true;
