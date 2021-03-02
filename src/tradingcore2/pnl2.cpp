@@ -499,8 +499,8 @@ void PNL2::onBuildEnd(const Exchange& exchange) {
 
   LOG(INFO) << "onBuildEnd " << t->values_size();
 
-  this->calcMaxDrawdown();
-  this->calcMaxDrawup();
+  this->calcMaxDrawdown2();
+  this->calcMaxDrawup2();
 
   this->calcTotalReturns();
 
@@ -556,6 +556,33 @@ void PNL2::calcMaxDrawdown() {
   t->set_maxdrawdown(mdd);
   t->set_maxdrawdownstartts(t->values(si).ts());
   t->set_maxdrawdownendts(t->values(ei).ts());
+}
+
+void PNL2::calcMaxDrawdown2() {
+  // 用 trdb2py 的算法
+  auto t = this->m_data.mutable_total();
+
+  float maxv = 0;
+  time_t startts = 0;
+  time_t endts = 0;
+  float mdd = 0;
+
+  for (auto i = 0; i < t->values_size(); ++i) {
+    if (t->values(i).pervalue() > maxv) {
+      maxv = t->values(i).pervalue();
+      startts = t->values(i).ts();
+    } else {
+      auto dd = (maxv - t->values(i).pervalue()) / maxv;
+      if (dd > mdd) {
+        mdd = dd;
+        endts = t->values(i).ts();
+      }
+    }
+  }
+
+  t->set_maxdrawdown(mdd);
+  t->set_maxdrawdownstartts(startts);
+  t->set_maxdrawdownendts(endts);
 }
 
 // 找到 starti 前面的最高点
@@ -671,6 +698,33 @@ void PNL2::calcMaxDrawup() {
   t->set_maxdrawup(mdd);
   t->set_maxdrawupstartts(t->values(si).ts());
   t->set_maxdrawupendts(t->values(ei).ts());
+}
+
+void PNL2::calcMaxDrawup2() {
+  // 用 trdb2py 的算法
+  auto t = this->m_data.mutable_total();
+
+  float minv = 0;
+  time_t startts = 0;
+  time_t endts = 0;
+  float mdu = 0;
+
+  for (auto i = 0; i < t->values_size(); ++i) {
+    if (t->values(i).pervalue() < minv) {
+      minv = t->values(i).pervalue();
+      startts = t->values(i).ts();
+    } else {
+      auto du = (t->values(i).pervalue() - minv) / minv;
+      if (du > mdu) {
+        mdu = du;
+        endts = t->values(i).ts();
+      }
+    }
+  }
+
+  t->set_maxdrawup(mdu);
+  t->set_maxdrawupstartts(startts);
+  t->set_maxdrawupendts(endts);
 }
 
 // 找到 starti 前面的最低点
@@ -792,6 +846,47 @@ void PNL2::calcAnnualizedVolatility(const Exchange& exchange) {
 
   float s = gsl_stats_float_sd(pU, 1, t->values_size() - 1);
   t->set_annualizedvolatility(s * sqrt(exchange.getTradingDays4Year()));
+
+  delete[] pU;
+}
+
+void PNL2::calcAnnualizedReturns2(const Exchange& exchange) {
+  auto t = this->m_data.mutable_total();
+
+  if (t->values_size() <= 0) {
+    return;
+  }
+
+  auto yd =
+      countValues4Year(t->values(0).ts(), t->values(t->values_size() - 1).ts(),
+                       t->values_size());
+
+  t->set_annualizedreturns((t->values(t->values_size() - 1).pervalue() - 1) /
+                           t->values_size() * yd);
+}
+
+void PNL2::calcAnnualizedVolatility2(const Exchange& exchange) {
+  // https://www.zhihu.com/question/19770602
+  // https://wiki.mbalib.com/wiki/%E5%8E%86%E5%8F%B2%E6%B3%A2%E5%8A%A8%E7%8E%87
+
+  auto t = this->m_data.mutable_total();
+
+  if (t->values_size() <= 0) {
+    return;
+  }
+
+  auto yd =
+      countValues4Year(t->values(0).ts(), t->values(t->values_size() - 1).ts(),
+                       t->values_size());
+
+  float* pU = new float[t->values_size() - 1];
+
+  for (int i = 1; i < t->values_size(); ++i) {
+    pU[i - 1] = log(t->values(i).pervalue() / t->values(i - 1).pervalue());
+  }
+
+  float s = gsl_stats_float_sd(pU, 1, t->values_size() - 1);
+  t->set_annualizedvolatility(s * sqrt(yd));
 
   delete[] pU;
 }

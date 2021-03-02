@@ -41,7 +41,11 @@ class PNL2 {
  protected:
   void calcMaxDrawdown();
 
+  void calcMaxDrawdown2();
+
   void calcMaxDrawup();
+
+  void calcMaxDrawup2();
 
   void calcTotalReturns();
 
@@ -50,6 +54,10 @@ class PNL2 {
   void calcAnnualizedReturns(const Exchange& exchange);
 
   void calcAnnualizedVolatility(const Exchange& exchange);
+
+  void calcAnnualizedReturns2(const Exchange& exchange);
+
+  void calcAnnualizedVolatility2(const Exchange& exchange);
 
   void calcVariance();
 
