@@ -396,6 +396,30 @@ int calcMonthOff(time_t ts0, time_t ts1) {
   return yoff * 12 + ctm1.tm_mon - ctm0.tm_mon;
 }
 
+// getTotalYearDays - 计算这一年的天数，闰年366天，否则365天
+int getTotalYearDays(int year) {
+  if (year % 400 == 0 or (year % 4 == 0 and year % 100 != 0)) {
+    return 366;
+  }
+
+  return 365;
+}
+
+// countValues4Year - 根据value里的时间，和value数量，计算一年平均多少个value
+float countValues4Year(time_t startts, time_t endts, int valuenums) {
+  tm stm;
+  tm etm;
+  timestamp2timeUTC(startts, stm);
+  timestamp2timeUTC(endts, etm);
+
+  auto sty = stm.tm_yday / float(getTotalYearDays(stm.tm_year + 1900));
+  auto ety = etm.tm_yday / float(getTotalYearDays(etm.tm_year + 1900));
+
+  auto fy = etm.tm_year - stm.tm_year - 1 + 1 - sty + ety;
+
+  return int(valuenums / fy);
+}
+
 const char* getVersion() { return TC2_VERSION; }
 
 void logProtobuf(const char* title, const google::protobuf::Message& message) {

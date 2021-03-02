@@ -60,6 +60,12 @@ time_t getNextMonth(time_t ts);
 // calcMonthOff - 计算月差，仅考虑月差，12月1号和11月31号，相差1个月
 int calcMonthOff(time_t ts0, time_t ts1);
 
+// getTotalYearDays - 计算这一年的天数，闰年366天，否则365天
+int getTotalYearDays(int year);
+
+// countValues4Year - 根据value里的时间，和value数量，计算一年平均多少个value
+float countValues4Year(time_t startts, time_t endts, int valuenums);
+
 // -------------------------------------------------------------------------------------
 // math
 

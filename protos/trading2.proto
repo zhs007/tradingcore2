@@ -196,6 +196,7 @@ message PNLDataValue {
     float value = 5;            // 总价值
     float volume = 6;           // 如果是单资产，这里是拥有数量
     float price = 7;            // 如果是单资产，这里是当前资产价格
+    float drawdown = 8;         // 该点的回撤
 }
 
 // PNLAssetData - asset data in PNL

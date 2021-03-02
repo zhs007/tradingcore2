@@ -3832,6 +3832,7 @@ class PNLDataValue :
     kValueFieldNumber = 5,
     kVolumeFieldNumber = 6,
     kPriceFieldNumber = 7,
+    kDrawdownFieldNumber = 8,
   };
   // repeated string tags = 3;
   int tags_size() const;
@@ -3911,6 +3912,15 @@ class PNLDataValue :
   void _internal_set_price(float value);
   public:
 
+  // float drawdown = 8;
+  void clear_drawdown();
+  float drawdown() const;
+  void set_drawdown(float value);
+  private:
+  float _internal_drawdown() const;
+  void _internal_set_drawdown(float value);
+  public:
+
   // @@protoc_insertion_point(class_scope:tradingpb.PNLDataValue)
  private:
   class _Internal;
@@ -3923,6 +3933,7 @@ class PNLDataValue :
   float value_;
   float volume_;
   float price_;
+  float drawdown_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_trading2_2eproto;
 };
@@ -9233,6 +9244,26 @@ inline void PNLDataValue::_internal_set_price(float value) {
 inline void PNLDataValue::set_price(float value) {
   _internal_set_price(value);
   // @@protoc_insertion_point(field_set:tradingpb.PNLDataValue.price)
+}
+
+// float drawdown = 8;
+inline void PNLDataValue::clear_drawdown() {
+  drawdown_ = 0;
+}
+inline float PNLDataValue::_internal_drawdown() const {
+  return drawdown_;
+}
+inline float PNLDataValue::drawdown() const {
+  // @@protoc_insertion_point(field_get:tradingpb.PNLDataValue.drawdown)
+  return _internal_drawdown();
+}
+inline void PNLDataValue::_internal_set_drawdown(float value) {
+  
+  drawdown_ = value;
+}
+inline void PNLDataValue::set_drawdown(float value) {
+  _internal_set_drawdown(value);
+  // @@protoc_insertion_point(field_set:tradingpb.PNLDataValue.drawdown)
 }
 
 // -------------------------------------------------------------------
