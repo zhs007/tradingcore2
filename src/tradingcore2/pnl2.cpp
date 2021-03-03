@@ -564,8 +564,10 @@ void PNL2::calcMaxDrawdown2() {
 
   float maxv = 0;
   time_t startts = 0;
-  time_t endts = 0;
+  // time_t endts = 0;
   float mdd = 0;
+  time_t mddsts = 0;
+  time_t mddets = 0;
 
   for (auto i = 0; i < t->values_size(); ++i) {
     if (t->values(i).pervalue() > maxv) {
@@ -575,14 +577,15 @@ void PNL2::calcMaxDrawdown2() {
       auto dd = (maxv - t->values(i).pervalue()) / maxv;
       if (dd > mdd) {
         mdd = dd;
-        endts = t->values(i).ts();
+        mddets = t->values(i).ts();
+        mddsts = startts;
       }
     }
   }
 
   t->set_maxdrawdown(mdd);
-  t->set_maxdrawdownstartts(startts);
-  t->set_maxdrawdownendts(endts);
+  t->set_maxdrawdownstartts(mddsts);
+  t->set_maxdrawdownendts(mddets);
 }
 
 // 找到 starti 前面的最高点
@@ -706,8 +709,10 @@ void PNL2::calcMaxDrawup2() {
 
   float minv = 0;
   time_t startts = 0;
-  time_t endts = 0;
+  // time_t endts = 0;
   float mdu = 0;
+  time_t mdusts = 0;
+  time_t mduets = 0;
 
   for (auto i = 0; i < t->values_size(); ++i) {
     if (t->values(i).pervalue() < minv) {
@@ -717,14 +722,15 @@ void PNL2::calcMaxDrawup2() {
       auto du = (t->values(i).pervalue() - minv) / minv;
       if (du > mdu) {
         mdu = du;
-        endts = t->values(i).ts();
+        mdusts = startts;
+        mduets = t->values(i).ts();
       }
     }
   }
 
   t->set_maxdrawup(mdu);
-  t->set_maxdrawupstartts(startts);
-  t->set_maxdrawupendts(endts);
+  t->set_maxdrawupstartts(mdusts);
+  t->set_maxdrawupendts(mduets);
 }
 
 // 找到 starti 前面的最低点
