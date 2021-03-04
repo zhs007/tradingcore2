@@ -108,6 +108,15 @@ void TradingNode2Impl::init(const Config& cfg) {
     return grpc::Status(grpc::StatusCode::UNKNOWN, "I can't get exchange");
   }
 
+  if (request->params().startts() > 0 && request->params().endts() > 0) {
+    if (request->params().startts() >= request->params().endts()) {
+      LOG(ERROR) << "_calcPNL:invalid timestamp" << request->params().startts()
+                 << " " << request->params().endts();
+
+      return grpc::Status(grpc::StatusCode::UNKNOWN, "Invalid timestamp");
+    }
+  }
+
   std::string mainasset;
   for (auto i = 0; i < request->params().assets_size(); ++i) {
     auto ca = request->params().assets(i);
