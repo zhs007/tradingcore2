@@ -406,7 +406,8 @@ int getTotalYearDays(int year) {
 }
 
 // countValues4Year - 根据value里的时间，和value数量，计算一年平均多少个value
-float countValues4Year(time_t startts, time_t endts, int valuenums) {
+float countValues4Year(time_t startts, time_t endts, int valuenums,
+                       float& fyear) {
   tm stm;
   tm etm;
   timestamp2timeUTC(startts, stm);
@@ -415,9 +416,9 @@ float countValues4Year(time_t startts, time_t endts, int valuenums) {
   auto sty = stm.tm_yday / float(getTotalYearDays(stm.tm_year + 1900));
   auto ety = etm.tm_yday / float(getTotalYearDays(etm.tm_year + 1900));
 
-  auto fy = etm.tm_year - stm.tm_year - 1 + 1 - sty + ety;
+  fyear = etm.tm_year - stm.tm_year - 1 + 1 - sty + ety;
 
-  return int(valuenums / fy);
+  return int(valuenums / fyear);
 }
 
 const char* getVersion() { return TC2_VERSION; }
