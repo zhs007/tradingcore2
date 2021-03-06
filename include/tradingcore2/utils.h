@@ -64,7 +64,8 @@ int calcMonthOff(time_t ts0, time_t ts1);
 int getTotalYearDays(int year);
 
 // countValues4Year - 根据value里的时间，和value数量，计算一年平均多少个value
-float countValues4Year(time_t startts, time_t endts, int valuenums);
+float countValues4Year(time_t startts, time_t endts, int valuenums,
+                       float& fyear);
 
 // -------------------------------------------------------------------------------------
 // math

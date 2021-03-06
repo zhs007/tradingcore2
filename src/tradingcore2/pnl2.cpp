@@ -863,12 +863,17 @@ void PNL2::calcAnnualizedReturns2(const Exchange& exchange) {
     return;
   }
 
+  float fyear;
   auto yd =
       countValues4Year(t->values(0).ts(), t->values(t->values_size() - 1).ts(),
-                       t->values_size());
+                       t->values_size(), fyear);
 
-  t->set_annualizedreturns((t->values(t->values_size() - 1).pervalue() - 1) /
-                           t->values_size() * yd);
+  if (fyear <= 1.0) {
+    t->set_annualizedreturns(t->values(t->values_size() - 1).pervalue());
+  } else {
+    t->set_annualizedreturns((t->values(t->values_size() - 1).pervalue() - 1) /
+                             t->values_size() * yd);
+  }
 }
 
 void PNL2::calcAnnualizedVolatility2(const Exchange& exchange) {
@@ -881,9 +886,10 @@ void PNL2::calcAnnualizedVolatility2(const Exchange& exchange) {
     return;
   }
 
+  float fyear;
   auto yd =
       countValues4Year(t->values(0).ts(), t->values(t->values_size() - 1).ts(),
-                       t->values_size());
+                       t->values_size(), fyear);
 
   float* pU = new float[t->values_size() - 1];
 
