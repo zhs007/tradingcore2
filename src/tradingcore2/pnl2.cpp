@@ -869,7 +869,7 @@ void PNL2::calcAnnualizedReturns2(const Exchange& exchange) {
                        t->values_size(), fyear);
 
   if (fyear <= 1.0) {
-    t->set_annualizedreturns(t->values(t->values_size() - 1).pervalue());
+    t->set_annualizedreturns(t->values(t->values_size() - 1).pervalue() - 1);
   } else {
     t->set_annualizedreturns((t->values(t->values_size() - 1).pervalue() - 1) /
                              t->values_size() * yd);
