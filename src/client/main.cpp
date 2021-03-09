@@ -1365,7 +1365,7 @@ int main(int argc, char* argv[]) {
   mgr->init(cfg);
 
   // buyandhold(cfg);
-  // aipWeekDay(cfg);
+  aipWeekDay(cfg);
   // aipMonthDay(cfg);
   // normalWeekDay(cfg);
   // normalWeekDay2(cfg);
@@ -1384,7 +1384,7 @@ int main(int argc, char* argv[]) {
   // nextBuy(cfg);
   // normalTAMA_3(cfg);
   // takeProfitWeekDay(cfg);
-  aipMonthDayTakeProfit(cfg);
+  // aipMonthDayTakeProfit(cfg);
 
   return 0;
 }

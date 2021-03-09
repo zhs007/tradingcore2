@@ -125,7 +125,7 @@ void TrDB2Exchange::forEachTimeStamp(Exchange::FuncOnTimeStamp func,
 
   for (auto it = this->m_lstTimeStamp.begin(); it != this->m_lstTimeStamp.end();
        ++it) {
-    if (*it >= tsEnd) {
+    if (*it > tsEnd) {
       break;
     }
 
