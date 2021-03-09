@@ -4,6 +4,7 @@
 #include <tradingcore2/ctrlcondition/buyandhold.h>
 #include <tradingcore2/ctrlcondition/ctrlconditionid.h>
 #include <tradingcore2/ctrlcondition/indicatordp.h>
+#include <tradingcore2/ctrlcondition/indicatordv.h>
 #include <tradingcore2/ctrlcondition/indicatorsp.h>
 #include <tradingcore2/ctrlcondition/indicatorsp2.h>
 #include <tradingcore2/ctrlcondition/indicatorsv.h>
@@ -31,6 +32,7 @@ void regAllCtrlConditionHelper() {
   CCWeekDayEx::regCtrlConditionHelper();
   CCMonthDayEx::regCtrlConditionHelper();
   CCIndicatorSV::regCtrlConditionHelper();
+  CCIndicatorDV::regCtrlConditionHelper();
   CCIndicatorSP::regCtrlConditionHelper();
   CCIndicatorSP2::regCtrlConditionHelper();
   CCIndicatorDP::regCtrlConditionHelper();

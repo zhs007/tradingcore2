@@ -19,9 +19,7 @@ class CCIndicatorDV final : public CtrlConditionHelper {
 
  protected:
   struct _Data {
-    int lastState;
-
-    _Data() : lastState(0) {}
+    _Data() {}
 
     void clear() {}
   };
@@ -34,7 +32,7 @@ class CCIndicatorDV final : public CtrlConditionHelper {
   virtual void getIndicators(std::set<std::string>& indicators,
                              const tradingpb::CtrlCondition& cc) override;
 
-  virtual void* newCtrlConditionData() override { return new _Data(); }
+  virtual void* newCtrlConditionData() override { return NULL; }
 
   virtual void deleteCtrlConditionData(void* pData) override {
     assert(pData != NULL);

@@ -1,5 +1,5 @@
 #include <math.h>
-#include <tradingcore2/ctrlcondition/indicatordp.h>
+#include <tradingcore2/ctrlcondition/indicatordv.h>
 #include <tradingcore2/ctrlconditionmgr.h>
 #include <tradingcore2/indicatormap.h>
 
@@ -10,22 +10,22 @@ CR2BEGIN
 // 因为是数值相关模式，和 indicatorsv 比较，唯一的区别就是2个数值指标比较，且
 // 都是 第一种 对 第二种的。
 
-void CCIndicatorDP::regCtrlConditionHelper() {
-  CtrlConditionMgr::getSingleton()->regCtrlCondition("indicatordp",
-                                                     new CCIndicatorDP());
+void CCIndicatorDV::regCtrlConditionHelper() {
+  CtrlConditionMgr::getSingleton()->regCtrlCondition("indicatordv",
+                                                     new CCIndicatorDV());
 }
 
-void CCIndicatorDP::getIndicators(std::set<std::string>& indicators,
+void CCIndicatorDV::getIndicators(std::set<std::string>& indicators,
                                   const tradingpb::CtrlCondition& cc) {
   indicators.insert(cc.strvals(0));
   indicators.insert(cc.strvals(1));
 }
 
-bool CCIndicatorDP::isValid(const tradingpb::CtrlCondition& cc, CtrlType ct) {
+bool CCIndicatorDV::isValid(const tradingpb::CtrlCondition& cc, CtrlType ct) {
   return cc.strvals_size() == 2 && cc.operators_size() == 1;
 }
 
-bool CCIndicatorDP::canCtrl(const Exchange& exchange, const Wallet& wallet,
+bool CCIndicatorDV::canCtrl(const Exchange& exchange, const Wallet& wallet,
                             const IndicatorMap& mapIndicators,
                             const tradingpb::CtrlCondition& cc, bool issim,
                             CtrlType ct, TimeStamp ts, int index,
@@ -33,7 +33,7 @@ bool CCIndicatorDP::canCtrl(const Exchange& exchange, const Wallet& wallet,
   auto pIndicator0 = mapIndicators.getIndicator(cc.strvals(0).c_str());
   auto pIndicator1 = mapIndicators.getIndicator(cc.strvals(1).c_str());
   if (pIndicator0 != NULL && pIndicator1 != NULL) {
-    assert(pData != NULL);
+    // assert(pData != NULL);
     auto cv0 = pIndicator0->getSingleValue(index);
     assert(cv0 != NULL);
 
@@ -44,30 +44,26 @@ bool CCIndicatorDP::canCtrl(const Exchange& exchange, const Wallet& wallet,
 
     bool canctrl = false;
 
-    if (cc.operators(0) == "up") {
-      if (cv0->value > cv1->value) {
+    if (cc.operators(0) == "==") {
+      if (cv0->value == cv1->value) {
         canctrl = true;
       }
-    } else if (cc.operators(0) == "down") {
+    } else if (cc.operators(0) == "<") {
       if (cv0->value < cv1->value) {
         canctrl = true;
       }
-    } else if (cc.operators(0) == "upcross") {
-      if (cv0->value > cv1->value && pMyData->lastState <= 0) {
+    } else if (cc.operators(0) == "<=") {
+      if (cv0->value <= cv1->value) {
         canctrl = true;
       }
-    } else if (cc.operators(0) == "downcross") {
-      if (cv0->value < cv1->value && pMyData->lastState >= 0) {
+    } else if (cc.operators(0) == ">") {
+      if (cv0->value > cv1->value) {
         canctrl = true;
       }
-    }
-
-    if (cv0->value > cv1->value) {
-      pMyData->lastState = 1;
-    } else if (cv0->value < cv1->value) {
-      pMyData->lastState = -1;
-    } else if (cv0->value == cv1->value) {
-      pMyData->lastState = 0;
+    } else if (cc.operators(0) == ">=") {
+      if (cv0->value >= cv1->value) {
+        canctrl = true;
+      }
     }
 
     return canctrl;
