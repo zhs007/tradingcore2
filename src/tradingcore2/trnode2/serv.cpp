@@ -128,6 +128,11 @@ void TradingNode2Impl::init(const Config& cfg) {
     }
   }
 
+  for (auto i = 0; i < request->params().candles_size(); ++i) {
+    auto cs = request->params().candles(i);
+    exchange->mergeCandles(&cs);
+  }
+
   if (request->params().mainassetindex() < 0) {
     exchange->rebuildTimeStampList(NULL);
   } else {

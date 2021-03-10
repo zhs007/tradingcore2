@@ -165,4 +165,27 @@ void TrDB2DataMgr::buildMap() {
   }
 }
 
+void TrDB2DataMgr::mergeCandles(const tradingpb::Candles *candles) {
+  if (candles == NULL) {
+    return;
+  }
+
+  std::string code = candles->market();
+  code += ".";
+  code += candles->symbol();
+
+  auto it = this->m_map.find(code);
+  if (it != this->m_map.end()) {
+    ::tr2::mergeCandles(it->second.candles, *candles);
+  } else {
+    auto pCandles = new tradingpb::Candles();
+    *pCandles = *candles;
+
+    _Pair p;
+    p.first = code;
+    p.second.candles = pCandles;
+    auto retIns = this->m_map.insert(p);
+  }
+}
+
 CR2END

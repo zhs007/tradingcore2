@@ -54,6 +54,8 @@ class TrDB2DataMgr {
 
   void buildMap();
 
+  void mergeCandles(const tradingpb::Candles *candles);
+
  private:
   _Map m_map;
 

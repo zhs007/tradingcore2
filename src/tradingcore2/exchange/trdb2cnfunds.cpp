@@ -252,6 +252,8 @@ bool TrDB2CNFundsExchange::isValidTs(TimeStamp ts) const {
   return false;
 }
 
+void TrDB2CNFundsExchange::mergeCandles(const tradingpb::Candles* candles) {}
+
 // Exchange* newTrDB2CNFunds(const Config& cfg) {
 //   auto exchange =
 //       new TrDB2CNFundsExchange(cfg.trdb2Serv.c_str(),
