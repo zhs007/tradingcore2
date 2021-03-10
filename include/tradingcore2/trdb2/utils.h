@@ -10,6 +10,11 @@ CR2BEGIN
 
 const tradingpb::Candle *getCandle(tradingpb::Candles *candles, int64_t ts);
 
+void mergeCandles(tradingpb::Candles *dst, const tradingpb::Candles &src);
+
+void insCandles(std::vector<tradingpb::Candle> &lst,
+                const tradingpb::Candle &candle);
+
 int calcTradingDays4Year(const tradingpb::Candles &candles);
 
 CR2END

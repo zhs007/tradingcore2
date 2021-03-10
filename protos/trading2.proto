@@ -7,6 +7,38 @@ message BasicRequestData {
     string token = 1;
 }
 
+// Candle - candle
+message Candle {
+    int64 ts = 1;                   // UTC时间戳
+    int64 open = 2;
+    int64 close = 3;
+    int64 high = 4;
+    int64 low = 5;
+    int64 volume = 6;
+    int64 openInterest = 7;
+    int64 trades = 8;
+    double vwap = 9;
+    int64 lastSize = 10;
+    int64 turnover = 11;
+    double homeNotional = 12;
+    double foreignNotional = 13;
+    int64 totalMoney = 14;          // 总金额
+    bool paused = 15;               // 是否停盘
+    int64 highLimit = 16;           // 上涨限制
+    int64 lowLimit = 17;            // 下跌限制
+    int64 avg = 18;                 // 平均价格
+    int64 preClose = 19;            // 前一天的close价格
+}
+
+// Candles - candles
+message Candles {
+    string market = 1;
+    string symbol = 2;
+    string tag = 3;
+    repeated Candle candles = 4;
+    map<int64, Candle> mapCandles = 5;  // 快速检索用，不做传递，本地运算缓存用
+}
+
 // Asset - asset
 message Asset {
     string market = 1;
@@ -259,6 +291,7 @@ message SimTradingParams {
     int32 mainAssetIndex = 8;                           // 主Asset索引，默认为0
     repeated string indicators = 9;                     // 请求的indicator，基于主asset
     int32 offset = 10;                                  // 提前多少次获取数据，譬如ema29，这里提前29天的数据
+    repeated Candles candles = 11;                      // 预测数据，运算时需要拿这个数据覆盖trdb2获得的数据
 }
 
 // TradingNodeInfo - trading node2 infomation

@@ -4,6 +4,7 @@
 #include <tradingcore2/basedef.h>
 #include <tradingcore2/candle.h>
 #include <tradingcore2/config.h>
+#include <tradingcore2/protos/tradingdb2.grpc.pb.h>
 
 #include <functional>
 #include <map>
@@ -68,6 +69,8 @@ class Exchange {
   virtual void rebuildTimeStampList(const char* assetsName) = 0;
 
   virtual bool isValidTs(TimeStamp ts) const = 0;
+
+  virtual void mergeCandles(const tradingpb::Candles* candles) = 0;
 
  protected:
 };

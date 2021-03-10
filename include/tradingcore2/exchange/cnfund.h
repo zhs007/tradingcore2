@@ -91,6 +91,8 @@ class CNFundExchange final : public Exchange {
 
   virtual void rebuildTimeStampList(const char* assetsName) override;
 
+  virtual void mergeCandles(const tradingpb::Candles* candles) override {}
+
  public:
   const CNFundValue* getFundValue(const char* assetsName) const;
 

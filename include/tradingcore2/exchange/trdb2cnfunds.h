@@ -74,6 +74,8 @@ class TrDB2CNFundsExchange final : public Exchange {
 
   virtual void rebuildTimeStampList(const char* assetsName) override;
 
+  virtual void mergeCandles(const tradingpb::Candles* candles) override;
+
  public:
   void foreachCandlesTimeStamp(const tradingpb::Candles* candles);
 

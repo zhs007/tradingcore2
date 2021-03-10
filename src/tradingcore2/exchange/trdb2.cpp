@@ -230,6 +230,10 @@ TimeStamp TrDB2Exchange::getFirstTimeStamp() const {
 
 void TrDB2Exchange::release() { this->m_mgrData.release(); }
 
+void TrDB2Exchange::mergeCandles(const tradingpb::Candles* candles) {
+  this->m_mgrData.mergeCandles(candles);
+}
+
 // int TrDB2Exchange::getTradingDays4Year() const {
 //   return this->m_mgrData.calcAverageTradingDays4Year();
 // }

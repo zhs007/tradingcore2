@@ -66,4 +66,48 @@ int calcTradingDays4Year(const tradingpb::Candles &candles) {
   return 0;
 }
 
+void insCandles(std::vector<tradingpb::Candle> &lst,
+                const tradingpb::Candle &candle) {
+  // if (candle == NULL) {
+  //   return;
+  // }
+
+  for (auto it = lst.begin(); it != lst.end(); ++it) {
+    if (candle.ts() == it->ts()) {
+      *it = candle;
+
+      return;
+    } else if (candle.ts() < it->ts()) {
+      lst.insert(it, candle);
+
+      return;
+    }
+  }
+
+  lst.push_back(candle);
+}
+
+void mergeCandles(tradingpb::Candles *dst, const tradingpb::Candles &src) {
+  if (dst == NULL) {
+    return;
+  }
+
+  std::vector<tradingpb::Candle> lst;
+
+  for (auto i = 0; i < dst->candles_size(); ++i) {
+    insCandles(lst, dst->candles(i));
+  }
+
+  for (auto i = 0; i < src.candles_size(); ++i) {
+    insCandles(lst, src.candles(i));
+  }
+
+  dst->clear_candles();
+
+  for (auto it = lst.begin(); it != lst.end(); ++it) {
+    auto nc = dst->add_candles();
+    *nc = *it;
+  }
+}
+
 CR2END
