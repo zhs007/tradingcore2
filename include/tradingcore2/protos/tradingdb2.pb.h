@@ -2848,6 +2848,7 @@ class RequestSimTrading :
     kIgnoreTotalReturnFieldNumber = 5,
     kMinNumsFieldNumber = 6,
     kMaxNumsFieldNumber = 7,
+    kMaxIgnoreNumsFieldNumber = 9,
   };
   // string sortBy = 8;
   void clear_sortby();
@@ -2940,6 +2941,15 @@ class RequestSimTrading :
   void _internal_set_maxnums(::PROTOBUF_NAMESPACE_ID::int32 value);
   public:
 
+  // int32 maxIgnoreNums = 9;
+  void clear_maxignorenums();
+  ::PROTOBUF_NAMESPACE_ID::int32 maxignorenums() const;
+  void set_maxignorenums(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_maxignorenums() const;
+  void _internal_set_maxignorenums(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
   // @@protoc_insertion_point(class_scope:tradingpb.RequestSimTrading)
  private:
   class _Internal;
@@ -2953,6 +2963,7 @@ class RequestSimTrading :
   float ignoretotalreturn_;
   ::PROTOBUF_NAMESPACE_ID::int32 minnums_;
   ::PROTOBUF_NAMESPACE_ID::int32 maxnums_;
+  ::PROTOBUF_NAMESPACE_ID::int32 maxignorenums_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_tradingdb2_2eproto;
 };
@@ -6213,6 +6224,26 @@ inline void RequestSimTrading::set_allocated_sortby(std::string* sortby) {
   }
   sortby_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), sortby);
   // @@protoc_insertion_point(field_set_allocated:tradingpb.RequestSimTrading.sortBy)
+}
+
+// int32 maxIgnoreNums = 9;
+inline void RequestSimTrading::clear_maxignorenums() {
+  maxignorenums_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 RequestSimTrading::_internal_maxignorenums() const {
+  return maxignorenums_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 RequestSimTrading::maxignorenums() const {
+  // @@protoc_insertion_point(field_get:tradingpb.RequestSimTrading.maxIgnoreNums)
+  return _internal_maxignorenums();
+}
+inline void RequestSimTrading::_internal_set_maxignorenums(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  maxignorenums_ = value;
+}
+inline void RequestSimTrading::set_maxignorenums(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_maxignorenums(value);
+  // @@protoc_insertion_point(field_set:tradingpb.RequestSimTrading.maxIgnoreNums)
 }
 
 // -------------------------------------------------------------------
