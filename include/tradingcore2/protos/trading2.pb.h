@@ -2033,6 +2033,7 @@ class CtrlCondition :
     kCombConditionFieldNumber = 4,
     kNameFieldNumber = 9,
     kGroupFieldNumber = 10,
+    kCtrlIndexFieldNumber = 12,
   };
   // repeated float vals = 2;
   int vals_size() const;
@@ -2249,6 +2250,15 @@ class CtrlCondition :
   void _internal_set_group(::PROTOBUF_NAMESPACE_ID::int32 value);
   public:
 
+  // int32 ctrlIndex = 12;
+  void clear_ctrlindex();
+  ::PROTOBUF_NAMESPACE_ID::int32 ctrlindex() const;
+  void set_ctrlindex(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_ctrlindex() const;
+  void _internal_set_ctrlindex(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
   // @@protoc_insertion_point(class_scope:tradingpb.CtrlCondition)
  private:
   class _Internal;
@@ -2270,6 +2280,7 @@ class CtrlCondition :
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr combcondition_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
   ::PROTOBUF_NAMESPACE_ID::int32 group_;
+  ::PROTOBUF_NAMESPACE_ID::int32 ctrlindex_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_trading2_2eproto;
 };
@@ -8112,6 +8123,26 @@ inline ::PROTOBUF_NAMESPACE_ID::RepeatedField< float >*
 CtrlCondition::mutable_int64vals() {
   // @@protoc_insertion_point(field_mutable_list:tradingpb.CtrlCondition.int64Vals)
   return _internal_mutable_int64vals();
+}
+
+// int32 ctrlIndex = 12;
+inline void CtrlCondition::clear_ctrlindex() {
+  ctrlindex_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 CtrlCondition::_internal_ctrlindex() const {
+  return ctrlindex_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 CtrlCondition::ctrlindex() const {
+  // @@protoc_insertion_point(field_get:tradingpb.CtrlCondition.ctrlIndex)
+  return _internal_ctrlindex();
+}
+inline void CtrlCondition::_internal_set_ctrlindex(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  ctrlindex_ = value;
+}
+inline void CtrlCondition::set_ctrlindex(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_ctrlindex(value);
+  // @@protoc_insertion_point(field_set:tradingpb.CtrlCondition.ctrlIndex)
 }
 
 // -------------------------------------------------------------------
