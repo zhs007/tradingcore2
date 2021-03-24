@@ -106,6 +106,7 @@ message CtrlCondition {
     string name = 9;                                    // 实际的 Control Condition 类型，替代以前的 indicator
     int32 group = 10;                                   // 组，用来处理 (A&&B)||(C&&D) 这样的复杂判断，group之间只可能是或的关系
     repeated float int64Vals = 11;                      // int64参数
+    int32 ctrlIndex = 12;                               // 新增待买待卖状态，默认这个最大的为实际卖出，否则触发后仅进入下一阶段；阶段改变后，都会需要clear当前阶段状态
 }
 
 // IndicatorType - indicator类型

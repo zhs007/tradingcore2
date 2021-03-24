@@ -128,6 +128,7 @@ message RequestSimTrading {
     int32 minNums = 6;                      // 被忽略的数据里，还是保留这个条数返回，默认是10
     int32 maxNums = 7 [deprecated = true];  // 最大的消息数量，超过这个数量就不要了，这个不会影响符合ignoreTotalReturn条件的
     string sortBy = 8;                      // 按什么字段来排序，默认是 totalreturn
+    int32 maxIgnoreNums = 9;                // minNums是忽略数据里，依然需要发明细数据的条数，maxIgnoreNums是不发明细的条数（数据量可能太大）
 }
 
 // ReplySimTrading - reply simTrading
