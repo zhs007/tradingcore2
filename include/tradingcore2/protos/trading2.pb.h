@@ -2725,6 +2725,7 @@ class BuyParams :
     kTsOffBuyFieldNumber = 10,
     kNextTimesFieldNumber = 13,
     kDepositMoneyFieldNumber = 14,
+    kLimitPriceFieldNumber = 15,
   };
   // string assetCode = 8;
   void clear_assetcode();
@@ -2873,6 +2874,15 @@ class BuyParams :
   void _internal_set_depositmoney(::PROTOBUF_NAMESPACE_ID::int32 value);
   public:
 
+  // float limitPrice = 15;
+  void clear_limitprice();
+  float limitprice() const;
+  void set_limitprice(float value);
+  private:
+  float _internal_limitprice() const;
+  void _internal_set_limitprice(float value);
+  public:
+
   // @@protoc_insertion_point(class_scope:tradingpb.BuyParams)
  private:
   class _Internal;
@@ -2892,6 +2902,7 @@ class BuyParams :
   ::PROTOBUF_NAMESPACE_ID::int64 tsoffbuy_;
   ::PROTOBUF_NAMESPACE_ID::int32 nexttimes_;
   ::PROTOBUF_NAMESPACE_ID::int32 depositmoney_;
+  float limitprice_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_trading2_2eproto;
 };
@@ -3012,6 +3023,7 @@ class SellParams :
     kMoneyFieldNumber = 3,
     kNextTimesFieldNumber = 9,
     kTsOffSellFieldNumber = 7,
+    kLimitPriceFieldNumber = 10,
   };
   // string assetCode = 5;
   void clear_assetcode();
@@ -3115,6 +3127,15 @@ class SellParams :
   void _internal_set_tsoffsell(::PROTOBUF_NAMESPACE_ID::int64 value);
   public:
 
+  // float limitPrice = 10;
+  void clear_limitprice();
+  float limitprice() const;
+  void set_limitprice(float value);
+  private:
+  float _internal_limitprice() const;
+  void _internal_set_limitprice(float value);
+  public:
+
   // @@protoc_insertion_point(class_scope:tradingpb.SellParams)
  private:
   class _Internal;
@@ -3129,6 +3150,7 @@ class SellParams :
   float money_;
   ::PROTOBUF_NAMESPACE_ID::int32 nexttimes_;
   ::PROTOBUF_NAMESPACE_ID::int64 tsoffsell_;
+  float limitprice_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_trading2_2eproto;
 };
@@ -8743,6 +8765,26 @@ inline void BuyParams::set_depositmoney(::PROTOBUF_NAMESPACE_ID::int32 value) {
   // @@protoc_insertion_point(field_set:tradingpb.BuyParams.depositMoney)
 }
 
+// float limitPrice = 15;
+inline void BuyParams::clear_limitprice() {
+  limitprice_ = 0;
+}
+inline float BuyParams::_internal_limitprice() const {
+  return limitprice_;
+}
+inline float BuyParams::limitprice() const {
+  // @@protoc_insertion_point(field_get:tradingpb.BuyParams.limitPrice)
+  return _internal_limitprice();
+}
+inline void BuyParams::_internal_set_limitprice(float value) {
+  
+  limitprice_ = value;
+}
+inline void BuyParams::set_limitprice(float value) {
+  _internal_set_limitprice(value);
+  // @@protoc_insertion_point(field_set:tradingpb.BuyParams.limitPrice)
+}
+
 // -------------------------------------------------------------------
 
 // SellParams
@@ -9045,6 +9087,26 @@ inline void SellParams::_internal_set_nexttimes(::PROTOBUF_NAMESPACE_ID::int32 v
 inline void SellParams::set_nexttimes(::PROTOBUF_NAMESPACE_ID::int32 value) {
   _internal_set_nexttimes(value);
   // @@protoc_insertion_point(field_set:tradingpb.SellParams.nextTimes)
+}
+
+// float limitPrice = 10;
+inline void SellParams::clear_limitprice() {
+  limitprice_ = 0;
+}
+inline float SellParams::_internal_limitprice() const {
+  return limitprice_;
+}
+inline float SellParams::limitprice() const {
+  // @@protoc_insertion_point(field_get:tradingpb.SellParams.limitPrice)
+  return _internal_limitprice();
+}
+inline void SellParams::_internal_set_limitprice(float value) {
+  
+  limitprice_ = value;
+}
+inline void SellParams::set_limitprice(float value) {
+  _internal_set_limitprice(value);
+  // @@protoc_insertion_point(field_set:tradingpb.SellParams.limitPrice)
 }
 
 // -------------------------------------------------------------------

@@ -734,6 +734,7 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_trading2_2eproto::offsets[] PR
   PROTOBUF_FIELD_OFFSET(::tradingpb::BuyParams, moneyparts_),
   PROTOBUF_FIELD_OFFSET(::tradingpb::BuyParams, nexttimes_),
   PROTOBUF_FIELD_OFFSET(::tradingpb::BuyParams, depositmoney_),
+  PROTOBUF_FIELD_OFFSET(::tradingpb::BuyParams, limitprice_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::tradingpb::SellParams, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -748,6 +749,7 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_trading2_2eproto::offsets[] PR
   PROTOBUF_FIELD_OFFSET(::tradingpb::SellParams, tsoffsell_),
   PROTOBUF_FIELD_OFFSET(::tradingpb::SellParams, typesellasset_),
   PROTOBUF_FIELD_OFFSET(::tradingpb::SellParams, nexttimes_),
+  PROTOBUF_FIELD_OFFSET(::tradingpb::SellParams, limitprice_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::tradingpb::StopLossParams, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -928,20 +930,20 @@ static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOB
   { 124, -1, sizeof(::tradingpb::IndicatorData)},
   { 131, -1, sizeof(::tradingpb::Indicator)},
   { 139, -1, sizeof(::tradingpb::BuyParams)},
-  { 158, -1, sizeof(::tradingpb::SellParams)},
-  { 172, -1, sizeof(::tradingpb::StopLossParams)},
-  { 180, -1, sizeof(::tradingpb::TakeProfitParams)},
-  { 190, -1, sizeof(::tradingpb::InitParams)},
-  { 197, -1, sizeof(::tradingpb::AIPParams)},
-  { 205, -1, sizeof(::tradingpb::FeeParams)},
-  { 213, -1, sizeof(::tradingpb::Strategy)},
-  { 234, -1, sizeof(::tradingpb::PNLDataValue)},
-  { 247, -1, sizeof(::tradingpb::PNLAssetData)},
-  { 287, -1, sizeof(::tradingpb::PNLData)},
-  { 297, -1, sizeof(::tradingpb::SimTradingParams)},
-  { 313, -1, sizeof(::tradingpb::TradingNodeInfo)},
-  { 320, -1, sizeof(::tradingpb::SimTradingCacheNode)},
-  { 330, -1, sizeof(::tradingpb::SimTradingCache)},
+  { 159, -1, sizeof(::tradingpb::SellParams)},
+  { 174, -1, sizeof(::tradingpb::StopLossParams)},
+  { 182, -1, sizeof(::tradingpb::TakeProfitParams)},
+  { 192, -1, sizeof(::tradingpb::InitParams)},
+  { 199, -1, sizeof(::tradingpb::AIPParams)},
+  { 207, -1, sizeof(::tradingpb::FeeParams)},
+  { 215, -1, sizeof(::tradingpb::Strategy)},
+  { 236, -1, sizeof(::tradingpb::PNLDataValue)},
+  { 249, -1, sizeof(::tradingpb::PNLAssetData)},
+  { 289, -1, sizeof(::tradingpb::PNLData)},
+  { 299, -1, sizeof(::tradingpb::SimTradingParams)},
+  { 315, -1, sizeof(::tradingpb::TradingNodeInfo)},
+  { 322, -1, sizeof(::tradingpb::SimTradingCacheNode)},
+  { 332, -1, sizeof(::tradingpb::SimTradingCache)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
@@ -1019,19 +1021,20 @@ const char descriptor_table_protodef_trading2_2eproto[] PROTOBUF_SECTION_VARIABL
   "\003(\002\022\n\n\002ts\030\002 \001(\003\"m\n\tIndicator\022\020\n\010fullname"
   "\030\001 \001(\t\022&\n\004type\030\002 \001(\0162\030.tradingpb.Indicat"
   "orType\022&\n\004data\030\003 \003(\0132\030.tradingpb.Indicat"
-  "orData\"\263\002\n\tBuyParams\022\025\n\tinitMoney\030\001 \001(\002B"
+  "orData\"\307\002\n\tBuyParams\022\025\n\tinitMoney\030\001 \001(\002B"
   "\002\030\001\022\024\n\010perMoney\030\002 \001(\002B\002\030\001\022\016\n\006volume\030\003 \001("
   "\002\022\020\n\010aipMoney\030\004 \001(\002\022\024\n\014perInitMoney\030\005 \001("
   "\002\022\024\n\014perHandMoney\030\006 \001(\002\022\031\n\rperTotalMoney"
   "\030\007 \001(\002B\002\030\001\022\021\n\tassetCode\030\010 \001(\t\022\030\n\020timeTyp"
   "eBuyAsset\030\t \001(\t\022\020\n\010tsOffBuy\030\n \001(\003\022\024\n\014typ"
   "eBuyAsset\030\013 \001(\t\022\022\n\nmoneyParts\030\014 \001(\005\022\021\n\tn"
-  "extTimes\030\r \001(\005\022\024\n\014depositMoney\030\016 \001(\005\"\273\001\n"
-  "\nSellParams\022\016\n\006volume\030\001 \001(\002\022\021\n\tperVolume"
-  "\030\002 \001(\002\022\r\n\005money\030\003 \001(\002\022\020\n\010keepTime\030\004 \001(\003\022"
-  "\021\n\tassetCode\030\005 \001(\t\022\031\n\021timeTypeSellAsset\030"
-  "\006 \001(\t\022\021\n\ttsOffSell\030\007 \001(\003\022\025\n\rtypeSellAsse"
-  "t\030\010 \001(\t\022\021\n\tnextTimes\030\t \001(\005\"K\n\016StopLossPa"
+  "extTimes\030\r \001(\005\022\024\n\014depositMoney\030\016 \001(\005\022\022\n\n"
+  "limitPrice\030\017 \001(\002\"\317\001\n\nSellParams\022\016\n\006volum"
+  "e\030\001 \001(\002\022\021\n\tperVolume\030\002 \001(\002\022\r\n\005money\030\003 \001("
+  "\002\022\020\n\010keepTime\030\004 \001(\003\022\021\n\tassetCode\030\005 \001(\t\022\031"
+  "\n\021timeTypeSellAsset\030\006 \001(\t\022\021\n\ttsOffSell\030\007"
+  " \001(\003\022\025\n\rtypeSellAsset\030\010 \001(\t\022\021\n\tnextTimes"
+  "\030\t \001(\005\022\022\n\nlimitPrice\030\n \001(\002\"K\n\016StopLossPa"
   "rams\022\024\n\010drawdown\030\001 \001(\002B\002\030\001\022\020\n\010isFinish\030\002"
   " \001(\010\022\021\n\tperVolume\030\003 \001(\002\"q\n\020TakeProfitPar"
   "ams\022\022\n\006profit\030\001 \001(\002B\002\030\001\022\020\n\010isFinish\030\002 \001("
@@ -1144,7 +1147,7 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_tra
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_trading2_2eproto_once;
 static bool descriptor_table_trading2_2eproto_initialized = false;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_trading2_2eproto = {
-  &descriptor_table_trading2_2eproto_initialized, descriptor_table_protodef_trading2_2eproto, "trading2.proto", 5245,
+  &descriptor_table_trading2_2eproto_initialized, descriptor_table_protodef_trading2_2eproto, "trading2.proto", 5285,
   &descriptor_table_trading2_2eproto_once, descriptor_table_trading2_2eproto_sccs, descriptor_table_trading2_2eproto_deps, 28, 0,
   schemas, file_default_instances, TableStruct_trading2_2eproto::offsets,
   file_level_metadata_trading2_2eproto, 28, file_level_enum_descriptors_trading2_2eproto, file_level_service_descriptors_trading2_2eproto,
@@ -5025,8 +5028,8 @@ BuyParams::BuyParams(const BuyParams& from)
     typebuyasset_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.typebuyasset_);
   }
   ::memcpy(&initmoney_, &from.initmoney_,
-    static_cast<size_t>(reinterpret_cast<char*>(&depositmoney_) -
-    reinterpret_cast<char*>(&initmoney_)) + sizeof(depositmoney_));
+    static_cast<size_t>(reinterpret_cast<char*>(&limitprice_) -
+    reinterpret_cast<char*>(&initmoney_)) + sizeof(limitprice_));
   // @@protoc_insertion_point(copy_constructor:tradingpb.BuyParams)
 }
 
@@ -5036,8 +5039,8 @@ void BuyParams::SharedCtor() {
   timetypebuyasset_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   typebuyasset_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   ::memset(&initmoney_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&depositmoney_) -
-      reinterpret_cast<char*>(&initmoney_)) + sizeof(depositmoney_));
+      reinterpret_cast<char*>(&limitprice_) -
+      reinterpret_cast<char*>(&initmoney_)) + sizeof(limitprice_));
 }
 
 BuyParams::~BuyParams() {
@@ -5070,8 +5073,8 @@ void BuyParams::Clear() {
   timetypebuyasset_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   typebuyasset_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   ::memset(&initmoney_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&depositmoney_) -
-      reinterpret_cast<char*>(&initmoney_)) + sizeof(depositmoney_));
+      reinterpret_cast<char*>(&limitprice_) -
+      reinterpret_cast<char*>(&initmoney_)) + sizeof(limitprice_));
   _internal_metadata_.Clear();
 }
 
@@ -5184,6 +5187,13 @@ const char* BuyParams::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 112)) {
           depositmoney_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
           CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // float limitPrice = 15;
+      case 15:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 125)) {
+          limitprice_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
         } else goto handle_unusual;
         continue;
       default: {
@@ -5308,6 +5318,12 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(14, this->_internal_depositmoney(), target);
   }
 
+  // float limitPrice = 15;
+  if (!(this->limitprice() <= 0 && this->limitprice() >= 0)) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(15, this->_internal_limitprice(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields(), target, stream);
@@ -5408,6 +5424,11 @@ size_t BuyParams::ByteSizeLong() const {
         this->_internal_depositmoney());
   }
 
+  // float limitPrice = 15;
+  if (!(this->limitprice() <= 0 && this->limitprice() >= 0)) {
+    total_size += 1 + 4;
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
         _internal_metadata_, total_size, &_cached_size_);
@@ -5484,6 +5505,9 @@ void BuyParams::MergeFrom(const BuyParams& from) {
   if (from.depositmoney() != 0) {
     _internal_set_depositmoney(from._internal_depositmoney());
   }
+  if (!(from.limitprice() <= 0 && from.limitprice() >= 0)) {
+    _internal_set_limitprice(from._internal_limitprice());
+  }
 }
 
 void BuyParams::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
@@ -5524,6 +5548,7 @@ void BuyParams::InternalSwap(BuyParams* other) {
   swap(tsoffbuy_, other->tsoffbuy_);
   swap(nexttimes_, other->nexttimes_);
   swap(depositmoney_, other->depositmoney_);
+  swap(limitprice_, other->limitprice_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata BuyParams::GetMetadata() const {
@@ -5561,8 +5586,8 @@ SellParams::SellParams(const SellParams& from)
     typesellasset_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.typesellasset_);
   }
   ::memcpy(&volume_, &from.volume_,
-    static_cast<size_t>(reinterpret_cast<char*>(&tsoffsell_) -
-    reinterpret_cast<char*>(&volume_)) + sizeof(tsoffsell_));
+    static_cast<size_t>(reinterpret_cast<char*>(&limitprice_) -
+    reinterpret_cast<char*>(&volume_)) + sizeof(limitprice_));
   // @@protoc_insertion_point(copy_constructor:tradingpb.SellParams)
 }
 
@@ -5572,8 +5597,8 @@ void SellParams::SharedCtor() {
   timetypesellasset_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   typesellasset_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   ::memset(&volume_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&tsoffsell_) -
-      reinterpret_cast<char*>(&volume_)) + sizeof(tsoffsell_));
+      reinterpret_cast<char*>(&limitprice_) -
+      reinterpret_cast<char*>(&volume_)) + sizeof(limitprice_));
 }
 
 SellParams::~SellParams() {
@@ -5606,8 +5631,8 @@ void SellParams::Clear() {
   timetypesellasset_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   typesellasset_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   ::memset(&volume_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&tsoffsell_) -
-      reinterpret_cast<char*>(&volume_)) + sizeof(tsoffsell_));
+      reinterpret_cast<char*>(&limitprice_) -
+      reinterpret_cast<char*>(&volume_)) + sizeof(limitprice_));
   _internal_metadata_.Clear();
 }
 
@@ -5685,6 +5710,13 @@ const char* SellParams::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 72)) {
           nexttimes_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
           CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // float limitPrice = 10;
+      case 10:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 85)) {
+          limitprice_ = ::PROTOBUF_NAMESPACE_ID::internal::UnalignedLoad<float>(ptr);
+          ptr += sizeof(float);
         } else goto handle_unusual;
         continue;
       default: {
@@ -5779,6 +5811,12 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt32ToArray(9, this->_internal_nexttimes(), target);
   }
 
+  // float limitPrice = 10;
+  if (!(this->limitprice() <= 0 && this->limitprice() >= 0)) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteFloatToArray(10, this->_internal_limitprice(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields(), target, stream);
@@ -5852,6 +5890,11 @@ size_t SellParams::ByteSizeLong() const {
         this->_internal_tsoffsell());
   }
 
+  // float limitPrice = 10;
+  if (!(this->limitprice() <= 0 && this->limitprice() >= 0)) {
+    total_size += 1 + 4;
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
         _internal_metadata_, total_size, &_cached_size_);
@@ -5913,6 +5956,9 @@ void SellParams::MergeFrom(const SellParams& from) {
   if (from.tsoffsell() != 0) {
     _internal_set_tsoffsell(from._internal_tsoffsell());
   }
+  if (!(from.limitprice() <= 0 && from.limitprice() >= 0)) {
+    _internal_set_limitprice(from._internal_limitprice());
+  }
 }
 
 void SellParams::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
@@ -5948,6 +5994,7 @@ void SellParams::InternalSwap(SellParams* other) {
   swap(money_, other->money_);
   swap(nexttimes_, other->nexttimes_);
   swap(tsoffsell_, other->tsoffsell_);
+  swap(limitprice_, other->limitprice_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata SellParams::GetMetadata() const {
