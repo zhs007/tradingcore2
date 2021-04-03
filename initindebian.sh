@@ -1,5 +1,5 @@
 apt-get update -y
-apt-get install git wget gcc make automake -y
+apt-get install git wget gcc g++ make automake libssl-dev -y
 rm -rf /var/lib/apt/lists/*
 
 wget https://github.com/Kitware/CMake/releases/download/v3.18.5/cmake-3.18.5.tar.gz
