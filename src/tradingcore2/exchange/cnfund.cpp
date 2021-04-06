@@ -94,7 +94,7 @@ const CNFundValue* CNFundExchange::getFundValue(const char* assetsName) const {
 
 bool CNFundExchange::calculateVolume(const char* assetsName, TimeStamp ts,
                                      Money money, Volume& volume, Money& price,
-                                     Money& fee) {
+                                     Money& fee, FuncCalcFee calcFee) {
   assert(assetsName != NULL);
   assert(ts > 0);
   assert(money > ZEROMONEY);
@@ -111,7 +111,11 @@ bool CNFundExchange::calculateVolume(const char* assetsName, TimeStamp ts,
 
   volume = money / n->value;
   price = n->value;
-  fee = ZEROMONEY;
+  // fee = ZEROMONEY;
+
+  if (calcFee != NULL) {
+    fee = calcFee(assetsName, money, volume, ts);
+  }
 
   return true;
 }
@@ -119,8 +123,8 @@ bool CNFundExchange::calculateVolume(const char* assetsName, TimeStamp ts,
 bool CNFundExchange::calculateVolumeWithLimitPrice(const char* assetsName,
                                                    TimeStamp ts, Money money,
                                                    Volume& volume, Money& price,
-                                                   Money& fee,
-                                                   Money limitPrice) {
+                                                   Money& fee, Money limitPrice,
+                                                   FuncCalcFee calcFee) {
   assert(assetsName != NULL);
   assert(ts > 0);
   assert(money > ZEROMONEY);
@@ -137,7 +141,11 @@ bool CNFundExchange::calculateVolumeWithLimitPrice(const char* assetsName,
 
   volume = money / n->value;
   price = n->value;
-  fee = ZEROMONEY;
+  // fee = ZEROMONEY;
+
+  if (calcFee != NULL) {
+    fee = calcFee(assetsName, money, volume, ts);
+  }
 
   return true;
 }

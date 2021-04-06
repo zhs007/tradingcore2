@@ -175,15 +175,26 @@ void Strategy::buy(bool issim, TimeStamp ts, int strategyID,
     Money price = ZEROMONEY;
     Money fee = ZEROMONEY;
 
-    bool isok = m_exchange.calculateVolume(
-        this->m_strategy.asset().code().c_str(), ts, m, volume, price, fee);
+    bool isok = m_exchange.calculateVolumeWithLimitPrice(
+        this->m_strategy.asset().code().c_str(), ts, m, volume, price, fee,
+        buy.limitprice(), f);
+    if (!isok) {
+      return;
+    }
+
     assert(isok);
     assert(price > ZEROMONEY);
 
     this->onBuy(issim, ts, m, volume, fee, 0);
 
-    this->m_wallet.buyAssets(this->m_strategy.asset().code().c_str(), m, fee,
-                             ts, strategyID, ctrlConditionID, f, 0);
+    if (buy.moneyparts() > 0) {
+      this->m_wallet.buyAssets2(this->m_strategy.asset().code().c_str(), m, fee,
+                                ts, strategyID, ctrlConditionID, 1, price);
+    } else {
+      this->m_wallet.buyAssets2(this->m_strategy.asset().code().c_str(), m, fee,
+                                ts, strategyID, ctrlConditionID, 0, price);
+    }
+
   } else if (buy.perinitmoney() > 0) {
     auto m = this->m_initMoney * buy.perinitmoney();
 
@@ -196,7 +207,7 @@ void Strategy::buy(bool issim, TimeStamp ts, int strategyID,
     Money fee = ZEROMONEY;
 
     bool isok = m_exchange.calculateVolume(
-        this->m_strategy.asset().code().c_str(), ts, m, volume, price, fee);
+        this->m_strategy.asset().code().c_str(), ts, m, volume, price, fee, f);
     assert(isok);
     assert(price > ZEROMONEY);
 
@@ -218,7 +229,7 @@ void Strategy::buy(bool issim, TimeStamp ts, int strategyID,
     Money fee = ZEROMONEY;
 
     bool isok = m_exchange.calculateVolume(
-        this->m_strategy.asset().code().c_str(), ts, m, volume, price, fee);
+        this->m_strategy.asset().code().c_str(), ts, m, volume, price, fee, f);
     assert(isok);
     assert(price > ZEROMONEY);
 
@@ -239,7 +250,7 @@ void Strategy::buy(bool issim, TimeStamp ts, int strategyID,
     Money fee = ZEROMONEY;
 
     bool isok = m_exchange.calculateVolume(
-        this->m_strategy.asset().code().c_str(), ts, m, volume, price, fee);
+        this->m_strategy.asset().code().c_str(), ts, m, volume, price, fee, f);
     assert(isok);
     assert(price > ZEROMONEY);
 
@@ -267,7 +278,7 @@ void Strategy::buy(bool issim, TimeStamp ts, int strategyID,
     Money fee = ZEROMONEY;
 
     bool isok = m_exchange.calculateVolume(
-        this->m_strategy.asset().code().c_str(), ts, m, volume, price, fee);
+        this->m_strategy.asset().code().c_str(), ts, m, volume, price, fee, f);
     assert(isok);
     assert(price > ZEROMONEY);
 

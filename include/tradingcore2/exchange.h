@@ -5,6 +5,7 @@
 #include <tradingcore2/candle.h>
 #include <tradingcore2/config.h>
 #include <tradingcore2/protos/tradingdb2.grpc.pb.h>
+#include <tradingcore2/wallet.h>
 
 #include <functional>
 #include <map>
@@ -36,12 +37,13 @@ class Exchange {
  public:
   virtual bool calculateVolume(const char* assetsName, TimeStamp ts,
                                Money money, Volume& volume, Money& price,
-                               Money& fee) = 0;
+                               Money& fee, FuncCalcFee calcFee) = 0;
 
   virtual bool calculateVolumeWithLimitPrice(const char* assetsName,
                                              TimeStamp ts, Money money,
                                              Volume& volume, Money& price,
-                                             Money& fee, Money limitPrice) = 0;
+                                             Money& fee, Money limitPrice,
+                                             FuncCalcFee calcFee) = 0;
 
   virtual bool calculatePrice(const char* assetsName, TimeStamp ts,
                               Volume volume, Money& money, Money& price,

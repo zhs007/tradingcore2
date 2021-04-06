@@ -30,7 +30,7 @@ void TrDB2Exchange::loadData(const char* assetName, TimeStamp tsStart,
 
 bool TrDB2Exchange::calculateVolume(const char* assetsName, TimeStamp ts,
                                     Money money, Volume& volume, Money& price,
-                                    Money& fee) {
+                                    Money& fee, FuncCalcFee calcFee) {
   assert(assetsName != NULL);
   assert(ts > 0);
   assert(money > ZEROMONEY);
@@ -42,7 +42,11 @@ bool TrDB2Exchange::calculateVolume(const char* assetsName, TimeStamp ts,
 
   volume = money / c->close();
   price = c->close();
-  fee = ZEROMONEY;
+  // fee = ZEROMONEY;
+
+  if (calcFee != NULL) {
+    fee = calcFee(assetsName, money, volume, ts);
+  }
 
   return true;
 }
@@ -50,8 +54,8 @@ bool TrDB2Exchange::calculateVolume(const char* assetsName, TimeStamp ts,
 bool TrDB2Exchange::calculateVolumeWithLimitPrice(const char* assetsName,
                                                   TimeStamp ts, Money money,
                                                   Volume& volume, Money& price,
-                                                  Money& fee,
-                                                  Money limitPrice) {
+                                                  Money& fee, Money limitPrice,
+                                                  FuncCalcFee calcFee) {
   assert(assetsName != NULL);
   assert(ts > 0);
   assert(money > ZEROMONEY);
@@ -61,9 +65,17 @@ bool TrDB2Exchange::calculateVolumeWithLimitPrice(const char* assetsName,
     return false;
   }
 
-  volume = money / c->close();
-  price = c->close();
-  fee = ZEROMONEY;
+  if (!(c->low() < limitPrice && c->high() > limitPrice)) {
+    return false;
+  }
+
+  volume = money / limitPrice;
+  price = limitPrice;
+  // fee = ZEROMONEY;
+
+  if (calcFee != NULL) {
+    fee = calcFee(assetsName, money, volume, ts);
+  }
 
   return true;
 }
