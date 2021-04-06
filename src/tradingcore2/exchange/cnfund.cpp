@@ -116,6 +116,32 @@ bool CNFundExchange::calculateVolume(const char* assetsName, TimeStamp ts,
   return true;
 }
 
+bool CNFundExchange::calculateVolumeWithLimitPrice(const char* assetsName,
+                                                   TimeStamp ts, Money money,
+                                                   Volume& volume, Money& price,
+                                                   Money& fee,
+                                                   Money limitPrice) {
+  assert(assetsName != NULL);
+  assert(ts > 0);
+  assert(money > ZEROMONEY);
+
+  auto fv = this->getFundValue(assetsName);
+  if (fv == NULL) {
+    return false;
+  }
+
+  auto n = fv->getNode(ts);
+  if (n == NULL) {
+    return false;
+  }
+
+  volume = money / n->value;
+  price = n->value;
+  fee = ZEROMONEY;
+
+  return true;
+}
+
 bool CNFundExchange::calculatePrice(const char* assetsName, TimeStamp ts,
                                     Volume volume, Money& money, Money& price,
                                     Money& fee) {

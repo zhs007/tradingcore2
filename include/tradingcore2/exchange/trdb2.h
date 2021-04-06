@@ -30,6 +30,12 @@ class TrDB2Exchange : public Exchange {
                                Money money, Volume& volume, Money& price,
                                Money& fee) override;
 
+  virtual bool calculateVolumeWithLimitPrice(const char* assetsName,
+                                             TimeStamp ts, Money money,
+                                             Volume& volume, Money& price,
+                                             Money& fee,
+                                             Money limitPrice) override;
+
   virtual bool calculatePrice(const char* assetsName, TimeStamp ts,
                               Volume volume, Money& money, Money& price,
                               Money& fee) override;

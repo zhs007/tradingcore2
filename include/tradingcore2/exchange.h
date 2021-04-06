@@ -38,6 +38,11 @@ class Exchange {
                                Money money, Volume& volume, Money& price,
                                Money& fee) = 0;
 
+  virtual bool calculateVolumeWithLimitPrice(const char* assetsName,
+                                             TimeStamp ts, Money money,
+                                             Volume& volume, Money& price,
+                                             Money& fee, Money limitPrice) = 0;
+
   virtual bool calculatePrice(const char* assetsName, TimeStamp ts,
                               Volume volume, Money& money, Money& price,
                               Money& fee) = 0;

@@ -47,6 +47,27 @@ bool TrDB2Exchange::calculateVolume(const char* assetsName, TimeStamp ts,
   return true;
 }
 
+bool TrDB2Exchange::calculateVolumeWithLimitPrice(const char* assetsName,
+                                                  TimeStamp ts, Money money,
+                                                  Volume& volume, Money& price,
+                                                  Money& fee,
+                                                  Money limitPrice) {
+  assert(assetsName != NULL);
+  assert(ts > 0);
+  assert(money > ZEROMONEY);
+
+  auto c = this->m_mgrData.getCandle(this->getMarketName(), assetsName, ts);
+  if (c == NULL) {
+    return false;
+  }
+
+  volume = money / c->close();
+  price = c->close();
+  fee = ZEROMONEY;
+
+  return true;
+}
+
 bool TrDB2Exchange::calculatePrice(const char* assetsName, TimeStamp ts,
                                    Volume volume, Money& money, Money& price,
                                    Money& fee) {
