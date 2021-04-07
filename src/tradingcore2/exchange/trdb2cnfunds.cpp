@@ -100,6 +100,33 @@ bool TrDB2CNFundsExchange::calculatePrice(const char* assetsName, TimeStamp ts,
   return true;
 }
 
+bool TrDB2CNFundsExchange::calculatePriceWithLimitPrice(
+    const char* assetsName, TimeStamp ts, Volume volume, Money& money,
+    Money& price, Money& fee, Money limitPrice, FuncCalcFee calcFee) {
+  assert(assetsName != NULL);
+  assert(ts > 0);
+  assert(volume > ZEROVOLUME);
+
+  auto c = this->m_mgrData.getCandle("jrj", assetsName, ts);
+  if (c == NULL) {
+    return false;
+  }
+
+  if (!(c->low() < limitPrice && c->high() > limitPrice)) {
+    return false;
+  }
+
+  money = volume * limitPrice;
+  price = limitPrice;
+  // fee = ZEROMONEY;
+
+  if (calcFee != NULL) {
+    fee = calcFee(assetsName, money, volume, ts);
+  }
+
+  return true;
+}
+
 bool TrDB2CNFundsExchange::getDataWithTimestamp(const char* assetsName,
                                                 TimeStamp ts,
                                                 CandleData& data) const {

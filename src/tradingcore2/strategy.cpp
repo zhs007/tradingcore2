@@ -311,6 +311,45 @@ void Strategy::sell(bool issim, TimeStamp ts, int strategyID,
 
   if (!noNextTimes && sell.nexttimes() > 0) {
     this->nextSell(sell.nexttimes(), strategyID, ctrlConditionID);
+  } else if (sell.limitprice() > 0) {
+    Volume v = ZEROVOLUME;
+    Volume v1 = ZEROVOLUME;
+    int moneyParts;
+
+    if (sell.volume() > 0) {
+      v1 = this->m_wallet.calcAssetVolume(
+          this->m_strategy.asset().code().c_str(), ts, moneyParts);
+
+      v = sell.volume();
+    } else if (sell.pervolume() > 0) {
+      v1 = this->m_wallet.calcAssetVolume(
+          this->m_strategy.asset().code().c_str(), ts, moneyParts);
+
+      v = sell.pervolume() * this->m_volume;
+    } else if (sell.money() > 0) {
+    } else if (sell.keeptime() > 0) {
+      v = this->m_wallet.calcAssetVolumeWithKeepTime(
+          this->m_strategy.asset().code().c_str(), sell.keeptime(), ts,
+          moneyParts);
+
+      v1 = v;
+    }
+
+    if (v > this->m_volume) {
+      v = this->m_volume;
+    }
+
+    if (v > 0) {
+      assert(cmpValue<float>(v, v1));
+
+      Money fee = 0;
+
+      auto m = this->m_wallet.sellAssets2(
+          this->m_strategy.asset().code().c_str(), v, fee, ts, strategyID,
+          ctrlConditionID, f, moneyParts, sell.limitprice());
+
+      this->onSell(issim, ts, m, v, 0, moneyParts, SMT_HAND);
+    }
   } else if (sell.volume() > 0) {
     int moneyParts;
     auto v1 = this->m_wallet.calcAssetVolume(

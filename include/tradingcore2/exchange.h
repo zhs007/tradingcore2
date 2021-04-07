@@ -49,6 +49,12 @@ class Exchange {
                               Volume volume, Money& money, Money& price,
                               Money& fee) = 0;
 
+  virtual bool calculatePriceWithLimitPrice(const char* assetsName,
+                                            TimeStamp ts, Volume volume,
+                                            Money& money, Money& price,
+                                            Money& fee, Money limitPrice,
+                                            FuncCalcFee calcFee) = 0;
+
   virtual bool getDataWithTimestamp(const char* assetsName, TimeStamp ts,
                                     CandleData& data) const = 0;
 

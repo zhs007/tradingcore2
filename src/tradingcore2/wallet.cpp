@@ -170,6 +170,48 @@ Money Wallet::sellAssets(const char* assetsName, Volume volume, Money& fee,
   return money;
 }
 
+Money Wallet::sellAssets2(const char* assetsName, Volume volume, Money& fee,
+                          TimeStamp ts, int strategyID, int ctrlConditionID,
+                          FuncCalcFee calcFee, int moneyParts,
+                          Money limitPrice) {
+  assert(assetsName != NULL);
+  assert(volume > ZEROVOLUME);
+
+  auto assets = this->m_map.getAssets(assetsName);
+  assert(assets != NULL);
+
+  if (volume > assets->volume) {
+    volume = assets->volume;
+  }
+
+  Money money = ZEROMONEY;
+  Money price = ZEROMONEY;
+  // Money fee = ZEROMONEY;
+
+  bool isok = m_exchange.calculatePriceWithLimitPrice(
+      assetsName, ts, volume, money, price, fee, limitPrice, calcFee);
+  assert(isok);
+
+  this->m_map.sellAssets(assetsName, ts, price, volume, fee);
+
+  // if (calcFee != NULL) {
+  //   fee = calcFee(assetsName, money, volume, ts);
+  // }
+
+  this->m_money += money;
+  this->m_money -= fee;
+
+  WalletHistoryNode n;
+  n.setTrade(TT_SELL, assetsName, price, volume, fee, ts, money, strategyID,
+             ctrlConditionID, moneyParts);
+
+  this->_addHistory(n);
+
+  // LOG(INFO) << "TT_SELL " << this->m_history.size() << " " << ts;
+
+  return money;
+}
+
 // forEachHistory - foreach history
 void Wallet::forEachHistory(Wallet::FuncOnHistory func) const {
   for (auto it = this->m_history.begin(); it != this->m_history.end(); ++it) {

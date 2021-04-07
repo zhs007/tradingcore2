@@ -66,6 +66,12 @@ class CNFundExchange final : public Exchange {
                               Volume volume, Money& money, Money& price,
                               Money& fee) override;
 
+  virtual bool calculatePriceWithLimitPrice(const char* assetsName,
+                                            TimeStamp ts, Volume volume,
+                                            Money& money, Money& price,
+                                            Money& fee, Money limitPrice,
+                                            FuncCalcFee calcFee) override;
+
   virtual bool getDataWithTimestamp(const char* assetsName, TimeStamp ts,
                                     CandleData& data) const override;
 

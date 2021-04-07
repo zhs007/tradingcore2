@@ -174,6 +174,36 @@ bool CNFundExchange::calculatePrice(const char* assetsName, TimeStamp ts,
   return true;
 }
 
+bool CNFundExchange::calculatePriceWithLimitPrice(const char* assetsName,
+                                                  TimeStamp ts, Volume volume,
+                                                  Money& money, Money& price,
+                                                  Money& fee, Money limitPrice,
+                                                  FuncCalcFee calcFee) {
+  assert(assetsName != NULL);
+  assert(ts > 0);
+  assert(volume > ZEROVOLUME);
+
+  auto fv = this->getFundValue(assetsName);
+  if (fv == NULL) {
+    return false;
+  }
+
+  auto n = fv->getNode(ts);
+  if (n == NULL) {
+    return false;
+  }
+
+  money = volume * n->value;
+  price = n->value;
+  // fee = ZEROMONEY;
+
+  if (calcFee != NULL) {
+    fee = calcFee(assetsName, money, volume, ts);
+  }
+
+  return true;
+}
+
 bool CNFundExchange::getDataWithTimestamp(const char* assetsName, TimeStamp ts,
                                           CandleData& data) const {
   auto fv = this->getFundValue(assetsName);
