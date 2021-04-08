@@ -145,7 +145,7 @@ void Strategy::buy(bool issim, TimeStamp ts, int strategyID,
   }
 
   if (!noNextTimes && buy.nexttimes() > 0) {
-    this->nextBuy(buy.nexttimes(), strategyID, ctrlConditionID);
+    this->nextBuy(buy.nexttimes(), strategyID, ctrlConditionID, ts);
   } else if (buy.limitprice() > 0) {
     float m = 0;
     if (buy.perinitmoney() > 0) {
@@ -310,7 +310,7 @@ void Strategy::sell(bool issim, TimeStamp ts, int strategyID,
                      std::placeholders::_4);
 
   if (!noNextTimes && sell.nexttimes() > 0) {
-    this->nextSell(sell.nexttimes(), strategyID, ctrlConditionID);
+    this->nextSell(sell.nexttimes(), strategyID, ctrlConditionID, ts);
   } else if (sell.limitprice() > 0) {
     Volume v = ZEROVOLUME;
     Volume v1 = ZEROVOLUME;
@@ -572,16 +572,44 @@ void Strategy::onAIP(bool issim, TimeStamp ts) {
 
 void Strategy::release() { this->m_mapIndicators.release(); }
 
-void Strategy::nextBuy(int times, int strategyID, int ctrlConditionID) {
+void Strategy::nextBuy(int times, int strategyID, int ctrlConditionID,
+                       TimeStamp ts) {
   this->m_lastTimesBuy = times;
   this->m_nextBuyStrategyID = strategyID;
   this->m_nextBuyCtrlConditionID = ctrlConditionID;
+
+  auto buy = this->m_strategy.mutable_paramsbuy();
+  if (buy->perlimitprice() > 0) {
+    CandleData cd;
+    if (this->m_exchange.getDataWithTimestamp(
+            this->m_strategy.asset().code().c_str(), ts, cd)) {
+      buy->set_limitprice(cd.close * buy->perlimitprice());
+
+      return;
+    }
+  }
+
+  buy->set_limitprice(0);
 }
 
-void Strategy::nextSell(int times, int strategyID, int ctrlConditionID) {
+void Strategy::nextSell(int times, int strategyID, int ctrlConditionID,
+                        TimeStamp ts) {
   this->m_lastTimesSell = times;
   this->m_nextSellStrategyID = strategyID;
   this->m_nextSellCtrlConditionID = ctrlConditionID;
+
+  auto sell = this->m_strategy.mutable_paramssell();
+  if (sell->perlimitprice() > 0) {
+    CandleData cd;
+    if (this->m_exchange.getDataWithTimestamp(
+            this->m_strategy.asset().code().c_str(), ts, cd)) {
+      sell->set_limitprice(cd.close * sell->perlimitprice());
+
+      return;
+    }
+  }
+
+  sell->set_limitprice(0);
 }
 
 void Strategy::onNextTimes(bool issim, TimeStamp ts) {
