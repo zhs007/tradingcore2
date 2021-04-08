@@ -128,9 +128,9 @@ class Strategy {
   Money calcFee4Sell(const char* assetsName, Money money, Volume volume,
                      TimeStamp ts);
 
-  void nextBuy(int times, int strategyID, int ctrlConditionID);
+  void nextBuy(int times, int strategyID, int ctrlConditionID, TimeStamp ts);
 
-  void nextSell(int times, int strategyID, int ctrlConditionID);
+  void nextSell(int times, int strategyID, int ctrlConditionID, TimeStamp ts);
 
  protected:
   Wallet& m_wallet;

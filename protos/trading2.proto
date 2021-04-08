@@ -144,6 +144,7 @@ message BuyParams {
     int32 nextTimes = 13;                           // 信号触发后，下几次再买入，1表示下一次买入
     int32 depositMoney = 14;                        // 如果购买时，没有钱了，会先存入金额，再买入
     float limitPrice = 15;                          // 一般用于右侧交易，高于这个价格就不买入了
+    float perLimitPrice = 16;                       // 一般用于右侧交易，高于判定价格的这个比例就不买入了，这个值会影响 limitPrice
 }
 
 // SellParams - sell parameters
@@ -158,6 +159,7 @@ message SellParams {
     string typeSellAsset = 8;       // 配合assetCode用的卖出方式；为了更好的模拟交易，这里用来做交易价格，最差的情况应该用low卖出
     int32 nextTimes = 9;            // 信号触发后，下几次再卖出，1表示下一次卖出
     float limitPrice = 10;          // 一般用于右侧交易，低于这个价格就不卖出了
+    float perLimitPrice = 11;       // 一般用于右侧交易，低于判定价格的这个比例就不卖出了，这个值会影响 limitPrice
 }
 
 // StopLossParams - stop loss parameters
