@@ -2726,6 +2726,7 @@ class BuyParams :
     kNextTimesFieldNumber = 13,
     kDepositMoneyFieldNumber = 14,
     kLimitPriceFieldNumber = 15,
+    kPerLimitPriceFieldNumber = 16,
   };
   // string assetCode = 8;
   void clear_assetcode();
@@ -2883,6 +2884,15 @@ class BuyParams :
   void _internal_set_limitprice(float value);
   public:
 
+  // float perLimitPrice = 16;
+  void clear_perlimitprice();
+  float perlimitprice() const;
+  void set_perlimitprice(float value);
+  private:
+  float _internal_perlimitprice() const;
+  void _internal_set_perlimitprice(float value);
+  public:
+
   // @@protoc_insertion_point(class_scope:tradingpb.BuyParams)
  private:
   class _Internal;
@@ -2903,6 +2913,7 @@ class BuyParams :
   ::PROTOBUF_NAMESPACE_ID::int32 nexttimes_;
   ::PROTOBUF_NAMESPACE_ID::int32 depositmoney_;
   float limitprice_;
+  float perlimitprice_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_trading2_2eproto;
 };
@@ -3024,6 +3035,7 @@ class SellParams :
     kNextTimesFieldNumber = 9,
     kTsOffSellFieldNumber = 7,
     kLimitPriceFieldNumber = 10,
+    kPerLimitPriceFieldNumber = 11,
   };
   // string assetCode = 5;
   void clear_assetcode();
@@ -3136,6 +3148,15 @@ class SellParams :
   void _internal_set_limitprice(float value);
   public:
 
+  // float perLimitPrice = 11;
+  void clear_perlimitprice();
+  float perlimitprice() const;
+  void set_perlimitprice(float value);
+  private:
+  float _internal_perlimitprice() const;
+  void _internal_set_perlimitprice(float value);
+  public:
+
   // @@protoc_insertion_point(class_scope:tradingpb.SellParams)
  private:
   class _Internal;
@@ -3151,6 +3172,7 @@ class SellParams :
   ::PROTOBUF_NAMESPACE_ID::int32 nexttimes_;
   ::PROTOBUF_NAMESPACE_ID::int64 tsoffsell_;
   float limitprice_;
+  float perlimitprice_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_trading2_2eproto;
 };
@@ -8785,6 +8807,26 @@ inline void BuyParams::set_limitprice(float value) {
   // @@protoc_insertion_point(field_set:tradingpb.BuyParams.limitPrice)
 }
 
+// float perLimitPrice = 16;
+inline void BuyParams::clear_perlimitprice() {
+  perlimitprice_ = 0;
+}
+inline float BuyParams::_internal_perlimitprice() const {
+  return perlimitprice_;
+}
+inline float BuyParams::perlimitprice() const {
+  // @@protoc_insertion_point(field_get:tradingpb.BuyParams.perLimitPrice)
+  return _internal_perlimitprice();
+}
+inline void BuyParams::_internal_set_perlimitprice(float value) {
+  
+  perlimitprice_ = value;
+}
+inline void BuyParams::set_perlimitprice(float value) {
+  _internal_set_perlimitprice(value);
+  // @@protoc_insertion_point(field_set:tradingpb.BuyParams.perLimitPrice)
+}
+
 // -------------------------------------------------------------------
 
 // SellParams
@@ -9107,6 +9149,26 @@ inline void SellParams::_internal_set_limitprice(float value) {
 inline void SellParams::set_limitprice(float value) {
   _internal_set_limitprice(value);
   // @@protoc_insertion_point(field_set:tradingpb.SellParams.limitPrice)
+}
+
+// float perLimitPrice = 11;
+inline void SellParams::clear_perlimitprice() {
+  perlimitprice_ = 0;
+}
+inline float SellParams::_internal_perlimitprice() const {
+  return perlimitprice_;
+}
+inline float SellParams::perlimitprice() const {
+  // @@protoc_insertion_point(field_get:tradingpb.SellParams.perLimitPrice)
+  return _internal_perlimitprice();
+}
+inline void SellParams::_internal_set_perlimitprice(float value) {
+  
+  perlimitprice_ = value;
+}
+inline void SellParams::set_perlimitprice(float value) {
+  _internal_set_perlimitprice(value);
+  // @@protoc_insertion_point(field_set:tradingpb.SellParams.perLimitPrice)
 }
 
 // -------------------------------------------------------------------
