@@ -30,7 +30,7 @@ void TrDB2Exchange::loadData(const char* assetName, TimeStamp tsStart,
 
 bool TrDB2Exchange::calculateVolume(const char* assetsName, TimeStamp ts,
                                     Money money, Volume& volume, Money& price,
-                                    Money& fee) {
+                                    Money& fee, FuncCalcFee calcFee) {
   assert(assetsName != NULL);
   assert(ts > 0);
   assert(money > ZEROMONEY);
@@ -42,7 +42,40 @@ bool TrDB2Exchange::calculateVolume(const char* assetsName, TimeStamp ts,
 
   volume = money / c->close();
   price = c->close();
-  fee = ZEROMONEY;
+  // fee = ZEROMONEY;
+
+  if (calcFee != NULL) {
+    fee = calcFee(assetsName, money, volume, ts);
+  }
+
+  return true;
+}
+
+bool TrDB2Exchange::calculateVolumeWithLimitPrice(const char* assetsName,
+                                                  TimeStamp ts, Money money,
+                                                  Volume& volume, Money& price,
+                                                  Money& fee, Money limitPrice,
+                                                  FuncCalcFee calcFee) {
+  assert(assetsName != NULL);
+  assert(ts > 0);
+  assert(money > ZEROMONEY);
+
+  auto c = this->m_mgrData.getCandle(this->getMarketName(), assetsName, ts);
+  if (c == NULL) {
+    return false;
+  }
+
+  if (!(c->low() < limitPrice && c->high() > limitPrice)) {
+    return false;
+  }
+
+  volume = money / limitPrice;
+  price = limitPrice;
+  // fee = ZEROMONEY;
+
+  if (calcFee != NULL) {
+    fee = calcFee(assetsName, money, volume, ts);
+  }
 
   return true;
 }
@@ -62,6 +95,35 @@ bool TrDB2Exchange::calculatePrice(const char* assetsName, TimeStamp ts,
   money = volume * c->close();
   price = c->close();
   fee = ZEROMONEY;
+
+  return true;
+}
+
+bool TrDB2Exchange::calculatePriceWithLimitPrice(const char* assetsName,
+                                                 TimeStamp ts, Volume volume,
+                                                 Money& money, Money& price,
+                                                 Money& fee, Money limitPrice,
+                                                 FuncCalcFee calcFee) {
+  assert(assetsName != NULL);
+  assert(ts > 0);
+  assert(volume > ZEROVOLUME);
+
+  auto c = this->m_mgrData.getCandle(this->getMarketName(), assetsName, ts);
+  if (c == NULL) {
+    return false;
+  }
+
+  if (!(c->low() < limitPrice && c->high() > limitPrice)) {
+    return false;
+  }
+
+  money = volume * limitPrice;
+  price = limitPrice;
+  // fee = ZEROMONEY;
+
+  if (calcFee != NULL) {
+    fee = calcFee(assetsName, money, volume, ts);
+  }
 
   return true;
 }

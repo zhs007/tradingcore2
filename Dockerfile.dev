@@ -5,7 +5,7 @@ FROM buildpack-deps:buster
 
 RUN echo "deb http://ftp.de.debian.org/debian buster main" >> /etc/apt/sources.list \
   && apt-get update -y \
-  && apt-get install git wget gcc make automake libc6-dbg -y \
+  && apt-get install git wget gcc g++ make automake libc6-dbg libssl-dev -y \
   && rm -rf /var/lib/apt/lists/*
 
 RUN wget https://github.com/Kitware/CMake/releases/download/v3.18.5/cmake-3.18.5.tar.gz \

@@ -104,9 +104,17 @@ class Wallet {
                    TimeStamp ts, int strategyID, int ctrlConditionID,
                    FuncCalcFee calcFee, int moneyParts);
 
+  Volume buyAssets2(const char* assetsName, Money money, Money fee,
+                    TimeStamp ts, int strategyID, int ctrlConditionID,
+                    int moneyParts, Money price);
+
   Money sellAssets(const char* assetsName, Volume volume, Money& fee,
                    TimeStamp ts, int strategyID, int ctrlConditionID,
                    FuncCalcFee calcFee, int moneyParts);
+
+  Money sellAssets2(const char* assetsName, Volume volume, Money& fee,
+                    TimeStamp ts, int strategyID, int ctrlConditionID,
+                    FuncCalcFee calcFee, int moneyParts, Money price);
 
   void deposit(Money money, TimeStamp ts);
 

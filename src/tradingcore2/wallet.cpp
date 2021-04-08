@@ -64,8 +64,8 @@ Volume Wallet::buyAssets(const char* assetsName, Money money, Money& fee,
   Money price = ZEROMONEY;
   // Money fee = fee;
 
-  bool isok =
-      m_exchange.calculateVolume(assetsName, ts, money, volume, price, fee);
+  bool isok = m_exchange.calculateVolume(assetsName, ts, money, volume, price,
+                                         fee, calcFee);
   assert(isok);
   assert(price > ZEROMONEY);
 
@@ -74,6 +74,46 @@ Volume Wallet::buyAssets(const char* assetsName, Money money, Money& fee,
   if (calcFee != NULL) {
     fee = calcFee(assetsName, money, volume, ts);
   }
+
+  this->m_money -= money;
+  this->m_money -= fee;
+
+  WalletHistoryNode n;
+  n.setTrade(TT_BUY, assetsName, price, volume, fee, ts, -money, strategyID,
+             ctrlConditionID, moneyParts);
+
+  this->_addHistory(n);
+
+  // LOG(INFO) << "TT_BUY " << this->m_history.size() << " " << ts;
+
+  return volume;
+}
+
+Volume Wallet::buyAssets2(const char* assetsName, Money money, Money fee,
+                          TimeStamp ts, int strategyID, int ctrlConditionID,
+                          int moneyParts, Money price) {
+  assert(assetsName != NULL);
+  assert(money > ZEROMONEY);
+  assert(price > ZEROMONEY);
+
+  if (money > this->m_money) {
+    money = this->m_money;
+  }
+
+  Volume volume = ZEROVOLUME;
+  // Money price = ZEROMONEY;
+  // Money fee = fee;
+
+  // bool isok =
+  //     m_exchange.calculateVolume(assetsName, ts, money, volume, price, fee);
+  // assert(isok);
+  // assert(price > ZEROMONEY);
+
+  this->m_map.buyAssets(assetsName, ts, price, volume, fee);
+
+  // if (calcFee != NULL) {
+  //   fee = calcFee(assetsName, money, volume, ts);
+  // }
 
   this->m_money -= money;
   this->m_money -= fee;
@@ -115,6 +155,48 @@ Money Wallet::sellAssets(const char* assetsName, Volume volume, Money& fee,
   if (calcFee != NULL) {
     fee = calcFee(assetsName, money, volume, ts);
   }
+
+  this->m_money += money;
+  this->m_money -= fee;
+
+  WalletHistoryNode n;
+  n.setTrade(TT_SELL, assetsName, price, volume, fee, ts, money, strategyID,
+             ctrlConditionID, moneyParts);
+
+  this->_addHistory(n);
+
+  // LOG(INFO) << "TT_SELL " << this->m_history.size() << " " << ts;
+
+  return money;
+}
+
+Money Wallet::sellAssets2(const char* assetsName, Volume volume, Money& fee,
+                          TimeStamp ts, int strategyID, int ctrlConditionID,
+                          FuncCalcFee calcFee, int moneyParts,
+                          Money limitPrice) {
+  assert(assetsName != NULL);
+  assert(volume > ZEROVOLUME);
+
+  auto assets = this->m_map.getAssets(assetsName);
+  assert(assets != NULL);
+
+  if (volume > assets->volume) {
+    volume = assets->volume;
+  }
+
+  Money money = ZEROMONEY;
+  Money price = ZEROMONEY;
+  // Money fee = ZEROMONEY;
+
+  bool isok = m_exchange.calculatePriceWithLimitPrice(
+      assetsName, ts, volume, money, price, fee, limitPrice, calcFee);
+  assert(isok);
+
+  this->m_map.sellAssets(assetsName, ts, price, volume, fee);
+
+  // if (calcFee != NULL) {
+  //   fee = calcFee(assetsName, money, volume, ts);
+  // }
 
   this->m_money += money;
   this->m_money -= fee;
