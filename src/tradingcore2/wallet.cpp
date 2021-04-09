@@ -196,7 +196,11 @@ Money Wallet::sellAssets2(const char* assetsName, Volume volume, Money& fee,
 
   bool isok = m_exchange.calculatePriceWithLimitPrice(
       assetsName, ts, volume, money, price, fee, limitPrice, calcFee);
-  assert(isok);
+  if (!isok) {
+    fee = ZEROMONEY;
+
+    return ZEROMONEY;
+  }
 
   this->m_map.sellAssets(assetsName, ts, price, volume, fee);
 
