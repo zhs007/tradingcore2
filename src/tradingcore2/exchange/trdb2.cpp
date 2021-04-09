@@ -65,7 +65,7 @@ bool TrDB2Exchange::calculateVolumeWithLimitPrice(const char* assetsName,
     return false;
   }
 
-  if (!(c->low() < limitPrice && c->high() > limitPrice)) {
+  if (c->low() > limitPrice) {
     return false;
   }
 
@@ -113,7 +113,7 @@ bool TrDB2Exchange::calculatePriceWithLimitPrice(const char* assetsName,
     return false;
   }
 
-  if (!(c->low() < limitPrice && c->high() > limitPrice)) {
+  if (c->high() < limitPrice) {
     return false;
   }
 
