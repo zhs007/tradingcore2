@@ -184,6 +184,12 @@ Money Wallet::sellAssets2(const char* assetsName, Volume volume, Money& fee,
     volume = assets->volume;
   }
 
+  if (volume <= ZEROVOLUME) {
+    fee = ZEROMONEY;
+
+    return ZEROMONEY;
+  }
+
   Money money = ZEROMONEY;
   Money price = ZEROMONEY;
   // Money fee = ZEROMONEY;
