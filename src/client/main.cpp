@@ -1412,10 +1412,13 @@ int main(int argc, char* argv[]) {
   printf("tr2client starting...\n");
   printf("version is %s\n", tr2::getVersion());
 
+  std::string strparams;
   if (argc != 2) {
-    printf("please type tr2client cfgfile.");
+    strparams = "../../../cfg/config.yaml";
 
-    return -1;
+    // return -1;
+  } else {
+    strparams = argv[1];
   }
 
   tr2::regAllIndicators();
@@ -1424,7 +1427,7 @@ int main(int argc, char* argv[]) {
   tr2::regAllStrategy();
 
   tr2::Config cfg;
-  tr2::loadConfig(cfg, argv[1]);
+  tr2::loadConfig(cfg, strparams.c_str());
 
   auto mgr = tr2::ExchangeMgr::getSingleton();
   mgr->init(cfg);
