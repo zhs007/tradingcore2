@@ -1340,6 +1340,71 @@ void normalEMA15(const tr2::Config& cfg) {
   //                                       5, 5 /* off2 */, 10, 2);
 }
 
+void limitPrice(const tr2::Config& cfg) {
+  tr2::NodeClient2 client(cfg.servs[0].host.c_str(),
+                          cfg.servs[0].token.c_str());
+
+  ::tradingpb::SimTradingParams params;
+
+  auto asset0 = params.add_assets();
+  asset0->set_market("bitmex");
+  asset0->set_code("XBTUSD|5m");
+
+  auto strategy0 = params.add_strategies();
+  strategy0->set_name("normal");
+  auto asset10 = strategy0->mutable_asset();
+  asset10->set_market("bitmex");
+  asset10->set_code("XBTUSD|5m");
+
+  auto buy0 = strategy0->add_buy();
+  buy0->set_name("indicatorsp");
+  buy0->add_operators("upcross");
+  buy0->add_strvals("ema.74");
+
+  auto buy1 = strategy0->add_buy();
+  buy1->set_name("waittostart");
+  buy1->add_vals(74);
+
+  auto sell0 = strategy0->add_sell();
+  sell0->set_name("indicatorsp");
+  sell0->add_operators("downcross");
+  sell0->add_strvals("ema.74");
+
+  auto bp = strategy0->mutable_paramsbuy();
+  bp->set_perhandmoney(1);
+  bp->set_nexttimes(1);
+  bp->set_limitprice(1.01);
+  auto sp = strategy0->mutable_paramssell();
+  sp->set_pervolume(1);
+  sp->set_nexttimes(1);
+  sp->set_limitprice(0.99);
+  auto ip = strategy0->mutable_paramsinit();
+  ip->set_money(10000);
+  // auto aip = strategy0->mutable_paramsaip();
+  // aip->set_money(10000);
+  // aip->set_type(tradingpb::AIPTT_WEEKDAY);
+  // aip->set_day(3);
+
+  params.set_startts(tr2::str2timestampUTC("20210301", "%Y%m%d"));
+  params.set_endts(tr2::str2timestampUTC("20210303", "%Y%m%d"));
+  // params.set_startts(0);
+  // params.set_endts(-1);
+
+  ::tradingpb::ReplyCalcPNL res;
+  auto status = client.clacPNL(params, res);
+
+  // client.waitStop();
+
+  // ::tradingpb::ReplyServerInfo res;
+  // auto status = client.getServerInfo(res);
+  LOG(INFO) << "calcPNL " << status.error_code();
+
+  if (status.ok()) {
+    tr2::logProtobuf("reply ", res);
+    // LOG(INFO) << res.DebugString();
+  }
+}
+
 int main(int argc, char* argv[]) {
   putenv("TZ=UTC");
   tr2::LogHelper log(argv[0]);
@@ -1365,7 +1430,7 @@ int main(int argc, char* argv[]) {
   mgr->init(cfg);
 
   // buyandhold(cfg);
-  aipWeekDay(cfg);
+  // aipWeekDay(cfg);
   // aipMonthDay(cfg);
   // normalWeekDay(cfg);
   // normalWeekDay2(cfg);
@@ -1385,6 +1450,7 @@ int main(int argc, char* argv[]) {
   // normalTAMA_3(cfg);
   // takeProfitWeekDay(cfg);
   // aipMonthDayTakeProfit(cfg);
+  limitPrice(cfg);
 
   return 0;
 }
