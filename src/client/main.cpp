@@ -1373,11 +1373,11 @@ void limitPrice(const tr2::Config& cfg) {
   auto bp = strategy0->mutable_paramsbuy();
   bp->set_perhandmoney(1);
   bp->set_nexttimes(1);
-  bp->set_limitprice(1.01);
+  bp->set_perlimitprice(1.01);
   auto sp = strategy0->mutable_paramssell();
   sp->set_pervolume(1);
   sp->set_nexttimes(1);
-  sp->set_limitprice(0.99);
+  sp->set_perlimitprice(0.99);
   auto ip = strategy0->mutable_paramsinit();
   ip->set_money(10000);
   // auto aip = strategy0->mutable_paramsaip();
@@ -1385,8 +1385,8 @@ void limitPrice(const tr2::Config& cfg) {
   // aip->set_type(tradingpb::AIPTT_WEEKDAY);
   // aip->set_day(3);
 
-  params.set_startts(tr2::str2timestampUTC("20210301", "%Y%m%d"));
-  params.set_endts(tr2::str2timestampUTC("20210303", "%Y%m%d"));
+  params.set_startts(tr2::str2timestampUTC("20210201", "%Y%m%d"));
+  params.set_endts(tr2::str2timestampUTC("20210203", "%Y%m%d"));
   // params.set_startts(0);
   // params.set_endts(-1);
 
@@ -1400,6 +1400,7 @@ void limitPrice(const tr2::Config& cfg) {
   LOG(INFO) << "calcPNL " << status.error_code();
 
   if (status.ok()) {
+    tr2::clearReplyCalcPNL(res);
     tr2::logProtobuf("reply ", res);
     // LOG(INFO) << res.DebugString();
   }
