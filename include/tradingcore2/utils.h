@@ -3,6 +3,8 @@
 
 #include <google/protobuf/util/json_util.h>
 #include <tradingcore2/basedef.h>
+#include <tradingcore2/protos/trading2.pb.h>
+#include <tradingcore2/protos/tradingnode2.pb.h>
 
 #include <ctime>
 #include <functional>
@@ -92,6 +94,11 @@ bool splitStr(std::vector<std::string>& arr, const char* str,
 void logProtobuf(const char* title, const google::protobuf::Message& message);
 
 void saveProtobuf(const char* fn, const google::protobuf::Message& message);
+
+// -------------------------------------------------------------------------------------
+// protobuf
+
+void clearReplyCalcPNL(::tradingpb::ReplyCalcPNL& reply);
 
 // -------------------------------------------------------------------------------------
 // file system

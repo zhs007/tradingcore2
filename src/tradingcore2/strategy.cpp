@@ -147,14 +147,14 @@ void Strategy::buy(bool issim, TimeStamp ts, int strategyID,
   if (!noNextTimes && buy.nexttimes() > 0) {
     this->nextBuy(buy.nexttimes(), strategyID, ctrlConditionID, ts);
   } else if (buy.limitprice() > 0) {
-    float m = 0;
+    Money cm = 0;
     if (buy.perinitmoney() > 0) {
-      m = this->m_initMoney * buy.perinitmoney();
+      cm = this->m_initMoney * buy.perinitmoney();
     } else if (buy.perhandmoney() > 0) {
-      m = this->m_handMoney * buy.perhandmoney();
+      cm = this->m_handMoney * buy.perhandmoney();
     } else if (buy.volume() > 0) {
     } else if (buy.aipmoney() > 0) {
-      m = buy.aipmoney();
+      cm = buy.aipmoney();
     } else if (buy.moneyparts() > 0) {
       if (this->m_lastMoneyParts < 0) {
         this->m_lastMoneyParts = buy.moneyparts();
@@ -164,11 +164,15 @@ void Strategy::buy(bool issim, TimeStamp ts, int strategyID,
         return;
       }
 
-      m = this->m_handMoney / this->m_lastMoneyParts;
+      cm = this->m_handMoney / this->m_lastMoneyParts;
     }
 
-    if (m <= 0) {
+    if (cm <= 0) {
       return;
+    }
+
+    if (cm > this->m_handMoney) {
+      cm = this->m_handMoney;
     }
 
     Volume volume = ZEROVOLUME;
@@ -176,7 +180,7 @@ void Strategy::buy(bool issim, TimeStamp ts, int strategyID,
     Money fee = ZEROMONEY;
 
     bool isok = m_exchange.calculateVolumeWithLimitPrice(
-        this->m_strategy.asset().code().c_str(), ts, m, volume, price, fee,
+        this->m_strategy.asset().code().c_str(), ts, cm, volume, price, fee,
         buy.limitprice(), f);
     if (!isok) {
       return;
@@ -185,14 +189,16 @@ void Strategy::buy(bool issim, TimeStamp ts, int strategyID,
     assert(isok);
     assert(price > ZEROMONEY);
 
-    this->onBuy(issim, ts, m, volume, fee, 0);
+    this->onBuy(issim, ts, cm, volume, fee, 0);
 
     if (buy.moneyparts() > 0) {
-      this->m_wallet.buyAssets2(this->m_strategy.asset().code().c_str(), m, fee,
-                                ts, strategyID, ctrlConditionID, 1, price);
+      this->m_wallet.buyAssets2(this->m_strategy.asset().code().c_str(), cm,
+                                volume, fee, ts, strategyID, ctrlConditionID, 1,
+                                price);
     } else {
-      this->m_wallet.buyAssets2(this->m_strategy.asset().code().c_str(), m, fee,
-                                ts, strategyID, ctrlConditionID, 0, price);
+      this->m_wallet.buyAssets2(this->m_strategy.asset().code().c_str(), cm,
+                                volume, fee, ts, strategyID, ctrlConditionID, 0,
+                                price);
     }
 
   } else if (buy.perinitmoney() > 0) {

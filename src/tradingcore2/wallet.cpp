@@ -89,9 +89,9 @@ Volume Wallet::buyAssets(const char* assetsName, Money money, Money& fee,
   return volume;
 }
 
-Volume Wallet::buyAssets2(const char* assetsName, Money money, Money fee,
-                          TimeStamp ts, int strategyID, int ctrlConditionID,
-                          int moneyParts, Money price) {
+Volume Wallet::buyAssets2(const char* assetsName, Money money, Volume volume,
+                          Money fee, TimeStamp ts, int strategyID,
+                          int ctrlConditionID, int moneyParts, Money price) {
   assert(assetsName != NULL);
   assert(money > ZEROMONEY);
   assert(price > ZEROMONEY);
@@ -100,7 +100,7 @@ Volume Wallet::buyAssets2(const char* assetsName, Money money, Money fee,
     money = this->m_money;
   }
 
-  Volume volume = ZEROVOLUME;
+  // Volume volume = ZEROVOLUME;
   // Money price = ZEROMONEY;
   // Money fee = fee;
 

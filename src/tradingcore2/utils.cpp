@@ -466,4 +466,17 @@ bool splitStr(std::vector<std::string>& arr, const char* str,
   return true;
 }
 
+// -------------------------------------------------------------------------------------
+// protobuf
+
+void clearReplyCalcPNL(::tradingpb::ReplyCalcPNL& reply) {
+  if (reply.pnl_size() > 0) {
+    auto pnl = reply.mutable_pnl(0);
+    if (pnl->has_total()) {
+      auto total = pnl->mutable_total();
+      total->clear_values();
+    }
+  }
+}
+
 CR2END
