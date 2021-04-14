@@ -69,6 +69,10 @@ bool TrDB2Exchange::calculateVolumeWithLimitPrice(const char* assetsName,
     return false;
   }
 
+  if (c->high() < limitPrice) {
+    limitPrice = c->high();
+  }
+
   volume = money / limitPrice;
   price = limitPrice;
   // fee = ZEROMONEY;
@@ -115,6 +119,10 @@ bool TrDB2Exchange::calculatePriceWithLimitPrice(const char* assetsName,
 
   if (c->high() < limitPrice) {
     return false;
+  }
+
+  if (c->low() > limitPrice) {
+    limitPrice = c->low();
   }
 
   money = volume * limitPrice;
