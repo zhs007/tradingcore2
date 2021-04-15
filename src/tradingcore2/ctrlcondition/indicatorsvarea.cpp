@@ -23,7 +23,7 @@ bool CCIndicatorSVArea::isValid(const tradingpb::CtrlCondition& cc,
                                 CtrlType ct) {
   if (cc.operators_size() == 1) {
     if (cc.operators(0) == "==") {
-      return cc.vals_size() == 2 && cc.strvals_size() == 1;
+      return cc.vals_size() == 1 && cc.strvals_size() == 1;
     }
   } else if (cc.operators_size() == 2) {
     if (cc.operators(0) == ">" || cc.operators(0) == ">=" ||
