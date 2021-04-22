@@ -85,9 +85,6 @@ class IndicatorTA_MA final : public Indicator {
   TA_MAType m_maType;
 };
 
-// // NewIndicatorTA_MA - new IndicatorTA_MA
-// Indicator* NewIndicatorTA_MA(int avgtimes);
-
 CR2END
 
 #endif  // __TRADINGCORE2_INDICATOR_TA_MA_H__

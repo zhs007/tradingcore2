@@ -1,7 +1,7 @@
 
 #include <stdlib.h>
 #include <tradingcore2/exchange.h>
-#include <tradingcore2/indicator/ta_rsi.h>
+#include <tradingcore2/indicator/ta_roc.h>
 #include <tradingcore2/utils.h>
 
 #include <ctime>
@@ -9,7 +9,7 @@
 
 CR2BEGIN
 
-void IndicatorTA_RSI::pushData(TimeStamp ts, IndicatorDataValue val) {
+void IndicatorTA_ROC::pushData(TimeStamp ts, IndicatorDataValue val) {
   Node n;
 
   n.ts = ts;
@@ -18,7 +18,7 @@ void IndicatorTA_RSI::pushData(TimeStamp ts, IndicatorDataValue val) {
   m_lst.push_back(n);
 }
 
-bool IndicatorTA_RSI::build(Exchange& exchange, const char* assetsName,
+bool IndicatorTA_ROC::build(Exchange& exchange, const char* assetsName,
                             int start, int length) {
   assert(assetsName != NULL);
   assert(start >= 0);
@@ -52,18 +52,18 @@ bool IndicatorTA_RSI::build(Exchange& exchange, const char* assetsName,
     pPrice[i] = cd.close;
   }
 
-  // TA_RetCode TA_RSI( int    startIdx,
-  //                int    endIdx,
-  //                const double inReal[],
-  //                int           optInTimePeriod, /* From 2 to 100000 */
-  //                int          *outBegIdx,
-  //                int          *outNBElement,
-  //                double        outReal[] );
+  // TA_RetCode TA_ROC( int    startIdx,
+  //                    int    endIdx,
+  //                    const double inReal[],
+  //                    int           optInTimePeriod, /* From 1 to 100000 */
+  //                    int          *outBegIdx,
+  //                    int          *outNBElement,
+  //                    double        outReal[] );
 
-  auto retCode = TA_RSI(0, length - 1, pPrice, this->m_avgtimes, &outBeg,
+  auto retCode = TA_ROC(0, length - 1, pPrice, this->m_avgtimes, &outBeg,
                         &outNbElement, pOut);
   if (retCode != TA_SUCCESS) {
-    LOG(ERROR) << "IndicatorTAMA:TA_RSI " << retCode;
+    LOG(ERROR) << "IndicatorTAMA:TA_ROC " << retCode;
 
     delete[] pPrice;
     delete[] pOut;
@@ -71,8 +71,9 @@ bool IndicatorTA_RSI::build(Exchange& exchange, const char* assetsName,
     return false;
   }
 
-//   LOG(INFO) << "IndicatorTA_RSI:TA_RSI length " << length << " outBeg " << outBeg
-//             << " outNbElement " << outNbElement;
+  //   LOG(INFO) << "IndicatorTA_ROC:TA_ROC length " << length << " outBeg " <<
+  //   outBeg
+  //             << " outNbElement " << outNbElement;
   assert(outBeg == length - outNbElement);
 
   // CandleData cd;
@@ -81,7 +82,7 @@ bool IndicatorTA_RSI::build(Exchange& exchange, const char* assetsName,
     assert(isok);
 
     if (i < outBeg) {
-      this->pushData(cd.ts, 100);
+      this->pushData(cd.ts, 0);
     } else {
       this->pushData(cd.ts, pOut[i - outBeg]);
     }
@@ -93,7 +94,7 @@ bool IndicatorTA_RSI::build(Exchange& exchange, const char* assetsName,
   return true;
 }
 
-bool IndicatorTA_RSI::build2(Exchange& exchange, const char* assetsName,
+bool IndicatorTA_ROC::build2(Exchange& exchange, const char* assetsName,
                              const char* assetsName2, IndicatorBuild2Type b2t,
                              int64_t ot, int start, int length) {
   assert(assetsName != NULL);
@@ -132,7 +133,7 @@ bool IndicatorTA_RSI::build2(Exchange& exchange, const char* assetsName,
           assetsName2, cd.ts + this->m_params.b2OffTime, cd1);
       if (!isok) {
         if (ii != length - 1) {
-          LOG(WARNING) << "IndicatorTA_RSI:getDataWithTimestamp " << ii << " "
+          LOG(WARNING) << "IndicatorTA_ROC:getDataWithTimestamp " << ii << " "
                        << cd.ts + this->m_params.b2OffTime;
         }
         // assert(ii == length - 1);
@@ -142,18 +143,17 @@ bool IndicatorTA_RSI::build2(Exchange& exchange, const char* assetsName,
 
       pPrice[ii] = cd1.close;
 
-      // TA_RetCode TA_RSI( int    startIdx,
-      //                int    endIdx,
-      //                const double inReal[],
-      //                int           optInTimePeriod, /* From 2 to 100000 */
-      //                int          *outBegIdx,
-      //                int          *outNBElement,
-      //                double        outReal[] );
+      // TA_RetCode TA_ROC( int    startIdx,
+      //                    int    endIdx,
+      //                    const double inReal[],
+      //                    int           optInTimePeriod, /* From 1 to 100000
+      //                    */ int          *outBegIdx, int *outNBElement,
+      //                    double        outReal[] );
 
-      auto retCode = TA_RSI(ii - this->m_avgtimes + 1, ii, pPrice,
+      auto retCode = TA_ROC(ii - this->m_avgtimes + 1, ii, pPrice,
                             this->m_avgtimes, &outBeg, &outNbElement, pOut);
       if (retCode != TA_SUCCESS) {
-        LOG(ERROR) << "IndicatorTA_RSI:TA_RSI " << retCode;
+        LOG(ERROR) << "IndicatorTA_ROC:TA_ROC " << retCode;
 
         delete[] pPrice;
         delete[] pOut;
@@ -168,7 +168,7 @@ bool IndicatorTA_RSI::build2(Exchange& exchange, const char* assetsName,
       // assert(outNbElement == 1);
       this->pushData(cd.ts, pOut[outNbElement - 1]);
     } else {
-      this->pushData(cd.ts, 100);
+      this->pushData(cd.ts, 0);
     }
 
     pPrice[ii] = cd.close;
@@ -180,7 +180,7 @@ bool IndicatorTA_RSI::build2(Exchange& exchange, const char* assetsName,
   return true;
 }
 
-const IndicatorData_singleValue* IndicatorTA_RSI::getMinSingleValue(
+const IndicatorData_singleValue* IndicatorTA_ROC::getMinSingleValue(
     int& index) const {
   const IndicatorData_singleValue* pMin = NULL;
 
@@ -194,7 +194,7 @@ const IndicatorData_singleValue* IndicatorTA_RSI::getMinSingleValue(
   return pMin;
 }
 
-const IndicatorData_singleValue* IndicatorTA_RSI::getMaxSingleValue(
+const IndicatorData_singleValue* IndicatorTA_ROC::getMaxSingleValue(
     int& index) const {
   const IndicatorData_singleValue* pMax = NULL;
 
@@ -208,29 +208,29 @@ const IndicatorData_singleValue* IndicatorTA_RSI::getMaxSingleValue(
   return pMax;
 }
 
-// newIndicator - new IndicatorTA_RSI
-Indicator* IndicatorTA_RSI::newIndicator(const char* fullname,
+// newIndicator - new IndicatorTA_ROC
+Indicator* IndicatorTA_ROC::newIndicator(const char* fullname,
                                          const char* assetsName) {
   std::vector<std::string> arr;
   splitStr(arr, fullname, ".");
 
   if (arr.size() == 2) {
-    return new IndicatorTA_RSI(fullname, assetsName);
+    return new IndicatorTA_ROC(fullname, assetsName);
   }
 
   return NULL;
 }
 
 // isMine - isMine
-bool IndicatorTA_RSI::isMine(const char* name) {
+bool IndicatorTA_ROC::isMine(const char* name) {
   std::vector<std::string> arr;
   splitStr(arr, name, ".");
 
   if (arr.size() == 2) {
-    if (arr[0] == "ta-rsi") {
+    if (arr[0] == "ta-roc") {
       try {
         auto v = std::stoi(arr[1]);
-        return v >= 2;
+        return v >= 1;
       } catch (...) {
         return false;
       }
