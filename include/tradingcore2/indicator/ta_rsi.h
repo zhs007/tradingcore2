@@ -71,12 +71,12 @@ class IndicatorTA_RSI final : public Indicator {
 
   void pushData(TimeStamp ts, IndicatorDataValue val);
 
- protected:
-  void _buildFirst(Exchange& exchange, const char* assetsName, int start,
-                   int length, Money& totalPrice);
+//  protected:
+//   void _buildFirst(Exchange& exchange, const char* assetsName, int start,
+//                    int length, Money& totalPrice);
 
-  bool _build_avg1(Exchange& exchange, const char* assetsName, int start,
-                   int length);
+//   bool _build_avg1(Exchange& exchange, const char* assetsName, int start,
+//                    int length);
 
  protected:
   int m_avgtimes;
