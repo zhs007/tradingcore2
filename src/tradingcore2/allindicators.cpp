@@ -5,6 +5,7 @@
 #include <tradingcore2/indicator/sma.h>
 #include <tradingcore2/indicator/smma.h>
 #include <tradingcore2/indicator/ta_ma.h>
+#include <tradingcore2/indicator/ta_rsi.h>
 #include <tradingcore2/indicator/wma.h>
 #include <tradingcore2/indicatormgr.h>
 
@@ -21,6 +22,8 @@ void regAllIndicators() {
   mgr->regIndicator("wma", IndicatorWMA::newIndicator, IndicatorWMA::isMine);
   mgr->regIndicator("ta-ma", IndicatorTA_MA::newIndicator,
                     IndicatorTA_MA::isMine);
+  mgr->regIndicator("ta-rsi", IndicatorTA_RSI::newIndicator,
+                    IndicatorTA_RSI::isMine);
 }
 
 CR2END
