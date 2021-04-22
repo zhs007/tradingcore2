@@ -37,12 +37,16 @@ TEST_F(RSITest, rsi_2) {
   EXPECT_NEAR(pRSI->getSMMAD(2), 0, 0.00005);
   EXPECT_NEAR(pRSI->getSingleValue(2)->value, 100, 0.00005);
 
+  LOG(INFO) << "RSITest:rsi_2 [2] " << pRSI->getSingleValue(2)->value;
+
   EXPECT_NEAR(pRSI->getU(3), 1.006 - 1.006, 0.00005);
   EXPECT_NEAR(pRSI->getD(3), 0, 0.00005);
   EXPECT_NEAR(pRSI->getSMMAU(3), (pRSI->getSMMAU(2) + pRSI->getU(3)) / 2,
               0.00005);
   EXPECT_NEAR(pRSI->getSMMAD(3), 0, 0.00005);
   EXPECT_NEAR(pRSI->getSingleValue(3)->value, 100, 0.00005);
+
+  LOG(INFO) << "RSITest:rsi_2 [3] " << pRSI->getSingleValue(3)->value;
 
   EXPECT_NEAR(pRSI->getU(4), 0, 0.00005);
   EXPECT_NEAR(pRSI->getD(4), 1.006 - 1.004, 0.00005);
@@ -52,6 +56,8 @@ TEST_F(RSITest, rsi_2) {
               0.00005);
   EXPECT_NEAR(pRSI->getSingleValue(4)->value,
               100 - 100 / (1 + pRSI->getSMMAU(4) / pRSI->getSMMAD(4)), 0.00005);
+
+  LOG(INFO) << "RSITest:rsi_2 [4] " << pRSI->getSingleValue(4)->value;
 
   EXPECT_NEAR(pRSI->getU(2278), 2.911 - 2.848, 0.00005);
   EXPECT_NEAR(pRSI->getD(2278), 0, 0.00005);
@@ -63,6 +69,8 @@ TEST_F(RSITest, rsi_2) {
               100 - 100 / (1 + pRSI->getSMMAU(2278) / pRSI->getSMMAD(2278)),
               0.00005);
 
+  LOG(INFO) << "RSITest:rsi_2 [2278] " << pRSI->getSingleValue(2278)->value;
+
   EXPECT_NEAR(pRSI->getU(2279), 2.915 - 2.911, 0.00005);
   EXPECT_NEAR(pRSI->getD(2279), 0, 0.00005);
   EXPECT_NEAR(pRSI->getSMMAU(2279),
@@ -72,6 +80,8 @@ TEST_F(RSITest, rsi_2) {
   EXPECT_NEAR(pRSI->getSingleValue(2279)->value,
               100 - 100 / (1 + pRSI->getSMMAU(2279) / pRSI->getSMMAD(2279)),
               0.00005);
+
+  LOG(INFO) << "RSITest:rsi_2 [2279] " << pRSI->getSingleValue(2279)->value;
 }
 
 TEST_F(RSITest, rsi_3) {
@@ -114,6 +124,7 @@ TEST_F(RSITest, rsi_3) {
               0.00005);
   EXPECT_NEAR(pRSI->getSingleValue(4)->value,
               100 - 100 / (1 + pRSI->getSMMAU(4) / pRSI->getSMMAD(4)), 0.00005);
+  LOG(INFO) << "RSITest:rsi_3 [4] " << pRSI->getSingleValue(4)->value;
 
   EXPECT_NEAR(pRSI->getU(2278), 2.911 - 2.848, 0.00005);
   EXPECT_NEAR(pRSI->getD(2278), 0, 0.00005);
@@ -124,6 +135,7 @@ TEST_F(RSITest, rsi_3) {
   EXPECT_NEAR(pRSI->getSingleValue(2278)->value,
               100 - 100 / (1 + pRSI->getSMMAU(2278) / pRSI->getSMMAD(2278)),
               0.00005);
+  LOG(INFO) << "RSITest:rsi_3 [2278] " << pRSI->getSingleValue(2278)->value;
 
   EXPECT_NEAR(pRSI->getU(2279), 2.915 - 2.911, 0.00005);
   EXPECT_NEAR(pRSI->getD(2279), 0, 0.00005);
@@ -134,4 +146,5 @@ TEST_F(RSITest, rsi_3) {
   EXPECT_NEAR(pRSI->getSingleValue(2279)->value,
               100 - 100 / (1 + pRSI->getSMMAU(2279) / pRSI->getSMMAD(2279)),
               0.00005);
+  LOG(INFO) << "RSITest:rsi_3 [2279] " << pRSI->getSingleValue(2279)->value;
 }
