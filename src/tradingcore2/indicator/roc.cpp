@@ -101,7 +101,7 @@ bool IndicatorROC::build(Exchange& exchange, const char* assetsName, int start,
     if (lastPrice == ZEROMONEY) {
       this->pushData(cd.ts, 0.0);
     } else {
-      this->pushData(cd.ts, (cd.close - lastPrice) / lastPrice);
+      this->pushData(cd.ts, (cd.close - lastPrice) * 100 / lastPrice);
     }
   }
 
@@ -163,7 +163,7 @@ bool IndicatorROC::build2(Exchange& exchange, const char* assetsName,
     if (lastPrice == ZEROMONEY) {
       this->pushData(cd.ts, 0.0);
     } else {
-      this->pushData(cd.ts, (cd1.close - lastPrice) / lastPrice);
+      this->pushData(cd.ts, (cd1.close - lastPrice) * 100 / lastPrice);
     }
   }
 

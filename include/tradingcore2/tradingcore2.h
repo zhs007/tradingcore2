@@ -26,6 +26,7 @@
 #include <tradingcore2/indicator/smma.h>
 #include <tradingcore2/indicator/ta_ma.h>
 #include <tradingcore2/indicator/ta_rsi.h>
+#include <tradingcore2/indicator/ta_roc.h>
 #include <tradingcore2/indicator/wma.h>
 #include <tradingcore2/indicatormap.h>
 #include <tradingcore2/indicatormgr.h>

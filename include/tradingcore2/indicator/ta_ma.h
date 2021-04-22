@@ -71,12 +71,12 @@ class IndicatorTA_MA final : public Indicator {
 
   void pushData(TimeStamp ts, IndicatorDataValue val);
 
- protected:
-  void _buildFirst(Exchange& exchange, const char* assetsName, int start,
-                   int length, Money& totalPrice);
+//  protected:
+//   void _buildFirst(Exchange& exchange, const char* assetsName, int start,
+//                    int length, Money& totalPrice);
 
-  bool _build_avg1(Exchange& exchange, const char* assetsName, int start,
-                   int length);
+//   bool _build_avg1(Exchange& exchange, const char* assetsName, int start,
+//                    int length);
 
  protected:
   int m_avgtimes;
@@ -84,9 +84,6 @@ class IndicatorTA_MA final : public Indicator {
   int m_iStart;
   TA_MAType m_maType;
 };
-
-// // NewIndicatorTA_MA - new IndicatorTA_MA
-// Indicator* NewIndicatorTA_MA(int avgtimes);
 
 CR2END
 

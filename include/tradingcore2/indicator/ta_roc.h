@@ -1,5 +1,5 @@
-#ifndef __TRADINGCORE2_INDICATOR_TA_RSI_H__
-#define __TRADINGCORE2_INDICATOR_TA_RSI_H__
+#ifndef __TRADINGCORE2_INDICATOR_TA_ROC_H__
+#define __TRADINGCORE2_INDICATOR_TA_ROC_H__
 
 #include <ta_func.h>
 #include <ta_libc.h>
@@ -12,7 +12,7 @@ CR2BEGIN
 
 //!! https://ta-lib.org/
 
-class IndicatorTA_RSI final : public Indicator {
+class IndicatorTA_ROC final : public Indicator {
  public:
   struct Node {
     TimeStamp ts;
@@ -22,18 +22,18 @@ class IndicatorTA_RSI final : public Indicator {
   typedef std::vector<Node> List;
 
  public:
-  // newIndicator - new IndicatorTA_RSI
+  // newIndicator - new IndicatorTA_ROC
   static Indicator* newIndicator(const char* fullname, const char* assetsName);
   // isMine - isMine
   static bool isMine(const char* name);
 
  protected:
-  IndicatorTA_RSI(const char* fullname, const char* assetsName)
+  IndicatorTA_ROC(const char* fullname, const char* assetsName)
       : Indicator(fullname, assetsName), m_iStart(-1) {
     m_avgtimes = this->m_params.avgtimes;
     assert(m_avgtimes >= 1);
   }
-  virtual ~IndicatorTA_RSI() {}
+  virtual ~IndicatorTA_ROC() {}
 
  public:
   virtual bool build(Exchange& exchange, const char* assetsName, int start,
@@ -86,4 +86,4 @@ class IndicatorTA_RSI final : public Indicator {
 
 CR2END
 
-#endif  // __TRADINGCORE2_INDICATOR_TA_RSI_H__
+#endif  // __TRADINGCORE2_INDICATOR_TA_ROC_H__

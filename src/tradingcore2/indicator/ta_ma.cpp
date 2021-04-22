@@ -18,24 +18,6 @@ void IndicatorTA_MA::pushData(TimeStamp ts, IndicatorDataValue val) {
   m_lst.push_back(n);
 }
 
-// void IndicatorTAMA::_buildFirst(Exchange& exchange, const char* assetsName,
-//                                 int start, int length, Money& totalPrice) {
-//   CandleData cd;
-//   auto isok = exchange.getData(assetsName, start, cd);
-//   assert(isok);
-
-//   totalPrice = cd.close;
-//   this->pushData(cd.ts, totalPrice);
-
-//   for (int i = 1; i < length; ++i) {
-//     auto isok = exchange.getData(assetsName, start + i, cd);
-//     assert(isok);
-
-//     totalPrice += cd.close;
-//     this->pushData(cd.ts, totalPrice / (i + 1));
-//   }
-// }
-
 bool IndicatorTA_MA::build(Exchange& exchange, const char* assetsName,
                            int start, int length) {
   assert(assetsName != NULL);
@@ -177,66 +159,11 @@ bool IndicatorTA_MA::build2(Exchange& exchange, const char* assetsName,
     pPrice[ii] = cd.close;
   }
 
-  // for (int i = 0; i < length; ++i) {
-  //   auto isok = exchange.getData(assetsName, start + i, cd);
-  //   assert(isok);
-
-  //   pPrice[i] = cd.close;
-  // }
-
-  // auto retCode = TA_MA(0, length - 1, pPrice, this->m_avgtimes, m_maType,
-  //                      &outBeg, &outNbElement, pOut);
-  // if (retCode != TA_SUCCESS) {
-  //   LOG(ERROR) << "IndicatorTAMA:TA_MA " << retCode;
-
-  //   delete[] pPrice;
-  //   delete[] pOut;
-
-  //   return false;
-  // }
-
-  // LOG(INFO) << "IndicatorTAMA:TA_MA length " << length << " outBeg " <<
-  // outBeg
-  //           << " outNbElement " << outNbElement;
-  // assert(outBeg == length - outNbElement);
-
-  // // CandleData cd;
-  // for (int i = 0; i < length; ++i) {
-  //   auto isok = exchange.getData(assetsName, start + i, cd);
-  //   assert(isok);
-
-  //   if (i < outBeg) {
-  //     this->pushData(cd.ts, cd.close);
-  //   } else {
-  //     this->pushData(cd.ts, pOut[i - outBeg]);
-  //   }
-  // }
-
   delete[] pPrice;
   delete[] pOut;
 
   return true;
 }
-
-// bool IndicatorTAMA::_build_avg1(Exchange& exchange, const char* assetsName,
-//                                 int start, int length) {
-//   assert(assetsName != NULL);
-//   assert(start >= 0);
-//   assert(length > 0);
-//   assert(this->m_avgtimes == 1);
-
-//   m_iStart = start;
-
-//   CandleData cd;
-//   for (int i = 0; i < length; ++i) {
-//     auto isok = exchange.getData(assetsName, start + i, cd);
-//     assert(isok);
-
-//     this->pushData(cd.ts, cd.close);
-//   }
-
-//   return true;
-// }
 
 const IndicatorData_singleValue* IndicatorTA_MA::getMinSingleValue(
     int& index) const {
@@ -311,7 +238,7 @@ bool IndicatorTA_MA::isMine(const char* name) {
         arr[0] == "ta-kama" || arr[0] == "ta-mama" || arr[0] == "ta-t3") {
       try {
         auto v = std::stoi(arr[1]);
-        return true;
+        return v >= 2;
       } catch (...) {
         return false;
       }
