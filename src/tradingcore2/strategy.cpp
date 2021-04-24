@@ -676,4 +676,16 @@ void Strategy::buildIndicators(const tradingpb::SimTradingParams &params,
   }
 }
 
+void Strategy::want2buy(bool issim, TimeStamp ts, Money money,
+                        Money limitPrice) {
+  this->m_wallet.want2buy(this->m_strategy.asset().code().c_str(), money,
+                          limitPrice, ts);
+}
+
+void Strategy::want2sell(bool issim, TimeStamp ts, Volume volume,
+                         Money limitPrice) {
+  this->m_wallet.want2sell(this->m_strategy.asset().code().c_str(), volume,
+                           limitPrice, ts);
+}
+
 CR2END

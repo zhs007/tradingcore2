@@ -303,6 +303,16 @@ void Wallet::buildPNL2(const tradingpb::SimTradingParams& params,
                        it->trade.price * it->trade.volume, it->trade.volume,
                        it->trade.fee, it->trade.moneyParts);
       }
+    } else if (it->nodeType == WHNT_WANTTOTRADE) {
+      if (it->trade.tradeType == TT_BUY) {
+        pnl2.want2buyAsset(this->m_exchange.getMarketName(),
+                           it->trade.assetsName.c_str(), it->ts,
+                           it->trade.money, it->trade.limitPrice);
+      } else {
+        pnl2.want2sellAsset(this->m_exchange.getMarketName(),
+                            it->trade.assetsName.c_str(), it->ts,
+                            it->trade.volume, it->trade.limitPrice);
+      }
     }
   }
 
@@ -399,6 +409,22 @@ Volume Wallet::calcAssetVolume(const char* assetsName, TimeStamp ts,
   }
 
   return v;
+}
+
+void Wallet::want2buy(const char* assetsName, Money money, Money limitPrice,
+                      TimeStamp ts) {
+  WalletHistoryNode n;
+  n.setWant2Trade(TT_BUY, assetsName, money, 0, ts, limitPrice);
+
+  this->_addHistory(n);
+}
+
+void Wallet::want2sell(const char* assetsName, Volume volume, Money limitPrice,
+                       TimeStamp ts) {
+  WalletHistoryNode n;
+  n.setWant2Trade(TT_SELL, assetsName, 0, volume, ts, limitPrice);
+
+  this->_addHistory(n);
 }
 
 CR2END

@@ -16,7 +16,8 @@ enum WalletHistoryNodeType {
   WHNT_NONE = 0,
   WHNT_TRADE = 1,
   WHNT_DEPOSIT = 2,
-  WHNT_WITHDRAW = 3
+  WHNT_WITHDRAW = 3,
+  WHNT_WANTTOTRADE = 4,
 };
 
 struct WalletHistoryNode {
@@ -74,6 +75,21 @@ struct WalletHistoryNode {
 
     this->trade.moneyParts = moneyParts;
   }
+
+  void setWant2Trade(TradeType tradeType, const char* assetsName, Money money,
+                     Volume volume, TimeStamp ts, Money limitPrice) {
+    this->nodeType = WHNT_WANTTOTRADE;
+    // this->offMoney = offMoney;
+    this->ts = ts;
+
+    this->trade.tradeType = tradeType;
+    this->trade.assetsName = assetsName;
+    this->trade.money = money;
+    this->trade.volume = volume;
+    this->trade.ts = ts;
+
+    this->trade.limitPrice = limitPrice;
+  }
 };
 
 typedef std::function<Money(const char* assetsName, Money money, Volume volume,
@@ -115,6 +131,12 @@ class Wallet {
   Money sellAssets2(const char* assetsName, Volume volume, Money& fee,
                     TimeStamp ts, int strategyID, int ctrlConditionID,
                     FuncCalcFee calcFee, int moneyParts, Money price);
+
+  void want2buy(const char* assetsName, Money money, Money limitPrice,
+                TimeStamp ts);
+
+  void want2sell(const char* assetsName, Volume volume, Money limitPrice,
+                 TimeStamp ts);
 
   void deposit(Money money, TimeStamp ts);
 

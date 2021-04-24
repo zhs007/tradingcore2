@@ -88,6 +88,54 @@ void PNL2::deposit(Money money, time_t ts) {
   ctrl->set_type(::tradingpb::CTRL_DEPOSIT);
 }
 
+void PNL2::want2buyAsset(const char* market0, const char* symbol0, time_t ts,
+                     Money money, Money limitPrice) {
+  auto objTotal = this->m_data.mutable_total();
+  auto ctrl = objTotal->add_lstctrl();
+
+  auto src = ctrl->mutable_src();
+  src->set_market("money");
+  src->set_code("cny");
+  ctrl->set_volumesrc(money);
+
+  auto dst = ctrl->mutable_dst();
+  dst->set_market(market0);
+  dst->set_code(symbol0);
+  // ctrl->set_volumedst(0);
+
+  ctrl->set_ts(ts);
+  ctrl->set_type(::tradingpb::CTRL_WANTTOBUY);
+  ctrl->set_limitprice(limitPrice);
+
+  // ctrl->set_moneyparts(moneyParts);
+
+  this->addAsset(symbol0);
+}
+
+void PNL2::want2sellAsset(const char* market0, const char* symbol0, time_t ts,
+                      Money volume, Money limitPrice) {
+  auto objTotal = this->m_data.mutable_total();
+  auto ctrl = objTotal->add_lstctrl();
+
+  auto src = ctrl->mutable_src();
+  src->set_market(market0);
+  src->set_code(symbol0);
+  ctrl->set_volumesrc(volume);
+
+  auto dst = ctrl->mutable_dst();
+  dst->set_market("money");
+  dst->set_code("cny");
+  // ctrl->set_volumedst(money);
+
+  ctrl->set_ts(ts);
+  ctrl->set_type(::tradingpb::CTRL_WANTTOSELL);
+  ctrl->set_limitprice(limitPrice);
+
+  // ctrl->set_moneyparts(moneyParts);
+
+  this->addAsset(symbol0);
+}
+
 void PNL2::onInitTimeStamp(const Exchange& exchange, TimeStamp ts, int index) {
   insTimestamp(this->m_data.mutable_total(), ts);
 }

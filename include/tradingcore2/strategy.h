@@ -83,6 +83,12 @@ class Strategy {
   void sell(bool issim, TimeStamp ts, int strategyID, int ctrlConditionID,
             bool noNextTimes);
 
+  void want2buy(bool issim, TimeStamp ts, Money money,
+                Money limitPrice);
+
+  void want2sell(bool issim, TimeStamp ts, Volume volume,
+                 Money limitPrice);
+
   void takeProfit(bool issim, TimeStamp ts, int strategyID, int ctrlConditionID,
                   bool noNextTimes, CandleData& cd);
 
