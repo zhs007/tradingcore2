@@ -145,6 +145,36 @@ void Strategy::buy(bool issim, TimeStamp ts, int strategyID,
   }
 
   if (!noNextTimes && buy.nexttimes() > 0) {
+    Money cm = 0;
+    if (buy.perinitmoney() > 0) {
+      cm = this->m_initMoney * buy.perinitmoney();
+    } else if (buy.perhandmoney() > 0) {
+      cm = this->m_handMoney * buy.perhandmoney();
+    } else if (buy.volume() > 0) {
+    } else if (buy.aipmoney() > 0) {
+      cm = buy.aipmoney();
+    } else if (buy.moneyparts() > 0) {
+      if (this->m_lastMoneyParts < 0) {
+        this->m_lastMoneyParts = buy.moneyparts();
+      }
+
+      if (this->m_lastMoneyParts <= 0) {
+        return;
+      }
+
+      cm = this->m_handMoney / this->m_lastMoneyParts;
+    }
+
+    if (cm <= 0) {
+      return;
+    }
+
+    if (cm > this->m_handMoney) {
+      cm = this->m_handMoney;
+    }
+
+    this->want2buy(issim, ts, cm, buy.limitprice());
+
     this->nextBuy(buy.nexttimes(), strategyID, ctrlConditionID, ts);
   } else if (buy.limitprice() > 0) {
     Money cm = 0;
@@ -316,6 +346,35 @@ void Strategy::sell(bool issim, TimeStamp ts, int strategyID,
                      std::placeholders::_4);
 
   if (!noNextTimes && sell.nexttimes() > 0) {
+    Volume v = ZEROVOLUME;
+    Volume v1 = ZEROVOLUME;
+    int moneyParts;
+
+    if (sell.volume() > 0) {
+      v1 = this->m_wallet.calcAssetVolume(
+          this->m_strategy.asset().code().c_str(), ts, moneyParts);
+
+      v = sell.volume();
+    } else if (sell.pervolume() > 0) {
+      v1 = this->m_wallet.calcAssetVolume(
+          this->m_strategy.asset().code().c_str(), ts, moneyParts);
+
+      v = sell.pervolume() * this->m_volume;
+    } else if (sell.money() > 0) {
+    } else if (sell.keeptime() > 0) {
+      v = this->m_wallet.calcAssetVolumeWithKeepTime(
+          this->m_strategy.asset().code().c_str(), sell.keeptime(), ts,
+          moneyParts);
+
+      v1 = v;
+    }
+
+    if (v > this->m_volume) {
+      v = this->m_volume;
+    }
+
+    this->want2sell(issim, ts, v, sell.limitprice());
+
     this->nextSell(sell.nexttimes(), strategyID, ctrlConditionID, ts);
   } else if (sell.limitprice() > 0) {
     Volume v = ZEROVOLUME;
