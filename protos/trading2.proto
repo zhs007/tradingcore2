@@ -54,6 +54,8 @@ enum CtrlType {
     CTRL_TAKEPROFIT = 4;
     CTRL_WITHDRAW = 5;
     CTRL_DEPOSIT = 6;
+    CTRL_WANTTOBUY = 7;
+    CTRL_WANTTOSELL = 8;    
 }
 
 // CtrlNodeAssetInfo - asset infomation in control node
@@ -80,6 +82,7 @@ message CtrlNode {
     map<string, CtrlNodeAssetInfo> mapAssetsInfo = 14;      // 统计值，用于运算，当前时间节点资产数量和成本
     int32 moneyParts = 15;                                  // 当买入条件以moneyparts的时候，这是当前操作买入的
     int32 lastMoneyParts = 16;                              // 当买入条件以moneyparts的时候，这是剩下的
+    double limitPrice = 17;                                 // CTRL_WANTTOBUY 和 CTRL_WANTTOSELL 时有效
 }
 
 // WalletAsset - wallet asset

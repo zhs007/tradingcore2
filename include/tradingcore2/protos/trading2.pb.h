@@ -184,12 +184,14 @@ enum CtrlType : int {
   CTRL_TAKEPROFIT = 4,
   CTRL_WITHDRAW = 5,
   CTRL_DEPOSIT = 6,
+  CTRL_WANTTOBUY = 7,
+  CTRL_WANTTOSELL = 8,
   CtrlType_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::min(),
   CtrlType_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<::PROTOBUF_NAMESPACE_ID::int32>::max()
 };
 bool CtrlType_IsValid(int value);
 constexpr CtrlType CtrlType_MIN = CTRL_INIT;
-constexpr CtrlType CtrlType_MAX = CTRL_DEPOSIT;
+constexpr CtrlType CtrlType_MAX = CTRL_WANTTOSELL;
 constexpr int CtrlType_ARRAYSIZE = CtrlType_MAX + 1;
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* CtrlType_descriptor();
@@ -1437,6 +1439,7 @@ class CtrlNode :
     kLastMoneyFieldNumber = 13,
     kStrategyIDFieldNumber = 11,
     kMoneyPartsFieldNumber = 15,
+    kLimitPriceFieldNumber = 17,
     kLastMoneyPartsFieldNumber = 16,
   };
   // map<string, .tradingpb.CtrlNodeAssetInfo> mapAssetsInfo = 14;
@@ -1594,6 +1597,15 @@ class CtrlNode :
   void _internal_set_moneyparts(::PROTOBUF_NAMESPACE_ID::int32 value);
   public:
 
+  // double limitPrice = 17;
+  void clear_limitprice();
+  double limitprice() const;
+  void set_limitprice(double value);
+  private:
+  double _internal_limitprice() const;
+  void _internal_set_limitprice(double value);
+  public:
+
   // int32 lastMoneyParts = 16;
   void clear_lastmoneyparts();
   ::PROTOBUF_NAMESPACE_ID::int32 lastmoneyparts() const;
@@ -1628,6 +1640,7 @@ class CtrlNode :
   double lastmoney_;
   ::PROTOBUF_NAMESPACE_ID::int32 strategyid_;
   ::PROTOBUF_NAMESPACE_ID::int32 moneyparts_;
+  double limitprice_;
   ::PROTOBUF_NAMESPACE_ID::int32 lastmoneyparts_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_trading2_2eproto;
@@ -7453,6 +7466,26 @@ inline void CtrlNode::_internal_set_lastmoneyparts(::PROTOBUF_NAMESPACE_ID::int3
 inline void CtrlNode::set_lastmoneyparts(::PROTOBUF_NAMESPACE_ID::int32 value) {
   _internal_set_lastmoneyparts(value);
   // @@protoc_insertion_point(field_set:tradingpb.CtrlNode.lastMoneyParts)
+}
+
+// double limitPrice = 17;
+inline void CtrlNode::clear_limitprice() {
+  limitprice_ = 0;
+}
+inline double CtrlNode::_internal_limitprice() const {
+  return limitprice_;
+}
+inline double CtrlNode::limitprice() const {
+  // @@protoc_insertion_point(field_get:tradingpb.CtrlNode.limitPrice)
+  return _internal_limitprice();
+}
+inline void CtrlNode::_internal_set_limitprice(double value) {
+  
+  limitprice_ = value;
+}
+inline void CtrlNode::set_limitprice(double value) {
+  _internal_set_limitprice(value);
+  // @@protoc_insertion_point(field_set:tradingpb.CtrlNode.limitPrice)
 }
 
 // -------------------------------------------------------------------
