@@ -26,6 +26,12 @@ class PNL2 {
   void sellAsset(const char* market0, const char* symbol0, time_t ts,
                  Money money, Money volume, Money fee, int moneyParts);
 
+  void want2buyAsset(const char* market0, const char* symbol0, time_t ts,
+                     Money money, Money limitPrice);
+
+  void want2sellAsset(const char* market0, const char* symbol0, time_t ts,
+                      Money volume, Money limitPrice);
+
   void withdraw(Money money, time_t ts);
 
   void deposit(Money money, time_t ts);

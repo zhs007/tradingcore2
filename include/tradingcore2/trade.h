@@ -18,6 +18,7 @@ struct Trade {
   Money fee;
   TimeStamp ts;
   int moneyParts;
+  Money limitPrice;
 };
 
 CR2END
