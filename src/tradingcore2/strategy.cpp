@@ -266,6 +266,10 @@ void Strategy::buy(bool issim, TimeStamp ts, int strategyID,
 
     bool isok = m_exchange.calculateVolume(
         this->m_strategy.asset().code().c_str(), ts, m, volume, price, fee, f);
+    if (!isok) {
+      return;
+    }
+
     assert(isok);
     assert(price > ZEROMONEY);
 
