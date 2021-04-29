@@ -40,6 +40,10 @@ bool TrDB2Exchange::calculateVolume(const char* assetsName, TimeStamp ts,
     return false;
   }
 
+  if (c->close() <= 0) {
+    return false;
+  }
+
   volume = money / c->close();
   price = c->close();
   // fee = ZEROMONEY;
