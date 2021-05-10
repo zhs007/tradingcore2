@@ -21,8 +21,10 @@ bool getSymbols(const char *host, const char *token, const char *market,
                 std::vector<const char *> *pSymbols, FuncOnSymbol funcOnSymbol);
 
 // updSymbol - update symbol
-bool updSymbol(const char *host, const char *token,
-               tradingpb::SymbolInfo &si);
+bool updSymbol(const char *host, const char *token, tradingpb::SymbolInfo &si);
+
+// reqTasks - request tasks
+void reqTasks(const char *host, const char *token);
 
 CR2END
 

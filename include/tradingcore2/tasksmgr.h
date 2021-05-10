@@ -31,6 +31,9 @@ class TasksMgr {
   ::grpc::Status runTask(const ::tradingpb::SimTradingParams* params,
                          ::tradingpb::PNLData* pnldata);
 
+  // getCurTaskNums - get current tasks number
+  int getCurTaskNums() { this->m_curTaskNums.load(std::memory_order_relaxed); }
+
  protected:
   int m_maxTaskNums;
   std::atomic<int> m_curTaskNums;

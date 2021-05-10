@@ -17,8 +17,6 @@ void insCandles(std::vector<tradingpb::Candle> &lst,
 
 int calcTradingDays4Year(const tradingpb::Candles &candles);
 
-void reqTasks();
-
 CR2END
 
 #endif  // __TRADINGCORE2_TRDB2_UTILS_H__
