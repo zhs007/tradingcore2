@@ -5237,6 +5237,7 @@ class PNLData :
     kTitleFieldNumber = 4,
     kTotalFieldNumber = 2,
     kLasttsFieldNumber = 5,
+    kCacheTsFieldNumber = 6,
   };
   // repeated .tradingpb.PNLAssetData assets = 3 [deprecated = true];
   PROTOBUF_DEPRECATED int assets_size() const;
@@ -5312,6 +5313,15 @@ class PNLData :
   void _internal_set_lastts(::PROTOBUF_NAMESPACE_ID::int64 value);
   public:
 
+  // int64 cacheTs = 6;
+  void clear_cachets();
+  ::PROTOBUF_NAMESPACE_ID::int64 cachets() const;
+  void set_cachets(::PROTOBUF_NAMESPACE_ID::int64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int64 _internal_cachets() const;
+  void _internal_set_cachets(::PROTOBUF_NAMESPACE_ID::int64 value);
+  public:
+
   // @@protoc_insertion_point(class_scope:tradingpb.PNLData)
  private:
   class _Internal;
@@ -5322,6 +5332,7 @@ class PNLData :
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr title_;
   ::tradingpb::PNLAssetData* total_;
   ::PROTOBUF_NAMESPACE_ID::int64 lastts_;
+  ::PROTOBUF_NAMESPACE_ID::int64 cachets_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_trading2_2eproto;
 };
@@ -11738,6 +11749,26 @@ inline void PNLData::_internal_set_lastts(::PROTOBUF_NAMESPACE_ID::int64 value) 
 inline void PNLData::set_lastts(::PROTOBUF_NAMESPACE_ID::int64 value) {
   _internal_set_lastts(value);
   // @@protoc_insertion_point(field_set:tradingpb.PNLData.lastts)
+}
+
+// int64 cacheTs = 6;
+inline void PNLData::clear_cachets() {
+  cachets_ = PROTOBUF_LONGLONG(0);
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 PNLData::_internal_cachets() const {
+  return cachets_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 PNLData::cachets() const {
+  // @@protoc_insertion_point(field_get:tradingpb.PNLData.cacheTs)
+  return _internal_cachets();
+}
+inline void PNLData::_internal_set_cachets(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  
+  cachets_ = value;
+}
+inline void PNLData::set_cachets(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  _internal_set_cachets(value);
+  // @@protoc_insertion_point(field_set:tradingpb.PNLData.cacheTs)
 }
 
 // -------------------------------------------------------------------

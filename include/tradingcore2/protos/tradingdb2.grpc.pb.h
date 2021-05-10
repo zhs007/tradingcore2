@@ -102,6 +102,26 @@ class TradingDB2 final {
     std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::tradingpb::RequestSimTrading, ::tradingpb::ReplySimTrading>> PrepareAsyncsimTrading2(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::tradingpb::RequestSimTrading, ::tradingpb::ReplySimTrading>>(PrepareAsyncsimTrading2Raw(context, cq));
     }
+    // simTrading3 - simulation trading
+    std::unique_ptr< ::grpc::ClientReaderWriterInterface< ::tradingpb::RequestSimTrading, ::tradingpb::ReplySimTrading>> simTrading3(::grpc::ClientContext* context) {
+      return std::unique_ptr< ::grpc::ClientReaderWriterInterface< ::tradingpb::RequestSimTrading, ::tradingpb::ReplySimTrading>>(simTrading3Raw(context));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::tradingpb::RequestSimTrading, ::tradingpb::ReplySimTrading>> AsyncsimTrading3(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::tradingpb::RequestSimTrading, ::tradingpb::ReplySimTrading>>(AsyncsimTrading3Raw(context, cq, tag));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::tradingpb::RequestSimTrading, ::tradingpb::ReplySimTrading>> PrepareAsyncsimTrading3(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::tradingpb::RequestSimTrading, ::tradingpb::ReplySimTrading>>(PrepareAsyncsimTrading3Raw(context, cq));
+    }
+    // reqTradingTask3 - request trading task
+    std::unique_ptr< ::grpc::ClientReaderWriterInterface< ::tradingpb::RequestTradingTask, ::tradingpb::ReplyTradingTask>> reqTradingTask3(::grpc::ClientContext* context) {
+      return std::unique_ptr< ::grpc::ClientReaderWriterInterface< ::tradingpb::RequestTradingTask, ::tradingpb::ReplyTradingTask>>(reqTradingTask3Raw(context));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::tradingpb::RequestTradingTask, ::tradingpb::ReplyTradingTask>> AsyncreqTradingTask3(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::tradingpb::RequestTradingTask, ::tradingpb::ReplyTradingTask>>(AsyncreqTradingTask3Raw(context, cq, tag));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::tradingpb::RequestTradingTask, ::tradingpb::ReplyTradingTask>> PrepareAsyncreqTradingTask3(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriterInterface< ::tradingpb::RequestTradingTask, ::tradingpb::ReplyTradingTask>>(PrepareAsyncreqTradingTask3Raw(context, cq));
+    }
     class experimental_async_interface {
      public:
       virtual ~experimental_async_interface() {}
@@ -169,6 +189,18 @@ class TradingDB2 final {
       #else
       virtual void simTrading2(::grpc::ClientContext* context, ::grpc::experimental::ClientBidiReactor< ::tradingpb::RequestSimTrading,::tradingpb::ReplySimTrading>* reactor) = 0;
       #endif
+      // simTrading3 - simulation trading
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void simTrading3(::grpc::ClientContext* context, ::grpc::ClientBidiReactor< ::tradingpb::RequestSimTrading,::tradingpb::ReplySimTrading>* reactor) = 0;
+      #else
+      virtual void simTrading3(::grpc::ClientContext* context, ::grpc::experimental::ClientBidiReactor< ::tradingpb::RequestSimTrading,::tradingpb::ReplySimTrading>* reactor) = 0;
+      #endif
+      // reqTradingTask3 - request trading task
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      virtual void reqTradingTask3(::grpc::ClientContext* context, ::grpc::ClientBidiReactor< ::tradingpb::RequestTradingTask,::tradingpb::ReplyTradingTask>* reactor) = 0;
+      #else
+      virtual void reqTradingTask3(::grpc::ClientContext* context, ::grpc::experimental::ClientBidiReactor< ::tradingpb::RequestTradingTask,::tradingpb::ReplyTradingTask>* reactor) = 0;
+      #endif
     };
     #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
     typedef class experimental_async_interface async_interface;
@@ -196,6 +228,12 @@ class TradingDB2 final {
     virtual ::grpc::ClientReaderWriterInterface< ::tradingpb::RequestSimTrading, ::tradingpb::ReplySimTrading>* simTrading2Raw(::grpc::ClientContext* context) = 0;
     virtual ::grpc::ClientAsyncReaderWriterInterface< ::tradingpb::RequestSimTrading, ::tradingpb::ReplySimTrading>* AsyncsimTrading2Raw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) = 0;
     virtual ::grpc::ClientAsyncReaderWriterInterface< ::tradingpb::RequestSimTrading, ::tradingpb::ReplySimTrading>* PrepareAsyncsimTrading2Raw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientReaderWriterInterface< ::tradingpb::RequestSimTrading, ::tradingpb::ReplySimTrading>* simTrading3Raw(::grpc::ClientContext* context) = 0;
+    virtual ::grpc::ClientAsyncReaderWriterInterface< ::tradingpb::RequestSimTrading, ::tradingpb::ReplySimTrading>* AsyncsimTrading3Raw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) = 0;
+    virtual ::grpc::ClientAsyncReaderWriterInterface< ::tradingpb::RequestSimTrading, ::tradingpb::ReplySimTrading>* PrepareAsyncsimTrading3Raw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientReaderWriterInterface< ::tradingpb::RequestTradingTask, ::tradingpb::ReplyTradingTask>* reqTradingTask3Raw(::grpc::ClientContext* context) = 0;
+    virtual ::grpc::ClientAsyncReaderWriterInterface< ::tradingpb::RequestTradingTask, ::tradingpb::ReplyTradingTask>* AsyncreqTradingTask3Raw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) = 0;
+    virtual ::grpc::ClientAsyncReaderWriterInterface< ::tradingpb::RequestTradingTask, ::tradingpb::ReplyTradingTask>* PrepareAsyncreqTradingTask3Raw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -257,6 +295,24 @@ class TradingDB2 final {
     std::unique_ptr<  ::grpc::ClientAsyncReaderWriter< ::tradingpb::RequestSimTrading, ::tradingpb::ReplySimTrading>> PrepareAsyncsimTrading2(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncReaderWriter< ::tradingpb::RequestSimTrading, ::tradingpb::ReplySimTrading>>(PrepareAsyncsimTrading2Raw(context, cq));
     }
+    std::unique_ptr< ::grpc::ClientReaderWriter< ::tradingpb::RequestSimTrading, ::tradingpb::ReplySimTrading>> simTrading3(::grpc::ClientContext* context) {
+      return std::unique_ptr< ::grpc::ClientReaderWriter< ::tradingpb::RequestSimTrading, ::tradingpb::ReplySimTrading>>(simTrading3Raw(context));
+    }
+    std::unique_ptr<  ::grpc::ClientAsyncReaderWriter< ::tradingpb::RequestSimTrading, ::tradingpb::ReplySimTrading>> AsyncsimTrading3(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriter< ::tradingpb::RequestSimTrading, ::tradingpb::ReplySimTrading>>(AsyncsimTrading3Raw(context, cq, tag));
+    }
+    std::unique_ptr<  ::grpc::ClientAsyncReaderWriter< ::tradingpb::RequestSimTrading, ::tradingpb::ReplySimTrading>> PrepareAsyncsimTrading3(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriter< ::tradingpb::RequestSimTrading, ::tradingpb::ReplySimTrading>>(PrepareAsyncsimTrading3Raw(context, cq));
+    }
+    std::unique_ptr< ::grpc::ClientReaderWriter< ::tradingpb::RequestTradingTask, ::tradingpb::ReplyTradingTask>> reqTradingTask3(::grpc::ClientContext* context) {
+      return std::unique_ptr< ::grpc::ClientReaderWriter< ::tradingpb::RequestTradingTask, ::tradingpb::ReplyTradingTask>>(reqTradingTask3Raw(context));
+    }
+    std::unique_ptr<  ::grpc::ClientAsyncReaderWriter< ::tradingpb::RequestTradingTask, ::tradingpb::ReplyTradingTask>> AsyncreqTradingTask3(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriter< ::tradingpb::RequestTradingTask, ::tradingpb::ReplyTradingTask>>(AsyncreqTradingTask3Raw(context, cq, tag));
+    }
+    std::unique_ptr<  ::grpc::ClientAsyncReaderWriter< ::tradingpb::RequestTradingTask, ::tradingpb::ReplyTradingTask>> PrepareAsyncreqTradingTask3(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncReaderWriter< ::tradingpb::RequestTradingTask, ::tradingpb::ReplyTradingTask>>(PrepareAsyncreqTradingTask3Raw(context, cq));
+    }
     class experimental_async final :
       public StubInterface::experimental_async_interface {
      public:
@@ -316,6 +372,16 @@ class TradingDB2 final {
       #else
       void simTrading2(::grpc::ClientContext* context, ::grpc::experimental::ClientBidiReactor< ::tradingpb::RequestSimTrading,::tradingpb::ReplySimTrading>* reactor) override;
       #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void simTrading3(::grpc::ClientContext* context, ::grpc::ClientBidiReactor< ::tradingpb::RequestSimTrading,::tradingpb::ReplySimTrading>* reactor) override;
+      #else
+      void simTrading3(::grpc::ClientContext* context, ::grpc::experimental::ClientBidiReactor< ::tradingpb::RequestSimTrading,::tradingpb::ReplySimTrading>* reactor) override;
+      #endif
+      #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      void reqTradingTask3(::grpc::ClientContext* context, ::grpc::ClientBidiReactor< ::tradingpb::RequestTradingTask,::tradingpb::ReplyTradingTask>* reactor) override;
+      #else
+      void reqTradingTask3(::grpc::ClientContext* context, ::grpc::experimental::ClientBidiReactor< ::tradingpb::RequestTradingTask,::tradingpb::ReplyTradingTask>* reactor) override;
+      #endif
      private:
       friend class Stub;
       explicit experimental_async(Stub* stub): stub_(stub) { }
@@ -345,6 +411,12 @@ class TradingDB2 final {
     ::grpc::ClientReaderWriter< ::tradingpb::RequestSimTrading, ::tradingpb::ReplySimTrading>* simTrading2Raw(::grpc::ClientContext* context) override;
     ::grpc::ClientAsyncReaderWriter< ::tradingpb::RequestSimTrading, ::tradingpb::ReplySimTrading>* AsyncsimTrading2Raw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) override;
     ::grpc::ClientAsyncReaderWriter< ::tradingpb::RequestSimTrading, ::tradingpb::ReplySimTrading>* PrepareAsyncsimTrading2Raw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientReaderWriter< ::tradingpb::RequestSimTrading, ::tradingpb::ReplySimTrading>* simTrading3Raw(::grpc::ClientContext* context) override;
+    ::grpc::ClientAsyncReaderWriter< ::tradingpb::RequestSimTrading, ::tradingpb::ReplySimTrading>* AsyncsimTrading3Raw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) override;
+    ::grpc::ClientAsyncReaderWriter< ::tradingpb::RequestSimTrading, ::tradingpb::ReplySimTrading>* PrepareAsyncsimTrading3Raw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientReaderWriter< ::tradingpb::RequestTradingTask, ::tradingpb::ReplyTradingTask>* reqTradingTask3Raw(::grpc::ClientContext* context) override;
+    ::grpc::ClientAsyncReaderWriter< ::tradingpb::RequestTradingTask, ::tradingpb::ReplyTradingTask>* AsyncreqTradingTask3Raw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq, void* tag) override;
+    ::grpc::ClientAsyncReaderWriter< ::tradingpb::RequestTradingTask, ::tradingpb::ReplyTradingTask>* PrepareAsyncreqTradingTask3Raw(::grpc::ClientContext* context, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_updCandles_;
     const ::grpc::internal::RpcMethod rpcmethod_getCandles_;
     const ::grpc::internal::RpcMethod rpcmethod_updSymbol_;
@@ -352,6 +424,8 @@ class TradingDB2 final {
     const ::grpc::internal::RpcMethod rpcmethod_getSymbols_;
     const ::grpc::internal::RpcMethod rpcmethod_simTrading_;
     const ::grpc::internal::RpcMethod rpcmethod_simTrading2_;
+    const ::grpc::internal::RpcMethod rpcmethod_simTrading3_;
+    const ::grpc::internal::RpcMethod rpcmethod_reqTradingTask3_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -374,6 +448,10 @@ class TradingDB2 final {
     virtual ::grpc::Status simTrading(::grpc::ServerContext* context, const ::tradingpb::RequestSimTrading* request, ::tradingpb::ReplySimTrading* response);
     // simTrading2 - simulation trading
     virtual ::grpc::Status simTrading2(::grpc::ServerContext* context, ::grpc::ServerReaderWriter< ::tradingpb::ReplySimTrading, ::tradingpb::RequestSimTrading>* stream);
+    // simTrading3 - simulation trading
+    virtual ::grpc::Status simTrading3(::grpc::ServerContext* context, ::grpc::ServerReaderWriter< ::tradingpb::ReplySimTrading, ::tradingpb::RequestSimTrading>* stream);
+    // reqTradingTask3 - request trading task
+    virtual ::grpc::Status reqTradingTask3(::grpc::ServerContext* context, ::grpc::ServerReaderWriter< ::tradingpb::ReplyTradingTask, ::tradingpb::RequestTradingTask>* stream);
   };
   template <class BaseClass>
   class WithAsyncMethod_updCandles : public BaseClass {
@@ -515,7 +593,47 @@ class TradingDB2 final {
       ::grpc::Service::RequestAsyncBidiStreaming(6, context, stream, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_updCandles<WithAsyncMethod_getCandles<WithAsyncMethod_updSymbol<WithAsyncMethod_getSymbol<WithAsyncMethod_getSymbols<WithAsyncMethod_simTrading<WithAsyncMethod_simTrading2<Service > > > > > > > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_simTrading3 : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_simTrading3() {
+      ::grpc::Service::MarkMethodAsync(7);
+    }
+    ~WithAsyncMethod_simTrading3() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status simTrading3(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::tradingpb::ReplySimTrading, ::tradingpb::RequestSimTrading>* /*stream*/)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestsimTrading3(::grpc::ServerContext* context, ::grpc::ServerAsyncReaderWriter< ::tradingpb::ReplySimTrading, ::tradingpb::RequestSimTrading>* stream, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncBidiStreaming(7, context, stream, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithAsyncMethod_reqTradingTask3 : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_reqTradingTask3() {
+      ::grpc::Service::MarkMethodAsync(8);
+    }
+    ~WithAsyncMethod_reqTradingTask3() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status reqTradingTask3(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::tradingpb::ReplyTradingTask, ::tradingpb::RequestTradingTask>* /*stream*/)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestreqTradingTask3(::grpc::ServerContext* context, ::grpc::ServerAsyncReaderWriter< ::tradingpb::ReplyTradingTask, ::tradingpb::RequestTradingTask>* stream, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncBidiStreaming(8, context, stream, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_updCandles<WithAsyncMethod_getCandles<WithAsyncMethod_updSymbol<WithAsyncMethod_getSymbol<WithAsyncMethod_getSymbols<WithAsyncMethod_simTrading<WithAsyncMethod_simTrading2<WithAsyncMethod_simTrading3<WithAsyncMethod_reqTradingTask3<Service > > > > > > > > > AsyncService;
   template <class BaseClass>
   class ExperimentalWithCallbackMethod_updCandles : public BaseClass {
    private:
@@ -809,11 +927,87 @@ class TradingDB2 final {
     #endif
       { return nullptr; }
   };
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_simTrading3 : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_simTrading3() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(7,
+          new ::grpc_impl::internal::CallbackBidiHandler< ::tradingpb::RequestSimTrading, ::tradingpb::ReplySimTrading>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context) { return this->simTrading3(context); }));
+    }
+    ~ExperimentalWithCallbackMethod_simTrading3() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status simTrading3(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::tradingpb::ReplySimTrading, ::tradingpb::RequestSimTrading>* /*stream*/)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerBidiReactor< ::tradingpb::RequestSimTrading, ::tradingpb::ReplySimTrading>* simTrading3(
+      ::grpc::CallbackServerContext* /*context*/)
+    #else
+    virtual ::grpc::experimental::ServerBidiReactor< ::tradingpb::RequestSimTrading, ::tradingpb::ReplySimTrading>* simTrading3(
+      ::grpc::experimental::CallbackServerContext* /*context*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithCallbackMethod_reqTradingTask3 : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithCallbackMethod_reqTradingTask3() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodCallback(8,
+          new ::grpc_impl::internal::CallbackBidiHandler< ::tradingpb::RequestTradingTask, ::tradingpb::ReplyTradingTask>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context) { return this->reqTradingTask3(context); }));
+    }
+    ~ExperimentalWithCallbackMethod_reqTradingTask3() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status reqTradingTask3(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::tradingpb::ReplyTradingTask, ::tradingpb::RequestTradingTask>* /*stream*/)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerBidiReactor< ::tradingpb::RequestTradingTask, ::tradingpb::ReplyTradingTask>* reqTradingTask3(
+      ::grpc::CallbackServerContext* /*context*/)
+    #else
+    virtual ::grpc::experimental::ServerBidiReactor< ::tradingpb::RequestTradingTask, ::tradingpb::ReplyTradingTask>* reqTradingTask3(
+      ::grpc::experimental::CallbackServerContext* /*context*/)
+    #endif
+      { return nullptr; }
+  };
   #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
-  typedef ExperimentalWithCallbackMethod_updCandles<ExperimentalWithCallbackMethod_getCandles<ExperimentalWithCallbackMethod_updSymbol<ExperimentalWithCallbackMethod_getSymbol<ExperimentalWithCallbackMethod_getSymbols<ExperimentalWithCallbackMethod_simTrading<ExperimentalWithCallbackMethod_simTrading2<Service > > > > > > > CallbackService;
+  typedef ExperimentalWithCallbackMethod_updCandles<ExperimentalWithCallbackMethod_getCandles<ExperimentalWithCallbackMethod_updSymbol<ExperimentalWithCallbackMethod_getSymbol<ExperimentalWithCallbackMethod_getSymbols<ExperimentalWithCallbackMethod_simTrading<ExperimentalWithCallbackMethod_simTrading2<ExperimentalWithCallbackMethod_simTrading3<ExperimentalWithCallbackMethod_reqTradingTask3<Service > > > > > > > > > CallbackService;
   #endif
 
-  typedef ExperimentalWithCallbackMethod_updCandles<ExperimentalWithCallbackMethod_getCandles<ExperimentalWithCallbackMethod_updSymbol<ExperimentalWithCallbackMethod_getSymbol<ExperimentalWithCallbackMethod_getSymbols<ExperimentalWithCallbackMethod_simTrading<ExperimentalWithCallbackMethod_simTrading2<Service > > > > > > > ExperimentalCallbackService;
+  typedef ExperimentalWithCallbackMethod_updCandles<ExperimentalWithCallbackMethod_getCandles<ExperimentalWithCallbackMethod_updSymbol<ExperimentalWithCallbackMethod_getSymbol<ExperimentalWithCallbackMethod_getSymbols<ExperimentalWithCallbackMethod_simTrading<ExperimentalWithCallbackMethod_simTrading2<ExperimentalWithCallbackMethod_simTrading3<ExperimentalWithCallbackMethod_reqTradingTask3<Service > > > > > > > > > ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_updCandles : public BaseClass {
    private:
@@ -929,6 +1123,40 @@ class TradingDB2 final {
     }
     // disable synchronous version of this method
     ::grpc::Status simTrading2(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::tradingpb::ReplySimTrading, ::tradingpb::RequestSimTrading>* /*stream*/)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_simTrading3 : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_simTrading3() {
+      ::grpc::Service::MarkMethodGeneric(7);
+    }
+    ~WithGenericMethod_simTrading3() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status simTrading3(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::tradingpb::ReplySimTrading, ::tradingpb::RequestSimTrading>* /*stream*/)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_reqTradingTask3 : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_reqTradingTask3() {
+      ::grpc::Service::MarkMethodGeneric(8);
+    }
+    ~WithGenericMethod_reqTradingTask3() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status reqTradingTask3(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::tradingpb::ReplyTradingTask, ::tradingpb::RequestTradingTask>* /*stream*/)  override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -1071,6 +1299,46 @@ class TradingDB2 final {
     }
     void RequestsimTrading2(::grpc::ServerContext* context, ::grpc::ServerAsyncReaderWriter< ::grpc::ByteBuffer, ::grpc::ByteBuffer>* stream, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncBidiStreaming(6, context, stream, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_simTrading3 : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_simTrading3() {
+      ::grpc::Service::MarkMethodRaw(7);
+    }
+    ~WithRawMethod_simTrading3() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status simTrading3(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::tradingpb::ReplySimTrading, ::tradingpb::RequestSimTrading>* /*stream*/)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestsimTrading3(::grpc::ServerContext* context, ::grpc::ServerAsyncReaderWriter< ::grpc::ByteBuffer, ::grpc::ByteBuffer>* stream, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncBidiStreaming(7, context, stream, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_reqTradingTask3 : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_reqTradingTask3() {
+      ::grpc::Service::MarkMethodRaw(8);
+    }
+    ~WithRawMethod_reqTradingTask3() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status reqTradingTask3(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::tradingpb::ReplyTradingTask, ::tradingpb::RequestTradingTask>* /*stream*/)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestreqTradingTask3(::grpc::ServerContext* context, ::grpc::ServerAsyncReaderWriter< ::grpc::ByteBuffer, ::grpc::ByteBuffer>* stream, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncBidiStreaming(8, context, stream, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -1335,6 +1603,82 @@ class TradingDB2 final {
       ::grpc::CallbackServerContext* /*context*/)
     #else
     virtual ::grpc::experimental::ServerBidiReactor< ::grpc::ByteBuffer, ::grpc::ByteBuffer>* simTrading2(
+      ::grpc::experimental::CallbackServerContext* /*context*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_simTrading3 : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_simTrading3() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(7,
+          new ::grpc_impl::internal::CallbackBidiHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context) { return this->simTrading3(context); }));
+    }
+    ~ExperimentalWithRawCallbackMethod_simTrading3() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status simTrading3(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::tradingpb::ReplySimTrading, ::tradingpb::RequestSimTrading>* /*stream*/)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerBidiReactor< ::grpc::ByteBuffer, ::grpc::ByteBuffer>* simTrading3(
+      ::grpc::CallbackServerContext* /*context*/)
+    #else
+    virtual ::grpc::experimental::ServerBidiReactor< ::grpc::ByteBuffer, ::grpc::ByteBuffer>* simTrading3(
+      ::grpc::experimental::CallbackServerContext* /*context*/)
+    #endif
+      { return nullptr; }
+  };
+  template <class BaseClass>
+  class ExperimentalWithRawCallbackMethod_reqTradingTask3 : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    ExperimentalWithRawCallbackMethod_reqTradingTask3() {
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+      ::grpc::Service::
+    #else
+      ::grpc::Service::experimental().
+    #endif
+        MarkMethodRawCallback(8,
+          new ::grpc_impl::internal::CallbackBidiHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+                   ::grpc::CallbackServerContext*
+    #else
+                   ::grpc::experimental::CallbackServerContext*
+    #endif
+                     context) { return this->reqTradingTask3(context); }));
+    }
+    ~ExperimentalWithRawCallbackMethod_reqTradingTask3() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status reqTradingTask3(::grpc::ServerContext* /*context*/, ::grpc::ServerReaderWriter< ::tradingpb::ReplyTradingTask, ::tradingpb::RequestTradingTask>* /*stream*/)  override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    #ifdef GRPC_CALLBACK_API_NONEXPERIMENTAL
+    virtual ::grpc::ServerBidiReactor< ::grpc::ByteBuffer, ::grpc::ByteBuffer>* reqTradingTask3(
+      ::grpc::CallbackServerContext* /*context*/)
+    #else
+    virtual ::grpc::experimental::ServerBidiReactor< ::grpc::ByteBuffer, ::grpc::ByteBuffer>* reqTradingTask3(
       ::grpc::experimental::CallbackServerContext* /*context*/)
     #endif
       { return nullptr; }

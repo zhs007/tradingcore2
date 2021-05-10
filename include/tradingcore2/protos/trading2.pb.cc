@@ -878,6 +878,7 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_trading2_2eproto::offsets[] PR
   PROTOBUF_FIELD_OFFSET(::tradingpb::PNLData, assets_),
   PROTOBUF_FIELD_OFFSET(::tradingpb::PNLData, title_),
   PROTOBUF_FIELD_OFFSET(::tradingpb::PNLData, lastts_),
+  PROTOBUF_FIELD_OFFSET(::tradingpb::PNLData, cachets_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::tradingpb::SimTradingParams, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -943,10 +944,10 @@ static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOB
   { 239, -1, sizeof(::tradingpb::PNLDataValue)},
   { 252, -1, sizeof(::tradingpb::PNLAssetData)},
   { 292, -1, sizeof(::tradingpb::PNLData)},
-  { 302, -1, sizeof(::tradingpb::SimTradingParams)},
-  { 318, -1, sizeof(::tradingpb::TradingNodeInfo)},
-  { 325, -1, sizeof(::tradingpb::SimTradingCacheNode)},
-  { 335, -1, sizeof(::tradingpb::SimTradingCache)},
+  { 303, -1, sizeof(::tradingpb::SimTradingParams)},
+  { 319, -1, sizeof(::tradingpb::TradingNodeInfo)},
+  { 326, -1, sizeof(::tradingpb::SimTradingCacheNode)},
+  { 336, -1, sizeof(::tradingpb::SimTradingCache)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
@@ -1089,33 +1090,34 @@ const char descriptor_table_protodef_trading2_2eproto[] PROTOBUF_SECTION_VARIABL
   "maxDownYearTs\030\037 \001(\003\022\026\n\016maxPerDownYear\030  "
   "\001(\002\022$\n\007lstCtrl\030! \003(\0132\023.tradingpb.CtrlNod"
   "e\022(\n\nindicators\030\" \003(\0132\024.tradingpb.Indica"
-  "tor\022\020\n\010winTimes\030# \001(\005\"\223\001\n\007PNLData\022\020\n\004nam"
+  "tor\022\020\n\010winTimes\030# \001(\005\"\244\001\n\007PNLData\022\020\n\004nam"
   "e\030\001 \001(\tB\002\030\001\022&\n\005total\030\002 \001(\0132\027.tradingpb.P"
   "NLAssetData\022+\n\006assets\030\003 \003(\0132\027.tradingpb."
   "PNLAssetDataB\002\030\001\022\r\n\005title\030\004 \001(\t\022\022\n\006lastt"
-  "s\030\005 \001(\003B\002\030\001\"\271\002\n\020SimTradingParams\022 \n\006asse"
-  "ts\030\001 \003(\0132\020.tradingpb.Asset\022\'\n\tbaselines\030"
-  "\002 \003(\0132\020.tradingpb.AssetB\002\030\001\022\017\n\007startTs\030\003"
-  " \001(\003\022\r\n\005endTs\030\004 \001(\003\022\'\n\nstrategies\030\005 \003(\0132"
-  "\023.tradingpb.Strategy\022!\n\006wallet\030\006 \001(\0132\021.t"
-  "radingpb.Wallet\022\r\n\005title\030\007 \001(\t\022\026\n\016mainAs"
-  "setIndex\030\010 \001(\005\022\022\n\nindicators\030\t \003(\t\022\016\n\006of"
-  "fset\030\n \001(\005\022#\n\007candles\030\013 \003(\0132\022.tradingpb."
-  "Candles\"5\n\017TradingNodeInfo\022\020\n\010maxTasks\030\001"
-  " \001(\005\022\020\n\010curTasks\030\002 \001(\005\"~\n\023SimTradingCach"
-  "eNode\022+\n\006params\030\001 \001(\0132\033.tradingpb.SimTra"
-  "dingParams\022\013\n\003key\030\002 \001(\t\022\016\n\006lastTs\030\003 \001(\003\022"
-  "\020\n\004hash\030\004 \001(\tB\002\030\001\022\013\n\003buf\030\005 \001(\014\"@\n\017SimTra"
-  "dingCache\022-\n\005nodes\030\001 \003(\0132\036.tradingpb.Sim"
-  "TradingCacheNode*\254\001\n\010CtrlType\022\r\n\tCTRL_IN"
-  "IT\020\000\022\014\n\010CTRL_BUY\020\001\022\r\n\tCTRL_SELL\020\002\022\021\n\rCTR"
-  "L_STOPLOSS\020\003\022\023\n\017CTRL_TAKEPROFIT\020\004\022\021\n\rCTR"
-  "L_WITHDRAW\020\005\022\020\n\014CTRL_DEPOSIT\020\006\022\022\n\016CTRL_W"
-  "ANTTOBUY\020\007\022\023\n\017CTRL_WANTTOSELL\020\010*7\n\rIndic"
-  "atorType\022\022\n\016IT_SINGLEVALUE\020\000\022\022\n\016IT_SINGL"
-  "EPRICE\020\001*4\n\013AIPTimeType\022\021\n\rAIPTT_WEEKDAY"
-  "\020\000\022\022\n\016AIPTT_MONTHDAY\020\001B(Z&github.com/zhs"
-  "007/tradingdb2/tradingpbb\006proto3"
+  "s\030\005 \001(\003B\002\030\001\022\017\n\007cacheTs\030\006 \001(\003\"\271\002\n\020SimTrad"
+  "ingParams\022 \n\006assets\030\001 \003(\0132\020.tradingpb.As"
+  "set\022\'\n\tbaselines\030\002 \003(\0132\020.tradingpb.Asset"
+  "B\002\030\001\022\017\n\007startTs\030\003 \001(\003\022\r\n\005endTs\030\004 \001(\003\022\'\n\n"
+  "strategies\030\005 \003(\0132\023.tradingpb.Strategy\022!\n"
+  "\006wallet\030\006 \001(\0132\021.tradingpb.Wallet\022\r\n\005titl"
+  "e\030\007 \001(\t\022\026\n\016mainAssetIndex\030\010 \001(\005\022\022\n\nindic"
+  "ators\030\t \003(\t\022\016\n\006offset\030\n \001(\005\022#\n\007candles\030\013"
+  " \003(\0132\022.tradingpb.Candles\"5\n\017TradingNodeI"
+  "nfo\022\020\n\010maxTasks\030\001 \001(\005\022\020\n\010curTasks\030\002 \001(\005\""
+  "~\n\023SimTradingCacheNode\022+\n\006params\030\001 \001(\0132\033"
+  ".tradingpb.SimTradingParams\022\013\n\003key\030\002 \001(\t"
+  "\022\016\n\006lastTs\030\003 \001(\003\022\020\n\004hash\030\004 \001(\tB\002\030\001\022\013\n\003bu"
+  "f\030\005 \001(\014\"@\n\017SimTradingCache\022-\n\005nodes\030\001 \003("
+  "\0132\036.tradingpb.SimTradingCacheNode*\254\001\n\010Ct"
+  "rlType\022\r\n\tCTRL_INIT\020\000\022\014\n\010CTRL_BUY\020\001\022\r\n\tC"
+  "TRL_SELL\020\002\022\021\n\rCTRL_STOPLOSS\020\003\022\023\n\017CTRL_TA"
+  "KEPROFIT\020\004\022\021\n\rCTRL_WITHDRAW\020\005\022\020\n\014CTRL_DE"
+  "POSIT\020\006\022\022\n\016CTRL_WANTTOBUY\020\007\022\023\n\017CTRL_WANT"
+  "TOSELL\020\010*7\n\rIndicatorType\022\022\n\016IT_SINGLEVA"
+  "LUE\020\000\022\022\n\016IT_SINGLEPRICE\020\001*4\n\013AIPTimeType"
+  "\022\021\n\rAIPTT_WEEKDAY\020\000\022\022\n\016AIPTT_MONTHDAY\020\001B"
+  "(Z&github.com/zhs007/tradingdb2/tradingp"
+  "bb\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_trading2_2eproto_deps[1] = {
 };
@@ -1152,7 +1154,7 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_tra
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_trading2_2eproto_once;
 static bool descriptor_table_trading2_2eproto_initialized = false;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_trading2_2eproto = {
-  &descriptor_table_trading2_2eproto_initialized, descriptor_table_protodef_trading2_2eproto, "trading2.proto", 5392,
+  &descriptor_table_trading2_2eproto_initialized, descriptor_table_protodef_trading2_2eproto, "trading2.proto", 5409,
   &descriptor_table_trading2_2eproto_once, descriptor_table_trading2_2eproto_sccs, descriptor_table_trading2_2eproto_deps, 28, 0,
   schemas, file_default_instances, TableStruct_trading2_2eproto::offsets,
   file_level_metadata_trading2_2eproto, 28, file_level_enum_descriptors_trading2_2eproto, file_level_service_descriptors_trading2_2eproto,
@@ -9496,7 +9498,9 @@ PNLData::PNLData(const PNLData& from)
   } else {
     total_ = nullptr;
   }
-  lastts_ = from.lastts_;
+  ::memcpy(&lastts_, &from.lastts_,
+    static_cast<size_t>(reinterpret_cast<char*>(&cachets_) -
+    reinterpret_cast<char*>(&lastts_)) + sizeof(cachets_));
   // @@protoc_insertion_point(copy_constructor:tradingpb.PNLData)
 }
 
@@ -9505,8 +9509,8 @@ void PNLData::SharedCtor() {
   name_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   title_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   ::memset(&total_, 0, static_cast<size_t>(
-      reinterpret_cast<char*>(&lastts_) -
-      reinterpret_cast<char*>(&total_)) + sizeof(lastts_));
+      reinterpret_cast<char*>(&cachets_) -
+      reinterpret_cast<char*>(&total_)) + sizeof(cachets_));
 }
 
 PNLData::~PNLData() {
@@ -9542,7 +9546,9 @@ void PNLData::Clear() {
     delete total_;
   }
   total_ = nullptr;
-  lastts_ = PROTOBUF_LONGLONG(0);
+  ::memset(&lastts_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&cachets_) -
+      reinterpret_cast<char*>(&lastts_)) + sizeof(cachets_));
   _internal_metadata_.Clear();
 }
 
@@ -9594,6 +9600,13 @@ const char* PNLData::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::in
       case 5:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 40)) {
           lastts_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // int64 cacheTs = 6;
+      case 6:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 48)) {
+          cachets_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint(&ptr);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -9665,6 +9678,12 @@ failure:
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt64ToArray(5, this->_internal_lastts(), target);
   }
 
+  // int64 cacheTs = 6;
+  if (this->cachets() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt64ToArray(6, this->_internal_cachets(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields(), target, stream);
@@ -9716,6 +9735,13 @@ size_t PNLData::ByteSizeLong() const {
         this->_internal_lastts());
   }
 
+  // int64 cacheTs = 6;
+  if (this->cachets() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int64Size(
+        this->_internal_cachets());
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
         _internal_metadata_, total_size, &_cached_size_);
@@ -9762,6 +9788,9 @@ void PNLData::MergeFrom(const PNLData& from) {
   if (from.lastts() != 0) {
     _internal_set_lastts(from._internal_lastts());
   }
+  if (from.cachets() != 0) {
+    _internal_set_cachets(from._internal_cachets());
+  }
 }
 
 void PNLData::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
@@ -9792,6 +9821,7 @@ void PNLData::InternalSwap(PNLData* other) {
     GetArenaNoVirtual());
   swap(total_, other->total_);
   swap(lastts_, other->lastts_);
+  swap(cachets_, other->cachets_);
 }
 
 ::PROTOBUF_NAMESPACE_ID::Metadata PNLData::GetMetadata() const {

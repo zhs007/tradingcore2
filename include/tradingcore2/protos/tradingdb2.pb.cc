@@ -23,6 +23,7 @@ extern PROTOBUF_INTERNAL_EXPORT_tradingdb2_2eproto ::PROTOBUF_NAMESPACE_ID::inte
 extern PROTOBUF_INTERNAL_EXPORT_trading2_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_PNLData_trading2_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_trading2_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<4> scc_info_SimTradingParams_trading2_2eproto;
 extern PROTOBUF_INTERNAL_EXPORT_tradingdb2_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_SymbolInfo_tradingdb2_2eproto;
+extern PROTOBUF_INTERNAL_EXPORT_tradingdb2_2eproto ::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_TradingTaskResult_tradingdb2_2eproto;
 namespace tradingpb {
 class FundSizeDefaultTypeInternal {
  public:
@@ -88,6 +89,18 @@ class ReplySimTradingDefaultTypeInternal {
  public:
   ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<ReplySimTrading> _instance;
 } _ReplySimTrading_default_instance_;
+class TradingTaskResultDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<TradingTaskResult> _instance;
+} _TradingTaskResult_default_instance_;
+class RequestTradingTaskDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<RequestTradingTask> _instance;
+} _RequestTradingTask_default_instance_;
+class ReplyTradingTaskDefaultTypeInternal {
+ public:
+  ::PROTOBUF_NAMESPACE_ID::internal::ExplicitlyConstructed<ReplyTradingTask> _instance;
+} _ReplyTradingTask_default_instance_;
 }  // namespace tradingpb
 static void InitDefaultsscc_info_Fund_tradingdb2_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
@@ -194,6 +207,21 @@ static void InitDefaultsscc_info_ReplySimTrading_tradingdb2_2eproto() {
     {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_ReplySimTrading_tradingdb2_2eproto}, {
       &scc_info_PNLData_trading2_2eproto.base,}};
 
+static void InitDefaultsscc_info_ReplyTradingTask_tradingdb2_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::tradingpb::_ReplyTradingTask_default_instance_;
+    new (ptr) ::tradingpb::ReplyTradingTask();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::tradingpb::ReplyTradingTask::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_ReplyTradingTask_tradingdb2_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_ReplyTradingTask_tradingdb2_2eproto}, {
+      &scc_info_SimTradingParams_trading2_2eproto.base,}};
+
 static void InitDefaultsscc_info_ReplyUpdCandles_tradingdb2_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
@@ -283,6 +311,22 @@ static void InitDefaultsscc_info_RequestSimTrading_tradingdb2_2eproto() {
       &scc_info_BasicRequestData_trading2_2eproto.base,
       &scc_info_SimTradingParams_trading2_2eproto.base,}};
 
+static void InitDefaultsscc_info_RequestTradingTask_tradingdb2_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::tradingpb::_RequestTradingTask_default_instance_;
+    new (ptr) ::tradingpb::RequestTradingTask();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::tradingpb::RequestTradingTask::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<2> scc_info_RequestTradingTask_tradingdb2_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 2, 0, InitDefaultsscc_info_RequestTradingTask_tradingdb2_2eproto}, {
+      &scc_info_BasicRequestData_trading2_2eproto.base,
+      &scc_info_TradingTaskResult_tradingdb2_2eproto.base,}};
+
 static void InitDefaultsscc_info_RequestUpdCandles_tradingdb2_2eproto() {
   GOOGLE_PROTOBUF_VERIFY_VERSION;
 
@@ -330,7 +374,22 @@ static void InitDefaultsscc_info_SymbolInfo_tradingdb2_2eproto() {
     {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_SymbolInfo_tradingdb2_2eproto}, {
       &scc_info_Fund_tradingdb2_2eproto.base,}};
 
-static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_tradingdb2_2eproto[16];
+static void InitDefaultsscc_info_TradingTaskResult_tradingdb2_2eproto() {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  {
+    void* ptr = &::tradingpb::_TradingTaskResult_default_instance_;
+    new (ptr) ::tradingpb::TradingTaskResult();
+    ::PROTOBUF_NAMESPACE_ID::internal::OnShutdownDestroyMessage(ptr);
+  }
+  ::tradingpb::TradingTaskResult::InitAsDefaultInstance();
+}
+
+::PROTOBUF_NAMESPACE_ID::internal::SCCInfo<1> scc_info_TradingTaskResult_tradingdb2_2eproto =
+    {{ATOMIC_VAR_INIT(::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase::kUninitialized), 1, 0, InitDefaultsscc_info_TradingTaskResult_tradingdb2_2eproto}, {
+      &scc_info_PNLData_trading2_2eproto.base,}};
+
+static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_tradingdb2_2eproto[19];
 static constexpr ::PROTOBUF_NAMESPACE_ID::EnumDescriptor const** file_level_enum_descriptors_tradingdb2_2eproto = nullptr;
 static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_tradingdb2_2eproto = nullptr;
 
@@ -487,6 +546,28 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_tradingdb2_2eproto::offsets[] 
   PROTOBUF_FIELD_OFFSET(::tradingpb::ReplySimTrading, pnl_),
   PROTOBUF_FIELD_OFFSET(::tradingpb::ReplySimTrading, baseline_),
   PROTOBUF_FIELD_OFFSET(::tradingpb::ReplySimTrading, index_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::tradingpb::TradingTaskResult, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::tradingpb::TradingTaskResult, pnl_),
+  PROTOBUF_FIELD_OFFSET(::tradingpb::TradingTaskResult, task_),
+  PROTOBUF_FIELD_OFFSET(::tradingpb::TradingTaskResult, err_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::tradingpb::RequestTradingTask, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::tradingpb::RequestTradingTask, basicrequest_),
+  PROTOBUF_FIELD_OFFSET(::tradingpb::RequestTradingTask, result_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::tradingpb::ReplyTradingTask, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  PROTOBUF_FIELD_OFFSET(::tradingpb::ReplyTradingTask, params_),
+  PROTOBUF_FIELD_OFFSET(::tradingpb::ReplyTradingTask, task_),
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, sizeof(::tradingpb::FundSize)},
@@ -505,6 +586,9 @@ static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOB
   { 121, -1, sizeof(::tradingpb::RequestGetSymbols)},
   { 130, -1, sizeof(::tradingpb::RequestSimTrading)},
   { 144, -1, sizeof(::tradingpb::ReplySimTrading)},
+  { 152, -1, sizeof(::tradingpb::TradingTaskResult)},
+  { 160, -1, sizeof(::tradingpb::RequestTradingTask)},
+  { 167, -1, sizeof(::tradingpb::ReplyTradingTask)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
@@ -524,6 +608,9 @@ static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] =
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::tradingpb::_RequestGetSymbols_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::tradingpb::_RequestSimTrading_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::tradingpb::_ReplySimTrading_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::tradingpb::_TradingTaskResult_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::tradingpb::_RequestTradingTask_default_instance_),
+  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::tradingpb::_ReplyTradingTask_default_instance_),
 };
 
 const char descriptor_table_protodef_tradingdb2_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
@@ -577,27 +664,38 @@ const char descriptor_table_protodef_tradingdb2_2eproto[] PROTOBUF_SECTION_VARIA
   "s\030\007 \001(\005B\002\030\001\022\016\n\006sortBy\030\010 \001(\t\022\025\n\rmaxIgnore"
   "Nums\030\t \001(\005\"k\n\017ReplySimTrading\022\037\n\003pnl\030\001 \003"
   "(\0132\022.tradingpb.PNLData\022(\n\010baseline\030\002 \003(\013"
-  "2\022.tradingpb.PNLDataB\002\030\001\022\r\n\005index\030\003 \001(\0052"
-  "\226\004\n\nTradingDB2\022J\n\nupdCandles\022\034.tradingpb"
-  ".RequestUpdCandles\032\032.tradingpb.ReplyUpdC"
-  "andles\"\000(\001\022J\n\ngetCandles\022\034.tradingpb.Req"
-  "uestGetCandles\032\032.tradingpb.ReplyGetCandl"
-  "es\"\0000\001\022E\n\tupdSymbol\022\033.tradingpb.RequestU"
-  "pdSymbol\032\031.tradingpb.ReplyUpdSymbol\"\000\022E\n"
-  "\tgetSymbol\022\033.tradingpb.RequestGetSymbol\032"
-  "\031.tradingpb.ReplyGetSymbol\"\000\022I\n\ngetSymbo"
-  "ls\022\034.tradingpb.RequestGetSymbols\032\031.tradi"
-  "ngpb.ReplyGetSymbol\"\0000\001\022H\n\nsimTrading\022\034."
-  "tradingpb.RequestSimTrading\032\032.tradingpb."
-  "ReplySimTrading\"\000\022M\n\013simTrading2\022\034.tradi"
-  "ngpb.RequestSimTrading\032\032.tradingpb.Reply"
-  "SimTrading\"\000(\0010\001B(Z&github.com/zhs007/tr"
-  "adingdb2/tradingpbb\006proto3"
+  "2\022.tradingpb.PNLDataB\002\030\001\022\r\n\005index\030\003 \001(\005\""
+  "O\n\021TradingTaskResult\022\037\n\003pnl\030\001 \001(\0132\022.trad"
+  "ingpb.PNLData\022\014\n\004task\030\002 \001(\014\022\013\n\003err\030\003 \001(\t"
+  "\"u\n\022RequestTradingTask\0221\n\014basicRequest\030\001"
+  " \001(\0132\033.tradingpb.BasicRequestData\022,\n\006res"
+  "ult\030\002 \001(\0132\034.tradingpb.TradingTaskResult\""
+  "Q\n\020ReplyTradingTask\022+\n\006params\030\001 \001(\0132\033.tr"
+  "adingpb.SimTradingParams\022\020\n\004task\030\002 \001(\014B\002"
+  "\030\0012\272\005\n\nTradingDB2\022J\n\nupdCandles\022\034.tradin"
+  "gpb.RequestUpdCandles\032\032.tradingpb.ReplyU"
+  "pdCandles\"\000(\001\022J\n\ngetCandles\022\034.tradingpb."
+  "RequestGetCandles\032\032.tradingpb.ReplyGetCa"
+  "ndles\"\0000\001\022E\n\tupdSymbol\022\033.tradingpb.Reque"
+  "stUpdSymbol\032\031.tradingpb.ReplyUpdSymbol\"\000"
+  "\022E\n\tgetSymbol\022\033.tradingpb.RequestGetSymb"
+  "ol\032\031.tradingpb.ReplyGetSymbol\"\000\022I\n\ngetSy"
+  "mbols\022\034.tradingpb.RequestGetSymbols\032\031.tr"
+  "adingpb.ReplyGetSymbol\"\0000\001\022H\n\nsimTrading"
+  "\022\034.tradingpb.RequestSimTrading\032\032.trading"
+  "pb.ReplySimTrading\"\000\022M\n\013simTrading2\022\034.tr"
+  "adingpb.RequestSimTrading\032\032.tradingpb.Re"
+  "plySimTrading\"\000(\0010\001\022M\n\013simTrading3\022\034.tra"
+  "dingpb.RequestSimTrading\032\032.tradingpb.Rep"
+  "lySimTrading\"\000(\0010\001\022S\n\017reqTradingTask3\022\035."
+  "tradingpb.RequestTradingTask\032\033.tradingpb"
+  ".ReplyTradingTask\"\000(\0010\001B(Z&github.com/zh"
+  "s007/tradingdb2/tradingpbb\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_tradingdb2_2eproto_deps[1] = {
   &::descriptor_table_trading2_2eproto,
 };
-static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_tradingdb2_2eproto_sccs[16] = {
+static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_tradingdb2_2eproto_sccs[19] = {
   &scc_info_Fund_tradingdb2_2eproto.base,
   &scc_info_FundManager_tradingdb2_2eproto.base,
   &scc_info_FundResult_tradingdb2_2eproto.base,
@@ -605,23 +703,26 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_tra
   &scc_info_ReplyGetCandles_tradingdb2_2eproto.base,
   &scc_info_ReplyGetSymbol_tradingdb2_2eproto.base,
   &scc_info_ReplySimTrading_tradingdb2_2eproto.base,
+  &scc_info_ReplyTradingTask_tradingdb2_2eproto.base,
   &scc_info_ReplyUpdCandles_tradingdb2_2eproto.base,
   &scc_info_ReplyUpdSymbol_tradingdb2_2eproto.base,
   &scc_info_RequestGetCandles_tradingdb2_2eproto.base,
   &scc_info_RequestGetSymbol_tradingdb2_2eproto.base,
   &scc_info_RequestGetSymbols_tradingdb2_2eproto.base,
   &scc_info_RequestSimTrading_tradingdb2_2eproto.base,
+  &scc_info_RequestTradingTask_tradingdb2_2eproto.base,
   &scc_info_RequestUpdCandles_tradingdb2_2eproto.base,
   &scc_info_RequestUpdSymbol_tradingdb2_2eproto.base,
   &scc_info_SymbolInfo_tradingdb2_2eproto.base,
+  &scc_info_TradingTaskResult_tradingdb2_2eproto.base,
 };
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_tradingdb2_2eproto_once;
 static bool descriptor_table_tradingdb2_2eproto_initialized = false;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_tradingdb2_2eproto = {
-  &descriptor_table_tradingdb2_2eproto_initialized, descriptor_table_protodef_tradingdb2_2eproto, "tradingdb2.proto", 2626,
-  &descriptor_table_tradingdb2_2eproto_once, descriptor_table_tradingdb2_2eproto_sccs, descriptor_table_tradingdb2_2eproto_deps, 16, 1,
+  &descriptor_table_tradingdb2_2eproto_initialized, descriptor_table_protodef_tradingdb2_2eproto, "tradingdb2.proto", 3073,
+  &descriptor_table_tradingdb2_2eproto_once, descriptor_table_tradingdb2_2eproto_sccs, descriptor_table_tradingdb2_2eproto_deps, 19, 1,
   schemas, file_default_instances, TableStruct_tradingdb2_2eproto::offsets,
-  file_level_metadata_tradingdb2_2eproto, 16, file_level_enum_descriptors_tradingdb2_2eproto, file_level_service_descriptors_tradingdb2_2eproto,
+  file_level_metadata_tradingdb2_2eproto, 19, file_level_enum_descriptors_tradingdb2_2eproto, file_level_service_descriptors_tradingdb2_2eproto,
 };
 
 // Force running AddDescriptors() at dynamic initialization time.
@@ -5702,6 +5803,788 @@ void ReplySimTrading::InternalSwap(ReplySimTrading* other) {
 }
 
 
+// ===================================================================
+
+void TradingTaskResult::InitAsDefaultInstance() {
+  ::tradingpb::_TradingTaskResult_default_instance_._instance.get_mutable()->pnl_ = const_cast< ::tradingpb::PNLData*>(
+      ::tradingpb::PNLData::internal_default_instance());
+}
+class TradingTaskResult::_Internal {
+ public:
+  static const ::tradingpb::PNLData& pnl(const TradingTaskResult* msg);
+};
+
+const ::tradingpb::PNLData&
+TradingTaskResult::_Internal::pnl(const TradingTaskResult* msg) {
+  return *msg->pnl_;
+}
+void TradingTaskResult::clear_pnl() {
+  if (GetArenaNoVirtual() == nullptr && pnl_ != nullptr) {
+    delete pnl_;
+  }
+  pnl_ = nullptr;
+}
+TradingTaskResult::TradingTaskResult()
+  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:tradingpb.TradingTaskResult)
+}
+TradingTaskResult::TradingTaskResult(const TradingTaskResult& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _internal_metadata_(nullptr) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  task_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_task().empty()) {
+    task_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.task_);
+  }
+  err_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_err().empty()) {
+    err_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.err_);
+  }
+  if (from._internal_has_pnl()) {
+    pnl_ = new ::tradingpb::PNLData(*from.pnl_);
+  } else {
+    pnl_ = nullptr;
+  }
+  // @@protoc_insertion_point(copy_constructor:tradingpb.TradingTaskResult)
+}
+
+void TradingTaskResult::SharedCtor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_TradingTaskResult_tradingdb2_2eproto.base);
+  task_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  err_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  pnl_ = nullptr;
+}
+
+TradingTaskResult::~TradingTaskResult() {
+  // @@protoc_insertion_point(destructor:tradingpb.TradingTaskResult)
+  SharedDtor();
+}
+
+void TradingTaskResult::SharedDtor() {
+  task_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  err_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (this != internal_default_instance()) delete pnl_;
+}
+
+void TradingTaskResult::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const TradingTaskResult& TradingTaskResult::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_TradingTaskResult_tradingdb2_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void TradingTaskResult::Clear() {
+// @@protoc_insertion_point(message_clear_start:tradingpb.TradingTaskResult)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  task_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  err_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (GetArenaNoVirtual() == nullptr && pnl_ != nullptr) {
+    delete pnl_;
+  }
+  pnl_ = nullptr;
+  _internal_metadata_.Clear();
+}
+
+const char* TradingTaskResult::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // .tradingpb.PNLData pnl = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          ptr = ctx->ParseMessage(_internal_mutable_pnl(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // bytes task = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          auto str = _internal_mutable_task();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string err = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
+          auto str = _internal_mutable_err();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "tradingpb.TradingTaskResult.err"));
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* TradingTaskResult::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:tradingpb.TradingTaskResult)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .tradingpb.PNLData pnl = 1;
+  if (this->has_pnl()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        1, _Internal::pnl(this), target, stream);
+  }
+
+  // bytes task = 2;
+  if (this->task().size() > 0) {
+    target = stream->WriteBytesMaybeAliased(
+        2, this->_internal_task(), target);
+  }
+
+  // string err = 3;
+  if (this->err().size() > 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_err().data(), static_cast<int>(this->_internal_err().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "tradingpb.TradingTaskResult.err");
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_err(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields(), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:tradingpb.TradingTaskResult)
+  return target;
+}
+
+size_t TradingTaskResult::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:tradingpb.TradingTaskResult)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // bytes task = 2;
+  if (this->task().size() > 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::BytesSize(
+        this->_internal_task());
+  }
+
+  // string err = 3;
+  if (this->err().size() > 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_err());
+  }
+
+  // .tradingpb.PNLData pnl = 1;
+  if (this->has_pnl()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *pnl_);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void TradingTaskResult::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:tradingpb.TradingTaskResult)
+  GOOGLE_DCHECK_NE(&from, this);
+  const TradingTaskResult* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<TradingTaskResult>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:tradingpb.TradingTaskResult)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:tradingpb.TradingTaskResult)
+    MergeFrom(*source);
+  }
+}
+
+void TradingTaskResult::MergeFrom(const TradingTaskResult& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:tradingpb.TradingTaskResult)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.task().size() > 0) {
+
+    task_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.task_);
+  }
+  if (from.err().size() > 0) {
+
+    err_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.err_);
+  }
+  if (from.has_pnl()) {
+    _internal_mutable_pnl()->::tradingpb::PNLData::MergeFrom(from._internal_pnl());
+  }
+}
+
+void TradingTaskResult::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:tradingpb.TradingTaskResult)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void TradingTaskResult::CopyFrom(const TradingTaskResult& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:tradingpb.TradingTaskResult)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool TradingTaskResult::IsInitialized() const {
+  return true;
+}
+
+void TradingTaskResult::InternalSwap(TradingTaskResult* other) {
+  using std::swap;
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  task_.Swap(&other->task_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+    GetArenaNoVirtual());
+  err_.Swap(&other->err_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+    GetArenaNoVirtual());
+  swap(pnl_, other->pnl_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata TradingTaskResult::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
+
+// ===================================================================
+
+void RequestTradingTask::InitAsDefaultInstance() {
+  ::tradingpb::_RequestTradingTask_default_instance_._instance.get_mutable()->basicrequest_ = const_cast< ::tradingpb::BasicRequestData*>(
+      ::tradingpb::BasicRequestData::internal_default_instance());
+  ::tradingpb::_RequestTradingTask_default_instance_._instance.get_mutable()->result_ = const_cast< ::tradingpb::TradingTaskResult*>(
+      ::tradingpb::TradingTaskResult::internal_default_instance());
+}
+class RequestTradingTask::_Internal {
+ public:
+  static const ::tradingpb::BasicRequestData& basicrequest(const RequestTradingTask* msg);
+  static const ::tradingpb::TradingTaskResult& result(const RequestTradingTask* msg);
+};
+
+const ::tradingpb::BasicRequestData&
+RequestTradingTask::_Internal::basicrequest(const RequestTradingTask* msg) {
+  return *msg->basicrequest_;
+}
+const ::tradingpb::TradingTaskResult&
+RequestTradingTask::_Internal::result(const RequestTradingTask* msg) {
+  return *msg->result_;
+}
+void RequestTradingTask::clear_basicrequest() {
+  if (GetArenaNoVirtual() == nullptr && basicrequest_ != nullptr) {
+    delete basicrequest_;
+  }
+  basicrequest_ = nullptr;
+}
+RequestTradingTask::RequestTradingTask()
+  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:tradingpb.RequestTradingTask)
+}
+RequestTradingTask::RequestTradingTask(const RequestTradingTask& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _internal_metadata_(nullptr) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  if (from._internal_has_basicrequest()) {
+    basicrequest_ = new ::tradingpb::BasicRequestData(*from.basicrequest_);
+  } else {
+    basicrequest_ = nullptr;
+  }
+  if (from._internal_has_result()) {
+    result_ = new ::tradingpb::TradingTaskResult(*from.result_);
+  } else {
+    result_ = nullptr;
+  }
+  // @@protoc_insertion_point(copy_constructor:tradingpb.RequestTradingTask)
+}
+
+void RequestTradingTask::SharedCtor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_RequestTradingTask_tradingdb2_2eproto.base);
+  ::memset(&basicrequest_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&result_) -
+      reinterpret_cast<char*>(&basicrequest_)) + sizeof(result_));
+}
+
+RequestTradingTask::~RequestTradingTask() {
+  // @@protoc_insertion_point(destructor:tradingpb.RequestTradingTask)
+  SharedDtor();
+}
+
+void RequestTradingTask::SharedDtor() {
+  if (this != internal_default_instance()) delete basicrequest_;
+  if (this != internal_default_instance()) delete result_;
+}
+
+void RequestTradingTask::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const RequestTradingTask& RequestTradingTask::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_RequestTradingTask_tradingdb2_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void RequestTradingTask::Clear() {
+// @@protoc_insertion_point(message_clear_start:tradingpb.RequestTradingTask)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  if (GetArenaNoVirtual() == nullptr && basicrequest_ != nullptr) {
+    delete basicrequest_;
+  }
+  basicrequest_ = nullptr;
+  if (GetArenaNoVirtual() == nullptr && result_ != nullptr) {
+    delete result_;
+  }
+  result_ = nullptr;
+  _internal_metadata_.Clear();
+}
+
+const char* RequestTradingTask::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // .tradingpb.BasicRequestData basicRequest = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          ptr = ctx->ParseMessage(_internal_mutable_basicrequest(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .tradingpb.TradingTaskResult result = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          ptr = ctx->ParseMessage(_internal_mutable_result(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* RequestTradingTask::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:tradingpb.RequestTradingTask)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .tradingpb.BasicRequestData basicRequest = 1;
+  if (this->has_basicrequest()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        1, _Internal::basicrequest(this), target, stream);
+  }
+
+  // .tradingpb.TradingTaskResult result = 2;
+  if (this->has_result()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        2, _Internal::result(this), target, stream);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields(), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:tradingpb.RequestTradingTask)
+  return target;
+}
+
+size_t RequestTradingTask::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:tradingpb.RequestTradingTask)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // .tradingpb.BasicRequestData basicRequest = 1;
+  if (this->has_basicrequest()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *basicrequest_);
+  }
+
+  // .tradingpb.TradingTaskResult result = 2;
+  if (this->has_result()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *result_);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void RequestTradingTask::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:tradingpb.RequestTradingTask)
+  GOOGLE_DCHECK_NE(&from, this);
+  const RequestTradingTask* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<RequestTradingTask>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:tradingpb.RequestTradingTask)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:tradingpb.RequestTradingTask)
+    MergeFrom(*source);
+  }
+}
+
+void RequestTradingTask::MergeFrom(const RequestTradingTask& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:tradingpb.RequestTradingTask)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.has_basicrequest()) {
+    _internal_mutable_basicrequest()->::tradingpb::BasicRequestData::MergeFrom(from._internal_basicrequest());
+  }
+  if (from.has_result()) {
+    _internal_mutable_result()->::tradingpb::TradingTaskResult::MergeFrom(from._internal_result());
+  }
+}
+
+void RequestTradingTask::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:tradingpb.RequestTradingTask)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void RequestTradingTask::CopyFrom(const RequestTradingTask& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:tradingpb.RequestTradingTask)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool RequestTradingTask::IsInitialized() const {
+  return true;
+}
+
+void RequestTradingTask::InternalSwap(RequestTradingTask* other) {
+  using std::swap;
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  swap(basicrequest_, other->basicrequest_);
+  swap(result_, other->result_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata RequestTradingTask::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
+
+// ===================================================================
+
+void ReplyTradingTask::InitAsDefaultInstance() {
+  ::tradingpb::_ReplyTradingTask_default_instance_._instance.get_mutable()->params_ = const_cast< ::tradingpb::SimTradingParams*>(
+      ::tradingpb::SimTradingParams::internal_default_instance());
+}
+class ReplyTradingTask::_Internal {
+ public:
+  static const ::tradingpb::SimTradingParams& params(const ReplyTradingTask* msg);
+};
+
+const ::tradingpb::SimTradingParams&
+ReplyTradingTask::_Internal::params(const ReplyTradingTask* msg) {
+  return *msg->params_;
+}
+void ReplyTradingTask::clear_params() {
+  if (GetArenaNoVirtual() == nullptr && params_ != nullptr) {
+    delete params_;
+  }
+  params_ = nullptr;
+}
+ReplyTradingTask::ReplyTradingTask()
+  : ::PROTOBUF_NAMESPACE_ID::Message(), _internal_metadata_(nullptr) {
+  SharedCtor();
+  // @@protoc_insertion_point(constructor:tradingpb.ReplyTradingTask)
+}
+ReplyTradingTask::ReplyTradingTask(const ReplyTradingTask& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message(),
+      _internal_metadata_(nullptr) {
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  task_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_task().empty()) {
+    task_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.task_);
+  }
+  if (from._internal_has_params()) {
+    params_ = new ::tradingpb::SimTradingParams(*from.params_);
+  } else {
+    params_ = nullptr;
+  }
+  // @@protoc_insertion_point(copy_constructor:tradingpb.ReplyTradingTask)
+}
+
+void ReplyTradingTask::SharedCtor() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_ReplyTradingTask_tradingdb2_2eproto.base);
+  task_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  params_ = nullptr;
+}
+
+ReplyTradingTask::~ReplyTradingTask() {
+  // @@protoc_insertion_point(destructor:tradingpb.ReplyTradingTask)
+  SharedDtor();
+}
+
+void ReplyTradingTask::SharedDtor() {
+  task_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (this != internal_default_instance()) delete params_;
+}
+
+void ReplyTradingTask::SetCachedSize(int size) const {
+  _cached_size_.Set(size);
+}
+const ReplyTradingTask& ReplyTradingTask::default_instance() {
+  ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&::scc_info_ReplyTradingTask_tradingdb2_2eproto.base);
+  return *internal_default_instance();
+}
+
+
+void ReplyTradingTask::Clear() {
+// @@protoc_insertion_point(message_clear_start:tradingpb.ReplyTradingTask)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  task_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (GetArenaNoVirtual() == nullptr && params_ != nullptr) {
+    delete params_;
+  }
+  params_ = nullptr;
+  _internal_metadata_.Clear();
+}
+
+const char* ReplyTradingTask::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
+    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
+    CHK_(ptr);
+    switch (tag >> 3) {
+      // .tradingpb.SimTradingParams params = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
+          ptr = ctx->ParseMessage(_internal_mutable_params(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // bytes task = 2 [deprecated = true];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          auto str = _internal_mutable_task();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      default: {
+      handle_unusual:
+        if ((tag & 7) == 4 || tag == 0) {
+          ctx->SetLastTag(tag);
+          goto success;
+        }
+        ptr = UnknownFieldParse(tag, &_internal_metadata_, ptr, ctx);
+        CHK_(ptr != nullptr);
+        continue;
+      }
+    }  // switch
+  }  // while
+success:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto success;
+#undef CHK_
+}
+
+::PROTOBUF_NAMESPACE_ID::uint8* ReplyTradingTask::_InternalSerialize(
+    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:tradingpb.ReplyTradingTask)
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .tradingpb.SimTradingParams params = 1;
+  if (this->has_params()) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
+      InternalWriteMessage(
+        1, _Internal::params(this), target, stream);
+  }
+
+  // bytes task = 2 [deprecated = true];
+  if (this->task().size() > 0) {
+    target = stream->WriteBytesMaybeAliased(
+        2, this->_internal_task(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields(), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:tradingpb.ReplyTradingTask)
+  return target;
+}
+
+size_t ReplyTradingTask::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:tradingpb.ReplyTradingTask)
+  size_t total_size = 0;
+
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // bytes task = 2 [deprecated = true];
+  if (this->task().size() > 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::BytesSize(
+        this->_internal_task());
+  }
+
+  // .tradingpb.SimTradingParams params = 1;
+  if (this->has_params()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
+        *params_);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
+        _internal_metadata_, total_size, &_cached_size_);
+  }
+  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
+  SetCachedSize(cached_size);
+  return total_size;
+}
+
+void ReplyTradingTask::MergeFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_merge_from_start:tradingpb.ReplyTradingTask)
+  GOOGLE_DCHECK_NE(&from, this);
+  const ReplyTradingTask* source =
+      ::PROTOBUF_NAMESPACE_ID::DynamicCastToGenerated<ReplyTradingTask>(
+          &from);
+  if (source == nullptr) {
+  // @@protoc_insertion_point(generalized_merge_from_cast_fail:tradingpb.ReplyTradingTask)
+    ::PROTOBUF_NAMESPACE_ID::internal::ReflectionOps::Merge(from, this);
+  } else {
+  // @@protoc_insertion_point(generalized_merge_from_cast_success:tradingpb.ReplyTradingTask)
+    MergeFrom(*source);
+  }
+}
+
+void ReplyTradingTask::MergeFrom(const ReplyTradingTask& from) {
+// @@protoc_insertion_point(class_specific_merge_from_start:tradingpb.ReplyTradingTask)
+  GOOGLE_DCHECK_NE(&from, this);
+  _internal_metadata_.MergeFrom(from._internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from.task().size() > 0) {
+
+    task_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.task_);
+  }
+  if (from.has_params()) {
+    _internal_mutable_params()->::tradingpb::SimTradingParams::MergeFrom(from._internal_params());
+  }
+}
+
+void ReplyTradingTask::CopyFrom(const ::PROTOBUF_NAMESPACE_ID::Message& from) {
+// @@protoc_insertion_point(generalized_copy_from_start:tradingpb.ReplyTradingTask)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+void ReplyTradingTask::CopyFrom(const ReplyTradingTask& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:tradingpb.ReplyTradingTask)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool ReplyTradingTask::IsInitialized() const {
+  return true;
+}
+
+void ReplyTradingTask::InternalSwap(ReplyTradingTask* other) {
+  using std::swap;
+  _internal_metadata_.Swap(&other->_internal_metadata_);
+  task_.Swap(&other->task_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+    GetArenaNoVirtual());
+  swap(params_, other->params_);
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata ReplyTradingTask::GetMetadata() const {
+  return GetMetadataStatic();
+}
+
+
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace tradingpb
 PROTOBUF_NAMESPACE_OPEN
@@ -5752,6 +6635,15 @@ template<> PROTOBUF_NOINLINE ::tradingpb::RequestSimTrading* Arena::CreateMaybeM
 }
 template<> PROTOBUF_NOINLINE ::tradingpb::ReplySimTrading* Arena::CreateMaybeMessage< ::tradingpb::ReplySimTrading >(Arena* arena) {
   return Arena::CreateInternal< ::tradingpb::ReplySimTrading >(arena);
+}
+template<> PROTOBUF_NOINLINE ::tradingpb::TradingTaskResult* Arena::CreateMaybeMessage< ::tradingpb::TradingTaskResult >(Arena* arena) {
+  return Arena::CreateInternal< ::tradingpb::TradingTaskResult >(arena);
+}
+template<> PROTOBUF_NOINLINE ::tradingpb::RequestTradingTask* Arena::CreateMaybeMessage< ::tradingpb::RequestTradingTask >(Arena* arena) {
+  return Arena::CreateInternal< ::tradingpb::RequestTradingTask >(arena);
+}
+template<> PROTOBUF_NOINLINE ::tradingpb::ReplyTradingTask* Arena::CreateMaybeMessage< ::tradingpb::ReplyTradingTask >(Arena* arena) {
+  return Arena::CreateInternal< ::tradingpb::ReplyTradingTask >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 

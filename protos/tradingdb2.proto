@@ -138,6 +138,25 @@ message ReplySimTrading {
     int32 index = 3;
 }
 
+// TradingTaskResult - trading task result
+message TradingTaskResult {
+    PNLData pnl = 1;
+    bytes task = 2;
+    string err = 3;
+}
+
+// RequestTradingTask - request trading task
+message RequestTradingTask {
+    BasicRequestData basicRequest = 1;
+    TradingTaskResult result = 2;
+}
+
+// ReplyTradingTask - request trading task
+message ReplyTradingTask {
+    SimTradingParams params = 1;
+    bytes task = 2 [deprecated = true];     // params是rebuild以后的，所以task可以启用了
+}
+
 // TradingDB2 - TradingDB2 service
 service TradingDB2 {
     // updCandles - update candles
@@ -155,4 +174,8 @@ service TradingDB2 {
     rpc simTrading(RequestSimTrading) returns (ReplySimTrading) {}
     // simTrading2 - simulation trading
     rpc simTrading2(stream RequestSimTrading) returns (stream ReplySimTrading) {}
+    // simTrading3 - simulation trading
+    rpc simTrading3(stream RequestSimTrading) returns (stream ReplySimTrading) {}    
+    // reqTradingTask3 - request trading task
+    rpc reqTradingTask3(stream RequestTradingTask) returns (stream ReplyTradingTask) {}
 }
