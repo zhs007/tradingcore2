@@ -25,8 +25,8 @@
 #include <tradingcore2/indicator/sma.h>
 #include <tradingcore2/indicator/smma.h>
 #include <tradingcore2/indicator/ta_ma.h>
-#include <tradingcore2/indicator/ta_rsi.h>
 #include <tradingcore2/indicator/ta_roc.h>
+#include <tradingcore2/indicator/ta_rsi.h>
 #include <tradingcore2/indicator/wma.h>
 #include <tradingcore2/indicatormap.h>
 #include <tradingcore2/indicatormgr.h>
@@ -43,6 +43,7 @@
 #include <tradingcore2/strategy/singleindicator.h>
 #include <tradingcore2/strategymgr.h>
 #include <tradingcore2/talib.h>
+#include <tradingcore2/tasksmgr.h>
 #include <tradingcore2/trade.h>
 #include <tradingcore2/train.h>
 #include <tradingcore2/trdb2/client.h>

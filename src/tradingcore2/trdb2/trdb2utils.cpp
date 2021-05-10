@@ -172,7 +172,7 @@ void reqTasks(const char *host, const char *token) {
   while (stream->Read(&reply)) {
     if (!reply.has_params()) {
       while (TasksMgr::getSingleton()->getCurTaskNums() > 0) {
-        std::this_thread::sleep_for(std::chrono::seconds(1));
+        std::this_thread::sleep_for(std::chrono::seconds(5));
       }
 
       stream->WritesDone();

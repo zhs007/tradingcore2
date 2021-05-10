@@ -42,6 +42,17 @@ int main(int argc, char* argv[]) {
   auto mgr = tr2::ExchangeMgr::getSingleton();
   mgr->init(cfg);
 
+  auto mgrTasks = tr2::TasksMgr::getSingleton();
+  mgrTasks->init(cfg);
+
+  std::thread worker([cfg]() {
+    while (true) {
+      tr2::reqTasks(cfg.trdb2Serv.c_str(), cfg.trdb2Token.c_str());
+
+      std::this_thread::sleep_for(std::chrono::seconds(5));
+    }
+  });
+
   LOG(INFO) << "tr2serv started.";
 
   startServ(cfg);
