@@ -186,20 +186,36 @@ void reqTasks(const char *host, const char *token) {
         ::tradingpb::PNLData pnldata;
         auto status = TasksMgr::getSingleton()->runTask(pParams, &pnldata);
 
-        std::string task;
-        pParams->SerializeToString(&task);
+        if (status.ok()) {
+          std::string task;
+          pParams->SerializeToString(&task);
 
-        tradingpb::RequestTradingTask rtt;
+          tradingpb::RequestTradingTask rtt;
 
-        auto brd = rtt.mutable_basicrequest();
-        brd->set_token(token);
+          auto brd = rtt.mutable_basicrequest();
+          brd->set_token(token);
 
-        auto mr = rtt.mutable_result();
-        mr->set_task(task);
-        auto pnl = mr->mutable_pnl();
-        pnl->CopyFrom(pnldata);
+          auto mr = rtt.mutable_result();
+          mr->set_task(task);
+          auto pnl = mr->mutable_pnl();
+          pnl->CopyFrom(pnldata);
 
-        stream->Write(rtt);
+          stream->Write(rtt);
+        } else {
+          std::string task;
+          pParams->SerializeToString(&task);
+
+          tradingpb::RequestTradingTask rtt;
+
+          auto brd = rtt.mutable_basicrequest();
+          brd->set_token(token);
+
+          auto mr = rtt.mutable_result();
+          mr->set_task(task);
+          mr->set_err(status.error_message());
+
+          stream->Write(rtt);
+        }
       });
     }
   }

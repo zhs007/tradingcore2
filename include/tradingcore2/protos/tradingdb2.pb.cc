@@ -553,6 +553,7 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_tradingdb2_2eproto::offsets[] 
   ~0u,  // no _weak_field_map_
   PROTOBUF_FIELD_OFFSET(::tradingpb::TradingTaskResult, pnl_),
   PROTOBUF_FIELD_OFFSET(::tradingpb::TradingTaskResult, task_),
+  PROTOBUF_FIELD_OFFSET(::tradingpb::TradingTaskResult, err_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::tradingpb::RequestTradingTask, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -585,8 +586,8 @@ static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOB
   { 130, -1, sizeof(::tradingpb::RequestSimTrading)},
   { 144, -1, sizeof(::tradingpb::ReplySimTrading)},
   { 152, -1, sizeof(::tradingpb::TradingTaskResult)},
-  { 159, -1, sizeof(::tradingpb::RequestTradingTask)},
-  { 166, -1, sizeof(::tradingpb::ReplyTradingTask)},
+  { 160, -1, sizeof(::tradingpb::RequestTradingTask)},
+  { 167, -1, sizeof(::tradingpb::ReplyTradingTask)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
@@ -663,32 +664,32 @@ const char descriptor_table_protodef_tradingdb2_2eproto[] PROTOBUF_SECTION_VARIA
   "Nums\030\t \001(\005\"k\n\017ReplySimTrading\022\037\n\003pnl\030\001 \003"
   "(\0132\022.tradingpb.PNLData\022(\n\010baseline\030\002 \003(\013"
   "2\022.tradingpb.PNLDataB\002\030\001\022\r\n\005index\030\003 \001(\005\""
-  "B\n\021TradingTaskResult\022\037\n\003pnl\030\001 \001(\0132\022.trad"
-  "ingpb.PNLData\022\014\n\004task\030\002 \001(\014\"u\n\022RequestTr"
-  "adingTask\0221\n\014basicRequest\030\001 \001(\0132\033.tradin"
-  "gpb.BasicRequestData\022,\n\006result\030\002 \001(\0132\034.t"
-  "radingpb.TradingTaskResult\"\?\n\020ReplyTradi"
-  "ngTask\022+\n\006params\030\001 \001(\0132\033.tradingpb.SimTr"
-  "adingParams2\272\005\n\nTradingDB2\022J\n\nupdCandles"
-  "\022\034.tradingpb.RequestUpdCandles\032\032.trading"
-  "pb.ReplyUpdCandles\"\000(\001\022J\n\ngetCandles\022\034.t"
-  "radingpb.RequestGetCandles\032\032.tradingpb.R"
-  "eplyGetCandles\"\0000\001\022E\n\tupdSymbol\022\033.tradin"
-  "gpb.RequestUpdSymbol\032\031.tradingpb.ReplyUp"
-  "dSymbol\"\000\022E\n\tgetSymbol\022\033.tradingpb.Reque"
-  "stGetSymbol\032\031.tradingpb.ReplyGetSymbol\"\000"
-  "\022I\n\ngetSymbols\022\034.tradingpb.RequestGetSym"
-  "bols\032\031.tradingpb.ReplyGetSymbol\"\0000\001\022H\n\ns"
-  "imTrading\022\034.tradingpb.RequestSimTrading\032"
-  "\032.tradingpb.ReplySimTrading\"\000\022M\n\013simTrad"
-  "ing2\022\034.tradingpb.RequestSimTrading\032\032.tra"
-  "dingpb.ReplySimTrading\"\000(\0010\001\022M\n\013simTradi"
-  "ng3\022\034.tradingpb.RequestSimTrading\032\032.trad"
-  "ingpb.ReplySimTrading\"\000(\0010\001\022S\n\017reqTradin"
-  "gTask3\022\035.tradingpb.RequestTradingTask\032\033."
-  "tradingpb.ReplyTradingTask\"\000(\0010\001B(Z&gith"
-  "ub.com/zhs007/tradingdb2/tradingpbb\006prot"
-  "o3"
+  "O\n\021TradingTaskResult\022\037\n\003pnl\030\001 \001(\0132\022.trad"
+  "ingpb.PNLData\022\014\n\004task\030\002 \001(\014\022\013\n\003err\030\003 \001(\t"
+  "\"u\n\022RequestTradingTask\0221\n\014basicRequest\030\001"
+  " \001(\0132\033.tradingpb.BasicRequestData\022,\n\006res"
+  "ult\030\002 \001(\0132\034.tradingpb.TradingTaskResult\""
+  "\?\n\020ReplyTradingTask\022+\n\006params\030\001 \001(\0132\033.tr"
+  "adingpb.SimTradingParams2\272\005\n\nTradingDB2\022"
+  "J\n\nupdCandles\022\034.tradingpb.RequestUpdCand"
+  "les\032\032.tradingpb.ReplyUpdCandles\"\000(\001\022J\n\ng"
+  "etCandles\022\034.tradingpb.RequestGetCandles\032"
+  "\032.tradingpb.ReplyGetCandles\"\0000\001\022E\n\tupdSy"
+  "mbol\022\033.tradingpb.RequestUpdSymbol\032\031.trad"
+  "ingpb.ReplyUpdSymbol\"\000\022E\n\tgetSymbol\022\033.tr"
+  "adingpb.RequestGetSymbol\032\031.tradingpb.Rep"
+  "lyGetSymbol\"\000\022I\n\ngetSymbols\022\034.tradingpb."
+  "RequestGetSymbols\032\031.tradingpb.ReplyGetSy"
+  "mbol\"\0000\001\022H\n\nsimTrading\022\034.tradingpb.Reque"
+  "stSimTrading\032\032.tradingpb.ReplySimTrading"
+  "\"\000\022M\n\013simTrading2\022\034.tradingpb.RequestSim"
+  "Trading\032\032.tradingpb.ReplySimTrading\"\000(\0010"
+  "\001\022M\n\013simTrading3\022\034.tradingpb.RequestSimT"
+  "rading\032\032.tradingpb.ReplySimTrading\"\000(\0010\001"
+  "\022S\n\017reqTradingTask3\022\035.tradingpb.RequestT"
+  "radingTask\032\033.tradingpb.ReplyTradingTask\""
+  "\000(\0010\001B(Z&github.com/zhs007/tradingdb2/tr"
+  "adingpbb\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_tradingdb2_2eproto_deps[1] = {
   &::descriptor_table_trading2_2eproto,
@@ -717,7 +718,7 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_tra
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_tradingdb2_2eproto_once;
 static bool descriptor_table_tradingdb2_2eproto_initialized = false;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_tradingdb2_2eproto = {
-  &descriptor_table_tradingdb2_2eproto_initialized, descriptor_table_protodef_tradingdb2_2eproto, "tradingdb2.proto", 3042,
+  &descriptor_table_tradingdb2_2eproto_initialized, descriptor_table_protodef_tradingdb2_2eproto, "tradingdb2.proto", 3055,
   &descriptor_table_tradingdb2_2eproto_once, descriptor_table_tradingdb2_2eproto_sccs, descriptor_table_tradingdb2_2eproto_deps, 19, 1,
   schemas, file_default_instances, TableStruct_tradingdb2_2eproto::offsets,
   file_level_metadata_tradingdb2_2eproto, 19, file_level_enum_descriptors_tradingdb2_2eproto, file_level_service_descriptors_tradingdb2_2eproto,
@@ -5835,6 +5836,10 @@ TradingTaskResult::TradingTaskResult(const TradingTaskResult& from)
   if (!from._internal_task().empty()) {
     task_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.task_);
   }
+  err_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_err().empty()) {
+    err_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.err_);
+  }
   if (from._internal_has_pnl()) {
     pnl_ = new ::tradingpb::PNLData(*from.pnl_);
   } else {
@@ -5846,6 +5851,7 @@ TradingTaskResult::TradingTaskResult(const TradingTaskResult& from)
 void TradingTaskResult::SharedCtor() {
   ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_TradingTaskResult_tradingdb2_2eproto.base);
   task_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  err_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   pnl_ = nullptr;
 }
 
@@ -5856,6 +5862,7 @@ TradingTaskResult::~TradingTaskResult() {
 
 void TradingTaskResult::SharedDtor() {
   task_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  err_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (this != internal_default_instance()) delete pnl_;
 }
 
@@ -5875,6 +5882,7 @@ void TradingTaskResult::Clear() {
   (void) cached_has_bits;
 
   task_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  err_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (GetArenaNoVirtual() == nullptr && pnl_ != nullptr) {
     delete pnl_;
   }
@@ -5901,6 +5909,15 @@ const char* TradingTaskResult::_InternalParse(const char* ptr, ::PROTOBUF_NAMESP
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
           auto str = _internal_mutable_task();
           ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // string err = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
+          auto str = _internal_mutable_err();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "tradingpb.TradingTaskResult.err"));
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -5944,6 +5961,16 @@ failure:
         2, this->_internal_task(), target);
   }
 
+  // string err = 3;
+  if (this->err().size() > 0) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_err().data(), static_cast<int>(this->_internal_err().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "tradingpb.TradingTaskResult.err");
+    target = stream->WriteStringMaybeAliased(
+        3, this->_internal_err(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields(), target, stream);
@@ -5965,6 +5992,13 @@ size_t TradingTaskResult::ByteSizeLong() const {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::BytesSize(
         this->_internal_task());
+  }
+
+  // string err = 3;
+  if (this->err().size() > 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_err());
   }
 
   // .tradingpb.PNLData pnl = 1;
@@ -6009,6 +6043,10 @@ void TradingTaskResult::MergeFrom(const TradingTaskResult& from) {
 
     task_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.task_);
   }
+  if (from.err().size() > 0) {
+
+    err_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.err_);
+  }
   if (from.has_pnl()) {
     _internal_mutable_pnl()->::tradingpb::PNLData::MergeFrom(from._internal_pnl());
   }
@@ -6036,6 +6074,8 @@ void TradingTaskResult::InternalSwap(TradingTaskResult* other) {
   using std::swap;
   _internal_metadata_.Swap(&other->_internal_metadata_);
   task_.Swap(&other->task_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+    GetArenaNoVirtual());
+  err_.Swap(&other->err_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
     GetArenaNoVirtual());
   swap(pnl_, other->pnl_);
 }

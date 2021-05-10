@@ -3256,6 +3256,7 @@ class TradingTaskResult :
 
   enum : int {
     kTaskFieldNumber = 2,
+    kErrFieldNumber = 3,
     kPnlFieldNumber = 1,
   };
   // bytes task = 2;
@@ -3272,6 +3273,22 @@ class TradingTaskResult :
   const std::string& _internal_task() const;
   void _internal_set_task(const std::string& value);
   std::string* _internal_mutable_task();
+  public:
+
+  // string err = 3;
+  void clear_err();
+  const std::string& err() const;
+  void set_err(const std::string& value);
+  void set_err(std::string&& value);
+  void set_err(const char* value);
+  void set_err(const char* value, size_t size);
+  std::string* mutable_err();
+  std::string* release_err();
+  void set_allocated_err(std::string* err);
+  private:
+  const std::string& _internal_err() const;
+  void _internal_set_err(const std::string& value);
+  std::string* _internal_mutable_err();
   public:
 
   // .tradingpb.PNLData pnl = 1;
@@ -3295,6 +3312,7 @@ class TradingTaskResult :
 
   ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr task_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr err_;
   ::tradingpb::PNLData* pnl_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_tradingdb2_2eproto;
@@ -6907,6 +6925,66 @@ inline void TradingTaskResult::set_allocated_task(std::string* task) {
   }
   task_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), task);
   // @@protoc_insertion_point(field_set_allocated:tradingpb.TradingTaskResult.task)
+}
+
+// string err = 3;
+inline void TradingTaskResult::clear_err() {
+  err_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline const std::string& TradingTaskResult::err() const {
+  // @@protoc_insertion_point(field_get:tradingpb.TradingTaskResult.err)
+  return _internal_err();
+}
+inline void TradingTaskResult::set_err(const std::string& value) {
+  _internal_set_err(value);
+  // @@protoc_insertion_point(field_set:tradingpb.TradingTaskResult.err)
+}
+inline std::string* TradingTaskResult::mutable_err() {
+  // @@protoc_insertion_point(field_mutable:tradingpb.TradingTaskResult.err)
+  return _internal_mutable_err();
+}
+inline const std::string& TradingTaskResult::_internal_err() const {
+  return err_.GetNoArena();
+}
+inline void TradingTaskResult::_internal_set_err(const std::string& value) {
+  
+  err_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+}
+inline void TradingTaskResult::set_err(std::string&& value) {
+  
+  err_.SetNoArena(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:tradingpb.TradingTaskResult.err)
+}
+inline void TradingTaskResult::set_err(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  err_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:tradingpb.TradingTaskResult.err)
+}
+inline void TradingTaskResult::set_err(const char* value, size_t size) {
+  
+  err_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:tradingpb.TradingTaskResult.err)
+}
+inline std::string* TradingTaskResult::_internal_mutable_err() {
+  
+  return err_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline std::string* TradingTaskResult::release_err() {
+  // @@protoc_insertion_point(field_release:tradingpb.TradingTaskResult.err)
+  
+  return err_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline void TradingTaskResult::set_allocated_err(std::string* err) {
+  if (err != nullptr) {
+    
+  } else {
+    
+  }
+  err_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), err);
+  // @@protoc_insertion_point(field_set_allocated:tradingpb.TradingTaskResult.err)
 }
 
 // -------------------------------------------------------------------

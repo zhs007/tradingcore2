@@ -142,6 +142,7 @@ message ReplySimTrading {
 message TradingTaskResult {
     PNLData pnl = 1;
     bytes task = 2;
+    string err = 3;
 }
 
 // RequestTradingTask - request trading task
