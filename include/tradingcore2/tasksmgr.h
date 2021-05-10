@@ -15,7 +15,7 @@ class TasksMgr {
   static TasksMgr* getSingleton();
 
  protected:
-  TasksMgr() {}
+  TasksMgr() : m_maxTaskNums(0) { this->m_curTaskNums = 0; }
   ~TasksMgr() { this->release(); }
 
  protected:
@@ -23,9 +23,13 @@ class TasksMgr {
 
  public:
   void init(const Config& cfg);
-  // calcPNL - calcPNL
-  ::grpc::Status _calcPNL(const ::tradingpb::SimTradingParams* params,
-                          ::tradingpb::PNLData* pnldata);
+  // runTradingTask - runTradingTask
+  ::grpc::Status runTradingTask(const ::tradingpb::SimTradingParams* params,
+                                ::tradingpb::PNLData* pnldata);
+
+  // runTask - runTask
+  ::grpc::Status runTask(const ::tradingpb::SimTradingParams* params,
+                         ::tradingpb::PNLData* pnldata);
 
  protected:
   int m_maxTaskNums;

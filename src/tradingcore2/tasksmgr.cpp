@@ -38,18 +38,19 @@ void TasksMgr::init(const Config& cfg) {
 
 void TasksMgr::release() {}
 
-// calcPNL - calcPNL
-::grpc::Status TasksMgr::_calcPNL(const ::tradingpb::SimTradingParams* params,
-                                  ::tradingpb::PNLData* pnldata) {
+// runTradingTask - runTradingTask
+::grpc::Status TasksMgr::runTradingTask(
+    const ::tradingpb::SimTradingParams* params,
+    ::tradingpb::PNLData* pnldata) {
   assert(params != NULL);
   assert(pnldata != NULL);
 
-  LOG(INFO) << "_calcPNL...";
+  LOG(INFO) << "runTradingTask...";
 
-  logProtobuf("calcPNL", *params);
+  logProtobuf("runTradingTask", *params);
 
   //   if (!isValidTokens(request, response, *m_pCfg)) {
-  //     LOG(ERROR) << "_calcPNL:isValidTokens " <<
+  //     LOG(ERROR) << "runTradingTask:isValidTokens " <<
   //     request->basicrequest().token();
 
   //     return grpc::Status(grpc::StatusCode::INVALID_ARGUMENT, "invalid
@@ -72,15 +73,15 @@ void TasksMgr::release() {}
   auto exchange =
       tr2::ExchangeMgr::getSingleton()->newExchange(mainMarket.c_str());
   if (exchange == NULL) {
-    LOG(ERROR) << "_calcPNL:getExchange " << mainMarket;
+    LOG(ERROR) << "runTradingTask:getExchange " << mainMarket;
 
     return grpc::Status(grpc::StatusCode::UNKNOWN, "I can't get exchange");
   }
 
   if (params->startts() > 0 && params->endts() > 0) {
     if (params->startts() >= params->endts()) {
-      LOG(ERROR) << "_calcPNL:invalid timestamp" << params->startts() << " "
-                 << params->endts();
+      LOG(ERROR) << "runTradingTask:invalid timestamp" << params->startts()
+                 << " " << params->endts();
 
       return grpc::Status(grpc::StatusCode::UNKNOWN, "Invalid timestamp");
     }
@@ -108,7 +109,7 @@ void TasksMgr::release() {}
     exchange->rebuildTimeStampList(mainasset.c_str());
   }
 
-  LOG(ERROR) << "_calcPNL:rebuildTimeStampList ok!";
+  LOG(ERROR) << "runTradingTask:rebuildTimeStampList ok!";
 
   auto pWallet = new tr2::Wallet(*exchange);
 
@@ -138,12 +139,12 @@ void TasksMgr::release() {}
     strategy->buildIndicators(*params, pnl2);
   }
 
-  LOG(ERROR) << "_calcPNL:simulateTrading ok!";
+  LOG(ERROR) << "runTradingTask:simulateTrading ok!";
 
   // tr2::PNL2 pnl2;
   pWallet->buildPNL2(*params, pnl2);
 
-  LOG(ERROR) << "_calcPNL:buildPNL2 ok!";
+  LOG(ERROR) << "runTradingTask:buildPNL2 ok!";
 
   //   auto pPNLData = response->add_pnl();
   pnldata->CopyFrom(pnl2.m_data);
@@ -155,13 +156,48 @@ void TasksMgr::release() {}
   delete pWallet;
   tr2::ExchangeMgr::getSingleton()->deleteExchange(exchange);
 
-  LOG(INFO) << "TradingNode2Impl::_calcPNL end.";
+  LOG(INFO) << "TradingNode2Impl::runTradingTask end.";
 
   //   auto et = std::time(0);
 
   //   response->set_runseconds(et - ct);
 
   return grpc::Status::OK;
+}
+
+// runTask - runTask
+::grpc::Status TasksMgr::runTask(const ::tradingpb::SimTradingParams* params,
+                                 ::tradingpb::PNLData* pnldata) {
+  auto cn = this->m_curTaskNums.load(std::memory_order_relaxed);
+  if (cn >= this->m_maxTaskNums) {
+    return grpc::Status(grpc::StatusCode::UNKNOWN, "no worker.");
+  }
+
+  while (!this->m_curTaskNums.compare_exchange_weak(
+      cn, cn + 1, std::memory_order_release, std::memory_order_relaxed)) {
+    cn = this->m_curTaskNums.load(std::memory_order_relaxed);
+    if (cn >= this->m_maxTaskNums) {
+      return grpc::Status(grpc::StatusCode::UNKNOWN, "no worker(1).");
+    }
+  }
+
+  auto status = this->runTradingTask(params, pnldata);
+
+  cn = this->m_curTaskNums.load(std::memory_order_relaxed);
+  if (cn <= 0) {
+    return grpc::Status(grpc::StatusCode::UNKNOWN, "invalid worker number.");
+  }
+
+  while (!this->m_curTaskNums.compare_exchange_weak(
+      cn, cn - 1, std::memory_order_release, std::memory_order_relaxed)) {
+    cn = this->m_curTaskNums.load(std::memory_order_relaxed);
+    if (cn <= 0) {
+      return grpc::Status(grpc::StatusCode::UNKNOWN,
+                          "invalid worker number(1).");
+    }
+  }
+
+  return status;
 }
 
 CR2END

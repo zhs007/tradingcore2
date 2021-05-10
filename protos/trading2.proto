@@ -285,6 +285,7 @@ message PNLData {
     repeated PNLAssetData assets = 3 [deprecated = true];
     string title = 4;                                       // 应该用 SimTradingParams 的 title 赋值，cache 读取后也需要
     int64 lastts = 5 [deprecated = true];                   // 弃用了，直接用 SimTradingCacheNode 里的 lastTs
+    int64 cacheTs = 6;                                      // 放弃了 SimTradingCacheNode ，采用更简单的cache方案
 }
 
 // SimTradingParams - simTrading parameters
