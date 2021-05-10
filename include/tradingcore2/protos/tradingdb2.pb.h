@@ -3576,8 +3576,25 @@ class ReplyTradingTask :
   // accessors -------------------------------------------------------
 
   enum : int {
+    kTaskFieldNumber = 2,
     kParamsFieldNumber = 1,
   };
+  // bytes task = 2 [deprecated = true];
+  PROTOBUF_DEPRECATED void clear_task();
+  PROTOBUF_DEPRECATED const std::string& task() const;
+  PROTOBUF_DEPRECATED void set_task(const std::string& value);
+  PROTOBUF_DEPRECATED void set_task(std::string&& value);
+  PROTOBUF_DEPRECATED void set_task(const char* value);
+  PROTOBUF_DEPRECATED void set_task(const void* value, size_t size);
+  PROTOBUF_DEPRECATED std::string* mutable_task();
+  PROTOBUF_DEPRECATED std::string* release_task();
+  PROTOBUF_DEPRECATED void set_allocated_task(std::string* task);
+  private:
+  const std::string& _internal_task() const;
+  void _internal_set_task(const std::string& value);
+  std::string* _internal_mutable_task();
+  public:
+
   // .tradingpb.SimTradingParams params = 1;
   bool has_params() const;
   private:
@@ -3598,6 +3615,7 @@ class ReplyTradingTask :
   class _Internal;
 
   ::PROTOBUF_NAMESPACE_ID::internal::InternalMetadataWithArena _internal_metadata_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr task_;
   ::tradingpb::SimTradingParams* params_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_tradingdb2_2eproto;
@@ -7161,6 +7179,66 @@ inline void ReplyTradingTask::set_allocated_params(::tradingpb::SimTradingParams
   }
   params_ = params;
   // @@protoc_insertion_point(field_set_allocated:tradingpb.ReplyTradingTask.params)
+}
+
+// bytes task = 2 [deprecated = true];
+inline void ReplyTradingTask::clear_task() {
+  task_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline const std::string& ReplyTradingTask::task() const {
+  // @@protoc_insertion_point(field_get:tradingpb.ReplyTradingTask.task)
+  return _internal_task();
+}
+inline void ReplyTradingTask::set_task(const std::string& value) {
+  _internal_set_task(value);
+  // @@protoc_insertion_point(field_set:tradingpb.ReplyTradingTask.task)
+}
+inline std::string* ReplyTradingTask::mutable_task() {
+  // @@protoc_insertion_point(field_mutable:tradingpb.ReplyTradingTask.task)
+  return _internal_mutable_task();
+}
+inline const std::string& ReplyTradingTask::_internal_task() const {
+  return task_.GetNoArena();
+}
+inline void ReplyTradingTask::_internal_set_task(const std::string& value) {
+  
+  task_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), value);
+}
+inline void ReplyTradingTask::set_task(std::string&& value) {
+  
+  task_.SetNoArena(
+    &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::move(value));
+  // @@protoc_insertion_point(field_set_rvalue:tradingpb.ReplyTradingTask.task)
+}
+inline void ReplyTradingTask::set_task(const char* value) {
+  GOOGLE_DCHECK(value != nullptr);
+  
+  task_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), ::std::string(value));
+  // @@protoc_insertion_point(field_set_char:tradingpb.ReplyTradingTask.task)
+}
+inline void ReplyTradingTask::set_task(const void* value, size_t size) {
+  
+  task_.SetNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+      ::std::string(reinterpret_cast<const char*>(value), size));
+  // @@protoc_insertion_point(field_set_pointer:tradingpb.ReplyTradingTask.task)
+}
+inline std::string* ReplyTradingTask::_internal_mutable_task() {
+  
+  return task_.MutableNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline std::string* ReplyTradingTask::release_task() {
+  // @@protoc_insertion_point(field_release:tradingpb.ReplyTradingTask.task)
+  
+  return task_.ReleaseNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+}
+inline void ReplyTradingTask::set_allocated_task(std::string* task) {
+  if (task != nullptr) {
+    
+  } else {
+    
+  }
+  task_.SetAllocatedNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), task);
+  // @@protoc_insertion_point(field_set_allocated:tradingpb.ReplyTradingTask.task)
 }
 
 #ifdef __GNUC__

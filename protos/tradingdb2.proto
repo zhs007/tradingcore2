@@ -154,6 +154,7 @@ message RequestTradingTask {
 // ReplyTradingTask - request trading task
 message ReplyTradingTask {
     SimTradingParams params = 1;
+    bytes task = 2 [deprecated = true];     // params是rebuild以后的，所以task可以启用了
 }
 
 // TradingDB2 - TradingDB2 service

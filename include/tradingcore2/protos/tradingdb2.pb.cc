@@ -567,6 +567,7 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_tradingdb2_2eproto::offsets[] 
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   PROTOBUF_FIELD_OFFSET(::tradingpb::ReplyTradingTask, params_),
+  PROTOBUF_FIELD_OFFSET(::tradingpb::ReplyTradingTask, task_),
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, sizeof(::tradingpb::FundSize)},
@@ -669,27 +670,27 @@ const char descriptor_table_protodef_tradingdb2_2eproto[] PROTOBUF_SECTION_VARIA
   "\"u\n\022RequestTradingTask\0221\n\014basicRequest\030\001"
   " \001(\0132\033.tradingpb.BasicRequestData\022,\n\006res"
   "ult\030\002 \001(\0132\034.tradingpb.TradingTaskResult\""
-  "\?\n\020ReplyTradingTask\022+\n\006params\030\001 \001(\0132\033.tr"
-  "adingpb.SimTradingParams2\272\005\n\nTradingDB2\022"
-  "J\n\nupdCandles\022\034.tradingpb.RequestUpdCand"
-  "les\032\032.tradingpb.ReplyUpdCandles\"\000(\001\022J\n\ng"
-  "etCandles\022\034.tradingpb.RequestGetCandles\032"
-  "\032.tradingpb.ReplyGetCandles\"\0000\001\022E\n\tupdSy"
-  "mbol\022\033.tradingpb.RequestUpdSymbol\032\031.trad"
-  "ingpb.ReplyUpdSymbol\"\000\022E\n\tgetSymbol\022\033.tr"
-  "adingpb.RequestGetSymbol\032\031.tradingpb.Rep"
-  "lyGetSymbol\"\000\022I\n\ngetSymbols\022\034.tradingpb."
-  "RequestGetSymbols\032\031.tradingpb.ReplyGetSy"
-  "mbol\"\0000\001\022H\n\nsimTrading\022\034.tradingpb.Reque"
-  "stSimTrading\032\032.tradingpb.ReplySimTrading"
-  "\"\000\022M\n\013simTrading2\022\034.tradingpb.RequestSim"
-  "Trading\032\032.tradingpb.ReplySimTrading\"\000(\0010"
-  "\001\022M\n\013simTrading3\022\034.tradingpb.RequestSimT"
-  "rading\032\032.tradingpb.ReplySimTrading\"\000(\0010\001"
-  "\022S\n\017reqTradingTask3\022\035.tradingpb.RequestT"
-  "radingTask\032\033.tradingpb.ReplyTradingTask\""
-  "\000(\0010\001B(Z&github.com/zhs007/tradingdb2/tr"
-  "adingpbb\006proto3"
+  "Q\n\020ReplyTradingTask\022+\n\006params\030\001 \001(\0132\033.tr"
+  "adingpb.SimTradingParams\022\020\n\004task\030\002 \001(\014B\002"
+  "\030\0012\272\005\n\nTradingDB2\022J\n\nupdCandles\022\034.tradin"
+  "gpb.RequestUpdCandles\032\032.tradingpb.ReplyU"
+  "pdCandles\"\000(\001\022J\n\ngetCandles\022\034.tradingpb."
+  "RequestGetCandles\032\032.tradingpb.ReplyGetCa"
+  "ndles\"\0000\001\022E\n\tupdSymbol\022\033.tradingpb.Reque"
+  "stUpdSymbol\032\031.tradingpb.ReplyUpdSymbol\"\000"
+  "\022E\n\tgetSymbol\022\033.tradingpb.RequestGetSymb"
+  "ol\032\031.tradingpb.ReplyGetSymbol\"\000\022I\n\ngetSy"
+  "mbols\022\034.tradingpb.RequestGetSymbols\032\031.tr"
+  "adingpb.ReplyGetSymbol\"\0000\001\022H\n\nsimTrading"
+  "\022\034.tradingpb.RequestSimTrading\032\032.trading"
+  "pb.ReplySimTrading\"\000\022M\n\013simTrading2\022\034.tr"
+  "adingpb.RequestSimTrading\032\032.tradingpb.Re"
+  "plySimTrading\"\000(\0010\001\022M\n\013simTrading3\022\034.tra"
+  "dingpb.RequestSimTrading\032\032.tradingpb.Rep"
+  "lySimTrading\"\000(\0010\001\022S\n\017reqTradingTask3\022\035."
+  "tradingpb.RequestTradingTask\032\033.tradingpb"
+  ".ReplyTradingTask\"\000(\0010\001B(Z&github.com/zh"
+  "s007/tradingdb2/tradingpbb\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_tradingdb2_2eproto_deps[1] = {
   &::descriptor_table_trading2_2eproto,
@@ -718,7 +719,7 @@ static ::PROTOBUF_NAMESPACE_ID::internal::SCCInfoBase*const descriptor_table_tra
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_tradingdb2_2eproto_once;
 static bool descriptor_table_tradingdb2_2eproto_initialized = false;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_tradingdb2_2eproto = {
-  &descriptor_table_tradingdb2_2eproto_initialized, descriptor_table_protodef_tradingdb2_2eproto, "tradingdb2.proto", 3055,
+  &descriptor_table_tradingdb2_2eproto_initialized, descriptor_table_protodef_tradingdb2_2eproto, "tradingdb2.proto", 3073,
   &descriptor_table_tradingdb2_2eproto_once, descriptor_table_tradingdb2_2eproto_sccs, descriptor_table_tradingdb2_2eproto_deps, 19, 1,
   schemas, file_default_instances, TableStruct_tradingdb2_2eproto::offsets,
   file_level_metadata_tradingdb2_2eproto, 19, file_level_enum_descriptors_tradingdb2_2eproto, file_level_service_descriptors_tradingdb2_2eproto,
@@ -6370,6 +6371,10 @@ ReplyTradingTask::ReplyTradingTask(const ReplyTradingTask& from)
   : ::PROTOBUF_NAMESPACE_ID::Message(),
       _internal_metadata_(nullptr) {
   _internal_metadata_.MergeFrom(from._internal_metadata_);
+  task_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
+  if (!from._internal_task().empty()) {
+    task_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.task_);
+  }
   if (from._internal_has_params()) {
     params_ = new ::tradingpb::SimTradingParams(*from.params_);
   } else {
@@ -6380,6 +6385,7 @@ ReplyTradingTask::ReplyTradingTask(const ReplyTradingTask& from)
 
 void ReplyTradingTask::SharedCtor() {
   ::PROTOBUF_NAMESPACE_ID::internal::InitSCC(&scc_info_ReplyTradingTask_tradingdb2_2eproto.base);
+  task_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   params_ = nullptr;
 }
 
@@ -6389,6 +6395,7 @@ ReplyTradingTask::~ReplyTradingTask() {
 }
 
 void ReplyTradingTask::SharedDtor() {
+  task_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (this != internal_default_instance()) delete params_;
 }
 
@@ -6407,6 +6414,7 @@ void ReplyTradingTask::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  task_.ClearToEmptyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
   if (GetArenaNoVirtual() == nullptr && params_ != nullptr) {
     delete params_;
   }
@@ -6425,6 +6433,14 @@ const char* ReplyTradingTask::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPA
       case 1:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
           ptr = ctx->ParseMessage(_internal_mutable_params(), ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // bytes task = 2 [deprecated = true];
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
+          auto str = _internal_mutable_task();
+          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
@@ -6462,6 +6478,12 @@ failure:
         1, _Internal::params(this), target, stream);
   }
 
+  // bytes task = 2 [deprecated = true];
+  if (this->task().size() > 0) {
+    target = stream->WriteBytesMaybeAliased(
+        2, this->_internal_task(), target);
+  }
+
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields(), target, stream);
@@ -6477,6 +6499,13 @@ size_t ReplyTradingTask::ByteSizeLong() const {
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
+
+  // bytes task = 2 [deprecated = true];
+  if (this->task().size() > 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::BytesSize(
+        this->_internal_task());
+  }
 
   // .tradingpb.SimTradingParams params = 1;
   if (this->has_params()) {
@@ -6516,6 +6545,10 @@ void ReplyTradingTask::MergeFrom(const ReplyTradingTask& from) {
   ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
   (void) cached_has_bits;
 
+  if (from.task().size() > 0) {
+
+    task_.AssignWithDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), from.task_);
+  }
   if (from.has_params()) {
     _internal_mutable_params()->::tradingpb::SimTradingParams::MergeFrom(from._internal_params());
   }
@@ -6542,6 +6575,8 @@ bool ReplyTradingTask::IsInitialized() const {
 void ReplyTradingTask::InternalSwap(ReplyTradingTask* other) {
   using std::swap;
   _internal_metadata_.Swap(&other->_internal_metadata_);
+  task_.Swap(&other->task_, &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
+    GetArenaNoVirtual());
   swap(params_, other->params_);
 }
 
