@@ -24,7 +24,7 @@ bool WorkerMgr::insWorker(int workerID, std::thread *pThread) {
   p.second.pThread = pThread;
 
   auto ret = this->m_map.insert(p);
-  return ret.first;
+  return ret.second;
 }
 
 void WorkerMgr::delWorker(int workerID) {

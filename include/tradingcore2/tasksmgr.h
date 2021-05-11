@@ -32,7 +32,7 @@ class TasksMgr {
                          ::tradingpb::PNLData* pnldata);
 
   // getCurTaskNums - get current tasks number
-  int getCurTaskNums() { this->m_curTaskNums.load(std::memory_order_relaxed); }
+  int getCurTaskNums() { return this->m_curTaskNums.load(std::memory_order_relaxed); }
 
  protected:
   int m_maxTaskNums;
