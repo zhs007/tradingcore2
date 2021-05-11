@@ -3,6 +3,7 @@
 
 #include <tradingcore2/basedef.h>
 #include <tradingcore2/protos/tradingdb2.grpc.pb.h>
+#include <tradingcore2/trdb2/workermgr.h>
 
 #include <functional>
 
@@ -24,7 +25,7 @@ bool getSymbols(const char *host, const char *token, const char *market,
 bool updSymbol(const char *host, const char *token, tradingpb::SymbolInfo &si);
 
 // reqTasks - request tasks
-void reqTasks(const char *host, const char *token);
+void reqTasks(const char *host, const char *token, WorkerMgr *mgrWorker);
 
 CR2END
 

@@ -46,8 +46,9 @@ int main(int argc, char* argv[]) {
   mgrTasks->init(cfg);
 
   std::thread worker([cfg]() {
+    tr2::WorkerMgr mgr;
     while (true) {
-      tr2::reqTasks(cfg.trdb2Serv.c_str(), cfg.trdb2Token.c_str());
+      tr2::reqTasks(cfg.trdb2Serv.c_str(), cfg.trdb2Token.c_str(), &mgr);
 
       std::this_thread::sleep_for(std::chrono::seconds(5));
     }
