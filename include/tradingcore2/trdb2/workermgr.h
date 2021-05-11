@@ -5,6 +5,7 @@
 #include <tradingcore2/protos/tradingdb2.grpc.pb.h>
 
 #include <functional>
+#include <mutex>
 #include <thread>
 
 CR2BEGIN
@@ -27,7 +28,7 @@ class WorkerMgr {
   void release();
 
  public:
-  int newWorkerID() { return ++latestWorkerID; }
+  int newWorkerID();
 
   bool insWorker(int workerID, std::thread *pThread);
 
@@ -36,6 +37,7 @@ class WorkerMgr {
  private:
   _Map m_map;
   int latestWorkerID;
+  std::mutex m_mtx;
 };
 
 CR2END

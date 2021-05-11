@@ -10,6 +10,8 @@
 CR2BEGIN
 
 void WorkerMgr::release() {
+  std::lock_guard<std::mutex> lock(this->m_mtx);
+
   for (_Map::iterator it = this->m_map.begin(); it != this->m_map.end(); ++it) {
     delete it->second.pThread;
   }
@@ -18,6 +20,8 @@ void WorkerMgr::release() {
 }
 
 bool WorkerMgr::insWorker(int workerID, std::thread *pThread) {
+  std::lock_guard<std::mutex> lock(this->m_mtx);
+
   _Pair p;
   p.first = workerID;
   p.second.workerID = workerID;
@@ -28,11 +32,18 @@ bool WorkerMgr::insWorker(int workerID, std::thread *pThread) {
 }
 
 void WorkerMgr::delWorker(int workerID) {
+  std::lock_guard<std::mutex> lock(this->m_mtx);
+
   auto it = this->m_map.find(workerID);
   if (it != this->m_map.end()) {
     delete it->second.pThread;
     this->m_map.erase(it);
   }
+}
+
+int WorkerMgr::newWorkerID() {
+  std::lock_guard<std::mutex> lock(this->m_mtx);
+  return ++latestWorkerID;
 }
 
 CR2END

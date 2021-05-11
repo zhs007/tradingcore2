@@ -6,6 +6,7 @@
 #include <tradingcore2/tasksmgr.h>
 #include <tradingcore2/train.h>
 #include <tradingcore2/trdb2/client.h>
+#include <tradingcore2/trdb2/workermgr.h>
 #include <tradingcore2/utils.h>
 
 #include <iostream>
@@ -152,7 +153,7 @@ bool updSymbol(const char *host, const char *token, tradingpb::SymbolInfo &si) {
 }
 
 // reqTasks - request tasks
-void reqTasks(const char *host, const char *token) {
+void reqTasks(const char *host, const char *token, WorkerMgr* mgrWorker) {
   auto stub = tradingpb::TradingDB2::NewStub(
       grpc::CreateChannel(host, grpc::InsecureChannelCredentials()));
 
@@ -182,7 +183,9 @@ void reqTasks(const char *host, const char *token) {
       ::tradingpb::SimTradingParams *pParams = reply.params().New();
       pParams->CopyFrom(reply.params());
 
-      std::thread worker([stream, pParams, token]() {
+      auto workerID = mgrWorker->newWorkerID();
+
+      std::thread* pWorker = new std::thread([workerID, mgrWorker, stream, pParams, token]() {
         ::tradingpb::PNLData pnldata;
         auto status = TasksMgr::getSingleton()->runTask(pParams, &pnldata);
 
@@ -216,7 +219,11 @@ void reqTasks(const char *host, const char *token) {
 
           stream->Write(rtt);
         }
+
+        mgrWorker->delWorker(workerID);
       });
+
+      mgrWorker->insWorker(workerID, pWorker);
     }
   }
 }
