@@ -26,6 +26,7 @@ bool WorkerMgr::insWorker(int workerID, std::thread *pThread) {
   p.first = workerID;
   p.second.workerID = workerID;
   p.second.pThread = pThread;
+  p.second.isEnd = false;
 
   auto ret = this->m_map.insert(p);
   return ret.second;
@@ -34,10 +35,24 @@ bool WorkerMgr::insWorker(int workerID, std::thread *pThread) {
 void WorkerMgr::delWorker(int workerID) {
   std::lock_guard<std::mutex> lock(this->m_mtx);
 
+  auto ts = std::time(NULL);
+  if (ts - this->m_lastDeleteTs >= 60) {
+    this->m_lastDeleteTs = ts;
+
+    for (auto it = this->m_map.begin(); it != this->m_map.end(); ++it) {
+      if (it->second.isEnd && !it->second.pThread->joinable()) {
+        delete it->second.pThread;
+        this->m_map.erase(it);
+        break;
+      }
+    }
+  }
+
   auto it = this->m_map.find(workerID);
   if (it != this->m_map.end()) {
-    delete it->second.pThread;
-    this->m_map.erase(it);
+    it->second.isEnd = true;
+    // delete it->second.pThread;
+    // this->m_map.erase(it);
   }
 }
 

@@ -15,13 +15,14 @@ class WorkerMgr {
   struct Worker {
     int workerID;
     std::thread *pThread;
+    bool isEnd;
   };
 
   typedef std::map<int, Worker> _Map;
   typedef std::pair<int, Worker> _Pair;
 
  public:
-  WorkerMgr() : latestWorkerID(0) {}
+  WorkerMgr() : latestWorkerID(0), m_lastDeleteTs(0) {}
   ~WorkerMgr() { this->release(); }
 
  public:
@@ -38,6 +39,7 @@ class WorkerMgr {
   _Map m_map;
   int latestWorkerID;
   std::mutex m_mtx;
+  std::time_t m_lastDeleteTs;
 };
 
 CR2END
