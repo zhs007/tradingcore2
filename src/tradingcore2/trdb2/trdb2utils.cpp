@@ -180,6 +180,8 @@ void reqTasks(const char *host, const char *token, WorkerMgr *mgrWorker) {
 
       stream->WritesDone();
 
+      LOG(INFO) << "reqTasks " << tasknums << " end. ";
+
       break;
     } else {
       ++tasknums;
