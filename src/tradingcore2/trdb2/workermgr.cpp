@@ -39,11 +39,12 @@ void WorkerMgr::delWorker(int workerID) {
   if (ts - this->m_lastDeleteTs >= 60) {
     this->m_lastDeleteTs = ts;
 
-    for (auto it = this->m_map.begin(); it != this->m_map.end(); ++it) {
+    for (auto it = this->m_map.begin(); it != this->m_map.end();) {
       if (it->second.isEnd && !it->second.pThread->joinable()) {
         delete it->second.pThread;
-        this->m_map.erase(it);
-        break;
+        it = this->m_map.erase(it);
+      } else {
+        ++it;
       }
     }
   }
