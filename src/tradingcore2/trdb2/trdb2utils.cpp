@@ -241,6 +241,10 @@ void reqTasks(const char *host, const char *token, WorkerMgr *mgrWorker) {
     LOG(ERROR) << "reqTasks " << tasknums << " failed. "
                << status.error_message();
   }
+
+  if (tasknums > 0) {
+    LOG(INFO) << "reqTasks " << tasknums << " finished. ";
+  }
 }
 
 CR2END
