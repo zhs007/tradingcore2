@@ -180,7 +180,9 @@ void reqTasks(const char *host, const char *token, WorkerMgr *mgrWorker) {
 
       stream->WritesDone();
 
-      LOG(INFO) << "reqTasks " << tasknums << " end. ";
+      if (tasknums > 0) {
+        LOG(INFO) << "reqTasks " << tasknums << " end. ";
+      }
 
       break;
     } else {
@@ -238,6 +240,10 @@ void reqTasks(const char *host, const char *token, WorkerMgr *mgrWorker) {
   if (!status.ok()) {
     LOG(ERROR) << "reqTasks " << tasknums << " failed. "
                << status.error_message();
+  }
+
+  if (tasknums > 0) {
+    LOG(INFO) << "reqTasks " << tasknums << " finished. ";
   }
 }
 

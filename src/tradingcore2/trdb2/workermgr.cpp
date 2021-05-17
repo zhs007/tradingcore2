@@ -12,11 +12,23 @@ CR2BEGIN
 void WorkerMgr::release() {
   std::lock_guard<std::mutex> lock(this->m_mtx);
 
-  for (_Map::iterator it = this->m_map.begin(); it != this->m_map.end(); ++it) {
-    delete it->second.pThread;
+  for (auto it = this->m_map.begin(); it != this->m_map.end();) {
+    if (it->second.isEnd && !it->second.pThread->joinable()) {
+      delete it->second.pThread;
+      it = this->m_map.erase(it);
+    } else {
+      ++it;
+    }
   }
 
-  m_map.clear();
+  LOG(INFO) << "WorkerMgr::release non-free " << m_map.size();
+
+  // for (_Map::iterator it = this->m_map.begin(); it != this->m_map.end();
+  // ++it) {
+  //   delete it->second.pThread;
+  // }
+
+  // m_map.clear();
 }
 
 bool WorkerMgr::insWorker(int workerID, std::thread *pThread) {
@@ -29,6 +41,9 @@ bool WorkerMgr::insWorker(int workerID, std::thread *pThread) {
   p.second.isEnd = false;
 
   auto ret = this->m_map.insert(p);
+
+  LOG(INFO) << "WorkerMgr::insWorker " << workerID << " " << ret.second;
+
   return ret.second;
 }
 
@@ -41,6 +56,9 @@ void WorkerMgr::delWorker(int workerID) {
 
     for (auto it = this->m_map.begin(); it != this->m_map.end();) {
       if (it->second.isEnd && !it->second.pThread->joinable()) {
+        LOG(INFO) << "WorkerMgr::delWorker " << workerID << " delete thread "
+                  << it->first;
+
         delete it->second.pThread;
         it = this->m_map.erase(it);
       } else {
@@ -52,6 +70,8 @@ void WorkerMgr::delWorker(int workerID) {
   auto it = this->m_map.find(workerID);
   if (it != this->m_map.end()) {
     it->second.isEnd = true;
+
+    LOG(INFO) << "WorkerMgr::delWorker " << workerID;
     // delete it->second.pThread;
     // this->m_map.erase(it);
   }
