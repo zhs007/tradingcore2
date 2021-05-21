@@ -1,3 +1,4 @@
+#include <tradingcore2/config.h>
 #include <tradingcore2/protos/tradingdb2.grpc.pb.h>
 #include <tradingcore2/trdb2/workermgr.h>
 #include <tradingcore2/utils.h>
@@ -8,6 +9,27 @@
 #include <thread>
 
 CR2BEGIN
+
+void WorkerMgr::init(const Config& cfg) {
+  long cpus = sysconf(_SC_NPROCESSORS_ONLN);  // get # of online cores
+  if (cfg.taskNums == 0) {
+    m_maxWorkerNums = cpus;
+  } else if (cfg.taskNums >= cpus) {
+    m_maxWorkerNums = cpus;
+  } else if (cfg.taskNums > 0) {
+    m_maxWorkerNums = cfg.taskNums;
+  } else if (cfg.taskNums < 0) {
+    if (-cfg.taskNums < cpus) {
+      m_maxWorkerNums = cpus + cfg.taskNums;
+    } else {
+      m_maxWorkerNums = 1;
+    }
+  } else {
+    assert(false && "WorkerMgr::init() error");
+  }
+
+  LOG(INFO) << "max workers num :" << m_maxWorkerNums;
+}
 
 void WorkerMgr::release() {
   std::lock_guard<std::mutex> lock(this->m_mtx);
@@ -31,7 +53,7 @@ void WorkerMgr::release() {
   // m_map.clear();
 }
 
-bool WorkerMgr::insWorker(int workerID, std::thread *pThread) {
+bool WorkerMgr::insWorker(int workerID, std::thread* pThread) {
   std::lock_guard<std::mutex> lock(this->m_mtx);
 
   _Pair p;
@@ -79,7 +101,30 @@ void WorkerMgr::delWorker(int workerID) {
 
 int WorkerMgr::newWorkerID() {
   std::lock_guard<std::mutex> lock(this->m_mtx);
-  return ++latestWorkerID;
+  return ++m_latestWorkerID;
+}
+
+int WorkerMgr::countRunningWorkerNums() {
+  auto nums = 0;
+  for (auto it = this->m_map.begin(); it != this->m_map.end(); ++it) {
+    if (!it->second.isEnd) {
+      nums++;
+    }
+  }
+
+  return nums;
+}
+
+bool WorkerMgr::hasFreeWorker() {
+  std::lock_guard<std::mutex> lock(this->m_mtx);
+
+  return this->countRunningWorkerNums() < this->m_maxWorkerNums;
+}
+
+bool WorkerMgr::hasRunningWorker() {
+  std::lock_guard<std::mutex> lock(this->m_mtx);
+
+  return this->countRunningWorkerNums() == 0;
 }
 
 CR2END
