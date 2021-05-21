@@ -174,6 +174,14 @@ void reqTasks(const char *host, const char *token, WorkerMgr *mgrWorker) {
 
   while (stream->Read(&reply)) {
     if (!reply.has_params()) {
+      while (mgrWorker->hasRunningWorker()) {
+        std::this_thread::sleep_for(std::chrono::seconds(5));
+      }
+
+      if (tasknums > 0) {
+        LOG(INFO) << "all worker end.";
+      }
+
       while (TasksMgr::getSingleton()->getCurTaskNums() > 0) {
         std::this_thread::sleep_for(std::chrono::seconds(5));
       }
@@ -186,53 +194,74 @@ void reqTasks(const char *host, const char *token, WorkerMgr *mgrWorker) {
 
       break;
     } else {
-      ++tasknums;
+      if (!mgrWorker->hasFreeWorker()) {
+        std::string task;
+        reply.params().SerializeToString(&task);
 
-      ::tradingpb::SimTradingParams *pParams = reply.params().New();
-      pParams->CopyFrom(reply.params());
+        tradingpb::RequestTradingTask rtt;
 
-      auto workerID = mgrWorker->newWorkerID();
+        auto brd = rtt.mutable_basicrequest();
+        brd->set_token(token);
 
-      std::thread *pWorker =
-          new std::thread([workerID, mgrWorker, stream, pParams, token]() {
-            ::tradingpb::PNLData pnldata;
-            auto status = TasksMgr::getSingleton()->runTask(pParams, &pnldata);
+        auto mr = rtt.mutable_result();
+        mr->set_task(task);
+        mr->set_err("non-worker");
 
-            if (status.ok()) {
-              std::string task;
-              pParams->SerializeToString(&task);
+        stream->Write(rtt);
+      } else {
+        ++tasknums;
 
-              tradingpb::RequestTradingTask rtt;
+        ::tradingpb::SimTradingParams *pParams = reply.params().New();
+        pParams->CopyFrom(reply.params());
 
-              auto brd = rtt.mutable_basicrequest();
-              brd->set_token(token);
+        auto workerID = mgrWorker->newWorkerID();
 
-              auto mr = rtt.mutable_result();
-              mr->set_task(task);
-              auto pnl = mr->mutable_pnl();
-              pnl->CopyFrom(pnldata);
+        std::thread *pWorker =
+            new std::thread([workerID, mgrWorker, stream, pParams, token]() {
+              ::tradingpb::PNLData pnldata;
+              auto status =
+                  TasksMgr::getSingleton()->runTask(pParams, &pnldata);
 
-              stream->Write(rtt);
-            } else {
-              std::string task;
-              pParams->SerializeToString(&task);
+              if (status.ok()) {
+                std::string task;
+                pParams->SerializeToString(&task);
 
-              tradingpb::RequestTradingTask rtt;
+                tradingpb::RequestTradingTask rtt;
 
-              auto brd = rtt.mutable_basicrequest();
-              brd->set_token(token);
+                auto brd = rtt.mutable_basicrequest();
+                brd->set_token(token);
 
-              auto mr = rtt.mutable_result();
-              mr->set_task(task);
-              mr->set_err(status.error_message());
+                auto mr = rtt.mutable_result();
+                mr->set_task(task);
+                auto pnl = mr->mutable_pnl();
+                pnl->CopyFrom(pnldata);
 
-              stream->Write(rtt);
-            }
+                stream->Write(rtt);
+              } else {
+                std::string task;
+                pParams->SerializeToString(&task);
 
-            mgrWorker->delWorker(workerID);
-          });
+                tradingpb::RequestTradingTask rtt;
 
-      mgrWorker->insWorker(workerID, pWorker);
+                auto brd = rtt.mutable_basicrequest();
+                brd->set_token(token);
+
+                auto mr = rtt.mutable_result();
+                mr->set_task(task);
+                mr->set_err(status.error_message());
+
+                stream->Write(rtt);
+              }
+
+              mgrWorker->delWorker(workerID);
+            });
+
+        mgrWorker->insWorker(workerID, pWorker);
+
+        if (mgrWorker->hasFreeWorker()) {
+          stream->Write(req);
+        }
+      }
     }
   }
 
