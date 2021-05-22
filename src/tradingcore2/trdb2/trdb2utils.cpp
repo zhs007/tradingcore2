@@ -179,7 +179,7 @@ void reqTasks(const char *host, const char *token, WorkerMgr *mgrWorker) {
       }
 
       if (tasknums > 0) {
-        LOG(INFO) << "all worker end.";
+        LOG(INFO) << "reqTasks all worker end.";
       }
 
       while (TasksMgr::getSingleton()->getCurTaskNums() > 0) {
@@ -195,6 +195,8 @@ void reqTasks(const char *host, const char *token, WorkerMgr *mgrWorker) {
       break;
     } else {
       if (!mgrWorker->hasFreeWorker()) {
+        LOG(INFO) << "reqTasks non-worker.";
+
         std::string task;
         reply.params().SerializeToString(&task);
 
