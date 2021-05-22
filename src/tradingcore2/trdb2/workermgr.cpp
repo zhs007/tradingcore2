@@ -124,7 +124,7 @@ bool WorkerMgr::hasFreeWorker() {
 bool WorkerMgr::hasRunningWorker() {
   std::lock_guard<std::mutex> lock(this->m_mtx);
 
-  return this->countRunningWorkerNums() == 0;
+  return this->countRunningWorkerNums() > 0;
 }
 
 CR2END
