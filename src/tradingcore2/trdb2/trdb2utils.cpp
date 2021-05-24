@@ -165,6 +165,7 @@ void reqTasks(const char *host, const char *token, WorkerMgr *mgrWorker) {
   tradingpb::RequestTradingTask req;
   tradingpb::ReplyTradingTask reply;
   int tasknums = 0;
+  bool isEnd = false;
   // int workernums = 0;
 
   auto brd = req.mutable_basicrequest();
@@ -173,6 +174,10 @@ void reqTasks(const char *host, const char *token, WorkerMgr *mgrWorker) {
   stream->Write(req);
 
   while (stream->Read(&reply)) {
+    if (isEnd) {
+      continue;
+    }
+
     if (!reply.has_params()) {
       while (mgrWorker->hasRunningWorker()) {
         std::this_thread::sleep_for(std::chrono::seconds(5));
@@ -188,11 +193,13 @@ void reqTasks(const char *host, const char *token, WorkerMgr *mgrWorker) {
 
       stream->WritesDone();
 
+      isEnd = true;
+
       if (tasknums > 0) {
         LOG(INFO) << "reqTasks " << tasknums << " end. ";
       }
 
-      break;
+      // break;
     } else {
       if (!mgrWorker->hasFreeWorker()) {
         LOG(INFO) << "reqTasks non-worker.";
