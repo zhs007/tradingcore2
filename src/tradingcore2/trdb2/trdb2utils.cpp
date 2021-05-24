@@ -162,6 +162,7 @@ void reqTasks(const char *host, const char *token, WorkerMgr *mgrWorker) {
                                            tradingpb::ReplyTradingTask>>
       stream(stub->reqTradingTask3(&context));
 
+  std::mutex *pmtx = new std::mutex();
   tradingpb::RequestTradingTask req;
   tradingpb::ReplyTradingTask reply;
   int tasknums = 0;
@@ -191,7 +192,11 @@ void reqTasks(const char *host, const char *token, WorkerMgr *mgrWorker) {
         std::this_thread::sleep_for(std::chrono::seconds(5));
       }
 
-      stream->WritesDone();
+      {
+        std::lock_guard<std::mutex> lock(*pmtx);
+
+        stream->WritesDone();
+      }
 
       isEnd = true;
 
@@ -216,7 +221,11 @@ void reqTasks(const char *host, const char *token, WorkerMgr *mgrWorker) {
         mr->set_task(task);
         mr->set_err("non-worker");
 
-        stream->Write(rtt);
+        {
+          std::lock_guard<std::mutex> lock(*pmtx);
+          stream->Write(rtt);
+        }
+
       } else {
         ++tasknums;
 
@@ -225,49 +234,55 @@ void reqTasks(const char *host, const char *token, WorkerMgr *mgrWorker) {
 
         auto workerID = mgrWorker->newWorkerID();
 
-        std::thread *pWorker =
-            new std::thread([workerID, mgrWorker, stream, pParams, token]() {
-              ::tradingpb::PNLData pnldata;
-              auto status =
-                  TasksMgr::getSingleton()->runTask(pParams, &pnldata);
+        std::thread *pWorker = new std::thread([workerID, mgrWorker, stream,
+                                                pParams, token, pmtx]() {
+          ::tradingpb::PNLData pnldata;
+          auto status = TasksMgr::getSingleton()->runTask(pParams, &pnldata);
 
-              if (status.ok()) {
-                std::string task;
-                pParams->SerializeToString(&task);
+          if (status.ok()) {
+            std::string task;
+            pParams->SerializeToString(&task);
 
-                tradingpb::RequestTradingTask rtt;
+            tradingpb::RequestTradingTask rtt;
 
-                auto brd = rtt.mutable_basicrequest();
-                brd->set_token(token);
+            auto brd = rtt.mutable_basicrequest();
+            brd->set_token(token);
 
-                auto mr = rtt.mutable_result();
-                mr->set_task(task);
-                auto pnl = mr->mutable_pnl();
-                pnl->CopyFrom(pnldata);
+            auto mr = rtt.mutable_result();
+            mr->set_task(task);
+            auto pnl = mr->mutable_pnl();
+            pnl->CopyFrom(pnldata);
 
-                stream->Write(rtt);
-              } else {
-                std::string task;
-                pParams->SerializeToString(&task);
+            {
+              std::lock_guard<std::mutex> lock(*pmtx);
+              stream->Write(rtt);
+            }
+          } else {
+            std::string task;
+            pParams->SerializeToString(&task);
 
-                tradingpb::RequestTradingTask rtt;
+            tradingpb::RequestTradingTask rtt;
 
-                auto brd = rtt.mutable_basicrequest();
-                brd->set_token(token);
+            auto brd = rtt.mutable_basicrequest();
+            brd->set_token(token);
 
-                auto mr = rtt.mutable_result();
-                mr->set_task(task);
-                mr->set_err(status.error_message());
+            auto mr = rtt.mutable_result();
+            mr->set_task(task);
+            mr->set_err(status.error_message());
 
-                stream->Write(rtt);
-              }
+            {
+              std::lock_guard<std::mutex> lock(*pmtx);
+              stream->Write(rtt);
+            }
+          }
 
-              mgrWorker->delWorker(workerID);
-            });
+          mgrWorker->delWorker(workerID);
+        });
 
         mgrWorker->insWorker(workerID, pWorker);
 
         if (mgrWorker->hasFreeWorker()) {
+          std::lock_guard<std::mutex> lock(*pmtx);
           stream->Write(req);
         }
       }
