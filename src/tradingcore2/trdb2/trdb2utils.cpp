@@ -167,6 +167,7 @@ void reqTasks(const char *host, const char *token, WorkerMgr *mgrWorker) {
   tradingpb::ReplyTradingTask reply;
   int tasknums = 0;
   bool isEnd = false;
+  int firstTaskNums = 0;
   // int workernums = 0;
 
   auto brd = req.mutable_basicrequest();
@@ -228,6 +229,7 @@ void reqTasks(const char *host, const char *token, WorkerMgr *mgrWorker) {
 
       } else {
         ++tasknums;
+        ++firstTaskNums;
 
         ::tradingpb::SimTradingParams *pParams = reply.params().New();
         pParams->CopyFrom(reply.params());
@@ -281,7 +283,7 @@ void reqTasks(const char *host, const char *token, WorkerMgr *mgrWorker) {
 
         mgrWorker->insWorker(workerID, pWorker);
 
-        if (mgrWorker->hasFreeWorker()) {
+        if (firstTaskNums < mgrWorker->getMaxWorkerNums()) {
           std::lock_guard<std::mutex> lock(*pmtx);
           stream->Write(req);
         }

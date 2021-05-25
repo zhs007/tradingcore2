@@ -43,6 +43,8 @@ class WorkerMgr {
 
   bool hasRunningWorker();
 
+  int getMaxWorkerNums() const { return m_maxWorkerNums; }
+
  protected:
   void init(const Config& cfg);
 
