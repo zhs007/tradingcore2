@@ -26,6 +26,7 @@ struct Config {
   bool isLimitTasks;
   int taskTimeOff;
   std::vector<std::string> tokens;
+  int maxTasksNums;
 
   std::string trdb2Serv;
   std::string trdb2Token;

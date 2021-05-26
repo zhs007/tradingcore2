@@ -10,35 +10,53 @@
 
 CR2BEGIN
 
-void WorkerMgr::init(const Config& cfg) {
-  long cpus = sysconf(_SC_NPROCESSORS_ONLN);  // get # of online cores
-  if (cfg.taskNums == 0) {
+void WorkerMgr::init(const Config &cfg)
+{
+  long cpus = sysconf(_SC_NPROCESSORS_ONLN); // get # of online cores
+  if (cfg.taskNums == 0)
+  {
     m_maxWorkerNums = cpus;
-  } else if (cfg.taskNums >= cpus) {
+  }
+  else if (cfg.taskNums >= cpus)
+  {
     m_maxWorkerNums = cpus;
-  } else if (cfg.taskNums > 0) {
+  }
+  else if (cfg.taskNums > 0)
+  {
     m_maxWorkerNums = cfg.taskNums;
-  } else if (cfg.taskNums < 0) {
-    if (-cfg.taskNums < cpus) {
+  }
+  else if (cfg.taskNums < 0)
+  {
+    if (-cfg.taskNums < cpus)
+    {
       m_maxWorkerNums = cpus + cfg.taskNums;
-    } else {
+    }
+    else
+    {
       m_maxWorkerNums = 1;
     }
-  } else {
+  }
+  else
+  {
     assert(false && "WorkerMgr::init() error");
   }
 
   LOG(INFO) << "max workers num :" << m_maxWorkerNums;
 }
 
-void WorkerMgr::release() {
+void WorkerMgr::release()
+{
   std::lock_guard<std::mutex> lock(this->m_mtx);
 
-  for (auto it = this->m_map.begin(); it != this->m_map.end();) {
-    if (it->second.isEnd && !it->second.pThread->joinable()) {
+  for (auto it = this->m_map.begin(); it != this->m_map.end();)
+  {
+    if (it->second.isEnd && !it->second.pThread->joinable())
+    {
       delete it->second.pThread;
       it = this->m_map.erase(it);
-    } else {
+    }
+    else
+    {
       ++it;
     }
   }
@@ -53,7 +71,8 @@ void WorkerMgr::release() {
   // m_map.clear();
 }
 
-bool WorkerMgr::insWorker(int workerID, std::thread* pThread) {
+bool WorkerMgr::insWorker(int workerID, std::thread *pThread)
+{
   std::lock_guard<std::mutex> lock(this->m_mtx);
 
   _Pair p;
@@ -69,28 +88,35 @@ bool WorkerMgr::insWorker(int workerID, std::thread* pThread) {
   return ret.second;
 }
 
-void WorkerMgr::delWorker(int workerID) {
+void WorkerMgr::delWorker(int workerID)
+{
   std::lock_guard<std::mutex> lock(this->m_mtx);
 
   auto ts = std::time(NULL);
-  if (ts - this->m_lastDeleteTs >= 60) {
+  if (ts - this->m_lastDeleteTs >= 60)
+  {
     this->m_lastDeleteTs = ts;
 
-    for (auto it = this->m_map.begin(); it != this->m_map.end();) {
-      if (it->second.isEnd && !it->second.pThread->joinable()) {
+    for (auto it = this->m_map.begin(); it != this->m_map.end();)
+    {
+      if (it->second.isEnd && !it->second.pThread->joinable())
+      {
         LOG(INFO) << "WorkerMgr::delWorker " << workerID << " delete thread "
                   << it->first;
 
         delete it->second.pThread;
         it = this->m_map.erase(it);
-      } else {
+      }
+      else
+      {
         ++it;
       }
     }
   }
 
   auto it = this->m_map.find(workerID);
-  if (it != this->m_map.end()) {
+  if (it != this->m_map.end())
+  {
     it->second.isEnd = true;
 
     LOG(INFO) << "WorkerMgr::delWorker " << workerID;
@@ -99,15 +125,19 @@ void WorkerMgr::delWorker(int workerID) {
   }
 }
 
-int WorkerMgr::newWorkerID() {
+int WorkerMgr::newWorkerID()
+{
   std::lock_guard<std::mutex> lock(this->m_mtx);
   return ++m_latestWorkerID;
 }
 
-int WorkerMgr::countRunningWorkerNums() {
+int WorkerMgr::countRunningWorkerNums()
+{
   auto nums = 0;
-  for (auto it = this->m_map.begin(); it != this->m_map.end(); ++it) {
-    if (!it->second.isEnd) {
+  for (auto it = this->m_map.begin(); it != this->m_map.end(); ++it)
+  {
+    if (!it->second.isEnd)
+    {
       nums++;
     }
   }
@@ -115,16 +145,25 @@ int WorkerMgr::countRunningWorkerNums() {
   return nums;
 }
 
-bool WorkerMgr::hasFreeWorker() {
+bool WorkerMgr::hasFreeWorker()
+{
   std::lock_guard<std::mutex> lock(this->m_mtx);
 
   return this->countRunningWorkerNums() < this->m_maxWorkerNums;
 }
 
-bool WorkerMgr::hasRunningWorker() {
+bool WorkerMgr::hasRunningWorker()
+{
   std::lock_guard<std::mutex> lock(this->m_mtx);
 
   return this->countRunningWorkerNums() > 0;
+}
+
+bool WorkerMgr::canFinish()
+{
+  std::lock_guard<std::mutex> lock(this->m_mtx);
+
+  return this->m_curFinishedTasks >= this->m_pCfg->maxTasksNums;
 }
 
 CR2END

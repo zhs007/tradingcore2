@@ -49,6 +49,12 @@ bool loadConfig(Config& cfg, const char* fn) {
     cfg.taskTimeOff = 0;
   }
 
+    if (node["maxtasksnums"].IsScalar()) {
+    cfg.maxTasksNums = yamlGetScalar<int>(node["maxtasksnums"], 0);
+  } else {
+    cfg.maxTasksNums = 0;
+  }
+
   if (node["tokens"].IsSequence()) {
     for (auto it = node["tokens"].begin(); it != node["tokens"].end(); ++it) {
       if (it->IsScalar()) {
