@@ -130,8 +130,11 @@ bool WorkerMgr::hasRunningWorker() {
 }
 
 bool WorkerMgr::canFinish() {
-  std::lock_guard<std::mutex> lock(this->m_mtx);
+  if (this->m_finishedTasks <= 0) {
+    return false;
+  }
 
+  std::lock_guard<std::mutex> lock(this->m_mtx);
   return this->m_curFinishedTasks >= this->m_finishedTasks;
 }
 
