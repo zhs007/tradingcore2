@@ -14,7 +14,7 @@ class WorkerMgr {
  public:
   struct Worker {
     int workerID;
-    std::thread* pThread;
+    std::thread *pThread;
     bool isEnd;
   };
 
@@ -22,7 +22,11 @@ class WorkerMgr {
   typedef std::pair<int, Worker> _Pair;
 
  public:
-  WorkerMgr(const Config& cfg) : m_latestWorkerID(0), m_lastDeleteTs(0) {
+  WorkerMgr(const Config &cfg)
+      : m_latestWorkerID(0),
+        m_lastDeleteTs(0),
+        m_curFinishedTasks(0),
+        m_finishedTasks(0) {
     init(cfg);
   }
   ~WorkerMgr() { this->release(); }
@@ -33,7 +37,7 @@ class WorkerMgr {
  public:
   int newWorkerID();
 
-  bool insWorker(int workerID, std::thread* pThread);
+  bool insWorker(int workerID, std::thread *pThread);
 
   void delWorker(int workerID);
 
@@ -45,8 +49,10 @@ class WorkerMgr {
 
   int getMaxWorkerNums() const { return m_maxWorkerNums; }
 
+  bool canFinish();
+
  protected:
-  void init(const Config& cfg);
+  void init(const Config &cfg);
 
  private:
   // const Config* m_pCfg;
@@ -55,6 +61,8 @@ class WorkerMgr {
   std::mutex m_mtx;
   std::time_t m_lastDeleteTs;
   int m_maxWorkerNums;
+  int m_curFinishedTasks;
+  int m_finishedTasks;
 };
 
 CR2END

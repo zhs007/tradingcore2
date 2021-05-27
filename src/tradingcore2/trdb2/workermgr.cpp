@@ -10,7 +10,9 @@
 
 CR2BEGIN
 
-void WorkerMgr::init(const Config& cfg) {
+void WorkerMgr::init(const Config &cfg) {
+  this->m_finishedTasks = cfg.maxTasksNums;
+
   long cpus = sysconf(_SC_NPROCESSORS_ONLN);  // get # of online cores
   if (cfg.taskNums == 0) {
     m_maxWorkerNums = cpus;
@@ -53,7 +55,7 @@ void WorkerMgr::release() {
   // m_map.clear();
 }
 
-bool WorkerMgr::insWorker(int workerID, std::thread* pThread) {
+bool WorkerMgr::insWorker(int workerID, std::thread *pThread) {
   std::lock_guard<std::mutex> lock(this->m_mtx);
 
   _Pair p;
@@ -125,6 +127,15 @@ bool WorkerMgr::hasRunningWorker() {
   std::lock_guard<std::mutex> lock(this->m_mtx);
 
   return this->countRunningWorkerNums() > 0;
+}
+
+bool WorkerMgr::canFinish() {
+  if (this->m_finishedTasks <= 0) {
+    return false;
+  }
+
+  std::lock_guard<std::mutex> lock(this->m_mtx);
+  return this->m_curFinishedTasks >= this->m_finishedTasks;
 }
 
 CR2END

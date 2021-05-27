@@ -1,13 +1,15 @@
 #include <stdio.h>
 #include <tradingcore2/tradingcore2.h>
 
-void startServ(const tr2::Config& cfg) {
+void startServ(const tr2::Config &cfg)
+{
   auto pServ = tr2::newNodeServer2(cfg);
   //   pServ->init(cfg);
   pServ->run();
 }
 
-int main(int argc, char* argv[]) {
+int main(int argc, char *argv[])
+{
   putenv("TZ=UTC");
   tr2::LogHelper log(argv[0]);
   char buf[1024];
@@ -19,14 +21,17 @@ int main(int argc, char* argv[]) {
   // printf("version is %s\n", tr2::getVersion());
 
   std::string strparams;
-  if (argc != 2) {
+  if (argc != 2)
+  {
     strparams = "../../../cfg/config.yaml";
 
     // LOG(ERROR) << "tr2serv argv file.";
     // printf("please type server cfgfile.\n");
 
     // return -1;
-  } else {
+  }
+  else
+  {
     strparams = argv[1];
   }
 
@@ -45,20 +50,31 @@ int main(int argc, char* argv[]) {
   auto mgrTasks = tr2::TasksMgr::getSingleton();
   mgrTasks->init(cfg);
 
-  std::thread worker([cfg]() {
-    tr2::WorkerMgr mgr(cfg);
-    while (true) {
-      tr2::reqTasks(cfg.trdb2Serv.c_str(), cfg.trdb2Token.c_str(), &mgr);
+  std::thread worker([cfg]()
+                     {
+                       tr2::WorkerMgr mgr(cfg);
+                       while (true)
+                       {
+                         tr2::reqTasks(cfg.trdb2Serv.c_str(), cfg.trdb2Token.c_str(), &mgr);
 
-      std::this_thread::sleep_for(std::chrono::seconds(5));
-    }
-  });
+                         if (mgr.canFinish())
+                         {
+                           return;
+                         }
 
-  LOG(INFO) << "tr2serv started.";
+                         std::this_thread::sleep_for(std::chrono::seconds(5));
+                       }
+                     });
 
-  startServ(cfg);
+  // LOG(INFO) << "tr2serv started.";
 
-  LOG(INFO) << "tr2serv exit.";
+  // startServ(cfg);
+
+  // LOG(INFO) << "tr2serv exit.";
+
+  worker.join();
+
+  LOG(INFO) << "worker exit.";
 
   tr2::releaseTALib();
 
