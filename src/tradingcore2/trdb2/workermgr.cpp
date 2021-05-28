@@ -31,6 +31,7 @@ void WorkerMgr::init(const Config &cfg) {
   }
 
   LOG(INFO) << "max workers num :" << m_maxWorkerNums;
+  LOG(INFO) << "finished tasks num :" << m_finishedTasks;
 }
 
 void WorkerMgr::release() {
@@ -94,6 +95,7 @@ void WorkerMgr::delWorker(int workerID) {
   auto it = this->m_map.find(workerID);
   if (it != this->m_map.end()) {
     it->second.isEnd = true;
+    this->m_curFinishedTasks++;
 
     LOG(INFO) << "WorkerMgr::delWorker " << workerID;
     // delete it->second.pThread;

@@ -49,8 +49,11 @@ bool loadConfig(Config& cfg, const char* fn) {
     cfg.taskTimeOff = 0;
   }
 
-    if (node["maxtasksnums"].IsScalar()) {
+  if (node["maxtasksnums"].IsScalar()) {
     cfg.maxTasksNums = yamlGetScalar<int>(node["maxtasksnums"], 0);
+    if (cfg.maxTasksNums < 0) {
+      cfg.maxTasksNums = 0;
+    }
   } else {
     cfg.maxTasksNums = 0;
   }
